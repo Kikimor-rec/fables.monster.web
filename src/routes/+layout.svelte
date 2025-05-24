@@ -13,7 +13,7 @@
 	<link rel="icon" href="/favicon.png" />
 </svelte:head>
 
-<div class="container mx-auto grid w-full max-w-4xl gap-8 px-4 py-8 sm:gap-16">
+<div class="container mx-auto grid w-full max-w-5xl gap-8 px-2 py-4 sm:gap-16 sm:px-4 sm:py-8">
 	<Header />
 
 	{@render children()}
