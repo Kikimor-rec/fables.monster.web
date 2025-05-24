@@ -9,7 +9,5 @@
 		{@render main()}
 	</div>
 
-	<div>
-		<img src={image} alt={header} class="aspect-square rounded-lg object-cover" />
-	</div>
+	<img src={image} alt={header} class="aspect-square h-full w-full rounded-lg object-cover" />
 </div>
