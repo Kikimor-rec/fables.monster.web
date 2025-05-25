@@ -8,40 +8,40 @@
 
 	const manifest: Person[] = [
 		{
-			name: 'Kikimor 1',
-			title: 'CEO',
+			name: 'Stepan Kulikov',
+			title: 'Script and idia',
 			description:
-				'We are a team of experienced developers and designers who are passionate about creating beautiful and functional websites and applications.',
+				'Project idea and scripting. Host of TTRPG games, fan of virtual tabletop and a fan of good stories.',
 			avatar: 'https://placecats.com/100/100'
 		},
 		{
-			name: 'Kikimor 2',
-			title: 'CEO',
+			name: 'Tanka Bond',
+			title: 'Desing',
 			description:
-				'We are a team of experienced developers and designers who are passionate about creating beautiful and functional websites and applications.',
-			avatar: 'https://placecats.com/100/100'
+				'Amazing lady who knows how shuld look like a good design and implement it.',
+			avatar: 'https://placecats.com/100/200'
 		},
 		{
-			name: 'Kikimor 3',
-			title: 'CEO',
+			name: 'Alxander',
+			title: 'Coding and scripting ',
 			description:
-				'We are a team of experienced developers and designers who are passionate about creating beautiful and functional websites and applications.',
-			avatar: 'https://placecats.com/100/100'
+				'Wizard of coding and scripting. He is a good person and a good developer.',
+			avatar: 'https://placecats.com/100/300'
 		},
 		{
-			name: 'Kikimor 4',
-			title: 'CEO',
+			name: 'Zlata',
+			title: 'Art',
 			description:
-				'We are a team of experienced developers and designers who are passionate about creating beautiful and functional websites and applications.',
-			avatar: 'https://placecats.com/100/100'
+				'Artist of the project. She makes our project very impressive.',
+			avatar: 'https://placecats.com/100/400'
 		},
 
 		{
-			name: 'Kikimor 5',
-			title: 'CEO',
+			name: 'Stas',
+			title: 'music',
 			description:
-				'We are a team of experienced developers and designers who are passionate about creating beautiful and functional websites and applications.',
-			avatar: 'https://placecats.com/100/100'
+				'Our music guru. He makes our project more immersive.',
+			avatar: 'https://placecats.com/100/500'
 		}
 	];
 </script>
