@@ -17,30 +17,26 @@
 		{
 			name: 'Tanka Bond',
 			title: 'Desing',
-			description:
-				'Amazing lady who knows how shuld look like a good design and implement it.',
+			description: 'Amazing lady who knows how shuld look like a good design and implement it.',
 			avatar: 'https://placecats.com/100/200'
 		},
 		{
 			name: 'Alxander',
 			title: 'Coding and scripting ',
-			description:
-				'Wizard of coding and scripting. He is a good person and a good developer.',
+			description: 'Wizard of coding and scripting. He is a good person and a good developer.',
 			avatar: 'https://placecats.com/100/300'
 		},
 		{
 			name: 'Zlata',
 			title: 'Art',
-			description:
-				'Artist of the project. She makes our project very impressive.',
+			description: 'Artist of the project. She makes our project very impressive.',
 			avatar: 'https://placecats.com/100/400'
 		},
 
 		{
 			name: 'Stas',
 			title: 'music',
-			description:
-				'Our music guru. He makes our project more immersive.',
+			description: 'Our music guru. He makes our project more immersive.',
 			avatar: 'https://placecats.com/100/500'
 		}
 	];
@@ -59,13 +55,13 @@
 	<h2 class="text-center text-4xl font-bold uppercase">Crew Manifest</h2>
 
 	<div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
-		{#each manifest.slice(0, 3) as item}
+		{#each manifest.slice(0, 3) as item (item.name)}
 			{@render card(item)}
 		{/each}
 	</div>
 
 	<div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-		{#each manifest.slice(3) as item}
+		{#each manifest.slice(3) as item (item.name)}
 			{@render card(item)}
 		{/each}
 	</div>
