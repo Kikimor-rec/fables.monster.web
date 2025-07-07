@@ -81,12 +81,12 @@ export default function HellishBureaucracy() {
               </h2>
               <p className="text-lg text-gray-300 mb-6 font-mono">
                 Your party has been sent to the very heart of the Seven Hells with a seemingly 
-                impossible task: steal a hellish contract or prove that it's invalid.
+                impossible task: steal a hellish contract or prove that it&apos;s invalid.
               </p>
               <p className="text-lg text-gray-300 mb-6 font-mono">
-                But Hell's greatest torture isn't fire and brimstone - it's paperwork. 
+                But Hell&apos;s greatest torture isn&apos;t fire and brimstone - it&apos;s paperwork. 
                 Navigate through endless bureaucratic red tape, deal with bored demons 
-                who've been doing the same job for millennia, and survive the most 
+                who&apos;ve been doing the same job for millennia, and survive the most 
                 terrifying challenge of all: middle management.
               </p>
               <p className="text-lg text-gray-300 font-mono">
@@ -99,7 +99,7 @@ export default function HellishBureaucracy() {
                 <div className="text-4xl mb-4 font-mono text-red-400">📋</div>
                 <h3 className="text-2xl font-bold text-white mb-4 font-mono">CREATIVE PROBLEM SOLVING</h3>
                 <p className="text-red-100 font-mono">
-                  Combat won't save you here. Success depends on clever thinking, 
+                  Combat won&apos;t save you here. Success depends on clever thinking, 
                   social manipulation, and understanding the twisted logic of 
                   infernal bureaucracy.
                 </p>
@@ -117,7 +117,7 @@ export default function HellishBureaucracy() {
               INFERNAL DEPARTMENTS
             </h2>
             <p className="text-xl text-gray-300 font-mono">
-              Navigate the complex hierarchy of Hell's administration
+              Navigate the complex hierarchy of Hell&apos;s administration
             </p>
           </div>
 
@@ -145,7 +145,7 @@ export default function HellishBureaucracy() {
               INFERNAL CHALLENGES
             </h2>
             <p className="text-xl text-gray-300 font-mono">
-              What your party will face in the depths of Hell's office complex
+              What your party will face in the depths of Hell&apos;s office complex
             </p>
           </div>
 

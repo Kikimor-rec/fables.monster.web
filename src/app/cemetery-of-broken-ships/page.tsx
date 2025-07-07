@@ -142,7 +142,7 @@ export default function CemeteryOfBrokenShips() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-white mb-6 font-mono">
-              WHAT'S INCLUDED
+              WHAT&apos;S INCLUDED
             </h2>
           </div>
 

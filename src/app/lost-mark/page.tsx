@@ -98,8 +98,8 @@ export default function LostMark() {
                 ABOUT THE ADVENTURE
               </h2>
               <p className="text-lg text-gray-300 mb-6 font-mono">
-                When your crew receives a distress signal from the research vessel "Lost Mark," 
-                you're thrust into a nightmare that challenges your sanity and survival instincts.
+                When your crew receives a distress signal from the research vessel &ldquo;Lost Mark,&rdquo; 
+                you&apos;re thrust into a nightmare that challenges your sanity and survival instincts.
               </p>
               <p className="text-lg text-gray-300 mb-6 font-mono">
                 This 32-page cosmic horror adventure module emphasizes investigation, atmosphere, 
@@ -187,7 +187,7 @@ export default function LostMark() {
       <section className="py-20 bg-gray-900">
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-4xl font-bold text-white mb-12 text-center font-mono">
-            WHAT'S INSIDE
+            WHAT&apos;S INSIDE
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-black border border-red-700 p-6">

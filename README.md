@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Fables Monster Studio
+
+Independent tabletop RPG content creation studio website built with Next.js, TypeScript, and Tailwind CSS.
+
+## About
+
+Fables Monster Studio is a team of enthusiasts dedicated to creating immersive tabletop RPG adventures and digital experiences. Our flagship project "The Lost Mark" is a cosmic horror adventure for Mothership RPG.
+
+## Features
+
+- **Modern Tech Stack**: Next.js 15, TypeScript, Tailwind CSS 4.0
+- **Mothership Aesthetic**: Dark theme inspired by Mothership RPG
+- **Responsive Design**: Mobile-first approach with adaptive navigation
+- **Performance Optimized**: WebP images, optimized fonts, and efficient loading
+- **SEO Ready**: Proper metadata and OpenGraph tags
+
+## Projects
+
+- **The Lost Mark** - Cosmic horror adventure for Mothership RPG
+- **Cemetery of Broken Ships** - Space exploration and survival
+- **Hellish Bureaucracy** - Satirical bureaucratic horror
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+# Install dependencies
+npm install
+
+# Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Build for production
+npm run build
+
+# Start production server
+npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the site.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Tech Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Framework**: Next.js 15 with App Router
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS 4.0
+- **Images**: Next.js Image optimization with WebP
+- **Fonts**: Geist and Geist Mono
+- **Deployment**: Vercel
 
-## Learn More
+## Team
 
-To learn more about Next.js, take a look at the following resources:
+- **Stepan Kulikov** - Creative Director & Lead Designer
+- **Tatiana Bond** - Story Writer & Narrative Designer
+- **Zlata Ignatova** - Artist & Visual Designer
+- **Stanislav DariDai** - Game Designer & Developer
+- **Allecks** - Technical Lead & Web Developer
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deploy
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The site is configured for deployment on Vercel. Simply connect your GitHub repository to Vercel for automatic deployments.
 
-## Deploy on Vercel
+## Contact
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Website: [fables.monster](https://fables.monster)
+- Email: contact@fables.monster
+- Discord: Join our community server
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+© 2025 Fables Monster Studio. All rights reserved.

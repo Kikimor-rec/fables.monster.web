@@ -117,7 +117,7 @@ export default function About() {
             <div className="text-center">
               <div className="text-6xl mb-4">🎭</div>
               <div className="text-white font-mono font-bold text-xl border-2 border-red-700 p-6 bg-red-950/20">
-                "EVERY STORY DESERVES TO BE TOLD"
+                &ldquo;EVERY STORY DESERVES TO BE TOLD&rdquo;
               </div>
             </div>
           </div>
@@ -213,8 +213,8 @@ export default function About() {
             JOIN OUR JOURNEY
           </h2>
           <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto font-mono">
-            Want to be part of our story? Whether you're a player, creator, or fellow developer, 
-            we'd love to hear from you.
+            Want to be part of our story? Whether you&apos;re a player, creator, or fellow developer, 
+            we&apos;d love to hear from you.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
