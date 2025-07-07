@@ -1,102 +1,229 @@
+import Link from "next/link";
 import Image from "next/image";
+import Navigation from "@/components/Navigation";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="min-h-screen bg-black">
+      <Navigation />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      {/* Hero Section */}
+      <section className="relative min-h-screen flex items-center justify-center text-center">
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-black to-red-950/20"></div>
+        <div className="relative z-10 max-w-5xl mx-auto px-6">
+          <h1 className="text-6xl md:text-8xl font-bold text-white mb-6 font-mono tracking-wider">
+            FABLES MONSTER
+          </h1>
+          <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto font-mono">
+            Independent tabletop RPG content creation studio
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              href="/projects"
+              className="bg-red-700 hover:bg-red-600 text-white px-8 py-4 text-lg font-mono font-bold transition-colors border border-red-600"
+            >
+              VIEW PROJECTS
+            </Link>
+            <Link
+              href="/lost-mark"
+              className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-black px-8 py-4 text-lg font-mono font-bold transition-colors"
+            >
+              LOST MARK
+            </Link>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      </section>
+
+      {/* About Section */}
+      <section className="py-20 bg-gray-900 border-t border-red-700">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-4xl font-bold text-white mb-6 font-mono">
+                ABOUT THE STUDIO
+              </h2>
+              <p className="text-lg text-gray-300 mb-6 font-mono">
+                We are a team of enthusiasts dedicated to creating immersive tabletop RPG adventures and digital experiences. 
+                Our mission is to craft projects that leave a lasting impact on players.
+              </p>
+              <p className="text-lg text-gray-300 mb-8 font-mono">
+                From cosmic horror to fantasy adventures, we explore various forms of interactive entertainment, 
+                creating unique experiences for every player.
+              </p>
+              <Link
+                href="/about"
+                className="inline-block bg-red-700 hover:bg-red-600 text-white px-6 py-3 font-mono font-bold transition-colors border border-red-600"
+              >
+                MORE ABOUT US
+              </Link>
+            </div>
+            <div className="bg-gradient-to-br from-red-800 to-red-900 p-8 border border-red-700">
+              <div className="text-center">
+                <div className="text-4xl mb-4 font-mono">⚡</div>
+                <h3 className="text-2xl font-bold text-white mb-4 font-mono">OUR PHILOSOPHY</h3>
+                <p className="text-red-100 font-mono">
+                  Every game is a story, every story is a world, every world is an opportunity 
+                  for players to become heroes of their own adventure.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Project */}
+      <section className="py-20 bg-black border-t border-red-700">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-white mb-4 font-mono">
+              FLAGSHIP PROJECT
+            </h2>
+            <p className="text-xl text-gray-300 font-mono">
+              Our pride and most ambitious project
+            </p>
+          </div>
+          
+          <div className="bg-gray-900 border border-red-700 p-8 md:p-12">
+            <div className="grid md:grid-cols-2 gap-8 items-center">
+              <div>
+                <h3 className="text-3xl font-bold text-white mb-4 font-mono">
+                  THE LOST MARK
+                </h3>
+                <p className="text-lg text-gray-300 mb-6 font-mono">
+                  A cosmic horror adventure for Mothership RPG where your crew faces impossible choices 
+                  and eldritch truths among the wrecks and cults of deep space.
+                </p>
+                <div className="flex flex-wrap gap-2 mb-6">
+                  <span className="bg-red-700 text-white px-3 py-1 text-sm font-mono border border-red-600">MOTHERSHIP</span>
+                  <span className="bg-red-700 text-white px-3 py-1 text-sm font-mono border border-red-600">COSMIC HORROR</span>
+                  <span className="bg-red-700 text-white px-3 py-1 text-sm font-mono border border-red-600">INVESTIGATION</span>
+                </div>
+                <Link
+                  href="/lost-mark"
+                  className="inline-block bg-red-700 hover:bg-red-600 text-white px-8 py-3 font-mono font-bold transition-colors border border-red-600"
+                >
+                  LEARN MORE
+                </Link>
+              </div>
+              <div className="relative h-64 md:h-80 bg-gray-800 border border-red-700 overflow-hidden">
+                <Image
+                  src="/images/lost-mark/lm_promo_1.webp"
+                  alt="Lost Mark"
+                  fill
+                  style={{ objectFit: 'cover' }}
+                  className="opacity-80"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                <div className="absolute bottom-4 left-4 text-white font-mono font-bold">
+                  THE LOST MARK
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Team Section */}
+      <section className="py-20 bg-gray-900 border-t border-red-700">
+        <div className="max-w-7xl mx-auto px-6">
+          <h2 className="text-4xl font-bold text-white mb-12 text-center font-mono">
+            THE TEAM
+          </h2>
+          <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-6">
+            <div className="bg-black border border-red-700 p-4 text-center hover:border-red-500 transition-colors">
+              <div className="text-3xl mb-3">✍️</div>
+              <h3 className="text-sm font-bold text-white mb-1 font-mono">Stepan Kulikov</h3>
+              <p className="text-red-400 text-xs font-mono font-bold">Writer</p>
+            </div>
+            <div className="bg-black border border-red-700 p-4 text-center hover:border-red-500 transition-colors">
+              <div className="text-3xl mb-3">📐</div>
+              <h3 className="text-sm font-bold text-white mb-1 font-mono">Tatiana Bond</h3>
+              <p className="text-red-400 text-xs font-mono font-bold">Layout</p>
+            </div>
+            <div className="bg-black border border-red-700 p-4 text-center hover:border-red-500 transition-colors">
+              <div className="text-3xl mb-3">🎨</div>
+              <h3 className="text-sm font-bold text-white mb-1 font-mono">Zlata Ignatova</h3>
+              <p className="text-red-400 text-xs font-mono font-bold">Artist</p>
+            </div>
+            <div className="bg-black border border-red-700 p-4 text-center hover:border-red-500 transition-colors">
+              <div className="text-3xl mb-3">🎵</div>
+              <h3 className="text-sm font-bold text-white mb-1 font-mono">Stanislav DariDai</h3>
+              <p className="text-red-400 text-xs font-mono font-bold">Music</p>
+            </div>
+            <div className="bg-black border border-red-700 p-4 text-center hover:border-red-500 transition-colors">
+              <div className="text-3xl mb-3">💻</div>
+              <h3 className="text-sm font-bold text-white mb-1 font-mono">Allecks</h3>
+              <p className="text-red-400 text-xs font-mono font-bold">Developer</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Call to Action */}
+      <section className="py-20 bg-red-900 border-t border-red-700">
+        <div className="max-w-4xl mx-auto text-center px-6">
+          <h2 className="text-4xl font-bold text-white mb-6 font-mono">
+            READY TO EXPLORE OUR WORLDS?
+          </h2>
+          <p className="text-xl text-red-100 mb-8 font-mono">
+            Follow our projects and become part of the Fables Monster community
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              href="/projects"
+              className="bg-white text-red-900 px-8 py-4 text-lg font-mono font-bold hover:bg-gray-200 transition-colors"
+            >
+              ALL PROJECTS
+            </Link>
+            <a
+              href="https://discord.gg/fables-monster"
+              className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-red-900 px-8 py-4 text-lg font-mono font-bold transition-colors"
+            >
+              JOIN DISCORD
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-black py-12 border-t border-red-700">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid md:grid-cols-4 gap-8">
+            <div>
+              <h3 className="text-xl font-bold text-white mb-4 font-mono">FABLES MONSTER</h3>
+              <p className="text-gray-400 font-mono">
+                Independent tabletop RPG content creation studio.
+              </p>
+            </div>
+            <div>
+              <h4 className="text-lg font-semibold text-white mb-4 font-mono">PROJECTS</h4>
+              <ul className="space-y-2">
+                <li><Link href="/lost-mark" className="text-gray-400 hover:text-white transition-colors font-mono">Lost Mark</Link></li>
+                <li><Link href="/projects" className="text-gray-400 hover:text-white transition-colors font-mono">All Projects</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-lg font-semibold text-white mb-4 font-mono">STUDIO</h4>
+              <ul className="space-y-2">
+                <li><Link href="/about" className="text-gray-400 hover:text-white transition-colors font-mono">About</Link></li>
+                <li><Link href="/contact" className="text-gray-400 hover:text-white transition-colors font-mono">Contact</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-lg font-semibold text-white mb-4 font-mono">COMMUNITY</h4>
+              <ul className="space-y-2">
+                <li><a href="#" className="text-gray-400 hover:text-white transition-colors font-mono">Discord</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-white transition-colors font-mono">Twitter</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-white transition-colors font-mono">itch.io</a></li>
+              </ul>
+            </div>
+          </div>
+          <div className="border-t border-red-700 mt-8 pt-8 text-center">
+            <p className="text-gray-400 font-mono">
+              © 2025 Fables Monster Studio. All rights reserved.
+            </p>
+          </div>
+        </div>
       </footer>
     </div>
   );
