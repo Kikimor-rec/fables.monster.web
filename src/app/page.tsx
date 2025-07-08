@@ -1,12 +1,40 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
-import Navigation from "@/components/Navigation";
+import CompactTeamMember from "@/components/CompactTeamMember";
 
 export default function Home() {
+  const teamMembers = [
+    {
+      name: "Stepan Kulikov",
+      role: "Writer & Game Designer",
+      image: "stepan-kulikov.webp"
+    },
+    {
+      name: "Tatiana Bond", 
+      role: "Layout Designer",
+      image: "tanka-bond.webp"
+    },
+    {
+      name: "Zlata Ignatova",
+      role: "Artist",
+      image: "zlata.webp"
+    },
+    {
+      name: "Stanislav DariDai",
+      role: "Music Composer", 
+      image: "stanislav-darida.webp"
+    },
+    {
+      name: "Allecks",
+      role: "Developer",
+      image: "alleks.webp"
+    }
+  ];
+  
   return (
-    <div className="min-h-screen bg-black">
-      <Navigation />
-
+    <div className="bg-black">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center text-center">
         <div className="absolute inset-0 bg-gradient-to-b from-black via-black to-red-950/20"></div>
@@ -76,7 +104,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-white mb-4 font-mono">
-              FLAGSHIP PROJECT
+              FIRST PROJECT
             </h2>
             <p className="text-xl text-gray-300 font-mono">
               Our pride and most ambitious project
@@ -129,32 +157,10 @@ export default function Home() {
           <h2 className="text-4xl font-bold text-white mb-12 text-center font-mono">
             THE TEAM
           </h2>
-          <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-6">
-            <div className="bg-black border border-red-700 p-4 text-center hover:border-red-500 transition-colors">
-              <div className="text-3xl mb-3">✍️</div>
-              <h3 className="text-sm font-bold text-white mb-1 font-mono">Stepan Kulikov</h3>
-              <p className="text-red-400 text-xs font-mono font-bold">Writer</p>
-            </div>
-            <div className="bg-black border border-red-700 p-4 text-center hover:border-red-500 transition-colors">
-              <div className="text-3xl mb-3">📐</div>
-              <h3 className="text-sm font-bold text-white mb-1 font-mono">Tatiana Bond</h3>
-              <p className="text-red-400 text-xs font-mono font-bold">Layout</p>
-            </div>
-            <div className="bg-black border border-red-700 p-4 text-center hover:border-red-500 transition-colors">
-              <div className="text-3xl mb-3">🎨</div>
-              <h3 className="text-sm font-bold text-white mb-1 font-mono">Zlata Ignatova</h3>
-              <p className="text-red-400 text-xs font-mono font-bold">Artist</p>
-            </div>
-            <div className="bg-black border border-red-700 p-4 text-center hover:border-red-500 transition-colors">
-              <div className="text-3xl mb-3">🎵</div>
-              <h3 className="text-sm font-bold text-white mb-1 font-mono">Stanislav DariDai</h3>
-              <p className="text-red-400 text-xs font-mono font-bold">Music</p>
-            </div>
-            <div className="bg-black border border-red-700 p-4 text-center hover:border-red-500 transition-colors">
-              <div className="text-3xl mb-3">💻</div>
-              <h3 className="text-sm font-bold text-white mb-1 font-mono">Allecks</h3>
-              <p className="text-red-400 text-xs font-mono font-bold">Developer</p>
-            </div>
+          <div className="flex flex-wrap justify-center gap-6 max-w-4xl mx-auto">
+            {teamMembers.map((member, index) => (
+              <CompactTeamMember key={index} member={member} />
+            ))}
           </div>
         </div>
       </section>
@@ -176,7 +182,9 @@ export default function Home() {
               ALL PROJECTS
             </Link>
             <a
-              href="https://discord.gg/fables-monster"
+              href="https://discord.gg/qJS4h5usxe"
+              target="_blank"
+              rel="noopener noreferrer"
               className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-red-900 px-8 py-4 text-lg font-mono font-bold transition-colors"
             >
               JOIN DISCORD
@@ -184,47 +192,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="bg-black py-12 border-t border-red-700">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div>
-              <h3 className="text-xl font-bold text-white mb-4 font-mono">FABLES MONSTER</h3>
-              <p className="text-gray-400 font-mono">
-                Independent tabletop RPG content creation studio.
-              </p>
-            </div>
-            <div>
-              <h4 className="text-lg font-semibold text-white mb-4 font-mono">PROJECTS</h4>
-              <ul className="space-y-2">
-                <li><Link href="/lost-mark" className="text-gray-400 hover:text-white transition-colors font-mono">Lost Mark</Link></li>
-                <li><Link href="/projects" className="text-gray-400 hover:text-white transition-colors font-mono">All Projects</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-lg font-semibold text-white mb-4 font-mono">STUDIO</h4>
-              <ul className="space-y-2">
-                <li><Link href="/about" className="text-gray-400 hover:text-white transition-colors font-mono">About</Link></li>
-                <li><Link href="/contact" className="text-gray-400 hover:text-white transition-colors font-mono">Contact</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-lg font-semibold text-white mb-4 font-mono">COMMUNITY</h4>
-              <ul className="space-y-2">
-                <li><a href="#" className="text-gray-400 hover:text-white transition-colors font-mono">Discord</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-white transition-colors font-mono">Twitter</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-white transition-colors font-mono">itch.io</a></li>
-              </ul>
-            </div>
-          </div>
-          <div className="border-t border-red-700 mt-8 pt-8 text-center">
-            <p className="text-gray-400 font-mono">
-              © 2025 Fables Monster Studio. All rights reserved.
-            </p>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

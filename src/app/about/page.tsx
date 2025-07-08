@@ -1,37 +1,38 @@
 import Link from "next/link";
-import Navigation from "@/components/Navigation";
+import TeamMember from "@/components/TeamMember";
 
 export default function About() {
   const team = [
     {
       name: "Stepan Kulikov",
       role: "Writer & Game Designer",
-      description: "Lead writer and narrative designer, crafting compelling stories and game mechanics",
-      avatar: "✍️"
+      bio: "Lead writer and narrative designer, crafting compelling stories and game mechanics",
+      image: "stepan-kulikov.webp"
     },
     {
       name: "Tatiana Bond",
       role: "Layout Designer",
-      description: "Creates beautiful and functional layout designs for our publications",
-      avatar: "📐"
+      bio: "Creates beautiful and functional layout designs for our publications",
+      image: "tanka-bond.webp"
     },
     {
       name: "Zlata (jamakuci) Ignatova",
       role: "Artist",
-      description: "Visual artist bringing our worlds to life with stunning illustrations",
-      avatar: "🎨"
+      bio: "Visual artist bringing our worlds to life with stunning illustrations",
+      image: "zlata.webp",
+      link: "https://taplink.cc/jamakuci"
     },
     {
       name: "Stanislav DariDai",
       role: "Composer",
-      description: "Creates atmospheric music and sound design for our projects",
-      avatar: "🎵"
+      bio: "Creates atmospheric music and sound design for our projects",
+      image: "stanislav-darida.webp"
     },
     {
       name: "Allecks",
       role: "Developer",
-      description: "Handles coding, web development, and technical implementation",
-      avatar: "💻"
+      bio: "Handles coding, web development, and technical implementation for VTT",
+      image: "alleks.webp"
     }
   ];
 
@@ -42,8 +43,8 @@ export default function About() {
       icon: "⭐"
     },
     {
-      title: "Community Matters",
-      description: "We listen to our players and create games together with the community",
+      title: "NO AI Content",
+      description: "We don't use AI-generated content, believing in the value of human creativity",
       icon: "🤝"
     },
     {
@@ -60,31 +61,29 @@ export default function About() {
 
   const milestones = [
     {
-      year: "2022",
+      year: "2025",
       title: "Studio Foundation",
       description: "A team of enthusiasts united to create unique tabletop RPG experiences"
     },
     {
-      year: "2023",
+      year: "2025",
       title: "First Project",
       description: "Started development of Lost Mark and formed our creative vision"
     },
     {
-      year: "2024",
+      year: "2025",
       title: "Team Growth",
       description: "Expanded our team with talented artists, writers, and developers"
     },
     {
       year: "2025",
       title: "Lost Mark Release",
-      description: "Successfully released our flagship cosmic horror adventure"
+      description: "Successfully released our First Sci-Fi horror scenario"
     }
   ];
 
   return (
-    <div className="min-h-screen bg-black">
-      <Navigation />
-
+    <div className="bg-black">
       {/* Hero Section */}
       <section className="pt-32 pb-20 border-b border-red-700">
         <div className="max-w-7xl mx-auto px-6 text-center">
@@ -92,7 +91,7 @@ export default function About() {
             ABOUT THE STUDIO
           </h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto font-mono">
-            We are a dedicated team of creators passionate about crafting immersive tabletop RPG experiences that challenge players and explore the darker corners of imagination.
+            We believe that the Warden, Dungeon Master, or Host (whatever you call them) should have the tools to run games and the ability to quickly start everything they need. And we want to make not just adventures, but ready-made tools that can reduce the time it takes to prepare for a game.
           </p>
         </div>
       </section>
@@ -155,22 +154,12 @@ export default function About() {
           <h2 className="text-4xl font-bold text-white mb-12 text-center font-mono">
             THE TEAM
           </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
+          <div className="flex flex-wrap justify-center gap-6 max-w-6xl mx-auto">
             {team.map((member, index) => (
-              <div 
-                key={index} 
-                className="bg-black border border-red-700 p-6 text-center hover:border-red-500 transition-colors"
-              >
-                <div className="text-4xl mb-4">{member.avatar}</div>
-                <h3 className="text-lg font-bold text-white mb-2 font-mono">
-                  {member.name}
-                </h3>
-                <p className="text-red-400 mb-3 font-mono font-bold text-sm">
-                  {member.role}
-                </p>
-                <p className="text-gray-300 text-xs font-mono">
-                  {member.description}
-                </p>
+              <div key={index} className="w-full sm:w-auto">
+                <TeamMember 
+                  member={member}
+                />
               </div>
             ))}
           </div>

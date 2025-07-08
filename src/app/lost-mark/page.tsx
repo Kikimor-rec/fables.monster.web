@@ -1,11 +1,12 @@
 import Link from "next/link";
-import Navigation from "@/components/Navigation";
 import Image from "next/image";
+import StoreButton from "@/components/StoreButton";
+import MusicPlayer from "@/components/MusicPlayer";
 
 export default function LostMark() {
   const features = [
     {
-      title: "Cosmic Horror Investigation",
+      title: "Sci-Fi Horror Investigation",
       description: "Uncover the dark secrets of the research vessel Lost Mark through careful investigation and psychological tension.",
       icon: "🔍"
     },
@@ -27,16 +28,14 @@ export default function LostMark() {
   ];
 
   const stats = [
-    { label: "Pages", value: "32" },
+    { label: "Pages", value: "2" },
     { label: "Players", value: "3-5" },
-    { label: "Sessions", value: "4-6" },
-    { label: "System", value: "Mothership RPG" }
+    { label: "Hours", value: "3-5" },
+    { label: "System", value: "Mothership RPG 1E" }
   ];
 
   return (
-    <div className="min-h-screen bg-black">
-      <Navigation />
-
+    <div className="bg-black">
       {/* Hero Section with Promo Image */}
       <section className="relative min-h-screen flex items-center justify-center">
         <div className="absolute inset-0 bg-gradient-to-b from-black via-black to-red-950/20"></div>
@@ -73,18 +72,16 @@ export default function LostMark() {
           </div>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="#"
-              className="bg-red-700 hover:bg-red-600 text-white px-8 py-4 text-lg font-mono font-bold transition-colors border border-red-600"
-            >
-              DOWNLOAD NOW
-            </a>
-            <a
-              href="#"
-              className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-black px-8 py-4 text-lg font-mono font-bold transition-colors"
-            >
-              VIEW PREVIEW
-            </a>
+            <StoreButton 
+              store="itch"
+              href="https://fablesmonster.itch.io/"
+              price="Free"
+            />
+            <StoreButton 
+              store="drivethrurpg"
+              href="https://www.drivethrurpg.com/en/publisher/30815/Stepan%20Kulikov"
+              price="$5"
+            />
           </div>
         </div>
       </section>
@@ -135,6 +132,7 @@ export default function LostMark() {
                   width={500}
                   height={333}
                   className="mx-auto"
+                  style={{ width: 'auto', height: 'auto' }}
                   quality={90}
                   sizes="(max-width: 768px) 100vw, 500px"
                 />
@@ -229,6 +227,9 @@ export default function LostMark() {
         </div>
       </section>
 
+      {/* Music Player */}
+      <MusicPlayer />
+
       {/* Download Section */}
       <section className="py-20 border-t border-red-700 text-center">
         <div className="max-w-7xl mx-auto px-6">
@@ -239,18 +240,16 @@ export default function LostMark() {
             Download now and begin your descent into cosmic horror. Available on multiple platforms.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="#"
-              className="bg-red-700 hover:bg-red-600 text-white px-8 py-4 text-lg font-mono font-bold transition-colors border border-red-600"
-            >
-              DOWNLOAD ON ITCH.IO
-            </a>
-            <a
-              href="#"
-              className="bg-red-700 hover:bg-red-600 text-white px-8 py-4 text-lg font-mono font-bold transition-colors border border-red-600"
-            >
-              DRIVETHRURPG
-            </a>
+            <StoreButton 
+              store="itch"
+              href="https://fablesmonster.itch.io/"
+              price="Free"
+            />
+            <StoreButton 
+              store="drivethrurpg"
+              href="https://www.drivethrurpg.com/en/publisher/30815/Stepan%20Kulikov"
+              price="$5"
+            />
             <Link
               href="/projects"
               className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-black px-8 py-4 text-lg font-mono font-bold transition-colors"
