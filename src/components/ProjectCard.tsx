@@ -31,38 +31,38 @@ export default function ProjectCard({ project, featured = false }: ProjectCardPr
 
   if (featured) {
     return (
-      <section className="py-20 bg-gray-900 border-t border-red-700">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-white mb-4 font-mono">
+      <section className="py-12 sm:py-20 bg-gray-900 border-t border-red-700">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4 font-mono">
               ⚠ FIRST PROJECT
             </h2>
           </div>
           
-          <div className="bg-black border border-red-700 p-8 md:p-12">
-            <div className="grid md:grid-cols-2 gap-8 items-center">
+          <div className="bg-black border border-red-700 p-4 sm:p-8 md:p-12">
+            <div className="grid md:grid-cols-2 gap-6 sm:gap-8 items-center">
               <div>
                 <div className="flex items-center gap-4 mb-4">
-                  <span className={`px-3 py-1 text-sm text-white font-mono border ${getStatusColor(project.status)}`}>
+                  <span className={`px-2 sm:px-3 py-1 text-xs sm:text-sm text-white font-mono border ${getStatusColor(project.status)}`}>
                     {project.status}
                   </span>
                 </div>
-                <h3 className="text-4xl font-bold text-white mb-4 font-mono">
+                <h3 className="text-3xl sm:text-4xl font-bold text-white mb-4 font-mono">
                   {project.title}
                 </h3>
-                <p className="text-lg text-gray-300 mb-6 font-mono">
+                <p className="text-base sm:text-lg text-gray-300 mb-6 font-mono">
                   {project.description}
                 </p>
                 <div className="flex flex-wrap gap-2 mb-6">
                   {project.tags.map((tag) => (
-                    <span key={tag} className="bg-red-700 text-white px-3 py-1 text-sm font-mono border border-red-600">
+                    <span key={tag} className="bg-red-700 text-white px-2 sm:px-3 py-1 text-xs sm:text-sm font-mono border border-red-600">
                       {tag}
                     </span>
                   ))}
                 </div>
                 <Link
                   href={`/${project.id}`}
-                  className="inline-block bg-red-700 hover:bg-red-600 text-white px-8 py-3 font-mono font-bold transition-colors border border-red-600"
+                  className="inline-block bg-red-700 hover:bg-red-600 text-white px-6 sm:px-8 py-3 font-mono font-bold transition-colors border border-red-600 text-sm sm:text-base"
                 >
                   EXPLORE PROJECT
                 </Link>
@@ -74,14 +74,14 @@ export default function ProjectCard({ project, featured = false }: ProjectCardPr
                     alt="Lost Mark Promo"
                     width={400}
                     height={267}
-                    className="mx-auto border-2 border-red-700"
+                    className="mx-auto border-2 border-red-700 w-full max-w-sm"
                     style={{ width: "auto", height: "auto" }}
                     quality={90}
                     sizes="(max-width: 768px) 100vw, 400px"
                   />
                   <div className="absolute inset-0 bg-red-700/10"></div>
                 </div>
-                <div className="text-gray-400 font-mono mt-4">
+                <div className="text-gray-400 font-mono mt-4 text-sm sm:text-base">
                   Status: {project.progress}
                 </div>
               </div>
@@ -93,25 +93,25 @@ export default function ProjectCard({ project, featured = false }: ProjectCardPr
   }
 
   return (
-    <div className="bg-black border border-red-700 p-6 hover:border-red-500 transition-colors group">
+    <div className="bg-black border border-red-700 p-4 sm:p-6 hover:border-red-500 transition-colors group">
       <div className="flex items-center justify-between mb-4">
-        <span className={`px-3 py-1 text-sm text-white font-mono border ${getStatusColor(project.status)}`}>
+        <span className={`px-2 sm:px-3 py-1 text-xs sm:text-sm text-white font-mono border ${getStatusColor(project.status)}`}>
           {project.status}
         </span>
-        <div className="text-2xl opacity-70 group-hover:opacity-100 transition-opacity">
+        <div className="text-xl sm:text-2xl opacity-70 group-hover:opacity-100 transition-opacity">
           {project.icon}
         </div>
       </div>
       
-      <h3 className="text-2xl font-bold text-white mb-3 font-mono group-hover:text-red-400 transition-colors">
+      <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 font-mono group-hover:text-red-400 transition-colors">
         {project.title}
       </h3>
       
-      <p className="text-gray-300 mb-4 font-mono text-sm">
+      <p className="text-gray-300 mb-4 font-mono text-sm sm:text-base">
         {project.description}
       </p>
       
-      <div className="flex flex-wrap gap-2 mb-4">
+      <div className="flex flex-wrap gap-1 sm:gap-2 mb-4">
         {project.tags.map((tag) => (
           <span key={tag} className="bg-red-700/30 text-red-300 px-2 py-1 text-xs font-mono border border-red-700">
             {tag}
@@ -122,7 +122,7 @@ export default function ProjectCard({ project, featured = false }: ProjectCardPr
       <div className="flex justify-between items-center">
         <Link
           href={`/${project.id}`}
-          className="text-red-400 hover:text-white font-mono font-bold transition-colors"
+          className="text-red-400 hover:text-white font-mono font-bold transition-colors text-sm sm:text-base"
         >
           LEARN MORE →
         </Link>

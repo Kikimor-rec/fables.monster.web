@@ -43,8 +43,8 @@ export default function About() {
       icon: "⭐"
     },
     {
-      title: "NO AI Content",
-      description: "We don't use AI-generated content, believing in the value of human creativity",
+      title: "Human Creativity",
+      description: "We value human creativity and do not use AI-generated content",
       icon: "🤝"
     },
     {

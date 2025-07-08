@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import StoreButton from "@/components/StoreButton";
-import MusicPlayer from "@/components/MusicPlayer";
+import LazyMusicPlayer from "@/components/LazyMusicPlayer";
 
 export default function LostMark() {
   const features = [
@@ -99,7 +99,7 @@ export default function LostMark() {
                 you&apos;re thrust into a nightmare that challenges your sanity and survival instincts.
               </p>
               <p className="text-lg text-gray-300 mb-6 font-mono">
-                This 32-page cosmic horror adventure module emphasizes investigation, atmosphere, 
+                This two-page Sci-Fi horror adventure module emphasizes investigation, atmosphere, 
                 and psychological tension. Perfect for crews who want to explore the darker corners 
                 of space and face the unknown.
               </p>
@@ -228,7 +228,7 @@ export default function LostMark() {
       </section>
 
       {/* Music Player */}
-      <MusicPlayer />
+      <LazyMusicPlayer />
 
       {/* Download Section */}
       <section className="py-20 border-t border-red-700 text-center">

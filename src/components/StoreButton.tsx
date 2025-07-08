@@ -31,12 +31,12 @@ export default function StoreButton({ store, href, price, className = "" }: Stor
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className={`inline-flex items-center gap-3 px-6 py-3 ${config.bgColor} text-white font-mono font-bold transition-colors border-2 border-transparent hover:border-white/20 ${className}`}
+      className={`inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-3 ${config.bgColor} text-white font-mono font-bold transition-colors border-2 border-transparent hover:border-white/20 text-sm sm:text-base ${className}`}
     >
-      <span className="text-xl">{config.emoji}</span>
-      <span>{config.name}</span>
+      <span className="text-lg sm:text-xl">{config.emoji}</span>
+      <span className="truncate">{config.name}</span>
       {price && (
-        <span className="text-sm">({price})</span>
+        <span className="text-xs sm:text-sm whitespace-nowrap">({price})</span>
       )}
     </a>
   );

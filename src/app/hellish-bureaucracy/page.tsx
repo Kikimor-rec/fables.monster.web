@@ -66,7 +66,7 @@ export default function HellishBureaucracy() {
           <div className="flex items-center justify-center gap-4 mb-8">
             <span className="bg-red-700 text-white px-4 py-2 font-mono border border-red-600">IN DEVELOPMENT</span>
             <span className="bg-red-700 text-white px-4 py-2 font-mono border border-red-600">D&D 5E/2024</span>
-            <span className="bg-red-700 text-white px-4 py-2 font-mono border border-red-600">SEVEN HELLS</span>
+            <span className="bg-red-700 text-white px-4 py-2 font-mono border border-red-600">NINE HELLS</span>
           </div>
         </div>
       </section>
@@ -80,7 +80,7 @@ export default function HellishBureaucracy() {
                 THE NINE HELLS OFFICE
               </h2>
               <p className="text-lg text-gray-300 mb-6 font-mono">
-                Your party has been sent to the very heart of the Seven Hells with a seemingly 
+                Your party has been sent to the very heart of the Nine Hells with a seemingly 
                 impossible task: steal a hellish contract or prove that it&apos;s invalid.
               </p>
               <p className="text-lg text-gray-300 mb-6 font-mono">
