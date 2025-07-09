@@ -4,7 +4,7 @@ Independent tabletop RPG content creation studio website built with Next.js, Typ
 
 ## About
 
-Fables Monster Studio is a team of enthusiasts dedicated to creating immersive tabletop RPG adventures and digital experiences. Our flagship project "The Lost Mark" is a cosmic horror adventure for Mothership RPG.
+Fables Monster Studio is a team of enthusiasts dedicated to creating immersive tabletop RPG adventures and digital experiences. Our flagship project "The Lost Mark" is a Sci-Fi horror adventure for Mothership RPG.
 
 ## Features
 
@@ -16,7 +16,7 @@ Fables Monster Studio is a team of enthusiasts dedicated to creating immersive t
 
 ## Projects
 
-- **The Lost Mark** - Cosmic horror adventure for Mothership RPG
+- **The Lost Mark** - Sci-Fi horror adventure for Mothership RPG
 - **Cemetery of Broken Ships** - Space exploration and survival
 - **Hellish Bureaucracy** - Satirical bureaucratic horror
 

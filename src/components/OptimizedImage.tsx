@@ -34,14 +34,14 @@ export default function OptimizedImage({
   const [isLoaded, setIsLoaded] = useState(false);
 
   return (
-    <div className={`relative overflow-hidden ${className}`}>
+    <>
       <Image
         src={src}
         alt={alt}
-        width={width}
-        height={height}
+        width={fill ? undefined : width}
+        height={fill ? undefined : height}
         fill={fill}
-        className={`transition-opacity duration-300 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+        className={`transition-opacity duration-300 ${isLoaded ? 'opacity-100' : 'opacity-0'} ${className}`}
         style={style}
         priority={priority}
         sizes={sizes}
@@ -53,6 +53,6 @@ export default function OptimizedImage({
       {!isLoaded && (
         <div className="absolute inset-0 bg-gray-800 animate-pulse"></div>
       )}
-    </div>
+    </>
   );
 }

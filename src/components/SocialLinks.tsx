@@ -40,30 +40,32 @@ export default function SocialLinks({ className = "", showLabels = true }: Socia
   ];
 
   return (
-    <div className={`flex justify-center gap-6 ${className}`}>
+    <div className={`flex flex-wrap justify-center gap-3 sm:gap-4 md:gap-6 max-w-full ${className}`}>
       {links.map((link) => (
         <a
           key={link.label}
           href={link.href}
           target={link.href.startsWith('mailto:') ? undefined : "_blank"}
           rel={link.href.startsWith('mailto:') ? undefined : "noopener noreferrer"}
-          className="text-gray-300 hover:text-red-400 transition-colors text-center"
+          className="text-gray-300 hover:text-red-400 transition-colors text-center flex-shrink-0 min-w-0 max-w-[80px] sm:max-w-[100px]"
         >
-          <div className="mb-2 flex justify-center items-center" style={{ height: '48px' }}>
+          <div className="mb-1 sm:mb-2 flex justify-center items-center h-8 sm:h-10 md:h-12">
             {link.icon.startsWith('/') ? (
               <Image
                 src={link.icon}
                 alt={link.label}
-                width={40}
-                height={40}
-                className="hover:opacity-80 transition-opacity filter brightness-0 invert"
+                width={32}
+                height={32}
+                className="hover:opacity-80 transition-opacity filter brightness-0 invert w-6 h-6 sm:w-8 sm:h-8"
               />
             ) : (
-              <div className="text-3xl">{link.icon}</div>
+              <div className="text-xl sm:text-2xl md:text-3xl">{link.icon}</div>
             )}
           </div>
           {showLabels && (
-            <div className="font-mono text-sm">{link.label}</div>
+            <div className="font-mono text-[10px] sm:text-xs leading-tight text-center break-words px-1">
+              {link.label}
+            </div>
           )}
         </a>
       ))}

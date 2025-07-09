@@ -192,7 +192,7 @@ export default function HellishBureaucracy() {
               </h3>
               <p className="text-gray-300 font-mono">
                 Experience the unique blend of absurd bureaucratic comedy 
-                with genuine moments of infernal dread and cosmic horror.
+                with genuine moments of infernal dread and Sci-Fi horror.
               </p>
             </div>
             <div className="bg-gray-900 border border-red-700 p-8">

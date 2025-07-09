@@ -31,10 +31,10 @@ const CompactTeamMember = memo(function CompactTeamMember({ member }: CompactTea
           src={`/images/crew/${member.image}`}
           alt={member.name}
           fill
-          className={`object-cover transition-all duration-300 ${
+          className={`transition-all duration-300 ${
             isHovered ? "scale-105 brightness-110" : "grayscale-[50%]"
           }`}
-          style={{ objectPosition: "50% 15%" }}
+          style={{ objectFit: "cover", objectPosition: "50% 15%" }}
           sizes="(max-width: 640px) 48px, 56px"
         />
         

@@ -83,7 +83,7 @@ export default function Home() {
                   Our mission is to craft projects that leave a lasting impact on players.
                 </p>
                 <p className="text-base sm:text-lg text-gray-300 mb-8 font-mono">
-                  From cosmic horror to fantasy adventures, we explore various forms of interactive entertainment, 
+                  From Sci-Fi horror to fantasy adventures, we explore various forms of interactive entertainment, 
                   creating unique experiences for every player.
                 </p>
                 <Link
@@ -132,12 +132,12 @@ export default function Home() {
                     THE LOST MARK
                   </h3>
                   <p className="text-base sm:text-lg text-gray-300 mb-6 font-mono">
-                    A cosmic horror adventure for Mothership RPG where your crew faces impossible choices 
+                    A Sci-Fi horror adventure for Mothership RPG where your crew faces impossible choices 
                     and eldritch truths among the wrecks and cults of deep space.
                   </p>
                   <div className="flex flex-wrap gap-2 mb-6">
                     <span className="bg-red-700 text-white px-2 sm:px-3 py-1 text-xs sm:text-sm font-mono border border-red-600">MOTHERSHIP</span>
-                    <span className="bg-red-700 text-white px-2 sm:px-3 py-1 text-xs sm:text-sm font-mono border border-red-600">COSMIC HORROR</span>
+                    <span className="bg-red-700 text-white px-2 sm:px-3 py-1 text-xs sm:text-sm font-mono border border-red-600">SCI-FI HORROR</span>
                     <span className="bg-red-700 text-white px-2 sm:px-3 py-1 text-xs sm:text-sm font-mono border border-red-600">INVESTIGATION</span>
                   </div>
                   <Link

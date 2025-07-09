@@ -86,7 +86,7 @@ export default function CemeteryOfBrokenShips() {
                 <h3 className="text-2xl font-bold text-white mb-4 font-mono">MODULAR DESIGN</h3>
                 <p className="text-red-100 font-mono">
                   Each ship is a complete adventure that can stand alone, 
-                  but together they form an interconnected web of cosmic horror 
+                  but together they form an interconnected web of Sci-Fi horror 
                   and corporate conspiracy.
                 </p>
               </div>
@@ -184,7 +184,7 @@ export default function CemeteryOfBrokenShips() {
               </h3>
               <p className="text-gray-300 font-mono">
                 Discover the overarching mystery that links all five ships 
-                in a web of corporate greed and cosmic horror.
+                in a web of corporate greed and Sci-Fi horror.
               </p>
             </div>
           </div>

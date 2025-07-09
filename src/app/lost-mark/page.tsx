@@ -58,7 +58,7 @@ export default function LostMark() {
             THE LOST MARK
           </h1>
           <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto font-mono">
-            A cosmic horror adventure for Mothership RPG. Your crew faces impossible choices and eldritch truths among the wrecks and cults of deep space.
+            A Sci-Fi horror adventure for Mothership RPG. Your crew faces impossible choices and eldritch truths among the wrecks and cults of deep space.
           </p>
           
           {/* Stats Grid */}
@@ -143,7 +143,7 @@ export default function LostMark() {
                   ⚠ WARNING
                 </div>
                 <div className="text-gray-300 font-mono text-sm">
-                  This adventure contains cosmic horror themes, body horror, and psychological stress. 
+                  This adventure contains Sci-Fi horror themes, body horror, and psychological stress. 
                   Player discretion advised.
                 </div>
               </div>
@@ -237,7 +237,7 @@ export default function LostMark() {
             READY TO EXPLORE THE LOST MARK?
           </h2>
           <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto font-mono">
-            Download now and begin your descent into cosmic horror. Available on multiple platforms.
+            Download now and begin your descent into Sci-Fi horror. Available on multiple platforms.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <StoreButton 

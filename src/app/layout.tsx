@@ -16,8 +16,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Fables Monster Studio - Independent Tabletop RPG Creator",
-  description: "Independent tabletop RPG content creation studio. Our flagship project Lost Mark is a cosmic horror adventure for Mothership RPG with unique storytelling and immersive gameplay.",
-  keywords: "tabletop RPG, indie games, Mothership, Lost Mark, cosmic horror, game development, Fables Monster",
+  description: "Independent tabletop RPG content creation studio. Our flagship project Lost Mark is a Sci-Fi horror adventure for Mothership RPG with unique storytelling and immersive gameplay.",
+  keywords: "tabletop RPG, indie games, Mothership, Lost Mark, Sci-Fi horror, game development, Fables Monster",
   authors: [{ name: "Fables Monster Studio" }],
   creator: "Fables Monster Studio",
   publisher: "Fables Monster Studio",
