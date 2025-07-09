@@ -1,7 +1,20 @@
+"use client";
+
 import ProjectCard from "@/components/ProjectCard";
 import FadeIn from "@/components/FadeIn";
+import FinalEditable from "@/components/FinalEditable";
+import { useContent } from "@/hooks/useContent";
 
 export default function Projects() {
+  const { content, loading } = useContent('site-content.json');
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <div className="text-white">{content?.common?.loading || "Loading..."}</div>
+      </div>
+    );
+  }
   const projects = [
     {
       id: "lost-mark",
@@ -40,10 +53,23 @@ export default function Projects() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center">
           <FadeIn>
             <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-white mb-6 font-mono tracking-wider">
-              OUR PROJECTS
+              <FinalEditable 
+                value={content?.projects?.title || "OUR PROJECTS"}
+                path="projects.title"
+                tag="span"
+                trigger="click"
+                className="inline-block"
+              />
             </h1>
             <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto font-mono">
-              Tabletop RPG adventures crafted with attention to detail and immersive storytelling
+              <FinalEditable 
+                value={content?.projects?.subtitle || "Tabletop RPG adventures crafted with attention to detail and immersive storytelling"}
+                path="projects.subtitle"
+                tag="span"
+                trigger="click"
+                multiline={true}
+                className="inline-block"
+              />
             </p>
           </FadeIn>
         </div>
@@ -62,10 +88,23 @@ export default function Projects() {
           <FadeIn>
             <div className="text-center mb-8 sm:mb-12">
               <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 font-mono">
-                ALL PROJECTS
+                <FinalEditable 
+                  value={content?.projects?.all_projects_title || "ALL PROJECTS"}
+                  path="projects.all_projects_title"
+                  tag="span"
+                  trigger="click"
+                  className="inline-block"
+                />
               </h2>
               <p className="text-lg sm:text-xl text-gray-300 font-mono">
-                Complete collection of our tabletop RPG content
+                <FinalEditable 
+                  value={content?.projects?.all_projects_subtitle || "Complete collection of our tabletop RPG content"}
+                  path="projects.all_projects_subtitle"
+                  tag="span"
+                  trigger="click"
+                  multiline={true}
+                  className="inline-block"
+                />
               </p>
             </div>
           </FadeIn>
@@ -85,10 +124,23 @@ export default function Projects() {
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6">
           <FadeIn>
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6 font-mono">
-              WANT TO STAY UPDATED?
+              <FinalEditable 
+                value={content?.projects?.cta_title || "WANT TO STAY UPDATED?"}
+                path="projects.cta_title"
+                tag="span"
+                trigger="click"
+                className="inline-block"
+              />
             </h2>
             <p className="text-lg sm:text-xl text-red-100 mb-8 font-mono">
-              Subscribe to our updates and be the first to know about new releases
+              <FinalEditable 
+                value={content?.projects?.cta_subtitle || "Subscribe to our updates and be the first to know about new releases"}
+                path="projects.cta_subtitle"
+                tag="span"
+                trigger="click"
+                multiline={true}
+                className="inline-block"
+              />
             </p>
           </FadeIn>
           <FadeIn delay={0.2}>
@@ -97,13 +149,25 @@ export default function Projects() {
                 href="https://discord.gg/fables-monster"
                 className="w-full sm:w-auto bg-white text-red-900 px-6 sm:px-8 py-4 text-base sm:text-lg font-mono font-bold hover:bg-gray-200 transition-colors text-center"
               >
-                DISCORD COMMUNITY
+                <FinalEditable 
+                  value={content?.common?.discord_community || "DISCORD COMMUNITY"}
+                  path="common.discord_community"
+                  tag="span"
+                  trigger="click"
+                  className="inline-block"
+                />
               </a>
               <a
                 href="/newsletter"
                 className="w-full sm:w-auto bg-transparent border-2 border-white text-white hover:bg-white hover:text-red-900 px-6 sm:px-8 py-4 text-base sm:text-lg font-mono font-bold transition-colors text-center"
               >
-                NEWSLETTER
+                <FinalEditable 
+                  value={content?.common?.newsletter || "NEWSLETTER"}
+                  path="common.newsletter"
+                  tag="span"
+                  trigger="click"
+                  className="inline-block"
+                />
               </a>
             </div>
           </FadeIn>

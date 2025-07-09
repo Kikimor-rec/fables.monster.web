@@ -1,0 +1,98 @@
+{
+  "ship_logs": [
+    {
+      "id": "log1",
+      "timestamp": "2534.245.14:32:07",
+      "type": "system",
+      "message": "NAVIGATION SYSTEM ONLINE",
+      "details": "Primary navigation systems functioning normally. All sensors operational."
+    },
+    {
+      "id": "log2",
+      "timestamp": "2534.245.14:33:15",
+      "type": "warning",
+      "message": "PROXIMITY ALERT - UNKNOWN VESSEL",
+      "details": "Unidentified ship detected at coordinates 127.45.89. Configuration unknown. Attempting communication..."
+    },
+    {
+      "id": "log3",
+      "timestamp": "2534.245.14:33:47",
+      "type": "error",
+      "message": "COMMUNICATION FAILURE",
+      "details": "Unable to establish contact with unknown vessel. Recommend evasive maneuvers."
+    }
+  ],
+  "silk_star_logs": [
+    {
+      "id": "silk1",
+      "entry": "3528",
+      "content": "Company denied request for additional fuel. Forced to recalculate route through unstable sector. The onboard Android is undergoing maintenance. So the jump will have to be controlled manually."
+    },
+    {
+      "id": "silk2", 
+      "entry": "3529",
+      "content": "Entering hyperspace. Seven hours to jump exit."
+    },
+    {
+      "id": "silk3",
+      "entry": "3530", 
+      "content": "Severe hull vibrations. Navigation systems malfunctioning. I'm picking up a beacon bearing"
+    },
+    {
+      "id": "silk4",
+      "entry": "3531",
+      "content": "That can't be right. I don't..."
+    }
+  ],
+  "crew_manifest": {
+    "vessel": "SILK STAR",
+    "complement": 12,
+    "crew": [
+      {
+        "rank": "CAPTAIN",
+        "name": "[REDACTED]",
+        "status": "corrupted"
+      },
+      {
+        "rank": "FIRST OFFICER",
+        "name": "Maria Santos",
+        "status": "connection_lost"
+      },
+      {
+        "rank": "ENGINEER",
+        "name": "Jin Wu",
+        "status": "connection_lost"
+      },
+      {
+        "rank": "MEDIC",
+        "name": "Dr. Alex Rivera",
+        "status": "connection_lost"
+      }
+    ]
+  },
+  "life_support": [
+    {
+      "id": "life1",
+      "name": "ATMOSPHERIC_PROCESSOR_A1",
+      "status": "[NOMINAL]",
+      "description": "Oxygen levels stable - 21.3%"
+    },
+    {
+      "id": "life2",
+      "name": "LIFE_SUPPORT_SECTOR_7",
+      "status": "[CRITICAL]",
+      "description": "Multiple system failures detected"
+    },
+    {
+      "id": "life3",
+      "name": "EMERGENCY_BACKUP_SYS",
+      "status": "[OFFLINE]",
+      "description": "Manual activation required"
+    }
+  ],
+  "cryo_protocol": {
+    "title": "ACTIVATE_CRYO.PROTOCOL",
+    "authorization": "<< AUTHORIZATION ACCEPTED >>",
+    "content": "To sleep is to serve.\nTo serve is to become.\nTo become is to dissolve.\nTo dissolve is to rise.\n\n:: CRYO_CYCLE: INITIATING ::"
+  }
+}

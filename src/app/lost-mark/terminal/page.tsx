@@ -6,12 +6,12 @@ export default function LostMarkTerminal() {
   const [isLoading, setIsLoading] = useState(true);
   const [currentView, setCurrentView] = useState('default');
   const [glitch, setGlitch] = useState(false);
+  const [loadingText, setLoadingText] = useState('');
   const [corruptedAttempts, setCorruptedAttempts] = useState(0);
-  const [showHorrorMessage, setShowHorrorMessage] = useState(false);
-  const [horrorTextLines, setHorrorTextLines] = useState<string[]>([]);
-  const [loadingProgress, setLoadingProgress] = useState(0);
+  const [showCorruptedMessage, setShowCorruptedMessage] = useState(false);
+  const [typingText, setTypingText] = useState('');
 
-  // Данные терминала - обновлены для 2534 года и SILK STAR
+  // Данные терминала
   const shipLogs = [
     {
       id: 'log1',
@@ -71,100 +71,96 @@ To dissolve is to rise.
 
   const lifeSupportData = [
     {
-      id: 'ls1',
-      system: 'ATMOSPHERIC_PROCESSOR_01',
+      id: 'life1',
+      name: 'ATMOSPHERIC_PROCESSOR_A1',
       status: '[NOMINAL]',
-      description: 'Oxygen levels: 21.2% - Within normal parameters'
+      description: 'Oxygen levels stable - 21.3%'
     },
     {
-      id: 'ls2',
-      system: 'ATMOSPHERIC_PROCESSOR_02',
-      status: '[WARNING]',
-      description: 'Oxygen levels: 18.7% - Below recommended threshold'
+      id: 'life2',
+      name: 'LIFE_SUPPORT_SECTOR_7',
+      status: '[CRITICAL]',
+      description: 'Multiple system failures detected'
     },
     {
-      id: 'ls3',
-      system: 'GRAVITY_GENERATOR_MAIN',
+      id: 'life3',
+      name: 'EMERGENCY_BACKUP_SYS',
       status: '[OFFLINE]',
-      description: 'Main gravity generator not responding - backup systems active'
-    },
-    {
-      id: 'ls4',
-      system: 'WATER_RECYCLING_UNIT',
-      status: '[CONTAMINATED]',
-      description: 'Unknown biological matter detected in water supply'
+      description: 'Manual activation required'
     }
   ];
 
-  const crewManifest = [
-    {
-      name: 'CAPTAIN',
-      status: '[REDACTED]',
-      details: '████████████'
-    },
-    {
-      name: 'FIRST OFFICER - Maria Santos',
-      status: 'COMMUNICATION LOST',
-      details: 'Last contact: 2534.245.12:45:32'
-    },
-    {
-      name: 'ENGINEER - Jin Wu', 
-      status: 'COMMUNICATION LOST',
-      details: 'Last contact: 2534.245.13:12:07'
-    },
-    {
-      name: 'MEDIC - Dr. Alex Rivera',
-      status: 'COMMUNICATION LOST', 
-      details: 'Last contact: 2534.245.13:45:15'
-    },
-    {
-      name: 'REMAINING CREW',
-      status: 'COMMUNICATION LOST',
-      details: 'All personnel unaccounted for'
-    }
-  ];
-
-  // ASCII загрузочный экран
-  const loadingAscii = `
-    ███████╗██╗██╗     ██╗  ██╗    ███████╗████████╗ █████╗ ██████╗ 
-    ██╔════╝██║██║     ██║ ██╔╝    ██╔════╝╚══██╔══╝██╔══██╗██╔══██╗
-    ███████╗██║██║     █████╔╝     ███████╗   ██║   ███████║██████╔╝
-    ╚════██║██║██║     ██╔═██╗     ╚════██║   ██║   ██╔══██║██╔══██╗
-    ███████║██║███████╗██║  ██╗    ███████║   ██║   ██║  ██║██║  ██║
-    ╚══════╝╚═╝╚══════╝╚═╝  ╚═╝    ╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝
-                                                                      
-                      TERMINAL ACCESS SYSTEM v2.7.3
-                     ================================
+  const asciiEye = `
+     ████████████████
+   ██████████████████████
+  ████████████████████████
+ ██████████████████████████
+██████████      ██████████████
+████████  ██████  ████████████
+████████████████████████████
+██████████████████████████
+ ██████████████████████████
+  ████████████████████████
+   ██████████████████████
+     ████████████████
   `;
 
-  // Имитация загрузки
+  // Эффект загрузки
   useEffect(() => {
-    if (isLoading) {
-      const interval = setInterval(() => {
-        setLoadingProgress(prev => {
-          if (prev >= 100) {
-            setIsLoading(false);
-            return 100;
-          }
-          return prev + Math.random() * 15;
-        });
-      }, 200);
+    const bootSequence = [
+      "INITIALIZING SILK STAR TERMINAL...",
+      "LOADING CORE SYSTEMS...",
+      "ACCESSING NAVIGATION DATABASE...",
+      "ESTABLISHING SECURE CONNECTION...",
+      "TERMINAL READY"
+    ];
 
-      return () => clearInterval(interval);
-    }
-  }, [isLoading]);
+    let index = 0;
+    const interval = setInterval(() => {
+      if (index < bootSequence.length) {
+        setLoadingText(bootSequence[index]);
+        index++;
+      } else {
+        clearInterval(interval);
+        setTimeout(() => setIsLoading(false), 1000);
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   // Случайные глитчи
   useEffect(() => {
-    const glitchInterval = setInterval(() => {
-      if (Math.random() < 0.15) {
-        setGlitch(true);
-        setTimeout(() => setGlitch(false), 300);
-      }
-    }, 3000);
+    if (!isLoading) {
+      const glitchInterval = setInterval(() => {
+        if (Math.random() < 0.1) {
+          setGlitch(true);
+          setTimeout(() => setGlitch(false), 200);
+        }
+      }, 5000);
 
-    return () => clearInterval(glitchInterval);
-  }, []);
+      return () => clearInterval(glitchInterval);
+    }
+  }, [isLoading]);
+
+  // Анимация появления текста "I CAN SEE YOU"
+  useEffect(() => {
+    if (showCorruptedMessage) {
+      const message = "I CAN SEE YOU";
+      let currentIndex = 0;
+      
+      const typeInterval = setInterval(() => {
+        if (currentIndex <= message.length) {
+          setTypingText(message.substring(0, currentIndex));
+          currentIndex++;
+        } else {
+          clearInterval(typeInterval);
+        }
+      }, 100);
+
+      return () => clearInterval(typeInterval);
+    }
+  }, [showCorruptedMessage]);
 
   const handleMenuClick = (menuType: string) => {
     setCurrentView(menuType);
@@ -172,10 +168,21 @@ To dissolve is to rise.
   };
 
   const triggerGlitch = () => {
-    if (Math.random() < 0.3) {
+    if (Math.random() < 0.2) {
       setGlitch(true);
-      setTimeout(() => setGlitch(false), 200);
+      setTimeout(() => setGlitch(false), 300);
     }
+  };
+
+  const corruptText = (text: string, level = 0.1) => {
+    const glitchChars = ['█', '▓', '▒', '░', '?', '#', '@', '%', '¿', '¡'];
+    
+    return text.split('').map((char: string) => {
+      if (Math.random() < level) {
+        return glitchChars[Math.floor(Math.random() * glitchChars.length)];
+      }
+      return char;
+    }).join('');
   };
 
   const handleCorruptedDataClear = () => {
@@ -183,51 +190,11 @@ To dissolve is to rise.
     setCorruptedAttempts(newAttempts);
     
     if (newAttempts >= 3) {
-      setShowHorrorMessage(true);
-      setGlitch(true);
-      setTimeout(() => setGlitch(false), 1000);
-      
-      // Анимация появления текста построчно
-      const eyeArt = [
-        "    ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄",
-        "  ▄▀░░░░░░░░░░░░░░░▀▄",
-        " ▄▀░░░░░░░░░░░░░░░░░░▀▄",
-        "█░░░░░░░▄▄▄▄▄▄▄░░░░░░░█",
-        "█░░░░▄▀█▀▀▀▀▀▀▀█▀▄░░░░█",
-        "█░░░▄▀░█░░░░░░░█░▀▄░░░█",
-        "█░░░█░░█░░░█░░░█░░█░░░█",
-        "█░░░█░░█░░░█░░░█░░█░░░█",
-        "█░░░▀▄░█░░░░░░░█░▄▀░░░█",
-        "█░░░░▀▄█▄▄▄▄▄▄▄█▄▀░░░░█",
-        "█░░░░░░▀▀▀▀▀▀▀▀▀░░░░░░█",
-        " ▀▄░░░░░░░░░░░░░░░░░░▄▀",
-        "  ▀▄░░░░░░░░░░░░░░░░▄▀",
-        "    ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀",
-        "",
-        "I CAN SEE YOU"
-      ];
-      
-      setHorrorTextLines([]);
-      
-      eyeArt.forEach((line, index) => {
-        setTimeout(() => {
-          setHorrorTextLines(prev => [...prev, line]);
-        }, index * 150);
-      });
+      setShowCorruptedMessage(true);
     } else {
-      triggerGlitch();
+      setGlitch(true);
+      setTimeout(() => setGlitch(false), 500);
     }
-  };
-
-  const corruptText = (text: string, level: number = 0.1) => {
-    const glitchChars = ['█', '▓', '▒', '░', '?', '#', '@', '%', '¿', '¡', '∩', '⌐'];
-    
-    return text.split('').map((char) => {
-      if (Math.random() < level) {
-        return glitchChars[Math.floor(Math.random() * glitchChars.length)];
-      }
-      return char;
-    }).join('');
   };
 
   const renderContent = () => {
@@ -264,21 +231,27 @@ To dissolve is to rise.
           </div>
         );
 
-      case 'life-support':
+      case 'footage':
         return (
           <div className="space-y-4">
             <h3 className="text-green-300 font-bold mb-4">LIFE SUPPORT SYSTEMS</h3>
             {lifeSupportData.map((system) => (
               <div key={system.id} className="border border-green-600 p-3 bg-green-900 bg-opacity-20">
                 <div className="flex justify-between mb-2">
-                  <span className="text-green-400">{system.system}</span>
-                  <span className={
-                    system.status.includes('NOMINAL') ? 'text-green-400' :
-                    system.status.includes('WARNING') ? 'text-yellow-400' :
-                    'text-red-400'
-                  }>{system.status}</span>
+                  <span className="text-green-400">{system.name}</span>
+                  <span className={system.status.includes('CRITICAL') ? 'text-red-400' : system.status.includes('OFFLINE') ? 'text-yellow-400' : 'text-green-400'}>
+                    {system.status}
+                  </span>
                 </div>
-                <div className="text-green-500 text-sm">{system.description}</div>
+                <div className="text-green-500 text-sm">{corruptText(system.description, 0.1)}</div>
+                <div className="mt-2 text-center">
+                  <div className="text-green-400 font-mono text-xs">
+                    ████ ██ ██████ ████<br/>
+                    ██ ████ ██ ████ ██<br/>
+                    ████ ██ ████ ██████<br/>
+                    [SYSTEM MONITORING]
+                  </div>
+                </div>
               </div>
             ))}
           </div>
@@ -305,18 +278,14 @@ To dissolve is to rise.
             <h3 className="text-green-300 font-bold mb-4">CREW MANIFEST</h3>
             <div className="border border-green-600 p-3 bg-green-900 bg-opacity-20">
               <div className="text-green-400 mb-2">VESSEL: SILK STAR</div>
-              <div className="text-green-400 mb-4">CREW COMPLEMENT: 12</div>
-              {crewManifest.map((member, index) => (
-                <div key={index} className="mb-3 pb-2 border-b border-green-700">
-                  <div className="flex justify-between">
-                    <span className="text-green-300">{member.name}</span>
-                    <span className={member.status.includes('REDACTED') ? 'text-red-400' : 'text-yellow-400'}>
-                      {member.status}
-                    </span>
-                  </div>
-                  <div className="text-green-500 text-sm mt-1">{member.details}</div>
-                </div>
-              ))}
+              <div className="text-green-400 mb-2">CREW COMPLEMENT: 12</div>
+              <div className="text-green-300 mt-4">
+                CAPTAIN: {corruptText('[REDACTED]', 0.8)}<br/>
+                FIRST OFFICER: CONNECTION LOST...<br/>
+                ENGINEER: CONNECTION LOST...<br/>
+                MEDIC: CONNECTION LOST...<br/>
+                <span className="text-red-400">[COMMUNICATION TERMINATED]</span>
+              </div>
             </div>
           </div>
         );
@@ -326,17 +295,7 @@ To dissolve is to rise.
           <div className="space-y-4">
             <h3 className="text-red-400 font-bold mb-4">[CORRUPTED DATA]</h3>
             <div className="border border-red-600 p-3 bg-red-900 bg-opacity-20">
-              {showHorrorMessage ? (
-                <div className="text-red-400 text-center font-mono">
-                  <pre className="text-sm leading-tight">
-                    {horrorTextLines.map((line, index) => (
-                      <div key={index} className={index === horrorTextLines.length - 1 ? "text-2xl font-bold animate-pulse mt-4" : ""}>
-                        {line}
-                      </div>
-                    ))}
-                  </pre>
-                </div>
-              ) : (
+              {!showCorruptedMessage ? (
                 <>
                   <div className="text-red-400 animate-pulse mb-4">
                     {corruptText('ERROR: DATA INTEGRITY COMPROMISED', 0.5)}<br/>
@@ -344,13 +303,22 @@ To dissolve is to rise.
                     {corruptText('CREW STATUS: UNKNOWN', 0.6)}<br/>
                     {corruptText('RECOMMEND IMMEDIATE EVACUATION', 0.3)}
                   </div>
-                  <button 
+                  <button
                     onClick={handleCorruptedDataClear}
-                    className="w-full bg-red-900 hover:bg-red-800 text-red-300 p-2 border border-red-400 transition-colors"
+                    className="w-full bg-red-900 hover:bg-red-800 text-red-300 p-2 border border-red-600 transition-colors"
                   >
                     [ATTEMPT DATA RECOVERY]
                   </button>
                 </>
+              ) : (
+                <div className="text-center">
+                  <pre className="text-red-400 font-mono text-sm mb-4 animate-pulse">
+                    {asciiEye}
+                  </pre>
+                  <div className="text-red-400 text-2xl font-bold animate-pulse">
+                    {typingText}
+                  </div>
+                </div>
               )}
             </div>
           </div>
@@ -372,25 +340,25 @@ To dissolve is to rise.
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-black text-green-400 font-mono crt-terminal">
-        <div className="flex flex-col items-center justify-center min-h-screen p-8">
-          <pre className="ascii-loading text-xs sm:text-sm text-center mb-8">
-            {loadingAscii}
-          </pre>
-          <div className="text-center mb-8">
-            <div className="text-green-300 mb-4">INITIALIZING TERMINAL...</div>
-            <div className="w-64 bg-gray-700 rounded-full h-2">
-              <div 
-                className="bg-green-400 h-2 rounded-full transition-all duration-300"
-                style={{ width: `${loadingProgress}%` }}
-              ></div>
-            </div>
-            <div className="text-green-500 text-sm mt-2">{Math.floor(loadingProgress)}%</div>
+      <div className="min-h-screen bg-black text-green-400 font-mono flex items-center justify-center crt-terminal">
+        <div className="text-center">
+          <div className="mb-8">
+            <pre className="text-green-400 font-mono text-sm animate-pulse">
+              {`
+███████╗██╗██╗     ██╗  ██╗    ███████╗████████╗ █████╗ ██████╗ 
+██╔════╝██║██║     ██║ ██╔╝    ██╔════╝╚══██╔══╝██╔══██╗██╔══██╗
+███████╗██║██║     █████╔╝     ███████╗   ██║   ███████║██████╔╝
+╚════██║██║██║     ██╔═██╗     ╚════██║   ██║   ██╔══██║██╔══██╗
+███████║██║███████╗██║  ██╗    ███████║   ██║   ██║  ██║██║  ██║
+╚══════╝╚═╝╚══════╝╚═╝  ╚═╝    ╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝
+              `}
+            </pre>
           </div>
-          <div className="text-green-600 text-xs animate-pulse">
-            Loading system modules...<br/>
-            Checking data integrity...<br/>
-            Establishing secure connection...
+          <div className="text-green-300 text-xl mb-4">
+            {loadingText}
+          </div>
+          <div className="text-green-500">
+            <span className="animate-pulse">█</span>
           </div>
         </div>
       </div>
@@ -398,33 +366,22 @@ To dissolve is to rise.
   }
 
   return (
-    <div className={`min-h-screen bg-black text-green-400 font-mono crt-terminal terminal-text ${glitch ? 'terminal-glitch' : ''}`}>
-      
-      <div className="container mx-auto p-4 relative z-0">
-        <div className="bg-black p-8 rounded-lg border-2 border-green-400 shadow-lg shadow-green-400/50">
-          
-          {/* Terminal Header */}
-          <div className="text-center mb-8">
-            <h1 className="text-2xl font-bold mb-2 text-green-300">
-              SILK STAR TERMINAL ACCESS
-            </h1>
-            <p className="text-green-600">SECURE CONNECTION ESTABLISHED</p>
-            <div className="mt-4 border-t border-green-400 pt-4">
-              <p className="text-sm text-green-500">
-                VESSEL: SILK STAR<br/>
-                STATUS: [UNKNOWN]<br/>
-                LOCATION: SECTOR 7-GAMMA
-              </p>
-            </div>
-          </div>
+    <div className={`h-screen bg-black text-green-400 font-mono overflow-hidden relative crt-terminal ${glitch ? 'animate-pulse' : ''}`}>
+      {/* Glitch Effect */}
+      {glitch && (
+        <div className="fixed inset-0 z-20 bg-red-500 opacity-20 animate-ping"></div>
+      )}
 
+      <div className="h-full p-4 relative z-0">
+        <div className="bg-black p-4 md:p-8 rounded-lg border-2 border-green-400 shadow-lg shadow-green-400/50 h-full">
+          
           {/* Main Terminal Interface */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 min-h-[70vh]">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-8 h-full">
             
             {/* Navigation Panel */}
-            <div className="border border-green-400 p-4">
+            <div className="border border-green-400 p-4 flex flex-col">
               <h2 className="text-xl font-bold mb-4 text-green-300">SYSTEM NAVIGATION</h2>
-              <div className="space-y-2">
+              <div className="space-y-2 flex-1">
                 <button 
                   onClick={() => handleMenuClick('logs')}
                   className={`block w-full text-left p-2 hover:bg-green-900 border border-green-600 transition-colors ${currentView === 'logs' ? 'bg-green-900' : ''}`}
@@ -438,8 +395,8 @@ To dissolve is to rise.
                   [2] SILK STAR LOGS
                 </button>
                 <button 
-                  onClick={() => handleMenuClick('life-support')}
-                  className={`block w-full text-left p-2 hover:bg-green-900 border border-green-600 transition-colors ${currentView === 'life-support' ? 'bg-green-900' : ''}`}
+                  onClick={() => handleMenuClick('footage')}
+                  className={`block w-full text-left p-2 hover:bg-green-900 border border-green-600 transition-colors ${currentView === 'footage' ? 'bg-green-900' : ''}`}
                 >
                   [3] LIFE SUPPORT
                 </button>
@@ -465,9 +422,11 @@ To dissolve is to rise.
             </div>
 
             {/* Display Panel */}
-            <div className="border border-green-400 p-4 overflow-y-auto max-h-[70vh]">
+            <div className="border border-green-400 p-4 overflow-y-auto flex flex-col">
               <h2 className="text-xl font-bold mb-4 text-green-300">DATA DISPLAY</h2>
-              {renderContent()}
+              <div className="flex-1 overflow-y-auto">
+                {renderContent()}
+              </div>
             </div>
 
           </div>

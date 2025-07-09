@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import DevTools from "@/components/DevTools";
+import { EditModeProvider } from "@/contexts/EditModeContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -63,11 +65,14 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         suppressHydrationWarning
       >
-        <Navigation />
-        <main className="min-h-screen">
-          {children}
-        </main>
-        <Footer />
+        <EditModeProvider>
+          <Navigation />
+          <main className="min-h-screen">
+            {children}
+          </main>
+          <Footer />
+          <DevTools />
+        </EditModeProvider>
       </body>
     </html>
   );

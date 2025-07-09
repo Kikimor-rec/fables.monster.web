@@ -3,17 +3,20 @@
 import Link from "next/link";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
+import FinalEditable from "@/components/FinalEditable";
+import { useContent } from "@/hooks/useContent";
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
+  const { content } = useContent('site-content.json');
 
   const navLinks = [
-    { href: "/", label: "HOME" },
-    { href: "/projects", label: "PROJECTS" },
-    { href: "/lost-mark", label: "LOST MARK" },
-    { href: "/about", label: "ABOUT" },
-    { href: "/contact", label: "CONTACT" },
+    { href: "/", label: content?.navigation?.home || "HOME", path: "navigation.home" },
+    { href: "/projects", label: content?.navigation?.projects || "PROJECTS", path: "navigation.projects" },
+    { href: "/lost-mark", label: "LOST MARK", path: "common.lost_mark_button" },
+    { href: "/about", label: content?.navigation?.about || "ABOUT", path: "navigation.about" },
+    { href: "/contact", label: content?.navigation?.contact || "CONTACT", path: "navigation.contact" },
   ];
 
   const isActive = (href: string) => {
@@ -26,7 +29,12 @@ export default function Navigation() {
     <nav className="fixed top-0 w-full z-50 px-6 py-4 bg-black/80 backdrop-blur-sm border-b border-red-700">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         <Link href="/" className="text-2xl font-bold text-white font-mono tracking-wider">
-          FABLES MONSTER
+          <FinalEditable trigger="click" 
+            value={content?.footer?.studio_name || "FABLES MONSTER"}
+            path="footer.studio_name"
+            tag="span"
+            className="inline-block"
+          />
         </Link>
         
         {/* Desktop Menu */}
@@ -41,7 +49,12 @@ export default function Navigation() {
                   : "text-white hover:text-red-400"
               }`}
             >
-              {link.label}
+              <FinalEditable trigger="click" 
+                value={link.label}
+                path={link.path}
+                tag="span"
+                className="inline-block"
+              />
             </Link>
           ))}
         </div>
@@ -92,7 +105,12 @@ export default function Navigation() {
                 }`}
                 onClick={() => setIsMenuOpen(false)}
               >
-                {link.label}
+                <FinalEditable trigger="click" 
+                  value={link.label}
+                  path={link.path}
+                  tag="span"
+                  className="inline-block"
+                />
               </Link>
             ))}
           </div>

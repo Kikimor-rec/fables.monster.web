@@ -1,0 +1,119 @@
+{
+  "hero": {
+    "title": "Fables Monster Studio",
+    "subtitle": "Independent Tabletop RPG Creator",
+    "description": "Crafting immersive tabletop experiences that blur the line between reality and nightmare."
+  },
+  "about": {
+    "title": "About Us",
+    "description": "We believe that the Warden, Dungeon Master, or Host (whatever you call them) should have the tools to run games and the ability to quickly start everything they need. And we want to make not just adventures, but ready-made tools that can reduce the time it takes to prepare for a game.",
+    "description1": "We are a team of enthusiasts dedicated to creating immersive tabletop RPG adventures and digital experiences. Our mission is to craft projects that leave a lasting impact on players.",
+    "description2": "From Sci-Fi horror to fantasy adventures, we explore various forms of interactive entertainment, creating unique experiences for every player.",
+    "philosophy_title": "OUR PHILOSOPHY",
+    "philosophy": "Every game is a story, every story is a world, every world is an opportunity for players to become heroes of their own adventure.",
+    "mission": {
+      "title": "Our Mission",
+      "description": "We believe that tabletop RPGs are more than just entertainment - they are a medium for storytelling, human connection, and exploring the depths of imagination."
+    }
+  },
+  "projects": {
+    "title": "Our Projects",
+    "subtitle": "Discover our collection of tabletop RPG adventures",
+    "featured_title": "FIRST PROJECT",
+    "featured_subtitle": "Our pride and most ambitious project",
+    "all_projects_title": "ALL PROJECTS",
+    "all_projects_subtitle": "Complete collection of our tabletop RPG content",
+    "cta_title": "WANT TO STAY UPDATED?",
+    "cta_subtitle": "Subscribe to our updates and be the first to know about new releases"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Get in touch for collaborations, questions, or just to say hello",
+    "hero_title": "CONTACT",
+    "hero_subtitle": "Get in touch with Fables Monster Studio",
+    "get_in_touch": "GET IN TOUCH",
+    "join_community_title": "JOIN OUR COMMUNITY",
+    "join_community_subtitle": "Connect with fellow RPG enthusiasts and get the latest updates on our projects.",
+    "follow_us": "FOLLOW US"
+  },
+  "lost_mark": {
+    "title": "The Lost Mark",
+    "subtitle": "Sci-Fi horror among the wrecks and cults",
+    "description": "A Pay What You Want adventure for Mothership RPG",
+    "hero_subtitle": "Where survival depends on the choices you make in the dark",
+    "key_features_title": "KEY FEATURES",
+    "warning_title": "WARNING",
+    "warning_text": "This adventure contains Sci-Fi horror themes, body horror, and psychological stress. Player discretion advised.",
+    "features": [
+      "Complete Adventure: 32 pages of Sci-Fi horror, investigation, and social intrigue",
+      "Detailed Maps: Ship layouts, encounter areas, and navigation aids",
+      "Handouts: In-character documents, transmissions, and clues",
+      "VTT Ready: Foundry VTT and Roll20 compatible assets"
+    ]
+  },
+  "team": {
+    "title": "THE TEAM",
+    "members": [
+      {
+        "name": "Stepan",
+        "role": "Game Designer & Writer",
+        "status": "online",
+        "bio": "Lead designer and storyteller behind our cosmic horror adventures.",
+        "image": "stepan-kulikov.webp"
+      },
+      {
+        "name": "Zlata",
+        "role": "Artist & UI Designer",
+        "status": "away",
+        "bio": "Visual artist creating the dark atmospheres that define our games.",
+        "portfolio": "https://zlata-portfolio.example.com",
+        "image": "zlata.webp"
+      },
+      {
+        "name": "Alex",
+        "role": "Developer",
+        "status": "online",
+        "bio": "Technical wizard making our digital experiences come to life.",
+        "image": "alleks.webp"
+      }
+    ]
+  },
+  "footer": {
+    "studio_name": "FABLES MONSTER",
+    "studio_description": "Independent tabletop RPG content creation studio",
+    "projects_title": "PROJECTS",
+    "links_title": "LINKS",
+    "follow_us_title": "FOLLOW US",
+    "copyright": "© 2025 Fables Monster Studio. All rights reserved."
+  },
+  "navigation": {
+    "home": "HOME",
+    "projects": "PROJECTS", 
+    "about": "ABOUT",
+    "contact": "CONTACT"
+  },
+  "common": {
+    "loading": "Loading...",
+    "learn_more": "MORE ABOUT US",
+    "learn_more_project": "LEARN MORE",
+    "explore_project": "EXPLORE PROJECT",
+    "view_projects": "VIEW PROJECTS",
+    "all_projects": "ALL PROJECTS",
+    "lost_mark_button": "LOST MARK",
+    "join_discord": "JOIN DISCORD",
+    "newsletter": "NEWSLETTER",
+    "discord_community": "DISCORD COMMUNITY",
+    "get_in_touch": "GET IN TOUCH",
+    "send_message": "SEND MESSAGE",
+    "ready_to_explore": "READY TO EXPLORE OUR WORLDS?",
+    "follow_projects": "Follow our projects and become part of the Fables Monster community"
+  },
+  "tags": {
+    "mothership": "MOTHERSHIP",
+    "sci_fi_horror": "SCI-FI HORROR",
+    "investigation": "INVESTIGATION"
+  },
+  "image_labels": {
+    "lost_mark_promo": "THE LOST MARK"
+  }
+}
