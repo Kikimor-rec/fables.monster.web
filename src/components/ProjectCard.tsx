@@ -18,7 +18,7 @@ interface ProjectCardProps {
 export default function ProjectCard({ project, featured = false }: ProjectCardProps) {
   const getStatusColor = (status: string) => {
     switch (status) {
-      case "Available Now":
+      case "Available Soon":
         return "border-green-500 bg-green-500/20";
       case "Coming Soon":
         return "border-yellow-500 bg-yellow-500/20";

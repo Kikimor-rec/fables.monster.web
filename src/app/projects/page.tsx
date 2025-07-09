@@ -7,7 +7,7 @@ export default function Projects() {
       id: "lost-mark",
       title: "The Lost Mark",
       description: "A Sci-Fi horror adventure for Mothership RPG. Your crew faces impossible choices and eldritch truths among the wrecks and cults of deep space.",
-      status: "Available Now",
+      status: "Available Soon",
       tags: ["Mothership", "Sci-Fi Horror", "Investigation"],
       icon: "⚠",
       featured: true,

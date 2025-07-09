@@ -64,7 +64,7 @@ export default function LostMark() {
           {/* Stats Grid */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 max-w-2xl mx-auto">
             {stats.map((stat, index) => (
-              <div key={index} className="bg-black/60 border border-red-700 p-4">
+              <div key={index} className="bg-black/60 border border-red-700 p-4 text-center">
                 <div className="text-2xl font-bold text-red-400 font-mono">{stat.value}</div>
                 <div className="text-sm text-gray-300 font-mono">{stat.label}</div>
               </div>
@@ -82,6 +82,18 @@ export default function LostMark() {
               href="https://www.drivethrurpg.com/en/publisher/30815/Stepan%20Kulikov"
               price="$5"
             />
+          </div>
+          
+          {/* Terminal Access Button */}
+          <div className="mt-6 text-center">
+            <div className="inline-flex items-center gap-2 bg-gray-600 text-gray-400 font-mono font-bold px-6 py-3 rounded border-2 border-gray-500 shadow-lg cursor-not-allowed opacity-75">
+              <span className="text-lg">📟</span>
+              ACCESS BEACON TERMINAL
+              <span className="text-xs bg-black/20 px-2 py-1 rounded ml-2">COMING SOON</span>
+            </div>
+            <p className="text-sm text-gray-400 mt-2 font-mono">
+              Interactive terminal will be available after release
+            </p>
           </div>
         </div>
       </section>

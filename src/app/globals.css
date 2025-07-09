@@ -45,3 +45,159 @@ body {
   outline: 2px solid #dc2626;
   outline-offset: 2px;
 }
+
+/* Terminal CRT effect styles - Improved readability */
+.terminal-scanlines {
+  position: relative;
+}
+
+.terminal-scanlines::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 255, 0, 0.015) 2px,
+    rgba(0, 255, 0, 0.015) 4px
+  );
+  pointer-events: none;
+  z-index: 10;
+}
+
+.terminal-flicker {
+  animation: subtle-flicker 3s infinite linear;
+}
+
+@keyframes subtle-flicker {
+  0% { opacity: 1; }
+  98% { opacity: 1; }
+  99% { opacity: 0.98; }
+  100% { opacity: 1; }
+}
+
+/* Custom scrollbar for terminal */
+.scrollbar-thin {
+  scrollbar-width: thin;
+}
+
+.scrollbar-track-black {
+  scrollbar-color: #22c55e #000000;
+}
+
+.scrollbar-thumb-green-400::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollbar-thumb-green-400::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+.scrollbar-thumb-green-400::-webkit-scrollbar-thumb {
+  background: #22c55e;
+  border-radius: 0px;
+}
+
+.scrollbar-thumb-green-400::-webkit-scrollbar-thumb:hover {
+  background: #16a34a;
+}
+
+/* CRT Terminal Effects - Enhanced readability with subtle shake */
+.crt-terminal {
+  background: #0a0a0a;
+  color: #00ff00;
+  font-family: 'Courier New', monospace;
+  text-shadow: 0 0 3px #00ff00;
+  letter-spacing: 0.05em;
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  animation: subtle-shake 1s infinite;
+}
+
+@keyframes subtle-shake {
+  0%, 100% { transform: translate(0px, 0px); }
+  25% { transform: translate(0.2px, 0px); }
+  50% { transform: translate(-0.2px, 0px); }
+  75% { transform: translate(0px, 0.2px); }
+}
+
+.crt-terminal::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: 
+    linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%),
+    linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
+  z-index: 2;
+  background-size: 100% 3px, 4px 100%;
+  pointer-events: none;
+}
+
+.crt-terminal::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(18, 16, 16, 0.05);
+  opacity: 0;
+  z-index: 2;
+  pointer-events: none;
+  animation: flicker 0.15s infinite linear;
+}
+
+/* Removed aggressive flicker animations for better readability */
+
+/* Terminal glitch effect - softer */
+.terminal-glitch {
+  animation: soft-glitch 0.5s ease-in-out;
+}
+
+@keyframes soft-glitch {
+  0% { 
+    transform: translate(0);
+    filter: hue-rotate(0deg);
+  }
+  25% { 
+    transform: translate(-0.3px, 0.3px);
+    filter: hue-rotate(15deg);
+  }
+  50% { 
+    transform: translate(0.3px, -0.3px);
+    filter: hue-rotate(30deg);
+  }
+  75% { 
+    transform: translate(-0.3px, -0.3px);
+    filter: hue-rotate(45deg);
+  }
+  100% { 
+    transform: translate(0);
+    filter: hue-rotate(0deg);
+  }
+}
+
+/* ASCII art animation - subtle */
+.ascii-loading {
+  animation: ascii-pulse 3s infinite;
+}
+
+@keyframes ascii-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+/* Improved text shadow for readability */
+.terminal-text {
+  text-shadow: 0 0 2px #00ff00;
+}
