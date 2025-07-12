@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import FinalEditable from '@/components/FinalEditable';
 import { useContent } from '@/hooks/useContent';
 
 // Типы данных для терминала
@@ -173,12 +172,7 @@ export default function LostMarkTerminal() {
         return (
           <div className="space-y-3 sm:space-y-4">
             <h3 className="text-green-300 font-bold mb-3 sm:mb-4 text-sm sm:text-base">
-              <FinalEditable trigger="click" 
-                value={content?.interface?.sections?.system_logs || "SYSTEM LOGS"}
-                path="interface.sections.system_logs"
-                tag="span"
-                className="inline-block"
-              />
+              {content?.interface?.sections?.system_logs || "SYSTEM LOGS"}
             </h3>
             {shipLogs.map((log: ShipLog) => (
               <div key={log.id} className="border border-green-600 p-2 sm:p-3 bg-green-900 bg-opacity-20 rounded">
@@ -189,21 +183,10 @@ export default function LostMarkTerminal() {
                   </span>
                 </div>
                 <div className="text-green-300 font-bold text-xs sm:text-sm md:text-base break-words">
-                  <FinalEditable trigger="click" 
-                    value={log.message}
-                    path={`ship_logs.${shipLogs.indexOf(log)}.message`}
-                    tag="span"
-                    className="inline-block"
-                  />
+                  {log.message}
                 </div>
                 <div className="text-green-500 text-sm mt-1">
-                  <FinalEditable trigger="click" 
-                    value={log.details}
-                    path={`ship_logs.${shipLogs.indexOf(log)}.details`}
-                    tag="span"
-                    multiline={true}
-                    className="inline-block"
-                  />
+                  {log.details}
                 </div>
               </div>
             ))}
@@ -214,24 +197,13 @@ export default function LostMarkTerminal() {
         return (
           <div className="space-y-3 sm:space-y-4">
             <h3 className="text-green-300 font-bold mb-3 sm:mb-4 text-sm sm:text-base">
-              <FinalEditable trigger="click" 
-                value={content?.interface?.sections?.silk_star_logs || "SILK STAR FLIGHT LOG"}
-                path="interface.sections.silk_star_logs"
-                tag="span"
-                className="inline-block"
-              />
+              {content?.interface?.sections?.silk_star_logs || "SILK STAR FLIGHT LOG"}
             </h3>
             {silkStarLogs.map((log: SilkStarLog) => (
               <div key={log.id} className="border border-green-600 p-2 sm:p-3 bg-green-900 bg-opacity-20 rounded">
                 <div className="text-green-400 text-xs sm:text-sm mb-2 font-mono">LOG ENTRY {log.entry}:</div>
                 <div className="text-green-300 text-xs sm:text-sm md:text-base leading-relaxed break-words">
-                  <FinalEditable trigger="click" 
-                    value={corruptText(log.content, log.entry === '3531' ? 0.3 : 0.05)}
-                    path={`silk_star_logs.${silkStarLogs.indexOf(log)}.content`}
-                    tag="span"
-                    multiline={true}
-                    className="inline-block"
-                  />
+                  {corruptText(log.content, log.entry === '3531' ? 0.3 : 0.05)}
                 </div>
               </div>
             ))}
@@ -242,41 +214,20 @@ export default function LostMarkTerminal() {
         return (
           <div className="space-y-3 sm:space-y-4">
             <h3 className="text-green-300 font-bold mb-3 sm:mb-4 text-sm sm:text-base">
-              <FinalEditable trigger="click" 
-                value={content?.interface?.sections?.life_support || "LIFE SUPPORT SYSTEMS"}
-                path="interface.sections.life_support"
-                tag="span"
-                className="inline-block"
-              />
+              {content?.interface?.sections?.life_support || "LIFE SUPPORT SYSTEMS"}
             </h3>
             {lifeSupportData.map((system: LifeSupportSystem) => (
               <div key={system.id} className="border border-green-600 p-2 sm:p-3 bg-green-900 bg-opacity-20 rounded">
                 <div className="flex flex-col sm:flex-row sm:justify-between mb-2 gap-1 sm:gap-2">
                   <span className="text-green-400 text-xs sm:text-sm font-mono break-words">
-                    <FinalEditable trigger="click" 
-                      value={system.name}
-                      path={`life_support.${lifeSupportData.indexOf(system)}.name`}
-                      tag="span"
-                      className="inline-block"
-                    />
+                    {system.name}
                   </span>
                   <span className={`text-xs sm:text-sm font-mono ${system.status.includes('CRITICAL') ? 'text-red-400' : system.status.includes('OFFLINE') ? 'text-yellow-400' : 'text-green-400'}`}>
-                    <FinalEditable trigger="click" 
-                      value={system.status}
-                      path={`life_support.${lifeSupportData.indexOf(system)}.status`}
-                      tag="span"
-                      className="inline-block"
-                    />
+                    {system.status}
                   </span>
                 </div>
                 <div className="text-green-500 text-xs sm:text-sm leading-relaxed break-words">
-                  <FinalEditable trigger="click" 
-                    value={corruptText(system.description, 0.1)}
-                    path={`life_support.${lifeSupportData.indexOf(system)}.description`}
-                    tag="span"
-                    multiline={true}
-                    className="inline-block"
-                  />
+                  {corruptText(system.description, 0.1)}
                 </div>
               </div>
             ))}
@@ -287,49 +238,24 @@ export default function LostMarkTerminal() {
         return (
           <div className="space-y-3 sm:space-y-4">
             <h3 className="text-green-300 font-bold mb-3 sm:mb-4 text-sm sm:text-base">
-              <FinalEditable trigger="click" 
-                value={content?.interface?.sections?.crew_manifest || "CREW MANIFEST"}
-                path="interface.sections.crew_manifest"
-                tag="span"
-                className="inline-block"
-              />
+              {content?.interface?.sections?.crew_manifest || "CREW MANIFEST"}
             </h3>
             <div className="border border-green-600 p-2 sm:p-3 bg-green-900 bg-opacity-20 rounded">
               <div className="text-green-400 mb-2 text-xs sm:text-sm font-mono">
-                <FinalEditable trigger="click" 
-                  value={content?.interface?.status_messages?.vessel_name || "VESSEL: SILK STAR"}
-                  path="interface.status_messages.vessel_name"
-                  tag="span"
-                  className="inline-block"
-                />
+                {content?.interface?.status_messages?.vessel_name || "VESSEL: SILK STAR"}
               </div>
               <div className="text-green-400 mb-3 sm:mb-4 text-xs sm:text-sm font-mono">
-                <FinalEditable trigger="click" 
-                  value={content?.interface?.status_messages?.crew_complement || "CREW COMPLEMENT: 12"}
-                  path="interface.status_messages.crew_complement"
-                  tag="span"
-                  className="inline-block"
-                />
+                {content?.interface?.status_messages?.crew_complement || "CREW COMPLEMENT: 12"}
               </div>
               
               <div className="space-y-1 sm:space-y-2">
                 {crewManifest.crew?.map((member: CrewMember, index: number) => (
                   <div key={index} className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
                     <span className="text-green-300 text-xs sm:text-sm font-mono">
-                      <FinalEditable trigger="click" 
-                        value={member.name}
-                        path={`crew_manifest.crew.${index}.name`}
-                        tag="span"
-                        className="inline-block"
-                      />
+                      {member.name}
                     </span>
                     <span className="text-green-500 text-xs sm:text-sm">
-                      <FinalEditable trigger="click" 
-                        value={member.position}
-                        path={`crew_manifest.crew.${index}.position`}
-                        tag="span"
-                        className="inline-block"
-                      />
+                      {member.position}
                     </span>
                   </div>
                 ))}
@@ -337,12 +263,7 @@ export default function LostMarkTerminal() {
               
               <div className="mt-3 sm:mt-4 pt-2 border-t border-green-600">
                 <span className="text-red-400 text-xs sm:text-sm font-mono">
-                  <FinalEditable trigger="click" 
-                    value={content?.interface?.status_messages?.data_corrupted || "[REST OF DATA CORRUPTED]"}
-                    path="interface.status_messages.data_corrupted"
-                    tag="span"
-                    className="inline-block"
-                  />
+                  {content?.interface?.status_messages?.data_corrupted || "[REST OF DATA CORRUPTED]"}
                 </span>
               </div>
             </div>
@@ -353,31 +274,15 @@ export default function LostMarkTerminal() {
         return (
           <div className="space-y-3 sm:space-y-4">
             <h3 className="text-green-300 font-bold mb-3 sm:mb-4 text-sm sm:text-base">
-              <FinalEditable trigger="click" 
-                value={content?.interface?.sections?.cryo_protocols || "CRYOCAPSULE PROTOCOLS"}
-                path="interface.sections.cryo_protocols"
-                tag="span"
-                className="inline-block"
-              />
+              {content?.interface?.sections?.cryo_protocols || "CRYOCAPSULE PROTOCOLS"}
             </h3>
             {content?.cryo_protocols?.map((protocol: CryoProtocol, index: number) => (
               <div key={index} className="border border-green-600 p-2 sm:p-3 bg-green-900 bg-opacity-20 rounded">
                 <div className="text-green-400 mb-2 text-xs sm:text-sm font-mono font-bold">
-                  <FinalEditable trigger="click" 
-                    value={protocol.title}
-                    path={`cryo_protocols.${index}.title`}
-                    tag="span"
-                    className="inline-block"
-                  />
+                  {protocol.title}
                 </div>
                 <div className="text-green-300 text-xs sm:text-sm leading-relaxed break-words">
-                  <FinalEditable trigger="click" 
-                    value={protocol.description}
-                    path={`cryo_protocols.${index}.description`}
-                    tag="span"
-                    multiline={true}
-                    className="inline-block"
-                  />
+                  {protocol.description}
                 </div>
               </div>
             ))}
@@ -388,23 +293,13 @@ export default function LostMarkTerminal() {
         return (
           <div className="space-y-3 sm:space-y-4">
             <h3 className="text-red-400 font-bold mb-3 sm:mb-4 text-sm sm:text-base">
-              <FinalEditable trigger="click" 
-                value={content?.interface?.sections?.corrupted_data || "[CORRUPTED DATA]"}
-                path="interface.sections.corrupted_data"
-                tag="span"
-                className="inline-block"
-              />
+              {content?.interface?.sections?.corrupted_data || "[CORRUPTED DATA]"}
             </h3>
             <div className="border border-red-600 p-2 sm:p-3 bg-red-900 bg-opacity-20 rounded">
               {!showCorruptedMessage ? (
                 <>
                   <div className="text-red-400 mb-3 sm:mb-4 text-xs sm:text-sm font-mono">
-                    <FinalEditable trigger="click" 
-                      value={content?.interface?.status_messages?.clearance_required || "SECURITY CLEARANCE REQUIRED"}
-                      path="interface.status_messages.clearance_required"
-                      tag="span"
-                      className="inline-block"
-                    />
+                    {content?.interface?.status_messages?.clearance_required || "SECURITY CLEARANCE REQUIRED"}
                   </div>
                   <button 
                     onClick={handleCorruptedDataClear}
@@ -431,37 +326,17 @@ export default function LostMarkTerminal() {
         return (
           <div className="space-y-3 sm:space-y-4">
             <p className="text-green-500 text-xs sm:text-sm font-mono">
-              <FinalEditable trigger="click" 
-                value={content?.interface?.status_messages?.select_option || "SELECT A MENU OPTION TO VIEW DATA"}
-                path="interface.status_messages.select_option"
-                tag="span"
-                className="inline-block"
-              />
+              {content?.interface?.status_messages?.select_option || "SELECT A MENU OPTION TO VIEW DATA"}
             </p>
             <div className="mt-3 sm:mt-4 p-2 sm:p-3 md:p-4 bg-green-900 bg-opacity-20 border border-green-600 rounded space-y-2 sm:space-y-3">
               <p className="text-green-400 text-xs sm:text-sm font-mono">
-                <FinalEditable trigger="click" 
-                  value={content?.interface?.status_messages?.system_operational || "SYSTEM STATUS: OPERATIONAL"}
-                  path="interface.status_messages.system_operational"
-                  tag="span"
-                  className="inline-block"
-                />
+                {content?.interface?.status_messages?.system_operational || "SYSTEM STATUS: OPERATIONAL"}
               </p>
               <p className="text-yellow-400 text-xs sm:text-sm font-mono">
-                <FinalEditable trigger="click" 
-                  value={content?.interface?.status_messages?.anomalies_detected || "WARNING: MULTIPLE SYSTEM ANOMALIES DETECTED"}
-                  path="interface.status_messages.anomalies_detected"
-                  tag="span"
-                  className="inline-block"
-                />
+                {content?.interface?.status_messages?.anomalies_detected || "WARNING: MULTIPLE SYSTEM ANOMALIES DETECTED"}
               </p>
               <p className="text-red-400 text-xs sm:text-sm font-mono">
-                <FinalEditable trigger="click" 
-                  value={content?.interface?.status_messages?.crew_missing || "ERROR: UNABLE TO LOCATE PRIMARY CREW"}
-                  path="interface.status_messages.crew_missing"
-                  tag="span"
-                  className="inline-block"
-                />
+                {content?.interface?.status_messages?.crew_missing || "ERROR: UNABLE TO LOCATE PRIMARY CREW"}
               </p>
             </div>
           </div>
@@ -495,12 +370,7 @@ export default function LostMarkTerminal() {
             </pre>
           </div>
           <div className="text-green-300 text-lg sm:text-xl mb-4">
-            <FinalEditable trigger="click" 
-              value={loadingText}
-              path="interface.loading_text"
-              tag="span"
-              className="inline-block"
-            />
+            {loadingText}
           </div>
           <div className="text-green-500">
             <span className="animate-pulse">█</span>
@@ -527,79 +397,44 @@ export default function LostMarkTerminal() {
             {/* Панель навигации */}
             <div className="border border-green-400 p-2 sm:p-3 md:p-4 flex flex-col order-2 lg:order-1">
               <h2 className="text-sm sm:text-lg md:text-xl font-bold mb-2 sm:mb-3 md:mb-4 text-green-300">
-                <FinalEditable trigger="click" 
-                  value={content?.interface?.system_navigation || "SYSTEM NAVIGATION"}
-                  path="interface.system_navigation"
-                  tag="span"
-                  className="inline-block"
-                />
+                {content?.interface?.system_navigation || "SYSTEM NAVIGATION"}
               </h2>
               <div className="space-y-1 sm:space-y-2 flex-1">
                 <button 
                   onClick={() => handleMenuClick('logs')}
                   className={`block w-full text-left p-2 sm:p-3 text-xs sm:text-sm md:text-base hover:bg-green-900 border border-green-600 transition-colors ${currentView === 'logs' ? 'bg-green-900' : ''}`}
                 >
-                  <FinalEditable trigger="click" 
-                    value={content?.interface?.menu_items?.logs || "[1] SHIP LOGS"}
-                    path="interface.menu_items.logs"
-                    tag="span"
-                    className="inline-block"
-                  />
+                  {content?.interface?.menu_items?.logs || "[1] SHIP LOGS"}
                 </button>
                 <button 
                   onClick={() => handleMenuClick('silk-logs')}
                   className={`block w-full text-left p-2 sm:p-3 text-xs sm:text-sm md:text-base hover:bg-green-900 border border-green-600 transition-colors ${currentView === 'silk-logs' ? 'bg-green-900' : ''}`}
                 >
-                  <FinalEditable trigger="click" 
-                    value={content?.interface?.menu_items?.silk_logs || "[2] SILK STAR LOGS"}
-                    path="interface.menu_items.silk_logs"
-                    tag="span"
-                    className="inline-block"
-                  />
+                  {content?.interface?.menu_items?.silk_logs || "[2] SILK STAR LOGS"}
                 </button>
                 <button 
                   onClick={() => handleMenuClick('footage')}
                   className={`block w-full text-left p-2 sm:p-3 text-xs sm:text-sm md:text-base hover:bg-green-900 border border-green-600 transition-colors ${currentView === 'footage' ? 'bg-green-900' : ''}`}
                 >
-                  <FinalEditable trigger="click" 
-                    value={content?.interface?.menu_items?.life_support || "[3] LIFE SUPPORT"}
-                    path="interface.menu_items.life_support"
-                    tag="span"
-                    className="inline-block"
-                  />
+                  {content?.interface?.menu_items?.life_support || "[3] LIFE SUPPORT"}
                 </button>
                 <button 
                   onClick={() => handleMenuClick('manifest')}
                   className={`block w-full text-left p-2 sm:p-3 text-xs sm:text-sm md:text-base hover:bg-green-900 border border-green-600 transition-colors ${currentView === 'manifest' ? 'bg-green-900' : ''}`}
                 >
-                  <FinalEditable trigger="click" 
-                    value={content?.interface?.menu_items?.crew_manifest || "[4] CREW MANIFEST"}
-                    path="interface.menu_items.crew_manifest"
-                    tag="span"
-                    className="inline-block"
-                  />
+                  {content?.interface?.menu_items?.crew_manifest || "[4] CREW MANIFEST"}
                 </button>
                 <button 
                   onClick={() => handleMenuClick('cryo')}
                   className={`block w-full text-left p-2 sm:p-3 text-xs sm:text-sm md:text-base hover:bg-green-900 border border-green-600 transition-colors ${currentView === 'cryo' ? 'bg-green-900' : ''}`}
                 >
-                  <FinalEditable trigger="click" 
-                    value={content?.interface?.menu_items?.cryo_protocols || "[5] CRYO PROTOCOLS"}
-                    path="interface.menu_items.cryo_protocols"
-                    tag="span"
-                    className="inline-block"
-                  />
+                  {content?.interface?.menu_items?.cryo_protocols || "[5] CRYO PROTOCOLS"}
                 </button>
                 <button 
                   onClick={() => handleMenuClick('corrupted')}
                   className={`block w-full text-left p-2 text-xs sm:text-sm hover:bg-green-900 border border-red-600 text-red-400 transition-colors ${currentView === 'corrupted' ? 'bg-red-900' : ''}`}
                 >
-                  <FinalEditable trigger="click" 
-                    value={content?.interface?.menu_items?.corrupted_data || "[6] [CORRUPTED DATA]"}
-                    path="interface.menu_items.corrupted_data"
-                    tag="span"
-                    className="inline-block"
-                  />
+                  {content?.interface?.menu_items?.corrupted_data || "[6] [CORRUPTED DATA]"}
                 </button>
               </div>
             </div>
@@ -607,12 +442,7 @@ export default function LostMarkTerminal() {
             {/* Панель отображения данных */}
             <div className="border border-green-400 p-2 sm:p-3 md:p-4 overflow-y-auto flex flex-col order-1 lg:order-2 min-h-[60vh] sm:min-h-[50vh] lg:min-h-full">
               <h2 className="text-sm sm:text-lg md:text-xl font-bold mb-2 sm:mb-3 md:mb-4 text-green-300">
-                <FinalEditable trigger="click" 
-                  value={content?.interface?.data_display || "DATA DISPLAY"}
-                  path="interface.data_display"
-                  tag="span"
-                  className="inline-block"
-                />
+                {content?.interface?.data_display || "DATA DISPLAY"}
               </h2>
               <div className="flex-1 overflow-y-auto text-xs sm:text-sm md:text-base leading-relaxed">
                 {renderContent()}

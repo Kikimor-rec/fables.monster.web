@@ -15,6 +15,7 @@ export default function Navigation() {
     { href: "/", label: content?.navigation?.home || "HOME", path: "navigation.home" },
     { href: "/projects", label: content?.navigation?.projects || "PROJECTS", path: "navigation.projects" },
     { href: "/lost-mark", label: "LOST MARK", path: "common.lost_mark_button" },
+    { href: "/timer", label: "TIMER", path: "navigation.timer" },
     { href: "/about", label: content?.navigation?.about || "ABOUT", path: "navigation.about" },
     { href: "/contact", label: content?.navigation?.contact || "CONTACT", path: "navigation.contact" },
   ];

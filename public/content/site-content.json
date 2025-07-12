@@ -104,7 +104,8 @@
     "home": "HOME",
     "projects": "PROJECTS", 
     "about": "ABOUT",
-    "contact": "CONTACT"
+    "contact": "CONTACT",
+    "timer": "TIMER"
   },
   "common": {
     "loading": "Loading...",

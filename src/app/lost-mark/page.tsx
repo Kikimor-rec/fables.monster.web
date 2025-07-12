@@ -84,15 +84,25 @@ export default function LostMark() {
             />
           </div>
           
-          {/* Terminal Access Button */}
+          {/* Terminal and Timer Access Buttons */}
           <div className="mt-6 text-center">
-            <div className="inline-flex items-center gap-2 bg-gray-600 text-gray-400 font-mono font-bold px-6 py-3 rounded border-2 border-gray-500 shadow-lg cursor-not-allowed opacity-75">
-              <span className="text-lg">📟</span>
-              ACCESS SILK STAR TERMINAL
-              <span className="text-xs bg-black/20 px-2 py-1 rounded ml-2">COMING SOON</span>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <div className="inline-flex items-center gap-2 bg-gray-600 text-gray-400 font-mono font-bold px-6 py-3 rounded border-2 border-gray-500 shadow-lg cursor-not-allowed opacity-75">
+                <span className="text-lg">📟</span>
+                ACCESS SILK STAR TERMINAL
+                <span className="text-xs bg-black/20 px-2 py-1 rounded ml-2">COMING SOON</span>
+              </div>
+              
+              <Link 
+                href="/timer"
+                className="inline-flex items-center gap-2 bg-green-700 text-green-200 font-mono font-bold px-6 py-3 rounded border-2 border-green-500 shadow-lg hover:bg-green-600 hover:border-green-400 transition-all duration-200"
+              >
+                <span className="text-lg">⏰</span>
+                CHRONOMETER TERMINAL
+              </Link>
             </div>
             <p className="text-sm text-gray-400 mt-2 font-mono">
-              Interactive terminal will be available after release
+              Interactive timer available now • Terminal coming soon
             </p>
           </div>
         </div>
@@ -159,6 +169,56 @@ export default function LostMark() {
                   Player discretion advised.
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Interactive Tools Section */}
+      <section className="py-16 border-t border-red-700 bg-gray-950/50">
+        <div className="max-w-6xl mx-auto px-6">
+          <h2 className="text-3xl font-bold text-white mb-8 text-center font-mono">
+            INTERACTIVE TOOLS
+          </h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-black/60 border-2 border-gray-600 p-6 rounded opacity-60">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="text-3xl">📟</span>
+                <h3 className="text-xl font-bold text-gray-400 font-mono">
+                  SILK STAR TERMINAL
+                </h3>
+                <span className="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded font-mono">COMING SOON</span>
+              </div>
+              <p className="text-gray-400 font-mono text-sm mb-4">
+                Access the ship's computer system and uncover the dark secrets hidden in the logs. 
+                Navigate through corrupted data, system failures, and mysterious transmissions.
+              </p>
+              <ul className="text-gray-500 font-mono text-xs space-y-1">
+                <li>• Ship system logs and diagnostics</li>
+                <li>• Crew manifest and personnel records</li>
+                <li>• Life support system monitoring</li>
+                <li>• Corrupted data recovery attempts</li>
+              </ul>
+            </div>
+            
+            <div className="bg-black/60 border-2 border-green-600 p-6 rounded">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="text-3xl">⏰</span>
+                <h3 className="text-xl font-bold text-green-400 font-mono">
+                  CHRONOMETER TERMINAL
+                </h3>
+                <span className="text-xs bg-green-700 text-green-200 px-2 py-1 rounded font-mono">AVAILABLE NOW</span>
+              </div>
+              <p className="text-green-300 font-mono text-sm mb-4">
+                A digital countdown timer designed for tabletop gaming sessions. 
+                Perfect for time-sensitive scenarios and building tension during gameplay.
+              </p>
+              <ul className="text-green-500 font-mono text-xs space-y-1">
+                <li>• Customizable countdown timer</li>
+                <li>• Hours, minutes, and seconds precision</li>
+                <li>• Pause and resume functionality</li>
+                <li>• Terminal-style visual interface</li>
+              </ul>
             </div>
           </div>
         </div>
