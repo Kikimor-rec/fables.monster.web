@@ -195,7 +195,7 @@ export default function Home() {
           <FadeIn delay={0.2}>
             <div className="flex flex-wrap justify-center gap-3 sm:gap-6 max-w-5xl mx-auto">
               {teamMembers.map((member: TeamMember, index: number) => (
-                <CompactTeamMember key={index} member={member} />
+                <CompactTeamMember key={index} member={member} index={index} />
               ))}
             </div>
           </FadeIn>
