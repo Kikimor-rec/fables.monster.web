@@ -1,8 +1,11 @@
 "use client";
 
 import { useState, useEffect } from 'react';
+import FinalEditable from '@/components/FinalEditable';
+import { useContent } from '@/hooks/useContent';
 
 export default function LostMarkTerminal() {
+  const { content, loading } = useContent('terminal-content.json');
   const [isLoading, setIsLoading] = useState(true);
   const [currentView, setCurrentView] = useState('default');
   const [glitch, setGlitch] = useState(false);
@@ -11,103 +14,29 @@ export default function LostMarkTerminal() {
   const [showCorruptedMessage, setShowCorruptedMessage] = useState(false);
   const [typingText, setTypingText] = useState('');
 
-  // Данные терминала
-  const shipLogs = [
-    {
-      id: 'log1',
-      timestamp: '2534.245.14:32:07',
-      type: 'system',
-      message: 'NAVIGATION SYSTEM ONLINE',
-      details: 'Primary navigation systems functioning normally. All sensors operational.'
-    },
-    {
-      id: 'log2',
-      timestamp: '2534.245.14:33:15',
-      type: 'warning',
-      message: 'PROXIMITY ALERT - UNKNOWN VESSEL',
-      details: 'Unidentified ship detected at coordinates 127.45.89. Configuration unknown. Attempting communication...'
-    },
-    {
-      id: 'log3',
-      timestamp: '2534.245.14:33:47',
-      type: 'error',
-      message: 'COMMUNICATION FAILURE',
-      details: 'Unable to establish contact with unknown vessel. Recommend evasive maneuvers.'
-    }
-  ];
-
-  const silkStarLogs = [
-    {
-      id: 'silk1',
-      entry: '3528',
-      content: 'Company denied request for additional fuel. Forced to recalculate route through unstable sector. The onboard Android is undergoing maintenance. So the jump will have to be controlled manually.'
-    },
-    {
-      id: 'silk2', 
-      entry: '3529',
-      content: 'Entering hyperspace. Seven hours to jump exit.'
-    },
-    {
-      id: 'silk3',
-      entry: '3530', 
-      content: 'Severe hull vibrations. Navigation systems malfunctioning. I\'m picking up a beacon bearing'
-    },
-    {
-      id: 'silk4',
-      entry: '3531',
-      content: 'That can\'t be right. I don\'t...'
-    }
-  ];
-
-  const cryoProtocol = `ACTIVATE_CRYO.PROTOCOL
-<< AUTHORIZATION ACCEPTED >>
-
-To sleep is to serve.
-To serve is to become.
-To become is to dissolve.
-To dissolve is to rise.
-
-:: CRYO_CYCLE: INITIATING ::`;
-
-  const lifeSupportData = [
-    {
-      id: 'life1',
-      name: 'ATMOSPHERIC_PROCESSOR_A1',
-      status: '[NOMINAL]',
-      description: 'Oxygen levels stable - 21.3%'
-    },
-    {
-      id: 'life2',
-      name: 'LIFE_SUPPORT_SECTOR_7',
-      status: '[CRITICAL]',
-      description: 'Multiple system failures detected'
-    },
-    {
-      id: 'life3',
-      name: 'EMERGENCY_BACKUP_SYS',
-      status: '[OFFLINE]',
-      description: 'Manual activation required'
-    }
-  ];
-
+  // ASCII Art для глаза
   const asciiEye = `
-     ████████████████
-   ██████████████████████
-  ████████████████████████
- ██████████████████████████
-██████████      ██████████████
-████████  ██████  ████████████
-████████████████████████████
-██████████████████████████
- ██████████████████████████
-  ████████████████████████
-   ██████████████████████
-     ████████████████
+                                ...',;;:cccccccc:;,..
+                            ..,;:cccc::::ccccclloooolc;'.
+                         .',;:::;;;;:loodxk0kkxxkxxdocccc;;'..
+                       .,;;;,,;:coxldKNWWWMMMMWNNWWNNKkdolcccc:,.
+                    .',;;,',;lxo:...dXWMMMMMMMMNkloOXNNNX0koc:coo;.
+                 ..,;:;,,,:ldl'   .kWMMMWXXNWMMMMXd..':d0XWWN0d:;lkd,
+               ..,;;,,'':loc.     lKMMMNl. .c0KNWNK:  ..';lx00X0l,cxo,.
+             ..''....'cooc.       c0NMMX;   .l0XWN0;       ,ddx00occl:.
+           ..'..  .':odc.         .x0KKKkolcld000xc.       .cxxxkkdl:,..
+         ..''..   ;dxolc;'         .lxx000kkxx00kc.      .;looolllol:'..
+        ..'..    .':lloolc:,..       'lxkkkkk0kd,   ..':clc:::;,,;:;,'..
+        ......   ....',;;;:ccc::;;,''',:loddol:,,;:clllolc:;;,'........
+            .     ....'''',,,;;:cccccclllloooollllccc:c:::;,'..
+                    .......'',,,,,,,,;;::::ccccc::::;;;,,''...
+                      ...............''',,,;;;,,''''''......
+                           ............................
   `;
 
   // Эффект загрузки
   useEffect(() => {
-    const bootSequence = [
+    const bootSequence = content?.interface?.loading_messages || [
       "INITIALIZING SILK STAR TERMINAL...",
       "LOADING CORE SYSTEMS...",
       "ACCESSING NAVIGATION DATABASE...",
@@ -127,7 +56,7 @@ To dissolve is to rise.
     }, 1000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [content]);
 
   // Случайные глитчи
   useEffect(() => {
@@ -198,21 +127,48 @@ To dissolve is to rise.
   };
 
   const renderContent = () => {
+    const shipLogs = content?.ship_logs || [];
+    const silkStarLogs = content?.silk_star_logs || [];
+    const lifeSupportData = content?.life_support || [];
+    const crewManifest = content?.crew_manifest || {};
+
     switch(currentView) {
       case 'logs':
         return (
-          <div className="space-y-4">
-            <h3 className="text-green-300 font-bold mb-4">SYSTEM LOGS</h3>
-            {shipLogs.map((log) => (
-              <div key={log.id} className="border border-green-600 p-3 bg-green-900 bg-opacity-20">
-                <div className="flex justify-between text-xs mb-2">
-                  <span className="text-green-400">[{log.timestamp}]</span>
+          <div className="space-y-3 sm:space-y-4">
+            <h3 className="text-green-300 font-bold mb-3 sm:mb-4 text-sm sm:text-base">
+              <FinalEditable trigger="click" 
+                value={content?.interface?.sections?.system_logs || "SYSTEM LOGS"}
+                path="interface.sections.system_logs"
+                tag="span"
+                className="inline-block"
+              />
+            </h3>
+            {shipLogs.map((log: any) => (
+              <div key={log.id} className="border border-green-600 p-2 sm:p-3 bg-green-900 bg-opacity-20 rounded">
+                <div className="flex flex-col sm:flex-row sm:justify-between text-xs sm:text-sm mb-2 gap-1 sm:gap-0">
+                  <span className="text-green-400 break-all">[{log.timestamp}]</span>
                   <span className={log.type === 'error' ? 'text-red-400' : log.type === 'warning' ? 'text-yellow-400' : 'text-green-400'}>
                     {log.type.toUpperCase()}
                   </span>
                 </div>
-                <div className="text-green-300 font-bold">{log.message}</div>
-                <div className="text-green-500 text-sm mt-1">{log.details}</div>
+                <div className="text-green-300 font-bold text-xs sm:text-sm md:text-base break-words">
+                  <FinalEditable trigger="click" 
+                    value={log.message}
+                    path={`ship_logs.${shipLogs.indexOf(log)}.message`}
+                    tag="span"
+                    className="inline-block"
+                  />
+                </div>
+                <div className="text-green-500 text-sm mt-1">
+                  <FinalEditable trigger="click" 
+                    value={log.details}
+                    path={`ship_logs.${shipLogs.indexOf(log)}.details`}
+                    tag="span"
+                    multiline={true}
+                    className="inline-block"
+                  />
+                </div>
               </div>
             ))}
           </div>
@@ -220,12 +176,27 @@ To dissolve is to rise.
 
       case 'silk-logs':
         return (
-          <div className="space-y-4">
-            <h3 className="text-green-300 font-bold mb-4">SILK STAR FLIGHT LOG</h3>
-            {silkStarLogs.map((log) => (
-              <div key={log.id} className="border border-green-600 p-3 bg-green-900 bg-opacity-20">
-                <div className="text-green-400 text-sm mb-2">LOG ENTRY {log.entry}:</div>
-                <div className="text-green-300">{corruptText(log.content, log.entry === '3531' ? 0.3 : 0.05)}</div>
+          <div className="space-y-3 sm:space-y-4">
+            <h3 className="text-green-300 font-bold mb-3 sm:mb-4 text-sm sm:text-base">
+              <FinalEditable trigger="click" 
+                value={content?.interface?.sections?.silk_star_logs || "SILK STAR FLIGHT LOG"}
+                path="interface.sections.silk_star_logs"
+                tag="span"
+                className="inline-block"
+              />
+            </h3>
+            {silkStarLogs.map((log: any) => (
+              <div key={log.id} className="border border-green-600 p-2 sm:p-3 bg-green-900 bg-opacity-20 rounded">
+                <div className="text-green-400 text-xs sm:text-sm mb-2 font-mono">LOG ENTRY {log.entry}:</div>
+                <div className="text-green-300 text-xs sm:text-sm md:text-base leading-relaxed break-words">
+                  <FinalEditable trigger="click" 
+                    value={corruptText(log.content, log.entry === '3531' ? 0.3 : 0.05)}
+                    path={`silk_star_logs.${silkStarLogs.indexOf(log)}.content`}
+                    tag="span"
+                    multiline={true}
+                    className="inline-block"
+                  />
+                </div>
               </div>
             ))}
           </div>
@@ -233,89 +204,185 @@ To dissolve is to rise.
 
       case 'footage':
         return (
-          <div className="space-y-4">
-            <h3 className="text-green-300 font-bold mb-4">LIFE SUPPORT SYSTEMS</h3>
-            {lifeSupportData.map((system) => (
-              <div key={system.id} className="border border-green-600 p-3 bg-green-900 bg-opacity-20">
-                <div className="flex justify-between mb-2">
-                  <span className="text-green-400">{system.name}</span>
-                  <span className={system.status.includes('CRITICAL') ? 'text-red-400' : system.status.includes('OFFLINE') ? 'text-yellow-400' : 'text-green-400'}>
-                    {system.status}
+          <div className="space-y-3 sm:space-y-4">
+            <h3 className="text-green-300 font-bold mb-3 sm:mb-4 text-sm sm:text-base">
+              <FinalEditable trigger="click" 
+                value={content?.interface?.sections?.life_support || "LIFE SUPPORT SYSTEMS"}
+                path="interface.sections.life_support"
+                tag="span"
+                className="inline-block"
+              />
+            </h3>
+            {lifeSupportData.map((system: any) => (
+              <div key={system.id} className="border border-green-600 p-2 sm:p-3 bg-green-900 bg-opacity-20 rounded">
+                <div className="flex flex-col sm:flex-row sm:justify-between mb-2 gap-1 sm:gap-2">
+                  <span className="text-green-400 text-xs sm:text-sm font-mono break-words">
+                    <FinalEditable trigger="click" 
+                      value={system.name}
+                      path={`life_support.${lifeSupportData.indexOf(system)}.name`}
+                      tag="span"
+                      className="inline-block"
+                    />
+                  </span>
+                  <span className={`text-xs sm:text-sm font-mono ${system.status.includes('CRITICAL') ? 'text-red-400' : system.status.includes('OFFLINE') ? 'text-yellow-400' : 'text-green-400'}`}>
+                    <FinalEditable trigger="click" 
+                      value={system.status}
+                      path={`life_support.${lifeSupportData.indexOf(system)}.status`}
+                      tag="span"
+                      className="inline-block"
+                    />
                   </span>
                 </div>
-                <div className="text-green-500 text-sm">{corruptText(system.description, 0.1)}</div>
-                <div className="mt-2 text-center">
-                  <div className="text-green-400 font-mono text-xs">
-                    ████ ██ ██████ ████<br/>
-                    ██ ████ ██ ████ ██<br/>
-                    ████ ██ ████ ██████<br/>
-                    [SYSTEM MONITORING]
-                  </div>
+                <div className="text-green-500 text-xs sm:text-sm leading-relaxed break-words">
+                  <FinalEditable trigger="click" 
+                    value={corruptText(system.description, 0.1)}
+                    path={`life_support.${lifeSupportData.indexOf(system)}.description`}
+                    tag="span"
+                    multiline={true}
+                    className="inline-block"
+                  />
                 </div>
               </div>
             ))}
           </div>
         );
 
-      case 'cryo':
-        return (
-          <div className="space-y-4">
-            <h3 className="text-green-300 font-bold mb-4">CRYOCAPSULE PROTOCOLS</h3>
-            <div className="border border-green-600 p-4 bg-green-900 bg-opacity-20">
-              <pre className="text-green-400 whitespace-pre-wrap font-mono text-sm">
-                {cryoProtocol}
-              </pre>
-            </div>
-            <div className="mt-4 text-red-400 text-center animate-pulse">
-              WARNING: UNAUTHORIZED ACCESS TO CRYO SYSTEMS
-            </div>
-          </div>
-        );
-
       case 'manifest':
         return (
-          <div className="space-y-4">
-            <h3 className="text-green-300 font-bold mb-4">CREW MANIFEST</h3>
-            <div className="border border-green-600 p-3 bg-green-900 bg-opacity-20">
-              <div className="text-green-400 mb-2">VESSEL: SILK STAR</div>
-              <div className="text-green-400 mb-2">CREW COMPLEMENT: 12</div>
-              <div className="text-green-300 mt-4">
-                CAPTAIN: {corruptText('[REDACTED]', 0.8)}<br/>
-                FIRST OFFICER: CONNECTION LOST...<br/>
-                ENGINEER: CONNECTION LOST...<br/>
-                MEDIC: CONNECTION LOST...<br/>
-                <span className="text-red-400">[COMMUNICATION TERMINATED]</span>
+          <div className="space-y-3 sm:space-y-4">
+            <h3 className="text-green-300 font-bold mb-3 sm:mb-4 text-sm sm:text-base">
+              <FinalEditable trigger="click" 
+                value={content?.interface?.sections?.crew_manifest || "CREW MANIFEST"}
+                path="interface.sections.crew_manifest"
+                tag="span"
+                className="inline-block"
+              />
+            </h3>
+            <div className="border border-green-600 p-2 sm:p-3 bg-green-900 bg-opacity-20 rounded">
+              <div className="text-green-400 mb-2 text-xs sm:text-sm font-mono">
+                <FinalEditable trigger="click" 
+                  value={content?.interface?.status_messages?.vessel_name || "VESSEL: SILK STAR"}
+                  path="interface.status_messages.vessel_name"
+                  tag="span"
+                  className="inline-block"
+                />
+              </div>
+              <div className="text-green-400 mb-3 sm:mb-4 text-xs sm:text-sm font-mono">
+                <FinalEditable trigger="click" 
+                  value={content?.interface?.status_messages?.crew_complement || "CREW COMPLEMENT: 12"}
+                  path="interface.status_messages.crew_complement"
+                  tag="span"
+                  className="inline-block"
+                />
+              </div>
+              
+              <div className="space-y-1 sm:space-y-2">
+                {crewManifest.crew?.map((member: any, index: number) => (
+                  <div key={index} className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
+                    <span className="text-green-300 text-xs sm:text-sm font-mono">
+                      <FinalEditable trigger="click" 
+                        value={member.name}
+                        path={`crew_manifest.crew.${index}.name`}
+                        tag="span"
+                        className="inline-block"
+                      />
+                    </span>
+                    <span className="text-green-500 text-xs sm:text-sm">
+                      <FinalEditable trigger="click" 
+                        value={member.position}
+                        path={`crew_manifest.crew.${index}.position`}
+                        tag="span"
+                        className="inline-block"
+                      />
+                    </span>
+                  </div>
+                ))}
+              </div>
+              
+              <div className="mt-3 sm:mt-4 pt-2 border-t border-green-600">
+                <span className="text-red-400 text-xs sm:text-sm font-mono">
+                  <FinalEditable trigger="click" 
+                    value={content?.interface?.status_messages?.data_corrupted || "[REST OF DATA CORRUPTED]"}
+                    path="interface.status_messages.data_corrupted"
+                    tag="span"
+                    className="inline-block"
+                  />
+                </span>
               </div>
             </div>
           </div>
         );
 
+      case 'cryo':
+        return (
+          <div className="space-y-3 sm:space-y-4">
+            <h3 className="text-green-300 font-bold mb-3 sm:mb-4 text-sm sm:text-base">
+              <FinalEditable trigger="click" 
+                value={content?.interface?.sections?.cryo_protocols || "CRYOCAPSULE PROTOCOLS"}
+                path="interface.sections.cryo_protocols"
+                tag="span"
+                className="inline-block"
+              />
+            </h3>
+            {content?.cryo_protocols?.map((protocol: any, index: number) => (
+              <div key={index} className="border border-green-600 p-2 sm:p-3 bg-green-900 bg-opacity-20 rounded">
+                <div className="text-green-400 mb-2 text-xs sm:text-sm font-mono font-bold">
+                  <FinalEditable trigger="click" 
+                    value={protocol.title}
+                    path={`cryo_protocols.${index}.title`}
+                    tag="span"
+                    className="inline-block"
+                  />
+                </div>
+                <div className="text-green-300 text-xs sm:text-sm leading-relaxed break-words">
+                  <FinalEditable trigger="click" 
+                    value={protocol.description}
+                    path={`cryo_protocols.${index}.description`}
+                    tag="span"
+                    multiline={true}
+                    className="inline-block"
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        );
+
       case 'corrupted':
         return (
-          <div className="space-y-4">
-            <h3 className="text-red-400 font-bold mb-4">[CORRUPTED DATA]</h3>
-            <div className="border border-red-600 p-3 bg-red-900 bg-opacity-20">
+          <div className="space-y-3 sm:space-y-4">
+            <h3 className="text-red-400 font-bold mb-3 sm:mb-4 text-sm sm:text-base">
+              <FinalEditable trigger="click" 
+                value={content?.interface?.sections?.corrupted_data || "[CORRUPTED DATA]"}
+                path="interface.sections.corrupted_data"
+                tag="span"
+                className="inline-block"
+              />
+            </h3>
+            <div className="border border-red-600 p-2 sm:p-3 bg-red-900 bg-opacity-20 rounded">
               {!showCorruptedMessage ? (
                 <>
-                  <div className="text-red-400 animate-pulse mb-4">
-                    {corruptText('ERROR: DATA INTEGRITY COMPROMISED', 0.5)}<br/>
-                    {corruptText('UNKNOWN ENTITIES DETECTED', 0.4)}<br/>
-                    {corruptText('CREW STATUS: UNKNOWN', 0.6)}<br/>
-                    {corruptText('RECOMMEND IMMEDIATE EVACUATION', 0.3)}
+                  <div className="text-red-400 mb-3 sm:mb-4 text-xs sm:text-sm font-mono">
+                    <FinalEditable trigger="click" 
+                      value={content?.interface?.status_messages?.clearance_required || "SECURITY CLEARANCE REQUIRED"}
+                      path="interface.status_messages.clearance_required"
+                      tag="span"
+                      className="inline-block"
+                    />
                   </div>
-                  <button
+                  <button 
                     onClick={handleCorruptedDataClear}
-                    className="w-full bg-red-900 hover:bg-red-800 text-red-300 p-2 border border-red-600 transition-colors"
+                    className="bg-red-700 text-white px-2 sm:px-4 py-1 sm:py-2 text-xs sm:text-sm border border-red-600 hover:bg-red-600 transition-colors font-mono"
                   >
                     [ATTEMPT DATA RECOVERY]
                   </button>
                 </>
               ) : (
                 <div className="text-center">
-                  <pre className="text-red-400 font-mono text-sm mb-4 animate-pulse">
+                  <pre className="text-red-400 font-mono text-xs sm:text-sm mb-3 sm:mb-4 animate-pulse overflow-x-auto">
                     {asciiEye}
                   </pre>
-                  <div className="text-red-400 text-2xl font-bold animate-pulse">
+                  <div className="text-red-400 text-lg sm:text-xl md:text-2xl font-bold animate-pulse font-mono">
                     {typingText}
                   </div>
                 </div>
@@ -326,24 +393,61 @@ To dissolve is to rise.
 
       default:
         return (
-          <div className="space-y-2 text-sm">
-            <p className="text-green-500">SELECT A MENU OPTION TO VIEW DATA</p>
-            <div className="mt-4 p-4 bg-green-900 bg-opacity-20 border border-green-600">
-              <p className="text-green-400">SYSTEM STATUS: OPERATIONAL</p>
-              <p className="text-yellow-400">WARNING: MULTIPLE SYSTEM ANOMALIES DETECTED</p>
-              <p className="text-red-400">ERROR: UNABLE TO LOCATE PRIMARY CREW</p>
+          <div className="space-y-3 sm:space-y-4">
+            <p className="text-green-500 text-xs sm:text-sm font-mono">
+              <FinalEditable trigger="click" 
+                value={content?.interface?.status_messages?.select_option || "SELECT A MENU OPTION TO VIEW DATA"}
+                path="interface.status_messages.select_option"
+                tag="span"
+                className="inline-block"
+              />
+            </p>
+            <div className="mt-3 sm:mt-4 p-2 sm:p-3 md:p-4 bg-green-900 bg-opacity-20 border border-green-600 rounded space-y-2 sm:space-y-3">
+              <p className="text-green-400 text-xs sm:text-sm font-mono">
+                <FinalEditable trigger="click" 
+                  value={content?.interface?.status_messages?.system_operational || "SYSTEM STATUS: OPERATIONAL"}
+                  path="interface.status_messages.system_operational"
+                  tag="span"
+                  className="inline-block"
+                />
+              </p>
+              <p className="text-yellow-400 text-xs sm:text-sm font-mono">
+                <FinalEditable trigger="click" 
+                  value={content?.interface?.status_messages?.anomalies_detected || "WARNING: MULTIPLE SYSTEM ANOMALIES DETECTED"}
+                  path="interface.status_messages.anomalies_detected"
+                  tag="span"
+                  className="inline-block"
+                />
+              </p>
+              <p className="text-red-400 text-xs sm:text-sm font-mono">
+                <FinalEditable trigger="click" 
+                  value={content?.interface?.status_messages?.crew_missing || "ERROR: UNABLE TO LOCATE PRIMARY CREW"}
+                  path="interface.status_messages.crew_missing"
+                  tag="span"
+                  className="inline-block"
+                />
+              </p>
             </div>
           </div>
         );
     }
   };
 
+  // Обработка загрузки
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <div className="text-green-400 font-mono">LOADING TERMINAL...</div>
+      </div>
+    );
+  }
+
   if (isLoading) {
     return (
       <div className="min-h-screen bg-black text-green-400 font-mono flex items-center justify-center crt-terminal">
         <div className="text-center">
           <div className="mb-8">
-            <pre className="text-green-400 font-mono text-sm animate-pulse">
+            <pre className="text-green-400 font-mono text-xs sm:text-sm animate-pulse overflow-x-auto">
               {`
 ███████╗██╗██╗     ██╗  ██╗    ███████╗████████╗ █████╗ ██████╗ 
 ██╔════╝██║██║     ██║ ██╔╝    ██╔════╝╚══██╔══╝██╔══██╗██╔══██╗
@@ -354,8 +458,13 @@ To dissolve is to rise.
               `}
             </pre>
           </div>
-          <div className="text-green-300 text-xl mb-4">
-            {loadingText}
+          <div className="text-green-300 text-lg sm:text-xl mb-4">
+            <FinalEditable trigger="click" 
+              value={loadingText}
+              path="interface.loading_text"
+              tag="span"
+              className="inline-block"
+            />
           </div>
           <div className="text-green-500">
             <span className="animate-pulse">█</span>
@@ -366,65 +475,110 @@ To dissolve is to rise.
   }
 
   return (
-    <div className={`h-screen bg-black text-green-400 font-mono overflow-hidden relative crt-terminal ${glitch ? 'animate-pulse' : ''}`}>
+    <div className={`min-h-screen bg-black text-green-400 font-mono relative crt-terminal ${glitch ? 'animate-pulse' : ''}`}>
       {/* Glitch Effect */}
       {glitch && (
         <div className="fixed inset-0 z-20 bg-red-500 opacity-20 animate-ping"></div>
       )}
 
-      <div className="h-full p-4 relative z-0">
-        <div className="bg-black p-4 md:p-8 rounded-lg border-2 border-green-400 shadow-lg shadow-green-400/50 h-full">
+      {/* Главный контейнер с отступами от header/footer */}
+      <div className="px-2 py-4 sm:px-4 sm:py-6 md:px-6 md:py-8 relative z-0">
+        <div className="bg-black p-3 sm:p-4 md:p-6 lg:p-8 rounded-lg border-2 border-green-400 shadow-lg shadow-green-400/50 min-h-[calc(100vh-8rem)] sm:min-h-[calc(100vh-12rem)]">
           
-          {/* Main Terminal Interface */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-8 h-full">
+          {/* Мобильно-адаптивная сетка */}
+          <div className="flex flex-col lg:grid lg:grid-cols-2 gap-3 sm:gap-4 md:gap-6 lg:gap-8 h-full">
             
-            {/* Navigation Panel */}
-            <div className="border border-green-400 p-4 flex flex-col">
-              <h2 className="text-xl font-bold mb-4 text-green-300">SYSTEM NAVIGATION</h2>
-              <div className="space-y-2 flex-1">
+            {/* Панель навигации */}
+            <div className="border border-green-400 p-2 sm:p-3 md:p-4 flex flex-col order-2 lg:order-1">
+              <h2 className="text-sm sm:text-lg md:text-xl font-bold mb-2 sm:mb-3 md:mb-4 text-green-300">
+                <FinalEditable trigger="click" 
+                  value={content?.interface?.system_navigation || "SYSTEM NAVIGATION"}
+                  path="interface.system_navigation"
+                  tag="span"
+                  className="inline-block"
+                />
+              </h2>
+              <div className="space-y-1 sm:space-y-2 flex-1">
                 <button 
                   onClick={() => handleMenuClick('logs')}
-                  className={`block w-full text-left p-2 hover:bg-green-900 border border-green-600 transition-colors ${currentView === 'logs' ? 'bg-green-900' : ''}`}
+                  className={`block w-full text-left p-2 sm:p-3 text-xs sm:text-sm md:text-base hover:bg-green-900 border border-green-600 transition-colors ${currentView === 'logs' ? 'bg-green-900' : ''}`}
                 >
-                  [1] SHIP LOGS
+                  <FinalEditable trigger="click" 
+                    value={content?.interface?.menu_items?.logs || "[1] SHIP LOGS"}
+                    path="interface.menu_items.logs"
+                    tag="span"
+                    className="inline-block"
+                  />
                 </button>
                 <button 
                   onClick={() => handleMenuClick('silk-logs')}
-                  className={`block w-full text-left p-2 hover:bg-green-900 border border-green-600 transition-colors ${currentView === 'silk-logs' ? 'bg-green-900' : ''}`}
+                  className={`block w-full text-left p-2 sm:p-3 text-xs sm:text-sm md:text-base hover:bg-green-900 border border-green-600 transition-colors ${currentView === 'silk-logs' ? 'bg-green-900' : ''}`}
                 >
-                  [2] SILK STAR LOGS
+                  <FinalEditable trigger="click" 
+                    value={content?.interface?.menu_items?.silk_logs || "[2] SILK STAR LOGS"}
+                    path="interface.menu_items.silk_logs"
+                    tag="span"
+                    className="inline-block"
+                  />
                 </button>
                 <button 
                   onClick={() => handleMenuClick('footage')}
-                  className={`block w-full text-left p-2 hover:bg-green-900 border border-green-600 transition-colors ${currentView === 'footage' ? 'bg-green-900' : ''}`}
+                  className={`block w-full text-left p-2 sm:p-3 text-xs sm:text-sm md:text-base hover:bg-green-900 border border-green-600 transition-colors ${currentView === 'footage' ? 'bg-green-900' : ''}`}
                 >
-                  [3] LIFE SUPPORT
+                  <FinalEditable trigger="click" 
+                    value={content?.interface?.menu_items?.life_support || "[3] LIFE SUPPORT"}
+                    path="interface.menu_items.life_support"
+                    tag="span"
+                    className="inline-block"
+                  />
                 </button>
                 <button 
                   onClick={() => handleMenuClick('manifest')}
-                  className={`block w-full text-left p-2 hover:bg-green-900 border border-green-600 transition-colors ${currentView === 'manifest' ? 'bg-green-900' : ''}`}
+                  className={`block w-full text-left p-2 sm:p-3 text-xs sm:text-sm md:text-base hover:bg-green-900 border border-green-600 transition-colors ${currentView === 'manifest' ? 'bg-green-900' : ''}`}
                 >
-                  [4] CREW MANIFEST
+                  <FinalEditable trigger="click" 
+                    value={content?.interface?.menu_items?.crew_manifest || "[4] CREW MANIFEST"}
+                    path="interface.menu_items.crew_manifest"
+                    tag="span"
+                    className="inline-block"
+                  />
                 </button>
                 <button 
                   onClick={() => handleMenuClick('cryo')}
-                  className={`block w-full text-left p-2 hover:bg-green-900 border border-green-600 transition-colors ${currentView === 'cryo' ? 'bg-green-900' : ''}`}
+                  className={`block w-full text-left p-2 sm:p-3 text-xs sm:text-sm md:text-base hover:bg-green-900 border border-green-600 transition-colors ${currentView === 'cryo' ? 'bg-green-900' : ''}`}
                 >
-                  [5] CRYO PROTOCOLS
+                  <FinalEditable trigger="click" 
+                    value={content?.interface?.menu_items?.cryo_protocols || "[5] CRYO PROTOCOLS"}
+                    path="interface.menu_items.cryo_protocols"
+                    tag="span"
+                    className="inline-block"
+                  />
                 </button>
                 <button 
                   onClick={() => handleMenuClick('corrupted')}
-                  className={`block w-full text-left p-2 hover:bg-green-900 border border-red-600 text-red-400 transition-colors ${currentView === 'corrupted' ? 'bg-red-900' : ''}`}
+                  className={`block w-full text-left p-2 text-xs sm:text-sm hover:bg-green-900 border border-red-600 text-red-400 transition-colors ${currentView === 'corrupted' ? 'bg-red-900' : ''}`}
                 >
-                  [6] [CORRUPTED DATA]
+                  <FinalEditable trigger="click" 
+                    value={content?.interface?.menu_items?.corrupted_data || "[6] [CORRUPTED DATA]"}
+                    path="interface.menu_items.corrupted_data"
+                    tag="span"
+                    className="inline-block"
+                  />
                 </button>
               </div>
             </div>
 
-            {/* Display Panel */}
-            <div className="border border-green-400 p-4 overflow-y-auto flex flex-col">
-              <h2 className="text-xl font-bold mb-4 text-green-300">DATA DISPLAY</h2>
-              <div className="flex-1 overflow-y-auto">
+            {/* Панель отображения данных */}
+            <div className="border border-green-400 p-2 sm:p-3 md:p-4 overflow-y-auto flex flex-col order-1 lg:order-2 min-h-[60vh] sm:min-h-[50vh] lg:min-h-full">
+              <h2 className="text-sm sm:text-lg md:text-xl font-bold mb-2 sm:mb-3 md:mb-4 text-green-300">
+                <FinalEditable trigger="click" 
+                  value={content?.interface?.data_display || "DATA DISPLAY"}
+                  path="interface.data_display"
+                  tag="span"
+                  className="inline-block"
+                />
+              </h2>
+              <div className="flex-1 overflow-y-auto text-xs sm:text-sm md:text-base leading-relaxed">
                 {renderContent()}
               </div>
             </div>

@@ -55,22 +55,36 @@
     "title": "THE TEAM",
     "members": [
       {
-        "name": "Stepan",
-        "role": "Game Designer & Writer",
+        "name": "Stepan Kulikov",
+        "role": "Writer & Game Designer",
         "status": "online",
         "bio": "Lead designer and storyteller behind our cosmic horror adventures.",
         "image": "stepan-kulikov.webp"
       },
       {
-        "name": "Zlata",
-        "role": "Artist & UI Designer",
+        "name": "Tatiana Bond",
+        "role": "Layout Designer",
+        "status": "online",
+        "bio": "Layout designer creating beautiful and functional game documents.",
+        "image": "tanka-bond.webp"
+      },
+      {
+        "name": "Zlata Ignatova",
+        "role": "Artist",
         "status": "away",
         "bio": "Visual artist creating the dark atmospheres that define our games.",
         "portfolio": "https://zlata-portfolio.example.com",
         "image": "zlata.webp"
       },
       {
-        "name": "Alex",
+        "name": "Stanislav DariDai",
+        "role": "Music Composer",
+        "status": "online",
+        "bio": "Composer creating atmospheric soundscapes for our games.",
+        "image": "stanislav-darida.webp"
+      },
+      {
+        "name": "Allecks",
         "role": "Developer",
         "status": "online",
         "bio": "Technical wizard making our digital experiences come to life.",

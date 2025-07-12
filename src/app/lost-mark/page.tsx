@@ -88,7 +88,7 @@ export default function LostMark() {
           <div className="mt-6 text-center">
             <div className="inline-flex items-center gap-2 bg-gray-600 text-gray-400 font-mono font-bold px-6 py-3 rounded border-2 border-gray-500 shadow-lg cursor-not-allowed opacity-75">
               <span className="text-lg">📟</span>
-              ACCESS BEACON TERMINAL
+              ACCESS SILK STAR TERMINAL
               <span className="text-xs bg-black/20 px-2 py-1 rounded ml-2">COMING SOON</span>
             </div>
             <p className="text-sm text-gray-400 mt-2 font-mono">

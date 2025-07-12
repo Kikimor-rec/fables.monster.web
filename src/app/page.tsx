@@ -11,6 +11,9 @@ interface TeamMember {
   name: string;
   role: string;
   image: string;
+  status?: string;
+  bio?: string;
+  portfolio?: string;
 }
 
 export default function Home() {
@@ -24,33 +27,7 @@ export default function Home() {
     );
   }
   
-  const teamMembers: TeamMember[] = content?.team?.members || [
-    {
-      name: "Stepan Kulikov",
-      role: "Writer & Game Designer",
-      image: "stepan-kulikov.webp"
-    },
-    {
-      name: "Tatiana Bond", 
-      role: "Layout Designer",
-      image: "tanka-bond.webp"
-    },
-    {
-      name: "Zlata Ignatova",
-      role: "Artist",
-      image: "zlata.webp"
-    },
-    {
-      name: "Stanislav DariDai",
-      role: "Music Composer", 
-      image: "stanislav-darida.webp"
-    },
-    {
-      name: "Allecks",
-      role: "Developer",
-      image: "alleks.webp"
-    }
-  ];
+  const teamMembers: TeamMember[] = content?.team?.members || [];
   
   return (
     <div className="bg-black">
@@ -326,7 +303,7 @@ export default function Home() {
           <FadeIn delay={0.2}>
             <div className="flex flex-wrap justify-center gap-3 sm:gap-6 max-w-5xl mx-auto">
               {teamMembers.map((member: TeamMember, index: number) => (
-                <CompactTeamMember key={index} member={member} />
+                <CompactTeamMember key={index} member={member} index={index} />
               ))}
             </div>
           </FadeIn>
