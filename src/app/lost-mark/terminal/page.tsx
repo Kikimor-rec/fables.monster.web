@@ -4,6 +4,42 @@ import { useState, useEffect } from 'react';
 import FinalEditable from '@/components/FinalEditable';
 import { useContent } from '@/hooks/useContent';
 
+// Типы данных для терминала
+interface ShipLog {
+  id: string;
+  timestamp: string;
+  type: string;
+  message: string;
+  details: string;
+}
+
+interface SilkStarLog {
+  id: string;
+  entry: string;
+  content: string;
+}
+
+interface LifeSupportSystem {
+  id: string;
+  name: string;
+  status: string;
+  description: string;
+}
+
+interface CrewMember {
+  name: string;
+  position: string;
+}
+
+interface CrewManifest {
+  crew?: CrewMember[];
+}
+
+interface CryoProtocol {
+  title: string;
+  description: string;
+}
+
 export default function LostMarkTerminal() {
   const { content, loading } = useContent('terminal-content.json');
   const [isLoading, setIsLoading] = useState(true);
@@ -127,10 +163,10 @@ export default function LostMarkTerminal() {
   };
 
   const renderContent = () => {
-    const shipLogs = content?.ship_logs || [];
-    const silkStarLogs = content?.silk_star_logs || [];
-    const lifeSupportData = content?.life_support || [];
-    const crewManifest = content?.crew_manifest || {};
+    const shipLogs = (content?.ship_logs || []) as ShipLog[];
+    const silkStarLogs = (content?.silk_star_logs || []) as SilkStarLog[];
+    const lifeSupportData = (content?.life_support || []) as LifeSupportSystem[];
+    const crewManifest = (content?.crew_manifest || {}) as CrewManifest;
 
     switch(currentView) {
       case 'logs':
@@ -144,7 +180,7 @@ export default function LostMarkTerminal() {
                 className="inline-block"
               />
             </h3>
-            {shipLogs.map((log: any) => (
+            {shipLogs.map((log: ShipLog) => (
               <div key={log.id} className="border border-green-600 p-2 sm:p-3 bg-green-900 bg-opacity-20 rounded">
                 <div className="flex flex-col sm:flex-row sm:justify-between text-xs sm:text-sm mb-2 gap-1 sm:gap-0">
                   <span className="text-green-400 break-all">[{log.timestamp}]</span>
@@ -185,7 +221,7 @@ export default function LostMarkTerminal() {
                 className="inline-block"
               />
             </h3>
-            {silkStarLogs.map((log: any) => (
+            {silkStarLogs.map((log: SilkStarLog) => (
               <div key={log.id} className="border border-green-600 p-2 sm:p-3 bg-green-900 bg-opacity-20 rounded">
                 <div className="text-green-400 text-xs sm:text-sm mb-2 font-mono">LOG ENTRY {log.entry}:</div>
                 <div className="text-green-300 text-xs sm:text-sm md:text-base leading-relaxed break-words">
@@ -213,7 +249,7 @@ export default function LostMarkTerminal() {
                 className="inline-block"
               />
             </h3>
-            {lifeSupportData.map((system: any) => (
+            {lifeSupportData.map((system: LifeSupportSystem) => (
               <div key={system.id} className="border border-green-600 p-2 sm:p-3 bg-green-900 bg-opacity-20 rounded">
                 <div className="flex flex-col sm:flex-row sm:justify-between mb-2 gap-1 sm:gap-2">
                   <span className="text-green-400 text-xs sm:text-sm font-mono break-words">
@@ -277,7 +313,7 @@ export default function LostMarkTerminal() {
               </div>
               
               <div className="space-y-1 sm:space-y-2">
-                {crewManifest.crew?.map((member: any, index: number) => (
+                {crewManifest.crew?.map((member: CrewMember, index: number) => (
                   <div key={index} className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
                     <span className="text-green-300 text-xs sm:text-sm font-mono">
                       <FinalEditable trigger="click" 
@@ -324,7 +360,7 @@ export default function LostMarkTerminal() {
                 className="inline-block"
               />
             </h3>
-            {content?.cryo_protocols?.map((protocol: any, index: number) => (
+            {content?.cryo_protocols?.map((protocol: CryoProtocol, index: number) => (
               <div key={index} className="border border-green-600 p-2 sm:p-3 bg-green-900 bg-opacity-20 rounded">
                 <div className="text-green-400 mb-2 text-xs sm:text-sm font-mono font-bold">
                   <FinalEditable trigger="click" 
