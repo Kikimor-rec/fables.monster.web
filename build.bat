@@ -1,6 +1,0 @@
-@echo off
-echo Cleaning build directory...
-if exist .next rmdir /s /q .next
-echo Building project...
-npm run build
-echo Build completed!

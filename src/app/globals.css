@@ -233,3 +233,34 @@ body {
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
   border-color: #3b82f6;
 }
+
+/* Adaptive stats blocks */
+.stat-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 80px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+.stat-block-label {
+  font-size: clamp(0.7rem, 2vw, 0.875rem);
+  line-height: 1.2;
+  text-align: center;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+@media (min-width: 640px) {
+  .stat-block {
+    min-height: 90px;
+  }
+  
+  .stat-block-label {
+    font-size: 0.875rem;
+  }
+}

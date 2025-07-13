@@ -28,22 +28,22 @@ export default function HellishBureaucracy() {
   const departments = [
     {
       name: "Soul Processing",
-      head: "Administrator Malphas",
+      head: "Administrator Belarix",
       description: "Where new arrivals are sorted and assigned to their eternal departments"
     },
     {
       name: "Contract Review",
-      head: "Director Belphegor",
+      head: "Director Morgral",
       description: "Legal department handling all mortal-demonic agreements"
     },
     {
       name: "Complaints Department",
-      head: "Manager Asmodeus",
+      head: "Manager Sarkuzel",
       description: "Where grievances are filed and promptly ignored"
     },
     {
       name: "Quality Assurance",
-      head: "Supervisor Mammon",
+      head: "Supervisor Caraphos",
       description: "Ensuring all suffering meets Hell's high standards"
     }
   ];
@@ -86,8 +86,7 @@ export default function HellishBureaucracy() {
               <p className="text-lg text-gray-300 mb-6 font-mono">
                 But Hell&apos;s greatest torture isn&apos;t fire and brimstone - it&apos;s paperwork. 
                 Navigate through endless bureaucratic red tape, deal with bored demons 
-                who&apos;ve been doing the same job for millennia, and survive the most 
-                terrifying challenge of all: middle management.
+                who&apos;ve been doing the same job for millennia.
               </p>
               <p className="text-lg text-gray-300 font-mono">
                 This unique blend of comedy and horror challenges players to think 
@@ -267,7 +266,7 @@ export default function HellishBureaucracy() {
           <div className="mt-12 text-center">
             <div className="bg-black border border-red-700 p-6 max-w-md mx-auto">
               <h4 className="text-lg font-bold text-white mb-2 font-mono">ESTIMATED RELEASE</h4>
-              <p className="text-2xl font-bold text-red-400 mb-2 font-mono">Q4 2025</p>
+              <p className="text-2xl font-bold text-red-400 mb-2 font-mono">Q2 2024</p>
               <p className="text-gray-400 font-mono">After Cemetery of Broken Ships completion</p>
             </div>
           </div>
@@ -285,7 +284,7 @@ export default function HellishBureaucracy() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="https://discord.gg/fables-monster"
+              href="https://discord.gg/qJS4h5usxe"
               className="bg-white text-red-900 px-8 py-4 text-lg font-mono font-bold hover:bg-gray-200 transition-colors"
             >
               JOIN DISCORD

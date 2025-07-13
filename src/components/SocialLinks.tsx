@@ -33,7 +33,7 @@ export default function SocialLinks({ className = "", showLabels = true }: Socia
     },
     {
       href: "mailto:info@fables.monster",
-      icon: "📧",
+      icon: "/logos/mail-512.png",
       label: "Email",
       description: "Contact us"
     }

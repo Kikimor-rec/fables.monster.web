@@ -4,8 +4,8 @@ import Link from "next/link";
 import CompactTeamMember from "@/components/CompactTeamMember";
 import FadeIn from "@/components/FadeIn";
 import OptimizedImage from "@/components/OptimizedImage";
-import FinalEditable from "@/components/FinalEditable";
 import { useContent } from "@/hooks/useContent";
+
 
 interface TeamMember {
   name: string;
@@ -17,18 +17,8 @@ interface TeamMember {
 }
 
 export default function Home() {
-  const { content, loading } = useContent('site-content.json');
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-black flex items-center justify-center">
-        <div className="text-white">Loading...</div>
-      </div>
-    );
-  }
-  
+  const { content, loading } = useContent("site-content.json");
   const teamMembers: TeamMember[] = content?.team?.members || [];
-  
   return (
     <div className="bg-black">
       {/* Hero Section */}
@@ -37,25 +27,12 @@ export default function Home() {
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6">
           <FadeIn delay={0.2}>
             <h1 className="text-4xl sm:text-6xl md:text-8xl font-bold text-white mb-6 font-mono tracking-wider">
-              <FinalEditable 
-                value={content?.hero?.title || "FABLES MONSTER"}
-                path="hero.title"
-                tag="span"
-                className="inline-block"
-                trigger="click"
-              />
+              FABLES MONSTER
             </h1>
           </FadeIn>
           <FadeIn delay={0.4}>
             <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto font-mono">
-              <FinalEditable 
-                value={content?.hero?.subtitle || "Independent tabletop RPG content creation studio"}
-                path="hero.subtitle"
-                tag="span"
-                multiline={true}
-                className="inline-block"
-                trigger="click"
-              />
+              Independent tabletop RPG content creation studio
             </p>
           </FadeIn>
           <FadeIn delay={0.6}>
@@ -64,25 +41,13 @@ export default function Home() {
                 href="/projects"
                 className="w-full sm:w-auto bg-red-700 hover:bg-red-600 text-white px-6 sm:px-8 py-4 text-base sm:text-lg font-mono font-bold transition-colors border border-red-600 text-center"
               >
-                <FinalEditable 
-                  value={content?.common?.view_projects || "VIEW PROJECTS"}
-                  path="common.view_projects"
-                  tag="span"
-                  className="inline-block"
-                  trigger="click"
-                />
+                VIEW PROJECTS
               </Link>
               <Link
                 href="/lost-mark"
                 className="w-full sm:w-auto bg-transparent border-2 border-white text-white hover:bg-white hover:text-black px-6 sm:px-8 py-4 text-base sm:text-lg font-mono font-bold transition-colors text-center"
               >
-                <FinalEditable 
-                  value={content?.common?.lost_mark_button || "LOST MARK"}
-                  path="common.lost_mark_button"
-                  tag="span"
-                  className="inline-block"
-                  trigger="click"
-                />
+                LOST MARK
               </Link>
             </div>
           </FadeIn>
@@ -96,45 +61,19 @@ export default function Home() {
             <FadeIn>
               <div>
                 <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6 font-mono">
-                  <FinalEditable 
-                    value={content?.about?.title || "ABOUT THE STUDIO"}
-                    path="about.title"
-                    tag="span"
-                    className="inline-block"
-                    trigger="click"
-                  />
+                  ABOUT THE STUDIO
                 </h2>
                 <p className="text-base sm:text-lg text-gray-300 mb-6 font-mono">
-                  <FinalEditable 
-                    value={content?.about?.description1 || "We are a team of enthusiasts dedicated to creating immersive tabletop RPG adventures and digital experiences. Our mission is to craft projects that leave a lasting impact on players."}
-                    path="about.description1"
-                    tag="span"
-                    multiline={true}
-                    className="inline-block"
-                    trigger="click"
-                  />
+                  We are a team of enthusiasts dedicated to creating immersive tabletop RPG adventures and digital experiences. Our mission is to craft projects that leave a lasting impact on players.
                 </p>
                 <p className="text-base sm:text-lg text-gray-300 mb-8 font-mono">
-                  <FinalEditable 
-                    value={content?.about?.description2 || "From Sci-Fi horror to fantasy adventures, we explore various forms of interactive entertainment, creating unique experiences for every player."}
-                    path="about.description2"
-                    tag="span"
-                    multiline={true}
-                    className="inline-block"
-                    trigger="click"
-                  />
+                  From Sci-Fi horror to fantasy adventures, we explore various forms of interactive entertainment, creating unique experiences for every player.
                 </p>
                 <Link
                   href="/about"
                   className="inline-block bg-red-700 hover:bg-red-600 text-white px-4 sm:px-6 py-3 font-mono font-bold transition-colors border border-red-600 text-sm sm:text-base"
                 >
-                  <FinalEditable 
-                    value={content?.common?.learn_more || "MORE ABOUT US"}
-                    path="common.learn_more"
-                    tag="span"
-                    className="inline-block"
-                    trigger="click"
-                  />
+                  MORE ABOUT US
                 </Link>
               </div>
             </FadeIn>
@@ -143,23 +82,10 @@ export default function Home() {
                 <div className="text-center">
                   <div className="text-3xl sm:text-4xl mb-4 font-mono">⚡</div>
                   <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 font-mono">
-                    <FinalEditable 
-                      value={content?.about?.philosophy_title || "OUR PHILOSOPHY"}
-                      path="about.philosophy_title"
-                      tag="span"
-                      className="inline-block"
-                      trigger="click"
-                    />
+                    OUR PHILOSOPHY
                   </h3>
                   <p className="text-red-100 font-mono text-sm sm:text-base">
-                    <FinalEditable 
-                      value={content?.about?.philosophy || "Every game is a story, every story is a world, every world is an opportunity for players to become heroes of their own adventure."}
-                      path="about.philosophy"
-                      tag="span"
-                      multiline={true}
-                      className="inline-block"
-                      trigger="click"
-                    />
+                    Every game is a story, every story is a world, every world is an opportunity for players to become heroes of their own adventure.
                   </p>
                 </div>
               </div>
@@ -174,22 +100,10 @@ export default function Home() {
           <FadeIn>
             <div className="text-center mb-8 sm:mb-12">
               <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 font-mono">
-                <FinalEditable 
-                  value={content?.projects?.featured_title || "FIRST PROJECT"}
-                  path="projects.featured_title"
-                  tag="span"
-                  className="inline-block"
-                  trigger="click"
-                />
+                FIRST PROJECT
               </h2>
               <p className="text-lg sm:text-xl text-gray-300 font-mono">
-                <FinalEditable 
-                  value={content?.projects?.featured_subtitle || "Our pride and most ambitious project"}
-                  path="projects.featured_subtitle"
-                  tag="span"
-                  className="inline-block"
-                  trigger="click"
-                />
+                Our pride and most ambitious project
               </p>
             </div>
           </FadeIn>
@@ -199,64 +113,27 @@ export default function Home() {
               <div className="grid md:grid-cols-2 gap-6 sm:gap-8 items-center">
                 <div>
                   <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4 font-mono">
-                    <FinalEditable 
-                      value={content?.lost_mark?.title || "THE LOST MARK"}
-                      path="lost_mark.title"
-                      tag="span"
-                      className="inline-block"
-                      trigger="click"
-                    />
+                    THE LOST MARK
                   </h3>
                   <p className="text-base sm:text-lg text-gray-300 mb-6 font-mono">
-                    <FinalEditable 
-                      value={content?.lost_mark?.description || "A Sci-Fi horror adventure for Mothership RPG where your crew faces impossible choices and eldritch truths among the wrecks and cults of deep space."}
-                      path="lost_mark.description"
-                      tag="span"
-                      multiline={true}
-                      className="inline-block"
-                      trigger="click"
-                    />
+                    A Sci-Fi horror adventure for Mothership RPG where your crew faces impossible choices and eldritch truths among the wrecks and cults of deep space.
                   </p>
                   <div className="flex flex-wrap gap-2 mb-6">
                     <span className="bg-red-700 text-white px-2 sm:px-3 py-1 text-xs sm:text-sm font-mono border border-red-600">
-                      <FinalEditable 
-                        value={content?.tags?.mothership || "MOTHERSHIP"}
-                        path="tags.mothership"
-                        tag="span"
-                        className="inline-block"
-                        trigger="click"
-                      />
+                    MOTHERSHIP
                     </span>
                     <span className="bg-red-700 text-white px-2 sm:px-3 py-1 text-xs sm:text-sm font-mono border border-red-600">
-                      <FinalEditable 
-                        value={content?.tags?.sci_fi_horror || "SCI-FI HORROR"}
-                        path="tags.sci_fi_horror"
-                        tag="span"
-                        className="inline-block"
-                        trigger="click"
-                      />
+                    SCI-FI HORROR
                     </span>
                     <span className="bg-red-700 text-white px-2 sm:px-3 py-1 text-xs sm:text-sm font-mono border border-red-600">
-                      <FinalEditable 
-                        value={content?.tags?.investigation || "INVESTIGATION"}
-                        path="tags.investigation"
-                        tag="span"
-                        className="inline-block"
-                        trigger="click"
-                      />
+                    INVESTIGATION
                     </span>
                   </div>
                   <Link
                     href="/lost-mark"
                     className="inline-block bg-red-700 hover:bg-red-600 text-white px-6 sm:px-8 py-3 font-mono font-bold transition-colors border border-red-600 text-sm sm:text-base"
                   >
-                    <FinalEditable 
-                      value={content?.common?.learn_more_project || "LEARN MORE"}
-                      path="common.learn_more_project"
-                      tag="span"
-                      className="inline-block"
-                      trigger="click"
-                    />
+                    LEARN MORE
                   </Link>
                 </div>
                 <div className="relative h-48 sm:h-64 md:h-80 bg-gray-800 border border-red-700 overflow-hidden">
@@ -271,13 +148,7 @@ export default function Home() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
                   <div className="absolute bottom-4 left-4 text-white font-mono font-bold text-sm sm:text-base">
-                    <FinalEditable 
-                      value={content?.image_labels?.lost_mark_promo || "THE LOST MARK"}
-                      path="image_labels.lost_mark_promo"
-                      tag="span"
-                      className="inline-block"
-                      trigger="click"
-                    />
+                    THE LOST MARK
                   </div>
                 </div>
               </div>
@@ -291,21 +162,19 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <FadeIn>
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-8 sm:mb-12 text-center font-mono">
-              <FinalEditable 
-                value={content?.team?.title || "THE TEAM"}
-                path="team.title"
-                tag="span"
-                className="inline-block"
-                trigger="click"
-              />
+              THE TEAM
             </h2>
           </FadeIn>
           <FadeIn delay={0.2}>
-            <div className="flex flex-wrap justify-center gap-3 sm:gap-6 max-w-5xl mx-auto">
-              {teamMembers.map((member: TeamMember, index: number) => (
-                <CompactTeamMember key={index} member={member} index={index} />
-              ))}
-            </div>
+            {loading ? (
+              <div className="text-center text-gray-400 font-mono">Загрузка...</div>
+            ) : (
+              <div className="flex flex-wrap justify-center gap-3 sm:gap-6 max-w-5xl mx-auto">
+                {teamMembers.map((member: TeamMember, index: number) => (
+                  <CompactTeamMember key={index} member={member} />
+                ))}
+              </div>
+            )}
           </FadeIn>
         </div>
       </section>
@@ -315,23 +184,10 @@ export default function Home() {
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6">
           <FadeIn>
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6 font-mono">
-              <FinalEditable 
-                value={content?.common?.ready_to_explore || "READY TO EXPLORE OUR WORLDS?"}
-                path="common.ready_to_explore"
-                tag="span"
-                className="inline-block"
-                trigger="click"
-              />
+              READY TO EXPLORE OUR WORLDS?
             </h2>
             <p className="text-lg sm:text-xl text-red-100 mb-8 font-mono">
-              <FinalEditable 
-                value={content?.common?.follow_projects || "Follow our projects and become part of the Fables Monster community"}
-                path="common.follow_projects"
-                tag="span"
-                multiline={true}
-                className="inline-block"
-                trigger="click"
-              />
+              Follow our projects and become part of the Fables Monster community
             </p>
           </FadeIn>
           <FadeIn delay={0.2}>
@@ -340,13 +196,7 @@ export default function Home() {
                 href="/projects"
                 className="w-full sm:w-auto bg-white text-red-900 px-6 sm:px-8 py-4 text-base sm:text-lg font-mono font-bold hover:bg-gray-200 transition-colors text-center"
               >
-                <FinalEditable 
-                  value={content?.common?.all_projects || "ALL PROJECTS"}
-                  path="common.all_projects"
-                  tag="span"
-                  className="inline-block"
-                  trigger="click"
-                />
+                ALL PROJECTS
               </Link>
               <a
                 href="https://discord.gg/qJS4h5usxe"
@@ -354,13 +204,7 @@ export default function Home() {
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto bg-transparent border-2 border-white text-white hover:bg-white hover:text-red-900 px-6 sm:px-8 py-4 text-base sm:text-lg font-mono font-bold transition-colors text-center"
               >
-                <FinalEditable 
-                  value={content?.common?.join_discord || "JOIN DISCORD"}
-                  path="common.join_discord"
-                  tag="span"
-                  className="inline-block"
-                  trigger="click"
-                />
+                JOIN DISCORD
               </a>
             </div>
           </FadeIn>

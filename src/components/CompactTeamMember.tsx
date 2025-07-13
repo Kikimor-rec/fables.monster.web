@@ -2,8 +2,6 @@
 
 import { useState, memo } from "react";
 import OptimizedImage from "./OptimizedImage";
-import FinalEditable from "./FinalEditable";
-import { useContent } from "@/hooks/useContent";
 
 interface CompactTeamMemberProps {
   member: {
@@ -14,12 +12,10 @@ interface CompactTeamMemberProps {
     bio?: string;
     portfolio?: string;
   };
-  index: number;
 }
 
-const CompactTeamMember = memo(function CompactTeamMember({ member, index }: CompactTeamMemberProps) {
+const CompactTeamMember = memo(function CompactTeamMember({ member }: CompactTeamMemberProps) {
   const [isHovered, setIsHovered] = useState(false);
-  const { content } = useContent('site-content.json');
 
   return (
     <div 
@@ -54,22 +50,10 @@ const CompactTeamMember = memo(function CompactTeamMember({ member, index }: Com
       {/* Member Info */}
       <div className="flex-1 min-w-0">
         <h4 className="text-xs sm:text-sm font-bold text-white font-mono group-hover:text-red-400 transition-colors duration-300 truncate">
-          <FinalEditable 
-            value={content?.team?.members?.[index]?.name || member.name}
-            path={`team.members.${index}.name`}
-            tag="span"
-            className="inline-block"
-            trigger="click"
-          />
+            {member.name}
         </h4>
         <p className="text-xs text-gray-400 font-mono truncate">
-          <FinalEditable 
-            value={content?.team?.members?.[index]?.role || member.role}
-            path={`team.members.${index}.role`}
-            tag="span"
-            className="inline-block"
-            trigger="click"
-          />
+          {member.role}
         </p>
       </div>
       

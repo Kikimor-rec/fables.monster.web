@@ -2,36 +2,26 @@
 
 import ProjectCard from "@/components/ProjectCard";
 import FadeIn from "@/components/FadeIn";
-import FinalEditable from "@/components/FinalEditable";
-import { useContent } from "@/hooks/useContent";
+// ...удалён импорт useContent...
 
 export default function Projects() {
-  const { content, loading } = useContent('site-content.json');
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-black flex items-center justify-center">
-        <div className="text-white">{content?.common?.loading || "Loading..."}</div>
-      </div>
-    );
-  }
   const projects = [
     {
       id: "lost-mark",
       title: "The Lost Mark",
       description: "A Sci-Fi horror adventure for Mothership RPG. Your crew faces impossible choices and eldritch truths among the wrecks and cults of deep space.",
       status: "Available Soon",
-      tags: ["Mothership", "Sci-Fi Horror", "Investigation"],
+      tags: ["Mothership 1e", "Sci-Fi Horror", "Investigation"],
       icon: "⚠",
       featured: true,
-      progress: "Released"
+      progress: "Waiting final approval from Mothership team"
     },
     {
       id: "cemetery-of-broken-ships",
       title: "Cemetery of Broken Ships",
       description: "Sci-Fi Horror for the Mothership system. 5 ships to explore, connected by a common lore. Use each ship separately or let players solve the mystery of the debris field.",
       status: "In Development",
-      tags: ["Mothership", "Sci-Fi Horror", "5 Ships", "Connected Lore"],
+      tags: ["Sci-Fi Horror", "5 Ships", "Connected Lore"],
       icon: "🚀",
       progress: "Scriptwriting & Playtesting"
     },
@@ -53,23 +43,11 @@ export default function Projects() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center">
           <FadeIn>
             <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-white mb-6 font-mono tracking-wider">
-              <FinalEditable 
-                value={content?.projects?.title || "OUR PROJECTS"}
-                path="projects.title"
-                tag="span"
-                trigger="click"
-                className="inline-block"
-              />
+                OUR PROJECTS
+                OUR PROJECTS
             </h1>
             <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto font-mono">
-              <FinalEditable 
-                value={content?.projects?.subtitle || "Tabletop RPG adventures crafted with attention to detail and immersive storytelling"}
-                path="projects.subtitle"
-                tag="span"
-                trigger="click"
-                multiline={true}
-                className="inline-block"
-              />
+              Tabletop RPG adventures crafted with attention to detail and immersive storytelling
             </p>
           </FadeIn>
         </div>
@@ -88,23 +66,10 @@ export default function Projects() {
           <FadeIn>
             <div className="text-center mb-8 sm:mb-12">
               <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 font-mono">
-                <FinalEditable 
-                  value={content?.projects?.all_projects_title || "ALL PROJECTS"}
-                  path="projects.all_projects_title"
-                  tag="span"
-                  trigger="click"
-                  className="inline-block"
-                />
+                ALL PROJECTS
               </h2>
               <p className="text-lg sm:text-xl text-gray-300 font-mono">
-                <FinalEditable 
-                  value={content?.projects?.all_projects_subtitle || "Complete collection of our tabletop RPG content"}
-                  path="projects.all_projects_subtitle"
-                  tag="span"
-                  trigger="click"
-                  multiline={true}
-                  className="inline-block"
-                />
+                Complete collection of our tabletop RPG content
               </p>
             </div>
           </FadeIn>
@@ -124,51 +89,21 @@ export default function Projects() {
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6">
           <FadeIn>
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6 font-mono">
-              <FinalEditable 
-                value={content?.projects?.cta_title || "WANT TO STAY UPDATED?"}
-                path="projects.cta_title"
-                tag="span"
-                trigger="click"
-                className="inline-block"
-              />
+              WANT TO STAY UPDATED?
             </h2>
             <p className="text-lg sm:text-xl text-red-100 mb-8 font-mono">
-              <FinalEditable 
-                value={content?.projects?.cta_subtitle || "Subscribe to our updates and be the first to know about new releases"}
-                path="projects.cta_subtitle"
-                tag="span"
-                trigger="click"
-                multiline={true}
-                className="inline-block"
-              />
+              Subscribe to our updates and be the first to know about new releases
             </p>
           </FadeIn>
           <FadeIn delay={0.2}>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <a
-                href="https://discord.gg/fables-monster"
+                href="https://discord.gg/qJS4h5usxe"
                 className="w-full sm:w-auto bg-white text-red-900 px-6 sm:px-8 py-4 text-base sm:text-lg font-mono font-bold hover:bg-gray-200 transition-colors text-center"
               >
-                <FinalEditable 
-                  value={content?.common?.discord_community || "DISCORD COMMUNITY"}
-                  path="common.discord_community"
-                  tag="span"
-                  trigger="click"
-                  className="inline-block"
-                />
+                DISCORD COMMUNITY
               </a>
-              <a
-                href="/newsletter"
-                className="w-full sm:w-auto bg-transparent border-2 border-white text-white hover:bg-white hover:text-red-900 px-6 sm:px-8 py-4 text-base sm:text-lg font-mono font-bold transition-colors text-center"
-              >
-                <FinalEditable 
-                  value={content?.common?.newsletter || "NEWSLETTER"}
-                  path="common.newsletter"
-                  tag="span"
-                  trigger="click"
-                  className="inline-block"
-                />
-              </a>
+             
             </div>
           </FadeIn>
         </div>

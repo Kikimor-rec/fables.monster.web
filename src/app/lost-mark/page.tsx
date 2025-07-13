@@ -16,22 +16,22 @@ export default function LostMark() {
       icon: "⚠️"
     },
     {
-      title: "Atmospheric Storytelling",
-      description: "Rich narrative that builds tension through environmental storytelling and gradual revelation.",
+      title: "Handouts and art assets (in progress)",
+      description: "All what you need to run the game smoothly, including maps, character sheets, and visual art.",
       icon: "📖"
     },
     {
-      title: "Moral Complexity",
-      description: "Face impossible choices that challenge your crew's sanity and humanity in the depths of space.",
-      icon: "🎭"
+      title: "VTT Assets (in progress)",
+      description: "Tokens, maps, and other assets for virtual tabletops to enhance your online gaming experience. Foundry VTT and Roll20 play-ready modules.",
+      icon: "💻"
     }
   ];
 
   const stats = [
     { label: "Pages", value: "2" },
     { label: "Players", value: "3-5" },
-    { label: "Hours", value: "3-5" },
-    { label: "System", value: "Mothership RPG 1E" }
+    { label: "Hours", value: "3-4" },
+    { label: "System", value: "Mothership 1E"}
   ];
 
   return (
@@ -58,15 +58,18 @@ export default function LostMark() {
             THE LOST MARK
           </h1>
           <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto font-mono">
-            A Sci-Fi horror adventure for Mothership RPG. Your crew faces impossible choices and eldritch truths among the wrecks and cults of deep space.
+            A science fiction horror adventure for the role-playing game Mothership RPG. Your team encounters the wreckage of the tourist yacht Silk Star, which disappeared 217 years ago.
           </p>
           
           {/* Stats Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 max-w-2xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-8 max-w-2xl mx-auto">
             {stats.map((stat, index) => (
-              <div key={index} className="bg-black/60 border border-red-700 p-4 text-center">
-                <div className="text-2xl font-bold text-red-400 font-mono">{stat.value}</div>
-                <div className="text-sm text-gray-300 font-mono">{stat.label}</div>
+              <div key={index} className="bg-black/60 border border-red-700 stat-block p-2 sm:p-3">
+                <div className="text-lg sm:text-2xl font-bold text-red-400 font-mono mb-1">{stat.value}</div>
+                <div className="stat-block-label text-gray-300 font-mono">
+                  <span className="sm:hidden">{stat.label === "System" ? "Mothership" : stat.label}</span>
+                  <span className="hidden sm:inline">{stat.label}</span>
+                </div>
               </div>
             ))}
           </div>
@@ -75,12 +78,12 @@ export default function LostMark() {
             <StoreButton 
               store="itch"
               href="https://fablesmonster.itch.io/"
-              price="Free"
+              price="Free or PWYW"
             />
             <StoreButton 
               store="drivethrurpg"
               href="https://www.drivethrurpg.com/en/publisher/30815/Stepan%20Kulikov"
-              price="$5"
+              price="Free or PWYW"
             />
           </div>
           
@@ -102,7 +105,7 @@ export default function LostMark() {
               </Link>
             </div>
             <p className="text-sm text-gray-400 mt-2 font-mono">
-              Interactive timer available now • Terminal coming soon
+              Interactive timer available now • Terminal will be available after the release
             </p>
           </div>
         </div>
@@ -116,15 +119,15 @@ export default function LostMark() {
               <h2 className="text-4xl font-bold text-white mb-6 font-mono">
                 ABOUT THE ADVENTURE
               </h2>
-              <p className="text-lg text-gray-300 mb-6 font-mono">
-                When your crew receives a distress signal from the research vessel &ldquo;Lost Mark,&rdquo; 
-                you&apos;re thrust into a nightmare that challenges your sanity and survival instincts.
-              </p>
-              <p className="text-lg text-gray-300 mb-6 font-mono">
-                This two-page Sci-Fi horror adventure module emphasizes investigation, atmosphere, 
-                and psychological tension. Perfect for crews who want to explore the darker corners 
-                of space and face the unknown.
-              </p>
+<p className="text-lg text-gray-300 mb-6 font-mono">
+  After making the final jump, the players' ship finds themselves in the proximity of a compact but active black hole. There are no jump cores left. All they observe is a very old hyper beacon, a cloud of debris, and the **Ship of the Lost** - a giant drifting structure assembled from dozens of other ships.
+</p>
+<p className="text-lg text-gray-300 mb-6 font-mono">
+  On board lives and rots **Mark Opollo**, a pilot who was fused to the ship during a crash 217 years ago. His surviving companions have become a cult. His flesh is metal. His mind is a net.
+</p>
+<p className="text-lg text-gray-300 mb-6 font-mono">
+  Hidden inside the ship is a **cryopod containing a child**, the final element for Mark's Ascension. Mark plans to transfer his consciousness into the child or someone more convenient and finally leave this place. Players will have to choose to: **stop** it... or **allow it to happen**.
+</p>
               
               {/* Credits */}
               <div className="bg-black border border-red-700 p-6 mb-6">
@@ -140,7 +143,15 @@ export default function LostMark() {
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-300">Art by:</span>
-                    <span className="text-white">Zlata (jamakuci) Ignatova</span>
+                    <span className="text-white">Zlata Ignatova</span>
+                  </div>
+                                    <div className="flex justify-between">
+                    <span className="text-gray-300">Music By:</span>
+                    <span className="text-white">Stanislav DariDa</span>
+                  </div>
+                                    <div className="flex justify-between">
+                    <span className="text-gray-300">Coding by:</span>
+                    <span className="text-white">Allecks</span>
                   </div>
                 </div>
               </div>
@@ -193,17 +204,11 @@ export default function LostMark() {
                 Access the ship's computer system and uncover the dark secrets hidden in the logs. 
                 Navigate through corrupted data, system failures, and mysterious transmissions.
               </p>
-              <ul className="text-gray-500 font-mono text-xs space-y-1">
-                <li>• Ship system logs and diagnostics</li>
-                <li>• Crew manifest and personnel records</li>
-                <li>• Life support system monitoring</li>
-                <li>• Corrupted data recovery attempts</li>
-              </ul>
             </div>
             
             <div className="bg-black/60 border-2 border-green-600 p-6 rounded">
               <div className="flex items-center gap-3 mb-4">
-                <span className="text-3xl">⏰</span>
+                <span className="text-3xl">⌛</span>
                 <h3 className="text-xl font-bold text-green-400 font-mono">
                   CHRONOMETER TERMINAL
                 </h3>
@@ -213,12 +218,7 @@ export default function LostMark() {
                 A digital countdown timer designed for tabletop gaming sessions. 
                 Perfect for time-sensitive scenarios and building tension during gameplay.
               </p>
-              <ul className="text-green-500 font-mono text-xs space-y-1">
-                <li>• Customizable countdown timer</li>
-                <li>• Hours, minutes, and seconds precision</li>
-                <li>• Pause and resume functionality</li>
-                <li>• Terminal-style visual interface</li>
-              </ul>
+
             </div>
           </div>
         </div>
@@ -253,51 +253,7 @@ export default function LostMark() {
         </div>
       </section>
 
-      {/* What's Inside */}
-      <section className="py-20 bg-gray-900">
-        <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-4xl font-bold text-white mb-12 text-center font-mono">
-            WHAT&apos;S INSIDE
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-black border border-red-700 p-6">
-              <h3 className="text-xl font-bold text-white mb-4 font-mono">
-                📋 INVESTIGATION
-              </h3>
-              <ul className="space-y-2 text-gray-300 font-mono text-sm">
-                <li>• Detailed ship layouts and maps</li>
-                <li>• Clues and evidence system</li>
-                <li>• Multiple investigation paths</li>
-                <li>• Environmental storytelling</li>
-              </ul>
-            </div>
-            
-            <div className="bg-black border border-red-700 p-6">
-              <h3 className="text-xl font-bold text-white mb-4 font-mono">
-                🎭 CHARACTERS
-              </h3>
-              <ul className="space-y-2 text-gray-300 font-mono text-sm">
-                <li>• Memorable NPCs with motives</li>
-                <li>• Crew member backgrounds</li>
-                <li>• Moral dilemmas and choices</li>
-                <li>• Character development hooks</li>
-              </ul>
-            </div>
-            
-            <div className="bg-black border border-red-700 p-6">
-              <h3 className="text-xl font-bold text-white mb-4 font-mono">
-                🚀 MECHANICS
-              </h3>
-              <ul className="space-y-2 text-gray-300 font-mono text-sm">
-                <li>• Stress and panic mechanics</li>
-                <li>• Custom horror encounters</li>
-                <li>• Equipment and technology</li>
-                <li>• Survival challenges</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
+     
 
       {/* Music Player */}
       <LazyMusicPlayer />
@@ -315,18 +271,28 @@ export default function LostMark() {
             <StoreButton 
               store="itch"
               href="https://fablesmonster.itch.io/"
-              price="Free"
+              price="Free or PWYW"
             />
             <StoreButton 
               store="drivethrurpg"
               href="https://www.drivethrurpg.com/en/publisher/30815/Stepan%20Kulikov"
-              price="$5"
+              price="Free or PWYW"
             />
             <Link
               href="/projects"
               className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-black px-8 py-4 text-lg font-mono font-bold transition-colors"
             >
               MORE PROJECTS
+            </Link>
+          </div>
+          
+          {/* License Link */}
+          <div className="mt-8 pt-6 border-t border-red-700/50">
+            <Link
+              href="/lost-mark/license"
+              className="text-gray-400 hover:text-red-400 font-mono text-sm underline transition-colors"
+            >
+              📄 View License Information (CC BY-NC-SA 4.0)
             </Link>
           </div>
         </div>

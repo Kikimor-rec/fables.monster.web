@@ -48,7 +48,7 @@ export default function CemeteryOfBrokenShips() {
             CEMETERY OF BROKEN SHIPS
           </h1>
           <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-4xl mx-auto font-mono">
-            Sci-Fi Horror Adventure for the Mothership RPG System
+            Sci-Fi Horror Adventure. All data below is preliminary and subject to change.
           </p>
           <div className="flex items-center justify-center gap-4 mb-8">
             <span className="bg-red-700 text-white px-4 py-2 font-mono border border-red-600">IN DEVELOPMENT</span>
@@ -229,7 +229,7 @@ export default function CemeteryOfBrokenShips() {
           <div className="mt-12 text-center">
             <div className="bg-gray-900 border border-red-700 p-6 max-w-md mx-auto">
               <h4 className="text-lg font-bold text-white mb-2 font-mono">ESTIMATED RELEASE</h4>
-              <p className="text-2xl font-bold text-red-400 mb-2 font-mono">Q3 2025</p>
+              <p className="text-2xl font-bold text-red-400 mb-2 font-mono">Q1 2026</p>
               <p className="text-gray-400 font-mono">Following completion of playtesting phase</p>
             </div>
           </div>
@@ -247,7 +247,7 @@ export default function CemeteryOfBrokenShips() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="https://discord.gg/fables-monster"
+              href="hhttps://discord.gg/qJS4h5usxe"
               className="bg-white text-red-900 px-8 py-4 text-lg font-mono font-bold hover:bg-gray-200 transition-colors"
             >
               JOIN DISCORD
