@@ -16,6 +16,51 @@ export default function TimerTerminal() {
   
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
+  const playBeep = () => {
+    try {
+      const AudioClass =
+        window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+      const ctx = new AudioClass();
+      const oscillator = ctx.createOscillator();
+      oscillator.type = 'sine';
+      oscillator.frequency.setValueAtTime(1000, ctx.currentTime);
+      oscillator.connect(ctx.destination);
+      oscillator.start();
+      oscillator.stop(ctx.currentTime + 0.2);
+    } catch {
+      // ignore failures
+    }
+  };
+
+  // Load saved state
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem('timerState');
+      if (saved) {
+        const data = JSON.parse(saved);
+        setHours(data.hours || 0);
+        setMinutes(data.minutes || 0);
+        setSeconds(data.seconds || 0);
+        setTotalSeconds(data.totalSeconds || 0);
+
+        let remaining = data.currentSeconds || 0;
+        if (data.isRunning && !data.isPaused) {
+          const diff = Math.floor((Date.now() - (data.lastUpdate || 0)) / 1000);
+          remaining = Math.max(0, remaining - diff);
+        }
+        setCurrentSeconds(remaining);
+        setIsRunning(data.isRunning && remaining > 0);
+        setIsPaused(data.isPaused);
+
+        if (remaining === 0 && data.currentSeconds > 0) {
+          playBeep();
+        }
+      }
+    } catch {
+      // ignore corrupt data
+    }
+  }, []);
+
   // Эффект загрузки
   useEffect(() => {
     const bootSequence = [
@@ -62,8 +107,8 @@ export default function TimerTerminal() {
           if (prev <= 1) {
             setIsRunning(false);
             setIsPaused(false);
-            // Звук завершения (опционально)
             triggerGlitch();
+            playBeep();
             return 0;
           }
           return prev - 1;
@@ -87,6 +132,7 @@ export default function TimerTerminal() {
     setGlitch(true);
     setTimeout(() => setGlitch(false), 300);
   };
+
 
   const setTimer = () => {
     const total = hours * 3600 + minutes * 60 + seconds;
@@ -139,6 +185,13 @@ export default function TimerTerminal() {
     triggerGlitch();
   };
 
+  const applyPreset = (mins: number) => {
+    setHours(Math.floor(mins / 60));
+    setMinutes(mins % 60);
+    setSeconds(0);
+    triggerGlitch();
+  };
+
   const formatTime = (totalSecs: number) => {
     const hrs = Math.floor(totalSecs / 3600);
     const mins = Math.floor((totalSecs % 3600) / 60);
@@ -169,6 +222,25 @@ export default function TimerTerminal() {
       default: return "text-green-500";
     }
   };
+
+  // Persist state
+  useEffect(() => {
+    const data = {
+      hours,
+      minutes,
+      seconds,
+      totalSeconds,
+      currentSeconds,
+      isRunning,
+      isPaused,
+      lastUpdate: Date.now(),
+    };
+    try {
+      localStorage.setItem('timerState', JSON.stringify(data));
+    } catch {
+      // ignore write errors
+    }
+  }, [hours, minutes, seconds, totalSeconds, currentSeconds, isRunning, isPaused]);
 
   if (isLoading) {
     return (
@@ -272,15 +344,29 @@ export default function TimerTerminal() {
                         className="w-16 sm:w-20 md:w-24 bg-black border-2 border-green-600 text-green-400 text-center py-2 sm:py-3 text-base sm:text-lg font-mono focus:border-green-300 focus:outline-none rounded"
                         disabled={isRunning}
                       />
-                    </div>
                   </div>
                 </div>
+              </div>
 
-                <button
-                  onClick={setTimer}
-                  disabled={isRunning || (hours === 0 && minutes === 0 && seconds === 0)}
-                  className="w-full bg-green-700 text-white py-4 sm:py-5 text-lg sm:text-xl border-2 border-green-600 hover:bg-green-600 disabled:bg-gray-700 disabled:text-gray-500 disabled:border-gray-600 transition-colors font-mono rounded"
-                >
+              <div className="flex justify-center gap-2 sm:gap-4 mb-4">
+                {[5, 10, 30].map((m) => (
+                  <button
+                    key={m}
+                    type="button"
+                    onClick={() => applyPreset(m)}
+                    disabled={isRunning}
+                    className="px-3 py-2 bg-green-800 text-white border-2 border-green-600 rounded text-sm sm:text-base hover:bg-green-700 disabled:bg-gray-700"
+                  >
+                    {m} MIN
+                  </button>
+                ))}
+              </div>
+
+              <button
+                onClick={setTimer}
+                disabled={isRunning || (hours === 0 && minutes === 0 && seconds === 0)}
+                className="w-full bg-green-700 text-white py-4 sm:py-5 text-lg sm:text-xl border-2 border-green-600 hover:bg-green-600 disabled:bg-gray-700 disabled:text-gray-500 disabled:border-gray-600 transition-colors font-mono rounded"
+              >
                   [SET TIMER]
                 </button>
               </div>
