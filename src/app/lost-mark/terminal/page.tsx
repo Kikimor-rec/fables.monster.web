@@ -3,43 +3,16 @@
 import { useState, useEffect } from 'react';
 import ResponsiveAscii from '@/components/ResponsiveAscii';
 import { useContent } from '@/hooks/useContent';
-
-// Типы данных для терминала
-interface ShipLog {
-  id: string;
-  timestamp: string;
-  type: string;
-  message: string;
-  details: string;
-}
-
-
-interface SilkStarLog {
-  id: string;
-  entry: string;
-  content: string;
-}
-
-interface LifeSupportSystem {
-  id: string;
-  name: string;
-  status: string;
-  description: string;
-}
-
-interface CrewMember {
-  name: string;
-  position: string;
-}
-
-interface CrewManifest {
-  crew?: CrewMember[];
-}
-
-interface CryoProtocol {
-  title: string;
-  description: string;
-}
+import LogViewer from '@/components/terminal/LogViewer';
+import ManifestViewer from '@/components/terminal/ManifestViewer';
+import CryoProtocolViewer from '@/components/terminal/CryoProtocolViewer';
+import {
+  CrewManifest,
+  CryoProtocol,
+  LifeSupportSystem,
+  ShipLog,
+  SilkStarLog,
+} from '@/components/terminal/types';
 
 export default function LostMarkTerminal() {
   const { content, loading } = useContent('terminal-content.json');
@@ -128,11 +101,13 @@ export default function LostMarkTerminal() {
     }
   }, [showCorruptedMessage]);
 
+  /** Handle selecting a menu item */
   const handleMenuClick = (menuType: string) => {
     setCurrentView(menuType);
     triggerGlitch();
   };
 
+  /** Random glitch flash when switching views */
   const triggerGlitch = () => {
     if (Math.random() < 0.2) {
       setGlitch(true);
@@ -140,6 +115,7 @@ export default function LostMarkTerminal() {
     }
   };
 
+  /** Simple text corruption effect */
   const corruptText = (text: string, level = 0.1) => {
     const glitchChars = ['█', '▓', '▒', '░', '?', '#', '@', '%', '¿', '¡'];
     
@@ -151,6 +127,7 @@ export default function LostMarkTerminal() {
     }).join('');
   };
 
+  /** Attempt to clear corrupted data */
   const handleCorruptedDataClear = () => {
     const newAttempts = corruptedAttempts + 1;
     setCorruptedAttempts(newAttempts);
@@ -163,6 +140,7 @@ export default function LostMarkTerminal() {
     }
   };
 
+  /** Render content panel based on the current view */
   const renderContent = () => {
     const shipLogs = (content?.ship_logs || []) as ShipLog[];
     const silkStarLogs = (content?.silk_star_logs || []) as SilkStarLog[];
@@ -172,44 +150,19 @@ export default function LostMarkTerminal() {
     switch(currentView) {
       case 'logs':
         return (
-          <div className="space-y-3 sm:space-y-4">
-            <h3 className="text-green-300 font-bold mb-3 sm:mb-4 text-sm sm:text-base">
-              {content?.interface?.sections?.system_logs || "SYSTEM LOGS"}
-            </h3>
-            {shipLogs.map((log: ShipLog) => (
-              <div key={log.id} className="border border-green-600 p-2 sm:p-3 bg-green-900 bg-opacity-20 rounded">
-                <div className="flex flex-col sm:flex-row sm:justify-between text-xs sm:text-sm mb-2 gap-1 sm:gap-0">
-                  <span className="text-green-400 break-all">[{log.timestamp}]</span>
-                  <span className={log.type === 'error' ? 'text-red-400' : log.type === 'warning' ? 'text-yellow-400' : 'text-green-400'}>
-                    {log.type.toUpperCase()}
-                  </span>
-                </div>
-                <div className="text-green-300 font-bold text-xs sm:text-sm md:text-base break-words">
-                  {log.message}
-                </div>
-                <div className="text-green-500 text-sm mt-1">
-                  {log.details}
-                </div>
-              </div>
-            ))}
-          </div>
+          <LogViewer
+            header={content?.interface?.sections?.system_logs || 'SYSTEM LOGS'}
+            logs={shipLogs}
+          />
         );
 
       case 'silk-logs':
         return (
-          <div className="space-y-3 sm:space-y-4">
-            <h3 className="text-green-300 font-bold mb-3 sm:mb-4 text-sm sm:text-base">
-              {content?.interface?.sections?.silk_star_logs || "SILK STAR FLIGHT LOG"}
-            </h3>
-            {silkStarLogs.map((log: SilkStarLog) => (
-              <div key={log.id} className="border border-green-600 p-2 sm:p-3 bg-green-900 bg-opacity-20 rounded">
-                <div className="text-green-400 text-xs sm:text-sm mb-2 font-mono">LOG ENTRY {log.entry}:</div>
-                <div className="text-green-300 text-xs sm:text-sm md:text-base leading-relaxed break-words">
-                  {corruptText(log.content, log.entry === '3531' ? 0.3 : 0.05)}
-                </div>
-              </div>
-            ))}
-          </div>
+          <LogViewer
+            header={content?.interface?.sections?.silk_star_logs || 'SILK STAR FLIGHT LOG'}
+            logs={silkStarLogs}
+            corruptText={corruptText}
+          />
         );
 
       case 'footage':
@@ -238,57 +191,20 @@ export default function LostMarkTerminal() {
 
       case 'manifest':
         return (
-          <div className="space-y-3 sm:space-y-4">
-            <h3 className="text-green-300 font-bold mb-3 sm:mb-4 text-sm sm:text-base">
-              {content?.interface?.sections?.crew_manifest || "CREW MANIFEST"}
-            </h3>
-            <div className="border border-green-600 p-2 sm:p-3 bg-green-900 bg-opacity-20 rounded">
-              <div className="text-green-400 mb-2 text-xs sm:text-sm font-mono">
-                {content?.interface?.status_messages?.vessel_name || "VESSEL: SILK STAR"}
-              </div>
-              <div className="text-green-400 mb-3 sm:mb-4 text-xs sm:text-sm font-mono">
-                {content?.interface?.status_messages?.crew_complement || "CREW COMPLEMENT: 12"}
-              </div>
-              
-              <div className="space-y-1 sm:space-y-2">
-                {crewManifest.crew?.map((member: CrewMember, index: number) => (
-                  <div key={index} className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
-                    <span className="text-green-300 text-xs sm:text-sm font-mono">
-                      {member.name}
-                    </span>
-                    <span className="text-green-500 text-xs sm:text-sm">
-                      {member.position}
-                    </span>
-                  </div>
-                ))}
-              </div>
-              
-              <div className="mt-3 sm:mt-4 pt-2 border-t border-green-600">
-                <span className="text-red-400 text-xs sm:text-sm font-mono">
-                  {content?.interface?.status_messages?.data_corrupted || "[REST OF DATA CORRUPTED]"}
-                </span>
-              </div>
-            </div>
-          </div>
+          <ManifestViewer
+            manifest={crewManifest}
+            vesselName={content?.interface?.status_messages?.vessel_name || 'VESSEL: SILK STAR'}
+            crewComplement={content?.interface?.status_messages?.crew_complement || 'CREW COMPLEMENT: 12'}
+            corruptedLabel={content?.interface?.status_messages?.data_corrupted || '[REST OF DATA CORRUPTED]'}
+          />
         );
 
       case 'cryo':
         return (
-          <div className="space-y-3 sm:space-y-4">
-            <h3 className="text-green-300 font-bold mb-3 sm:mb-4 text-sm sm:text-base">
-              {content?.interface?.sections?.cryo_protocols || "CRYOCAPSULE PROTOCOLS"}
-            </h3>
-            {content?.cryo_protocols?.map((protocol: CryoProtocol, index: number) => (
-              <div key={index} className="border border-green-600 p-2 sm:p-3 bg-green-900 bg-opacity-20 rounded">
-                <div className="text-green-400 mb-2 text-xs sm:text-sm font-mono font-bold">
-                  {protocol.title}
-                </div>
-                <div className="text-green-300 text-xs sm:text-sm leading-relaxed break-words">
-                  {protocol.description}
-                </div>
-              </div>
-            ))}
-          </div>
+          <CryoProtocolViewer
+            header={content?.interface?.sections?.cryo_protocols || 'CRYOCAPSULE PROTOCOLS'}
+            protocols={(content?.cryo_protocols || []) as CryoProtocol[]}
+          />
         );
 
       case 'corrupted':
