@@ -10,15 +10,15 @@ interface Track {
 
 export default function MusicPlayer() {
   const tracks: Track[] = [
-    { title: "In a Deep Space", filename: "1-In-a-deep-space.mp3" },
-    { title: "Arrival at the Black Hole", filename: "2-arrival-at-the-black-hole.mp3" },
-    { title: "Welcome to Silk Star", filename: "1_2-Welcome-to-Silk-Star.mp3" },
-    { title: "Breath of Black Hole", filename: "2_-Breath-of-black-hole.mp3" },
-    { title: "Radiation Wave", filename: "3_-Radiation-wave.mp3" },
-    { title: "Keep Silence", filename: "4_-Keep-Silence.mp3" },
-    { title: "Pray to Mark", filename: "5_-Pray-to-Mark.mp3" },
-    { title: "I Can't Breathe", filename: "6_-I-can't-breath.mp3" },
-    { title: "Afterword", filename: "10_-Afterword.mp3" }
+    { title: "In a Deep Space",       filename: "01 - In a Deep Space.mp3" },
+    { title: "Arrival at the Black Hole", filename: "02 - Arrival at the Black Hole.mp3" },
+    { title: "Welcome to Silk Star",  filename: "03 - Welcome to Silk Star.mp3" },
+    { title: "Breath of Black Hole",  filename: "04 - Breath of Black Hole.mp3" },
+    { title: "Radiation Wave",        filename: "05 - Radiation Wave.mp3" },
+    { title: "Keep Silence",          filename: "06 - Keep Silence.mp3" },
+    { title: "Pray to Mark",          filename: "07 - Pray to Mark.mp3" },
+    { title: "I Can't Breathe",       filename: "08 - I Can't Breathe.mp3" },
+    { title: "Afterword",             filename: "09 - Afterword.mp3" }
   ];
 
 
