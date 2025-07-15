@@ -16,7 +16,7 @@ const config: Config = {
         border: "var(--border)",
       },
       fontFamily: {
-        mono: ["var(--font-geist-mono)", "Courier New", "monospace"],
+        mono: ["Courier New", "monospace"],
       },
     },
   },

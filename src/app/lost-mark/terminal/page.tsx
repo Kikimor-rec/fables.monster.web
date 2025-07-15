@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import ResponsiveAscii from '@/components/ResponsiveAscii';
 import { useContent } from '@/hooks/useContent';
 import LogViewer from '@/components/terminal/LogViewer';
@@ -23,6 +23,9 @@ export default function LostMarkTerminal() {
   const [corruptedAttempts, setCorruptedAttempts] = useState(0);
   const [showCorruptedMessage, setShowCorruptedMessage] = useState(false);
   const [typingText, setTypingText] = useState('');
+  const [shipLogs, setShipLogs] = useState<ShipLog[]>([]);
+  const [silkLogs, setSilkLogs] = useState<SilkStarLog[]>([]);
+  const clickAudioRef = useRef<HTMLAudioElement | null>(null);
 
   // ASCII Art для глаза
   const asciiEye = `
@@ -54,10 +57,15 @@ export default function LostMarkTerminal() {
       "TERMINAL READY"
     ];
 
+    if (!clickAudioRef.current) {
+      clickAudioRef.current = new Audio("/sfx/beep.mp3");
+    }
+
     let index = 0;
     const interval = setInterval(() => {
       if (index < bootSequence.length) {
         setLoadingText(bootSequence[index]);
+        clickAudioRef.current?.play().catch(() => {});
         index++;
       } else {
         clearInterval(interval);
@@ -66,6 +74,23 @@ export default function LostMarkTerminal() {
     }, 1000);
 
     return () => clearInterval(interval);
+  }, [content]);
+
+  // Append new logs when content changes
+  useEffect(() => {
+    if (content?.ship_logs) {
+      setShipLogs(prev => [
+        ...prev,
+        ...(content.ship_logs as ShipLog[]).filter(l => !prev.some(p => p.id === l.id))
+      ]);
+    }
+
+    if (content?.silk_star_logs) {
+      setSilkLogs(prev => [
+        ...prev,
+        ...(content.silk_star_logs as SilkStarLog[]).filter(l => !prev.some(p => p.id === l.id))
+      ]);
+    }
   }, [content]);
 
   // Случайные глитчи
@@ -105,6 +130,7 @@ export default function LostMarkTerminal() {
   const handleMenuClick = (menuType: string) => {
     setCurrentView(menuType);
     triggerGlitch();
+    clickAudioRef.current?.play().catch(() => {});
   };
 
   /** Random glitch flash when switching views */
@@ -142,8 +168,6 @@ export default function LostMarkTerminal() {
 
   /** Render content panel based on the current view */
   const renderContent = () => {
-    const shipLogs = (content?.ship_logs || []) as ShipLog[];
-    const silkStarLogs = (content?.silk_star_logs || []) as SilkStarLog[];
     const lifeSupportData = (content?.life_support || []) as LifeSupportSystem[];
     const crewManifest = (content?.crew_manifest || {}) as CrewManifest;
 
@@ -160,7 +184,7 @@ export default function LostMarkTerminal() {
         return (
           <LogViewer
             header={content?.interface?.sections?.silk_star_logs || 'SILK STAR FLIGHT LOG'}
-            logs={silkStarLogs}
+            logs={silkLogs}
             corruptText={corruptText}
           />
         );
@@ -314,6 +338,7 @@ export default function LostMarkTerminal() {
       {glitch && (
         <div className="fixed inset-0 z-20 bg-red-500 opacity-20 animate-ping"></div>
       )}
+      <audio ref={clickAudioRef} src="/sfx/beep.mp3" className="hidden" />
 
       {/* Главный контейнер с отступами от header/footer */}
       <div className="px-2 py-4 sm:px-4 sm:py-6 md:px-6 md:py-8 relative z-0">

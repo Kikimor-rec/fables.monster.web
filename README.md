@@ -64,6 +64,14 @@ variables above. The Next.js server will automatically load them when running
 - **Fonts**: Geist and Geist Mono
 - **Deployment**: Vercel
 
+## Documentation
+
+Additional guides are available in the [docs](docs/) folder:
+- [Project Overview](docs/overview.md)
+- [Development Setup](docs/development.md)
+- [Style Guide](docs/style-guide.md)
+- [Updating Content](docs/updating-content.md)
+
 ## Team
 
 - **Stepan Kulikov** - Creative Director & Lead Designer
