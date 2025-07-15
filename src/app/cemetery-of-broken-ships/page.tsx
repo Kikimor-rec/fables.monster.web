@@ -247,7 +247,7 @@ export default function CemeteryOfBrokenShips() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="hhttps://discord.gg/qJS4h5usxe"
+              href="https://discord.gg/qJS4h5usxe"
               className="bg-white text-red-900 px-8 py-4 text-lg font-mono font-bold hover:bg-gray-200 transition-colors"
             >
               JOIN DISCORD
