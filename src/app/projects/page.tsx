@@ -43,8 +43,7 @@ export default function Projects() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center">
           <FadeIn>
             <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-white mb-6 font-mono tracking-wider">
-                OUR PROJECTS
-                OUR PROJECTS
+              OUR PROJECTS
             </h1>
             <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto font-mono">
               Tabletop RPG adventures crafted with attention to detail and immersive storytelling
