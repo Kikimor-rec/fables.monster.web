@@ -38,6 +38,23 @@ npm start
 
 Open [http://localhost:3000](http://localhost:3000) to view the site.
 
+## Environment Variables
+
+Configure the following variables for sending email notifications from the
+contact form:
+
+```bash
+SMTP_HOST=your.smtp.host
+SMTP_PORT=587
+SMTP_USER=your-user
+SMTP_PASSWORD=your-password
+SMTP_TO=recipient@example.com
+```
+
+Create a `.env.local` file in the project root during development and define the
+variables above. The Next.js server will automatically load them when running
+`npm run dev` or `npm start`.
+
 ## Tech Stack
 
 - **Framework**: Next.js 15 with App Router
