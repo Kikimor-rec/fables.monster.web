@@ -173,9 +173,9 @@ export default function TimerTerminal() {
   if (isLoading) {
     return (
       <div className="min-h-screen bg-black text-green-400 font-mono flex items-center justify-center crt-terminal">
-        <div className="text-center">
+        <div className="text-center px-2">
           <div className="mb-8">
-            <pre className="text-green-400 font-mono text-xs sm:text-sm animate-pulse overflow-x-auto">
+            <pre className="text-green-400 font-mono text-xs sm:text-sm animate-pulse overflow-x-auto max-w-full">
               {`
 ████████╗██╗███╗   ███╗███████╗██████╗ 
 ╚══██╔══╝██║████╗ ████║██╔════╝██╔══██╗
@@ -208,8 +208,8 @@ export default function TimerTerminal() {
       <div className="relative z-0">
         
         {/* Секция настроек таймера - полный экран */}
-        <section className="min-h-screen flex items-center justify-center px-2 py-4 sm:px-4 sm:py-6 md:px-6 md:py-8">
-          <div className="bg-black p-4 sm:p-6 md:p-8 lg:p-12 rounded-lg border-2 border-green-400 shadow-lg shadow-green-400/50 w-full max-w-4xl">
+        <section className="min-h-screen flex items-center justify-center px-1 py-2 sm:px-4 sm:py-6 md:px-6 md:py-8">
+          <div className="bg-black p-3 sm:p-6 md:p-8 lg:p-12 rounded-lg border-2 border-green-400 shadow-lg shadow-green-400/50 w-full max-w-4xl">
             
             {/* Заголовок секции настроек */}
             <div className="text-center mb-8 sm:mb-12">
@@ -228,42 +228,48 @@ export default function TimerTerminal() {
               <div className="space-y-6 sm:space-y-8 mb-8 sm:mb-12">
                 <div className="text-center">
                   <div className="text-green-500 mb-4 text-lg font-mono">SET DURATION</div>
-                  <div className="flex justify-center items-center space-x-4 sm:space-x-8">
-                    <div className="flex flex-col items-center">
-                      <label className="text-sm text-green-600 mb-2">HOURS</label>
-                      <input
-                        type="number"
-                        min="0"
-                        max="23"
-                        value={hours}
-                        onChange={(e) => setHours(Math.max(0, Math.min(23, parseInt(e.target.value) || 0)))}
-                        className="w-20 sm:w-24 bg-black border-2 border-green-600 text-green-400 text-center py-3 sm:py-4 text-lg sm:text-xl font-mono focus:border-green-300 focus:outline-none rounded"
-                        disabled={isRunning}
-                      />
+                  <div className="flex flex-wrap justify-center items-center gap-2 sm:gap-4">
+                    <div className="flex items-center">
+                      <div className="flex flex-col items-center">
+                        <label className="text-sm text-green-600 mb-1 sm:mb-2">HOURS</label>
+                        <input
+                          type="number"
+                          min="0"
+                          max="23"
+                          value={hours}
+                          onChange={(e) => setHours(Math.max(0, Math.min(23, parseInt(e.target.value) || 0)))}
+                          className="w-16 sm:w-20 md:w-24 bg-black border-2 border-green-600 text-green-400 text-center py-2 sm:py-3 text-base sm:text-lg font-mono focus:border-green-300 focus:outline-none rounded"
+                          disabled={isRunning}
+                        />
+                      </div>
+                      <div className="text-green-400 text-xl sm:text-2xl md:text-3xl font-bold px-1 sm:px-2">:</div>
                     </div>
-                    <div className="text-green-400 text-2xl sm:text-3xl font-bold">:</div>
-                    <div className="flex flex-col items-center">
-                      <label className="text-sm text-green-600 mb-2">MINUTES</label>
-                      <input
-                        type="number"
-                        min="0"
-                        max="59"
-                        value={minutes}
-                        onChange={(e) => setMinutes(Math.max(0, Math.min(59, parseInt(e.target.value) || 0)))}
-                        className="w-20 sm:w-24 bg-black border-2 border-green-600 text-green-400 text-center py-3 sm:py-4 text-lg sm:text-xl font-mono focus:border-green-300 focus:outline-none rounded"
-                        disabled={isRunning}
-                      />
+                    
+                    <div className="flex items-center">
+                      <div className="flex flex-col items-center">
+                        <label className="text-sm text-green-600 mb-1 sm:mb-2">MINUTES</label>
+                        <input
+                          type="number"
+                          min="0"
+                          max="59"
+                          value={minutes}
+                          onChange={(e) => setMinutes(Math.max(0, Math.min(59, parseInt(e.target.value) || 0)))}
+                          className="w-16 sm:w-20 md:w-24 bg-black border-2 border-green-600 text-green-400 text-center py-2 sm:py-3 text-base sm:text-lg font-mono focus:border-green-300 focus:outline-none rounded"
+                          disabled={isRunning}
+                        />
+                      </div>
+                      <div className="text-green-400 text-xl sm:text-2xl md:text-3xl font-bold px-1 sm:px-2">:</div>
                     </div>
-                    <div className="text-green-400 text-2xl sm:text-3xl font-bold">:</div>
+                    
                     <div className="flex flex-col items-center">
-                      <label className="text-sm text-green-600 mb-2">SECONDS</label>
+                      <label className="text-sm text-green-600 mb-1 sm:mb-2">SECONDS</label>
                       <input
                         type="number"
                         min="0"
                         max="59"
                         value={seconds}
                         onChange={(e) => setSeconds(Math.max(0, Math.min(59, parseInt(e.target.value) || 0)))}
-                        className="w-20 sm:w-24 bg-black border-2 border-green-600 text-green-400 text-center py-3 sm:py-4 text-lg sm:text-xl font-mono focus:border-green-300 focus:outline-none rounded"
+                        className="w-16 sm:w-20 md:w-24 bg-black border-2 border-green-600 text-green-400 text-center py-2 sm:py-3 text-base sm:text-lg font-mono focus:border-green-300 focus:outline-none rounded"
                         disabled={isRunning}
                       />
                     </div>
@@ -336,8 +342,8 @@ export default function TimerTerminal() {
         </section>
 
         {/* Секция дисплея таймера - полный экран */}
-        <section className="min-h-screen flex items-center justify-center px-2 py-4 sm:px-4 sm:py-6 md:px-6 md:py-8">
-          <div className="bg-black p-4 sm:p-6 md:p-8 lg:p-12 rounded-lg border-2 border-green-400 shadow-lg shadow-green-400/50 w-full max-w-4xl">
+        <section className="min-h-screen flex items-center justify-center px-1 py-2 sm:px-4 sm:py-6 md:px-6 md:py-8">
+          <div className="bg-black p-3 sm:p-6 md:p-8 lg:p-12 rounded-lg border-2 border-green-400 shadow-lg shadow-green-400/50 w-full max-w-4xl">
             
             {/* Заголовок секции дисплея */}
             <div className="text-center mb-8 sm:mb-12">
@@ -353,7 +359,7 @@ export default function TimerTerminal() {
             <div className="flex flex-col justify-center items-center space-y-8 sm:space-y-12">
               <div className="text-center">
                 <div className="text-green-500 mb-4 text-lg sm:text-xl font-mono">REMAINING TIME</div>
-                <div className={`text-6xl sm:text-8xl md:text-9xl font-bold font-mono ${currentSeconds === 0 && totalSeconds > 0 ? 'text-red-400 animate-pulse' : getStatusColor()}`}>
+                <div className={`text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold font-mono ${currentSeconds === 0 && totalSeconds > 0 ? 'text-red-400 animate-pulse' : getStatusColor()}`}>
                   {formatTime(currentSeconds)}
                 </div>
               </div>
@@ -401,7 +407,7 @@ export default function TimerTerminal() {
 
         {/* Статусная строка - фиксированная внизу */}
         <div className="fixed bottom-0 left-0 right-0 p-2 sm:p-3 bg-green-900 bg-opacity-90 border-t-2 border-green-600 backdrop-blur-sm z-30">
-          <div className="flex flex-col sm:flex-row justify-between items-center text-xs sm:text-sm font-mono space-y-1 sm:space-y-0 max-w-7xl mx-auto">
+          <div className="flex flex-col sm:flex-row justify-between items-center text-xs sm:text-sm font-mono space-y-1 sm:space-y-0 max-w-7xl mx-auto px-2">
             <div className="text-green-400">
               CHRONOMETER SYSTEM v2.1.0
             </div>

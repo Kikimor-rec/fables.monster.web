@@ -9,8 +9,8 @@ interface Track {
 
 export default function MusicPlayer() {
   const tracks: Track[] = [
-    { title: "In a Deep Space", filename: "1_-in-a-deep-space.mp3" },
-    { title: "Arrival to Black Hole", filename: "1_1-Arrival-to-black-hole.mp3" },
+    { title: "In a Deep Space", filename: "1-In-a-deep-space.mp3" },
+    { title: "Arrival at the Black Hole", filename: "2-arrival-at-the-black-hole.mp3" },
     { title: "Welcome to Silk Star", filename: "1_2-Welcome-to-Silk-Star.mp3" },
     { title: "Breath of Black Hole", filename: "2_-Breath-of-black-hole.mp3" },
     { title: "Radiation Wave", filename: "3_-Radiation-wave.mp3" },

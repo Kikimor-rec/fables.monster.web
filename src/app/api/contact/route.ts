@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from 'nodemailer';
 
+// Принудительно используем Node.js runtime для поддержки TCP соединений
+export const runtime = 'nodejs';
+
 export async function POST(request: NextRequest) {
   try {
     const { name, email, message } = await request.json();
