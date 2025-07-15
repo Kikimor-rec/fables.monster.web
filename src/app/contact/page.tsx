@@ -1,7 +1,6 @@
 "use client";
 
-
-import SocialLinks from "@/components/SocialLinks";
+import Image from "next/image";
 import ContactForm from "@/components/ContactForm";
 
 export default function Contact() {
@@ -15,9 +14,7 @@ export default function Contact() {
           <h1 className="text-6xl md:text-8xl font-bold text-white mb-6 font-mono tracking-wider">
             CONTACT
           </h1>
-          <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto font-mono">
-            Get in touch with Fables Monster Studio
-          </p>
+         
         </div>
       </section>
 
@@ -30,123 +27,28 @@ export default function Contact() {
               <h2 className="text-3xl font-bold text-white mb-8 font-mono">
                 GET IN TOUCH
               </h2>
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <div className="text-red-400 text-2xl">📧</div>
-                  <div>
-                    <h3 className="text-xl font-bold text-white mb-2 font-mono">Email</h3>
-                    <a 
-                      href="mailto:info@fables.monster" 
-                      className="text-gray-300 font-mono hover:text-red-400 transition-colors"
-                    >
-                      info@fables.monster
-                    </a>
-                  </div>
-                </div>
-                
-                <div className="flex items-start space-x-4">
-                  <div className="text-red-400 text-2xl">💬</div>
-                  <div>
-                    <h3 className="text-xl font-bold text-white mb-2 font-mono">Discord</h3>
-                    <a 
-                      href="https://discord.gg/qJS4h5usxe" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="text-gray-300 font-mono hover:text-red-400 transition-colors"
-                    >
-                      Join our community server
-                    </a>
-                  </div>
-                </div>
-                
-                <div className="flex items-start space-x-4">
-                  <div className="text-red-400 text-2xl">🎮</div>
-                  <div>
-                    <h3 className="text-xl font-bold text-white mb-2 font-mono">Itch.io</h3>
-                    <a 
-                      href="https://fablesmonster.itch.io/" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="text-gray-300 font-mono hover:text-red-400 transition-colors"
-                    >
-                      fablesmonster.itch.io
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-4">
-                  <div className="text-red-400 text-2xl">💰</div>
-                  <div>
-                    <h3 className="text-xl font-bold text-white mb-2 font-mono">Patreon</h3>
-                    <a 
-                      href="https://patreon.com/FablesMonster?fables.monster" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="text-gray-300 font-mono hover:text-red-400 transition-colors"
-                    >
-                      Support our work
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-4">
-                  <div className="text-red-400 text-2xl">📚</div>
-                  <div>
-                    <h3 className="text-xl font-bold text-white mb-2 font-mono">DriveThruRPG</h3>
-                    <a 
-                      href="https://www.drivethrurpg.com/en/publisher/30815/Stepan%20Kulikov" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="text-gray-300 font-mono hover:text-red-400 transition-colors"
-                    >
-                      Our RPG collection
-                    </a>
-                  </div>
-                </div>
+              <div className="flex flex-col items-start gap-8 mb-8 p-3">
+                <a href="https://discord.gg/qJS4h5usxe" target="_blank" rel="noopener noreferrer" title="Discord" className="block">
+                  <Image src="/logos/discord-badge-color.png" alt="Discord" width={200} height={40} className="h-10 w-auto drop-shadow mx-0" />
+                </a>
+                <a href="https://fablesmonster.itch.io/" target="_blank" rel="noopener noreferrer" title="Itch.io" className="block">
+                  <Image src="/logos/logo-white-new.svg" alt="Itch.io" width={200} height={40} className="h-10 w-auto drop-shadow mx-0" />
+                </a>
+                <a href="https://patreon.com/FablesMonster?fables.monster" target="_blank" rel="noopener noreferrer" title="Patreon" className="block">
+                  <Image src="/logos/patreon-badge-color.png.png" alt="Patreon" width={200} height={40} className="h-10 w-auto drop-shadow mx-0" />
+                </a>
+                <a href="https://www.drivethrurpg.com/en/publisher/30815/Stepan%20Kulikov" target="_blank" rel="noopener noreferrer" title="DriveThruRPG" className="block">
+                  <Image src="/logos/drivethrurpg-badge-color.png" alt="DriveThruRPG" width={200} height={40} className="h-10 w-auto drop-shadow mx-0" />
+                </a>
               </div>
+
             </div>
 
             {/* Contact Form */}
             <ContactForm />
           </div>
         </div>
-      </section>
-
-      {/* Call to Action */}
-      <section className="py-20 bg-red-950/20 border-t border-red-700">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold text-white mb-6 font-mono">
-            CONTACT US
-          </h2>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">              <a
-                href="https://discord.gg/qJS4h5usxe"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-red-700 hover:bg-red-600 text-white px-8 py-4 text-lg font-mono font-bold transition-colors border border-red-600"
-              >
-                JOIN DISCORD
-              </a>
-              <a
-                href="https://patreon.com/FablesMonster?fables.monster"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-red-900 px-8 py-4 text-lg font-mono font-bold transition-colors"
-              >
-                NEWSLETTER
-              </a>
-          </div>
-        </div>
-      </section>
-
-      {/* Social Links */}
-      <section className="py-20 bg-black border-t border-red-700">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold text-white mb-8 font-mono">
-            FOLLOW US
-          </h2>
-          <SocialLinks showLabels={true} className="justify-center" />
-        </div>
-      </section>
+      </section>     
     </div>
   );
 }

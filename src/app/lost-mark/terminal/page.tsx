@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
+import ResponsiveAscii from '@/components/ResponsiveAscii';
 import { useContent } from '@/hooks/useContent';
 
 // Типы данных для терминала
@@ -11,6 +12,7 @@ interface ShipLog {
   message: string;
   details: string;
 }
+
 
 interface SilkStarLog {
   id: string;
@@ -310,9 +312,12 @@ export default function LostMarkTerminal() {
                 </>
               ) : (
                 <div className="text-center">
-                  <pre className="text-red-400 font-mono text-xs sm:text-sm mb-3 sm:mb-4 animate-pulse overflow-x-auto">
-                    {asciiEye}
-                  </pre>
+                  <div className="w-full overflow-hidden">
+                    <ResponsiveAscii
+                      ascii={asciiEye}
+                      className="text-red-400 font-mono animate-pulse mb-3 sm:mb-4"
+                    />
+                  </div>
                   <div className="text-red-400 text-lg sm:text-xl md:text-2xl font-bold animate-pulse font-mono">
                     {typingText}
                   </div>
@@ -357,9 +362,9 @@ export default function LostMarkTerminal() {
     return (
       <div className="min-h-screen bg-black text-green-400 font-mono flex items-center justify-center crt-terminal">
         <div className="text-center">
-          <div className="mb-8">
-            <pre className="text-green-400 font-mono text-xs sm:text-sm animate-pulse overflow-x-auto">
-              {`
+          <div className="mb-8 mx-auto max-w-full" style={{maxWidth: 600}}>
+            <ResponsiveAscii
+              ascii={`
 ███████╗██╗██╗     ██╗  ██╗    ███████╗████████╗ █████╗ ██████╗ 
 ██╔════╝██║██║     ██║ ██╔╝    ██╔════╝╚══██╔══╝██╔══██╗██╔══██╗
 ███████╗██║██║     █████╔╝     ███████╗   ██║   ███████║██████╔╝
@@ -367,19 +372,26 @@ export default function LostMarkTerminal() {
 ███████║██║███████╗██║  ██╗    ███████║   ██║   ██║  ██║██║  ██║
 ╚══════╝╚═╝╚══════╝╚═╝  ╚═╝    ╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝
               `}
-            </pre>
+              className="text-green-400 font-mono animate-pulse"
+            />
           </div>
-          <div className="text-green-300 text-lg sm:text-xl mb-4">
-            {loadingText}
-          </div>
-          <div className="text-green-500">
-            <span className="animate-pulse">█</span>
+          <div>
+            <div
+              className="text-green-300 text-lg sm:text-xl mb-4"
+              style={{ minHeight: '2.5em', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+            >
+              {loadingText}
+            </div>
+            <div className="text-green-500">
+              <span className="animate-pulse">█</span>
+            </div>
           </div>
         </div>
       </div>
     );
   }
 
+  // основной return для остальных состояний
   return (
     <div className={`min-h-screen bg-black text-green-400 font-mono relative crt-terminal ${glitch ? 'animate-pulse' : ''}`}>
       {/* Glitch Effect */}
@@ -390,10 +402,8 @@ export default function LostMarkTerminal() {
       {/* Главный контейнер с отступами от header/footer */}
       <div className="px-2 py-4 sm:px-4 sm:py-6 md:px-6 md:py-8 relative z-0">
         <div className="bg-black p-3 sm:p-4 md:p-6 lg:p-8 rounded-lg border-2 border-green-400 shadow-lg shadow-green-400/50 min-h-[calc(100vh-8rem)] sm:min-h-[calc(100vh-12rem)]">
-          
           {/* Мобильно-адаптивная сетка */}
           <div className="flex flex-col lg:grid lg:grid-cols-2 gap-3 sm:gap-4 md:gap-6 lg:gap-8 h-full">
-            
             {/* Панель навигации */}
             <div className="border border-green-400 p-2 sm:p-3 md:p-4 flex flex-col order-2 lg:order-1">
               <h2 className="text-sm sm:text-lg md:text-xl font-bold mb-2 sm:mb-3 md:mb-4 text-green-300">
