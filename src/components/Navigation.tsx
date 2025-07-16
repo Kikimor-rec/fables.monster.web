@@ -27,7 +27,7 @@ export default function Navigation() {
   };
 
   return (
-    <nav className="fixed top-0 w-full z-50 px-6 py-4 bg-black/80 backdrop-blur-sm border-b border-red-700">
+    <nav className="fixed top-0 w-full z-50 px-6 py-4 bg-black/90 backdrop-blur-sm border-b border-red-700">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         <Link href="/" className="text-2xl font-bold text-white font-mono tracking-wider">
           FABLES MONSTER
@@ -39,7 +39,7 @@ export default function Navigation() {
             <Link
               key={link.href}
               href={link.href}
-              className={`nav-link transition-colors font-mono font-bold ${
+              className={`nav-link transition-colors font-mono font-bold text-sm md:text-base ${
                 isActive(link.href)
                   ? "nav-link-active text-red-400"
                   : "text-white hover:text-red-400"
@@ -89,7 +89,7 @@ export default function Navigation() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`nav-link block transition-colors font-mono font-bold ${
+                className={`nav-link block transition-colors font-mono font-bold text-base ${
                   isActive(link.href)
                     ? "nav-link-active text-red-400"
                     : "text-white hover:text-red-400"
