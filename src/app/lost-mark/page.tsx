@@ -179,7 +179,7 @@ export default function LostMark() {
             
             <div className="text-center">
               <div
-                className="relative glitch-wrapper"
+                className="relative image-glitch"
                 style={{
                   // Pass image URL to CSS for pseudo-element glitch layers
                   '--glitch-image': "url('/images/lost-mark/ship_lm.webp')"
