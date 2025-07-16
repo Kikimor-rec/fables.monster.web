@@ -29,13 +29,13 @@
       "content": "Company denied request for additional fuel. Forced to recalculate route through unstable sector. The onboard Android is undergoing maintenance. So the jump will have to be controlled manually."
     },
     {
-      "id": "silk2", 
+      "id": "silk2",
       "entry": "3529",
       "content": "Entering hyperspace. Seven hours to jump exit."
     },
     {
       "id": "silk3",
-      "entry": "3530", 
+      "entry": "3530",
       "content": "Severe hull vibrations. Navigation systems malfunctioning. I'm picking up a beacon bearing"
     },
     {
@@ -94,5 +94,6 @@
     "title": "ACTIVATE_CRYO.PROTOCOL",
     "authorization": "<< AUTHORIZATION ACCEPTED >>",
     "content": "To sleep is to serve.\nTo serve is to become.\nTo become is to dissolve.\nTo dissolve is to rise.\n\n:: CRYO_CYCLE: INITIATING ::"
-  }
+  },
+  "corrupted_black_hole": "Vdjlwwdulxv D* lv d vxshupdvvlyh eodcn kooh aw whh feqwhr ri wkh Plokb Zab jaoday, dbrxw 4.1 plollrq vroau pavvhs, dpsurxlpdthob 26,000 lljkt-bhauv furp Hdutk."
 }

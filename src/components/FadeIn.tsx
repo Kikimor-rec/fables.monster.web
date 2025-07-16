@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { ReactNode, Suspense } from "react";
+import { ReactNode, Suspense, useState } from "react";
 
 const MotionDiv = dynamic(
   () => import("framer-motion").then((mod) => mod.motion.div),
@@ -18,11 +18,11 @@ interface FadeInProps {
   className?: string;
 }
 
-export default function FadeIn({ 
-  children, 
-  delay = 0, 
-  direction = "up", 
-  className = "" 
+export default function FadeIn({
+  children,
+  delay = 0,
+  direction = "up",
+  className = ""
 }: FadeInProps) {
   const getInitialPosition = () => {
     switch (direction) {
@@ -39,6 +39,8 @@ export default function FadeIn({
     }
   };
 
+  const [glitched, setGlitched] = useState(false);
+
   return (
     <Suspense fallback={<div className={className}>{children}</div>}>
       <MotionDiv
@@ -50,7 +52,8 @@ export default function FadeIn({
           delay: delay,
           ease: [0.25, 0.25, 0.25, 0.75]
         }}
-        className={className}
+        onAnimationComplete={() => setGlitched(true)}
+        className={className + (glitched ? " terminal-glitch" : "")}
       >
         {children}
       </MotionDiv>

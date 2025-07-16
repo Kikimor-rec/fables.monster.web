@@ -5,7 +5,7 @@ import ResponsiveAscii from '@/components/ResponsiveAscii';
 import { useContent } from '@/hooks/useContent';
 import LogViewer from '@/components/terminal/LogViewer';
 import ManifestViewer from '@/components/terminal/ManifestViewer';
-import CryoProtocolViewer from '@/components/terminal/CryoProtocolViewer';
+import CryoBay from '@/components/terminal/CryoBay';
 import {
   CrewManifest,
   CryoProtocol,
@@ -225,9 +225,9 @@ export default function LostMarkTerminal() {
 
       case 'cryo':
         return (
-          <CryoProtocolViewer
-            header={content?.interface?.sections?.cryo_protocols || 'CRYOCAPSULE PROTOCOLS'}
-            protocols={(content?.cryo_protocols || []) as CryoProtocol[]}
+          <CryoBay
+            header={content?.interface?.sections?.cryo_protocols || 'CRYO BAY'}
+            activation={(content?.cryo_protocol || {}) as CryoProtocol}
           />
         );
 
@@ -251,7 +251,7 @@ export default function LostMarkTerminal() {
                   </button>
                 </>
               ) : (
-                <div className="text-center">
+                <div className="text-center space-y-3">
                   <div className="w-full overflow-hidden">
                     <ResponsiveAscii
                       ascii={asciiEye}
@@ -260,6 +260,9 @@ export default function LostMarkTerminal() {
                   </div>
                   <div className="text-red-400 text-lg sm:text-xl md:text-2xl font-bold animate-pulse font-mono">
                     {typingText}
+                  </div>
+                  <div className="text-green-300 text-xs sm:text-sm font-mono whitespace-pre-wrap break-words">
+                    {content?.corrupted_black_hole}
                   </div>
                 </div>
               )}
@@ -379,7 +382,7 @@ export default function LostMarkTerminal() {
                   onClick={() => handleMenuClick('cryo')}
                   className={`block w-full text-left p-2 sm:p-3 text-xs sm:text-sm md:text-base hover:bg-green-900 border border-green-600 transition-colors ${currentView === 'cryo' ? 'bg-green-900' : ''}`}
                 >
-                  {content?.interface?.menu_items?.cryo_protocols || "[5] CRYO PROTOCOLS"}
+                  {content?.interface?.menu_items?.cryo_protocols || "[5] CRYO BAY"}
                 </button>
                 <button 
                   onClick={() => handleMenuClick('corrupted')}
