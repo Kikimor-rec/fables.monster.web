@@ -24,8 +24,16 @@ export interface LifeSupportSystem {
 
 /** Single crew member entry */
 export interface CrewMember {
+  /** Crew member rank or role */
+  rank: string;
+  /** Crew member name */
   name: string;
-  position: string;
+  /** Current status (e.g. ONLINE, CRYOPOD 2) */
+  status: string;
+  /** Render the name with a line-through effect */
+  strike?: boolean;
+  /** Optional timer in seconds that should increment every second */
+  timer?: number;
 }
 
 /** Collection of crew members */

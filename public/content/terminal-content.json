@@ -46,27 +46,85 @@
   ],
   "crew_manifest": {
     "vessel": "SILK STAR",
-    "complement": 12,
+    "complement": 14,
     "crew": [
       {
         "rank": "CAPTAIN",
-        "name": "[REDACTED]",
-        "status": "corrupted"
+        "name": "Mark Opollo",
+        "status": "ONLINE"
       },
       {
-        "rank": "FIRST OFFICER",
-        "name": "Maria Santos",
-        "status": "connection_lost"
+        "rank": "SECOND OFFICER",
+        "name": "Йохан Бан",
+        "status": "CRYOPOD 2"
+      },
+      {
+        "rank": "SECURITY",
+        "name": "Rin Owens",
+        "status": "CRYOPOD 3 - RED"
+      },
+      {
+        "rank": "NAVIGATOR",
+        "name": "Aisha Singh",
+        "status": "CRYOPOD 5 - YELLOW"
+      },
+      {
+        "rank": "COMMS",
+        "name": "Peter Ivanov",
+        "status": "CRYOPOD 8 - YELLOW"
       },
       {
         "rank": "ENGINEER",
-        "name": "Jin Wu",
-        "status": "connection_lost"
+        "name": "Lucas Trent",
+        "status": "DECEASED",
+        "strike": true
       },
       {
-        "rank": "MEDIC",
-        "name": "Dr. Alex Rivera",
-        "status": "connection_lost"
+        "rank": "ENGINEER",
+        "name": "Sarah Kim",
+        "status": "DECEASED",
+        "strike": true
+      },
+      {
+        "rank": "ENGINEER",
+        "name": "Pavel Orlov",
+        "status": "DECEASED",
+        "strike": true
+      },
+      {
+        "rank": "ENGINEER",
+        "name": "Ingrid May",
+        "status": "DECEASED",
+        "strike": true
+      },
+      {
+        "rank": "ENGINEER",
+        "name": "Omar Rashid",
+        "status": "DECEASED",
+        "strike": true
+      },
+      {
+        "rank": "ENGINEER",
+        "name": "Nils Johansson",
+        "status": "DECEASED",
+        "strike": true
+      },
+      {
+        "rank": "ENGINEER",
+        "name": "Samantha Lee",
+        "status": "DECEASED",
+        "strike": true
+      },
+      {
+        "rank": "ENGINEER",
+        "name": "Hilarion",
+        "status": "ONLINE"
+      },
+      {
+        "rank": "ANDROID",
+        "name": "XB78-x4",
+        "status": "CONNECTION LOST",
+        "timer": 6843312000
       }
     ]
   },
