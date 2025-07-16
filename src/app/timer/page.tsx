@@ -186,9 +186,9 @@ export default function TimerTerminal() {
   };
 
   const applyPreset = (mins: number) => {
-    setHours(Math.floor(mins / 60));
-    setMinutes(mins % 60);
-    setSeconds(0);
+    const totalMins = hours * 60 + minutes + mins;
+    setHours(Math.floor(totalMins / 60));
+    setMinutes(totalMins % 60);
     triggerGlitch();
   };
 
