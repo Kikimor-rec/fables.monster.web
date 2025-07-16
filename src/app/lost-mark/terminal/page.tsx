@@ -5,7 +5,7 @@ import ResponsiveAscii from '@/components/ResponsiveAscii';
 import { useContent } from '@/hooks/useContent';
 import LogViewer from '@/components/terminal/LogViewer';
 import ManifestViewer from '@/components/terminal/ManifestViewer';
-import CryoProtocolViewer from '@/components/terminal/CryoProtocolViewer';
+import CryoBay from '@/components/terminal/CryoBay';
 import {
   CrewManifest,
   CryoProtocol,
@@ -225,9 +225,9 @@ export default function LostMarkTerminal() {
 
       case 'cryo':
         return (
-          <CryoProtocolViewer
-            header={content?.interface?.sections?.cryo_protocols || 'CRYOCAPSULE PROTOCOLS'}
-            protocols={(content?.cryo_protocols || []) as CryoProtocol[]}
+          <CryoBay
+            header={content?.interface?.sections?.cryo_protocols || 'CRYO BAY'}
+            activation={(content?.cryo_protocol || {}) as CryoProtocol}
           />
         );
 
@@ -240,10 +240,13 @@ export default function LostMarkTerminal() {
             <div className="border border-red-600 p-2 sm:p-3 bg-red-900 bg-opacity-20 rounded">
               {!showCorruptedMessage ? (
                 <>
-                  <div className="text-red-400 mb-3 sm:mb-4 text-xs sm:text-sm font-mono">
-                    {content?.interface?.status_messages?.clearance_required || "SECURITY CLEARANCE REQUIRED"}
+                  <div className="text-green-300 text-xs sm:text-sm font-mono whitespace-pre-wrap break-words mb-3 sm:mb-4">
+                    {content?.corrupted_black_hole}
                   </div>
-                  <button 
+                  <div className="text-red-400 mb-3 sm:mb-4 text-xs sm:text-sm font-mono">
+                    {content?.interface?.status_messages?.clearance_required || 'SECURITY CLEARANCE REQUIRED'}
+                  </div>
+                  <button
                     onClick={handleCorruptedDataClear}
                     className="bg-red-700 text-white px-2 sm:px-4 py-1 sm:py-2 text-xs sm:text-sm border border-red-600 hover:bg-red-600 transition-colors font-mono"
                   >
@@ -251,7 +254,7 @@ export default function LostMarkTerminal() {
                   </button>
                 </>
               ) : (
-                <div className="text-center">
+                <div className="text-center space-y-3">
                   <div className="w-full overflow-hidden">
                     <ResponsiveAscii
                       ascii={asciiEye}
@@ -379,7 +382,7 @@ export default function LostMarkTerminal() {
                   onClick={() => handleMenuClick('cryo')}
                   className={`block w-full text-left p-2 sm:p-3 text-xs sm:text-sm md:text-base hover:bg-green-900 border border-green-600 transition-colors ${currentView === 'cryo' ? 'bg-green-900' : ''}`}
                 >
-                  {content?.interface?.menu_items?.cryo_protocols || "[5] CRYO PROTOCOLS"}
+                  {content?.interface?.menu_items?.cryo_protocols || "[5] CRYO BAY"}
                 </button>
                 <button 
                   onClick={() => handleMenuClick('corrupted')}
