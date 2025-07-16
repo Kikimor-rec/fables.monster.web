@@ -265,3 +265,34 @@ body {
     font-size: 0.875rem;
   }
 }
+
+/* Simple glitch effect for images */
+.glitch-wrapper {
+  position: relative;
+}
+.glitch-wrapper::before,
+.glitch-wrapper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: var(--glitch-image);
+  background-size: cover;
+  background-position: center;
+  mix-blend-mode: lighten;
+  opacity: 0.15;
+}
+.glitch-wrapper::before {
+  animation: glitchMove 2.5s infinite linear;
+}
+.glitch-wrapper::after {
+  animation: glitchMove 3s infinite linear reverse;
+}
+@keyframes glitchMove {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(2px, -2px); }
+  60% { transform: translate(-2px, -2px); }
+  80% { transform: translate(2px, 2px); }
+}
+
