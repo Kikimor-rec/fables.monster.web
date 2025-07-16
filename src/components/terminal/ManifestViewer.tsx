@@ -1,6 +1,7 @@
 "use client";
 
-import { CrewManifest } from "./types";
+import { CrewManifest, CrewMember } from "./types";
+import { useEffect, useState } from "react";
 
 /** Properties for the crew manifest viewer */
 export interface ManifestViewerProps {
@@ -12,6 +13,37 @@ export interface ManifestViewerProps {
   crewComplement: string;
   /** Message shown after the list */
   corruptedLabel: string;
+}
+
+interface MemberRowProps {
+  member: CrewMember;
+}
+
+function MemberRow({ member }: MemberRowProps) {
+  const [time, setTime] = useState(member.timer);
+
+  useEffect(() => {
+    if (member.timer !== undefined) {
+      const interval = setInterval(() => {
+        setTime((t) => (t ?? 0) + 1);
+      }, 1000);
+      return () => clearInterval(interval);
+    }
+  }, [member.timer]);
+
+  return (
+    <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
+      <span
+        className={`text-green-300 text-xs sm:text-sm font-mono ${member.strike ? 'line-through' : ''}`}
+      >
+        {member.rank} {member.name}
+      </span>
+      <span className="text-green-500 text-xs sm:text-sm font-mono">
+        {member.status}
+        {time !== undefined ? ` ${time}` : ''}
+      </span>
+    </div>
+  );
 }
 
 export default function ManifestViewer({ manifest, vesselName, crewComplement, corruptedLabel }: ManifestViewerProps) {
@@ -26,10 +58,7 @@ export default function ManifestViewer({ manifest, vesselName, crewComplement, c
         <div className="space-y-1 sm:space-y-2">
           {/* List each crew member */}
           {manifest.crew?.map((member, index) => (
-            <div key={index} className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
-              <span className="text-green-300 text-xs sm:text-sm font-mono">{member.name}</span>
-              <span className="text-green-500 text-xs sm:text-sm">{member.position}</span>
-            </div>
+            <MemberRow key={index} member={member} />
           ))}
         </div>
         <div className="mt-3 sm:mt-4 pt-2 border-t border-green-600">
