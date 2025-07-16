@@ -178,7 +178,13 @@ export default function LostMark() {
             </div>
             
             <div className="text-center">
-              <div className="relative">
+              <div
+                className="relative glitch-wrapper"
+                style={{
+                  // Pass image URL to CSS for pseudo-element glitch layers
+                  '--glitch-image': "url('/images/lost-mark/ship_lm.webp')"
+                } as React.CSSProperties}
+              >
                 <Image
                   src="/images/lost-mark/ship_lm.webp"
                   alt="Lost Mark Ship"
