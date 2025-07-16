@@ -54,7 +54,7 @@ export default function LostMark() {
           />
         </div>
         
-        <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
+        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center">
           <h1 className="text-5xl sm:text-6xl md:text-8xl font-bold text-white mb-6 font-mono tracking-wider">
             THE LOST MARK
           </h1>
@@ -114,7 +114,7 @@ export default function LostMark() {
 
       {/* VTT Modules Announcement */}
       <section className="py-8 border-t border-red-700 bg-gray-950/50">
-        <div className="max-w-5xl mx-auto px-6 text-center space-y-4">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 text-center space-y-4">
           <p className="text-gray-300 font-mono">
             We plan to release modules for popular virtual tabletops.
           </p>
@@ -134,8 +134,8 @@ export default function LostMark() {
 
       {/* About Section with Ship Image */}
       <section className="py-20 bg-gray-900 border-t border-red-700">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="grid md:grid-cols-2 gap-8 sm:gap-12 items-center">
             <div>
               <h2 className="text-4xl font-bold text-white mb-6 font-mono">
                 ABOUT THE ADVENTURE
@@ -153,23 +153,23 @@ export default function LostMark() {
               <div className="bg-black border border-red-700 p-6 mb-6">
                 <h3 className="text-xl font-bold text-white mb-4 font-mono">CREDITS</h3>
                 <div className="space-y-2 text-sm font-mono">
-                  <div className="flex justify-between">
+                  <div className="flex flex-wrap justify-between gap-x-2 gap-y-1">
                     <span className="text-gray-300">Written by:</span>
                     <span className="text-white">Stepan Kulikov</span>
                   </div>
-                  <div className="flex justify-between">
+                  <div className="flex flex-wrap justify-between gap-x-2 gap-y-1">
                     <span className="text-gray-300">Layout by:</span>
                     <span className="text-white">Tatiana Bond</span>
                   </div>
-                  <div className="flex justify-between">
+                  <div className="flex flex-wrap justify-between gap-x-2 gap-y-1">
                     <span className="text-gray-300">Art by:</span>
                     <span className="text-white">Zlata Ignatova</span>
                   </div>
-                  <div className="flex justify-between">
+                  <div className="flex flex-wrap justify-between gap-x-2 gap-y-1">
                     <span className="text-gray-300">Music By:</span>
                     <span className="text-white">Stanislav DariDa</span>
                   </div>
-                  <div className="flex justify-between">
+                  <div className="flex flex-wrap justify-between gap-x-2 gap-y-1">
                     <span className="text-gray-300">Coding by:</span>
                     <span className="text-white">Allecks</span>
                   </div>
@@ -202,7 +202,7 @@ export default function LostMark() {
 
       {/* Interactive Tools Section */}
       <section className="py-16 border-t border-red-700 bg-gray-950/50">
-        <div className="max-w-6xl mx-auto px-6">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <h2 className="text-3xl font-bold text-white mb-8 text-center font-mono">
             INTERACTIVE TOOLS
           </h2>
@@ -241,7 +241,7 @@ export default function LostMark() {
 
       {/* Features */}
       <section className="py-20 border-t border-red-700">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <h2 className="text-4xl font-bold text-white mb-12 text-center font-mono">
             KEY FEATURES
           </h2>
@@ -275,7 +275,7 @@ export default function LostMark() {
 
       {/* Download Section */}
       <section className="py-20 border-t border-red-700 text-center">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <h2 className="text-4xl font-bold text-white mb-6 font-mono">
             READY TO EXPLORE THE LOST MARK?
           </h2>
