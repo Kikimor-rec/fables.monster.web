@@ -255,7 +255,7 @@ export default function LostMarkTerminal() {
                 </>
               ) : (
                 <div className="text-center space-y-3">
-                  <div className="w-full overflow-hidden">
+                  <div className="w-full overflow-x-auto">
                     <ResponsiveAscii
                       ascii={asciiEye}
                       className="text-red-400 font-mono animate-pulse mb-3 sm:mb-4"
@@ -308,10 +308,10 @@ export default function LostMarkTerminal() {
     return (
       <div className="min-h-screen bg-black text-green-400 font-mono flex items-center justify-center crt-terminal">
         <div className="text-center">
-          <div className="mb-8 mx-auto max-w-full" style={{maxWidth: 600}}>
+          <div className="mb-8 mx-auto max-w-full overflow-x-auto" style={{maxWidth: 600}}>
             <ResponsiveAscii
               ascii={`
-███████╗██╗██╗     ██╗  ██╗    ███████╗████████╗ █████╗ ██████╗ 
+███████╗██╗██╗     ██╗  ██╗    ███████╗████████╗ █████╗ ██████╗
 ██╔════╝██║██║     ██║ ██╔╝    ██╔════╝╚══██╔══╝██╔══██╗██╔══██╗
 ███████╗██║██║     █████╔╝     ███████╗   ██║   ███████║██████╔╝
 ╚════██║██║██║     ██╔═██╗     ╚════██║   ██║   ██╔══██║██╔══██╗
