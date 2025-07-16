@@ -296,3 +296,47 @@ body {
   80% { transform: translate(2px, 2px); }
 }
 
+/* Navigation underline animation */
+.nav-link {
+  position: relative;
+  padding-bottom: 0.25rem;
+  display: inline-block;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  height: 2px;
+  width: 0;
+  background: currentColor;
+  transform: translateX(-50%);
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+.nav-link-active::after {
+  width: 100%;
+  left: 0;
+  transform: none;
+}
+
+.nav-link:active::after {
+  animation: nav-underline-stretch 0.4s forwards;
+}
+
+@keyframes nav-underline-stretch {
+  0% {
+    width: 0;
+    left: 50%;
+  }
+  50% {
+    width: 120%;
+    left: -10%;
+  }
+  100% {
+    width: 100%;
+    left: 0;
+  }
+}
+
