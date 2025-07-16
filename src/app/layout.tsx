@@ -55,7 +55,7 @@ export default function RootLayout({
       </head>
       <body className="antialiased" suppressHydrationWarning>
         <Navigation />
-        <main className="min-h-screen">
+        <main className="min-h-screen pt-20 md:pt-24">
           {children}
         </main>
         <Footer />
