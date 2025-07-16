@@ -266,12 +266,17 @@ body {
   }
 }
 
-/* Simple glitch effect for images */
-.glitch-wrapper {
+/* Reusable image glitch effect */
+.image-glitch {
   position: relative;
+  display: inline-block;
+  overflow: hidden;
 }
-.glitch-wrapper::before,
-.glitch-wrapper::after {
+.image-glitch img {
+  display: block;
+}
+.image-glitch::before,
+.image-glitch::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -279,21 +284,62 @@ body {
   background-image: var(--glitch-image);
   background-size: cover;
   background-position: center;
-  mix-blend-mode: lighten;
-  opacity: 0.15;
+  mix-blend-mode: screen;
+  opacity: 0.8;
 }
-.glitch-wrapper::before {
-  animation: glitchMove 2.5s infinite linear;
+.image-glitch::before {
+  animation: glitchSlice1 2.5s infinite linear alternate-reverse;
 }
-.glitch-wrapper::after {
-  animation: glitchMove 3s infinite linear reverse;
+.image-glitch::after {
+  animation: glitchSlice2 3s infinite linear alternate-reverse;
 }
-@keyframes glitchMove {
-  0%, 100% { transform: translate(0); }
-  20% { transform: translate(-2px, 2px); }
-  40% { transform: translate(2px, -2px); }
-  60% { transform: translate(-2px, -2px); }
-  80% { transform: translate(2px, 2px); }
+.image-glitch:hover::before,
+.image-glitch:hover::after {
+  animation: none;
+  opacity: 0;
+}
+
+/* Navigation underline animation */
+.nav-link {
+  position: relative;
+  padding-bottom: 0.25rem;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  height: 2px;
+  width: 0;
+  background: var(--accent);
+  transform: translateX(-50%);
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+.nav-link-active::after {
+  width: 100%;
+  left: 0;
+  transform: none;
+}
+
+.nav-link:active::after {
+  animation: nav-underline-stretch 0.4s forwards;
+}
+
+@keyframes nav-underline-stretch {
+  0% {
+    width: 0;
+    left: 50%;
+  }
+  50% {
+    width: 120%;
+    left: -10%;
+  }
+  100% {
+    width: 100%;
+    left: 0;
+  }
 }
 
 /* Navigation underline animation */
