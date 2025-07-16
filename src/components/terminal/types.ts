@@ -36,5 +36,7 @@ export interface CrewManifest {
 /** Cryocapsule protocol instructions */
 export interface CryoProtocol {
   title: string;
-  description: string;
+  description?: string;
+  authorization?: string;
+  content?: string;
 }
