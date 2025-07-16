@@ -314,4 +314,3 @@ body {
   80% { clip-path: inset(30% 0 40% 0); transform: translate(2px, 0); }
  100% { clip-path: inset(80% 0 0 0); transform: translate(0, 0); }
 }
-
