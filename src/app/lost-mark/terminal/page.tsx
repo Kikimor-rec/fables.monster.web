@@ -240,10 +240,13 @@ export default function LostMarkTerminal() {
             <div className="border border-red-600 p-2 sm:p-3 bg-red-900 bg-opacity-20 rounded">
               {!showCorruptedMessage ? (
                 <>
-                  <div className="text-red-400 mb-3 sm:mb-4 text-xs sm:text-sm font-mono">
-                    {content?.interface?.status_messages?.clearance_required || "SECURITY CLEARANCE REQUIRED"}
+                  <div className="text-green-300 text-xs sm:text-sm font-mono whitespace-pre-wrap break-words mb-3 sm:mb-4">
+                    {content?.corrupted_black_hole}
                   </div>
-                  <button 
+                  <div className="text-red-400 mb-3 sm:mb-4 text-xs sm:text-sm font-mono">
+                    {content?.interface?.status_messages?.clearance_required || 'SECURITY CLEARANCE REQUIRED'}
+                  </div>
+                  <button
                     onClick={handleCorruptedDataClear}
                     className="bg-red-700 text-white px-2 sm:px-4 py-1 sm:py-2 text-xs sm:text-sm border border-red-600 hover:bg-red-600 transition-colors font-mono"
                   >

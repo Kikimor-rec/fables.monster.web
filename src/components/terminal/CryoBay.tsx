@@ -9,15 +9,24 @@ interface CryoBayProps {
 
 export default function CryoBay({ activation, header }: CryoBayProps) {
   const statuses = [
-    "red",
-    "red",
-    "red",
-    "yellow",
-    "yellow",
-    "yellow",
-    "yellow",
-    "green",
-    ...Array(10).fill("empty"),
+    "empty", // 1
+    "red",   // 2
+    "red",   // 3
+    "red",   // 4
+    "yellow",// 5
+    "red",   // 6
+    "empty", // 7
+    "yellow",// 8
+    "empty", // 9
+    "empty", // 10
+    "empty", // 11
+    "empty", // 12
+    "yellow",// 13
+    "empty", // 14
+    "empty", // 15
+    "empty", // 16
+    "empty", // 17
+    "empty"  // 18
   ];
 
   const getColor = (s: string) => {
@@ -26,8 +35,6 @@ export default function CryoBay({ activation, header }: CryoBayProps) {
         return "bg-red-600";
       case "yellow":
         return "bg-yellow-600";
-      case "green":
-        return "bg-green-600";
       default:
         return "";
     }
@@ -38,7 +45,7 @@ export default function CryoBay({ activation, header }: CryoBayProps) {
       <h3 className="text-green-300 font-bold mb-3 sm:mb-4 text-sm sm:text-base">
         {header}
       </h3>
-      <div className="grid grid-cols-6 gap-2">
+      <div className="grid grid-cols-9 gap-2">
         {statuses.map((s, i) => (
           <div
             key={i}
