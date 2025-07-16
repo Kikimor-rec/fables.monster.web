@@ -15,7 +15,7 @@ export default function ResponsiveAscii({
   return (
     <pre
       style={{ fontSize: "12px", lineHeight: "1.05", width: `${longest}ch` }}
-      className={className + " whitespace-pre inline-block"}
+      className={className + " whitespace-pre inline-block overflow-x-auto"}
     >
       {ascii}
     </pre>
