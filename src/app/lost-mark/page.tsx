@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import StoreButton from "@/components/StoreButton";
 import LazyMusicPlayer from "@/components/LazyMusicPlayer";
+import GlitchImage from '@/components/GlitchImage';
 
 export default function LostMark() {
   const features = [
@@ -139,16 +140,15 @@ export default function LostMark() {
               <h2 className="text-4xl font-bold text-white mb-6 font-mono">
                 ABOUT THE ADVENTURE
               </h2>
-<p className="text-lg text-gray-300 mb-6 font-mono">
-  After making the final jump, the players' ship finds themselves in the proximity of a compact but active black hole. There are no jump cores left. All they observe is a very old hyper beacon, a cloud of debris, and the **Ship of the Lost** - a giant drifting structure assembled from dozens of other ships.
-</p>
-<p className="text-lg text-gray-300 mb-6 font-mono">
-  On board lives and rots **Mark Opollo**, a pilot who was fused to the ship during a crash 217 years ago. His surviving companions have become a cult. His flesh is metal. His mind is a net.
-</p>
-<p className="text-lg text-gray-300 mb-6 font-mono">
-  Hidden inside the ship is a **cryopod containing a child**, the final element for Mark's Ascension. Mark plans to transfer his consciousness into the child or someone more convenient and finally leave this place. Players will have to choose to: **stop** it... or **allow it to happen**.
-</p>
-              
+              <p className="text-lg text-gray-300 mb-6 font-mono">
+                After making the final jump, the players' ship finds themselves in the proximity of a compact but active black hole. There are no jump cores left. All they observe is a very old hyper beacon, a cloud of debris, and the **Ship of the Lost** - a giant drifting structure assembled from dozens of other ships.
+              </p>
+              <p className="text-lg text-gray-300 mb-6 font-mono">
+                On board lives and rots **Mark Opollo**, a pilot who was fused to the ship during a crash 217 years ago. His surviving companions have become a cult. His flesh is metal. His mind is a net.
+              </p>
+              <p className="text-lg text-gray-300 mb-6 font-mono">
+                Hidden inside the ship is a **cryopod containing a child**, the final element for Mark's Ascension. Mark plans to transfer his consciousness into the child or someone more convenient and finally leave this place. Players will have to choose to: **stop** it... or **allow it to happen**.
+              </p>
               {/* Credits */}
               <div className="bg-black border border-red-700 p-6 mb-6">
                 <h3 className="text-xl font-bold text-white mb-4 font-mono">CREDITS</h3>
@@ -165,43 +165,32 @@ export default function LostMark() {
                     <span className="text-gray-300">Art by:</span>
                     <span className="text-white">Zlata Ignatova</span>
                   </div>
-                                    <div className="flex justify-between">
+                  <div className="flex justify-between">
                     <span className="text-gray-300">Music By:</span>
                     <span className="text-white">Stanislav DariDa</span>
                   </div>
-                                    <div className="flex justify-between">
+                  <div className="flex justify-between">
                     <span className="text-gray-300">Coding by:</span>
                     <span className="text-white">Allecks</span>
                   </div>
                 </div>
               </div>
             </div>
-            
-            <div className="text-center">
-              <div
-                className="relative image-glitch"
-                style={{
-                  // Pass image URL to CSS for pseudo-element glitch layers
-                  '--glitch-image': "url('/images/lost-mark/ship_lm.webp')"
-                } as React.CSSProperties}
-              >
-                <Image
+            <div className="flex flex-col items-center">
+              <div className="bg-black border-2 border-red-700 shadow-lg mb-4 w-full max-w-[600px] overflow-hidden">
+                <GlitchImage
                   src="/images/lost-mark/ship_lm.webp"
                   alt="Lost Mark Ship"
-                  width={500}
-                  height={333}
+                  width={600}
+                  height={400}
                   className="mx-auto"
-                  style={{ width: 'auto', height: 'auto' }}
-                  quality={90}
-                  sizes="(max-width: 768px) 100vw, 500px"
                 />
-                <div className="absolute inset-0 bg-red-700/10 border-2 border-red-700"></div>
               </div>
-              <div className="mt-6 bg-red-950/20 border-2 border-red-700 p-6">
-                <div className="text-white font-mono font-bold text-xl mb-2">
+              <div className="w-full max-w-[600px] bg-red-950/20 border-2 border-red-700 p-6">
+                <div className="text-white font-mono font-bold text-xl mb-2 text-center">
                   ⚠ WARNING
                 </div>
-                <div className="text-gray-300 font-mono text-sm">
+                <div className="text-gray-300 font-mono text-sm text-center">
                   This adventure contains Sci-Fi horror themes, body horror, and psychological stress. 
                   Player discretion advised.
                 </div>
