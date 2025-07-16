@@ -264,6 +264,9 @@ export default function LostMarkTerminal() {
                   <div className="text-red-400 text-lg sm:text-xl md:text-2xl font-bold animate-pulse font-mono">
                     {typingText}
                   </div>
+                  <div className="text-green-300 text-xs sm:text-sm font-mono whitespace-pre-wrap break-words">
+                    {content?.corrupted_black_hole}
+                  </div>
                 </div>
               )}
             </div>
