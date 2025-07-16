@@ -39,9 +39,9 @@ export default function Navigation() {
             <Link
               key={link.href}
               href={link.href}
-              className={`transition-colors font-mono font-bold ${
+              className={`nav-link transition-colors font-mono font-bold ${
                 isActive(link.href)
-                  ? "text-red-400 border-b border-red-400"
+                  ? "nav-link-active text-red-400"
                   : "text-white hover:text-red-400"
               }`}
             >
@@ -89,9 +89,9 @@ export default function Navigation() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`block transition-colors font-mono font-bold ${
+                className={`nav-link block transition-colors font-mono font-bold ${
                   isActive(link.href)
-                    ? "text-red-400"
+                    ? "nav-link-active text-red-400"
                     : "text-white hover:text-red-400"
                 }`}
                 onClick={() => setIsMenuOpen(false)}

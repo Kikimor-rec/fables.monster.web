@@ -298,19 +298,48 @@ body {
   animation: none;
   opacity: 0;
 }
-@keyframes glitchSlice1 {
-  0% { clip-path: inset(0 0 80% 0); transform: translate(-2px, -2px); }
-  20% { clip-path: inset(30% 0 40% 0); transform: translate(2px, 2px); }
-  40% { clip-path: inset(40% 0 30% 0); transform: translate(-2px, 2px); }
-  60% { clip-path: inset(10% 0 60% 0); transform: translate(2px, -2px); }
-  80% { clip-path: inset(50% 0 20% 0); transform: translate(-2px, -2px); }
- 100% { clip-path: inset(0 0 80% 0); transform: translate(0, 0); }
+
+/* Navigation underline animation */
+.nav-link {
+  position: relative;
+  padding-bottom: 0.25rem;
 }
-@keyframes glitchSlice2 {
-  0% { clip-path: inset(80% 0 0 0); transform: translate(2px, 0); }
-  20% { clip-path: inset(40% 0 40% 0); transform: translate(-2px, 2px); }
-  40% { clip-path: inset(20% 0 60% 0); transform: translate(2px, -2px); }
-  60% { clip-path: inset(60% 0 30% 0); transform: translate(-2px, 2px); }
-  80% { clip-path: inset(30% 0 40% 0); transform: translate(2px, 0); }
- 100% { clip-path: inset(80% 0 0 0); transform: translate(0, 0); }
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  height: 2px;
+  width: 0;
+  background: var(--accent);
+  transform: translateX(-50%);
+  transition: width 0.3s ease, left 0.3s ease;
 }
+
+.nav-link-active::after {
+  width: 100%;
+  left: 0;
+  transform: none;
+}
+
+.nav-link:active::after {
+  animation: nav-underline-stretch 0.4s forwards;
+}
+
+@keyframes nav-underline-stretch {
+  0% {
+    width: 0;
+    left: 50%;
+  }
+  50% {
+    width: 120%;
+    left: -10%;
+  }
+  100% {
+    width: 100%;
+    left: 0;
+  }
+}
+
+
