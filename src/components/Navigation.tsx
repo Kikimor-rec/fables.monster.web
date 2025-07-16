@@ -28,8 +28,11 @@ export default function Navigation() {
 
   return (
     <nav className="fixed top-0 w-full z-50 px-6 py-4 bg-black/90 backdrop-blur-sm border-b border-red-700">
-      <div className="max-w-7xl mx-auto flex justify-between items-center">
-        <Link href="/" className="text-2xl font-bold text-white font-mono tracking-wider">
+      <div className="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+        <Link
+          href="/"
+          className="text-lg sm:text-2xl font-bold text-white font-mono tracking-wider whitespace-nowrap"
+        >
           FABLES MONSTER
         </Link>
         
@@ -84,12 +87,12 @@ export default function Navigation() {
       {/* Mobile Menu */}
       {isMenuOpen && (
         <div className="md:hidden absolute top-full left-0 right-0 bg-black/95 backdrop-blur-sm border-b border-red-700">
-          <div className="px-6 py-4 space-y-4">
+          <div className="px-6 py-4 space-y-2">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`nav-link block transition-colors font-mono font-bold text-base ${
+                className={`nav-link block py-2 transition-colors font-mono font-bold text-base ${
                   isActive(link.href)
                     ? "nav-link-active text-red-400"
                     : "text-white hover:text-red-400"

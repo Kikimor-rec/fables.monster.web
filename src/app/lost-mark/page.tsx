@@ -153,23 +153,23 @@ export default function LostMark() {
               <div className="bg-black border border-red-700 p-6 mb-6">
                 <h3 className="text-xl font-bold text-white mb-4 font-mono">CREDITS</h3>
                 <div className="space-y-2 text-sm font-mono">
-                  <div className="flex justify-between">
+                  <div className="flex flex-wrap justify-between gap-x-2">
                     <span className="text-gray-300">Written by:</span>
                     <span className="text-white">Stepan Kulikov</span>
                   </div>
-                  <div className="flex justify-between">
+                  <div className="flex flex-wrap justify-between gap-x-2">
                     <span className="text-gray-300">Layout by:</span>
                     <span className="text-white">Tatiana Bond</span>
                   </div>
-                  <div className="flex justify-between">
+                  <div className="flex flex-wrap justify-between gap-x-2">
                     <span className="text-gray-300">Art by:</span>
                     <span className="text-white">Zlata Ignatova</span>
                   </div>
-                  <div className="flex justify-between">
+                  <div className="flex flex-wrap justify-between gap-x-2">
                     <span className="text-gray-300">Music By:</span>
                     <span className="text-white">Stanislav DariDa</span>
                   </div>
-                  <div className="flex justify-between">
+                  <div className="flex flex-wrap justify-between gap-x-2">
                     <span className="text-gray-300">Coding by:</span>
                     <span className="text-white">Allecks</span>
                   </div>
