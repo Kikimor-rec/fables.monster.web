@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
+import { createMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "SILK STAR Terminal Access | Lost Mark",
-  description: "Secure terminal access to SILK STAR ship systems. Classification required.",
+  ...createMetadata(
+    "SILK STAR Terminal Access | Lost Mark",
+    "Secure terminal access to SILK STAR ship systems. Classification required.",
+    "/lost-mark/terminal",
+  ),
   robots: "noindex, nofollow",
 };
 

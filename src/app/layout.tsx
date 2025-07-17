@@ -4,6 +4,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://fables.monster"),
   title: "Fables Monster Studio - Independent Tabletop RPG Creator",
   description: "Independent tabletop RPG content creation studio. Our flagship project Lost Mark is a Sci-Fi horror adventure for Mothership RPG with unique storytelling and immersive gameplay.",
   keywords: "tabletop RPG, indie games, Mothership, Lost Mark, Sci-Fi horror, game development, Fables Monster",
@@ -22,12 +23,14 @@ export const metadata: Metadata = {
     siteName: "Fables Monster Studio",
     locale: "en_US",
     type: "website",
+    images: ["/logos/logo-white-new.svg"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Fables Monster Studio",
     description: "Independent tabletop RPG content creator",
     creator: "@fablesmonster",
+    images: ["/logos/logo-white-new.svg"],
   },
   robots: {
     index: true,
