@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
+import { createPortal } from "react-dom";
 // ...удалён импорт FinalEditable...
 // ...удалён импорт useContent...
 
@@ -80,27 +81,42 @@ export default function Navigation() {
           </svg>
         </button>
       </div>
-
-      {/* Mobile Menu */}
-      {isMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-black/95 backdrop-blur-sm border-b border-red-700">
-          <div className="px-6 py-4 space-y-4">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`nav-link block transition-colors font-mono font-bold ${
-                  isActive(link.href)
-                    ? "nav-link-active text-red-400"
-                    : "text-white hover:text-red-400"
-                }`}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {link.label}
-              </Link>
-            ))}
+      {/* Mobile Menu (Portal) */}
+      {typeof window !== 'undefined' && isMenuOpen && createPortal(
+        <>
+          {/* Затемнённый фон */}
+          <div
+            className="fixed inset-0 z-40 bg-black/70"
+            onClick={() => setIsMenuOpen(false)}
+          />
+          {/* Само меню */}
+          <div className="fixed left-0 top-0 z-50 w-full bg-black flex flex-col items-center shadow-2xl animate-slide-down pt-8 pb-8">
+            <button
+              className="absolute top-4 right-4 text-white text-4xl p-2 focus:outline-none z-50"
+              onClick={() => setIsMenuOpen(false)}
+              aria-label="Закрыть меню"
+            >
+              ×
+            </button>
+            <nav className="w-full flex flex-col items-center gap-2">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`nav-link text-2xl font-mono font-bold py-6 w-full text-center transition-colors ${
+                    isActive(link.href)
+                      ? "nav-link-active text-red-400"
+                      : "text-white hover:text-red-400"
+                  }`}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
           </div>
-        </div>
+        </>,
+        document.body
       )}
     </nav>
   );
