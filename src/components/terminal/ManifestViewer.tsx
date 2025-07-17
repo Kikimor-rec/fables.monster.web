@@ -1,6 +1,6 @@
 "use client";
 
-import { CrewManifest, CrewMember } from "./types";
+import { CrewManifest } from "./types";
 import { useEffect, useRef, useState } from "react";
 
 interface ManifestViewerProps {
@@ -18,7 +18,7 @@ const engineerHistory = [
   { name: "Illarion Vlasov", status: "ONLINE", note: "" },
 ];
 
-export default function ManifestViewer({ manifest, vesselName, crewComplement, corruptedLabel }: ManifestViewerProps) {
+export default function ManifestViewer({ manifest, vesselName, crewComplement, corruptedLabel }: Omit<ManifestViewerProps, 'corruptedLabel'> & { corruptedLabel?: string }) {
   // Найдём инженеров, андроида и остальных
   const engineers = manifest.crew?.filter(m => m.rank.toLowerCase().includes("engineer")) || [];
   const android = manifest.crew?.find(m => m.rank.toLowerCase().includes("android"));
@@ -78,6 +78,11 @@ export default function ManifestViewer({ manifest, vesselName, crewComplement, c
       <div className="border border-green-600 p-2 sm:p-3 bg-green-900 bg-opacity-20 rounded overflow-x-auto">
         <div className="text-green-400 mb-2 text-xs sm:text-sm font-mono">{vesselName}</div>
         <div className="text-green-400 mb-3 sm:mb-4 text-xs sm:text-sm font-mono">{glitchCrew}</div>
+        {corruptedLabel && (
+          <div className="mt-3 sm:mt-4 pt-2 border-t border-green-600">
+            <span className="text-red-400 text-xs sm:text-sm font-mono">{corruptedLabel}</span>
+          </div>
+        )}
         {/* Основная таблица — обычные члены экипажа */}
         <table className="w-full text-xs sm:text-sm font-mono border-separate border-spacing-y-1 mb-6">
           <thead>

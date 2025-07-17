@@ -9,7 +9,6 @@ import CryoBay from '@/components/terminal/CryoBay';
 import {
   CrewManifest,
   CryoProtocol,
-  LifeSupportSystem,
   ShipLog,
   SilkStarLog,
 } from '@/components/terminal/types';
@@ -199,18 +198,28 @@ export default function LostMarkTerminal() {
   );
 
   // Новый компонент для Corrupted Data (оставим как есть, но вынесем в функцию)
-  const CorruptedSection: FC<{content: any, showCorruptedMessage: boolean, typingText: string, handleCorruptedDataClear: () => void, asciiEye: string}> = ({content, showCorruptedMessage, typingText, handleCorruptedDataClear, asciiEye}) => (
+  const CorruptedSection: FC<{content: Record<string, unknown>, showCorruptedMessage: boolean, typingText: string, handleCorruptedDataClear: () => void, asciiEye: string}> = ({content, showCorruptedMessage, typingText, handleCorruptedDataClear, asciiEye}) => (
     <div className="space-y-3 sm:space-y-4">
       <h3 className="text-red-400 font-bold mb-3 sm:mb-4 text-sm sm:text-base">
-        {content?.interface?.sections?.corrupted_data || "[CORRUPTED DATA]"}
+        {(() => {
+          const iface = (content as Record<string, unknown>).interface as Record<string, unknown> | undefined;
+          const sections = iface && (iface.sections as Record<string, unknown> | undefined);
+          const corrupted = sections && typeof sections.corrupted_data === 'string' ? sections.corrupted_data : undefined;
+          return corrupted || '[CORRUPTED DATA]';
+        })()}
       </h3>
       {!showCorruptedMessage ? (
         <>
           <div className="text-green-300 text-xs sm:text-sm font-mono whitespace-pre-wrap break-words mb-3 sm:mb-4">
-            {content?.corrupted_black_hole}
+            {String((content as Record<string, unknown>)?.corrupted_black_hole ?? '')}
           </div>
           <div className="text-red-400 mb-3 sm:mb-4 text-xs sm:text-sm font-mono">
-            {content?.interface?.status_messages?.clearance_required || 'SECURITY CLEARANCE REQUIRED'}
+            {(() => {
+              const iface = (content as Record<string, unknown>).interface as Record<string, unknown> | undefined;
+              const status = iface && (iface.status_messages as Record<string, unknown> | undefined);
+              const clearance = status && typeof status.clearance_required === 'string' ? status.clearance_required : undefined;
+              return clearance || 'SECURITY CLEARANCE REQUIRED';
+            })()}
           </div>
           <button
             onClick={handleCorruptedDataClear}
@@ -231,7 +240,7 @@ export default function LostMarkTerminal() {
             {typingText}
           </div>
           <div className="text-green-300 text-xs sm:text-sm font-mono whitespace-pre-wrap break-words">
-            {content?.corrupted_black_hole}
+            {String((content as Record<string, unknown>)?.corrupted_black_hole ?? '')}
           </div>
         </div>
       )}
@@ -240,7 +249,6 @@ export default function LostMarkTerminal() {
 
   // Обновлённая функция renderContent
   const renderContent = () => {
-    const lifeSupportData = (content?.life_support || []) as LifeSupportSystem[];
     const crewManifest = (content?.crew_manifest || {}) as CrewManifest;
 
     switch(currentView) {
@@ -260,7 +268,7 @@ export default function LostMarkTerminal() {
       case 'cryo':
         return <CryoBaySection header={content?.interface?.sections?.cryo_protocols || 'CRYO BAY'} activation={(content?.cryo_protocol || {}) as CryoProtocol} />;
       case 'corrupted':
-        return <CorruptedSection content={content} showCorruptedMessage={showCorruptedMessage} typingText={typingText} handleCorruptedDataClear={handleCorruptedDataClear} asciiEye={asciiEye} />;
+        return <CorruptedSection content={content || {}} showCorruptedMessage={showCorruptedMessage} typingText={typingText} handleCorruptedDataClear={handleCorruptedDataClear} asciiEye={asciiEye} />;
       default:
         return (
           <div className="space-y-3 sm:space-y-4">

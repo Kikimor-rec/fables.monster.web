@@ -61,7 +61,7 @@ const sensors: Sensor[] = [
   },
 ];
 
-function getCatastrophicValue(sensor: Sensor, prev: number): number {
+function getCatastrophicValue(sensor: Sensor): number {
   // 60% — резкий скачок (ошибка), 20% — warning, 20% — норма
   const r = Math.random();
   if (r < 0.6) {
@@ -104,11 +104,11 @@ function getColor(status: "ok" | "warn" | "error"): string {
 }
 
 export default function LifeSupportPanel() {
-  const [values, setValues] = useState<number[]>(() => sensors.map(s => getCatastrophicValue(s, 0)));
+  const [values, setValues] = useState<number[]>(() => sensors.map(s => getCatastrophicValue(s)));
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setValues(prev => sensors.map((s, i) => getCatastrophicValue(s, prev[i])));
+      setValues(() => sensors.map((s) => getCatastrophicValue(s)));
     }, 900);
     return () => clearInterval(interval);
   }, []);
