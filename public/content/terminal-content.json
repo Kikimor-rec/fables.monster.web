@@ -1,157 +1,153 @@
 {
-  "ship_logs": [
-    {
-      "id": "log1",
-      "timestamp": "2534.245.14:32:07",
-      "type": "system",
-      "message": "NAVIGATION SYSTEM ONLINE",
-      "details": "Primary navigation systems functioning normally. All sensors operational."
+    "ship_logs": [{
+            "id": "log1",
+            "timestamp": "2534.245.14:32:07",
+            "type": "system",
+            "message": "NAVIGATION SYSTEM ONLINE",
+            "details": "Primary navigation systems functioning normally. All sensors operational."
+        },
+        {
+            "id": "log2",
+            "timestamp": "2534.245.14:33:15",
+            "type": "warning",
+            "message": "PROXIMITY ALERT - UNKNOWN VESSEL",
+            "details": "Unidentified ship detected at coordinates 127.45.89. Configuration unknown. Attempting communication..."
+        },
+        {
+            "id": "log3",
+            "timestamp": "2534.245.14:33:47",
+            "type": "error",
+            "message": "COMMUNICATION FAILURE",
+            "details": "Initiating captain reactivation protocol...  Initiating“ RISE” protocol... "
+        }
+    ],
+    "silk_star_logs": [{
+            "id": "silk1",
+            "entry": "3528",
+            "content": "Company denied request for additional fuel. Forced to recalculate route through unstable sector. The onboard Android is undergoing maintenance. So the jump will have to be controlled manually."
+        },
+        {
+            "id": "silk2",
+            "entry": "3529",
+            "content": "Entering hyperspace. Seven hours to jump exit."
+        },
+        {
+            "id": "silk3",
+            "entry": "3530",
+            "content": "Severe hull vibrations. Navigation systems malfunctioning. I'm picking up a beacon bearing"
+        },
+        {
+            "id": "silk4",
+            "entry": "3531",
+            "content": "That can't be right. I don't..."
+        }
+    ],
+    "crew_manifest": {
+        "vessel": "SILK STAR",
+        "complement": 14,
+        "crew": [{
+                "rank": "CAPTAIN",
+                "name": "Mark Opollo",
+                "status": "ONLINE"
+            },
+            {
+                "rank": "SECOND OFFICER",
+                "name": "Йохан Бан",
+                "status": "CRYOPOD 2"
+            },
+            {
+                "rank": "SECURITY",
+                "name": "Rin Owens",
+                "status": "CRYOPOD 3"
+            },
+            {
+                "rank": "NAVIGATOR",
+                "name": "Aisha Singh",
+                "status": "CRYOPOD 5"
+            },
+            {
+                "rank": "COMMS",
+                "name": "Peter Ivanov",
+                "status": "CRYOPOD 8"
+            },
+            {
+                "rank": "ENGINEER",
+                "name": "Lucas Trent",
+                "status": "DECEASED",
+                "strike": true
+            },
+            {
+                "rank": "ENGINEER",
+                "name": "Sarah Kim",
+                "status": "DECEASED",
+                "strike": true
+            },
+            {
+                "rank": "ENGINEER",
+                "name": "Pavel Orlov",
+                "status": "DECEASED",
+                "strike": true
+            },
+            {
+                "rank": "ENGINEER",
+                "name": "Ingrid May",
+                "status": "DECEASED",
+                "strike": true
+            },
+            {
+                "rank": "ENGINEER",
+                "name": "Omar Rashid",
+                "status": "DECEASED",
+                "strike": true
+            },
+            {
+                "rank": "ENGINEER",
+                "name": "Nils Johansson",
+                "status": "DECEASED",
+                "strike": true
+            },
+            {
+                "rank": "ENGINEER",
+                "name": "Samantha Lee",
+                "status": "DECEASED",
+                "strike": true
+            },
+            {
+                "rank": "ENGINEER",
+                "name": "Hilarion",
+                "status": "ONLINE"
+            },
+            {
+                "rank": "ANDROID",
+                "name": "XB78-x4",
+                "status": "CONNECTION LOST",
+                "timer": 6843312000
+            }
+        ]
     },
-    {
-      "id": "log2",
-      "timestamp": "2534.245.14:33:15",
-      "type": "warning",
-      "message": "PROXIMITY ALERT - UNKNOWN VESSEL",
-      "details": "Unidentified ship detected at coordinates 127.45.89. Configuration unknown. Attempting communication..."
+    "life_support": [{
+            "id": "life1",
+            "name": "ATMOSPHERIC_PROCESSOR_A1",
+            "status": "[NOMINAL]",
+            "description": "Oxygen levels stable - 21.3%"
+        },
+        {
+            "id": "life2",
+            "name": "LIFE_SUPPORT_SECTOR_7",
+            "status": "[CRITICAL]",
+            "description": "Multiple system failures detected"
+        },
+        {
+            "id": "life3",
+            "name": "EMERGENCY_BACKUP_SYS",
+            "status": "[OFFLINE]",
+            "description": "Manual activation required"
+        }
+    ],
+    "cryo_protocol": {
+        "title": "ACTIVATE_CRYO.PROTOCOL",
+        "authorization": "<< AUTHORIZATION ACCEPTED >>",
+        "content": "To sleep is to serve.\nTo serve is to become.\nTo become is to dissolve.\nTo dissolve is to rise.\n\n:: CRYO_CYCLE: INITIATING ::"
     },
-    {
-      "id": "log3",
-      "timestamp": "2534.245.14:33:47",
-      "type": "error",
-      "message": "COMMUNICATION FAILURE",
-      "details": "Unable to establish contact with unknown vessel. Recommend evasive maneuvers."
-    }
-  ],
-  "silk_star_logs": [
-    {
-      "id": "silk1",
-      "entry": "3528",
-      "content": "Company denied request for additional fuel. Forced to recalculate route through unstable sector. The onboard Android is undergoing maintenance. So the jump will have to be controlled manually."
-    },
-    {
-      "id": "silk2",
-      "entry": "3529",
-      "content": "Entering hyperspace. Seven hours to jump exit."
-    },
-    {
-      "id": "silk3",
-      "entry": "3530",
-      "content": "Severe hull vibrations. Navigation systems malfunctioning. I'm picking up a beacon bearing"
-    },
-    {
-      "id": "silk4",
-      "entry": "3531",
-      "content": "That can't be right. I don't..."
-    }
-  ],
-  "crew_manifest": {
-    "vessel": "SILK STAR",
-    "complement": 14,
-    "crew": [
-      {
-        "rank": "CAPTAIN",
-        "name": "Mark Opollo",
-        "status": "ONLINE"
-      },
-      {
-        "rank": "SECOND OFFICER",
-        "name": "Йохан Бан",
-        "status": "CRYOPOD 2"
-      },
-      {
-        "rank": "SECURITY",
-        "name": "Rin Owens",
-        "status": "CRYOPOD 3 - RED"
-      },
-      {
-        "rank": "NAVIGATOR",
-        "name": "Aisha Singh",
-        "status": "CRYOPOD 5 - YELLOW"
-      },
-      {
-        "rank": "COMMS",
-        "name": "Peter Ivanov",
-        "status": "CRYOPOD 8 - YELLOW"
-      },
-      {
-        "rank": "ENGINEER",
-        "name": "Lucas Trent",
-        "status": "DECEASED",
-        "strike": true
-      },
-      {
-        "rank": "ENGINEER",
-        "name": "Sarah Kim",
-        "status": "DECEASED",
-        "strike": true
-      },
-      {
-        "rank": "ENGINEER",
-        "name": "Pavel Orlov",
-        "status": "DECEASED",
-        "strike": true
-      },
-      {
-        "rank": "ENGINEER",
-        "name": "Ingrid May",
-        "status": "DECEASED",
-        "strike": true
-      },
-      {
-        "rank": "ENGINEER",
-        "name": "Omar Rashid",
-        "status": "DECEASED",
-        "strike": true
-      },
-      {
-        "rank": "ENGINEER",
-        "name": "Nils Johansson",
-        "status": "DECEASED",
-        "strike": true
-      },
-      {
-        "rank": "ENGINEER",
-        "name": "Samantha Lee",
-        "status": "DECEASED",
-        "strike": true
-      },
-      {
-        "rank": "ENGINEER",
-        "name": "Hilarion",
-        "status": "ONLINE"
-      },
-      {
-        "rank": "ANDROID",
-        "name": "XB78-x4",
-        "status": "CONNECTION LOST",
-        "timer": 6843312000
-      }
-    ]
-  },
-  "life_support": [
-    {
-      "id": "life1",
-      "name": "ATMOSPHERIC_PROCESSOR_A1",
-      "status": "[NOMINAL]",
-      "description": "Oxygen levels stable - 21.3%"
-    },
-    {
-      "id": "life2",
-      "name": "LIFE_SUPPORT_SECTOR_7",
-      "status": "[CRITICAL]",
-      "description": "Multiple system failures detected"
-    },
-    {
-      "id": "life3",
-      "name": "EMERGENCY_BACKUP_SYS",
-      "status": "[OFFLINE]",
-      "description": "Manual activation required"
-    }
-  ],
-  "cryo_protocol": {
-    "title": "ACTIVATE_CRYO.PROTOCOL",
-    "authorization": "<< AUTHORIZATION ACCEPTED >>",
-    "content": "To sleep is to serve.\nTo serve is to become.\nTo become is to dissolve.\nTo dissolve is to rise.\n\n:: CRYO_CYCLE: INITIATING ::"
-  },
-  "corrupted_black_hole": "Vdjlwwdulxv D* lv d vxshupdvvlyh eodfn kroh orfdwhg dw wkh fhqwhu ri wkh Plonb Zdb jdodab. Lw zhljkv derxw 4.1 ploolrq vrodu pdvvhv dqg lv dssuralpdwhob 26,000 oljkw-bhduv iurp Hduwk. Revhuydwlrqv zlwk wkh Hyhqw Krulcrq Whohvfrsh surylghg wkh iluvw gluhfw lpdjh ri wklv frvplf remhfw. Phdvxuhphqwv lqglfdwh iodulqj dfwlylwb qhdu wkh hyhqw krilcrq, klqwlqj dw frpsoha lqwhudfwlrqv zlwk lqidoolqj pdwwhu. Wkh judylwdwlrqdo lqioxhqfh hawhqgv idu ehbrqg lwv lpphgldwh ylflqlwb."
+    "corrupted_black_hole": "Vdjlwwdulxv D* lv d vxshupdvvlyh eodfn kroh orfdwhg dw wkh fhqwhu ri wkh Plonb Zdb jdodab. Lw zhljkv derxw 4.1 ploolrq vrodu pdvvhv dqg lv dssuralpdwhob 26,000 oljkw-bhduv iurp Hduwk. Revhuydwlrqv zlwk wkh Hyhqw Krulcrq Whohvfrsh surylghg wkh iluvw gluhfw lpdjh ri wklv frvplf remhfw. Phdvxuhphqwv lqglfdwh iodulqj dfwlylwb qhdu wkh hyhqw krilcrq, klqwlqj dw frpsoha lqwhudfwlrqv zlwk lqidoolqj pdwwhu. Wkh judylwdwlrqdo lqioxhqfh hawhqgv idu ehbrqg lwv lpphgldwh ylflqlwb."
 }

@@ -13,6 +13,8 @@ import {
   ShipLog,
   SilkStarLog,
 } from '@/components/terminal/types';
+import LifeSupportPanel from '@/components/terminal/LifeSupportPanel';
+import { FC } from 'react';
 
 export default function LostMarkTerminal() {
   const { content, loading } = useContent('terminal-content.json');
@@ -29,22 +31,22 @@ export default function LostMarkTerminal() {
 
   // ASCII Art для глаза
   const asciiEye = `
-                                ...',;;:cccccccc:;,..
-                            ..,;:cccc::::ccccclloooolc;'.
-                         .',;:::;;;;:loodxk0kkxxkxxdocccc;;'..
-                       .,;;;,,;:coxldKNWWWMMMMWNNWWNNKkdolcccc:,.
-                    .',;;,',;lxo:...dXWMMMMMMMMNkloOXNNNX0koc:coo;.
-                 ..,;:;,,,:ldl'   .kWMMMWXXNWMMMMXd..':d0XWWN0d:;lkd,
-               ..,;;,,'':loc.     lKMMMNl. .c0KNWNK:  ..';lx00X0l,cxo,.
-             ..''....'cooc.       c0NMMX;   .l0XWN0;       ,ddx00occl:.
-           ..'..  .':odc.         .x0KKKkolcld000xc.       .cxxxkkdl:,..
-         ..''..   ;dxolc;'         .lxx000kkxx00kc.      .;looolllol:'..
-        ..'..    .':lloolc:,..       'lxkkkkk0kd,   ..':clc:::;,,;:;,'..
-        ......   ....',;;;:ccc::;;,''',:loddol:,,;:clllolc:;;,'........
-            .     ....'''',,,;;:cccccclllloooollllccc:c:::;,'..
-                    .......'',,,,,,,,;;::::ccccc::::;;;,,''...
-                      ...............''',,,;;;,,''''''......
-                           ............................
+                          ...',;;:cccccccc:;,..
+                      ..,;:cccc::::ccccclloooolc;'.
+                   .',;:::;;;;:loodxk0kkxxkxxdocccc;;'..
+                 .,;;;,,;:coxldKNWWWMMMMWNNWWNNKkdolcccc:,.
+              .',;;,',;lxo:...dXWMMMMMMMMNkloOXNNNX0koc:coo;.
+           ..,;:;,,,:ldl'   .kWMMMWXXNWMMMMXd..':d0XWWN0d:;lkd,
+         ..,;;,,'':loc.     lKMMMNl. .c0KNWNK:  ..';lx00X0l,cxo,.
+       ..''....'cooc.       c0NMMX;   .l0XWN0;       ,ddx00occl:.
+     ..'..  .':odc.         .x0KKKkolcld000xc.       .cxxxkkdl:,..
+   ..''..   ;dxolc;'         .lxx000kkxx00kc.      .;looolllol:'..
+  ..'..    .':lloolc:,..       'lxkkkkk0kd,   ..':clc:::;,,;:;,'..
+  ......   ....',;;;:ccc::;;,''',:loddol:,,;:clllolc:;;,'........
+      .     ....'''',,,;;:cccccclllloooollllccc:c:::;,'..
+              .......'',,,,,,,,;;::::ccccc::::;;;,,''...
+                ...............''',,,;;;,,''''''......
+                     ............................
   `;
 
   // Эффект загрузки
@@ -166,113 +168,99 @@ export default function LostMarkTerminal() {
     }
   };
 
-  /** Render content panel based on the current view */
+  // Новый компонент для Ship Logs
+  const ShipLogsSection: FC<{header: string, logs: ShipLog[]}> = ({header, logs}) => (
+    <LogViewer header={header} logs={logs} />
+  );
+
+  // Новый компонент для Silk Star Logs
+  const SilkLogsSection: FC<{header: string, logs: SilkStarLog[], corruptText: (t:string,l?:number)=>string}> = ({header, logs, corruptText}) => (
+    <LogViewer header={header} logs={logs} corruptText={corruptText} />
+  );
+
+  // Новый компонент для Life Support (использует LifeSupportPanel)
+  const LifeSupportSection: FC = () => (
+    <LifeSupportPanel />
+  );
+
+  // Новый компонент для Crew Manifest
+  const CrewManifestSection: FC<{manifest: CrewManifest, vesselName: string, crewComplement: string, corruptedLabel: string}> = ({manifest, vesselName, crewComplement, corruptedLabel}) => (
+    <ManifestViewer
+      manifest={manifest}
+      vesselName={vesselName}
+      crewComplement={crewComplement}
+      corruptedLabel={corruptedLabel}
+    />
+  );
+
+  // Новый компонент для Cryo Bay
+  const CryoBaySection: FC<{header: string, activation: CryoProtocol}> = ({header, activation}) => (
+    <CryoBay header={header} activation={activation} />
+  );
+
+  // Новый компонент для Corrupted Data (оставим как есть, но вынесем в функцию)
+  const CorruptedSection: FC<{content: any, showCorruptedMessage: boolean, typingText: string, handleCorruptedDataClear: () => void, asciiEye: string}> = ({content, showCorruptedMessage, typingText, handleCorruptedDataClear, asciiEye}) => (
+    <div className="space-y-3 sm:space-y-4">
+      <h3 className="text-red-400 font-bold mb-3 sm:mb-4 text-sm sm:text-base">
+        {content?.interface?.sections?.corrupted_data || "[CORRUPTED DATA]"}
+      </h3>
+      {!showCorruptedMessage ? (
+        <>
+          <div className="text-green-300 text-xs sm:text-sm font-mono whitespace-pre-wrap break-words mb-3 sm:mb-4">
+            {content?.corrupted_black_hole}
+          </div>
+          <div className="text-red-400 mb-3 sm:mb-4 text-xs sm:text-sm font-mono">
+            {content?.interface?.status_messages?.clearance_required || 'SECURITY CLEARANCE REQUIRED'}
+          </div>
+          <button
+            onClick={handleCorruptedDataClear}
+            className="bg-red-700 text-white px-2 sm:px-4 py-1 sm:py-2 text-xs sm:text-sm border border-red-600 hover:bg-red-600 transition-colors font-mono"
+          >
+            [ATTEMPT DATA RECOVERY]
+          </button>
+        </>
+      ) : (
+        <div className="text-center space-y-3">
+          <div className="w-full overflow-x-auto">
+            <ResponsiveAscii
+              ascii={asciiEye}
+              className="text-red-400 font-mono animate-pulse mb-3 sm:mb-4"
+            />
+          </div>
+          <div className="text-red-400 text-lg sm:text-xl md:text-2xl font-bold animate-pulse font-mono">
+            {typingText}
+          </div>
+          <div className="text-green-300 text-xs sm:text-sm font-mono whitespace-pre-wrap break-words">
+            {content?.corrupted_black_hole}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+
+  // Обновлённая функция renderContent
   const renderContent = () => {
     const lifeSupportData = (content?.life_support || []) as LifeSupportSystem[];
     const crewManifest = (content?.crew_manifest || {}) as CrewManifest;
 
     switch(currentView) {
       case 'logs':
-        return (
-          <LogViewer
-            header={content?.interface?.sections?.system_logs || 'SYSTEM LOGS'}
-            logs={shipLogs}
-          />
-        );
-
+        return <ShipLogsSection header={content?.interface?.sections?.system_logs || 'SYSTEM LOGS'} logs={shipLogs} />;
       case 'silk-logs':
-        return (
-          <LogViewer
-            header={content?.interface?.sections?.silk_star_logs || 'SILK STAR FLIGHT LOG'}
-            logs={silkLogs}
-            corruptText={corruptText}
-          />
-        );
-
+        return <SilkLogsSection header={content?.interface?.sections?.silk_star_logs || 'SILK STAR FLIGHT LOG'} logs={silkLogs} corruptText={corruptText} />;
       case 'footage':
-        return (
-          <div className="space-y-3 sm:space-y-4">
-            <h3 className="text-green-300 font-bold mb-3 sm:mb-4 text-sm sm:text-base">
-              {content?.interface?.sections?.life_support || "LIFE SUPPORT SYSTEMS"}
-            </h3>
-            {lifeSupportData.map((system: LifeSupportSystem) => (
-              <div key={system.id} className="border border-green-600 p-2 sm:p-3 bg-green-900 bg-opacity-20 rounded">
-                <div className="flex flex-col sm:flex-row sm:justify-between mb-2 gap-1 sm:gap-2">
-                  <span className="text-green-400 text-xs sm:text-sm font-mono break-words">
-                    {system.name}
-                  </span>
-                  <span className={`text-xs sm:text-sm font-mono ${system.status.includes('CRITICAL') ? 'text-red-400' : system.status.includes('OFFLINE') ? 'text-yellow-400' : 'text-green-400'}`}>
-                    {system.status}
-                  </span>
-                </div>
-                <div className="text-green-500 text-xs sm:text-sm leading-relaxed break-words">
-                  {corruptText(system.description, 0.1)}
-                </div>
-              </div>
-            ))}
-          </div>
-        );
-
+        return <LifeSupportSection />;
       case 'manifest':
-        return (
-          <ManifestViewer
-            manifest={crewManifest}
-            vesselName={content?.interface?.status_messages?.vessel_name || 'VESSEL: SILK STAR'}
-            crewComplement={content?.interface?.status_messages?.crew_complement || 'CREW COMPLEMENT: 12'}
-            corruptedLabel={content?.interface?.status_messages?.data_corrupted || '[REST OF DATA CORRUPTED]'}
-          />
-        );
-
+        return <CrewManifestSection
+          manifest={crewManifest}
+          vesselName={content?.interface?.status_messages?.vessel_name || 'VESSEL: SILK STAR'}
+          crewComplement={content?.interface?.status_messages?.crew_complement || 'CREW COMPLEMENT: 12'}
+          corruptedLabel={content?.interface?.status_messages?.data_corrupted || '[REST OF DATA CORRUPTED]'}
+        />;
       case 'cryo':
-        return (
-          <CryoBay
-            header={content?.interface?.sections?.cryo_protocols || 'CRYO BAY'}
-            activation={(content?.cryo_protocol || {}) as CryoProtocol}
-          />
-        );
-
+        return <CryoBaySection header={content?.interface?.sections?.cryo_protocols || 'CRYO BAY'} activation={(content?.cryo_protocol || {}) as CryoProtocol} />;
       case 'corrupted':
-        return (
-          <div className="space-y-3 sm:space-y-4">
-            <h3 className="text-red-400 font-bold mb-3 sm:mb-4 text-sm sm:text-base">
-              {content?.interface?.sections?.corrupted_data || "[CORRUPTED DATA]"}
-            </h3>
-            <div className="border border-red-600 p-2 sm:p-3 bg-red-900 bg-opacity-20 rounded">
-              {!showCorruptedMessage ? (
-                <>
-                  <div className="text-green-300 text-xs sm:text-sm font-mono whitespace-pre-wrap break-words mb-3 sm:mb-4">
-                    {content?.corrupted_black_hole}
-                  </div>
-                  <div className="text-red-400 mb-3 sm:mb-4 text-xs sm:text-sm font-mono">
-                    {content?.interface?.status_messages?.clearance_required || 'SECURITY CLEARANCE REQUIRED'}
-                  </div>
-                  <button
-                    onClick={handleCorruptedDataClear}
-                    className="bg-red-700 text-white px-2 sm:px-4 py-1 sm:py-2 text-xs sm:text-sm border border-red-600 hover:bg-red-600 transition-colors font-mono"
-                  >
-                    [ATTEMPT DATA RECOVERY]
-                  </button>
-                </>
-              ) : (
-                <div className="text-center space-y-3">
-                  <div className="w-full overflow-x-auto">
-                    <ResponsiveAscii
-                      ascii={asciiEye}
-                      className="text-red-400 font-mono animate-pulse mb-3 sm:mb-4"
-                    />
-                  </div>
-                  <div className="text-red-400 text-lg sm:text-xl md:text-2xl font-bold animate-pulse font-mono">
-                    {typingText}
-                  </div>
-                  <div className="text-green-300 text-xs sm:text-sm font-mono whitespace-pre-wrap break-words">
-                    {content?.corrupted_black_hole}
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-        );
-
+        return <CorruptedSection content={content} showCorruptedMessage={showCorruptedMessage} typingText={typingText} handleCorruptedDataClear={handleCorruptedDataClear} asciiEye={asciiEye} />;
       default:
         return (
           <div className="space-y-3 sm:space-y-4">

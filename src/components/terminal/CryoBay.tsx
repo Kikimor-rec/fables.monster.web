@@ -9,7 +9,7 @@ interface CryoBayProps {
 
 export default function CryoBay({ activation, header }: CryoBayProps) {
   const statuses = [
-    "empty", // 1
+    "demolished", // 1 — демонтирована
     "red",   // 2
     "red",   // 3
     "red",   // 4
@@ -35,6 +35,8 @@ export default function CryoBay({ activation, header }: CryoBayProps) {
         return "bg-red-600";
       case "yellow":
         return "bg-yellow-600";
+      case "demolished":
+        return "bg-gray-500 text-gray-200"; // новый цвет для демонтированной капсулы
       default:
         return "";
     }
@@ -56,6 +58,21 @@ export default function CryoBay({ activation, header }: CryoBayProps) {
             {i + 1}
           </div>
         ))}
+      </div>
+      {/* Легенда статусов капсул */}
+      <div className="flex flex-wrap gap-4 items-center mt-3 mb-2 text-xs sm:text-sm font-mono">
+        <div className="flex items-center gap-1">
+          <span className="inline-block w-4 h-4 rounded bg-gray-500 border border-green-600 align-middle"></span>
+          <span>no connection</span>
+        </div>
+        <div className="flex items-center gap-1">
+          <span className="inline-block w-4 h-4 rounded bg-red-600 border border-green-600 align-middle"></span>
+          <span>critical error</span>
+        </div>
+        <div className="flex items-center gap-1">
+          <span className="inline-block w-4 h-4 rounded bg-yellow-600 border border-green-600 align-middle"></span>
+          <span>error</span>
+        </div>
       </div>
       <div className="border border-green-600 p-2 sm:p-3 bg-green-900 bg-opacity-20 rounded">
         <div className="text-green-400 mb-2 text-xs sm:text-sm font-mono font-bold">
