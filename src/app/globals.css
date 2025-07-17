@@ -1,4 +1,7 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap');
 :root {
     --background: #000000;
     --foreground: #ffffff;
@@ -10,9 +13,20 @@
 body {
     background: var(--background);
     color: var(--foreground);
-    font-family: 'Courier New', monospace;
+    font-family: 'Quicksand', 'Nunito', 'Inter', 'Courier New', monospace;
     font-weight: 400;
     line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Quicksand', 'Nunito', 'Inter', 'Courier New', monospace;
+    font-weight: 700;
+    letter-spacing: 0.01em;
 }
 
 
@@ -604,4 +618,21 @@ body {
 .glitch-paused .glitch-strip {
     animation-play-state: paused !important;
     opacity: 0 !important;
+}
+
+@font-face {
+    font-family: 'Chalk';
+    src: url('/fonts/chalk-regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+.font-chalk {
+    font-family: 'Chalk', 'Courier New', Courier, monospace;
+    letter-spacing: 0.03em;
+}
+
+.font-nunito {
+    font-family: 'Nunito', 'Quicksand', 'Inter', 'Courier New', monospace;
 }

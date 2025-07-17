@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { createPortal } from "react-dom";
+import Image from "next/image";
 // ...удалён импорт FinalEditable...
 // ...удалён импорт useContent...
 
@@ -30,8 +31,8 @@ export default function Navigation() {
   return (
     <nav className="fixed top-0 w-full z-50 px-6 py-4 bg-black/80 backdrop-blur-sm border-b border-red-700">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
-        <Link href="/" className="text-2xl font-bold text-white font-mono tracking-wider">
-          FABLES MONSTER
+        <Link href="/" className="flex items-center gap-3">
+          <Image src="/logos/fm-logo-gorizntal-w.png" alt="Fables Monster Logo" width={160} height={56} className="h-12 w-auto" priority />
         </Link>
         
         {/* Desktop Menu */}
@@ -40,7 +41,7 @@ export default function Navigation() {
             <Link
               key={link.href}
               href={link.href}
-              className={`nav-link transition-colors font-mono font-bold ${
+              className={`nav-link transition-colors font-nunito font-bold ${
                 isActive(link.href)
                   ? "nav-link-active text-red-400"
                   : "text-white hover:text-red-400"
@@ -103,7 +104,7 @@ export default function Navigation() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`nav-link text-2xl font-mono font-bold py-6 w-full text-center transition-colors ${
+                  className={`nav-link text-2xl font-nunito font-bold py-6 w-full text-center transition-colors ${
                     isActive(link.href)
                       ? "nav-link-active text-red-400"
                       : "text-white hover:text-red-400"

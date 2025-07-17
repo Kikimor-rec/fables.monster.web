@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import SocialLinks from "./SocialLinks";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -9,18 +10,19 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid md:grid-cols-4 gap-8">
           <div>
-            <h3 className="text-xl font-bold text-white mb-4 font-mono">
-              FABLES MONSTER
-            </h3>
-            <p className="text-gray-300 font-mono">
+            <div className="flex flex-col items-start gap-2 mb-4">
+              <Image src="/logos/mascot_white.PNG" alt="Fables Monster Mascot" width={120} height={120} className="w-[120px] max-w-full" />
+              <h3 className="text-xl font-bold text-white font-chalk">FABLES MONSTER</h3>
+            </div>
+            <p className="text-gray-300 font-nunito">
               Independent tabletop RPG content creation studio
             </p>
           </div>
           <div>
-            <h4 className="text-lg font-bold text-white mb-4 font-mono">
+            <h4 className="text-lg font-bold text-white mb-4 font-nunito">
               PROJECTS
             </h4>
-            <ul className="space-y-2 text-gray-300 font-mono">
+            <ul className="space-y-2 text-gray-300 font-nunito">
               <li>
                 <Link href="/lost-mark" className="hover:text-red-400 transition-colors">
                   The Lost Mark
@@ -39,10 +41,10 @@ export default function Footer() {
             </ul>
           </div>
           <div>
-            <h4 className="text-lg font-bold text-white mb-4 font-mono">
+            <h4 className="text-lg font-bold text-white mb-4 font-nunito">
               LINKS
             </h4>
-            <ul className="space-y-2 text-gray-300 font-mono">
+            <ul className="space-y-2 text-gray-300 font-nunito">
               <li>
                 <Link href="/about" className="hover:text-red-400 transition-colors">
                   About
@@ -61,14 +63,14 @@ export default function Footer() {
             </ul>
           </div>
           <div>
-            <h4 className="text-lg font-bold text-white mb-4 font-mono">
+            <h4 className="text-lg font-bold text-white mb-4 font-nunito">
               FOLLOW US
             </h4>
             <SocialLinks showLabels={false} className="justify-start" />
           </div>
         </div>
         <div className="mt-8 pt-8 border-t border-red-700 text-center">
-          <p className="text-gray-300 font-mono">
+          <p className="text-gray-300 font-nunito">
             © 2025 Fables Monster Studio. All rights reserved.
           </p>
         </div>

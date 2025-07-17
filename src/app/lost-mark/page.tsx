@@ -99,7 +99,7 @@ export default function LostMark() {
               
               <Link 
                 href="/timer"
-                className="inline-flex items-center gap-2 bg-green-700 text-green-200 font-mono font-bold px-6 py-3 rounded border-2 border-green-500 shadow-lg hover:bg-green-600 hover:border-green-400 transition-all duration-200"
+                className="inline-flex items-center gap-2 bg-green-700 text-green-200 font-nunito font-bold px-6 py-3 rounded border-2 border-green-500 shadow-lg hover:bg-green-600 hover:border-green-400 transition-all duration-200"
               >
                 <span className="text-lg">⏰</span>
                 CHRONOMETER TERMINAL
@@ -296,7 +296,7 @@ export default function LostMark() {
             />
             <Link
               href="/projects"
-              className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-black px-8 py-4 text-lg font-mono font-bold transition-colors"
+              className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-black px-8 py-4 text-lg font-nunito font-bold transition-colors"
             >
               MORE PROJECTS
             </Link>

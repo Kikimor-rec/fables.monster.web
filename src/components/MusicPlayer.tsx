@@ -10,15 +10,17 @@ interface Track {
 
 export default function MusicPlayer() {
   const tracks: Track[] = [
-    { title: "In a Deep Space",       filename: "01 - In a Deep Space.mp3" },
-    { title: "Arrival at the Black Hole", filename: "02 - Arrival at the Black Hole.mp3" },
-    { title: "Welcome to Silk Star",  filename: "03 - Welcome to Silk Star.mp3" },
-    { title: "Breath of Black Hole",  filename: "04 - Breath of Black Hole.mp3" },
-    { title: "Radiation Wave",        filename: "05 - Radiation Wave.mp3" },
-    { title: "Keep Silence",          filename: "06 - Keep Silence.mp3" },
-    { title: "Pray to Mark",          filename: "07 - Pray to Mark.mp3" },
-    { title: "I Can't Breathe",       filename: "08 - I Can't Breathe.mp3" },
-    { title: "Afterword",             filename: "09 - Afterword.mp3" }
+    { title: "In a Deep Space", filename: "01-in-a-deep-space.mp3" },
+    { title: "Arrival at the Black Hole", filename: "02-arrival-at-the-black-hole.mp3" },
+    { title: "Welcome to Silk Star", filename: "03-welcome-to-silk-star.mp3" },
+    { title: "Breathe of Black Hole", filename: "04-breathe-of-black-hole.mp3" },
+    { title: "Radiation Wave", filename: "05-radiation-wave.mp3" },
+    { title: "Keep Silence", filename: "06-keep-silence.mp3" },
+    { title: "Pray to Mark", filename: "07-pray-to-mark.mp3" },
+    { title: "I Can't Breathe", filename: "08-i-cant-breathe.mp3" },
+    { title: "Embrace Your Destiny", filename: "09-embrace-your-destiny.mp3" },
+    { title: "Silk Star Supernova", filename: "10-silk-star-supernova.mp3" },
+    { title: "Afterword", filename: "11-afterword.mp3" },
   ];
 
 

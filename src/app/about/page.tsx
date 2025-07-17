@@ -199,13 +199,13 @@ export default function About() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/contact"
-              className="bg-red-700 hover:bg-red-600 text-white px-8 py-4 text-lg font-mono font-bold transition-colors border border-red-600"
+              className="bg-red-700 hover:bg-red-600 text-white px-8 py-4 text-lg font-nunito font-bold transition-colors border border-red-600"
             >
               GET IN TOUCH
             </Link>
             <Link
               href="/projects"
-              className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-black px-8 py-4 text-lg font-mono font-bold transition-colors"
+              className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-black px-8 py-4 text-lg font-nunito font-bold transition-colors"
             >
               VIEW PROJECTS
             </Link>
