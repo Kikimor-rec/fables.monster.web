@@ -55,7 +55,7 @@ export default function LostMark() {
         </div>
         
         <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
-          <h1 className="text-6xl md:text-8xl font-bold text-white mb-6 font-nunito tracking-wider">
+          <h1 className="text-4xl sm:text-6xl md:text-8xl font-bold text-white mb-6 font-nunito tracking-wider mt-8">
             THE LOST MARK
           </h1>
           <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto font-nunito">
@@ -182,15 +182,15 @@ export default function LostMark() {
               </div>
             </div>
             <div className="flex flex-col items-center w-full">
-              <div className="bg-black border-2 border-red-700 shadow-lg mb-4 w-full max-w-full sm:max-w-[400px] md:max-w-[500px] lg:max-w-[600px] overflow-hidden">
+              <div className="bg-black border-2 border-red-700 shadow-lg mb-4 w-full aspect-[3/2] mx-auto overflow-hidden">
                 <GlitchImage
                   src="/images/lost-mark/ship_lm.webp"
                   alt="Lost Mark Ship"
+                  strips={24}
+                  className="w-full h-full"
+                  style={{ width: '100%', height: '100%', aspectRatio: '3/2' }}
                   width={600}
                   height={400}
-                  strips={24}
-                  className="w-full h-auto"
-                  style={{ width: '100%', height: 'auto', aspectRatio: '3/2' }}
                 />
               </div>
               <div className="w-full max-w-full sm:max-w-[400px] md:max-w-[500px] lg:max-w-[600px] bg-red-950/20 border-2 border-red-700 p-4 sm:p-6">

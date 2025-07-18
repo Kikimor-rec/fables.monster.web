@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 interface GlitchImageProps {
   src: string;
@@ -26,13 +26,35 @@ export default function GlitchImage({
   className = "",
   style = {},
 }: GlitchImageProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [realSize, setRealSize] = useState<{w: number, h: number}>({w: width || 0, h: height || 0});
   const [stripsArr, setStripsArr] = useState<React.ReactElement[] | null>(null);
 
+  // Вычисляем реальные размеры контейнера, если width/height не заданы
   useEffect(() => {
-    const stripHeight = Math.ceil(height / strips);
+    if (!width || !height) {
+      const updateSize = () => {
+        if (containerRef.current) {
+          const rect = containerRef.current.getBoundingClientRect();
+          setRealSize({ w: Math.round(rect.width), h: Math.round(rect.height) });
+        }
+      };
+      updateSize();
+      window.addEventListener('resize', updateSize);
+      return () => window.removeEventListener('resize', updateSize);
+    } else {
+      setRealSize({ w: width, h: height });
+    }
+  }, [width, height]);
+
+  useEffect(() => {
+    const w = realSize.w;
+    const h = realSize.h;
+    if (!w || !h) return;
+    const stripHeight = Math.ceil(h / strips);
     const arr = Array.from({ length: strips }, (_, i) => {
       const top = i * stripHeight;
-      const h = i === strips - 1 ? height - top : stripHeight;
+      const hh = i === strips - 1 ? h - top : stripHeight;
       const animation = ANIMATIONS[random(0, ANIMATIONS.length - 1)];
       const duration = random(5, 10) * 1000;
       const delay = random(0, 2000);
@@ -48,11 +70,11 @@ export default function GlitchImage({
             position: "absolute",
             left: 0,
             top: top,
-            width: width,
-            height: h,
+            width: w,
+            height: hh,
             backgroundImage: `url(${src})`,
             backgroundPosition: `0 -${top}px`,
-            backgroundSize: `${width}px ${height}px`,
+            backgroundSize: `${w}px ${h}px`,
             animationName: animation,
             animationDuration: `${duration}ms`,
             animationDelay: `${delay}ms`,
@@ -60,7 +82,6 @@ export default function GlitchImage({
             animationDirection: "alternate",
             animationTimingFunction: "linear",
             imageRendering: "pixelated",
-            // Кастомные CSS-переменные для анимации
             "--glitch-x-1": x1,
             "--glitch-x-2": x2,
             "--glitch-hue-1": hue1,
@@ -70,13 +91,13 @@ export default function GlitchImage({
       );
     });
     setStripsArr(arr);
-    // (eslint-disable-next-line react-hooks/exhaustive-deps) — убрано, так как не используется
-  }, [src, width, height, strips]);
+  }, [src, realSize, strips]);
 
   return (
     <div
+      ref={containerRef}
       className={`relative overflow-hidden select-none ${className}`}
-      style={{ width, height, ...style }}
+      style={{ ...style }}
       tabIndex={0}
       onMouseEnter={e => {
         (e.currentTarget as HTMLElement).classList.add("glitch-paused");
@@ -85,16 +106,14 @@ export default function GlitchImage({
         (e.currentTarget as HTMLElement).classList.remove("glitch-paused");
       }}
     >
-      {/* Используем <img>, а не <Image>, так как требуется абсолютный контроль над слоями и рендерингом полос */}
       <img
         src={src}
         alt={alt}
-        width={width}
-        height={height}
+        width={realSize.w}
+        height={realSize.h}
         style={{ display: "block", width: "100%", height: "100%" }}
         draggable={false}
       />
-      {/* Глитч-полосы только на клиенте */}
       {stripsArr && (
         <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 2 }}>
           {stripsArr}
