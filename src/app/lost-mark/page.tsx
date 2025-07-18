@@ -90,7 +90,9 @@ export default function LostMark() {
             />
           </div>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-2">
-            <span className="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded font-nunito cursor-not-allowed opacity-75">Будет доступно скоро</span>
+            <span className="inline-flex items-center gap-2 bg-gray-600 text-gray-400 font-nunito font-bold px-6 py-3 rounded border-2 border-gray-500 shadow-lg cursor-not-allowed opacity-75 text-xs sm:text-sm select-none">
+              Coming soon
+            </span>
           </div>
           
           {/* Terminal and Timer Access Buttons */}
