@@ -55,7 +55,7 @@ export default function LostMark() {
         </div>
         
         <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
-          <h1 className="text-6xl md:text-8xl font-bold text-white mb-6 font-chalk tracking-wider">
+          <h1 className="text-6xl md:text-8xl font-bold text-white mb-6 font-nunito tracking-wider">
             THE LOST MARK
           </h1>
           <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto font-nunito">
