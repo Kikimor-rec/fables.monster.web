@@ -56,25 +56,25 @@ export default function ContactForm() {
 
   return (
     <div className="bg-black border border-red-700 p-8">
-      <h3 className="text-2xl font-bold text-white mb-6 font-mono">
+      <h3 className="text-2xl font-bold text-white mb-6 font-nunito">
         SEND MESSAGE
       </h3>
       
       {submitStatus === "success" && (
-        <div className="mb-6 p-4 bg-green-900/20 border border-green-500 text-green-300 font-mono text-sm">
+        <div className="mb-6 p-4 bg-green-900/20 border border-green-500 text-green-300 font-nunito text-sm">
           ✓ Message sent successfully! We'll get back to you soon.
         </div>
       )}
       
       {submitStatus === "error" && (
-        <div className="mb-6 p-4 bg-red-900/20 border border-red-500 text-red-300 font-mono text-sm">
+        <div className="mb-6 p-4 bg-red-900/20 border border-red-500 text-red-300 font-nunito text-sm">
           ✗ Error sending message. Please try again or email us directly at info@fables.monster
         </div>
       )}
       
       <form onSubmit={handleSubmit} className="space-y-6">
         <div>
-          <label className="block text-white font-mono font-bold mb-2">
+          <label className="block text-white font-nunito font-bold mb-2">
             NAME *
           </label>
           <input
@@ -83,13 +83,13 @@ export default function ContactForm() {
             value={formData.name}
             onChange={handleChange}
             required
-            className="w-full bg-gray-800 border border-red-700 text-white px-4 py-3 font-mono focus:outline-none focus:border-red-400"
+            className="w-full bg-gray-800 border border-red-700 text-white px-4 py-3 font-nunito focus:outline-none focus:border-red-400"
             placeholder="Your name"
           />
         </div>
         
         <div>
-          <label className="block text-white font-mono font-bold mb-2">
+          <label className="block text-white font-nunito font-bold mb-2">
             EMAIL *
           </label>
           <input
@@ -98,13 +98,13 @@ export default function ContactForm() {
             value={formData.email}
             onChange={handleChange}
             required
-            className="w-full bg-gray-800 border border-red-700 text-white px-4 py-3 font-mono focus:outline-none focus:border-red-400"
+            className="w-full bg-gray-800 border border-red-700 text-white px-4 py-3 font-nunito focus:outline-none focus:border-red-400"
             placeholder="your@email.com"
           />
         </div>
         
         <div>
-          <label className="block text-white font-mono font-bold mb-2">
+          <label className="block text-white font-nunito font-bold mb-2">
             MESSAGE *
           </label>
           <textarea
@@ -113,7 +113,7 @@ export default function ContactForm() {
             onChange={handleChange}
             required
             rows={6}
-            className="w-full bg-gray-800 border border-red-700 text-white px-4 py-3 font-mono focus:outline-none focus:border-red-400"
+            className="w-full bg-gray-800 border border-red-700 text-white px-4 py-3 font-nunito focus:outline-none focus:border-red-400"
             placeholder="Your message..."
           />
         </div>
@@ -121,14 +121,14 @@ export default function ContactForm() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full bg-red-700 hover:bg-red-600 disabled:bg-gray-600 disabled:cursor-not-allowed text-white px-6 py-3 font-mono font-bold transition-colors border border-red-600"
+          className="w-full bg-red-700 hover:bg-red-600 disabled:bg-gray-600 disabled:cursor-not-allowed text-white px-6 py-3 font-nunito font-bold transition-colors border border-red-600"
         >
           {isSubmitting ? "SENDING..." : "SEND MESSAGE"}
         </button>
       </form>
       
       <div className="mt-6 p-4 bg-gray-900 border border-gray-700">
-        <p className="text-gray-400 text-sm font-mono">
+        <p className="text-gray-400 text-sm font-nunito">
           💡 <strong>Tip:</strong> Your message will be sent directly to our team. 
           You can also email us directly at{" "}
           <a 

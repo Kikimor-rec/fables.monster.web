@@ -81,10 +81,10 @@ export default function About() {
       {/* Hero Section */}
       <section className="pt-32 pb-20 border-b border-red-700">
         <div className="max-w-7xl mx-auto px-6 text-center">
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 font-mono tracking-wider">
+          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 font-nunito tracking-wider">
             ABOUT THE STUDIO
           </h1>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto font-mono">
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto font-nunito">
             We believe that the Warden, Dungeon Master, or Host (whatever you call them) should have the tools to run games and the ability to quickly start everything they need. And we want to make not just adventures, but ready-made tools that can reduce the time it takes to prepare for a game.
           </p>
         </div>
@@ -95,19 +95,19 @@ export default function About() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-4xl font-bold text-white mb-6 font-mono">
+              <h2 className="text-4xl font-bold text-white mb-6 font-nunito">
                 OUR MISSION
               </h2>
-              <p className="text-lg text-gray-300 mb-6 font-mono">
+              <p className="text-lg text-gray-300 mb-6 font-nunito">
                 We believe that tabletop RPGs are more than just entertainment - they are a medium for storytelling, human connection, and exploring the depths of imagination.
               </p>
-              <p className="text-lg text-gray-300 font-mono">
+              <p className="text-lg text-gray-300 font-nunito">
                 Our goal is to create experiences that challenge conventional thinking, explore complex themes, and provide players with unforgettable journeys into darkness and wonder.
               </p>
             </div>
             <div className="text-center">
               <div className="text-6xl mb-4">🎭</div>
-              <div className="text-white font-mono font-bold text-xl border-2 border-red-700 p-6 bg-red-950/20">
+              <div className="text-white font-nunito font-bold text-xl border-2 border-red-700 p-6 bg-red-950/20">
                 EVERY STORY DESERVES TO BE TOLD
               </div>
             </div>
@@ -118,7 +118,7 @@ export default function About() {
       {/* Values Section */}
       <section className="py-20 border-t border-red-700">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-4xl font-bold text-white mb-12 text-center font-mono">
+          <h2 className="text-4xl font-bold text-white mb-12 text-center font-nunito">
             OUR VALUES
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -128,10 +128,10 @@ export default function About() {
                 className="bg-gray-900 border border-red-700 p-6 text-center hover:bg-red-950/20 transition-colors"
               >
                 <div className="text-4xl mb-4">{value.icon}</div>
-                <h3 className="text-xl font-bold text-white mb-3 font-mono">
+                <h3 className="text-xl font-bold text-white mb-3 font-nunito">
                   {value.title}
                 </h3>
-                <p className="text-gray-300 font-mono text-sm">
+                <p className="text-gray-300 font-nunito text-sm">
                   {value.description}
                 </p>
               </div>
@@ -143,7 +143,7 @@ export default function About() {
       {/* Team Section */}
       <section className="py-20 bg-gray-900">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-4xl font-bold text-white mb-12 text-center font-mono">
+          <h2 className="text-4xl font-bold text-white mb-12 text-center font-nunito">
             THE TEAM
           </h2>
           <div className="flex flex-wrap justify-center gap-6 max-w-6xl mx-auto">
@@ -161,7 +161,7 @@ export default function About() {
       {/* Timeline Section */}
       <section className="py-20 border-t border-red-700">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-4xl font-bold text-white mb-12 text-center font-mono">
+          <h2 className="text-4xl font-bold text-white mb-12 text-center font-nunito">
             OUR JOURNEY
           </h2>
           <div className="space-y-8">
@@ -170,14 +170,14 @@ export default function About() {
                 key={index} 
                 className="flex items-start space-x-6 border-l-2 border-red-700 pl-6 pb-8"
               >
-                <div className="bg-red-700 text-white font-bold px-4 py-2 rounded font-mono">
+                <div className="bg-red-700 text-white font-bold px-4 py-2 rounded font-nunito">
                   {milestone.year}
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-white mb-2 font-mono">
+                  <h3 className="text-xl font-bold text-white mb-2 font-nunito">
                     {milestone.title}
                   </h3>
-                  <p className="text-gray-300 font-mono">
+                  <p className="text-gray-300 font-nunito">
                     {milestone.description}
                   </p>
                 </div>
@@ -190,10 +190,10 @@ export default function About() {
       {/* Contact CTA */}
       <section className="py-20 bg-gray-900 text-center">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-4xl font-bold text-white mb-6 font-mono">
+          <h2 className="text-4xl font-bold text-white mb-6 font-nunito">
             JOIN OUR JOURNEY
           </h2>
-          <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto font-mono">
+          <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto font-nunito">
             Want to be part of our story? Whether you're a player, creator, or fellow developer, we'd love to hear from you.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

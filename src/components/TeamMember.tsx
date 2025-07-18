@@ -64,7 +64,7 @@ export default function TeamMember({ member }: TeamMemberProps) {
         {/* Member Info */}
         <div className="text-center flex-grow flex flex-col">
           {/* Name with glitch text effect */}
-          <h3 className="text-xl font-bold text-white mb-2 font-mono group-hover:text-red-400 transition-colors duration-300 relative">
+          <h3 className="text-xl font-bold text-white mb-2 font-nunito group-hover:text-red-400 transition-colors duration-300 relative">
             {member.name}
             {isHovered && (
               <span className="absolute inset-0 text-red-500 opacity-50 animate-ping">
@@ -74,17 +74,17 @@ export default function TeamMember({ member }: TeamMemberProps) {
           </h3>
           
           {/* Role */}
-          <div className="text-red-400 font-mono text-sm mb-3 uppercase tracking-wider">
+          <div className="text-red-400 font-nunito text-sm mb-3 uppercase tracking-wider">
             {member.role}
           </div>
           
           {/* Bio */}
-          <p className="text-gray-300 text-sm font-mono flex-grow leading-relaxed">
+          <p className="text-gray-300 text-sm font-nunito flex-grow leading-relaxed">
             {member.bio}
           </p>
           
           {/* Terminal-style cursor blink */}
-          <div className="mt-4 text-red-500 font-mono text-sm animate-pulse">
+          <div className="mt-4 text-red-500 font-nunito text-sm animate-pulse">
             {isHovered ? ">>> ACCESS GRANTED" : ">>> HOVER TO ACCESS"}
           </div>
         </div>

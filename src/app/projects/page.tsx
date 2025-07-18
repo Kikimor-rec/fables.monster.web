@@ -42,11 +42,11 @@ export default function Projects() {
       <section className="pt-24 sm:pt-32 pb-12 sm:pb-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center">
           <FadeIn>
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-white mb-6 font-mono tracking-wider">
-              OUR PROJECTS
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-white mb-6 font-nunito tracking-wider">
+              PROJECTS
             </h1>
-            <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto font-mono">
-              Tabletop RPG adventures crafted with attention to detail and immersive storytelling
+            <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto font-nunito">
+              Explore our current and upcoming projects.
             </p>
           </FadeIn>
         </div>
@@ -64,11 +64,11 @@ export default function Projects() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <FadeIn>
             <div className="text-center mb-8 sm:mb-12">
-              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 font-mono">
-                ALL PROJECTS
+              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 font-nunito">
+                FEATURED PROJECTS
               </h2>
-              <p className="text-lg sm:text-xl text-gray-300 font-mono">
-                Complete collection of our tabletop RPG content
+              <p className="text-lg sm:text-xl text-gray-300 font-nunito">
+                Discover our most ambitious creations.
               </p>
             </div>
           </FadeIn>
@@ -87,23 +87,15 @@ export default function Projects() {
       <section className="py-12 sm:py-20 bg-red-900 border-t border-red-700">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6">
           <FadeIn>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6 font-mono">
-              WANT TO STAY UPDATED?
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6 font-nunito">
+              ALL PROJECTS
             </h2>
-            <p className="text-lg sm:text-xl text-red-100 mb-8 font-mono">
-              Subscribe to our updates and be the first to know about new releases
+            <p className="text-lg sm:text-xl text-red-100 mb-8 font-nunito">
+              Stay tuned for more updates!
             </p>
-          </FadeIn>
-          <FadeIn delay={0.2}>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <a
-                href="https://discord.gg/qJS4h5usxe"
-                className="w-full sm:w-auto bg-white text-red-900 px-6 sm:px-8 py-4 text-base sm:text-lg font-mono font-bold hover:bg-gray-200 transition-colors text-center"
-              >
-                DISCORD COMMUNITY
-              </a>
-             
-            </div>
+            <button className="w-full sm:w-auto bg-white text-red-900 px-6 sm:px-8 py-4 text-base sm:text-lg font-nunito font-bold hover:bg-gray-200 transition-colors text-center">
+              LOAD MORE
+            </button>
           </FadeIn>
         </div>
       </section>

@@ -11,7 +11,7 @@ export default function Contact() {
         <div className="absolute inset-0 bg-gradient-to-b from-black via-black to-red-950/20"></div>
         
         <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
-          <h1 className="text-6xl md:text-8xl font-bold text-white mb-6 font-mono tracking-wider">
+          <h1 className="text-6xl md:text-8xl font-bold text-white mb-6 font-nunito tracking-wider">
             CONTACT
           </h1>
          
@@ -24,7 +24,7 @@ export default function Contact() {
           <div className="grid md:grid-cols-2 gap-12">
             {/* Contact Information */}
             <div>
-              <h2 className="text-3xl font-bold text-white mb-8 font-mono">
+              <h2 className="text-3xl font-bold text-white mb-8 font-nunito">
                 GET IN TOUCH
               </h2>
               <div className="flex flex-col items-start gap-8 mb-8 p-3">

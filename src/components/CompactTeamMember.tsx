@@ -49,10 +49,10 @@ const CompactTeamMember = memo(function CompactTeamMember({ member }: CompactTea
 
       {/* Member Info */}
       <div className="flex-1 min-w-0">
-        <h4 className="text-xs sm:text-sm font-bold text-white font-mono group-hover:text-red-400 transition-colors duration-300 truncate">
+        <h4 className="text-xs sm:text-sm font-bold text-white font-nunito group-hover:text-red-400 transition-colors duration-300 truncate">
             {member.name}
         </h4>
-        <p className="text-xs text-gray-400 font-mono truncate">
+        <p className="text-xs text-gray-400 font-nunito truncate">
           {member.role}
         </p>
       </div>

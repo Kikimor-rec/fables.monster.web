@@ -168,7 +168,7 @@ export default function MusicPlayer() {
   return (
     <section className="py-20 bg-gray-900 border-t border-red-700">
       <div className="max-w-7xl mx-auto px-6">
-        <h2 className="text-4xl font-bold text-white mb-12 text-center font-mono">
+        <h2 className="text-4xl font-bold text-white mb-12 text-center font-nunito">
           🎵 ATMOSPHERIC SOUNDTRACK
         </h2>
 
@@ -177,17 +177,17 @@ export default function MusicPlayer() {
 
           {/* текущее название */}
           <div className="text-center mb-6">
-            <h3 className="text-2xl font-bold text-white mb-2 font-mono">
+            <h3 className="text-2xl font-bold text-white mb-2 font-nunito">
               {tracks[currentTrack].title}
             </h3>
-            <div className="text-gray-400 font-mono text-sm">
+            <div className="text-gray-400 font-nunito text-sm">
               Track {currentTrack+1} of {tracks.length}
             </div>
           </div>
 
           {/* прогресс (загрузка + проигрыш) */}
           <div className="mb-6">
-            <div className="flex justify-between text-gray-400 font-mono text-sm mb-2">
+            <div className="flex justify-between text-gray-400 font-nunito text-sm mb-2">
               <span>{fmt(currentTime)}</span><span>{fmt(duration)}</span>
             </div>
             <div className="relative h-2 bg-gray-700 rounded-lg">
@@ -204,11 +204,11 @@ export default function MusicPlayer() {
           {/* кнопки управления */}
           <div className="flex items-center justify-center gap-4 mb-4">
             <button onClick={togglePlay}
-              className="bg-red-700 hover:bg-red-600 text-white w-12 h-12 rounded-full flex items-center justify-center font-mono font-bold transition-colors">
+              className="bg-red-700 hover:bg-red-600 text-white w-12 h-12 rounded-full flex items-center justify-center font-nunito font-bold transition-colors">
               {isLoading?"⚙️":(isPlaying?"⏸":"▶")}
             </button>
             <button onClick={()=>setLoop(!loop)}
-              className={`border-2 text-white w-12 h-12 rounded-full flex items-center justify-center font-mono transition-colors ${
+              className={`border-2 text-white w-12 h-12 rounded-full flex items-center justify-center font-nunito transition-colors ${
                 loop?"border-red-700 bg-red-700":"border-gray-600 hover:border-red-700"}`}>
               🔁
             </button>
@@ -216,7 +216,7 @@ export default function MusicPlayer() {
 
           {/* буферизация текстом */}
           {isLoading && (
-            <div className="text-center mb-4 text-gray-400 font-mono text-sm animate-pulse">
+            <div className="text-center mb-4 text-gray-400 font-nunito text-sm animate-pulse">
               Buffering…
             </div>
           )}
@@ -224,11 +224,11 @@ export default function MusicPlayer() {
           {/* громкость */}
           <div className="mb-6">
             <div className="flex items-center gap-4 justify-center">
-              <span className="text-gray-400 font-mono text-sm">🔊</span>
+              <span className="text-gray-400 font-nunito text-sm">🔊</span>
               <input type="range" min="0" max="1" step="0.1"
                 value={volume} onChange={e=>setVolume(+e.target.value)}
                 className="w-32 h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer slider"/>
-              <span className="text-gray-400 font-mono text-sm">
+              <span className="text-gray-400 font-nunito text-sm">
                 {Math.round(volume*100)}%
               </span>
             </div>
@@ -236,14 +236,14 @@ export default function MusicPlayer() {
 
           {/* список треков */}
           <div className="border-t border-red-700 pt-4">
-            <h4 className="text-lg font-bold text-white mb-4 font-mono text-center">PLAYLIST</h4>
+            <h4 className="text-lg font-bold text-white mb-4 font-nunito text-center">PLAYLIST</h4>
             <div className="grid gap-2 max-h-64 overflow-y-auto">
               {tracks.map((t,i)=>{
                 const p=prefetch[i];
                 const status=p?.done?"✅":p?`🔄 ${p.progress.toFixed(0)}%`:"⬇️";
                 return (
                   <div key={i}
-                    className={`flex items-center justify-between p-3 border transition-colors font-mono ${
+                    className={`flex items-center justify-between p-3 border transition-colors font-nunito ${
                       i===currentTrack?"border-red-700 bg-red-700/20 text-white":
                       "border-gray-700 text-gray-300 hover:border-red-700 hover:bg-red-700/10"}`}>
                     <button onClick={()=>handleTrackClick(i)} className="flex-1 text-left">
@@ -267,7 +267,7 @@ export default function MusicPlayer() {
         </div>
 
         <div className="text-center mt-8">
-          <p className="text-gray-400 font-mono text-sm">
+          <p className="text-gray-400 font-nunito text-sm">
             🎧 Use this audio to immerse your game.
           </p>
         </div>

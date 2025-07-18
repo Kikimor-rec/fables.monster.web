@@ -63,7 +63,7 @@ export default function SocialLinks({ className = "", showLabels = true }: Socia
             )}
           </div>
           {showLabels && (
-            <div className="font-mono text-[10px] sm:text-xs leading-tight text-center break-words px-1">
+            <div className="font-nunito text-[10px] sm:text-xs leading-tight text-center break-words px-1">
               {link.label}
             </div>
           )}

@@ -28,14 +28,14 @@ export default function Home() {
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6">
           <FadeIn delay={0.2}>
             <div className="flex flex-col items-center justify-center mb-6">
-              <Image src="/logos/mascot_white.PNG" alt="Fables Monster Mascot" width={320} height={320} className="w-[320px] max-w-full mb-4" priority />
+              <Image src="/logos/mascot_white.PNG" alt="Fables Monster Mascot" width={320} height={320} className="w-[320px] max-w-full mb-4 mt-16 sm:mt-0" priority />
               <h1 className="text-6xl sm:text-7xl md:text-8xl font-bold text-white font-chalk tracking-wider">
                 FABLES MONSTER
               </h1>
             </div>
           </FadeIn>
           <FadeIn delay={0.4}>
-            <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto font-mono">
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto font-nunito">
               Independent tabletop RPG content creation studio
             </p>
           </FadeIn>
@@ -123,13 +123,13 @@ export default function Home() {
                     A Sci-Fi horror adventure for Mothership RPG where your crew faces impossible choices and eldritch truths among the wrecks and cults of deep space.
                   </p>
                   <div className="flex flex-wrap gap-2 mb-6">
-                    <span className="bg-red-700 text-white px-2 sm:px-3 py-1 text-xs sm:text-sm font-mono border border-red-600">
+                    <span className="bg-red-700 text-white px-2 sm:px-3 py-1 text-xs sm:text-sm font-nunito border border-red-600">
                     MOTHERSHIP
                     </span>
-                    <span className="bg-red-700 text-white px-2 sm:px-3 py-1 text-xs sm:text-sm font-mono border border-red-600">
+                    <span className="bg-red-700 text-white px-2 sm:px-3 py-1 text-xs sm:text-sm font-nunito border border-red-600">
                     SCI-FI HORROR
                     </span>
-                    <span className="bg-red-700 text-white px-2 sm:px-3 py-1 text-xs sm:text-sm font-mono border border-red-600">
+                    <span className="bg-red-700 text-white px-2 sm:px-3 py-1 text-xs sm:text-sm font-nunito border border-red-600">
                     INVESTIGATION
                     </span>
                   </div>
@@ -171,7 +171,7 @@ export default function Home() {
           </FadeIn>
           <FadeIn delay={0.2}>
             {loading ? (
-              <div className="text-center text-gray-400 font-mono">Загрузка...</div>
+              <div className="text-center text-gray-400 font-nunito">Загрузка...</div>
             ) : (
               <div className="flex flex-wrap justify-center gap-3 sm:gap-6 max-w-5xl mx-auto">
                 {teamMembers.map((member: TeamMember, index: number) => (
