@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import StoreButton from "@/components/StoreButton";
 import LazyMusicPlayer from "@/components/LazyMusicPlayer";
-import GlitchyImage from '@/components/GlitchyImage';
+import GlitchImage from '@/components/GlitchImage';
 
 export default function LostMark() {
   const features = [
@@ -80,19 +80,17 @@ export default function LostMark() {
               store="itch"
               href="#"
               price="Free or PWYW"
-              className="cursor-not-allowed opacity-60 pointer-events-none"
+              className="cursor-not-allowed opacity-60"
             />
             <StoreButton 
               store="drivethrurpg"
               href="#"
               price="Free or PWYW"
-              className="cursor-not-allowed opacity-60 pointer-events-none"
+              className="cursor-not-allowed opacity-60"
             />
           </div>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-2">
-            <span className="inline-flex items-center gap-2 bg-gray-600 text-gray-400 font-nunito font-bold px-6 py-3 rounded border-2 border-gray-500 shadow-lg cursor-not-allowed opacity-75 text-xs sm:text-sm select-none">
-              Coming soon
-            </span>
+            <span className="text-xs text-gray-400 font-nunito select-none">Coming soon</span>
           </div>
           
           {/* Terminal and Timer Access Buttons */}
@@ -185,12 +183,14 @@ export default function LostMark() {
             </div>
             <div className="flex flex-col items-center w-full">
               <div className="bg-black border-2 border-red-700 shadow-lg mb-4 w-full max-w-full sm:max-w-[400px] md:max-w-[500px] lg:max-w-[600px] overflow-hidden">
-                <GlitchyImage
+                <GlitchImage
                   src="/images/lost-mark/ship_lm.webp"
                   alt="Lost Mark Ship"
                   width={600}
                   height={400}
-                  imageClassName="w-full h-auto"
+                  strips={24}
+                  className="w-full h-auto"
+                  style={{ width: '100%', height: 'auto', aspectRatio: '3/2' }}
                 />
               </div>
               <div className="w-full max-w-full sm:max-w-[400px] md:max-w-[500px] lg:max-w-[600px] bg-red-950/20 border-2 border-red-700 p-4 sm:p-6">
