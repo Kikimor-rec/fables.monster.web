@@ -4,7 +4,11 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Nunito } from "next/font/google";
 
-const nunito = Nunito({ subsets: ["latin"], weight: ["400", "600", "700"] });
+const nunito = Nunito({
+  subsets: ["latin"],
+  weight: ["400", "600", "700"],
+  variable: "--font-nunito",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://fables.monster"),
@@ -63,7 +67,7 @@ export default function RootLayout({
           })
         }} />
       </head>
-      <body className={`${nunito.className} antialiased`} suppressHydrationWarning>
+      <body className={`${nunito.variable} ${nunito.className} antialiased`} suppressHydrationWarning>
         <Navigation />
         <main className="min-h-screen">
           {children}

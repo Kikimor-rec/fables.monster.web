@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import TeamMember from "@/components/TeamMember";
 // ...удалён импорт FinalEditable...
