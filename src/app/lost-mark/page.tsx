@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import StoreButton from "@/components/StoreButton";
 import LazyMusicPlayer from "@/components/LazyMusicPlayer";
-import GlitchyImage from '@/components/GlitchyImage';
+import GlitchImage from '@/components/GlitchImage';
 
 export default function LostMark() {
   const features = [
@@ -55,7 +55,7 @@ export default function LostMark() {
         </div>
         
         <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
-          <h1 className="text-6xl md:text-8xl font-bold text-white mb-6 font-chalk tracking-wider">
+          <h1 className="text-6xl md:text-8xl font-bold text-white mb-6 font-mono tracking-wider">
             THE LOST MARK
           </h1>
           <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto font-nunito">
@@ -178,13 +178,13 @@ export default function LostMark() {
             </div>
             <div className="flex flex-col items-center w-full">
               <div className="bg-black border-2 border-red-700 shadow-lg mb-4 w-full max-w-full sm:max-w-[400px] md:max-w-[500px] lg:max-w-[600px] overflow-hidden">
-                <GlitchyImage
+                <GlitchImage
                   src="/images/lost-mark/ship_lm.webp"
                   alt="Lost Mark Ship"
                   width={600}
                   height={400}
-                  imageClassName="w-full h-auto"
-                />
+                  className="w-full"
+                  />
               </div>
               <div className="w-full max-w-full sm:max-w-[400px] md:max-w-[500px] lg:max-w-[600px] bg-red-950/20 border-2 border-red-700 p-4 sm:p-6">
                 <div className="text-white font-nunito font-bold text-lg sm:text-xl mb-2 text-center">

@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 interface GlitchImageProps {
   src: string;
@@ -26,13 +26,29 @@ export default function GlitchImage({
   className = "",
   style = {},
 }: GlitchImageProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [containerWidth, setContainerWidth] = useState(width);
   const [stripsArr, setStripsArr] = useState<React.ReactElement[] | null>(null);
 
+  // Update container width on mount and when resized
   useEffect(() => {
-    const stripHeight = Math.ceil(height / strips);
+    function updateWidth() {
+      if (containerRef.current) {
+        setContainerWidth(containerRef.current.offsetWidth);
+      }
+    }
+    updateWidth();
+    window.addEventListener("resize", updateWidth);
+    return () => window.removeEventListener("resize", updateWidth);
+  }, []);
+
+  const actualHeight = (containerWidth * height) / width;
+
+  useEffect(() => {
+    const stripHeight = Math.ceil(actualHeight / strips);
     const arr = Array.from({ length: strips }, (_, i) => {
       const top = i * stripHeight;
-      const h = i === strips - 1 ? height - top : stripHeight;
+      const h = i === strips - 1 ? actualHeight - top : stripHeight;
       const animation = ANIMATIONS[random(0, ANIMATIONS.length - 1)];
       const duration = random(5, 10) * 1000;
       const delay = random(0, 2000);
@@ -48,11 +64,11 @@ export default function GlitchImage({
             position: "absolute",
             left: 0,
             top: top,
-            width: width,
+            width: containerWidth,
             height: h,
             backgroundImage: `url(${src})`,
             backgroundPosition: `0 -${top}px`,
-            backgroundSize: `${width}px ${height}px`,
+            backgroundSize: `${containerWidth}px ${actualHeight}px`,
             animationName: animation,
             animationDuration: `${duration}ms`,
             animationDelay: `${delay}ms`,
@@ -71,12 +87,13 @@ export default function GlitchImage({
     });
     setStripsArr(arr);
     // (eslint-disable-next-line react-hooks/exhaustive-deps) — убрано, так как не используется
-  }, [src, width, height, strips]);
+  }, [src, containerWidth, actualHeight, strips]);
 
   return (
     <div
+      ref={containerRef}
       className={`relative overflow-hidden select-none ${className}`}
-      style={{ width, height, ...style }}
+      style={{ width: "100%", maxWidth: width, aspectRatio: `${width}/${height}`, ...style }}
       tabIndex={0}
       onMouseEnter={e => {
         (e.currentTarget as HTMLElement).classList.add("glitch-paused");
@@ -89,8 +106,8 @@ export default function GlitchImage({
       <img
         src={src}
         alt={alt}
-        width={width}
-        height={height}
+        width={containerWidth}
+        height={actualHeight}
         style={{ display: "block", width: "100%", height: "100%" }}
         draggable={false}
       />
