@@ -2,6 +2,8 @@
 
 import { useState, useEffect, useRef } from 'react';
 
+export const dynamic = 'error';
+
 export default function TimerTerminal() {
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);

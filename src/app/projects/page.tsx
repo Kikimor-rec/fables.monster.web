@@ -4,6 +4,8 @@ import ProjectCard from "@/components/ProjectCard";
 import FadeIn from "@/components/FadeIn";
 // ...удалён импорт useContent...
 
+export const dynamic = 'error';
+
 export default function Projects() {
   const projects = [
     {

@@ -7,6 +7,8 @@ import OptimizedImage from "@/components/OptimizedImage";
 import Image from "next/image";
 import { useContent } from "@/hooks/useContent";
 
+export const dynamic = 'error';
+
 
 interface TeamMember {
   name: string;

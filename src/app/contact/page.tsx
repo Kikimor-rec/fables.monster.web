@@ -3,6 +3,8 @@
 import Image from "next/image";
 import ContactForm from "@/components/ContactForm";
 
+export const dynamic = 'error';
+
 export default function Contact() {
   return (
     <div className="bg-black">

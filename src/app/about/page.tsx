@@ -3,6 +3,8 @@
 import Link from "next/link";
 import TeamMember from "@/components/TeamMember";
 // ...удалён импорт FinalEditable...
+
+export const dynamic = 'error';
 // ...удалён импорт useContent...
 
 export default function About() {

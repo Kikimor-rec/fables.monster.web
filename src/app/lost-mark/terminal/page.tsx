@@ -15,6 +15,8 @@ import {
 import LifeSupportPanel from '@/components/terminal/LifeSupportPanel';
 import { FC } from 'react';
 
+export const revalidate = 86400;
+
 export default function LostMarkTerminal() {
   const { content, loading } = useContent('terminal-content.json');
   const [isLoading, setIsLoading] = useState(true);
