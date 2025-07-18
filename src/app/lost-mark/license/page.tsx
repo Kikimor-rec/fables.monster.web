@@ -1,6 +1,8 @@
 import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
 
+export const dynamic = 'error';
+
 export default function LostMarkLicense() {
   return (
     <div className="min-h-screen bg-black text-white">

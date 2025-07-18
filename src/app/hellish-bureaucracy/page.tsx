@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Navigation from "@/components/Navigation";
 
+export const dynamic = 'error';
+
 export default function HellishBureaucracy() {
   const challenges = [
     {
@@ -339,6 +341,18 @@ export default function HellishBureaucracy() {
           </div>
         </div>
       </footer>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Game',
+            name: 'Hellish Bureaucracy',
+            description: 'Fantasy Adventure for D&D 5e/2024.',
+            url: 'https://fables.monster/hellish-bureaucracy',
+          }),
+        }}
+      />
     </div>
   );
 }
