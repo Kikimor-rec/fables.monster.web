@@ -78,14 +78,19 @@ export default function LostMark() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <StoreButton 
               store="itch"
-              href="https://fablesmonster.itch.io/"
+              href="#"
               price="Free or PWYW"
+              className="cursor-not-allowed opacity-60 pointer-events-none"
             />
             <StoreButton 
               store="drivethrurpg"
-              href="https://www.drivethrurpg.com/en/publisher/30815/Stepan%20Kulikov"
+              href="#"
               price="Free or PWYW"
+              className="cursor-not-allowed opacity-60 pointer-events-none"
             />
+          </div>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-2">
+            <span className="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded font-nunito cursor-not-allowed opacity-75">Будет доступно скоро</span>
           </div>
           
           {/* Terminal and Timer Access Buttons */}
