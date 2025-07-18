@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Navigation from "@/components/Navigation";
 
+export const dynamic = 'error';
+
 export default function CemeteryOfBrokenShips() {
   const ships = [
     {
@@ -302,6 +304,18 @@ export default function CemeteryOfBrokenShips() {
           </div>
         </div>
       </footer>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Game',
+            name: 'Cemetery of Broken Ships',
+            description: 'Sci-Fi Horror Adventure with five derelict ships.',
+            url: 'https://fables.monster/cemetery-of-broken-ships',
+          }),
+        }}
+      />
     </div>
   );
 }

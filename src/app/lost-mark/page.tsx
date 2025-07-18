@@ -4,6 +4,8 @@ import StoreButton from "@/components/StoreButton";
 import LazyMusicPlayer from "@/components/LazyMusicPlayer";
 import GlitchImage from '@/components/GlitchImage';
 
+export const dynamic = 'error';
+
 export default function LostMark() {
   const features = [
     {
@@ -319,6 +321,19 @@ export default function LostMark() {
           </div>
         </div>
       </section>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Game',
+            name: 'The Lost Mark',
+            description:
+              'Sci-Fi horror adventure module for the Mothership RPG.',
+            url: 'https://fables.monster/lost-mark',
+          }),
+        }}
+      />
     </div>
   );
 }

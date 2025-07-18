@@ -2,6 +2,13 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { Nunito } from "next/font/google";
+
+const nunito = Nunito({
+  subsets: ["latin"],
+  weight: ["400", "600", "700"],
+  variable: "--font-nunito",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://fables.monster"),
@@ -23,14 +30,14 @@ export const metadata: Metadata = {
     siteName: "Fables Monster Studio",
     locale: "en_US",
     type: "website",
-    images: ["/logos/logo-white-new.svg"],
+    images: ["/opengraph-image"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Fables Monster Studio",
     description: "Independent tabletop RPG content creator",
     creator: "@fablesmonster",
-    images: ["/logos/logo-white-new.svg"],
+    images: ["/twitter-image"],
   },
   robots: {
     index: true,
@@ -50,8 +57,17 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="//discord.gg" />
         <link rel="dns-prefetch" href="//github.com" />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Organization',
+            name: 'Fables Monster Studio',
+            url: 'https://fables.monster',
+            logo: 'https://fables.monster/logos/logo-white-new.svg',
+          })
+        }} />
       </head>
-      <body className="antialiased" suppressHydrationWarning>
+      <body className={`${nunito.variable} ${nunito.className} antialiased`} suppressHydrationWarning>
         <Navigation />
         <main className="min-h-screen">
           {children}

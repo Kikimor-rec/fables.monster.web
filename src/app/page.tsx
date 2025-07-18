@@ -1,11 +1,15 @@
-"use client";
-
 import Link from "next/link";
 import CompactTeamMember from "@/components/CompactTeamMember";
 import FadeIn from "@/components/FadeIn";
 import OptimizedImage from "@/components/OptimizedImage";
 import Image from "next/image";
-import { useContent } from "@/hooks/useContent";
+import siteContent from "../../public/content/site-content.json";
+
+type SiteContent = {
+  team?: { members?: TeamMember[] };
+};
+
+export const dynamic = 'error';
 
 
 interface TeamMember {
@@ -18,8 +22,8 @@ interface TeamMember {
 }
 
 export default function Home() {
-  const { content, loading } = useContent("site-content.json");
-  const teamMembers: TeamMember[] = content?.team?.members || [];
+  const content = siteContent as SiteContent;
+  const teamMembers: TeamMember[] = content.team?.members ?? [];
   return (
     <div className="bg-black">
       {/* Hero Section */}
@@ -170,15 +174,11 @@ export default function Home() {
             </h2>
           </FadeIn>
           <FadeIn delay={0.2}>
-            {loading ? (
-              <div className="text-center text-gray-400 font-nunito">Загрузка...</div>
-            ) : (
-              <div className="flex flex-wrap justify-center gap-3 sm:gap-6 max-w-5xl mx-auto">
-                {teamMembers.map((member: TeamMember, index: number) => (
-                  <CompactTeamMember key={index} member={member} />
-                ))}
-              </div>
-            )}
+            <div className="flex flex-wrap justify-center gap-3 sm:gap-6 max-w-5xl mx-auto">
+              {teamMembers.map((member: TeamMember, index: number) => (
+                <CompactTeamMember key={index} member={member} />
+              ))}
+            </div>
           </FadeIn>
         </div>
       </section>
