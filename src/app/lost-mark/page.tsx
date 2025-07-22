@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import StoreButton from "@/components/StoreButton";
 import LazyMusicPlayer from "@/components/LazyMusicPlayer";
-import GlitchImage from '@/components/GlitchImage';
+import GlitchyImage from '@/components/GlitchyImage';
 
 export const dynamic = 'error';
 
@@ -78,31 +78,28 @@ export default function LostMark() {
           </div>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <StoreButton 
+            <StoreButton
               store="itch"
-              href="#"
+              href="https://fablesmonster.itch.io/lost-mark"
               price="Free or PWYW"
-              className="cursor-not-allowed opacity-60"
             />
-            <StoreButton 
+            <StoreButton
               store="drivethrurpg"
-              href="#"
+              href="https://www.drivethrurpg.com/en/product/530242"
               price="Free or PWYW"
-              className="cursor-not-allowed opacity-60"
             />
-          </div>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-2">
-            <span className="text-xs text-gray-400 font-nunito select-none">Coming soon</span>
           </div>
           
           {/* Terminal and Timer Access Buttons */}
           <div className="mt-6 text-center">
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <div className="inline-flex items-center gap-2 bg-gray-600 text-gray-400 font-nunito font-bold px-6 py-3 rounded border-2 border-gray-500 shadow-lg cursor-not-allowed opacity-75">
+              <Link
+                href="/lost-mark/terminal"
+                className="inline-flex items-center gap-2 bg-gray-600 text-gray-200 font-nunito font-bold px-6 py-3 rounded border-2 border-gray-500 shadow-lg hover:bg-gray-500 transition-all duration-200"
+              >
                 <span className="text-lg">📟</span>
                 ACCESS SILK STAR TERMINAL
-                <span className="text-xs bg-black/20 px-2 py-1 rounded ml-2">COMING SOON</span>
-              </div>
+              </Link>
               
               <Link 
                 href="/timer"
@@ -113,7 +110,7 @@ export default function LostMark() {
               </Link>
             </div>
               <p className="text-sm text-gray-400 mt-2 font-nunito">
-              Interactive timer available now • Terminal will be available after the release
+              Interactive timer and terminal available now
             </p>
           </div>
         </div>
@@ -185,14 +182,13 @@ export default function LostMark() {
             </div>
             <div className="flex flex-col items-center w-full">
               <div className="bg-black border-2 border-red-700 shadow-lg mb-4 w-full aspect-[3/2] mx-auto overflow-hidden">
-                <GlitchImage
+                <GlitchyImage
                   src="/images/lost-mark/ship_lm.webp"
                   alt="Lost Mark Ship"
-                  strips={24}
+                  fill
                   className="w-full h-full"
                   style={{ width: '100%', height: '100%', aspectRatio: '3/2' }}
-                  width={600}
-                  height={400}
+                  quality={85}
                 />
               </div>
               <div className="w-full max-w-full sm:max-w-[400px] md:max-w-[500px] lg:max-w-[600px] bg-red-950/20 border-2 border-red-700 p-4 sm:p-6">
@@ -216,19 +212,21 @@ export default function LostMark() {
             INTERACTIVE TOOLS
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-black/60 border-2 border-gray-600 p-6 rounded opacity-60">
+            <Link
+              href="/lost-mark/terminal"
+              className="bg-black/60 border-2 border-gray-600 p-6 rounded hover:bg-gray-700 transition-colors"
+            >
               <div className="flex items-center gap-3 mb-4">
                 <span className="text-3xl">📟</span>
-                <h3 className="text-xl font-bold text-gray-400 font-nunito">
+                <h3 className="text-xl font-bold text-gray-200 font-nunito">
                   SILK STAR TERMINAL
                 </h3>
-                <span className="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded font-nunito">COMING SOON</span>
               </div>
-              <p className="text-gray-400 font-nunito text-sm mb-4">
-                Access the ship's computer system and uncover the dark secrets hidden in the logs. 
+              <p className="text-gray-300 font-nunito text-sm mb-4">
+                Access the ship's computer system and uncover the dark secrets hidden in the logs.
                 Navigate through corrupted data, system failures, and mysterious transmissions.
               </p>
-            </div>
+            </Link>
             
             <div className="bg-black/60 border-2 border-green-600 p-6 rounded">
               <div className="flex items-center gap-3 mb-4">
@@ -292,14 +290,14 @@ export default function LostMark() {
             Download now and begin your descent into Sci-Fi horror. Available on multiple platforms.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <StoreButton 
+            <StoreButton
               store="itch"
-              href="https://fablesmonster.itch.io/"
+              href="https://fablesmonster.itch.io/lost-mark"
               price="Free or PWYW"
             />
-            <StoreButton 
+            <StoreButton
               store="drivethrurpg"
-              href="https://www.drivethrurpg.com/en/publisher/30815/Stepan%20Kulikov"
+              href="https://www.drivethrurpg.com/en/product/530242"
               price="Free or PWYW"
             />
             <Link
