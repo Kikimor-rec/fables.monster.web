@@ -30,7 +30,8 @@ export default function About() {
       name: "Stanislav DariDai",
       role: "Composer",
       bio: "Creates atmospheric music and sound design for our projects",
-      image: "stanislav-darida.webp"
+      image: "stanislav-darida.webp",
+      link: "https://linktr.ee/stanislavdaridai"
     },
     {
       name: "Allecks",
