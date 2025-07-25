@@ -12,7 +12,10 @@ const nunito = Nunito({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://fables.monster"),
-  title: "Fables Monster Studio - Independent Tabletop RPG Creator",
+  title: {
+    default: "Fables Monster Studio - Independent Tabletop RPG Creator",
+    template: "%s | Fables Monster Studio"
+  },
   description: "Independent tabletop RPG content creation studio. Our flagship project Lost Mark is a Sci-Fi horror adventure for Mothership RPG with unique storytelling and immersive gameplay.",
   keywords: "tabletop RPG, indie games, Mothership, Lost Mark, Sci-Fi horror, game development, Fables Monster",
   authors: [{ name: "Fables Monster Studio" }],
@@ -43,6 +46,12 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  alternates: {
+    canonical: "https://fables.monster"
+  },
+  verification: {
+    google: "your-google-verification-code-here", // Add your actual Google Search Console verification code here
+  },
 };
 
 export default function RootLayout({
@@ -64,6 +73,16 @@ export default function RootLayout({
             name: 'Fables Monster Studio',
             url: 'https://fables.monster',
             logo: 'https://fables.monster/logos/logo-white-new.svg',
+            sameAs: [
+              'https://twitter.com/fablesmonster',
+              'https://github.com/Kikimor-rec/fables.monster.web',
+              'https://fablesmonster.itch.io/',
+            ],
+            contactPoint: {
+              '@type': 'ContactPoint',
+              email: 'contact@fables.monster',
+              contactType: 'customer service',
+            },
           })
         }} />
       </head>

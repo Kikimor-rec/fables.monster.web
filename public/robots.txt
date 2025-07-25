@@ -1,3 +1,13 @@
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /private/
+
 Sitemap: https://fables.monster/sitemap.xml
+
+# Host
+Host: https://fables.monster
+
+# Crawling directives
+Crawl-delay: 10

@@ -332,6 +332,19 @@ export default function LostMark() {
             description:
               'Sci-Fi horror adventure module for the Mothership RPG.',
             url: 'https://fables.monster/lost-mark',
+            image: 'https://fables.monster/images/lost-mark/lm_promo_1.webp',
+            genre: 'Sci-Fi Horror',
+            numberOfPlayers: '3-5',
+            playTime: '3-4 hours',
+            publisher: 'Fables Monster Studio',
+            inLanguage: 'English',
+            datePublished: '2025-07-25',
+            offers: {
+              '@type': 'Offer',
+              price: '0',
+              priceCurrency: 'USD',
+              url: 'https://fablesmonster.itch.io/lost-mark'
+            }
           }),
         }}
       />

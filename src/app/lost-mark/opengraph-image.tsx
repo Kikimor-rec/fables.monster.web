@@ -9,7 +9,7 @@ export default async function Image() {
     (
       <div style={{
         fontSize: 48,
-        background: 'linear-gradient(135deg, #000000 0%, #7a0000 100%)',
+        background: 'linear-gradient(135deg, #000000 0%, #1a0038 100%)',
         color: 'white',
         width: '100%',
         height: '100%',
@@ -25,9 +25,9 @@ export default async function Image() {
           fontSize: 80, 
           marginBottom: '20px',
           textAlign: 'center',
-          textShadow: '0 0 20px rgba(255, 0, 0, 0.5)'
+          textShadow: '0 0 20px rgba(128, 0, 128, 0.7)'
         }}>
-          FABLES MONSTER
+          THE LOST MARK
         </div>
         <div style={{ 
           fontSize: 36, 
@@ -35,7 +35,15 @@ export default async function Image() {
           maxWidth: '80%',
           lineHeight: '1.4'
         }}>
-          Tabletop RPG Adventures & Content
+          Sci-Fi Horror Adventure for Mothership RPG
+        </div>
+        <div style={{
+          marginTop: '30px',
+          fontSize: 24,
+          textAlign: 'center',
+          color: '#ff6b6b'
+        }}>
+          Fables Monster Studio
         </div>
       </div>
     ),
