@@ -11,8 +11,7 @@ export default function Footer() {
         <div className="grid md:grid-cols-4 gap-8">
           <div>
             <div className="flex flex-col items-start gap-2 mb-4">
-              <Image src="/logos/mascot_white.PNG" alt="Fables Monster Mascot" width={120} height={120} className="w-[120px] max-w-full" />
-              <h3 className="text-xl font-bold text-white font-chalk">FABLES MONSTER</h3>
+              <Image src="/logos/fm-logo-sqare.png" alt="Fables Monster Logo" width={120} height={120} className="w-[120px] max-w-full" />
             </div>
             <p className="text-gray-300 font-nunito">
               Independent tabletop RPG content creation studio

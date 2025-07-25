@@ -26,7 +26,7 @@ export default function SocialLinks({ className = "", showLabels = true }: Socia
       description: "Support us"
     },
     {
-      href: "https://www.drivethrurpg.com/en/publisher/30815/Stepan%20Kulikov",
+      href: "https://www.drivethrurpg.com/en/publisher/30815/fables-monster?affiliate_id=2863466",
       icon: "/logos/dtrpg-logo-small.png",
       label: "DriveThruRPG",
       description: "RPG collection"

@@ -2,9 +2,9 @@ import Link from "next/link";
 import Image from "next/image";
 import StoreButton from "@/components/StoreButton";
 import LazyMusicPlayer from "@/components/LazyMusicPlayer";
-import GlitchyImage from '@/components/GlitchyImage';
+import CSSGlitchImage from '@/components/CSSGlitchImage';
 
-export const dynamic = 'error';
+export const dynamic = 'force-static';
 
 export default function LostMark() {
   const features = [
@@ -85,7 +85,7 @@ export default function LostMark() {
             />
             <StoreButton
               store="drivethrurpg"
-              href="https://www.drivethrurpg.com/en/product/530242"
+              href="https://www.drivethrurpg.com/en/product/530242?affiliate_id=2863466"
               price="Free or PWYW"
             />
           </div>
@@ -95,7 +95,7 @@ export default function LostMark() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link
                 href="/lost-mark/terminal"
-                className="inline-flex items-center gap-2 bg-gray-600 text-gray-200 font-nunito font-bold px-6 py-3 rounded border-2 border-gray-500 shadow-lg hover:bg-gray-500 transition-all duration-200"
+                className="inline-flex items-center gap-2 bg-green-700 text-green-200 font-nunito font-bold px-6 py-3 rounded border-2 border-green-500 shadow-lg hover:bg-green-600 hover:border-green-400 transition-all duration-200"
               >
                 <span className="text-lg">📟</span>
                 ACCESS SILK STAR TERMINAL
@@ -120,7 +120,7 @@ export default function LostMark() {
       <section className="py-8 border-t border-red-700 bg-gray-950/50">
         <div className="max-w-5xl mx-auto px-6 text-center space-y-4">
             <p className="text-gray-300 font-nunito">
-            We plan to release modules for popular virtual tabletops.
+            We have a plan to release modules for popular virtual tabletops.
           </p>
           <div className="flex justify-center gap-4">
             <div className="px-4 py-2 bg-gray-600 text-gray-400 border-2 border-gray-500 rounded font-nunito cursor-not-allowed opacity-75">
@@ -171,7 +171,7 @@ export default function LostMark() {
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-300">Music By:</span>
-                    <span className="text-white">Stanislav DariDa</span>
+                    <span className="text-white">Stanislav DariDai</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-300">Coding by:</span>
@@ -182,13 +182,13 @@ export default function LostMark() {
             </div>
             <div className="flex flex-col items-center w-full">
               <div className="bg-black border-2 border-red-700 shadow-lg mb-4 w-full aspect-[3/2] mx-auto overflow-hidden">
-                <GlitchyImage
+                <CSSGlitchImage
                   src="/images/lost-mark/ship_lm.webp"
                   alt="Lost Mark Ship"
-                  fill
-                  className="w-full h-full"
-                  style={{ width: '100%', height: '100%', aspectRatio: '3/2' }}
+                  width={600}
+                  height={400}
                   quality={85}
+                  className="w-full h-full"
                 />
               </div>
               <div className="w-full max-w-full sm:max-w-[400px] md:max-w-[500px] lg:max-w-[600px] bg-red-950/20 border-2 border-red-700 p-4 sm:p-6">
@@ -214,34 +214,37 @@ export default function LostMark() {
           <div className="grid md:grid-cols-2 gap-8">
             <Link
               href="/lost-mark/terminal"
-              className="bg-black/60 border-2 border-gray-600 p-6 rounded hover:bg-gray-700 transition-colors"
+              className="bg-black/60 border-2 border-green-500 p-6 rounded hover:bg-white/10 transition-all duration-200 shadow-lg"
             >
               <div className="flex items-center gap-3 mb-4">
                 <span className="text-3xl">📟</span>
-                <h3 className="text-xl font-bold text-gray-200 font-nunito">
+                <h3 className="text-xl font-bold text-white font-nunito">
                   SILK STAR TERMINAL
                 </h3>
+                <span className="text-xs bg-green-700 text-white px-2 py-1 rounded font-nunito">AVAILABLE NOW</span>
+
               </div>
-              <p className="text-gray-300 font-nunito text-sm mb-4">
+              <p className="text-white font-nunito text-sm mb-4">
                 Access the ship's computer system and uncover the dark secrets hidden in the logs.
                 Navigate through corrupted data, system failures, and mysterious transmissions.
               </p>
             </Link>
-            
-            <div className="bg-black/60 border-2 border-green-600 p-6 rounded">
+             <Link
+              href="/timer"
+              className="bg-black/60 border-2 border-green-500 p-6 rounded hover:bg-white/10 transition-all duration-200 shadow-lg"
+            >
               <div className="flex items-center gap-3 mb-4">
-                <span className="text-3xl">⌛</span>
-                <h3 className="text-xl font-bold text-green-400 font-nunito">
+                <span className="text-3l">⌛</span>
+                <h3 className="text-xl font-bold text-white font-nunito">
                   CHRONOMETER TERMINAL
                 </h3>
-                <span className="text-xs bg-green-700 text-green-200 px-2 py-1 rounded font-nunito">AVAILABLE NOW</span>
+                <span className="text-xs bg-green-700 text-white px-2 py-1 rounded font-nunito">AVAILABLE NOW</span>
               </div>
-              <p className="text-green-300 font-nunito text-sm mb-4">
+              <p className="text-white font-nunito text-sm mb-4">
                 A digital countdown timer designed for tabletop gaming sessions. 
                 Perfect for time-sensitive scenarios and building tension during gameplay.
               </p>
-
-            </div>
+              </Link>
           </div>
         </div>
       </section>
@@ -297,7 +300,7 @@ export default function LostMark() {
             />
             <StoreButton
               store="drivethrurpg"
-              href="https://www.drivethrurpg.com/en/product/530242"
+              href="https://www.drivethrurpg.com/en/product/530242?affiliate_id=2863466"
               price="Free or PWYW"
             />
             <Link

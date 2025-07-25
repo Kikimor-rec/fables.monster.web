@@ -10,11 +10,11 @@ export default function Projects() {
       id: "lost-mark",
       title: "The Lost Mark",
       description: "A Sci-Fi horror adventure for Mothership RPG. Your crew faces impossible choices and eldritch truths among the wrecks and cults of deep space.",
-      status: "Available Soon",
+      status: "Available NOW",
       tags: ["Mothership 1e", "Sci-Fi Horror", "Investigation"],
-      icon: "⚠",
+      icon: "🛰️",
       featured: true,
-      progress: "Waiting final approval from Mothership team"
+      progress: "Available NOW",
     },
     {
       id: "cemetery-of-broken-ships",
@@ -87,15 +87,9 @@ export default function Projects() {
       <section className="py-12 sm:py-20 bg-red-900 border-t border-red-700">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6">
           <FadeIn>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6 font-nunito">
-              ALL PROJECTS
-            </h2>
             <p className="text-lg sm:text-xl text-red-100 mb-8 font-nunito">
               Stay tuned for more updates!
             </p>
-            <button className="w-full sm:w-auto bg-white text-red-900 px-6 sm:px-8 py-4 text-base sm:text-lg font-nunito font-bold hover:bg-gray-200 transition-colors text-center">
-              LOAD MORE
-            </button>
           </FadeIn>
         </div>
       </section>

@@ -37,7 +37,7 @@ export default function Contact() {
                 <a href="https://patreon.com/FablesMonster?fables.monster" target="_blank" rel="noopener noreferrer" title="Patreon" className="block">
                   <Image src="/logos/patreon-badge-color.png" alt="Patreon" width={200} height={40} className="h-10 w-auto drop-shadow mx-0" />
                 </a>
-                <a href="https://www.drivethrurpg.com/en/publisher/30815/Stepan%20Kulikov" target="_blank" rel="noopener noreferrer" title="DriveThruRPG" className="block">
+                <a href="https://www.drivethrurpg.com/en/publisher/30815/Stepan%20Kulikov?affiliate_id=2863466" target="_blank" rel="noopener noreferrer" title="DriveThruRPG" className="block">
                   <Image src="/logos/drivethrurpg-badge-color.png" alt="DriveThruRPG" width={200} height={40} className="h-10 w-auto drop-shadow mx-0" />
                 </a>
               </div>
