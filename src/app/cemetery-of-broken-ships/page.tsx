@@ -42,7 +42,7 @@ export default function CemeteryOfBrokenShips() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center">
+      <section className="relative min-h-screen flex items-center justify-center pt-20 md:pt-24">
         <div className="absolute inset-0 bg-gradient-to-b from-black via-black to-red-950/20"></div>
         <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
           <div className="text-8xl mb-6 font-nunito text-red-400">🚀</div>

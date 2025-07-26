@@ -1,15 +1,6 @@
 "use client";
 
-import dynamic from "next/dynamic";
-import { ReactNode, Suspense, useState } from "react";
-
-const MotionDiv = dynamic(
-  () => import("framer-motion").then((mod) => mod.motion.div),
-  { 
-    ssr: false,
-    loading: () => <div className="opacity-0" />
-  }
-);
+import { ReactNode, useRef, useEffect, useState } from "react";
 
 interface FadeInProps {
   children: ReactNode;
@@ -24,39 +15,57 @@ export default function FadeIn({
   direction = "up",
   className = ""
 }: FadeInProps) {
-  const getInitialPosition = () => {
+  const elementRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const [glitched, setGlitched] = useState(false);
+
+  useEffect(() => {
+    const element = elementRef.current;
+    if (!element) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            setIsVisible(true);
+            setGlitched(true);
+          }, delay * 1000);
+        }
+      },
+      {
+        threshold: 0.1,
+        rootMargin: "-50px"
+      }
+    );
+
+    observer.observe(element);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [delay]);
+
+  const getInitialTransform = () => {
     switch (direction) {
       case "up":
-        return { y: 30, opacity: 0 };
+        return "translate3d(0, 30px, 0)";
       case "down":
-        return { y: -30, opacity: 0 };
+        return "translate3d(0, -30px, 0)";
       case "left":
-        return { x: 30, opacity: 0 };
+        return "translate3d(30px, 0, 0)";
       case "right":
-        return { x: -30, opacity: 0 };
+        return "translate3d(-30px, 0, 0)";
       default:
-        return { y: 30, opacity: 0 };
+        return "translate3d(0, 30px, 0)";
     }
   };
 
-  const [glitched, setGlitched] = useState(false);
-
   return (
-    <Suspense fallback={<div className={className}>{children}</div>}>
-      <MotionDiv
-        initial={getInitialPosition()}
-        whileInView={{ x: 0, y: 0, opacity: 1 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{
-          duration: 0.6,
-          delay: delay,
-          ease: [0.25, 0.25, 0.25, 0.75]
-        }}
-        onAnimationComplete={() => setGlitched(true)}
-        className={className + (glitched ? " terminal-glitch" : "")}
-      >
-        {children}
-      </MotionDiv>
-    </Suspense>
+    <div
+      ref={elementRef}
+      className={`${className} transition-all duration-600 ease-in-out ${isVisible ? 'opacity-100 translate3d(0, 0, 0)' : `opacity-0 ${getInitialTransform()}`} ${glitched ? "terminal-glitch" : ""}`}
+    >
+      {children}
+    </div>
   );
 }

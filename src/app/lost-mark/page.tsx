@@ -189,6 +189,7 @@ export default function LostMark() {
                   height={400}
                   quality={85}
                   className="w-full h-full"
+                  theme="horror"
                 />
               </div>
               <div className="w-full max-w-full sm:max-w-[400px] md:max-w-[500px] lg:max-w-[600px] bg-red-950/20 border-2 border-red-700 p-4 sm:p-6">
@@ -282,6 +283,23 @@ export default function LostMark() {
 
       {/* Music Player */}
       <LazyMusicPlayer />
+
+      {/* Streaming Service Link */}
+      <div className="py-6 border-t border-red-700 bg-gray-950/50">
+        <div className="max-w-6xl mx-auto px-6 text-center">
+          <a 
+            href="https://distrokid.com/hyperfollow/fablesmonsters/lost-mark-original-soundtrack" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="inline-block bg-red-700 hover:bg-red-600 text-white font-nunito font-bold py-3 px-6 rounded border-2 border-red-600 transition-colors mb-3"
+          >
+            Listen on Streaming Services
+          </a>
+          <p className="text-gray-400 font-nunito text-sm">
+            Our packages on all platforms already include MP3 files. Use this solution if you need to play offline.
+          </p>
+        </div>
+      </div>
 
       {/* Download Section */}
       <section className="py-20 border-t border-red-700 text-center">

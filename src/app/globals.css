@@ -579,6 +579,87 @@ h6 {
     }
 }
 
+/* Horror-themed glitch effect for sci-fi horror themes */
+@keyframes horror-glitch {
+    0%, 100% {
+        transform: translate(0);
+        filter: hue-rotate(0deg) drop-shadow(0 0 0 transparent);
+        opacity: 1;
+    }
+    
+    5% {
+        transform: translate(-2px, 1px);
+        filter: hue-rotate(45deg) drop-shadow(-2px 2px 0 rgb(255 0 0 / 0.3));
+        opacity: 0.9;
+    }
+    
+    10% {
+        transform: translate(1px, -2px);
+        filter: hue-rotate(-45deg) drop-shadow(2px -2px 0 rgb(0 255 0 / 0.2));
+        opacity: 0.85;
+    }
+    
+    15% {
+        transform: translate(0);
+        filter: hue-rotate(0deg) drop-shadow(0 0 0 transparent);
+        opacity: 1;
+    }
+    
+    25% {
+        transform: translate(-1px, 1px);
+        filter: hue-rotate(90deg) drop-shadow(-1px 1px 0 rgb(0 0 255 / 0.25));
+        opacity: 0.95;
+    }
+    
+    30% {
+        transform: translate(2px, -1px);
+        filter: hue-rotate(-90deg) drop-shadow(2px -1px 0 rgb(255 0 0 / 0.2));
+        opacity: 0.9;
+    }
+    
+    40% {
+        transform: translate(0);
+        filter: hue-rotate(0deg) drop-shadow(0 0 0 transparent);
+        opacity: 1;
+    }
+    
+    50% {
+        transform: translate(-3px, 2px);
+        filter: hue-rotate(180deg) drop-shadow(-3px 3px 0 rgb(0 255 0 / 0.4));
+        opacity: 0.8;
+    }
+    
+    55% {
+        transform: translate(0);
+        filter: hue-rotate(0deg) drop-shadow(0 0 0 transparent);
+        opacity: 1;
+    }
+    
+    70% {
+        transform: translate(1px, -1px);
+        filter: hue-rotate(-180deg) drop-shadow(1px -1px 0 rgb(0 0 255 / 0.3));
+        opacity: 0.9;
+    }
+    
+    85% {
+        transform: translate(0);
+        filter: hue-rotate(0deg) drop-shadow(0 0 0 transparent);
+        opacity: 1;
+    }
+    
+    90% {
+        transform: translate(-1px, 1px);
+        filter: hue-rotate(135deg) drop-shadow(-1px 1px 0 rgb(255 0 0 / 0.25));
+        opacity: 0.95;
+    }
+    
+    95% {
+        transform: translate(0);
+        filter: hue-rotate(0deg) drop-shadow(0 0 0 transparent);
+        opacity: 1;
+    }
+}
+
 
 /* underline animation for navigation menu */
 
@@ -643,16 +724,54 @@ h6 {
     background-position: center;
     pointer-events: none;
     z-index: 2;
+    animation-duration: 24s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    animation-direction: alternate-reverse;
 }
 
 .glitch-layer-1 {
     mix-blend-mode: screen;
     opacity: 0.7;
+    animation-name: glitch-5;
+    --glitch-x-1: -1px;
+    --glitch-x-2: 1px;
+    --glitch-hue-1: 45deg;
+    --glitch-hue-2: -45deg;
 }
 
 .glitch-layer-2 {
     mix-blend-mode: multiply;
     opacity: 0.6;
+    animation-name: glitch-6;
+    --glitch-x-1: 1px;
+    --glitch-x-2: -1px;
+    --glitch-hue-1: -90deg;
+    --glitch-hue-2: 90deg;
+    animation-duration: 20s;
+}
+
+/* Horror theme glitch layers */
+.glitch-layer-1.horror-theme {
+    animation-name: horror-glitch;
+    animation-duration: 15s;
+    --glitch-x-1: -2px;
+    --glitch-x-2: 2px;
+    --glitch-hue-1: 45deg;
+    --glitch-hue-2: -90deg;
+    opacity: 0.8;
+}
+
+.glitch-layer-2.horror-theme {
+    animation-name: horror-glitch;
+    animation-duration: 18s;
+    animation-delay: -2s;
+    --glitch-x-1: 2px;
+    --glitch-x-2: -2px;
+    --glitch-hue-1: -180deg;
+    --glitch-hue-2: 180deg;
+    opacity: 0.7;
+    mix-blend-mode: overlay;
 }
 
 .glitch-paused .glitch-layer {
