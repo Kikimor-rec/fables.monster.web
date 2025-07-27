@@ -279,29 +279,59 @@ export default function LostMark() {
         </div>
       </section>
 
-     
+      {/* Audio Section */}
+      <section className="py-20 border-t border-red-700 bg-gray-900">
+        <div className="max-w-7xl mx-auto px-6">
+          <h2 className="text-4xl font-bold text-white mb-12 text-center font-nunito">
+            🎵 ATMOSPHERIC SOUNDTRACK
+          </h2>
+          
+          {/* Streaming Service Link */}
+          <div className="py-6 mb-12 text-center">
+            <h3 className="text-2xl font-bold text-white mb-4 font-nunito">Use Your Favorite Streaming Service</h3>
+            <p className="text-gray-300 font-nunito mb-6 max-w-2xl mx-auto">
+              Access the full soundtrack on any platform you prefer for convenient listening during your game sessions.
+            </p>
+            <a 
+              href="https://distrokid.com/hyperfollow/fablesmonsters/lost-mark-original-soundtrack" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-block bg-red-700 hover:bg-red-600 text-white font-nunito font-bold py-3 px-6 rounded border-2 border-red-600 transition-colors mb-3"
+            >
+              Listen on Streaming Services
+            </a>
+          </div>
 
-      {/* Music Player */}
-      <LazyMusicPlayer />
+          {/* YouTube Playlist */}
+          <div className="mb-12 max-w-4xl mx-auto">
+            <h3 className="text-2xl font-bold text-white mb-4 text-center font-nunito">YouTube Playlist</h3>
+            <p className="text-gray-300 font-nunito mb-6 max-w-2xl mx-auto text-center">
+              Watch and listen to the complete soundtrack on YouTube with our dedicated playlist.
+            </p>
+            <iframe 
+              width="560" 
+              height="315" 
+              src="https://www.youtube.com/embed/videoseries?si=enlxSeQmCInMMZ95&list=PLO8bKMtLeNZT3DrnjgMhfhDl18NJbaFHl" 
+              title="YouTube video player" 
+              frameBorder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              referrerPolicy="strict-origin-when-cross-origin" 
+              allowFullScreen
+              className="w-full aspect-video"
+            ></iframe>
+          </div>
 
-      {/* Streaming Service Link */}
-      <div className="py-6 border-t border-red-700 bg-gray-950/50">
-        <div className="max-w-6xl mx-auto px-6 text-center">
-          <a 
-            href="https://distrokid.com/hyperfollow/fablesmonsters/lost-mark-original-soundtrack" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="inline-block bg-red-700 hover:bg-red-600 text-white font-nunito font-bold py-3 px-6 rounded border-2 border-red-600 transition-colors mb-3"
-          >
-            Listen on Streaming Services
-          </a>
-          <p className="text-gray-400 font-nunito text-sm">
-            Our packages on all platforms already include MP3 files. Use this solution if you need to play offline.
-          </p>
+          {/* Music Player */}
+          <div className="max-w-4xl mx-auto">
+            <h3 className="text-2xl font-bold text-white mb-4 text-center font-nunito">Website Player</h3>
+            <p className="text-gray-300 font-nunito mb-6 max-w-2xl mx-auto text-center">
+              Use our embedded player to enjoy the full soundtrack directly on our website with all 11 tracks.
+            </p>
+            <LazyMusicPlayer />
+          </div>
         </div>
-      </div>
+      </section>
 
-      {/* Download Section */}
       <section className="py-20 border-t border-red-700 text-center">
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-4xl font-bold text-white mb-6 font-nunito">

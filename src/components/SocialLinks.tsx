@@ -31,6 +31,12 @@ export default function SocialLinks({ className = "", showLabels = true }: Socia
       label: "DriveThruRPG",
       description: "RPG collection"
     },
+        {
+      href: "https://www.youtube.com/@fables.monster",
+      icon: "/logos/yt_icon_mono_dark.png",
+      label: "YouTube",
+      description: "Watch our videos"
+    },
     {
       href: "mailto:info@fables.monster",
       icon: "/logos/mail-512.png",
@@ -54,9 +60,10 @@ export default function SocialLinks({ className = "", showLabels = true }: Socia
               <Image
                 src={link.icon}
                 alt={link.label}
-                width={32}
-                height={32}
-                className="hover:opacity-80 transition-opacity filter brightness-0 invert w-6 h-6 sm:w-8 sm:h-8"
+                width={0}
+                height={0}
+                sizes="100vw"
+                className={`hover:opacity-80 transition-opacity h-6 sm:h-8 w-auto ${link.label !== 'YouTube' ? 'filter brightness-0 invert' : ''}`}
               />
             ) : (
               <div className="text-xl sm:text-2xl md:text-3xl">{link.icon}</div>
