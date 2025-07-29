@@ -1,4 +1,7 @@
 import { ImageResponse } from 'next/og';
+const chalkFont = fetch(
+  new URL('../../public/fonts/chalk-regular.ttf', import.meta.url)
+).then((res) => res.arrayBuffer());
 
 export const runtime = 'edge';
 export const size = { width: 1200, height: 630 };
@@ -18,7 +21,7 @@ export default async function Image() {
         alignItems: 'center',
         justifyContent: 'center',
         padding: '40px',
-        fontFamily: 'sans-serif',
+        fontFamily: 'Chalk',
         fontWeight: 'bold',
       }}>
         <div style={{ 
@@ -39,6 +42,9 @@ export default async function Image() {
         </div>
       </div>
     ),
-    size
+    {
+      ...size,
+      fonts: [{ name: 'Chalk', data: await chalkFont }]
+    }
   );
 }
