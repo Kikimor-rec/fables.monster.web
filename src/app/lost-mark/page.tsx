@@ -3,6 +3,7 @@ import Image from "next/image";
 import StoreButton from "@/components/StoreButton";
 import LazyMusicPlayer from "@/components/LazyMusicPlayer";
 import CSSGlitchImage from '@/components/CSSGlitchImage';
+import { AdventureJson } from '@/components/SEO';
 
 export const dynamic = 'force-static';
 
@@ -38,7 +39,15 @@ export default function LostMark() {
   ];
 
   return (
-    <div className="bg-black">
+    <>
+      <AdventureJson
+        name="The Lost Mark"
+        description="2-page sci-fi horror adventure for Mothership 1E."
+        url="https://fables.monster/lost-mark"
+        date="2024-10-05"
+        genre="Science Fiction Horror"
+      />
+      <div className="bg-black">
       {/* Hero Section with Promo Image */}
       <section className="relative min-h-screen flex items-center justify-center">
         <div className="absolute inset-0 bg-gradient-to-b from-black via-black to-red-950/20"></div>
@@ -370,32 +379,7 @@ export default function LostMark() {
           </div>
         </div>
       </section>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'Game',
-            name: 'The Lost Mark',
-            description:
-              'Sci-Fi horror adventure module for the Mothership RPG.',
-            url: 'https://fables.monster/lost-mark',
-            image: 'https://fables.monster/images/lost-mark/lm_promo_1.webp',
-            genre: 'Sci-Fi Horror',
-            numberOfPlayers: '3-5',
-            playTime: '3-4 hours',
-            publisher: 'Fables Monster Studio',
-            inLanguage: 'English',
-            datePublished: '2025-07-25',
-            offers: {
-              '@type': 'Offer',
-              price: '0',
-              priceCurrency: 'USD',
-              url: 'https://fablesmonster.itch.io/lost-mark'
-            }
-          }),
-        }}
-      />
     </div>
+    </>
   );
 }

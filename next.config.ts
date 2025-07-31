@@ -15,6 +15,19 @@ const nextConfig: NextConfig = {
   trailingSlash: false,
   distDir: '.next',
   cleanDistDir: true,
+  async headers() {
+    return [
+      {
+        source: '/:path*.(webp|avif|jpg|jpeg|png|css|js)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+    ];
+  },
 };
 
 export default withBundleAnalyzer(nextConfig);
