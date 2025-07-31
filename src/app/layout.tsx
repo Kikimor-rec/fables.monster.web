@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { DefaultSEO } from "@/components/SEO";
 import { Nunito } from "next/font/google";
 
 const nunito = Nunito({
@@ -87,6 +88,7 @@ export default function RootLayout({
         }} />
       </head>
       <body className={`${nunito.variable} ${nunito.className} antialiased`} suppressHydrationWarning>
+        <DefaultSEO />
         <Navigation />
         <main className="min-h-screen pt-20 md:pt-24">
           {children}

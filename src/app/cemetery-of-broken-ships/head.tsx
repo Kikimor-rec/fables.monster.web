@@ -1,8 +1,9 @@
 import { createMetadata } from "@/lib/seo";
 
 export const metadata = createMetadata({
-  title: "Cemetery of Broken Ships | Fables Monster Studio",
-  description: "A dark space exploration adventure for Mothership RPG. Investigate the mysteries of a graveyard of derelict spacecraft.",
+  title: "Cemetery of Broken Ships – Sci-Fi Horror Adventure",
+  description:
+    "Investigate five derelict ships connected by corporate greed and cosmic dread.",
   path: "/cemetery-of-broken-ships",
   image: "/opengraph-image",
   type: "article",

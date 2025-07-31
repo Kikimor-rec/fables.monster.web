@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Navigation from "@/components/Navigation";
+import { PageSEO, AdventureJSON } from '@/components/SEO';
 
 export const dynamic = 'error';
 
@@ -38,6 +39,19 @@ export default function CemeteryOfBrokenShips() {
   ];
 
   return (
+    <>
+      <PageSEO
+        title="Cemetery of Broken Ships – Sci-Fi Horror Adventure"
+        description="Investigate five derelict ships connected by corporate greed and cosmic dread."
+        canonical="https://fables.monster/cemetery-of-broken-ships"
+      />
+      <AdventureJSON
+        name="Cemetery of Broken Ships"
+        description="Sci-Fi horror adventure featuring a graveyard of spacecraft."
+        url="https://fables.monster/cemetery-of-broken-ships"
+        date="2024-11-10"
+        genre="Science Fiction Horror"
+      />
     <div className="min-h-screen bg-black">
       <Navigation />
 
@@ -304,18 +318,7 @@ export default function CemeteryOfBrokenShips() {
           </div>
         </div>
       </footer>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'Game',
-            name: 'Cemetery of Broken Ships',
-            description: 'Sci-Fi Horror Adventure with five derelict ships.',
-            url: 'https://fables.monster/cemetery-of-broken-ships',
-          }),
-        }}
-      />
     </div>
+    </>
   );
 }
