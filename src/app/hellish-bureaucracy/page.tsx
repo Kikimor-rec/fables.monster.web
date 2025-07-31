@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Navigation from "@/components/Navigation";
-import { PageSEO, AdventureJSON } from '@/components/SEO';
+import { AdventureJson } from '@/components/SEO';
 
 export const dynamic = 'error';
 
@@ -53,12 +53,7 @@ export default function HellishBureaucracy() {
 
   return (
     <>
-      <PageSEO
-        title="Hellish Bureaucracy – Infernal Administrative Adventure"
-        description="Survive demonic paperwork and devilish contracts in this comedic yet dangerous quest."
-        canonical="https://fables.monster/hellish-bureaucracy"
-      />
-      <AdventureJSON
+      <AdventureJson
         name="Hellish Bureaucracy"
         description="Fantasy adventure about surviving infernal administration."
         url="https://fables.monster/hellish-bureaucracy"

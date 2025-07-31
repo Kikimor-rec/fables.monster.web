@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Navigation from "@/components/Navigation";
-import { PageSEO, AdventureJSON } from '@/components/SEO';
+import { AdventureJson } from '@/components/SEO';
 
 export const dynamic = 'error';
 
@@ -40,12 +40,7 @@ export default function CemeteryOfBrokenShips() {
 
   return (
     <>
-      <PageSEO
-        title="Cemetery of Broken Ships – Sci-Fi Horror Adventure"
-        description="Investigate five derelict ships connected by corporate greed and cosmic dread."
-        canonical="https://fables.monster/cemetery-of-broken-ships"
-      />
-      <AdventureJSON
+      <AdventureJson
         name="Cemetery of Broken Ships"
         description="Sci-Fi horror adventure featuring a graveyard of spacecraft."
         url="https://fables.monster/cemetery-of-broken-ships"

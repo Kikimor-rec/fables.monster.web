@@ -3,7 +3,7 @@ import Image from "next/image";
 import StoreButton from "@/components/StoreButton";
 import LazyMusicPlayer from "@/components/LazyMusicPlayer";
 import CSSGlitchImage from '@/components/CSSGlitchImage';
-import { PageSEO, AdventureJSON } from '@/components/SEO';
+import { AdventureJson } from '@/components/SEO';
 
 export const dynamic = 'force-static';
 
@@ -40,12 +40,7 @@ export default function LostMark() {
 
   return (
     <>
-      <PageSEO
-        title="The Lost Mark – Sci-Fi Horror TTRPG Module for Mothership 1E"
-        description="Free 2-page sci-fi horror adventure for Mothership 1E. 3-5 players, 3-4 hours, eldritch mystery and a stranded cult."
-        canonical="https://fables.monster/lost-mark"
-      />
-      <AdventureJSON
+      <AdventureJson
         name="The Lost Mark"
         description="2-page sci-fi horror adventure for Mothership 1E."
         url="https://fables.monster/lost-mark"

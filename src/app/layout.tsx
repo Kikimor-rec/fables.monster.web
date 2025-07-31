@@ -2,14 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { DefaultSEO } from "@/components/SEO";
-import { Nunito } from "next/font/google";
 
-const nunito = Nunito({
-  subsets: ["latin"],
-  weight: ["400", "600", "700"],
-  variable: "--font-nunito",
-});
+
+// Use Nunito via an external stylesheet to avoid build-time downloads
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://fables.monster"),
@@ -65,6 +60,10 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap"
+          rel="stylesheet"
+        />
         <link rel="dns-prefetch" href="//discord.gg" />
         <link rel="dns-prefetch" href="//github.com" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{
@@ -87,8 +86,7 @@ export default function RootLayout({
           })
         }} />
       </head>
-      <body className={`${nunito.variable} ${nunito.className} antialiased`} suppressHydrationWarning>
-        <DefaultSEO />
+      <body className="font-nunito antialiased" suppressHydrationWarning>
         <Navigation />
         <main className="min-h-screen pt-20 md:pt-24">
           {children}
