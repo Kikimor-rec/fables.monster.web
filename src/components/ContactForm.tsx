@@ -1,6 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import { ZodIssue } from "zod";
+
+interface FormErrors {
+  name?: string;
+  email?: string;
+  message?: string;
+  general?: string;
+}
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -10,21 +18,24 @@ export default function ContactForm() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+  const [errors, setErrors] = useState<FormErrors>({});
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
+    // Clear specific error when user starts typing
+    setErrors(prev => ({ ...prev, [e.target.name]: undefined, general: undefined }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus("idle");
+    setErrors({}); // Clear previous errors
 
     try {
-      // Используем наш собственный API endpoint
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
@@ -45,10 +56,25 @@ export default function ContactForm() {
       } else {
         console.error("API Error:", data);
         setSubmitStatus("error");
+        if (data.details && Array.isArray(data.details)) {
+          // Map Zod errors to form fields
+          const newErrors: FormErrors = {};
+          data.details.forEach((err: ZodIssue) => {
+            if (err.path && err.path.length > 0) {
+              newErrors[err.path[0] as keyof FormErrors] = err.message;
+            }
+          });
+          setErrors(newErrors);
+        } else if (data.error) {
+          setErrors({ general: data.error });
+        } else {
+          setErrors({ general: "An unexpected error occurred." });
+        }
       }
     } catch (error) {
       console.error("Error submitting form:", error);
       setSubmitStatus("error");
+      setErrors({ general: "Failed to connect to the server. Please check your internet connection." });
     } finally {
       setIsSubmitting(false);
     }
@@ -69,6 +95,7 @@ export default function ContactForm() {
       {submitStatus === "error" && (
         <div className="mb-6 p-4 bg-red-900/20 border border-red-500 text-red-300 font-nunito text-sm">
           ✗ Error sending message. Please try again or email us directly at info@fables.monster
+          {errors.general && <p className="mt-2">{errors.general}</p>}
         </div>
       )}
       
@@ -86,6 +113,7 @@ export default function ContactForm() {
             className="w-full bg-gray-800 border border-red-700 text-white px-4 py-3 font-nunito focus:outline-none focus:border-red-400"
             placeholder="Your name"
           />
+          {errors.name && <p className="text-red-400 text-xs mt-1">{errors.name}</p>}
         </div>
         
         <div>
@@ -101,6 +129,7 @@ export default function ContactForm() {
             className="w-full bg-gray-800 border border-red-700 text-white px-4 py-3 font-nunito focus:outline-none focus:border-red-400"
             placeholder="your@email.com"
           />
+          {errors.email && <p className="text-red-400 text-xs mt-1">{errors.email}</p>}
         </div>
         
         <div>
@@ -116,6 +145,7 @@ export default function ContactForm() {
             className="w-full bg-gray-800 border border-red-700 text-white px-4 py-3 font-nunito focus:outline-none focus:border-red-400"
             placeholder="Your message..."
           />
+          {errors.message && <p className="text-red-400 text-xs mt-1">{errors.message}</p>}
         </div>
         
         <button
