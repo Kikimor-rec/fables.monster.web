@@ -1,6 +1,38 @@
+import { Metadata } from 'next'
 import Link from "next/link";
 import TeamMember from "@/components/TeamMember";
 // ...удалён импорт FinalEditable...
+
+export const metadata: Metadata = {
+  title: 'About | Fables Monster Studio',
+  description: 'Meet the team behind Fables Monster Studio - talented creators crafting immersive tabletop RPG experiences, horror adventures, and sci-fi campaigns.',
+  keywords: 'tabletop RPG team, game designers, RPG writers, horror game creators, Mothership RPG, indie game studio',
+  openGraph: {
+    title: 'About Fables Monster Studio - Meet Our Creative Team',
+    description: 'Discover the passionate creators behind award-winning tabletop RPG content. From writers to artists, meet the team bringing nightmares to your gaming table.',
+    url: 'https://fables.monster/about',
+    siteName: 'Fables Monster Studio',
+    images: [
+      {
+        url: 'https://fables.monster/og-about.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Fables Monster Studio Team',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'About Fables Monster Studio - Meet Our Creative Team',
+    description: 'Discover the passionate creators behind award-winning tabletop RPG content.',
+    images: ['https://fables.monster/og-about.jpg'],
+  },
+  alternates: {
+    canonical: 'https://fables.monster/about',
+  },
+}
 
 export const dynamic = 'error';
 // ...удалён импорт useContent...

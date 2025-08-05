@@ -1,5 +1,37 @@
+import { Metadata } from 'next'
 import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
+
+export const metadata: Metadata = {
+  title: 'Lost Mark License - Third-Party Content License',
+  description: 'License information for Lost Mark RPG adventure. Learn about third-party content usage, attribution requirements, and licensing terms.',
+  keywords: 'Lost Mark license, RPG license, third-party content, Mothership RPG license, attribution, copyright',
+  openGraph: {
+    title: 'Lost Mark License - Third-Party Content Information',
+    description: 'Legal information and licensing terms for the Lost Mark RPG adventure and related content.',
+    url: 'https://fables.monster/lost-mark/license',
+    siteName: 'Fables Monster Studio',
+    images: [
+      {
+        url: 'https://fables.monster/lost-mark/cover.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Lost Mark License Information',
+      },
+    ],
+    locale: 'en_US',
+    type: 'article',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Lost Mark License Information',
+    description: 'Legal information and licensing terms for the Lost Mark RPG adventure.',
+    images: ['https://fables.monster/lost-mark/cover.jpg'],
+  },
+  alternates: {
+    canonical: 'https://fables.monster/lost-mark/license',
+  },
+}
 
 export const dynamic = 'error';
 

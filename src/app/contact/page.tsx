@@ -1,5 +1,26 @@
+import { Metadata } from "next";
 import Image from "next/image";
 import ContactForm from "@/components/ContactForm";
+
+export const metadata: Metadata = {
+  title: "Contact - Get in Touch with Fables Monster Studio",
+  description: "Contact Fables Monster Studio for collaborations, questions about our tabletop RPG projects, or general inquiries. Join our Discord community and follow us on social media.",
+  keywords: "contact, Fables Monster Studio, RPG collaboration, Discord, social media, tabletop RPG community",
+  openGraph: {
+    title: "Contact Fables Monster Studio",
+    description: "Get in touch with us for collaborations and questions about our tabletop RPG projects.",
+    url: "https://fables.monster/contact",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Contact Fables Monster Studio",
+    description: "Get in touch for collaborations and RPG project inquiries.",
+  },
+  alternates: {
+    canonical: "https://fables.monster/contact"
+  }
+};
 
 export const dynamic = 'error';
 

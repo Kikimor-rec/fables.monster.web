@@ -779,13 +779,13 @@ h6 {
     opacity: 0 !important;
 }
 
-@font-face {
+/* @font-face {
     font-family: 'Chalk';
     src: url('/fonts/chalk-regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
-}
+} */
 
 .font-chalk {
     font-family: 'Chalk', 'Courier New', Courier, monospace;

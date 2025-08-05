@@ -1,6 +1,38 @@
+import { Metadata } from 'next'
 import Link from "next/link";
 import Navigation from "@/components/Navigation";
 import { AdventureJson } from '@/components/SEO';
+
+export const metadata: Metadata = {
+  title: 'Cemetery of Broken Ships | Fables Monster Studio',
+  description: 'Explore derelict vessels in this haunting Mothership RPG adventure. Navigate through abandoned ships, uncover dark secrets, and survive cosmic horror.',
+  keywords: 'Mothership RPG, space horror, derelict ships, cosmic horror adventure, sci-fi RPG, space exploration, abandoned vessels',
+  openGraph: {
+    title: 'Cemetery of Broken Ships - Mothership RPG Adventure',
+    description: 'A haunting space horror adventure featuring derelict vessels, cosmic mysteries, and survival challenges in the depths of space.',
+    url: 'https://fables.monster/cemetery-of-broken-ships',
+    siteName: 'Fables Monster Studio',
+    images: [
+      {
+        url: 'https://fables.monster/projects/cemetery-ships-cover.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Cemetery of Broken Ships RPG Adventure Cover',
+      },
+    ],
+    locale: 'en_US',
+    type: 'article',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Cemetery of Broken Ships - Space Horror Adventure',
+    description: 'Explore derelict vessels in this haunting Mothership RPG adventure.',
+    images: ['https://fables.monster/projects/cemetery-ships-cover.jpg'],
+  },
+  alternates: {
+    canonical: 'https://fables.monster/cemetery-of-broken-ships',
+  },
+}
 
 export const dynamic = 'error';
 

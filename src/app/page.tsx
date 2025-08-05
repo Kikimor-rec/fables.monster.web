@@ -1,3 +1,4 @@
+import { Metadata } from 'next'
 import Link from "next/link";
 import CompactTeamMember from "@/components/CompactTeamMember";
 import FadeIn from "@/components/FadeIn";
@@ -8,6 +9,37 @@ import siteContent from "../../public/content/site-content.json";
 type SiteContent = {
   team?: { members?: TeamMember[] };
 };
+
+export const metadata: Metadata = {
+  title: 'Fables Monster Studio - Independent Tabletop RPG Creators',
+  description: 'Create unforgettable tabletop RPG experiences with Fables Monster Studio. Specializing in horror, sci-fi, and supernatural adventures for Mothership RPG, D&D, and more.',
+  keywords: 'tabletop RPG, horror RPG, Mothership RPG, indie games, D&D adventures, cosmic horror, sci-fi RPG, supernatural adventures',
+  openGraph: {
+    title: 'Fables Monster Studio - Where Nightmares Become Adventures',
+    description: 'Independent creators of award-winning tabletop RPG content. From cosmic horror to supernatural mysteries, we bring your darkest gaming fantasies to life.',
+    url: 'https://fables.monster',
+    siteName: 'Fables Monster Studio',
+    images: [
+      {
+        url: 'https://fables.monster/og-home.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Fables Monster Studio - Tabletop RPG Creators',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Fables Monster Studio - Where Nightmares Become Adventures',
+    description: 'Independent creators of award-winning tabletop RPG content.',
+    images: ['https://fables.monster/og-home.jpg'],
+  },
+  alternates: {
+    canonical: 'https://fables.monster',
+  },
+}
 
 export const dynamic = 'error';
 
@@ -33,7 +65,7 @@ export default function Home() {
           <FadeIn delay={0.2}>
             <div className="flex flex-col items-center justify-center mb-6">
               <Image src="/logos/mascot_white.PNG" alt="Fables Monster Mascot" width={320} height={320} className="w-[320px] max-w-full mb-4 mt-16 sm:mt-0" priority />
-              <h1 className="text-6xl sm:text-7xl md:text-8xl font-bold text-white font-chalk tracking-wider">
+              <h1 className="text-6xl sm:text-7xl md:text-8xl font-bold text-white font-nunito tracking-wider">
                 FABLES MONSTER
               </h1>
             </div>
@@ -159,6 +191,48 @@ export default function Home() {
                     THE LOST MARK
                   </div>
                 </div>
+              </div>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* Holiday Special Project */}
+      <section className="py-12 sm:py-20 bg-gradient-to-r from-green-900 to-red-900 border-t border-green-700">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <FadeIn>
+            <div className="text-center mb-8 sm:mb-12">
+              <div className="text-6xl mb-4">🎅</div>
+              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 font-nunito">
+                COMING THIS OCTOBER
+              </h2>
+              <p className="text-lg sm:text-xl text-green-200 font-nunito">
+                A festive horror one-shot for your holiday table
+              </p>
+            </div>
+          </FadeIn>
+          
+          <FadeIn delay={0.2}>
+            <div className="bg-black bg-opacity-50 border border-red-700 p-6 sm:p-8 max-w-4xl mx-auto">
+              <div className="text-center">
+                <h3 className="text-2xl sm:text-3xl font-bold text-green-400 mb-4 font-nunito">
+                  HOLIDAY AUDIT: KRAMP.EXE
+                </h3>
+                <p className="text-gray-200 mb-6 font-nunito leading-relaxed">
+                  Christmas Eve gone catastrophically wrong in deep space. The station's karma-review AI, 
+                  St.N KRAMP, malfunctions and starts dredging up every hidden misdeed. 
+                  Can you cleanse your record before the system wipes you from it?
+                </p>
+                <div className="flex flex-wrap justify-center gap-2 mb-6">
+                  <span className="bg-green-700 text-white px-3 py-1 text-sm font-nunito">POSTCARD SIZE</span>
+                  <span className="bg-red-700 text-white px-3 py-1 text-sm font-nunito">ONE-SHOT</span>
+                </div>
+                <Link
+                  href="/holiday-audit-kramp"
+                  className="inline-block bg-red-600 hover:bg-red-700 text-white px-6 py-3 font-nunito font-bold transition-colors"
+                >
+                  Learn More
+                </Link>
               </div>
             </div>
           </FadeIn>

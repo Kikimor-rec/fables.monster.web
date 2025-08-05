@@ -1,9 +1,37 @@
+import { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import StoreButton from "@/components/StoreButton";
 import LazyMusicPlayer from "@/components/LazyMusicPlayer";
 import CSSGlitchImage from '@/components/CSSGlitchImage';
 import { AdventureJson } from '@/components/SEO';
+
+export const metadata: Metadata = {
+  title: "The Lost Mark - Sci-Fi Horror Adventure for Mothership RPG",
+  description: "A complete Sci-Fi horror adventure for Mothership RPG. Investigate the mysterious research vessel Lost Mark and uncover its dark secrets. Features investigation mechanics, psychological horror, and VTT assets.",
+  keywords: "Lost Mark, Mothership RPG, sci-fi horror, tabletop RPG adventure, investigation horror, space horror, RPG module",
+  openGraph: {
+    title: "The Lost Mark - Mothership RPG Adventure",
+    description: "A complete Sci-Fi horror investigation adventure for Mothership RPG featuring psychological tension and dark mysteries.",
+    url: "https://fables.monster/lost-mark",
+    type: "website",
+    images: [{
+      url: "/images/lost-mark/ship_lm.webp",
+      width: 500,
+      height: 333,
+      alt: "The Lost Mark spaceship"
+    }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "The Lost Mark - Mothership RPG Horror Adventure",
+    description: "Investigate the mysterious research vessel Lost Mark in this complete Sci-Fi horror adventure.",
+    images: ["/images/lost-mark/ship_lm.webp"],
+  },
+  alternates: {
+    canonical: "https://fables.monster/lost-mark"
+  }
+};
 
 export const dynamic = 'force-static';
 

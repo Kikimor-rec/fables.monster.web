@@ -1,6 +1,38 @@
+import { Metadata } from 'next'
 import Link from "next/link";
 import Navigation from "@/components/Navigation";
 import { AdventureJson } from '@/components/SEO';
+
+export const metadata: Metadata = {
+  title: 'Hellish Bureaucracy | Fables Monster Studio',
+  description: 'Navigate the administrative nightmare of Hell in this darkly humorous tabletop RPG adventure. Face infernal paperwork, demonic contracts, and middle management.',
+  keywords: 'tabletop RPG, horror comedy, Hell adventure, bureaucracy RPG, dark humor, administrative horror, demonic contracts',
+  openGraph: {
+    title: 'Hellish Bureaucracy - Dark Comedy RPG Adventure',
+    description: 'A darkly humorous adventure where players navigate the administrative nightmare of Hell itself. Face infernal paperwork and demonic red tape.',
+    url: 'https://fables.monster/hellish-bureaucracy',
+    siteName: 'Fables Monster Studio',
+    images: [
+      {
+        url: 'https://fables.monster/projects/hellish-bureaucracy-cover.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Hellish Bureaucracy RPG Adventure Cover',
+      },
+    ],
+    locale: 'en_US',
+    type: 'article',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Hellish Bureaucracy - Dark Comedy Adventure',
+    description: 'Navigate the administrative nightmare of Hell in this darkly humorous RPG adventure.',
+    images: ['https://fables.monster/projects/hellish-bureaucracy-cover.jpg'],
+  },
+  alternates: {
+    canonical: 'https://fables.monster/hellish-bureaucracy',
+  },
+}
 
 export const dynamic = 'error';
 
