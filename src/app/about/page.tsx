@@ -47,7 +47,7 @@ export default function About() {
     },
     {
       name: "Tatiana Bond",
-      role: "Layout Designer",
+      role: "Graphic & Layout Designer",
       bio: "Creates beautiful and functional layout designs for our publications",
       image: "tanka-bond.webp"
     },
