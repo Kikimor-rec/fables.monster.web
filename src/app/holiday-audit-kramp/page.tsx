@@ -51,24 +51,24 @@ export default function HolidayAuditKramp() {
 
   const features = [
     {
-      name: "Bespoke Sin-Tracking Mechanic",
-      description: "Document past transgressions and watch consequences snowball",
+      name: "Misdemeanor Mechanics",
+      description: "Track violations and sins as KRAMP judges the crew",
       icon: "📋"
     },
     {
-      name: "Postcard-Size Format",
-      description: "Perfect for slipping into stockings and unfolding at the table or send your warden",
+      name: "Postcard Format",
+      description: "Compact design for easy storage and quick reference",
       icon: "🎄"
     },
     {
-      name: "Single Session Horror",
-      description: "Sci-fi suspense wrapped in tinsel and static",
-      icon: "⚡"
+      name: "Flexible Setting",
+      description: "Runs on any ship or station - minimal prep required",
+      icon: "�"
     },
     {
-      name: "Special Christmas music.",
-      description: "Sci-fi Horror Synthwave for deeper immersion",
-      icon: "⛓️"
+      name: "Dark Comedy Horror",
+      description: "Blend of parody, paranoia, and social satire",
+      icon: "�"
     }
   ];
 
@@ -138,12 +138,14 @@ export default function HolidayAuditKramp() {
             KRAMP.EXE
           </div>
           <p className="text-xl md:text-2xl text-gray-200 mb-8 max-w-4xl mx-auto font-nunito">
-            Christmas Eve gone catastrophically wrong in deep space
+            A festive audit gone wrong. Black comedy × paranoia × moral "compliance."
           </p>
           <div className="flex items-center justify-center gap-4 mb-8 flex-wrap">
-            <span className="bg-green-700 text-white px-4 py-2 font-nunito border border-green-600 christmas-badge">COMING OCTOBER 2025</span>
-            <span className="bg-red-700 text-white px-4 py-2 font-nunito border border-red-600 christmas-badge">ONE-SHOT</span>
-            <span className="bg-green-700 text-white px-4 py-2 font-nunito border border-green-600 christmas-badge">POSTCARD SIZE</span>
+            <span className="bg-green-700 text-white px-4 py-2 font-nunito border border-green-600 christmas-badge text-sm">COMING SOON</span>
+            <span className="bg-red-700 text-white px-4 py-2 font-nunito border border-red-600 christmas-badge text-sm">3-4 HOURS</span>
+            <span className="bg-green-700 text-white px-4 py-2 font-nunito border border-green-600 christmas-badge text-sm">4-6 PLAYERS</span>
+            <span className="bg-red-700 text-white px-4 py-2 font-nunito border border-red-600 christmas-badge text-sm">MINIMAL PREP</span>
+            <span className="bg-green-700 text-white px-4 py-2 font-nunito border border-green-600 christmas-badge text-sm">POSTCARD FORMAT</span>
           </div>
         </div>
       </section>
@@ -155,40 +157,78 @@ export default function HolidayAuditKramp() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="bg-gray-900 border border-red-700 p-8 mb-12 christmas-card">
             <h2 className="text-3xl md:text-4xl font-bold text-red-400 mb-6 font-nunito">
-              St.N KRAMP — Holiday Audit in Deep Space
+              St.N KRAMP — Holiday Audit Gone Wrong
             </h2>
             <div className="text-lg text-gray-200 font-nunito leading-relaxed space-y-4">
               <p>
-                This postcard-size one-shot drops your crew into a Christmas Eve gone catastrophically wrong. 
-                The station's karma-review AI, <strong className="text-red-400">St.N KRAMP</strong> (Standardized Node Karma Review 
-                Automation Mobile Processor), malfunctions and starts dredging up every hidden misdeed—old or new, 
-                character or player alike.
+                The festive season is imminent at the corporate station. The station's AI, <strong className="text-red-400">St.N KRAMP</strong> (Standardized Node 
+                Karma Review Automation Mobile Processor), has been updated for the festive season and is assessing 
+                the 'moral climate' of the crew.
               </p>
               <p>
-                Chain-rattling alerts, sealed bulkheads, and festive dread tighten with each passing minute. 
-                Can you cleanse your record before the system wipes you from it?
+                However, as often happens, something went wrong. The system has started to hunt down those who 
+                violate corporate values, turning the holiday week into a brutal audit. Here, each player pays 
+                for their own (or others') 'sins'. It's also an excellent opportunity to remind the characters 
+                of their misbehaviors.
               </p>
               <p>
-                Inside you'll find a bespoke sin-tracking mechanic that lets the table gleefully document past 
-                transgressions and watch the consequences snowball. Slip the card into a stocking, unfold at the table, 
-                and survive a one-shot session of sci-fi suspense wrapped in tinsel and static.
+                This provides an ideal scenario for a session incorporating elements of <strong className="text-green-400">parody, 
+                dark humor, social satire and frightening moments</strong>.
               </p>
               <p className="text-green-400 font-bold">
-                Launching mid-October 2025—just in time to haunt your holiday schedule.
+                Coming soon—just in time to haunt your holiday schedule.
               </p>
             </div>
           </div>
 
-          {/* Features Grid */}
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
-            {features.map((feature, index) => (
-              <div key={index} className="bg-gray-800 border border-green-700 p-6 christmas-card">
-                <div className="text-4xl mb-4">{feature.icon}</div>
-                <h3 className="text-xl font-bold text-green-400 mb-3 font-nunito">{feature.name}</h3>
-                <p className="text-gray-200 font-nunito">{feature.description}</p>
+          {/* What's Inside */}
+          <div className="bg-gray-900 border border-red-700 p-8 mb-12 christmas-card">
+            <h2 className="text-3xl md:text-4xl font-bold text-red-400 mb-6 font-nunito text-center">
+              What Makes It Special
+            </h2>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="bg-gray-800 border border-green-700/50 p-6 rounded">
+                <h3 className="text-xl font-bold text-green-400 mb-3 font-nunito">📋 Misdemeanor Tracking System</h3>
+                <p className="text-gray-200 font-nunito text-sm">
+                  Special mechanics for tracking violations and misdemeanors. Every sin, every mistake gets catalogued 
+                  by KRAMP, building tension as consequences pile up.
+                </p>
               </div>
-            ))}
+              <div className="bg-gray-800 border border-green-700/50 p-6 rounded">
+                <h3 className="text-xl font-bold text-green-400 mb-3 font-nunito">⏱️ Pacing Structure</h3>
+                <p className="text-gray-200 font-nunito text-sm">
+                  Built-in structure for better tempo control. Keep the session moving smoothly through escalating 
+                  paranoia and moral compliance checks.
+                </p>
+              </div>
+              <div className="bg-gray-800 border border-green-700/50 p-6 rounded">
+                <h3 className="text-xl font-bold text-green-400 mb-3 font-nunito">🎄 Runs Anywhere</h3>
+                <p className="text-gray-200 font-nunito text-sm">
+                  Works on any ship or station in your campaign. Drop it into your existing setting—no special 
+                  preparation needed.
+                </p>
+              </div>
+              <div className="bg-gray-800 border border-green-700/50 p-6 rounded">
+                <h3 className="text-xl font-bold text-green-400 mb-3 font-nunito">📦 Extra Tables & Tools</h3>
+                <p className="text-gray-200 font-nunito text-sm">
+                  Dedicated online tables with KRAMP messages, random encounters, and more. Available at release 
+                  for easy reference during play.
+                </p>
+              </div>
+            </div>
+            
+            {/* Coming Soon Button */}
+            <div className="mt-8 text-center">
+              <button 
+                disabled
+                className="px-8 py-3 bg-gray-700 text-gray-400 font-bold font-nunito border-2 border-gray-600 cursor-not-allowed opacity-50"
+              >
+                Online Tables - Coming at Release
+              </button>
+              <p className="text-gray-500 text-sm mt-2 font-nunito">KRAMP messages, encounters, and reference tables will be available here</p>
+            </div>
           </div>
+
         </div>
       </section>
 
