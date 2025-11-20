@@ -1,27 +1,6 @@
-import { Metadata } from "next";
 import ProjectCard from "@/components/ProjectCard";
 import FadeIn from "@/components/FadeIn";
 // ...удалён импорт useContent...
-
-export const metadata: Metadata = {
-  title: "Projects - Tabletop RPG Games & Adventures",
-  description: "Explore our collection of tabletop RPG projects including Lost Mark for Mothership, Cemetery of Broken Ships, and Hellish Bureaucracy. Unique adventures for memorable campaigns.",
-  keywords: "tabletop RPG projects, Mothership RPG, Lost Mark, Cemetery of Broken Ships, Hellish Bureaucracy, indie RPG games",
-  openGraph: {
-    title: "RPG Projects by Fables Monster Studio",
-    description: "Discover unique tabletop RPG adventures and campaigns designed for memorable storytelling experiences.",
-    url: "https://fables.monster/projects",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "RPG Projects by Fables Monster Studio",
-    description: "Unique tabletop RPG adventures and campaigns for memorable storytelling.",
-  },
-  alternates: {
-    canonical: "https://fables.monster/projects"
-  }
-};
 
 export const dynamic = 'error';
 
@@ -45,15 +24,6 @@ export default function Projects() {
       tags: ["Sci-Fi Horror", "5 Ships", "Connected Lore"],
       icon: "🚀",
       progress: "Scriptwriting & Playtesting"
-    },
-    {
-      id: "holiday-audit-kramp",
-      title: "Holiday Audit: KRAMP.EXE",
-      description: "Christmas Eve gone catastrophically wrong in space. Face the malfunctioning St.N KRAMP AI in this festive horror one-shot for Mothership RPG.",
-      status: "Coming October 2025",
-      tags: ["Christmas Horror", "One-Shot", "Postcard Size", "Sci-fi"],
-      icon: "🎅",
-      progress: "Development & Art"
     },
     {
       id: "hellish-bureaucracy",

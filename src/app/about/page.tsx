@@ -70,6 +70,12 @@ export default function About() {
       role: "Developer",
       bio: "Handles coding, web development, and technical implementation for VTT",
       image: "alleks.webp"
+    },
+    {
+      name: "Dan Tarkov",
+      role: "Game Designer",
+      bio: "Game designer and creative mind behind new mechanics and adventures",
+      image: ""
     }
   ];
 
@@ -156,8 +162,8 @@ export default function About() {
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {values.map((value, index) => (
-              <div 
-                key={index} 
+              <div
+                key={index}
                 className="bg-gray-900 border border-red-700 p-6 text-center hover:bg-red-950/20 transition-colors"
               >
                 <div className="text-4xl mb-4">{value.icon}</div>
@@ -182,7 +188,7 @@ export default function About() {
           <div className="flex flex-wrap justify-center gap-6 max-w-6xl mx-auto">
             {team.map((member, index) => (
               <div key={index} className="w-full sm:w-auto">
-                <TeamMember 
+                <TeamMember
                   member={member}
                 />
               </div>
@@ -199,8 +205,8 @@ export default function About() {
           </h2>
           <div className="space-y-8">
             {milestones.map((milestone, index) => (
-              <div 
-                key={index} 
+              <div
+                key={index}
                 className="flex items-start space-x-6 border-l-2 border-red-700 pl-6 pb-8"
               >
                 <div className="bg-red-700 text-white font-bold px-4 py-2 rounded font-nunito">

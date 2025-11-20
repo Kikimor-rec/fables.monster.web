@@ -13,7 +13,7 @@ export default function MusicPlayer() {
     { title: "In a Deep Space", filename: "01-in-a-deep-space.mp3" },
     { title: "Arrival at the Black Hole", filename: "02-arrival-at-the-black-hole.mp3" },
     { title: "Welcome to Silk Star", filename: "03-welcome-to-silk-star.mp3" },
-    { title: "Breathe of Black Hole", filename: "04-breathe-of-black-hole.mp3" },
+    { title: "Breath of Black Hole", filename: "04-breathe-of-black-hole.mp3" },
     { title: "Radiation Wave", filename: "05-radiation-wave.mp3" },
     { title: "Keep Silence", filename: "06-keep-silence.mp3" },
     { title: "Pray to Mark", filename: "07-pray-to-mark.mp3" },

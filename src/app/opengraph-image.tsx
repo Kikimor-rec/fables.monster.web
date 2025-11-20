@@ -1,10 +1,15 @@
 import { ImageResponse } from 'next/og';
+import { readFile } from 'node:fs/promises';
+import { join } from 'node:path';
 
-export const runtime = 'edge';
+export const runtime = 'nodejs';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
+const chalkFont = readFile(join(process.cwd(), 'public/fonts/chalk-regular.ttf'));
+
 export default async function Image() {
+  const fontData = await chalkFont;
   return new ImageResponse(
     (
       <div style={{
@@ -18,7 +23,7 @@ export default async function Image() {
         alignItems: 'center',
         justifyContent: 'center',
         padding: '40px',
-        fontFamily: 'system-ui, sans-serif',
+        fontFamily: 'Chalk',
         fontWeight: 'bold',
       }}>
         <div style={{ 
@@ -41,6 +46,7 @@ export default async function Image() {
     ),
     {
       ...size,
+      fonts: [{ name: 'Chalk', data: fontData }]
     }
   );
 }

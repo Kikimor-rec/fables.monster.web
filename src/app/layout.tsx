@@ -1,54 +1,24 @@
 import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { Analytics } from '@vercel/analytics/react';
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
 
-// Use Nunito via an external stylesheet to avoid build-time downloads
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://fables.monster"),
-  title: {
-    default: "Fables Monster Studio - Independent Tabletop RPG Creator",
-    template: "%s | Fables Monster Studio"
-  },
-  description: "Independent tabletop RPG content creation studio. Our flagship project Lost Mark is a Sci-Fi horror adventure for Mothership RPG with unique storytelling and immersive gameplay.",
-  keywords: "tabletop RPG, indie games, Mothership, Lost Mark, Sci-Fi horror, game development, Fables Monster",
-  authors: [{ name: "Fables Monster Studio" }],
-  creator: "Fables Monster Studio",
-  publisher: "Fables Monster Studio",
-  icons: {
-    icon: "/favicon.svg",
-    shortcut: "/favicon.svg",
-    apple: "/favicon.svg",
-  },
-  openGraph: {
-    title: "Fables Monster Studio - Independent Tabletop RPG Creator",
-    description: "Creating unique tabletop RPG worlds and unforgettable stories",
-    url: "https://fables.monster",
-    siteName: "Fables Monster Studio",
-    locale: "en_US",
-    type: "website",
-    images: ["/opengraph-image"],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Fables Monster Studio",
-    description: "Independent tabletop RPG content creator",
-    creator: "@fablesmonster",
-    images: ["/twitter-image"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-  alternates: {
-    canonical: "https://fables.monster"
-  },
-  verification: {
-    google: "your-google-verification-code-here", // Add your actual Google Search Console verification code here
-  },
+  metadataBase: new URL('https://fables.monster'),
+  title: "Fables Monster Studio - Independent Tabletop RPG Creators",
+  description: "Independent tabletop RPG content creation studio specializing in horror, sci-fi, and supernatural adventures.",
 };
 
 export default function RootLayout({
@@ -56,44 +26,17 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const gaId = process.env.NEXT_PUBLIC_GA_ID;
+  
   return (
-    <html lang="en" suppressHydrationWarning>
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap"
-          rel="stylesheet"
-        />
-        <link rel="dns-prefetch" href="//discord.gg" />
-        <link rel="dns-prefetch" href="//github.com" />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'Organization',
-            name: 'Fables Monster Studio',
-            url: 'https://fables.monster',
-            logo: 'https://fables.monster/logos/logo-white-new.svg',
-            sameAs: [
-              'https://twitter.com/fablesmonster',
-              'https://github.com/Kikimor-rec/fables.monster.web',
-              'https://fablesmonster.itch.io/',
-            ],
-            contactPoint: {
-              '@type': 'ContactPoint',
-              email: 'contact@fables.monster',
-              contactType: 'customer service',
-            },
-          })
-        }} />
-      </head>
-      <body className="font-nunito antialiased" suppressHydrationWarning>
+    <html lang="en">
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        {gaId && <GoogleAnalytics gaId={gaId} />}
         <Navigation />
-        <main className="min-h-screen pt-20 md:pt-24">
-          {children}
-        </main>
+        {children}
         <Footer />
-        <Analytics />
       </body>
     </html>
   );
