@@ -8,7 +8,7 @@ interface TeamMemberProps {
   member: {
     name: string;
     role: string;
-    bio: string;
+    bio?: string;
     image: string;
     link?: string;
   };

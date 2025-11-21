@@ -17,6 +17,15 @@ export default function Projects() {
       progress: "Available NOW",
     },
     {
+      id: "holiday-audit-kramp",
+      title: "Holiday Audit: KRAMP.EXE",
+      description: "A Christmas Eve gone catastrophically wrong in space. Face the malfunctioning St.N KRAMP AI in this festive horror one-shot for Mothership RPG.",
+      status: "Coming Nov 24, 2025",
+      tags: ["Mothership 1e", "Christmas Horror", "One-Shot"],
+      icon: "🎅",
+      progress: "Final Polish"
+    },
+    {
       id: "cemetery-of-broken-ships",
       title: "Cemetery of Broken Ships",
       description: "Sci-Fi Horror for the Mothership system. 5 ships to explore, connected by a common lore. Use each ship separately or let players solve the mystery of the debris field.",
@@ -33,6 +42,16 @@ export default function Projects() {
       tags: ["D&D 5e 2014/2024", "Fantasy", "Nine Hells", "Social Encounters"],
       icon: "😈",
       progress: "Scriptwriting & Playtesting"
+    },
+    {
+      id: "secret-cyberpunk-project",
+      title: "PROJECT [REDACTED]",
+      description: "ENCRYPTED DATA STREAM... ACCESS DENIED. CLASSIFIED CYBERPUNK PROTOCOL INITIATED. ESTIMATED DECRYPTION: 2026.",
+      status: "CLASSIFIED",
+      tags: ["CYBERPUNK", "2026", "TOP SECRET"],
+      icon: "🔒",
+      progress: "ENCRYPTED",
+      isEncrypted: true
     }
   ];
 

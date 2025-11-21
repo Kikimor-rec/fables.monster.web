@@ -76,20 +76,19 @@ export default function Navigation() {
     <nav className="fixed top-0 w-full z-50 px-6 py-4 bg-black/80 backdrop-blur-sm border-b border-red-700">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         <Link href="/" className="flex items-center gap-3 focus:outline-none focus:ring-2 focus:ring-red-500 rounded">
-          <Image src="/logos/fm-logo-gorizntal-w.png" alt="Fables Monster Logo" width={160} height={56} className="h-12 w-auto" priority />
+          <Image src="/logos/fm-logo-gorizntal-w.png" alt="Fables Monster Logo" width={160} height={56} className="h-12 w-auto logo-glitch" priority />
         </Link>
-        
+
         {/* Desktop Menu */}
         <div className="hidden md:flex space-x-8">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className={`nav-link transition-colors font-nunito font-bold ${
-                isActive(link.href)
+              className={`nav-link transition-colors font-nunito font-bold ${isActive(link.href)
                   ? "nav-link-active text-red-400"
                   : "text-white hover:text-red-400"
-              } focus:outline-none focus:ring-2 focus:ring-red-500 rounded px-1 py-2`}
+                } focus:outline-none focus:ring-2 focus:ring-red-500 rounded px-1 py-2`}
             >
               {link.label}
             </Link>
@@ -139,7 +138,7 @@ export default function Navigation() {
             aria-hidden="true"
           />
           {/* Само меню */}
-          <div 
+          <div
             ref={mobileMenuRef}
             id="mobile-menu"
             className="fixed left-0 top-0 z-50 w-full bg-black flex flex-col items-center shadow-2xl animate-slide-down pt-8 pb-8"
@@ -160,11 +159,10 @@ export default function Navigation() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`nav-link text-2xl font-nunito font-bold py-6 w-full text-center transition-colors ${
-                    isActive(link.href)
+                  className={`nav-link text-2xl font-nunito font-bold py-6 w-full text-center transition-colors ${isActive(link.href)
                       ? "nav-link-active text-red-400"
                       : "text-white hover:text-red-400"
-                  } focus:outline-none focus:ring-2 focus:ring-red-500 rounded mx-4`}
+                    } focus:outline-none focus:ring-2 focus:ring-red-500 rounded mx-4`}
                   onClick={handleCloseMenu}
                   role="menuitem"
                 >

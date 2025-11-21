@@ -37,47 +37,10 @@ export const metadata: Metadata = {
 export const dynamic = 'error';
 // ...удалён импорт useContent...
 
+import { teamMembers } from "@/data/team";
+
 export default function About() {
-  const team = [
-    {
-      name: "Stepan Kulikov",
-      role: "Writer & Game Designer",
-      bio: "Lead writer and narrative designer, crafting compelling stories and game mechanics",
-      image: "stepan-kulikov.webp"
-    },
-    {
-      name: "Tatiana Bond",
-      role: "Graphic & Layout Designer",
-      bio: "Creates beautiful and functional layout designs for our publications",
-      image: "tanka-bond.webp"
-    },
-    {
-      name: "Zlata (jamakuci) Ignatova",
-      role: "Artist",
-      bio: "Visual artist bringing our worlds to life with stunning illustrations",
-      image: "zlata.webp",
-      link: "https://taplink.cc/jamakuci"
-    },
-    {
-      name: "Stanislav DariDai",
-      role: "Composer",
-      bio: "Creates atmospheric music and sound design for our projects",
-      image: "stanislav-darida.webp",
-      link: "https://linktr.ee/stanislavdaridai"
-    },
-    {
-      name: "Allecks",
-      role: "Developer",
-      bio: "Handles coding, web development, and technical implementation for VTT",
-      image: "alleks.webp"
-    },
-    {
-      name: "Dan Tarkov",
-      role: "Game Designer",
-      bio: "Game designer and creative mind behind new mechanics and adventures",
-      image: ""
-    }
-  ];
+  // Local team array removed in favor of centralized data
 
   const values = [
     {
@@ -130,23 +93,24 @@ export default function About() {
       </section>
 
       {/* Mission Section */}
-      <section className="py-20 bg-gray-900">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="py-20 bg-black relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('/grid.png')] opacity-10"></div>
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-4xl font-bold text-white mb-6 font-nunito">
+            <div className="hud-border p-8 bg-black/80 backdrop-blur-sm">
+              <h2 className="text-4xl font-bold text-cyan-400 mb-6 font-orbitron glitch-text" data-text="OUR MISSION">
                 OUR MISSION
               </h2>
-              <p className="text-lg text-gray-300 mb-6 font-nunito">
+              <p className="text-lg text-gray-300 mb-6 font-rajdhani leading-relaxed">
                 We believe that tabletop RPGs are more than just entertainment - they are a medium for storytelling, human connection, and exploring the depths of imagination.
               </p>
-              <p className="text-lg text-gray-300 font-nunito">
+              <p className="text-lg text-gray-300 font-rajdhani leading-relaxed">
                 Our goal is to create experiences that challenge conventional thinking, explore complex themes, and provide players with unforgettable journeys into darkness and wonder.
               </p>
             </div>
             <div className="text-center">
-              <div className="text-6xl mb-4">🎭</div>
-              <div className="text-white font-nunito font-bold text-xl border-2 border-red-700 p-6 bg-red-950/20">
+              <div className="text-6xl mb-4 animate-pulse">🎭</div>
+              <div className="text-white font-orbitron font-bold text-xl border border-cyan-500/50 p-6 bg-cyan-950/20 box-glow-cyan clip-path-slant" style={{ clipPath: 'polygon(5% 0, 100% 0, 100% 85%, 95% 100%, 0 100%, 0 15%)' }}>
                 EVERY STORY DESERVES TO BE TOLD
               </div>
             </div>
@@ -155,22 +119,23 @@ export default function About() {
       </section>
 
       {/* Values Section */}
-      <section className="py-20 border-t border-red-700">
+      <section className="py-20 border-t border-cyan-900/30 bg-gray-900/50">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-4xl font-bold text-white mb-12 text-center font-nunito">
-            OUR VALUES
+          <h2 className="text-4xl font-bold text-white mb-12 text-center font-orbitron text-glow">
+            CORE VALUES
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {values.map((value, index) => (
               <div
                 key={index}
-                className="bg-gray-900 border border-red-700 p-6 text-center hover:bg-red-950/20 transition-colors"
+                className="bg-black border border-cyan-900/50 p-6 text-center hover:border-cyan-400 transition-colors group relative overflow-hidden"
               >
-                <div className="text-4xl mb-4">{value.icon}</div>
-                <h3 className="text-xl font-bold text-white mb-3 font-nunito">
+                <div className="absolute inset-0 bg-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <div className="text-4xl mb-4 relative z-10">{value.icon}</div>
+                <h3 className="text-xl font-bold text-cyan-400 mb-3 font-orbitron relative z-10">
                   {value.title}
                 </h3>
-                <p className="text-gray-300 font-nunito text-sm">
+                <p className="text-gray-400 font-rajdhani text-sm relative z-10">
                   {value.description}
                 </p>
               </div>
@@ -186,13 +151,15 @@ export default function About() {
             THE TEAM
           </h2>
           <div className="flex flex-wrap justify-center gap-6 max-w-6xl mx-auto">
-            {team.map((member, index) => (
-              <div key={index} className="w-full sm:w-auto">
-                <TeamMember
-                  member={member}
-                />
-              </div>
-            ))}
+            <div className="flex flex-wrap justify-center gap-6 max-w-6xl mx-auto">
+              {teamMembers.map((member, index) => (
+                <div key={index} className="w-full sm:w-auto transform hover:scale-105 transition-transform duration-300">
+                  <TeamMember
+                    member={member}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

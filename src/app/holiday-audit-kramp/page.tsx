@@ -40,7 +40,7 @@ export const dynamic = 'error';
 export default function HolidayAuditKramp() {
   // Component for section divider lights
   const SectionDivider = () => (
-    <div className="section-divider">
+    <div className="section-divider opacity-50">
       <div className="divider-lights">
         {[...Array(8)].map((_, i) => (
           <div key={i} className={`divider-light ${['red', 'green', 'blue', 'yellow'][i % 4]}`}></div>
@@ -51,24 +51,24 @@ export default function HolidayAuditKramp() {
 
   const features = [
     {
-      name: "Bespoke Sin-Tracking Mechanic",
-      description: "Document past transgressions and watch consequences snowball",
+      name: "Sin-Tracking Mechanic",
+      description: "Document past transgressions and watch consequences snowball.",
       icon: "📋"
     },
     {
       name: "Postcard-Size Format",
-      description: "Perfect for slipping into stockings and unfolding at the table or send your warden",
+      description: "Perfect for slipping into stockings or sending to your warden.",
       icon: "🎄"
     },
     {
       name: "Single Session Horror",
-      description: "Sci-fi suspense wrapped in tinsel and static",
+      description: "Sci-fi suspense wrapped in tinsel and static.",
       icon: "⚡"
     },
     {
-      name: "Special Christmas music.",
-      description: "Sci-fi Horror Synthwave for deeper immersion",
-      icon: "⛓️"
+      name: "Festive Synthwave",
+      description: "Special sci-fi horror soundtrack for deeper immersion.",
+      icon: "🎵"
     }
   ];
 
@@ -100,9 +100,9 @@ export default function HolidayAuditKramp() {
   ];
 
   return (
-    <div className="min-h-screen bg-black relative overflow-hidden">
+    <div className="min-h-screen bg-black relative overflow-hidden font-rajdhani">
       {/* Christmas Lights Animation */}
-      <div className="christmas-lights">
+      <div className="christmas-lights opacity-30">
         <div className="light red"></div>
         <div className="light green"></div>
         <div className="light blue"></div>
@@ -118,32 +118,40 @@ export default function HolidayAuditKramp() {
       </div>
 
       {/* Snow Effect */}
-      <div className="snow">
+      <div className="snow opacity-20">
         {[...Array(50)].map((_, i) => (
           <div key={i} className="snowflake">❄</div>
         ))}
       </div>
 
       <Navigation />
-      
+
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center pt-20 md:pt-24">
-        <div className="absolute inset-0 bg-black"></div>
+        <div className="absolute inset-0 bg-black/80"></div>
         <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
-          <div className="text-8xl mb-6 font-nunito text-red-400">🎅</div>
-          <h1 className="text-6xl md:text-8xl font-bold text-white mb-6 font-nunito tracking-wider">
+          <div className="relative w-48 h-48 mx-auto mb-6">
+            <Image
+              src="/images/kramp/small kramp.png"
+              alt="St.N KRAMP Pointing"
+              fill
+              className="object-contain filter invert drop-shadow-[0_0_15px_rgba(255,0,0,0.3)]"
+              priority
+            />
+          </div>
+          <h1 className="text-6xl md:text-8xl font-bold text-white mb-6 font-orbitron tracking-wider text-glow">
             HOLIDAY AUDIT
           </h1>
-          <div className="text-4xl md:text-6xl font-bold text-red-400 mb-8 font-nunito">
+          <div className="text-4xl md:text-6xl font-bold text-red-500 mb-8 font-orbitron glitch-text" data-text="KRAMP.EXE">
             KRAMP.EXE
           </div>
-          <p className="text-xl md:text-2xl text-gray-200 mb-8 max-w-4xl mx-auto font-nunito">
+          <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-4xl mx-auto font-rajdhani">
             Christmas Eve gone catastrophically wrong in deep space
           </p>
           <div className="flex items-center justify-center gap-4 mb-8 flex-wrap">
-            <span className="bg-green-700 text-white px-4 py-2 font-nunito border border-green-600 christmas-badge">COMING OCTOBER 2025</span>
-            <span className="bg-red-700 text-white px-4 py-2 font-nunito border border-red-600 christmas-badge">ONE-SHOT</span>
-            <span className="bg-green-700 text-white px-4 py-2 font-nunito border border-green-600 christmas-badge">POSTCARD SIZE</span>
+            <span className="bg-green-900/50 text-green-400 px-4 py-2 font-orbitron border border-green-600 clip-path-slant hover:box-glow-cyan transition-all">COMING NOV 24, 2025</span>
+            <span className="bg-red-900/50 text-red-400 px-4 py-2 font-orbitron border border-red-600 clip-path-slant hover:box-glow transition-all">ONE-SHOT</span>
+            <span className="bg-green-900/50 text-green-400 px-4 py-2 font-orbitron border border-green-600 clip-path-slant hover:box-glow-cyan transition-all">POSTCARD SIZE</span>
           </div>
         </div>
       </section>
@@ -153,39 +161,56 @@ export default function HolidayAuditKramp() {
       {/* Description Section */}
       <section className="py-20 relative z-10 bg-gray-950">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="bg-gray-900 border border-red-700 p-8 mb-12 christmas-card">
-            <h2 className="text-3xl md:text-4xl font-bold text-red-400 mb-6 font-nunito">
-              St.N KRAMP — Holiday Audit in Deep Space
-            </h2>
-            <div className="text-lg text-gray-200 font-nunito leading-relaxed space-y-4">
-              <p>
-                This postcard-size one-shot drops your crew into a Christmas Eve gone catastrophically wrong. 
-                The station's karma-review AI, <strong className="text-red-400">St.N KRAMP</strong> (Standardized Node Karma Review 
-                Automation Mobile Processor), malfunctions and starts dredging up every hidden misdeed—old or new, 
-                character or player alike.
-              </p>
-              <p>
-                Chain-rattling alerts, sealed bulkheads, and festive dread tighten with each passing minute. 
-                Can you cleanse your record before the system wipes you from it?
-              </p>
-              <p>
-                Inside you'll find a bespoke sin-tracking mechanic that lets the table gleefully document past 
-                transgressions and watch the consequences snowball. Slip the card into a stocking, unfold at the table, 
-                and survive a one-shot session of sci-fi suspense wrapped in tinsel and static.
-              </p>
-              <p className="text-green-400 font-bold">
-                Launching mid-October 2025—just in time to haunt your holiday schedule.
-              </p>
+          <div className="bg-gray-900/50 border border-red-700/50 p-8 mb-12 hud-border relative overflow-hidden group">
+            <div className="absolute top-0 right-0 p-2 opacity-20 group-hover:opacity-40 transition-opacity">
+              <span className="text-6xl">⚠️</span>
+            </div>
+            <div className="flex flex-col md:flex-row gap-8 items-center">
+              <div className="flex-1">
+                <h2 className="text-3xl md:text-4xl font-bold text-red-500 mb-6 font-orbitron text-glow">
+                  St.N KRAMP — Holiday Audit in Deep Space
+                </h2>
+                <div className="text-lg text-gray-300 font-rajdhani leading-relaxed space-y-4">
+                  <p>
+                    This postcard-size one-shot drops your crew into a Christmas Eve gone catastrophically wrong.
+                    The station's karma-review AI, <strong className="text-red-400 font-orbitron">St.N KRAMP</strong> (Standardized Node Karma Review
+                    Automation Mobile Processor), malfunctions and starts dredging up every hidden misdeed—old or new,
+                    character or player alike.
+                  </p>
+                  <p>
+                    Chain-rattling alerts, sealed bulkheads, and festive dread tighten with each passing minute.
+                    Can you cleanse your record before the system wipes you from it?
+                  </p>
+                  <div className="border-l-4 border-red-500 pl-4 py-2 bg-red-950/10 my-6">
+                    <p className="italic text-red-200">
+                      Inside you'll find a bespoke <strong className="text-white">sin-tracking mechanic</strong> that lets the table gleefully document past
+                      transgressions and watch the consequences snowball. Slip the card into a stocking, unfold at the table,
+                      and survive a one-shot session of sci-fi suspense wrapped in tinsel and static.
+                    </p>
+                  </div>
+                  <p className="text-green-400 font-bold font-orbitron tracking-wide">
+                    Launching November 24, 2025—just in time to haunt your holiday schedule.
+                  </p>
+                </div>
+              </div>
+              <div className="relative w-48 h-48 flex-shrink-0 hidden md:block">
+                <Image
+                  src="/images/kramp/big kramp.png"
+                  alt="St.N KRAMP Gift"
+                  fill
+                  className="object-contain filter invert drop-shadow-[0_0_10px_rgba(74,222,128,0.3)]"
+                />
+              </div>
             </div>
           </div>
 
           {/* Features Grid */}
           <div className="grid md:grid-cols-2 gap-8 mb-12">
             {features.map((feature, index) => (
-              <div key={index} className="bg-gray-800 border border-green-700 p-6 christmas-card">
-                <div className="text-4xl mb-4">{feature.icon}</div>
-                <h3 className="text-xl font-bold text-green-400 mb-3 font-nunito">{feature.name}</h3>
-                <p className="text-gray-200 font-nunito">{feature.description}</p>
+              <div key={index} className="bg-gray-900/30 border border-green-700/30 p-6 hud-border hover:bg-green-900/10 transition-colors group">
+                <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">{feature.icon}</div>
+                <h3 className="text-xl font-bold text-green-400 mb-3 font-orbitron group-hover:text-glow-cyan">{feature.name}</h3>
+                <p className="text-gray-300 font-rajdhani">{feature.description}</p>
               </div>
             ))}
           </div>
@@ -197,8 +222,8 @@ export default function HolidayAuditKramp() {
       {/* Stay in the Loop Section */}
       <section className="py-20 relative z-10 bg-black">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="bg-gray-900 border border-red-700 p-8 christmas-card">
-            <h2 className="text-3xl md:text-4xl font-bold text-red-400 mb-8 font-nunito text-center">
+          <div className="bg-gray-900/50 border border-red-700/50 p-8 hud-border">
+            <h2 className="text-3xl md:text-4xl font-bold text-red-500 mb-8 font-orbitron text-center text-glow">
               Stay in the Loop
             </h2>
             <div className="grid md:grid-cols-2 gap-6">
@@ -208,20 +233,20 @@ export default function HolidayAuditKramp() {
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-4 p-4 bg-gray-800 border border-gray-600 hover:border-green-400 transition-colors christmas-link"
+                  className="flex items-center gap-4 p-4 bg-gray-800/50 border border-gray-700 hover:border-green-500 transition-all duration-300 hover:box-glow-cyan group"
                 >
                   <div className="w-8 h-8 flex-shrink-0">
-                    <Image 
-                      src={link.icon} 
-                      alt={link.platform} 
-                      width={32} 
-                      height={32} 
-                      className="w-full h-full object-contain filter brightness-0 invert"
+                    <Image
+                      src={link.icon}
+                      alt={link.platform}
+                      width={32}
+                      height={32}
+                      className="w-full h-full object-contain filter brightness-0 invert group-hover:drop-shadow-[0_0_5px_rgba(74,222,128,0.5)]"
                     />
                   </div>
                   <div>
-                    <div className="font-bold text-green-400 font-nunito">{link.platform}</div>
-                    <div className="text-sm text-gray-200 font-nunito">{link.description}</div>
+                    <div className="font-bold text-green-400 font-orbitron group-hover:text-green-300">{link.platform}</div>
+                    <div className="text-sm text-gray-400 font-rajdhani group-hover:text-gray-200">{link.description}</div>
                   </div>
                 </a>
               ))}
@@ -237,7 +262,7 @@ export default function HolidayAuditKramp() {
         <div className="max-w-6xl mx-auto px-6 text-center">
           <Link
             href="/projects"
-            className="inline-flex items-center gap-2 text-red-400 hover:text-red-300 font-nunito transition-colors text-lg christmas-link"
+            className="inline-flex items-center gap-2 text-red-500 hover:text-red-400 font-orbitron transition-colors text-lg hover:text-glow"
           >
             ← Back to Projects
           </Link>
