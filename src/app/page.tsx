@@ -4,13 +4,8 @@ import CompactTeamMember from "@/components/CompactTeamMember";
 import FadeIn from "@/components/FadeIn";
 import OptimizedImage from "@/components/OptimizedImage";
 import Image from "next/image";
-import siteContent from "../../public/content/site-content.json";
 
 import { teamMembers } from "@/data/team";
-
-type SiteContent = {
-  team?: { members?: typeof teamMembers };
-};
 
 export const metadata: Metadata = {
   title: 'Fables Monster Studio - Independent Tabletop RPG Creators',
@@ -45,19 +40,7 @@ export const metadata: Metadata = {
 
 export const dynamic = 'error';
 
-
-interface TeamMember {
-  name: string;
-  role: string;
-  image: string;
-  status?: string;
-  bio?: string;
-  portfolio?: string;
-}
-
 export default function Home() {
-  // const content = siteContent as SiteContent; // Deprecated
-  // const teamMembers: TeamMember[] = content.team?.members ?? []; // Deprecated
   return (
     <div className="bg-black">
       {/* Hero Section */}
