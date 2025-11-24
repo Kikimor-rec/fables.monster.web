@@ -1,13 +1,21 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
 
 :root {
-    --background: #050505;
-    --foreground: #e0e0e0;
-    --accent: #ff003c;
-    /* Cyberpunk Red */
+    --background: #0a0a0a;
+    /* Dark grey, not pure black */
+    --foreground: #e5e5e5;
+    /* Light grey for better readability */
+    --accent: #ff1f1f;
+    /* Vibrant Red */
     --accent-hover: #d90032;
-    --border: #333333;
+    --border: #262626;
+    /* Subtle borders */
+
+    /* Cyberpunk accent colors */
+    --cyber-cyan: #00f0ff;
+    --cyber-magenta: #ff00ff;
+    --cyber-green: #00ff9f;
 }
 
 /* Cyberpunk Palette */
@@ -1448,5 +1456,462 @@
     100% {
         transform: translate(0);
         filter: none;
+    }
+}
+
+/* Cyberpunk Intense Glitch Effects for Old World Neon */
+.cyberpunk-intense {
+    animation-duration: 8s !important;
+    animation-timing-function: steps(1, end) !important;
+}
+
+.glitch-layer-1.cyberpunk-intense {
+    mix-blend-mode: screen;
+    opacity: 0.9;
+    animation-name: cyberpunk-glitch-1;
+    --glitch-x-1: -4px;
+    --glitch-x-2: 4px;
+    --glitch-hue-1: 180deg;
+    --glitch-hue-2: -180deg;
+    animation-duration: 6s;
+}
+
+.glitch-layer-2.cyberpunk-intense {
+    mix-blend-mode: difference;
+    opacity: 0.8;
+    animation-name: cyberpunk-glitch-2;
+    --glitch-x-1: 3px;
+    --glitch-x-2: -3px;
+    --glitch-hue-1: 90deg;
+    --glitch-hue-2: -90deg;
+    animation-duration: 7s;
+    animation-delay: -1s;
+}
+
+.glitch-layer-3.cyberpunk-intense {
+    mix-blend-mode: overlay;
+    opacity: 0.7;
+    animation-name: cyberpunk-glitch-3;
+    --glitch-x-1: -5px;
+    --glitch-x-2: 5px;
+    --glitch-hue-1: 270deg;
+    --glitch-hue-2: -270deg;
+    animation-duration: 9s;
+    animation-delay: -2s;
+}
+
+.glitch-layer-4.cyberpunk-intense {
+    mix-blend-mode: color-dodge;
+    opacity: 0.6;
+    animation-name: cyberpunk-glitch-4;
+    --glitch-x-1: 2px;
+    --glitch-x-2: -2px;
+    --glitch-hue-1: 45deg;
+    --glitch-hue-2: -45deg;
+    animation-duration: 5s;
+    animation-delay: -0.5s;
+}
+
+.glitch-layer-5.cyberpunk-intense {
+    mix-blend-mode: hard-light;
+    opacity: 0.5;
+    animation-name: cyberpunk-glitch-5;
+    --glitch-x-1: -6px;
+    --glitch-x-2: 6px;
+    --glitch-hue-1: 135deg;
+    --glitch-hue-2: -135deg;
+    animation-duration: 11s;
+    animation-delay: -3s;
+}
+
+/* Scanlines overlay */
+.glitch-scanlines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 255, 255, 0.03) 2px,
+        rgba(0, 255, 255, 0.03) 4px
+    );
+    pointer-events: none;
+    z-index: 10;
+    animation: scanline-flicker 0.15s infinite;
+    mix-blend-mode: overlay;
+}
+
+/* Digital noise overlay */
+.glitch-noise {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.15), transparent 1px, transparent 2px, rgba(0, 0, 0, 0.15) 3px),
+        repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.15), transparent 1px, transparent 2px, rgba(0, 0, 0, 0.15) 3px);
+    background-size: 4px 4px;
+    pointer-events: none;
+    z-index: 9;
+    opacity: 0.4;
+    animation: noise-flicker 0.1s infinite;
+    mix-blend-mode: multiply;
+}
+
+/* RGB shift artifacts */
+.glitch-rgb-shift {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 8;
+    background: 
+        linear-gradient(90deg, rgba(255, 0, 0, 0.1) 0%, transparent 50%, rgba(0, 255, 255, 0.1) 100%);
+    animation: rgb-shift 0.3s infinite;
+    mix-blend-mode: screen;
+    clip-path: polygon(0 0, 100% 0, 100% 20%, 0 20%);
+}
+
+@keyframes cyberpunk-glitch-1 {
+    0%, 100% {
+        transform: translate(0);
+        filter: hue-rotate(0) drop-shadow(0 0 0 transparent);
+        clip-path: inset(0 0 0 0);
+    }
+    2% {
+        transform: translate(var(--glitch-x-1), 2px);
+        filter: hue-rotate(var(--glitch-hue-1)) drop-shadow(-3px 3px 0 rgba(0, 255, 255, 0.4));
+        clip-path: inset(10% 0 80% 0);
+    }
+    4% {
+        transform: translate(var(--glitch-x-2), -2px);
+        filter: hue-rotate(var(--glitch-hue-2)) drop-shadow(3px -3px 0 rgba(255, 0, 255, 0.4));
+        clip-path: inset(20% 0 70% 0);
+    }
+    6% {
+        transform: translate(0);
+        filter: hue-rotate(0) drop-shadow(0 0 0 transparent);
+        clip-path: inset(0 0 0 0);
+    }
+    15% {
+        transform: translate(var(--glitch-x-1), 1px);
+        filter: hue-rotate(var(--glitch-hue-1)) drop-shadow(-2px 2px 0 rgba(0, 255, 255, 0.3));
+        clip-path: inset(5% 0 85% 0);
+    }
+    20% {
+        transform: translate(0);
+        filter: hue-rotate(0) drop-shadow(0 0 0 transparent);
+        clip-path: inset(0 0 0 0);
+    }
+    30% {
+        transform: translate(var(--glitch-x-2), -1px);
+        filter: hue-rotate(var(--glitch-hue-2)) drop-shadow(2px -2px 0 rgba(255, 0, 255, 0.3));
+        clip-path: inset(15% 0 75% 0);
+    }
+    35% {
+        transform: translate(0);
+        filter: hue-rotate(0) drop-shadow(0 0 0 transparent);
+        clip-path: inset(0 0 0 0);
+    }
+    50% {
+        transform: translate(var(--glitch-x-1), 3px);
+        filter: hue-rotate(var(--glitch-hue-1)) drop-shadow(-4px 4px 0 rgba(0, 255, 255, 0.5));
+        clip-path: inset(25% 0 65% 0);
+    }
+    55% {
+        transform: translate(0);
+        filter: hue-rotate(0) drop-shadow(0 0 0 transparent);
+        clip-path: inset(0 0 0 0);
+    }
+    70% {
+        transform: translate(var(--glitch-x-2), -3px);
+        filter: hue-rotate(var(--glitch-hue-2)) drop-shadow(4px -4px 0 rgba(255, 0, 255, 0.5));
+        clip-path: inset(30% 0 60% 0);
+    }
+    75% {
+        transform: translate(0);
+        filter: hue-rotate(0) drop-shadow(0 0 0 transparent);
+        clip-path: inset(0 0 0 0);
+    }
+    85% {
+        transform: translate(var(--glitch-x-1), 2px);
+        filter: hue-rotate(var(--glitch-hue-1)) drop-shadow(-3px 3px 0 rgba(0, 255, 255, 0.4));
+        clip-path: inset(35% 0 55% 0);
+    }
+    90% {
+        transform: translate(0);
+        filter: hue-rotate(0) drop-shadow(0 0 0 transparent);
+        clip-path: inset(0 0 0 0);
+    }
+}
+
+@keyframes cyberpunk-glitch-2 {
+    0%, 100% {
+        transform: translate(0);
+        filter: hue-rotate(0) drop-shadow(0 0 0 transparent);
+        clip-path: inset(0 0 0 0);
+    }
+    3% {
+        transform: translate(var(--glitch-x-1), -2px);
+        filter: hue-rotate(var(--glitch-hue-1)) drop-shadow(3px 3px 0 rgba(255, 0, 255, 0.4));
+        clip-path: inset(0 10% 0 0);
+    }
+    5% {
+        transform: translate(var(--glitch-x-2), 2px);
+        filter: hue-rotate(var(--glitch-hue-2)) drop-shadow(-3px -3px 0 rgba(0, 255, 255, 0.4));
+        clip-path: inset(0 20% 0 0);
+    }
+    7% {
+        transform: translate(0);
+        filter: hue-rotate(0) drop-shadow(0 0 0 transparent);
+        clip-path: inset(0 0 0 0);
+    }
+    18% {
+        transform: translate(var(--glitch-x-1), -1px);
+        filter: hue-rotate(var(--glitch-hue-1)) drop-shadow(2px 2px 0 rgba(255, 0, 255, 0.3));
+        clip-path: inset(0 5% 0 0);
+    }
+    22% {
+        transform: translate(0);
+        filter: hue-rotate(0) drop-shadow(0 0 0 transparent);
+        clip-path: inset(0 0 0 0);
+    }
+    33% {
+        transform: translate(var(--glitch-x-2), 1px);
+        filter: hue-rotate(var(--glitch-hue-2)) drop-shadow(-2px -2px 0 rgba(0, 255, 255, 0.3));
+        clip-path: inset(0 15% 0 0);
+    }
+    38% {
+        transform: translate(0);
+        filter: hue-rotate(0) drop-shadow(0 0 0 transparent);
+        clip-path: inset(0 0 0 0);
+    }
+    52% {
+        transform: translate(var(--glitch-x-1), -3px);
+        filter: hue-rotate(var(--glitch-hue-1)) drop-shadow(4px 4px 0 rgba(255, 0, 255, 0.5));
+        clip-path: inset(0 25% 0 0);
+    }
+    57% {
+        transform: translate(0);
+        filter: hue-rotate(0) drop-shadow(0 0 0 transparent);
+        clip-path: inset(0 0 0 0);
+    }
+    73% {
+        transform: translate(var(--glitch-x-2), 3px);
+        filter: hue-rotate(var(--glitch-hue-2)) drop-shadow(-4px -4px 0 rgba(0, 255, 255, 0.5));
+        clip-path: inset(0 30% 0 0);
+    }
+    78% {
+        transform: translate(0);
+        filter: hue-rotate(0) drop-shadow(0 0 0 transparent);
+        clip-path: inset(0 0 0 0);
+    }
+    88% {
+        transform: translate(var(--glitch-x-1), -2px);
+        filter: hue-rotate(var(--glitch-hue-1)) drop-shadow(3px 3px 0 rgba(255, 0, 255, 0.4));
+        clip-path: inset(0 35% 0 0);
+    }
+    93% {
+        transform: translate(0);
+        filter: hue-rotate(0) drop-shadow(0 0 0 transparent);
+        clip-path: inset(0 0 0 0);
+    }
+}
+
+@keyframes cyberpunk-glitch-3 {
+    0%, 100% {
+        transform: translate(0) scale(1);
+        filter: hue-rotate(0) drop-shadow(0 0 0 transparent);
+        clip-path: inset(0 0 0 0);
+    }
+    1.5% {
+        transform: translate(var(--glitch-x-1), var(--glitch-x-1)) scale(1.02);
+        filter: hue-rotate(var(--glitch-hue-1)) drop-shadow(-5px 5px 0 rgba(255, 0, 255, 0.5));
+        clip-path: inset(12% 12% 12% 12%);
+    }
+    3.5% {
+        transform: translate(var(--glitch-x-2), var(--glitch-x-2)) scale(0.98);
+        filter: hue-rotate(var(--glitch-hue-2)) drop-shadow(5px -5px 0 rgba(0, 255, 255, 0.5));
+        clip-path: inset(22% 22% 22% 22%);
+    }
+    5.5% {
+        transform: translate(0) scale(1);
+        filter: hue-rotate(0) drop-shadow(0 0 0 transparent);
+        clip-path: inset(0 0 0 0);
+    }
+    20% {
+        transform: translate(var(--glitch-x-1), 0) scale(1.01);
+        filter: hue-rotate(var(--glitch-hue-1)) drop-shadow(-3px 0 0 rgba(255, 0, 255, 0.4));
+        clip-path: inset(8% 8% 8% 8%);
+    }
+    25% {
+        transform: translate(0) scale(1);
+        filter: hue-rotate(0) drop-shadow(0 0 0 transparent);
+        clip-path: inset(0 0 0 0);
+    }
+    40% {
+        transform: translate(0, var(--glitch-x-2)) scale(0.99);
+        filter: hue-rotate(var(--glitch-hue-2)) drop-shadow(0 -3px 0 rgba(0, 255, 255, 0.4));
+        clip-path: inset(18% 18% 18% 18%);
+    }
+    45% {
+        transform: translate(0) scale(1);
+        filter: hue-rotate(0) drop-shadow(0 0 0 transparent);
+        clip-path: inset(0 0 0 0);
+    }
+    60% {
+        transform: translate(var(--glitch-x-1), var(--glitch-x-2)) scale(1.03);
+        filter: hue-rotate(var(--glitch-hue-1)) drop-shadow(-6px 6px 0 rgba(255, 0, 255, 0.6));
+        clip-path: inset(28% 28% 28% 28%);
+    }
+    65% {
+        transform: translate(0) scale(1);
+        filter: hue-rotate(0) drop-shadow(0 0 0 transparent);
+        clip-path: inset(0 0 0 0);
+    }
+    80% {
+        transform: translate(var(--glitch-x-2), var(--glitch-x-1)) scale(0.97);
+        filter: hue-rotate(var(--glitch-hue-2)) drop-shadow(6px -6px 0 rgba(0, 255, 255, 0.6));
+        clip-path: inset(32% 32% 32% 32%);
+    }
+    85% {
+        transform: translate(0) scale(1);
+        filter: hue-rotate(0) drop-shadow(0 0 0 transparent);
+        clip-path: inset(0 0 0 0);
+    }
+}
+
+@keyframes cyberpunk-glitch-4 {
+    0%, 100% {
+        transform: translate(0) rotate(0deg);
+        filter: hue-rotate(0) brightness(1);
+        clip-path: inset(0 0 0 0);
+    }
+    2.5% {
+        transform: translate(var(--glitch-x-1), 0) rotate(0.5deg);
+        filter: hue-rotate(var(--glitch-hue-1)) brightness(1.2);
+        clip-path: inset(0 15% 0 15%);
+    }
+    4.5% {
+        transform: translate(var(--glitch-x-2), 0) rotate(-0.5deg);
+        filter: hue-rotate(var(--glitch-hue-2)) brightness(0.8);
+        clip-path: inset(0 25% 0 25%);
+    }
+    6.5% {
+        transform: translate(0) rotate(0deg);
+        filter: hue-rotate(0) brightness(1);
+        clip-path: inset(0 0 0 0);
+    }
+    25% {
+        transform: translate(var(--glitch-x-1), 0) rotate(0.3deg);
+        filter: hue-rotate(var(--glitch-hue-1)) brightness(1.1);
+        clip-path: inset(0 10% 0 10%);
+    }
+    30% {
+        transform: translate(0) rotate(0deg);
+        filter: hue-rotate(0) brightness(1);
+        clip-path: inset(0 0 0 0);
+    }
+    50% {
+        transform: translate(var(--glitch-x-2), 0) rotate(-0.3deg);
+        filter: hue-rotate(var(--glitch-hue-2)) brightness(0.9);
+        clip-path: inset(0 20% 0 20%);
+    }
+    55% {
+        transform: translate(0) rotate(0deg);
+        filter: hue-rotate(0) brightness(1);
+        clip-path: inset(0 0 0 0);
+    }
+}
+
+@keyframes cyberpunk-glitch-5 {
+    0%, 100% {
+        transform: translate(0) skew(0deg);
+        filter: hue-rotate(0) saturate(1);
+        clip-path: inset(0 0 0 0);
+    }
+    1% {
+        transform: translate(var(--glitch-x-1), var(--glitch-x-2)) skew(1deg, -1deg);
+        filter: hue-rotate(var(--glitch-hue-1)) saturate(1.5);
+        clip-path: inset(5% 5% 5% 5%);
+    }
+    2% {
+        transform: translate(var(--glitch-x-2), var(--glitch-x-1)) skew(-1deg, 1deg);
+        filter: hue-rotate(var(--glitch-hue-2)) saturate(0.5);
+        clip-path: inset(10% 10% 10% 10%);
+    }
+    3% {
+        transform: translate(0) skew(0deg);
+        filter: hue-rotate(0) saturate(1);
+        clip-path: inset(0 0 0 0);
+    }
+    30% {
+        transform: translate(var(--glitch-x-1), 0) skew(0.5deg, 0);
+        filter: hue-rotate(var(--glitch-hue-1)) saturate(1.3);
+        clip-path: inset(3% 3% 3% 3%);
+    }
+    35% {
+        transform: translate(0) skew(0deg);
+        filter: hue-rotate(0) saturate(1);
+        clip-path: inset(0 0 0 0);
+    }
+    60% {
+        transform: translate(0, var(--glitch-x-2)) skew(0, 0.5deg);
+        filter: hue-rotate(var(--glitch-hue-2)) saturate(0.7);
+        clip-path: inset(8% 8% 8% 8%);
+    }
+    65% {
+        transform: translate(0) skew(0deg);
+        filter: hue-rotate(0) saturate(1);
+        clip-path: inset(0 0 0 0);
+    }
+}
+
+@keyframes scanline-flicker {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.8;
+    }
+}
+
+@keyframes noise-flicker {
+    0%, 100% {
+        opacity: 0.4;
+    }
+    25% {
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 0.3;
+    }
+    75% {
+        opacity: 0.5;
+    }
+}
+
+@keyframes rgb-shift {
+    0%, 100% {
+        transform: translateX(0);
+        opacity: 0.1;
+    }
+    25% {
+        transform: translateX(2px);
+        opacity: 0.15;
+    }
+    50% {
+        transform: translateX(-2px);
+        opacity: 0.1;
+    }
+    75% {
+        transform: translateX(1px);
+        opacity: 0.12;
     }
 }

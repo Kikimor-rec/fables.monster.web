@@ -1,29 +1,41 @@
+type Store = 'itch' | 'drivethrurpg' | 'patreon' | 'boosty' | 'vk';
+
 interface StoreButtonProps {
-  store: "itch" | "drivethrurpg" | "patreon";
+  store: Store;
   href: string;
   price?: string;
   className?: string;
 }
 
-export default function StoreButton({ store, href, price, className = "" }: StoreButtonProps) {
-  const storeConfig = {
-    itch: {
-      name: "Itch.io",
-      bgColor: "bg-red-600 hover:bg-red-500",
-      emoji: "🎮"
-    },
-    drivethrurpg: {
-      name: "DriveThruRPG",
-      bgColor: "bg-blue-600 hover:bg-blue-500",
-      emoji: "📚"
-    },
-    patreon: {
-      name: "Patreon",
-      bgColor: "bg-orange-600 hover:bg-orange-500",
-      emoji: "🎨"
-    }
-  };
+const storeConfig: Record<Store, { label: string; icon: string; color: string }> = {
+  itch: {
+    label: 'Itch.io',
+    icon: '/logos/itchio-textless-white.svg',
+    color: 'hover:bg-[#fa5c5c]',
+  },
+  drivethrurpg: {
+    label: 'DriveThruRPG',
+    icon: '/logos/drivethrurpg-icon.png',
+    color: 'hover:bg-[#e40000]',
+  },
+  patreon: {
+    label: 'Patreon',
+    icon: '/logos/patreon-symbol-white.png',
+    color: 'hover:bg-[#FF424D]',
+  },
+  boosty: {
+    label: 'Boosty',
+    icon: '/logos/boosty-logo.svg',
+    color: 'hover:bg-[#f48420]',
+  },
+  vk: {
+    label: 'VK',
+    icon: '/logos/vk-logo.svg',
+    color: 'hover:bg-[#0077FF]',
+  }
+};
 
+export default function StoreButton({ store, href, price, className = '' }: StoreButtonProps) {
   const config = storeConfig[store];
 
   return (
@@ -31,12 +43,19 @@ export default function StoreButton({ store, href, price, className = "" }: Stor
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className={`inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-3 ${config.bgColor} text-white font-nunito font-bold transition-colors border-2 border-transparent hover:border-white/20 text-sm sm:text-base ${className}`}
+      className={`
+        inline-flex items-center gap-2 px-4 py-2 
+        bg-gray-900 border border-gray-700 text-white 
+        font-orbitron text-sm font-bold tracking-wide
+        transition-all duration-300
+        ${config.color} hover:border-transparent hover:scale-105
+        ${className}
+      `}
     >
-      <span className="text-lg sm:text-xl">{config.emoji}</span>
-      <span className="truncate">{config.name}</span>
+      {/* We can use a generic icon or text if image is missing, but for now let's assume images exist or fallback */}
+      <span className="uppercase">{config.label}</span>
       {price && (
-        <span className="text-xs sm:text-sm whitespace-nowrap">({price})</span>
+        <span className="text-xs sm:text-sm whitespace-nowrap ml-1 opacity-80">({price})</span>
       )}
     </a>
   );

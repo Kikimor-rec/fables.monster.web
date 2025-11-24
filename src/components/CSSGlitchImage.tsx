@@ -11,7 +11,7 @@ interface CSSGlitchImageProps {
   className?: string;
   quality?: number;
   sizes?: string;
-  theme?: 'default' | 'horror' | 'subtle' | 'intense';
+  theme?: 'default' | 'horror' | 'subtle' | 'intense' | 'cyberpunk-intense';
 }
 
 export default function CSSGlitchImage({
@@ -90,17 +90,45 @@ export default function CSSGlitchImage({
         }}
       />
       <div 
-        className={`glitch-layer glitch-layer-1 ${theme === 'horror' ? 'horror-theme' : ''}`}
+        className={`glitch-layer glitch-layer-1 ${theme === 'horror' ? 'horror-theme' : ''} ${theme === 'cyberpunk-intense' ? 'cyberpunk-intense' : ''}`}
         style={{
           '--glitch-image': `url('${src}')`
         } as React.CSSProperties}
       />
       <div 
-        className={`glitch-layer glitch-layer-2 ${theme === 'horror' ? 'horror-theme' : ''}`}
+        className={`glitch-layer glitch-layer-2 ${theme === 'horror' ? 'horror-theme' : ''} ${theme === 'cyberpunk-intense' ? 'cyberpunk-intense' : ''}`}
         style={{
           '--glitch-image': `url('${src}')`
         } as React.CSSProperties}
       />
+      {theme === 'cyberpunk-intense' && (
+        <>
+          <div 
+            className="glitch-layer glitch-layer-3 cyberpunk-intense"
+            style={{
+              '--glitch-image': `url('${src}')`
+            } as React.CSSProperties}
+          />
+          <div 
+            className="glitch-layer glitch-layer-4 cyberpunk-intense"
+            style={{
+              '--glitch-image': `url('${src}')`
+            } as React.CSSProperties}
+          />
+          <div 
+            className="glitch-layer glitch-layer-5 cyberpunk-intense"
+            style={{
+              '--glitch-image': `url('${src}')`
+            } as React.CSSProperties}
+          />
+          {/* Scanlines overlay */}
+          <div className="glitch-scanlines"></div>
+          {/* Digital noise overlay */}
+          <div className="glitch-noise"></div>
+          {/* RGB shift artifacts */}
+          <div className="glitch-rgb-shift"></div>
+        </>
+      )}
       <OptimizedImage
         src={src}
         alt={alt}

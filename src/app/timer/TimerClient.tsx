@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from 'react';
+import Link from 'next/link';
 
 export default function TimerClient() {
   const [hours, setHours] = useState(0);
@@ -13,7 +14,7 @@ export default function TimerClient() {
   const [glitch, setGlitch] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [loadingText, setLoadingText] = useState('');
-  
+
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const playBeep = () => {
@@ -61,14 +62,14 @@ export default function TimerClient() {
     }
   }, []);
 
-  // Эффект загрузки
+  // Boot sequence effect
   useEffect(() => {
     const bootSequence = [
-      "INITIALIZING TIMER SYSTEM...",
-      "LOADING CHRONOMETER PROTOCOLS...",
-      "CALIBRATING TIME CIRCUITS...",
-      "ESTABLISHING TEMPORAL SYNC...",
-      "TIMER READY"
+      "INITIALIZING SYSTEM...",
+      "LOADING PROTOCOLS...",
+      "CALIBRATING...",
+      "SYNCING...",
+      "READY"
     ];
 
     let index = 0;
@@ -80,12 +81,12 @@ export default function TimerClient() {
         clearInterval(interval);
         setTimeout(() => setIsLoading(false), 1000);
       }
-    }, 800);
+    }, 600);
 
     return () => clearInterval(interval);
   }, []);
 
-  // Случайные глитчи
+  // Random glitch effect
   useEffect(() => {
     if (!isLoading) {
       const glitchInterval = setInterval(() => {
@@ -99,7 +100,7 @@ export default function TimerClient() {
     }
   }, [isLoading]);
 
-  // Таймер
+  // Timer logic
   useEffect(() => {
     if (isRunning && !isPaused && currentSeconds > 0) {
       intervalRef.current = setInterval(() => {
@@ -215,11 +216,11 @@ export default function TimerClient() {
   const getStatusColor = () => {
     const status = getTimerStatus();
     switch (status) {
-      case "RUNNING": return "text-green-400";
+      case "RUNNING": return "text-cyan-400";
       case "PAUSED": return "text-yellow-400";
-      case "COMPLETED": return "text-red-400";
-      case "READY": return "text-blue-400";
-      default: return "text-green-500";
+      case "COMPLETED": return "text-red-500";
+      case "READY": return "text-white";
+      default: return "text-gray-400";
     }
   };
 
@@ -244,25 +245,19 @@ export default function TimerClient() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-black text-green-400 font-mono flex items-center justify-center crt-terminal">
-        <div className="text-center px-2">
+      <div className="min-h-screen bg-black text-cyan-400 font-orbitron flex items-center justify-center relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('/grid.png')] opacity-10"></div>
+        <div className="text-center px-4 relative z-10">
           <div className="mb-8">
-            <pre className="text-green-400 font-mono text-xs sm:text-sm animate-pulse overflow-x-auto max-w-full">
-              {`
-████████╗██╗███╗   ███╗███████╗██████╗ 
-╚══██╔══╝██║████╗ ████║██╔════╝██╔══██╗
-   ██║   ██║██╔████╔██║█████╗  ██████╔╝
-   ██║   ██║██║╚██╔╝██║██╔══╝  ██╔══██╗
-   ██║   ██║██║ ╚═╝ ██║███████╗██║  ██║
-   ╚═╝   ╚═╝╚═╝     ╚═╝╚══════╝╚═╝  ╚═╝
-              `}
-            </pre>
+            <div className="text-cyan-500 font-mono text-xs sm:text-sm animate-pulse tracking-widest">
+              SYSTEM BOOT SEQUENCE
+            </div>
           </div>
-          <div className="text-green-300 text-lg sm:text-xl mb-4">
+          <div className="text-white text-xl sm:text-2xl mb-4 font-bold tracking-wider">
             {loadingText}
           </div>
-          <div className="text-green-500">
-            <span className="animate-pulse">█</span>
+          <div className="w-48 h-1 bg-gray-800 mx-auto rounded-full overflow-hidden">
+            <div className="h-full bg-cyan-500 animate-progress-indeterminate"></div>
           </div>
         </div>
       </div>
@@ -270,239 +265,216 @@ export default function TimerClient() {
   }
 
   return (
-    <div className={`min-h-screen bg-black text-green-400 font-mono relative crt-terminal ${glitch ? 'animate-pulse' : ''}`}>
-      {/* Glitch Effect */}
+    <div className={`min-h-screen bg-black text-gray-300 font-rajdhani relative overflow-hidden ${glitch ? 'glitch-effect' : ''}`}>
+      {/* Background Grid */}
+      <div className="absolute inset-0 bg-[url('/grid.png')] opacity-5 pointer-events-none"></div>
+
+      {/* Glitch Overlay */}
       {glitch && (
-        <div className="fixed inset-0 z-20 bg-green-500 opacity-10 animate-ping"></div>
+        <div className="fixed inset-0 z-50 bg-cyan-500/10 pointer-events-none mix-blend-overlay"></div>
       )}
 
-      {/* Главный контейнер */}
-      <div className="relative z-0">
-        
-        {/* Секция настроек таймера - полный экран */}
-        <section className="min-h-screen flex items-center justify-center px-1 py-2 sm:px-4 sm:py-6 md:px-6 md:py-8">
-          <div className="bg-black p-3 sm:p-6 md:p-8 lg:p-12 rounded-lg border-2 border-green-400 shadow-lg shadow-green-400/50 w-full max-w-4xl">
-            
-            {/* Заголовок секции настроек */}
-            <div className="text-center mb-8 sm:mb-12">
-              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-green-300 mb-4">
-                TIMER CONFIGURATION
+      {/* Navigation Link */}
+      <div className="absolute top-4 left-4 z-50">
+        <Link href="/" className="text-xs font-orbitron text-gray-500 hover:text-cyan-400 transition-colors border border-gray-800 hover:border-cyan-500 px-3 py-1">
+          &lt; RETURN TO BASE
+        </Link>
+      </div>
+
+      {/* Main Container */}
+      <div className="relative z-10 flex flex-col min-h-screen">
+
+        {/* Settings Section */}
+        <section className="flex-1 flex items-center justify-center p-4 sm:p-6">
+          <div className="w-full max-w-4xl bg-gray-900/50 border border-cyan-900/50 backdrop-blur-sm p-6 sm:p-10 relative">
+            {/* Decorative Corners */}
+            <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-cyan-500"></div>
+            <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-cyan-500"></div>
+            <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-cyan-500"></div>
+            <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-cyan-500"></div>
+
+            {/* Header */}
+            <div className="text-center mb-10">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-2 font-orbitron tracking-wider text-glow-cyan">
+                CHRONOMETER
               </h1>
-              <div className={`text-sm sm:text-base font-mono ${getStatusColor()}`}>
+              <div className={`text-sm font-mono tracking-widest ${getStatusColor()}`}>
                 STATUS: {getTimerStatus()}
               </div>
             </div>
 
-            {/* Панель управления - центрированная */}
+            {/* Controls Panel */}
             <div className="max-w-2xl mx-auto">
-              
-              {/* Установка времени */}
-              <div className="space-y-6 sm:space-y-8 mb-8 sm:mb-12">
-                <div className="text-center">
-                  <div className="text-green-500 mb-4 text-lg font-mono">SET DURATION</div>
-                  <div className="flex flex-wrap justify-center items-center gap-2 sm:gap-4">
-                    <div className="flex items-center">
-                      <div className="flex flex-col items-center">
-                        <label className="text-sm text-green-600 mb-1 sm:mb-2">HOURS</label>
-                        <input
-                          type="number"
-                          min="0"
-                          max="23"
-                          value={hours}
-                          onChange={(e) => setHours(Math.max(0, Math.min(23, parseInt(e.target.value) || 0)))}
-                          className="w-16 sm:w-20 md:w-24 bg-black border-2 border-green-600 text-green-400 text-center py-2 sm:py-3 text-base sm:text-lg font-mono focus:border-green-300 focus:outline-none rounded"
-                          disabled={isRunning}
-                        />
-                      </div>
-                      <div className="text-green-400 text-xl sm:text-2xl md:text-3xl font-bold px-1 sm:px-2">:</div>
-                    </div>
-                    
-                    <div className="flex items-center">
-                      <div className="flex flex-col items-center">
-                        <label className="text-sm text-green-600 mb-1 sm:mb-2">MINUTES</label>
-                        <input
-                          type="number"
-                          min="0"
-                          max="59"
-                          value={minutes}
-                          onChange={(e) => setMinutes(Math.max(0, Math.min(59, parseInt(e.target.value) || 0)))}
-                          className="w-16 sm:w-20 md:w-24 bg-black border-2 border-green-600 text-green-400 text-center py-2 sm:py-3 text-base sm:text-lg font-mono focus:border-green-300 focus:outline-none rounded"
-                          disabled={isRunning}
-                        />
-                      </div>
-                      <div className="text-green-400 text-xl sm:text-2xl md:text-3xl font-bold px-1 sm:px-2">:</div>
-                    </div>
-                    
+
+              {/* Time Input */}
+              <div className="mb-10">
+                <div className="text-center mb-6">
+                  <div className="text-cyan-500 text-xs font-orbitron tracking-widest mb-4">SET DURATION</div>
+                  <div className="flex flex-wrap justify-center items-end gap-4">
+
+                    {/* Hours */}
                     <div className="flex flex-col items-center">
-                      <label className="text-sm text-green-600 mb-1 sm:mb-2">SECONDS</label>
+                      <input
+                        type="number"
+                        min="0"
+                        max="23"
+                        value={hours}
+                        onChange={(e) => setHours(Math.max(0, Math.min(23, parseInt(e.target.value) || 0)))}
+                        className="w-20 sm:w-24 bg-black/50 border border-gray-700 text-white text-center py-3 text-2xl sm:text-3xl font-orbitron focus:border-cyan-500 focus:outline-none transition-colors"
+                        disabled={isRunning}
+                      />
+                      <label className="text-xs text-gray-500 mt-2 font-mono">HRS</label>
+                    </div>
+
+                    <div className="text-gray-600 text-3xl font-orbitron pb-8">:</div>
+
+                    {/* Minutes */}
+                    <div className="flex flex-col items-center">
+                      <input
+                        type="number"
+                        min="0"
+                        max="59"
+                        value={minutes}
+                        onChange={(e) => setMinutes(Math.max(0, Math.min(59, parseInt(e.target.value) || 0)))}
+                        className="w-20 sm:w-24 bg-black/50 border border-gray-700 text-white text-center py-3 text-2xl sm:text-3xl font-orbitron focus:border-cyan-500 focus:outline-none transition-colors"
+                        disabled={isRunning}
+                      />
+                      <label className="text-xs text-gray-500 mt-2 font-mono">MIN</label>
+                    </div>
+
+                    <div className="text-gray-600 text-3xl font-orbitron pb-8">:</div>
+
+                    {/* Seconds */}
+                    <div className="flex flex-col items-center">
                       <input
                         type="number"
                         min="0"
                         max="59"
                         value={seconds}
                         onChange={(e) => setSeconds(Math.max(0, Math.min(59, parseInt(e.target.value) || 0)))}
-                        className="w-16 sm:w-20 md:w-24 bg-black border-2 border-green-600 text-green-400 text-center py-2 sm:py-3 text-base sm:text-lg font-mono focus:border-green-300 focus:outline-none rounded"
+                        className="w-20 sm:w-24 bg-black/50 border border-gray-700 text-white text-center py-3 text-2xl sm:text-3xl font-orbitron focus:border-cyan-500 focus:outline-none transition-colors"
                         disabled={isRunning}
                       />
+                      <label className="text-xs text-gray-500 mt-2 font-mono">SEC</label>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div className="flex justify-center gap-2 sm:gap-4 mb-4">
-                {[5, 10, 30].map((m) => (
-                  <button
-                    key={m}
-                    type="button"
-                    onClick={() => applyPreset(m)}
-                    disabled={isRunning}
-                    className="px-3 py-2 bg-green-800 text-white border-2 border-green-600 rounded text-sm sm:text-base hover:bg-green-700 disabled:bg-gray-700"
-                  >
-                    {m} MIN
-                  </button>
-                ))}
-              </div>
+                {/* Presets */}
+                <div className="flex justify-center gap-3 mb-6">
+                  {[5, 10, 30].map((m) => (
+                    <button
+                      key={m}
+                      type="button"
+                      onClick={() => applyPreset(m)}
+                      disabled={isRunning}
+                      className="px-4 py-2 bg-gray-900 border border-gray-700 text-gray-300 font-orbitron text-sm hover:border-cyan-500 hover:text-cyan-400 disabled:opacity-50 transition-all"
+                    >
+                      +{m}M
+                    </button>
+                  ))}
+                </div>
 
-              <button
-                onClick={setTimer}
-                disabled={isRunning || (hours === 0 && minutes === 0 && seconds === 0)}
-                className="w-full bg-green-700 text-white py-4 sm:py-5 text-lg sm:text-xl border-2 border-green-600 hover:bg-green-600 disabled:bg-gray-700 disabled:text-gray-500 disabled:border-gray-600 transition-colors font-mono rounded"
-              >
-                  [SET TIMER]
+                <button
+                  onClick={setTimer}
+                  disabled={isRunning || (hours === 0 && minutes === 0 && seconds === 0)}
+                  className="w-full bg-cyan-900/20 text-cyan-400 py-4 text-lg font-orbitron font-bold border border-cyan-500/50 hover:bg-cyan-500 hover:text-black disabled:opacity-50 disabled:hover:bg-transparent disabled:hover:text-cyan-400 transition-all tracking-widest"
+                >
+                  INITIALIZE TIMER
                 </button>
               </div>
 
-              {/* Кнопки управления */}
-              <div className="grid grid-cols-2 gap-4 sm:gap-6 mb-6">
+              {/* Action Buttons */}
+              <div className="grid grid-cols-2 gap-4 mb-4">
                 <button
                   onClick={startTimer}
                   disabled={currentSeconds === 0 || (isRunning && !isPaused)}
-                  className="bg-blue-700 text-white py-4 sm:py-5 text-base sm:text-lg border-2 border-blue-600 hover:bg-blue-600 disabled:bg-gray-700 disabled:text-gray-500 disabled:border-gray-600 transition-colors font-mono rounded"
+                  className="bg-gray-900 text-white py-4 text-lg font-orbitron border border-gray-600 hover:border-green-500 hover:text-green-400 disabled:opacity-50 transition-all"
                 >
-                  {isRunning && !isPaused ? "[RUNNING]" : "[START]"}
+                  {isRunning && !isPaused ? "RUNNING..." : "START"}
                 </button>
-                
+
                 {isPaused ? (
                   <button
                     onClick={resumeTimer}
-                    className="bg-yellow-700 text-white py-4 sm:py-5 text-base sm:text-lg border-2 border-yellow-600 hover:bg-yellow-600 transition-colors font-mono rounded"
+                    className="bg-gray-900 text-yellow-400 py-4 text-lg font-orbitron border border-yellow-600 hover:bg-yellow-900/20 transition-all"
                   >
-                    [RESUME]
+                    RESUME
                   </button>
                 ) : (
                   <button
                     onClick={pauseTimer}
                     disabled={!isRunning}
-                    className="bg-yellow-700 text-white py-4 sm:py-5 text-base sm:text-lg border-2 border-yellow-600 hover:bg-yellow-600 disabled:bg-gray-700 disabled:text-gray-500 disabled:border-gray-600 transition-colors font-mono rounded"
+                    className="bg-gray-900 text-white py-4 text-lg font-orbitron border border-gray-600 hover:border-yellow-500 hover:text-yellow-400 disabled:opacity-50 transition-all"
                   >
-                    [PAUSE]
+                    PAUSE
                   </button>
                 )}
               </div>
 
-              <div className="grid grid-cols-2 gap-4 sm:gap-6">
+              <div className="grid grid-cols-2 gap-4">
                 <button
                   onClick={resetTimer}
                   disabled={totalSeconds === 0}
-                  className="bg-orange-700 text-white py-4 sm:py-5 text-base sm:text-lg border-2 border-orange-600 hover:bg-orange-600 disabled:bg-gray-700 disabled:text-gray-500 disabled:border-gray-600 transition-colors font-mono rounded"
+                  className="bg-gray-900 text-gray-400 py-3 text-sm font-orbitron border border-gray-700 hover:border-white hover:text-white disabled:opacity-50 transition-all"
                 >
-                  [RESET]
+                  RESET
                 </button>
-                
+
                 <button
                   onClick={clearTimer}
-                  className="bg-red-700 text-white py-4 sm:py-5 text-base sm:text-lg border-2 border-red-600 hover:bg-red-600 transition-colors font-mono rounded"
+                  className="bg-gray-900 text-red-400 py-3 text-sm font-orbitron border border-red-900/50 hover:border-red-500 hover:bg-red-900/20 transition-all"
                 >
-                  [CLEAR]
+                  CLEAR SYSTEM
                 </button>
               </div>
             </div>
-
-            {/* Индикатор прокрутки */}
-            <div className="text-center mt-8 sm:mt-12">
-              <div className="text-green-500 text-sm font-mono mb-2">SCROLL DOWN FOR DISPLAY</div>
-              <div className="animate-bounce">
-                <div className="text-green-400 text-2xl">▼</div>
-              </div>
-            </div>
           </div>
         </section>
 
-        {/* Секция дисплея таймера - полный экран */}
-        <section className="min-h-screen flex items-center justify-center px-1 py-2 sm:px-4 sm:py-6 md:px-6 md:py-8">
-          <div className="bg-black p-3 sm:p-6 md:p-8 lg:p-12 rounded-lg border-2 border-green-400 shadow-lg shadow-green-400/50 w-full max-w-4xl">
-            
-            {/* Заголовок секции дисплея */}
-            <div className="text-center mb-8 sm:mb-12">
-              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-green-300 mb-4">
-                CHRONOMETER DISPLAY
-              </h1>
-              <div className={`text-sm sm:text-base font-mono ${getStatusColor()}`}>
-                STATUS: {getTimerStatus()}
+        {/* Display Section */}
+        <section className="flex-1 flex items-center justify-center p-4 sm:p-6 bg-black/50 border-t border-gray-900">
+          <div className="w-full max-w-4xl text-center">
+            <div className="mb-8">
+              <div className="text-gray-600 text-xs font-orbitron tracking-[0.5em] mb-2">REMAINING TIME</div>
+              <div className={`text-6xl sm:text-7xl md:text-9xl font-bold font-orbitron tracking-wider ${currentSeconds === 0 && totalSeconds > 0 ? 'text-red-500 animate-pulse text-glow-red' :
+                isRunning ? 'text-white text-glow-white' :
+                  'text-gray-500'
+                }`}>
+                {formatTime(currentSeconds)}
               </div>
             </div>
-            
-            {/* Дисплей таймера - центрированный */}
-            <div className="flex flex-col justify-center items-center space-y-8 sm:space-y-12">
-              <div className="text-center">
-                <div className="text-green-500 mb-4 text-lg sm:text-xl font-mono">REMAINING TIME</div>
-                <div className={`text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold font-mono ${currentSeconds === 0 && totalSeconds > 0 ? 'text-red-400 animate-pulse' : getStatusColor()}`}>
-                  {formatTime(currentSeconds)}
+
+            {/* Progress Bar */}
+            {totalSeconds > 0 && (
+              <div className="max-w-2xl mx-auto px-4">
+                <div className="w-full bg-gray-900 border border-gray-800 h-2 mb-2">
+                  <div
+                    className={`h-full transition-all duration-1000 ${currentSeconds === 0 ? 'bg-red-500' : 'bg-cyan-500'
+                      }`}
+                    style={{ width: `${getProgress()}%` }}
+                  ></div>
+                </div>
+                <div className="flex justify-between text-xs font-mono text-gray-600">
+                  <span>0%</span>
+                  <span>{getProgress().toFixed(0)}%</span>
+                  <span>100%</span>
                 </div>
               </div>
+            )}
 
-              {/* Прогресс бар */}
-              {totalSeconds > 0 && (
-                <div className="w-full max-w-2xl">
-                  <div className="text-green-500 mb-4 text-lg font-mono text-center">PROGRESS</div>
-                  <div className="w-full bg-gray-700 border-2 border-green-600 h-6 sm:h-8 rounded">
-                    <div 
-                      className="bg-green-500 h-full transition-all duration-1000 rounded"
-                      style={{ width: `${getProgress()}%` }}
-                    ></div>
-                  </div>
-                  <div className="text-center mt-4 text-lg sm:text-xl font-mono text-green-400">
-                    {getProgress().toFixed(1)}%
-                  </div>
+            {/* Completion Message */}
+            {currentSeconds === 0 && totalSeconds > 0 && (
+              <div className="mt-8">
+                <div className="inline-block border-2 border-red-500 text-red-500 px-6 py-2 font-orbitron font-bold tracking-widest animate-pulse">
+                  SEQUENCE COMPLETE
                 </div>
-              )}
-
-              {/* Информация о таймере */}
-              <div className="text-center space-y-2 text-base sm:text-lg font-mono">
-                {totalSeconds > 0 && (
-                  <div className="text-green-500">
-                    INITIAL: {formatTime(totalSeconds)}
-                  </div>
-                )}
-                {currentSeconds === 0 && totalSeconds > 0 && (
-                  <div className="text-red-400 animate-pulse font-bold text-xl sm:text-2xl">
-                    ⚠ TIMER COMPLETED ⚠
-                  </div>
-                )}
               </div>
-            </div>
-
-            {/* Индикатор прокрутки вверх */}
-            <div className="text-center mt-8 sm:mt-12">
-              <div className="text-green-500 text-sm font-mono mb-2">SCROLL UP FOR CONTROLS</div>
-              <div className="animate-bounce">
-                <div className="text-green-400 text-2xl">▲</div>
-              </div>
-            </div>
+            )}
           </div>
         </section>
-
-        {/* Статусная строка - фиксированная внизу */}
-        <div className="fixed bottom-0 left-0 right-0 p-2 sm:p-3 bg-green-900 bg-opacity-90 border-t-2 border-green-600 backdrop-blur-sm z-30">
-          <div className="flex flex-col sm:flex-row justify-between items-center text-xs sm:text-sm font-mono space-y-1 sm:space-y-0 max-w-7xl mx-auto px-2">
-            <div className="text-green-400">
-              CHRONOMETER SYSTEM v2.1.0
-            </div>
-            <div className={`${getStatusColor()}`}>
-              {getTimerStatus()} | {formatTime(currentSeconds)}
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );
 }
+

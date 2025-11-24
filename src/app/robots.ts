@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/api/', '/timer/', '/admin/'],
+      disallow: ['/api/', '/admin/'],
     },
     sitemap: 'https://fables.monster/sitemap.xml',
   }

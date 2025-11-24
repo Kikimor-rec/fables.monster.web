@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import Link from "next/link";
+import Link from 'next/link';
 import FadeIn from "@/components/FadeIn";
 
 export const metadata: Metadata = {
@@ -33,7 +33,6 @@ export const metadata: Metadata = {
   },
 }
 
-export const dynamic = 'error';
 
 export default function LostMarkLicense() {
   return (
@@ -69,7 +68,7 @@ export default function LostMarkLicense() {
             <h2 className="text-xl font-mono font-bold text-white mb-4">
               License: Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)
             </h2>
-            
+
             <div className="mb-6">
               <h3 className="text-lg font-mono font-bold text-green-400 mb-3">
                 You are free to:
@@ -104,7 +103,7 @@ export default function LostMarkLicense() {
                 Suggested attribution:
               </h3>
               <div className="bg-black border border-gray-600 p-4 font-mono text-gray-300 text-sm">
-                   <div>• Original product by Fables Monster</div>
+                <div>• Original product by Fables Monster</div>
                 <div>• Written by Stepan Kulikov</div>
                 <div>• Illustrations by Zlata Ignatova</div>
                 <div>• Music by Stanislav DariDa</div>
@@ -121,7 +120,7 @@ export default function LostMarkLicense() {
             <div className="text-gray-300 font-mono mb-4">
               → <a href="mailto:info@fables.monster" className="text-red-400 hover:underline">info@fables.monster</a>
             </div>
-            
+
             <div className="text-sm text-gray-400 font-mono">
               License details: <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" className="text-blue-400 hover:underline" target="_blank" rel="noopener noreferrer">https://creativecommons.org/licenses/by-nc-sa/4.0/</a>
             </div>

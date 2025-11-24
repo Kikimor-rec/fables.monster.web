@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import Link from "next/link";
+import Link from 'next/link';
 import Image from "next/image";
 import Navigation from "@/components/Navigation";
 import './christmas.css';
@@ -35,7 +35,6 @@ export const metadata: Metadata = {
   },
 }
 
-export const dynamic = 'error';
 
 export default function HolidayAuditKramp() {
   // Component for section divider lights
@@ -132,7 +131,7 @@ export default function HolidayAuditKramp() {
         <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
           <div className="relative w-48 h-48 mx-auto mb-6">
             <Image
-              src="/images/kramp/small kramp.png"
+              src="/images/kramp/small kramp.webp"
               alt="St.N KRAMP Pointing"
               fill
               className="object-contain filter invert drop-shadow-[0_0_15px_rgba(255,0,0,0.3)]"
@@ -152,6 +151,34 @@ export default function HolidayAuditKramp() {
             <span className="bg-green-900/50 text-green-400 px-4 py-2 font-orbitron border border-green-600 clip-path-slant hover:box-glow-cyan transition-all">COMING NOV 24, 2025</span>
             <span className="bg-red-900/50 text-red-400 px-4 py-2 font-orbitron border border-red-600 clip-path-slant hover:box-glow transition-all">ONE-SHOT</span>
             <span className="bg-green-900/50 text-green-400 px-4 py-2 font-orbitron border border-green-600 clip-path-slant hover:box-glow-cyan transition-all">POSTCARD SIZE</span>
+          </div>
+          
+          {/* Download Buttons */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-12">
+            <a
+              href="https://www.drivethrurpg.com/en/product/547046/kramp-exe-christmas-special-edition-for-mothership-1e?affiliate_id=2863466"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative px-8 py-4 bg-red-900/30 border-2 border-red-500 text-red-400 font-orbitron font-bold text-lg clip-path-slant hover:bg-red-900/50 hover:text-white transition-all duration-300 hover:box-glow min-w-[200px] text-center"
+            >
+              <span className="relative z-10">GET ON DRIVETHRU</span>
+            </a>
+            <a
+              href="https://fablesmonster.itch.io/krampexe-mothership-1e"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative px-8 py-4 bg-green-900/30 border-2 border-green-500 text-green-400 font-orbitron font-bold text-lg clip-path-slant hover:bg-green-900/50 hover:text-white transition-all duration-300 hover:box-glow-cyan min-w-[200px] text-center"
+            >
+              <span className="relative z-10">GET ON ITCH.IO</span>
+            </a>
+            <a
+              href="https://www.patreon.com/posts/kramp-exe-for-1e-144275102"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative px-8 py-4 bg-blue-900/30 border-2 border-blue-500 text-blue-400 font-orbitron font-bold text-lg clip-path-slant hover:bg-blue-900/50 hover:text-white transition-all duration-300 hover:shadow-[0_0_20px_rgba(59,130,246,0.5)] min-w-[200px] text-center"
+            >
+              <span className="relative z-10">PATREON EXCLUSIVE</span>
+            </a>
           </div>
         </div>
       </section>
@@ -195,7 +222,7 @@ export default function HolidayAuditKramp() {
               </div>
               <div className="relative w-48 h-48 flex-shrink-0 hidden md:block">
                 <Image
-                  src="/images/kramp/big kramp.png"
+                  src="/images/kramp/big kramp.webp"
                   alt="St.N KRAMP Gift"
                   fill
                   className="object-contain filter invert drop-shadow-[0_0_10px_rgba(74,222,128,0.3)]"

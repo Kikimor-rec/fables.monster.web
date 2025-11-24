@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from 'next/link';
 import SocialLinks from "./SocialLinks";
 import Image from "next/image";
 

@@ -63,7 +63,10 @@ export default function FadeIn({
   return (
     <div
       ref={elementRef}
-      className={`${className} transition-all duration-600 ease-in-out ${isVisible ? 'opacity-100 translate3d(0, 0, 0)' : `opacity-0 ${getInitialTransform()}`} ${glitched ? "terminal-glitch" : ""}`}
+      className={`${className} transition-all duration-700 ease-in-out ${isVisible ? 'opacity-100' : 'opacity-0'} ${glitched ? "terminal-glitch" : ""}`}
+      style={{
+        transform: isVisible ? 'translate3d(0, 0, 0)' : getInitialTransform()
+      }}
     >
       {children}
     </div>

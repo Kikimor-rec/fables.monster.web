@@ -11,8 +11,8 @@ export interface TeamMember {
 export const teamMembers: TeamMember[] = [
     {
         name: "Stepan Kulikov",
-        role: "Writer & Game Designer",
-        bio: "Lead writer and narrative designer, crafting compelling stories and game mechanics",
+        role: "Founder, Narrative Designer & Producer",
+        bio: "Keeps the stories weird, the deadlines (mostly) real, and the studio moving forward.",
         image: "stepan-kulikov.webp"
     },
     {

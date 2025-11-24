@@ -20,8 +20,17 @@ const config: Config = {
       },
       fontFamily: {
         mono: ["Courier New", "monospace"],
-        orbitron: ["Orbitron", "sans-serif"],
-        rajdhani: ["Rajdhani", "sans-serif"],
+        orbitron: ["var(--font-orbitron)", "sans-serif"],
+        rajdhani: ["var(--font-rajdhani)", "sans-serif"],
+      },
+      keyframes: {
+        scanline: {
+          "0%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(100%)" },
+        },
+      },
+      animation: {
+        scanline: "scanline 3s linear infinite",
       },
     },
   },

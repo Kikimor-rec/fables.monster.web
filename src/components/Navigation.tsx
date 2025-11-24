@@ -1,8 +1,8 @@
 "use client";
 
-import Link from "next/link";
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useState, useRef, useEffect } from "react";
-import { usePathname } from "next/navigation";
 import { createPortal } from "react-dom";
 import Image from "next/image";
 
@@ -85,9 +85,9 @@ export default function Navigation() {
             <Link
               key={link.href}
               href={link.href}
-              className={`nav-link transition-colors font-nunito font-bold ${isActive(link.href)
-                  ? "nav-link-active text-red-400"
-                  : "text-white hover:text-red-400"
+              className={`nav-link transition-colors font-orbitron font-bold ${isActive(link.href)
+                ? "nav-link-active text-red-400"
+                : "text-white hover:text-red-400"
                 } focus:outline-none focus:ring-2 focus:ring-red-500 rounded px-1 py-2`}
             >
               {link.label}
@@ -159,9 +159,9 @@ export default function Navigation() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`nav-link text-2xl font-nunito font-bold py-6 w-full text-center transition-colors ${isActive(link.href)
-                      ? "nav-link-active text-red-400"
-                      : "text-white hover:text-red-400"
+                  className={`nav-link text-2xl font-orbitron font-bold py-6 w-full text-center transition-colors ${isActive(link.href)
+                    ? "nav-link-active text-red-400"
+                    : "text-white hover:text-red-400"
                     } focus:outline-none focus:ring-2 focus:ring-red-500 rounded mx-4`}
                   onClick={handleCloseMenu}
                   role="menuitem"

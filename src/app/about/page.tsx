@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import Link from "next/link";
+import Link from 'next/link';
 import TeamMember from "@/components/TeamMember";
 // ...удалён импорт FinalEditable...
 
@@ -34,34 +34,32 @@ export const metadata: Metadata = {
   },
 }
 
-export const dynamic = 'error';
-// ...удалён импорт useContent...
-
 import { teamMembers } from "@/data/team";
 
-export default function About() {
+export default async function About({ params }: { params: Promise<{ locale: string }> }) {
+  await params; // Ensure params are awaited for static generation
   // Local team array removed in favor of centralized data
 
   const values = [
     {
       title: "Quality First",
       description: "We don't rush releases, preferring to create products we can be proud of",
-      icon: "⭐"
+      icon: "QUALITY"
     },
     {
       title: "Human Creativity",
       description: "We value human creativity and do not use AI-generated content",
-      icon: "🤝"
+      icon: "HUMAN"
     },
     {
       title: "All what you need",
       description: "We strive to prepare all the necessary materials so that you can focus on the story rather than resolving issues.",
-      icon: "🌍"
+      icon: "COMPLETE"
     },
     {
       title: "Innovation in Tradition",
       description: "We respect classic genres but aren't afraid to experiment",
-      icon: "🚀"
+      icon: "INNOVATION"
     }
   ];
 
@@ -83,10 +81,10 @@ export default function About() {
       {/* Hero Section */}
       <section className="pt-32 pb-20 border-b border-red-700">
         <div className="max-w-7xl mx-auto px-6 text-center">
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 font-nunito tracking-wider">
+          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 font-orbitron tracking-wider">
             ABOUT THE STUDIO
           </h1>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto font-nunito">
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto font-rajdhani leading-relaxed">
             We believe that the Warden, Dungeon Master, or Host (whatever you call them) should have the tools to run games and the ability to quickly start everything they need. And we want to make not just adventures, but ready-made tools that can reduce the time it takes to prepare for a game.
           </p>
         </div>
@@ -109,7 +107,6 @@ export default function About() {
               </p>
             </div>
             <div className="text-center">
-              <div className="text-6xl mb-4 animate-pulse">🎭</div>
               <div className="text-white font-orbitron font-bold text-xl border border-cyan-500/50 p-6 bg-cyan-950/20 box-glow-cyan clip-path-slant" style={{ clipPath: 'polygon(5% 0, 100% 0, 100% 85%, 95% 100%, 0 100%, 0 15%)' }}>
                 EVERY STORY DESERVES TO BE TOLD
               </div>
@@ -131,11 +128,11 @@ export default function About() {
                 className="bg-black border border-cyan-900/50 p-6 text-center hover:border-cyan-400 transition-colors group relative overflow-hidden"
               >
                 <div className="absolute inset-0 bg-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                <div className="text-4xl mb-4 relative z-10">{value.icon}</div>
-                <h3 className="text-xl font-bold text-cyan-400 mb-3 font-orbitron relative z-10">
+                <div className="text-cyan-500 font-orbitron font-bold text-sm mb-4 relative z-10 tracking-widest">{value.icon}</div>
+                <h3 className="text-xl font-bold text-white mb-3 font-orbitron relative z-10">
                   {value.title}
                 </h3>
-                <p className="text-gray-400 font-rajdhani text-sm relative z-10">
+                <p className="text-gray-400 font-rajdhani text-sm relative z-10 leading-relaxed">
                   {value.description}
                 </p>
               </div>
@@ -147,7 +144,7 @@ export default function About() {
       {/* Team Section */}
       <section className="py-20 bg-gray-900">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-4xl font-bold text-white mb-12 text-center font-nunito">
+          <h2 className="text-4xl font-bold text-white mb-12 text-center font-orbitron tracking-wide">
             THE TEAM
           </h2>
           <div className="flex flex-wrap justify-center gap-6 max-w-6xl mx-auto">
@@ -167,7 +164,7 @@ export default function About() {
       {/* Timeline Section */}
       <section className="py-20 border-t border-red-700">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-4xl font-bold text-white mb-12 text-center font-nunito">
+          <h2 className="text-4xl font-bold text-white mb-12 text-center font-orbitron tracking-wide">
             OUR JOURNEY
           </h2>
           <div className="space-y-8">
@@ -176,14 +173,14 @@ export default function About() {
                 key={index}
                 className="flex items-start space-x-6 border-l-2 border-red-700 pl-6 pb-8"
               >
-                <div className="bg-red-700 text-white font-bold px-4 py-2 rounded font-nunito">
+                <div className="bg-red-700 text-white font-bold px-4 py-2 font-orbitron text-sm">
                   {milestone.year}
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-white mb-2 font-nunito">
+                  <h3 className="text-xl font-bold text-white mb-2 font-orbitron">
                     {milestone.title}
                   </h3>
-                  <p className="text-gray-300 font-nunito">
+                  <p className="text-gray-300 font-rajdhani">
                     {milestone.description}
                   </p>
                 </div>
@@ -196,22 +193,23 @@ export default function About() {
       {/* Contact CTA */}
       <section className="py-20 bg-gray-900 text-center">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-4xl font-bold text-white mb-6 font-nunito">
+          <h2 className="text-4xl font-bold text-white mb-6 font-orbitron tracking-wide">
             JOIN OUR JOURNEY
           </h2>
-          <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto font-nunito">
+          <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto font-rajdhani">
             Want to be part of our story? Whether you're a player, creator, or fellow developer, we'd love to hear from you.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/contact"
-              className="bg-red-700 hover:bg-red-600 text-white px-8 py-4 text-lg font-nunito font-bold transition-colors border border-red-600"
+              className="bg-red-700 hover:bg-red-600 text-white px-8 py-4 text-lg font-orbitron font-bold transition-all border border-red-600 hover:box-glow"
+              style={{ clipPath: 'polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%)' }}
             >
               GET IN TOUCH
             </Link>
             <Link
               href="/projects"
-              className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-black px-8 py-4 text-lg font-nunito font-bold transition-colors"
+              className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-black px-8 py-4 text-lg font-orbitron font-bold transition-all"
             >
               VIEW PROJECTS
             </Link>

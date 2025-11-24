@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import Link from "next/link";
+import Link from 'next/link';
 import Image from "next/image";
 import StoreButton from "@/components/StoreButton";
 import LazyMusicPlayer from "@/components/LazyMusicPlayer";
@@ -95,10 +95,10 @@ export default function LostMark() {
           </div>
 
           <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
-            <h1 className="text-4xl sm:text-6xl md:text-8xl font-bold text-white mb-6 font-nunito tracking-wider mt-8">
+            <h1 className="text-4xl sm:text-6xl md:text-8xl font-bold text-white mb-6 font-orbitron tracking-wider mt-8">
               THE LOST MARK
             </h1>
-            <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto font-nunito">
+            <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto font-orbitron">
               A science fiction horror adventure for the role-playing game Mothership RPG. Your team encounters the wreckage of the tourist yacht Silk Star, which disappeared 217 years ago.
             </p>
 
@@ -106,8 +106,8 @@ export default function LostMark() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-8 max-w-2xl mx-auto">
               {stats.map((stat, index) => (
                 <div key={index} className="bg-black/60 border border-red-700 stat-block p-2 sm:p-3">
-                  <div className="text-lg sm:text-2xl font-bold text-red-400 font-nunito mb-1">{stat.value}</div>
-                  <div className="stat-block-label text-gray-300 font-nunito">
+                  <div className="text-lg sm:text-2xl font-bold text-red-400 font-orbitron mb-1">{stat.value}</div>
+                  <div className="stat-block-label text-gray-300 font-orbitron">
                     <span className="sm:hidden">{stat.label === "System" ? "Mothership" : stat.label}</span>
                     <span className="hidden sm:inline">{stat.label}</span>
                   </div>
@@ -133,7 +133,7 @@ export default function LostMark() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <Link
                   href="/lost-mark/terminal"
-                  className="inline-flex items-center gap-2 bg-green-700 text-green-200 font-nunito font-bold px-6 py-3 rounded border-2 border-green-500 shadow-lg hover:bg-green-600 hover:border-green-400 transition-all duration-200"
+                  className="inline-flex items-center gap-2 bg-green-700 text-green-200 font-orbitron font-bold px-6 py-3 rounded border-2 border-green-500 shadow-lg hover:bg-green-600 hover:border-green-400 transition-all duration-200"
                 >
                   <span className="text-lg">📟</span>
                   ACCESS SILK STAR TERMINAL
@@ -141,13 +141,13 @@ export default function LostMark() {
 
                 <Link
                   href="/timer"
-                  className="inline-flex items-center gap-2 bg-green-700 text-green-200 font-nunito font-bold px-6 py-3 rounded border-2 border-green-500 shadow-lg hover:bg-green-600 hover:border-green-400 transition-all duration-200"
+                  className="inline-flex items-center gap-2 bg-green-700 text-green-200 font-orbitron font-bold px-6 py-3 rounded border-2 border-green-500 shadow-lg hover:bg-green-600 hover:border-green-400 transition-all duration-200"
                 >
                   <span className="text-lg">⏰</span>
                   CHRONOMETER TERMINAL
                 </Link>
               </div>
-              <p className="text-sm text-gray-400 mt-2 font-nunito">
+              <p className="text-sm text-gray-400 mt-2 font-orbitron">
                 Interactive timer and terminal available now
               </p>
             </div>
@@ -161,22 +161,22 @@ export default function LostMark() {
           <div className="max-w-7xl mx-auto px-2 sm:px-4 md:px-6">
             <div className="grid md:grid-cols-2 gap-6 md:gap-12 items-center">
               <div>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 sm:mb-6 font-nunito">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 sm:mb-6 font-orbitron">
                   ABOUT THE ADVENTURE
                 </h2>
-                <p className="text-base sm:text-lg text-gray-300 mb-4 sm:mb-6 font-nunito">
+                <p className="text-base sm:text-lg text-gray-300 mb-4 sm:mb-6 font-orbitron">
                   After making the final jump, the players' ship finds themselves in the proximity of a compact but active black hole. There are no jump cores left. All they observe is a very old hyper beacon, a cloud of debris, and the **Ship of the Lost** - a giant drifting structure assembled from dozens of other ships.
                 </p>
-                <p className="text-base sm:text-lg text-gray-300 mb-4 sm:mb-6 font-nunito">
+                <p className="text-base sm:text-lg text-gray-300 mb-4 sm:mb-6 font-orbitron">
                   On board lives and rots **Mark Opollo**, a pilot who was fused to the ship during a crash 217 years ago. His surviving companions have become a cult. His flesh is metal. His mind is a net.
                 </p>
-                <p className="text-base sm:text-lg text-gray-300 mb-4 sm:mb-6 font-nunito">
+                <p className="text-base sm:text-lg text-gray-300 mb-4 sm:mb-6 font-orbitron">
                   Hidden inside the ship is a **cryopod containing a child**, the final element for Mark's Ascension. Mark plans to transfer his consciousness into the child or someone more convenient and finally leave this place. Players will have to choose to: **stop** it... or **allow it to happen**.
                 </p>
                 {/* Credits */}
                 <div className="bg-black border border-red-700 p-4 sm:p-6 mb-4 sm:mb-6">
-                  <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-4 font-nunito">CREDITS</h3>
-                  <div className="space-y-2 text-xs sm:text-sm font-nunito">
+                  <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-4 font-orbitron">CREDITS</h3>
+                  <div className="space-y-2 text-xs sm:text-sm font-orbitron">
                     <div className="flex justify-between">
                       <span className="text-gray-300">Written by:</span>
                       <span className="text-white">Stepan Kulikov</span>
@@ -212,10 +212,10 @@ export default function LostMark() {
                   />
                 </div>
                 <div className="w-full max-w-full sm:max-w-[400px] md:max-w-[500px] lg:max-w-[600px] bg-red-950/20 border-2 border-red-700 p-4 sm:p-6">
-                  <div className="text-white font-nunito font-bold text-lg sm:text-xl mb-2 text-center">
+                  <div className="text-white font-orbitron font-bold text-lg sm:text-xl mb-2 text-center">
                     ⚠ WARNING
                   </div>
-                  <div className="text-gray-300 font-nunito text-xs sm:text-sm text-center">
+                  <div className="text-gray-300 font-orbitron text-xs sm:text-sm text-center">
                     This adventure contains Sci-Fi horror themes, body horror, and psychological stress.
                     Player discretion advised.
                   </div>
@@ -228,7 +228,7 @@ export default function LostMark() {
         {/* Features - Moved Up */}
         <section id="features" className="py-20 border-t border-red-700 scroll-mt-20">
           <div className="max-w-7xl mx-auto px-6">
-            <h2 className="text-4xl font-bold text-white mb-12 text-center font-nunito">
+            <h2 className="text-4xl font-bold text-white mb-12 text-center font-orbitron">
               KEY FEATURES
             </h2>
             <div className="grid md:grid-cols-2 gap-8">
@@ -240,10 +240,10 @@ export default function LostMark() {
                   <div className="flex items-start space-x-4">
                     <div className="text-4xl">{feature.icon}</div>
                     <div>
-                      <h3 className="text-xl font-bold text-white mb-3 font-nunito">
+                      <h3 className="text-xl font-bold text-white mb-3 font-orbitron">
                         {feature.title}
                       </h3>
-                      <p className="text-gray-300 font-nunito">
+                      <p className="text-gray-300 font-orbitron">
                         {feature.description}
                       </p>
                     </div>
@@ -271,15 +271,15 @@ export default function LostMark() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60"></div>
                   <div className="absolute bottom-4 left-4 right-4">
                     <div className="text-red-500 font-mono text-xs mb-1 tracking-widest">AVAILABLE NOW</div>
-                    <div className="text-white font-bold font-nunito text-xl">EXPANSION CONTENT</div>
+                    <div className="text-white font-bold font-orbitron text-xl">EXPANSION CONTENT</div>
                   </div>
                 </div>
               </div>
               <div className="order-1 md:order-2">
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 font-nunito">
+                <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 font-orbitron">
                   EXPANSION PACK
                 </h2>
-                <p className="text-lg text-gray-300 mb-6 font-nunito">
+                <p className="text-lg text-gray-300 mb-6 font-orbitron">
                   A special expansion pack available separately from the main free module.
                   Enhance your session with premium assets designed to immerse your players in the horror.
                 </p>
@@ -287,13 +287,13 @@ export default function LostMark() {
                 <ul className="space-y-4 mb-8">
                   <li className="flex items-start gap-3">
                     <span className="text-red-500 mt-1">✦</span>
-                    <span className="text-gray-300 font-nunito">
+                    <span className="text-gray-300 font-orbitron">
                       <strong className="text-white">12 New Arts</strong> — A unique illustration for every location on the ship.
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <span className="text-red-500 mt-1">✦</span>
-                    <span className="text-gray-300 font-nunito">
+                    <span className="text-gray-300 font-orbitron">
                       <strong className="text-white">13 Ambient Sounds</strong> — Specifically composed tracks to set the atmosphere for each area.
                     </span>
                   </li>
@@ -304,7 +304,7 @@ export default function LostMark() {
                     href="https://www.patreon.com/posts/lost-mark-pack-143990208?fables.monster"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-[#FF424D] hover:bg-[#E63B45] text-white px-6 py-3 rounded font-nunito font-bold transition-colors flex items-center justify-center gap-2"
+                    className="bg-[#FF424D] hover:bg-[#E63B45] text-white px-6 py-3 rounded font-orbitron font-bold transition-colors flex items-center justify-center gap-2"
                   >
                     <span>Get on Patreon</span>
                   </a>
@@ -312,7 +312,7 @@ export default function LostMark() {
                     href="https://fablesmonster.itch.io/lost-mark"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-[#FA5C5C] hover:bg-[#D44E4E] text-white px-6 py-3 rounded font-nunito font-bold transition-colors flex items-center justify-center gap-2"
+                    className="bg-[#FA5C5C] hover:bg-[#D44E4E] text-white px-6 py-3 rounded font-orbitron font-bold transition-colors flex items-center justify-center gap-2"
                   >
                     <span>Get on Itch.io</span>
                   </a>
@@ -320,7 +320,7 @@ export default function LostMark() {
                     href="https://www.drivethrurpg.com/en/product/546658/mothership-lost-mark-expansion-pack"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-[#e67e22] hover:bg-[#d35400] text-white px-6 py-3 rounded font-nunito font-bold transition-colors flex items-center justify-center gap-2"
+                    className="bg-[#e67e22] hover:bg-[#d35400] text-white px-6 py-3 rounded font-orbitron font-bold transition-colors flex items-center justify-center gap-2"
                   >
                     <span>Get on DriveThruRPG</span>
                   </a>
@@ -335,10 +335,10 @@ export default function LostMark() {
           <div className="max-w-7xl mx-auto px-6">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div className="order-1">
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 font-nunito">
+                <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 font-orbitron">
                   FOUNDRY VTT MODULE
                 </h2>
-                <p className="text-lg text-gray-300 mb-6 font-nunito">
+                <p className="text-lg text-gray-300 mb-6 font-orbitron">
                   Experience Lost Mark in Foundry Virtual Tabletop. Fully configured with dynamic lighting, walls, ambient sounds, and journal entries for a seamless horror experience.
                 </p>
 
@@ -347,7 +347,7 @@ export default function LostMark() {
                     href="https://www.patreon.com/posts/lost-mark-vtt-143997921"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-[#FF424D] hover:bg-[#E63B45] text-white px-6 py-3 rounded font-nunito font-bold transition-colors flex items-center justify-center gap-2 w-full sm:w-auto"
+                    className="bg-[#FF424D] hover:bg-[#E63B45] text-white px-6 py-3 rounded font-orbitron font-bold transition-colors flex items-center justify-center gap-2 w-full sm:w-auto"
                   >
                     <span>Get on Patreon</span>
                   </a>
@@ -356,7 +356,7 @@ export default function LostMark() {
                       href="https://fablesmonster.itch.io/lost-mark-foundry-vtt"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="bg-[#FA5C5C] hover:bg-[#D44E4E] text-white px-6 py-3 rounded font-nunito font-bold transition-colors flex items-center justify-center gap-2 w-full sm:w-auto"
+                      className="bg-[#FA5C5C] hover:bg-[#D44E4E] text-white px-6 py-3 rounded font-orbitron font-bold transition-colors flex items-center justify-center gap-2 w-full sm:w-auto"
                     >
                       <span>Get on Itch.io</span>
                     </a>
@@ -384,7 +384,7 @@ export default function LostMark() {
         {/* Interactive Tools Section */}
         <section id="tools" className="py-16 border-t border-red-700 bg-gray-950/50 scroll-mt-20">
           <div className="max-w-6xl mx-auto px-6">
-            <h2 className="text-3xl font-bold text-white mb-8 text-center font-nunito">
+            <h2 className="text-3xl font-bold text-white mb-8 text-center font-orbitron">
               INTERACTIVE TOOLS
             </h2>
             <div className="grid md:grid-cols-2 gap-8">
@@ -394,13 +394,13 @@ export default function LostMark() {
               >
                 <div className="flex items-center gap-3 mb-4">
                   <span className="text-3xl">📟</span>
-                  <h3 className="text-xl font-bold text-white font-nunito">
+                  <h3 className="text-xl font-bold text-white font-orbitron">
                     SILK STAR TERMINAL
                   </h3>
-                  <span className="text-xs bg-green-700 text-white px-2 py-1 rounded font-nunito">AVAILABLE NOW</span>
+                  <span className="text-xs bg-green-700 text-white px-2 py-1 rounded font-orbitron">AVAILABLE NOW</span>
 
                 </div>
-                <p className="text-white font-nunito text-sm mb-4">
+                <p className="text-white font-orbitron text-sm mb-4">
                   Access the ship's computer system and uncover the dark secrets hidden in the logs.
                   Navigate through corrupted data, system failures, and mysterious transmissions.
                 </p>
@@ -411,12 +411,12 @@ export default function LostMark() {
               >
                 <div className="flex items-center gap-3 mb-4">
                   <span className="text-3l">⌛</span>
-                  <h3 className="text-xl font-bold text-white font-nunito">
+                  <h3 className="text-xl font-bold text-white font-orbitron">
                     CHRONOMETER TERMINAL
                   </h3>
-                  <span className="text-xs bg-green-700 text-white px-2 py-1 rounded font-nunito">AVAILABLE NOW</span>
+                  <span className="text-xs bg-green-700 text-white px-2 py-1 rounded font-orbitron">AVAILABLE NOW</span>
                 </div>
-                <p className="text-white font-nunito text-sm mb-4">
+                <p className="text-white font-orbitron text-sm mb-4">
                   A digital countdown timer designed for tabletop gaming sessions.
                   Perfect for time-sensitive scenarios and building tension during gameplay.
                 </p>
@@ -428,21 +428,21 @@ export default function LostMark() {
         {/* Audio Section */}
         <section id="soundtrack" className="py-20 border-t border-red-700 bg-gray-900 scroll-mt-20">
           <div className="max-w-7xl mx-auto px-6">
-            <h2 className="text-4xl font-bold text-white mb-12 text-center font-nunito">
+            <h2 className="text-4xl font-bold text-white mb-12 text-center font-orbitron">
               🎵 ATMOSPHERIC SOUNDTRACK
             </h2>
 
             {/* Streaming Service Link */}
             <div className="py-6 mb-12 text-center">
-              <h3 className="text-2xl font-bold text-white mb-4 font-nunito">Use Your Favorite Streaming Service</h3>
-              <p className="text-gray-300 font-nunito mb-6 max-w-2xl mx-auto">
+              <h3 className="text-2xl font-bold text-white mb-4 font-orbitron">Use Your Favorite Streaming Service</h3>
+              <p className="text-gray-300 font-orbitron mb-6 max-w-2xl mx-auto">
                 Access the full soundtrack on any platform you prefer for convenient listening during your game sessions.
               </p>
               <a
                 href="https://distrokid.com/hyperfollow/fablesmonsters/lost-mark-original-soundtrack"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block bg-red-700 hover:bg-red-600 text-white font-nunito font-bold py-3 px-6 rounded border-2 border-red-600 transition-colors mb-3"
+                className="inline-block bg-red-700 hover:bg-red-600 text-white font-orbitron font-bold py-3 px-6 rounded border-2 border-red-600 transition-colors mb-3"
               >
                 Listen on Streaming Services
               </a>
@@ -450,8 +450,8 @@ export default function LostMark() {
 
             {/* YouTube Playlist */}
             <div className="mb-12 max-w-4xl mx-auto">
-              <h3 className="text-2xl font-bold text-white mb-4 text-center font-nunito">YouTube Playlist</h3>
-              <p className="text-gray-300 font-nunito mb-6 max-w-2xl mx-auto text-center">
+              <h3 className="text-2xl font-bold text-white mb-4 text-center font-orbitron">YouTube Playlist</h3>
+              <p className="text-gray-300 font-orbitron mb-6 max-w-2xl mx-auto text-center">
                 Watch and listen to the complete soundtrack on YouTube with our dedicated playlist.
               </p>
               <iframe
@@ -469,8 +469,8 @@ export default function LostMark() {
 
             {/* Music Player */}
             <div className="max-w-4xl mx-auto">
-              <h3 className="text-2xl font-bold text-white mb-4 text-center font-nunito">Website Player</h3>
-              <p className="text-gray-300 font-nunito mb-6 max-w-2xl mx-auto text-center">
+              <h3 className="text-2xl font-bold text-white mb-4 text-center font-orbitron">Website Player</h3>
+              <p className="text-gray-300 font-orbitron mb-6 max-w-2xl mx-auto text-center">
                 Use our embedded player to enjoy the full soundtrack directly on our website with all 11 tracks.
               </p>
               <LazyMusicPlayer />
@@ -480,10 +480,10 @@ export default function LostMark() {
 
         <section className="py-20 border-t border-red-700 text-center">
           <div className="max-w-7xl mx-auto px-6">
-            <h2 className="text-4xl font-bold text-white mb-6 font-nunito">
+            <h2 className="text-4xl font-bold text-white mb-6 font-orbitron">
               READY TO EXPLORE THE LOST MARK?
             </h2>
-            <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto font-nunito">
+            <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto font-orbitron">
               Download now and begin your descent into Sci-Fi horror. Available on multiple platforms.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -499,7 +499,7 @@ export default function LostMark() {
               />
               <Link
                 href="/projects"
-                className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-black px-8 py-4 text-lg font-nunito font-bold transition-colors"
+                className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-black px-8 py-4 text-lg font-orbitron font-bold transition-colors"
               >
                 MORE PROJECTS
               </Link>
@@ -509,7 +509,7 @@ export default function LostMark() {
             <div className="mt-8 pt-6 border-t border-red-700/50">
               <Link
                 href="/lost-mark/license"
-                className="text-gray-400 hover:text-red-400 font-nunito text-sm underline transition-colors"
+                className="text-gray-400 hover:text-red-400 font-orbitron text-sm underline transition-colors"
               >
                 📄 View License Information (CC BY-NC-SA 4.0)
               </Link>

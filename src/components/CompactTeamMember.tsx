@@ -30,20 +30,29 @@ const CompactTeamMember = memo(function CompactTeamMember({ member }: CompactTea
       <div className="relative w-12 sm:w-14 h-12 sm:h-16 overflow-hidden mr-2 sm:mr-3">
         <div className="absolute inset-0 border border-red-700 group-hover:border-red-500 transition-colors duration-300"></div>
         
-        <OptimizedImage
-          src={`/images/crew/${member.image}`}
-          alt={member.name}
-          fill
-          className={`transition-all duration-300 ${
-            isHovered ? "scale-105 brightness-110" : "grayscale-[50%]"
-          }`}
-          style={{ objectFit: "cover", objectPosition: "50% 15%" }}
-          sizes="(max-width: 640px) 48px, 56px"
-        />
-        
-        {/* Mini glitch effect */}
-        {isHovered && (
-          <div className="absolute inset-0 bg-red-500/20 mix-blend-multiply animate-pulse"></div>
+        {member.image ? (
+          <>
+            <OptimizedImage
+              src={`/images/crew/${member.image}`}
+              alt={member.name}
+              fill
+              className={`transition-all duration-300 ${
+                isHovered ? "scale-105 brightness-110" : "grayscale-[50%]"
+              }`}
+              style={{ objectFit: "cover", objectPosition: "50% 15%" }}
+              sizes="(max-width: 640px) 48px, 56px"
+            />
+            {/* Mini glitch effect */}
+            {isHovered && (
+              <div className="absolute inset-0 bg-red-500/20 mix-blend-multiply animate-pulse"></div>
+            )}
+          </>
+        ) : (
+          <div className="w-full h-full bg-red-950/30 flex items-center justify-center border border-red-700 group-hover:border-red-500 transition-colors">
+            <span className="text-red-500 text-lg font-bold font-orbitron">
+              {member.name.charAt(0).toUpperCase()}
+            </span>
+          </div>
         )}
       </div>
 
