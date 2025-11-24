@@ -1,4 +1,4 @@
-import { projects, getLocalizedProject } from "@/data/projects";
+import { projects } from "@/data/projects";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from 'next/link';
@@ -13,8 +13,8 @@ export async function generateStaticParams() {
 }
 
 // Generate metadata for the page
-export async function generateMetadata({ params }: { params: Promise<{ slug: string, locale: string }> }): Promise<Metadata> {
-    const { slug, locale } = await params;
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+    const { slug } = await params;
     const project = projects.find((p) => p.slug === slug);
 
     if (!project) {
@@ -23,30 +23,24 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         };
     }
 
-    const typedLocale = locale as 'en' | 'ru';
-    const localized = getLocalizedProject(project, typedLocale);
-
     return {
-        title: `${localized.title} | Fables Monster Studio`,
-        description: localized.tagline,
+        title: `${project.title} | Fables Monster Studio`,
+        description: project.tagline,
         openGraph: {
-            title: localized.title,
-            description: localized.tagline,
+            title: project.title,
+            description: project.tagline,
             images: [project.image],
         },
     };
 }
 
-export default async function ProjectPage({ params }: { params: Promise<{ slug: string, locale: string }> }) {
-    const { slug, locale } = await params;
+export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
+    const { slug } = await params;
     const project = projects.find((p) => p.slug === slug);
 
     if (!project) {
         notFound();
     }
-
-    const typedLocale = locale as 'en' | 'ru';
-    const localized = getLocalizedProject(project, typedLocale);
 
     return (
         <main className="min-h-screen bg-black text-gray-200 pt-20">
@@ -71,28 +65,22 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                     </div>
 
                     <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 font-orbitron tracking-wider text-shadow-lg">
-                        {localized.title}
+                        {project.title}
                     </h1>
 
                     <p className="text-xl md:text-2xl text-gray-100 mb-8 max-w-3xl mx-auto font-rajdhani font-medium leading-relaxed">
-                        {localized.tagline}
+                        {project.tagline}
                     </p>
 
                     <div className="flex flex-wrap justify-center gap-4">
-                        {localized.platforms?.itch && (
-                            <StoreButton store="itch" href={localized.platforms.itch} />
+                        {project.platforms?.itch && (
+                            <StoreButton store="itch" href={project.platforms.itch} />
                         )}
-                        {localized.platforms?.driveThru && (
-                            <StoreButton store="drivethrurpg" href={localized.platforms.driveThru} />
+                        {project.platforms?.driveThru && (
+                            <StoreButton store="drivethrurpg" href={project.platforms.driveThru} />
                         )}
-                        {localized.platforms?.patreon && (
-                            <StoreButton store="patreon" href={localized.platforms.patreon} />
-                        )}
-                        {localized.platforms && 'boosty' in localized.platforms && localized.platforms.boosty && (
-                            <StoreButton store="boosty" href={localized.platforms.boosty} />
-                        )}
-                        {localized.platforms && 'vk' in localized.platforms && localized.platforms.vk && (
-                            <StoreButton store="vk" href={localized.platforms.vk} />
+                        {project.platforms?.patreon && (
+                            <StoreButton store="patreon" href={project.platforms.patreon} />
                         )}
                     </div>
                 </div>
@@ -126,18 +114,18 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                             OVERVIEW
                         </h2>
                         <div className="whitespace-pre-wrap text-gray-300 leading-relaxed text-lg">
-                            {localized.fullDescription || localized.description}
+                            {project.fullDescription || project.description}
                         </div>
                     </div>
 
                     {/* Features */}
-                    {localized.features && localized.features.length > 0 && (
+                    {project.features && project.features.length > 0 && (
                         <div className="mb-20">
                             <h2 className="text-3xl font-bold text-white mb-10 font-orbitron text-center">
                                 KEY FEATURES
                             </h2>
                             <div className="grid md:grid-cols-2 gap-6">
-                                {localized.features.map((feature, index) => (
+                                {project.features.map((feature, index) => (
                                     <div key={index} className="bg-gray-900/50 border border-gray-800 p-6 hover:border-red-900/50 transition-colors">
                                         {feature.icon && (
                                             <div className="text-3xl mb-4">{feature.icon}</div>

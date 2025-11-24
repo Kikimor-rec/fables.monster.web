@@ -2,16 +2,14 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from "next/image";
 import FadeIn from "@/components/FadeIn";
-import { projects, getLocalizedProject, sortProjectsByStatus } from "@/data/projects";
+import { projects, sortProjectsByStatus } from "@/data/projects";
 
 export const metadata: Metadata = {
   title: 'Projects | Fables Monster Studio',
   description: 'Explore our tabletop RPG adventures and digital experiences. From sci-fi horror to cyberpunk mysteries.',
 };
 
-export default async function ProjectsPage({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = await params;
-  const typedLocale = locale as 'en' | 'ru';
+export default async function ProjectsPage() {
   const sortedProjects = sortProjectsByStatus(projects);
   return (
     <div className="min-h-screen bg-black">
@@ -35,12 +33,11 @@ export default async function ProjectsPage({ params }: { params: Promise<{ local
           <FadeIn delay={0.2}>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {sortedProjects.map((project, index) => {
-                const localized = getLocalizedProject(project, typedLocale);
                 return (
                   <FadeIn key={project.id} delay={0.1 * (index + 1)}>
                     <Link
                       href={`/${project.slug}`}
-                      className="group block border border-border bg-black hover:border-accent transition-all duration-300 h-full flex flex-col"
+                      className="group flex border border-border bg-black hover:border-accent transition-all duration-300 h-full flex-col"
                     >
                       {/* Project Image */}
                       <div className="relative h-64 overflow-hidden">
@@ -59,9 +56,9 @@ export default async function ProjectsPage({ params }: { params: Promise<{ local
                             project.status === 'in-development' ? 'bg-yellow-900/50 text-yellow-400 border-yellow-500' :
                               'bg-blue-900/50 text-blue-400 border-blue-500'
                             }`}>
-                            {project.status === 'released' ? (typedLocale === 'en' ? 'RELEASED' : 'ВЫШЛО') :
-                              project.status === 'in-development' ? (typedLocale === 'en' ? 'IN DEV' : 'В РАЗРАБОТКЕ') :
-                                (typedLocale === 'en' ? 'COMING SOON' : 'СКОРО')}
+                            {project.status === 'released' ? 'RELEASED' :
+                              project.status === 'in-development' ? 'IN DEV' :
+                                'COMING SOON'}
                           </span>
                         </div>
 
@@ -69,7 +66,7 @@ export default async function ProjectsPage({ params }: { params: Promise<{ local
                         {project.featured && (
                           <div className="absolute top-4 left-4">
                             <span className="px-3 py-1 text-xs font-orbitron font-bold bg-red-900/80 text-red-400 border border-red-500">
-                              {typedLocale === 'en' ? 'FEATURED' : 'ИЗБРАННОЕ'}
+                              FEATURED
                             </span>
                           </div>
                         )}
@@ -78,7 +75,7 @@ export default async function ProjectsPage({ params }: { params: Promise<{ local
                       {/* Project Info */}
                       <div className="p-6 flex-grow flex flex-col">
                         <h3 className="text-2xl font-bold text-white mb-2 font-orbitron group-hover:text-accent transition-colors">
-                          {localized.title}
+                          {project.title}
                         </h3>
 
                         <div className="flex flex-wrap gap-2 mb-3">
@@ -91,7 +88,7 @@ export default async function ProjectsPage({ params }: { params: Promise<{ local
                         </div>
 
                         <p className="text-gray-300 text-sm font-rajdhani leading-relaxed mb-4 flex-grow">
-                          {localized.tagline}
+                          {project.tagline}
                         </p>
 
                         {/* Tags */}

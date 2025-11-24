@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from "next/image";
-import { projects, getLocalizedProject } from "@/data/projects";
+import { projects } from "@/data/projects";
 import EncryptedText from "@/components/EncryptedText";
 import CSSGlitchImage from "@/components/CSSGlitchImage";
 
@@ -12,11 +12,8 @@ export const metadata: Metadata = {
 };
 
 
-export default async function ProjectNeonPage({ params }: { params: Promise<{ locale: string }> }) {
-    const { locale } = await params;
-    const typedLocale = locale as 'en' | 'ru';
+export default async function ProjectNeonPage() {
     const project = projects.find(p => p.slug === 'old-world-neon');
-    const localized = project ? getLocalizedProject(project, typedLocale) : null;
 
     return (
         <div className="min-h-screen bg-black relative overflow-hidden">
@@ -81,7 +78,7 @@ export default async function ProjectNeonPage({ params }: { params: Promise<{ lo
                             &gt; ACCESS DENIED
                         </p>
                         <div className="text-gray-300 font-rajdhani text-base sm:text-lg">
-                            <EncryptedText text={localized?.tagline || 'Rain-slicked neon streets hide corporate secrets. Those who ask too many questions tend to disappear into the digital void.'} />
+                            <EncryptedText text={project?.tagline || 'Rain-slicked neon streets hide corporate secrets. Those who ask too many questions tend to disappear into the digital void.'} />
                         </div>
                     </div>
 
@@ -126,7 +123,7 @@ export default async function ProjectNeonPage({ params }: { params: Promise<{ lo
                         <div className="relative">
                             <div className="aspect-square relative border-2 border-cyan-500 shadow-[0_0_30px_rgba(0,255,255,0.3)] overflow-hidden">
                                 <CSSGlitchImage
-                                    src={localized?.image || '/images/old-world-neon-hero.png'}
+                                    src={project?.image || '/images/old-world-neon-hero.png'}
                                     alt="OLD WORLD NEON Cityscape"
                                     width={600}
                                     height={600}

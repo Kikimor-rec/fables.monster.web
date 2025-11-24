@@ -131,13 +131,13 @@ export default function Navigation() {
       {/* Mobile Menu (Portal) */}
       {typeof window !== 'undefined' && isMenuOpen && createPortal(
         <>
-          {/* Затемнённый фон */}
+          {/* Darkened Background */}
           <div
             className="fixed inset-0 z-40 bg-black/70"
             onClick={handleCloseMenu}
             aria-hidden="true"
           />
-          {/* Само меню */}
+          {/* Menu Panel */}
           <div
             ref={mobileMenuRef}
             id="mobile-menu"

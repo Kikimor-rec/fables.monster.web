@@ -101,7 +101,7 @@ export default function HolidayAuditKramp() {
   return (
     <div className="min-h-screen bg-black relative overflow-hidden font-rajdhani">
       {/* Christmas Lights Animation */}
-      <div className="christmas-lights opacity-30">
+      <div className="christmas-lights opacity-30 pointer-events-none">
         <div className="light red"></div>
         <div className="light green"></div>
         <div className="light blue"></div>
@@ -117,7 +117,7 @@ export default function HolidayAuditKramp() {
       </div>
 
       {/* Snow Effect */}
-      <div className="snow opacity-20">
+      <div className="snow opacity-20 pointer-events-none">
         {[...Array(50)].map((_, i) => (
           <div key={i} className="snowflake">❄</div>
         ))}
@@ -148,7 +148,7 @@ export default function HolidayAuditKramp() {
             Christmas Eve gone catastrophically wrong in deep space
           </p>
           <div className="flex items-center justify-center gap-4 mb-8 flex-wrap">
-            <span className="bg-green-900/50 text-green-400 px-4 py-2 font-orbitron border border-green-600 clip-path-slant hover:box-glow-cyan transition-all">COMING NOV 24, 2025</span>
+            <span className="bg-green-900/50 text-green-400 px-4 py-2 font-orbitron border border-green-600 clip-path-slant hover:box-glow-cyan transition-all animate-pulse">AVAILABLE NOW</span>
             <span className="bg-red-900/50 text-red-400 px-4 py-2 font-orbitron border border-red-600 clip-path-slant hover:box-glow transition-all">ONE-SHOT</span>
             <span className="bg-green-900/50 text-green-400 px-4 py-2 font-orbitron border border-green-600 clip-path-slant hover:box-glow-cyan transition-all">POSTCARD SIZE</span>
           </div>

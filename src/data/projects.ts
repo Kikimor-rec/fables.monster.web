@@ -1,19 +1,10 @@
 export interface Project {
     id: string;
     slug: string;
-    title: {
-        en: string;
-        ru: string;
-    };
+    title: string;
     system: string;
-    tagline: {
-        en: string;
-        ru: string;
-    };
-    description: {
-        en: string;
-        ru: string;
-    };
+    tagline: string;
+    description: string;
     status: "released" | "in-development" | "coming-soon";
     type: "Adventure" | "Soundtrack" | "Tool" | "VTT Module" | "One-Shot";
     image: string;
@@ -21,36 +12,16 @@ export interface Project {
     featured?: boolean;
     tags?: string[];
     platforms?: {
-        en: {
-            itch?: string;
-            driveThru?: string;
-            foundry?: string;
-            roll20?: string;
-            patreon?: string;
-        };
-        ru: {
-            itch?: string;
-            driveThru?: string;
-            foundry?: string;
-            roll20?: string;
-            patreon?: string;
-            boosty?: string;
-            vk?: string;
-        };
+        itch?: string;
+        driveThru?: string;
+        foundry?: string;
+        roll20?: string;
+        patreon?: string;
     };
-    fullDescription?: {
-        en: string;
-        ru: string;
-    };
+    fullDescription?: string;
     features?: {
-        title: {
-            en: string;
-            ru: string;
-        };
-        description: {
-            en: string;
-            ru: string;
-        };
+        title: string;
+        description: string;
         icon?: string;
     }[];
     gallery?: {
@@ -63,19 +34,10 @@ export const projects: Project[] = [
     {
         id: "lost-mark",
         slug: "lost-mark",
-        title: {
-            en: "THE LOST MARK",
-            ru: "ПОТЕРЯННАЯ МЕТКА"
-        },
+        title: "THE LOST MARK",
         system: "Mothership 1E",
-        tagline: {
-            en: "A Sci-Fi horror one-shot where your crew faces impossible choices among the wrecks and cults of deep space.",
-            ru: "Научно-фантастический хоррор ваншот, где вашей команде предстоит сделать невозможный выбор среди обломков и культов глубокого космоса."
-        },
-        description: {
-            en: "A Sci-Fi horror one-shot for Mothership RPG where your crew faces impossible choices and eldritch truths among the wrecks and cults of deep space.",
-            ru: "Научно-фантастический хоррор ваншот для Mothership RPG, где вашей команде предстоит столкнуться с невозможным выбором и древними истинами среди обломков и культов глубокого космоса."
-        },
+        tagline: "A Sci-Fi horror one-shot where your crew faces impossible choices among the wrecks and cults of deep space.",
+        description: "A Sci-Fi horror one-shot for Mothership RPG where your crew faces impossible choices and eldritch truths among the wrecks and cults of deep space.",
         status: "released",
         type: "One-Shot",
         image: "/images/lost-mark/lm_promo_1.webp",
@@ -83,35 +45,18 @@ export const projects: Project[] = [
         featured: true,
         tags: ["MOTHERSHIP", "SCI-FI HORROR", "INVESTIGATION"],
         platforms: {
-            en: {
-                itch: "https://fables-monster-studio.itch.io/the-lost-mark",
-                driveThru: "#",
-                foundry: "#",
-            },
-            ru: {
-                itch: "https://fables-monster-studio.itch.io/the-lost-mark",
-                driveThru: "#",
-                foundry: "#",
-                boosty: "https://boosty.to/fablesmonster",
-            }
+            itch: "https://fables-monster-studio.itch.io/the-lost-mark",
+            driveThru: "#",
+            foundry: "#",
         },
     },
     {
         id: "hellish-bureaucracy",
         slug: "hellish-bureaucracy",
-        title: {
-            en: "HELLISH BUREAUCRACY",
-            ru: "АДСКАЯ БЮРОКРАТИЯ"
-        },
+        title: "HELLISH BUREAUCRACY",
         system: "Mothership 1E",
-        tagline: {
-            en: "Navigate the worst nightmare: infinite paperwork in hell.",
-            ru: "Пройдите через худший кошмар: бесконечную бумажную работу в аду."
-        },
-        description: {
-            en: "A bureaucratic horror adventure where forms and red tape become deadly.",
-            ru: "Бюрократическое хоррор-приключение, где формы и красная лента становятся смертельными."
-        },
+        tagline: "Navigate the worst nightmare: infinite paperwork in hell.",
+        description: "A bureaucratic horror adventure where forms and red tape become deadly.",
         status: "in-development",
         type: "Adventure",
         image: "/images/hellish-bureaucracy/monster.webp",
@@ -121,19 +66,10 @@ export const projects: Project[] = [
     {
         id: "old-world-neon",
         slug: "old-world-neon",
-        title: {
-            en: "OLD WORLD NEON",
-            ru: "OLD WORLD NEON"
-        },
+        title: "OLD WORLD NEON",
         system: "???",
-        tagline: {
-            en: "A classified cyberpunk operation. Details remain encrypted.",
-            ru: "Засекреченная киберпанк операция. Детали зашифрованы."
-        },
-        description: {
-            en: "Highly classified project. Information restricted. Access denied.",
-            ru: "Совершенно секретный проект. Информация ограничена. Доступ запрещен."
-        },
+        tagline: "A classified cyberpunk operation. Details remain encrypted.",
+        description: "Highly classified project. Information restricted. Access denied.",
         status: "in-development",
         type: "Adventure",
         image: "/images/project-neon/preview.webp",
@@ -143,24 +79,20 @@ export const projects: Project[] = [
     {
         id: "holiday-audit-kramp",
         slug: "holiday-audit-kramp",
-        title: {
-            en: "HOLIDAY AUDIT: KRAMP.EXE",
-            ru: "ПРАЗДНИЧНЫЙ АУДИТ: KRAMP.EXE"
-        },
+        title: "HOLIDAY AUDIT: KRAMP.EXE",
         system: "Mothership 1E",
-        tagline: {
-            en: "A festive horror one-shot for your holiday table.",
-            ru: "Праздничный хоррор ваншот для вашего новогоднего стола."
-        },
-        description: {
-            en: "Christmas Eve gone catastrophically wrong in deep space. Can you cleanse your record before the system wipes you?",
-            ru: "Рождество в глубоком космосе пошло катастрофически не так. Сможете ли вы очистить свое досье до того, как система сотрет вас?"
-        },
-        status: "coming-soon",
+        tagline: "A festive horror one-shot for your holiday table.",
+        description: "Christmas Eve gone catastrophically wrong in deep space. Can you cleanse your record before the system wipes you?",
+        status: "released",
         type: "One-Shot",
         image: "/images/kramp/promo.webp",
         imageAlt: "Holiday Audit: Kramp.exe - Festive Horror One-Shot",
         tags: ["MOTHERSHIP", "ONE-SHOT", "HOLIDAY"],
+        platforms: {
+            itch: "https://fablesmonster.itch.io/krampexe-mothership-1e",
+            driveThru: "https://www.drivethrurpg.com/en/product/547046/kramp-exe-christmas-special-edition-for-mothership-1e?affiliate_id=2863466",
+            patreon: "https://www.patreon.com/posts/kramp-exe-for-1e-144275102",
+        },
     },
 ];
 
@@ -201,21 +133,4 @@ export const sortProjectsByStatus = (projects: Project[]): Project[] => {
         
         return orderA - orderB;
     });
-};
-
-// Helper to get localized project data
-export const getLocalizedProject = (project: Project, locale: 'en' | 'ru') => {
-    return {
-        ...project,
-        title: project.title[locale],
-        tagline: project.tagline[locale],
-        description: project.description[locale],
-        platforms: project.platforms?.[locale],
-        fullDescription: project.fullDescription?.[locale],
-        features: project.features?.map(f => ({
-            ...f,
-            title: f.title[locale],
-            description: f.description[locale]
-        }))
-    };
 };

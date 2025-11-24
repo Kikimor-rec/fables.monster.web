@@ -4,7 +4,7 @@ import Image from "next/image";
 import FadeIn from "@/components/FadeIn";
 import OptimizedImage from "@/components/OptimizedImage";
 import CompactTeamMember from "@/components/CompactTeamMember";
-import { projects, getLocalizedProject, sortProjectsByStatus } from "@/data/projects";
+import { projects, sortProjectsByStatus } from "@/data/projects";
 import { teamMembers } from "@/data/team";
 
 export const metadata: Metadata = {
@@ -13,29 +13,8 @@ export const metadata: Metadata = {
     keywords: 'tabletop RPG, horror RPG, Mothership RPG, indie games, D&D adventures, cosmic horror, sci-fi RPG, supernatural adventures',
 };
 
-export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
-    const { locale } = await params;
-    const typedLocale = locale as 'en' | 'ru';
+export default async function Home() {
     const sortedProjects = sortProjectsByStatus(projects);
-    const localizedProjects = sortedProjects.map(p => {
-        const localized = getLocalizedProject(p, typedLocale);
-        return {
-            id: p.id,
-            slug: p.slug,
-            title: localized.title,
-            tagline: localized.tagline,
-            description: localized.description,
-            status: p.status,
-            type: p.type,
-            image: p.image,
-            imageAlt: p.imageAlt,
-            featured: p.featured,
-            tags: p.tags,
-            platforms: localized.platforms,
-            fullDescription: localized.fullDescription,
-            features: localized.features,
-        };
-    });
 
     return (
         <div className="bg-black">
@@ -63,7 +42,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                     </FadeIn>
                     <FadeIn delay={0.4}>
                         <p className="text-lg sm:text-xl md:text-2xl text-cyan-400 mb-8 max-w-3xl mx-auto font-rajdhani tracking-widest uppercase border-b border-cyan-900/50 pb-4 inline-block">
-                            {locale === 'en' ? 'Independent tabletop RPG content creation studio' : 'Независимая студия создания контента для настольных RPG'}
+                            Independent tabletop RPG content creation studio
                         </p>
                     </FadeIn>
                     <FadeIn delay={0.6}>
@@ -73,7 +52,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                                 className="w-full sm:w-auto bg-red-700 hover:bg-red-600 text-white px-8 py-4 text-lg font-orbitron font-bold transition-all border border-red-500 hover:box-glow clip-path-slant"
                                 style={{ clipPath: 'polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%)' }}
                             >
-                                {locale === 'en' ? 'VIEW PROJECTS' : 'СМОТРЕТЬ ПРОЕКТЫ'}
+                                VIEW PROJECTS
                             </Link>
                             <Link
                                 href="/lost-mark"
@@ -106,7 +85,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {localizedProjects.slice(0, 3).map((project, index) => (
+                        {sortedProjects.slice(0, 3).map((project, index) => (
                             <FadeIn key={project.id} delay={index * 0.1}>
                                 <Link href={`/${project.slug}`} className="group block h-full">
                                     <div className="bg-gray-900 border border-gray-800 hover:border-red-600 transition-all duration-300 h-full flex flex-col relative overflow-hidden group-hover:box-glow">
@@ -126,9 +105,9 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                                                     project.status === 'in-development' ? 'bg-yellow-900/50 text-yellow-400 border-yellow-500' :
                                                     'bg-blue-900/50 text-blue-400 border-blue-500'
                                                 }`}>
-                                                    {project.status === 'released' ? (locale === 'en' ? 'RELEASED' : 'ВЫШЛО') :
-                                                        project.status === 'in-development' ? (locale === 'en' ? 'IN DEV' : 'В РАЗРАБОТКЕ') :
-                                                        (locale === 'en' ? 'COMING SOON' : 'СКОРО')}
+                                                    {project.status === 'released' ? 'RELEASED' :
+                                                        project.status === 'in-development' ? 'IN DEV' :
+                                                        'COMING SOON'}
                                                 </span>
                                             </div>
 
@@ -185,16 +164,14 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                                 HOLIDAY AUDIT: <span className="text-red-500">KRAMP.EXE</span>
                             </h2>
                             <p className="text-xl text-gray-300 font-rajdhani mb-8">
-                                {locale === 'en'
-                                    ? "A holiday horror one-shot for Mothership RPG 1e. Survive the corporate holiday party where the audit is mandatory and failure is terminal."
-                                    : "Праздничный хоррор-ваншот для Mothership RPG 1e. Переживите корпоративную вечеринку, где аудит обязателен, а провал смертелен."}
+                                A holiday horror one-shot for Mothership RPG 1e. Survive the corporate holiday party where the audit is mandatory and failure is terminal.
                             </p>
                             <div className="flex gap-4">
                                 <Link
                                     href="/holiday-audit-kramp"
                                     className="bg-red-600 hover:bg-red-500 text-white px-8 py-4 font-orbitron font-bold transition-all hover:box-glow"
                                 >
-                                    {locale === 'en' ? 'ACCESS TERMINAL' : 'ДОСТУП К ТЕРМИНАЛУ'}
+                                    ACCESS TERMINAL
                                 </Link>
                             </div>
                         </div>
@@ -228,15 +205,13 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                                 THE <span className="text-cyan-500">CREW</span>
                             </h2>
                             <p className="text-lg text-gray-300 font-rajdhani mb-6">
-                                {locale === 'en'
-                                    ? "We are a collective of designers, writers, and artists dedicated to creating immersive, high-quality tabletop RPG content. Our mission is to bring fresh nightmares and wonders to your gaming table."
-                                    : "Мы — коллектив дизайнеров, писателей и художников, создающих захватывающий и качественный контент для настольных RPG. Наша миссия — принести новые кошмары и чудеса на ваш игровой стол."}
+                                We are a collective of designers, writers, and artists dedicated to creating immersive, high-quality tabletop RPG content. Our mission is to bring fresh nightmares and wonders to your gaming table.
                             </p>
                             <Link
                                 href="/about"
                                 className="text-cyan-400 hover:text-white font-rajdhani font-bold text-lg tracking-wider transition-colors border-b-2 border-cyan-500/30 hover:border-cyan-400 pb-1"
                             >
-                                {locale === 'en' ? 'MEET THE TEAM →' : 'ПОЗНАКОМИТЬСЯ С КОМАНДОЙ →'}
+                                MEET THE TEAM →
                             </Link>
                         </div>
                     </div>
