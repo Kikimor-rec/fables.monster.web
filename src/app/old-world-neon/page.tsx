@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from "next/image";
 import { projects } from "@/data/projects";
 import EncryptedText from "@/components/EncryptedText";
-import CSSGlitchImage from "@/components/CSSGlitchImage";
+import NoSignalPlaceholder from "@/components/NoSignalPlaceholder";
 
 export const metadata: Metadata = {
     title: 'OLD WORLD NEON | Fables Monster Studio',
@@ -122,14 +122,9 @@ export default async function ProjectNeonPage() {
                         </div>
                         <div className="relative">
                             <div className="aspect-square relative border-2 border-cyan-500 shadow-[0_0_30px_rgba(0,255,255,0.3)] overflow-hidden">
-                                <CSSGlitchImage
-                                    src={project?.image || '/images/old-world-neon-hero.png'}
-                                    alt="OLD WORLD NEON Cityscape"
-                                    width={600}
-                                    height={600}
-                                    theme="cyberpunk-intense"
+                                <NoSignalPlaceholder 
                                     className="w-full h-full"
-                                    sizes="(max-width: 768px) 100vw, 50vw"
+                                    text="CLASSIFIED"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent pointer-events-none z-20" />
                                 <div className="absolute bottom-4 left-4 right-4 pointer-events-none z-20">

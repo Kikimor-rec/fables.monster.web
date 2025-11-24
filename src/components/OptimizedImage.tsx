@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import NoSignalPlaceholder from "./NoSignalPlaceholder";
 
 interface OptimizedImageProps {
   src: string;
@@ -32,6 +33,16 @@ export default function OptimizedImage({
   quality = 85
 }: OptimizedImageProps) {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [hasError, setHasError] = useState(false);
+
+  if (hasError) {
+    return (
+      <NoSignalPlaceholder 
+        className={className}
+        text="NO SIGNAL"
+      />
+    );
+  }
 
   return (
     <>
@@ -49,8 +60,9 @@ export default function OptimizedImage({
         placeholder="blur"
         blurDataURL={blurDataURL}
         onLoad={() => setIsLoaded(true)}
+        onError={() => setHasError(true)}
       />
-      {!isLoaded && (
+      {!isLoaded && !hasError && (
         <div className="absolute inset-0 bg-gray-800 animate-pulse"></div>
       )}
     </>
