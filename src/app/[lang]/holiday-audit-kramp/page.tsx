@@ -2,6 +2,8 @@ import { Metadata } from 'next'
 import Link from 'next/link';
 import Image from "next/image";
 import Navigation from "@/components/Navigation";
+import KrampNavigation from "@/components/kramp/KrampNavigation";
+import KrampSections from "@/components/kramp/KrampSections";
 import { getContent, getFrontmatterString } from '@/lib/content';
 import { getDictionary } from '@/lib/i18n';
 import './christmas.css';
@@ -223,8 +225,18 @@ export default async function HolidayAuditKramp({ params }: { params: Promise<{ 
 
       <SectionDivider />
 
+      {/* Sticky Navigation */}
+      <KrampNavigation dict={{
+        about: dict.sections?.about || "About",
+        features: dict.sections?.features || "Features", 
+        postcard: dict.sections?.postcard || "Postcard",
+        soundtrack: dict.sections?.soundtrack || "OST",
+        tables: dict.sections?.tables || "Tables",
+        links: dict.sections?.links || "Links"
+      }} />
+
       {/* Description Section */}
-      <section className="py-20 relative z-10 bg-gray-950">
+      <section id="about" className="py-20 relative z-10 bg-gray-950 scroll-mt-32">
         <div className="max-w-6xl mx-auto px-6">
           <div className="bg-gray-900/50 border border-red-700/50 p-8 mb-12 hud-border relative overflow-hidden group">
             <div className="absolute top-0 right-0 p-4 opacity-20 group-hover:opacity-40 transition-opacity">
@@ -254,7 +266,7 @@ export default async function HolidayAuditKramp({ params }: { params: Promise<{ 
           </div>
 
           {/* Features Grid */}
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
+          <div id="features" className="grid md:grid-cols-2 gap-8 mb-12 scroll-mt-36">
             {features.map((feature, index) => (
               <div key={index} className="bg-gray-900/30 border border-green-700/30 p-6 hud-border hover:bg-green-900/10 transition-colors group">
                 <div className="text-green-400 mb-4 group-hover:scale-110 transition-transform duration-300">{feature.icon}</div>
@@ -269,7 +281,7 @@ export default async function HolidayAuditKramp({ params }: { params: Promise<{ 
       <SectionDivider />
 
       {/* Postcard Mockup Section */}
-      <section className="py-20 relative z-10 bg-gradient-to-b from-black via-red-950/10 to-black">
+      <section id="postcard" className="py-20 relative z-10 bg-gradient-to-b from-black via-red-950/10 to-black scroll-mt-32">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-orbitron text-glow">
@@ -301,8 +313,13 @@ export default async function HolidayAuditKramp({ params }: { params: Promise<{ 
 
       <SectionDivider />
 
+      {/* Audio & Tables Sections (Client Component) */}
+      <KrampSections lang={lang} dict={dict} />
+
+      <SectionDivider />
+
       {/* Stay in the Loop Section */}
-      <section className="py-20 relative z-10 bg-black">
+      <section id="links" className="py-20 relative z-10 bg-black scroll-mt-32">
         <div className="max-w-6xl mx-auto px-6">
           <div className="bg-gray-900/50 border border-red-700/50 p-8 hud-border">
             <h2 className="text-3xl md:text-4xl font-bold text-red-500 mb-8 font-orbitron text-center text-glow">

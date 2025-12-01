@@ -19,8 +19,19 @@ The repository structure is organized as follows:
   - Atmospheric soundtrack player
   - Russian version includes all expansion content
 
+- **Holiday Audit: KRAMP.EXE** (`/[lang]/holiday-audit-kramp`) – Christmas horror adventure:
+  - Postcard-format one-shot for Mothership 1e
+  - Interactive random tables (Violations, Announcements, Events, NPCs) with dice rolling
+  - Festive synthwave soundtrack player with loop functionality
+  - Sticky navigation for easy section access
+  - Full Russian and English localization
+  - Components in `src/components/kramp/`:
+    - `KrampTerminalTables.tsx` – Interactive dice tables with dark terminal theme
+    - `KrampAudioPlayer.tsx` – Audio player with loop modes
+    - `KrampNavigation.tsx` – Fixed navigation that appears after hero section
+    - `KrampSections.tsx` – Wrapper for soundtrack and tables sections
+
 - **Projects** (`/[lang]/projects`) – Project listing from markdown files
-- **Holiday Audit: Kramp** (`/[lang]/holiday-audit-kramp`) – Kramp adventure page
 - **404 Page** – Custom not-found page with radar scanner animation
 
 ## Internationalization

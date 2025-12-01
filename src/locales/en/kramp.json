@@ -19,9 +19,20 @@
     "patreon": "PATREON EXCLUSIVE"
   },
   "sections": {
+    "about": "About",
+    "features": "Features",
+    "postcard": "Postcard",
+    "soundtrack": "OST",
+    "tables": "Tables",
+    "links": "Links",
     "description": "St.N KRAMP — Holiday Audit in Deep Space",
-    "postcard": "POSTCARD FORMAT",
     "stayInLoop": "Stay in the Loop"
+  },
+  "soundtrack": {
+    "description": "Festive synthwave for deeper immersion into holiday horror."
+  },
+  "tables": {
+    "description": "Roll the dice to spark your imagination during the game."
   },
   "postcard": {
     "description": "Unfold the horror. Perfect for stockings or last-minute gifts.",
