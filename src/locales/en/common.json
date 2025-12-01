@@ -1,0 +1,196 @@
+{
+  "notFound": {
+    "title": "Signal Lost",
+    "diagnostic": "> SYSTEM DIAGNOSTIC: CRITICAL FAILURE",
+    "heading": "The Void Has Consumed This Page",
+    "description": "You've ventured too far into the unknown. The coordinates you're looking for have been redacted by the {bureaucracy} or lost in the {neon}.",
+    "bureaucracy": "Hellish Bureaucracy",
+    "neon": "Neon Rain",
+    "errorCode": "Error Code: ID-10-T // Sector: UNKNOWN",
+    "evac": "EMERGENCY EVAC",
+    "archives": "SEARCH ARCHIVES",
+    "terminalLines": [
+      "SCANNING SECTOR...",
+      "COORDINATES NOT FOUND",
+      "SIGNAL INTERFERENCE DETECTED",
+      "REROUTING...",
+      "CONNECTION LOST"
+    ]
+  },
+  "timer": {
+    "title": "CHRONOMETER",
+    "status": {
+      "completed": "COMPLETED",
+      "running": "RUNNING",
+      "paused": "PAUSED",
+      "ready": "READY",
+      "standby": "STANDBY"
+    },
+    "boot": {
+      "initializing": "INITIALIZING SYSTEM...",
+      "loading": "LOADING PROTOCOLS...",
+      "calibrating": "CALIBRATING...",
+      "syncing": "SYNCING...",
+      "ready": "READY"
+    },
+    "labels": {
+      "setDuration": "SET DURATION",
+      "hrs": "HRS",
+      "min": "MIN",
+      "sec": "SEC",
+      "remainingTime": "REMAINING TIME"
+    },
+    "buttons": {
+      "initialize": "INITIALIZE TIMER",
+      "start": "START",
+      "running": "RUNNING...",
+      "pause": "PAUSE",
+      "resume": "RESUME",
+      "reset": "RESET",
+      "clear": "CLEAR SYSTEM",
+      "return": "< RETURN TO BASE"
+    },
+    "messages": {
+      "sequenceComplete": "SEQUENCE COMPLETE"
+    }
+  },
+  "nav": {
+    "home": "HOME",
+    "projects": "PROJECTS",
+    "lostMark": "LOST MARK",
+    "timer": "TIMER",
+    "about": "ABOUT",
+    "contact": "CONTACT"
+  },
+  "footer": {
+    "tagline": "Independent tabletop RPG content creation studio",
+    "projects": "PROJECTS",
+    "links": "LINKS",
+    "social": "SOCIAL",
+    "copyright": "© {year} Fables Monster Studio. All rights reserved."
+  },
+  "team": [
+    {
+      "name": "Stepan Kulikov",
+      "role": "Founder, Narrative Designer & Producer",
+      "bio": "Keeps the stories weird, the deadlines (mostly) real, and the studio moving forward.",
+      "image": "stepan-kulikov.webp"
+    },
+    {
+      "name": "Tatiana Bond",
+      "role": "Graphic & Layout Designer",
+      "bio": "Creates beautiful and functional layout designs for our publications",
+      "image": "tanka-bond.webp"
+    },
+    {
+      "name": "Zlata (jamakuci) Ignatova",
+      "role": "Artist",
+      "bio": "Visual artist bringing our worlds to life with stunning illustrations",
+      "image": "zlata.webp",
+      "link": "https://taplink.cc/jamakuci"
+    },
+    {
+      "name": "Stanislav DariDai",
+      "role": "Composer",
+      "bio": "Creates atmospheric music and sound design for our projects",
+      "image": "stanislav-darida.webp",
+      "link": "https://linktr.ee/stanislavdaridai"
+    },
+    {
+      "name": "Allecks",
+      "role": "Developer",
+      "bio": "Handles coding, web development, and technical implementation for VTT",
+      "image": "alleks.webp"
+    },
+    {
+      "name": "Dan Tarkov",
+      "role": "Game Designer",
+      "bio": "Game designer and creative mind behind new mechanics and adventures",
+      "image": ""
+    }
+  ],
+  "about": {
+    "title": "ABOUT US",
+    "subtitle": "Meet the team behind Fables Monster Studio",
+    "values": [
+      {
+        "title": "Quality First",
+        "description": "We don't rush releases, preferring to create products we can be proud of",
+        "icon": "QUALITY"
+      },
+      {
+        "title": "Human Creativity",
+        "description": "We believe in human art and writing. No AI generation in our final products.",
+        "icon": "HUMAN"
+      },
+      {
+        "title": "Community Driven",
+        "description": "We listen to our players and build what the community needs",
+        "icon": "COMMUNITY"
+      }
+    ]
+  },
+  "contact": {
+    "title": "CONTACT",
+    "getInTouch": "GET IN TOUCH",
+    "metaTitle": "Contact - Get in Touch with Fables Monster Studio",
+    "metaDescription": "Contact Fables Monster Studio for collaborations, questions about our tabletop RPG projects, or general inquiries. Join our Discord community and follow us on social media.",
+    "form": {
+      "title": "SEND MESSAGE",
+      "name": "NAME",
+      "email": "EMAIL",
+      "message": "MESSAGE",
+      "namePlaceholder": "Your name",
+      "emailPlaceholder": "your@email.com",
+      "messagePlaceholder": "Your message...",
+      "submit": "SEND MESSAGE",
+      "sending": "SENDING...",
+      "success": "Message sent successfully! We'll get back to you soon.",
+      "error": "Error sending message. Please try again or email us directly at info@fables.monster",
+      "tip": "<strong>Tip:</strong> Your message will be sent directly to our team. You can also email us directly at"
+    }
+  },
+  "projects": {
+    "status": {
+      "released": "RELEASED",
+      "inDev": "IN DEV",
+      "comingSoon": "COMING SOON"
+    },
+    "featured": "FEATURED",
+    "description": "Explore our tabletop RPG adventures and digital experiences",
+    "joinCommunity": {
+      "title": "JOIN THE COMMUNITY",
+      "description": "Follow our development and become part of the Fables Monster community",
+      "discord": "JOIN DISCORD",
+      "patreon": "SUPPORT ON PATREON"
+    },
+    "lostMark": {
+      "description": "A science fiction horror adventure for the role-playing game Mothership RPG. Your team encounters the wreckage of the tourist yacht Silk Star, which disappeared 217 years ago.",
+      "stats": {
+        "system": "System",
+        "players": "Players",
+        "duration": "Duration",
+        "pages": "Pages"
+      },
+      "buttons": {
+        "terminal": "ACCESS SILK STAR TERMINAL",
+        "timer": "CHRONOMETER TERMINAL",
+        "itch": "Get on Itch.io",
+        "drivethru": "Get on DriveThruRPG"
+      }
+    },
+    "holidayAudit": {
+      "description": "A Christmas Eve gone catastrophically wrong in deep space. Can you cleanse your record before the system wipes you?",
+      "buttons": {
+        "itch": "Get on Itch.io",
+        "drivethru": "Get on DriveThruRPG",
+        "patreon": "Patreon Exclusive"
+      },
+      "badges": {
+        "available": "AVAILABLE NOW",
+        "oneShot": "ONE-SHOT",
+        "postcard": "POSTCARD SIZE"
+      }
+    }
+  }
+}

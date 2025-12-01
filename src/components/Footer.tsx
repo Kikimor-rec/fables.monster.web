@@ -4,7 +4,22 @@ import Link from 'next/link';
 import SocialLinks from "./SocialLinks";
 import Image from "next/image";
 
-export default function Footer() {
+interface FooterDict {
+  tagline?: string;
+  projects?: string;
+  links?: string;
+  social?: string;
+  copyright?: string;
+  about?: string;
+  contact?: string;
+}
+
+interface FooterProps {
+  lang: string;
+  dict: FooterDict;
+}
+
+export default function Footer({ lang, dict }: FooterProps) {
   return (
     <footer className="bg-black py-12 border-t border-red-700">
       <div className="max-w-7xl mx-auto px-6">
@@ -14,26 +29,21 @@ export default function Footer() {
               <Image src="/logos/fm-logo-sqare.png" alt="Fables Monster Logo" width={120} height={120} className="w-[120px] max-w-full" />
             </div>
             <p className="text-gray-300 font-nunito">
-              Independent tabletop RPG content creation studio
+              {dict?.tagline || "Independent tabletop RPG content creation studio"}
             </p>
           </div>
           <div>
             <h4 className="text-lg font-bold text-white mb-4 font-nunito">
-              PROJECTS
+              {dict?.projects || "PROJECTS"}
             </h4>
             <ul className="space-y-2 text-gray-300 font-nunito">
               <li>
-                <Link href="/lost-mark" className="hover:text-red-400 transition-colors">
+                <Link href={`/${lang}/lost-mark`} className="hover:text-red-400 transition-colors">
                   The Lost Mark
                 </Link>
               </li>
               <li>
-                <Link href="/cemetery-of-broken-ships" className="hover:text-red-400 transition-colors">
-                  Cemetery of Broken Ships
-                </Link>
-              </li>
-              <li>
-                <Link href="/hellish-bureaucracy" className="hover:text-red-400 transition-colors">
+                <Link href={`/${lang}/hellish-bureaucracy`} className="hover:text-red-400 transition-colors">
                   Hellish Bureaucracy
                 </Link>
               </li>
@@ -41,37 +51,30 @@ export default function Footer() {
           </div>
           <div>
             <h4 className="text-lg font-bold text-white mb-4 font-nunito">
-              LINKS
+              {dict?.links || "LINKS"}
             </h4>
             <ul className="space-y-2 text-gray-300 font-nunito">
               <li>
-                <Link href="/about" className="hover:text-red-400 transition-colors">
-                  About
+                <Link href={`/${lang}/about`} className="hover:text-red-400 transition-colors">
+                  {dict?.about || "About"}
                 </Link>
               </li>
               <li>
-                <Link href="/projects" className="hover:text-red-400 transition-colors">
-                  Projects
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="hover:text-red-400 transition-colors">
-                  Contact
+                <Link href={`/${lang}/contact`} className="hover:text-red-400 transition-colors">
+                  {dict?.contact || "Contact"}
                 </Link>
               </li>
             </ul>
           </div>
           <div>
             <h4 className="text-lg font-bold text-white mb-4 font-nunito">
-              FOLLOW US
+              {dict?.social || "SOCIAL"}
             </h4>
             <SocialLinks showLabels={false} className="justify-start" />
           </div>
         </div>
-        <div className="mt-8 pt-8 border-t border-red-700 text-center">
-          <p className="text-gray-300 font-nunito">
-            © 2025 Fables Monster Studio. All rights reserved.
-          </p>
+        <div className="mt-12 pt-8 border-t border-gray-800 text-center text-gray-400 font-nunito">
+          <p>{(dict?.copyright || "© {year} Fables Monster Studio. All rights reserved.").replace('{year}', new Date().getFullYear().toString())}</p>
         </div>
       </div>
     </footer>

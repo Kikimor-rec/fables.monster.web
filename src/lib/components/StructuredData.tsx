@@ -64,16 +64,12 @@ export default function StructuredData({ type, product }: StructuredDataProps) {
     "@type": "WebSite",
     "name": "Fables Monster Studio",
     "url": "https://fables.monster",
-    "description": "Independent tabletop RPG content creation studio",
+    "description": "Independent tabletop RPG content creation studio specializing in horror, sci-fi, and supernatural adventures for tabletop RPGs like Mothership",
     "publisher": {
       "@type": "Organization",
       "name": "Fables Monster Studio"
     },
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://fables.monster/search?q={search_term_string}",
-      "query-input": "required name=search_term_string"
-    }
+    "inLanguage": ["en", "ru"]
   })
 
   const getData = () => {

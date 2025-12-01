@@ -1,4 +1,4 @@
-import { readdir, stat } from 'fs/promises';
+import { readdir, stat, access } from 'fs/promises';
 import sharp from 'sharp';
 import path from 'path';
 
@@ -12,10 +12,23 @@ const walk = async dir => {
       if (['.jpg', '.jpeg', '.png'].includes(ext)) {
         const out = p.replace(ext, '.webp');
         if (out !== p) {
-          await sharp(p)
-            .resize({ width: 1600, withoutEnlargement: true })
-            .webp({ quality: 80 })
-            .toFile(out);
+          // Skip if webp already exists
+          try {
+            await access(out);
+            console.log(`Skipping ${p} (webp already exists)`);
+            continue;
+          } catch {
+            // File doesn't exist, proceed with conversion
+          }
+          try {
+            await sharp(p)
+              .resize({ width: 1600, withoutEnlargement: true })
+              .webp({ quality: 80 })
+              .toFile(out);
+            console.log(`Converted ${p} -> ${out}`);
+          } catch (err) {
+            console.error(`Error converting ${p}: ${err.message}`);
+          }
         }
       }
     }

@@ -1,0 +1,56 @@
+{
+  "interface": {
+    "system_navigation": "СИСТЕМНАЯ НАВИГАЦИЯ",
+    "data_display": "ОТОБРАЖЕНИЕ ДАННЫХ"
+  },
+  "menu": {
+    "logs": "[1] ЖУРНАЛ КОРАБЛЯ",
+    "silk_logs": "[2] ЖУРНАЛ SILK STAR",
+    "life_support": "[3] ЖИЗНЕОБЕСПЕЧЕНИЕ",
+    "crew_manifest": "[4] МАНИФЕСТ ЭКИПАЖА",
+    "cryo_protocols": "[5] КРИО ПРОТОКОЛЫ",
+    "corrupted": "[6] ПОВРЕЖДЕННЫЕ ДАННЫЕ"
+  },
+  "status": {
+    "normal": "НОРМА",
+    "warning": "ВНИМАНИЕ",
+    "error": "ОШИБКА",
+    "critical": "КРИТИЧЕСКИ",
+    "offline": "ОТКЛЮЧЕНО",
+    "online": "В СЕТИ",
+    "connection_lost": "СВЯЗЬ ПОТЕРЯНА",
+    "deceased": "МЕРТВ"
+  },
+  "manifest": {
+    "role": "Роль",
+    "name": "Имя",
+    "status": "Статус",
+    "timer": "Таймер",
+    "engineer_history": "ИСТОРИЯ ИНЖЕНЕРОВ",
+    "non_living": "НЕЖИВОЙ ПЕРСОНАЛ",
+    "crew_complement": "СОСТАВ ЭКИПАЖА",
+    "vessel": "СУДНО"
+  },
+  "logs": {
+    "system_logs": "СИСТЕМНЫЕ ЛОГИ",
+    "silk_star_logs": "ПОЛЕТНЫЙ ЖУРНАЛ SILK STAR",
+    "entry": "ЗАПИСЬ"
+  },
+  "life_support": {
+    "header": "СТАТУС ЖИЗНЕОБЕСПЕЧЕНИЯ",
+    "legend": {
+      "no_connection": "нет связи",
+      "critical_error": "критическая ошибка",
+      "error": "ошибка"
+    }
+  },
+  "cryo": {
+    "header": "КРИО ОТСЕК"
+  },
+  "messages": {
+    "terminal_ready": "ТЕРМИНАЛ ГОТОВ",
+    "access_denied": "ДОСТУП ЗАПРЕЩЕН",
+    "corrupted_data": "[ДАННЫЕ ПОВРЕЖДЕНЫ]",
+    "rest_corrupted": "[ОСТАЛЬНЫЕ ДАННЫЕ ПОВРЕЖДЕНЫ]"
+  }
+}

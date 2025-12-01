@@ -46,7 +46,8 @@ export const projects: Project[] = [
         tags: ["MOTHERSHIP", "SCI-FI HORROR", "INVESTIGATION"],
         platforms: {
             itch: "https://fables-monster-studio.itch.io/the-lost-mark",
-            driveThru: "#",
+            driveThru: "https://www.drivethrurpg.com/en/product/530242",
+            roll20: "https://marketplace.roll20.net/browse/module/39314/lost-mark-sci-fi-horror-one-shot-for-mothership",
             foundry: "#",
         },
     },
@@ -72,7 +73,7 @@ export const projects: Project[] = [
         description: "Highly classified project. Information restricted. Access denied.",
         status: "in-development",
         type: "Adventure",
-        image: "/images/project-neon/preview.webp",
+        image: "/images/old-world-neon-hero.webp",
         imageAlt: "Old World Neon - Classified Cyberpunk Operation",
         tags: ["CYBERPUNK", "CLASSIFIED", "???"],
     },

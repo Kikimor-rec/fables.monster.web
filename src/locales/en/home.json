@@ -1,0 +1,38 @@
+{
+  "hero": {
+    "title": "FABLES MONSTER",
+    "subtitle": "Independent tabletop RPG content creation studio",
+    "ctaProjects": "VIEW PROJECTS",
+    "ctaLostMark": "LOST MARK"
+  },
+  "latestProjects": {
+    "title": "LATEST",
+    "projects": "PROJECTS",
+    "viewAll": "VIEW ALL PROJECTS →"
+  },
+  "status": {
+    "released": "RELEASED",
+    "inDev": "IN DEV",
+    "comingSoon": "COMING SOON"
+  },
+  "kramp": {
+    "badge": "FEATURED RELEASE",
+    "title": "HOLIDAY AUDIT:",
+    "subtitle": "KRAMP.EXE",
+    "description": "A holiday horror one-shot for Mothership RPG 1e. Survive the corporate holiday party where the audit is mandatory and failure is terminal.",
+    "cta": "ACCESS TERMINAL"
+  },
+  "about": {
+    "title": "THE CREW",
+    "description": "We are a collective of designers, writers, and artists dedicated to creating immersive, high-quality tabletop RPG content. Our mission is to bring fresh nightmares and wonders to your gaming table.",
+    "cta": "MEET THE TEAM →"
+  },
+  "stayConnected": {
+    "label": "STATUS UPDATE",
+    "title": "STAY",
+    "titleHighlight": "CONNECTED",
+    "description": "More intel will be declassified soon. Join our network to receive updates when the data drops.",
+    "discord": "JOIN DISCORD",
+    "allProjects": "ALL PROJECTS"
+  }
+}

@@ -23,12 +23,18 @@ export function createMetadata({
   modifiedAt,
 }: MetaDataProps): Metadata {
   const url = `${BASE_URL}${path}`;
+  const pathWithoutLang = path.replace(/^\/(en|ru)/, '');
   
   return {
     title,
     description,
     alternates: {
       canonical: url,
+      languages: {
+        'en': `${BASE_URL}/en${pathWithoutLang}`,
+        'ru': `${BASE_URL}/ru${pathWithoutLang}`,
+        'x-default': `${BASE_URL}/en${pathWithoutLang}`,
+      },
     },
     openGraph: {
       title,

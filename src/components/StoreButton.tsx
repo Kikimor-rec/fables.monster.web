@@ -1,10 +1,11 @@
-type Store = 'itch' | 'drivethrurpg' | 'patreon' | 'boosty' | 'vk';
+type Store = 'itch' | 'drivethrurpg' | 'patreon' | 'boosty' | 'vk' | 'roll20' | 'rpgbook';
 
 interface StoreButtonProps {
   store: Store;
   href: string;
   price?: string;
   className?: string;
+  label?: string;
 }
 
 const storeConfig: Record<Store, { label: string; icon: string; color: string }> = {
@@ -17,6 +18,16 @@ const storeConfig: Record<Store, { label: string; icon: string; color: string }>
     label: 'DriveThruRPG',
     icon: '/logos/drivethrurpg-icon.png',
     color: 'hover:bg-[#e40000]',
+  },
+  roll20: {
+    label: 'Roll20',
+    icon: '/logos/roll20-icon.png',
+    color: 'hover:bg-[#ce0f0f]',
+  },
+  rpgbook: {
+    label: 'RPGBook.ru',
+    icon: '/logos/rpgbook-icon.png',
+    color: 'hover:bg-[#8b5cf6]',
   },
   patreon: {
     label: 'Patreon',
@@ -35,7 +46,7 @@ const storeConfig: Record<Store, { label: string; icon: string; color: string }>
   }
 };
 
-export default function StoreButton({ store, href, price, className = '' }: StoreButtonProps) {
+export default function StoreButton({ store, href, price, className = '', label }: StoreButtonProps) {
   const config = storeConfig[store];
 
   return (
@@ -53,7 +64,7 @@ export default function StoreButton({ store, href, price, className = '' }: Stor
       `}
     >
       {/* We can use a generic icon or text if image is missing, but for now let's assume images exist or fallback */}
-      <span className="uppercase">{config.label}</span>
+      <span className="uppercase">{label || config.label}</span>
       {price && (
         <span className="text-xs sm:text-sm whitespace-nowrap ml-1 opacity-80">({price})</span>
       )}

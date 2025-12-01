@@ -2,7 +2,19 @@
 
 import { useState, useEffect } from "react";
 
-export default function LostMarkNavigation() {
+interface LostMarkNavigationProps {
+    dict?: {
+        about?: string;
+        features?: string;
+        expansion?: string;
+        foundry?: string;
+        roll20?: string;
+        tools?: string;
+        soundtrack?: string;
+    };
+}
+
+export default function LostMarkNavigation({ dict }: LostMarkNavigationProps) {
     const [activeSection, setActiveSection] = useState("");
     const [isScrolled, setIsScrolled] = useState(false);
 
@@ -11,7 +23,7 @@ export default function LostMarkNavigation() {
             setIsScrolled(window.scrollY > 100);
 
             // Determine active section
-            const sections = ["about", "features", "expansion", "foundry", "tools", "soundtrack"];
+            const sections = ["about", "features", "expansion", "foundry", "roll20", "tools", "soundtrack"];
             for (const section of sections) {
                 const element = document.getElementById(section);
                 if (element) {
@@ -29,12 +41,13 @@ export default function LostMarkNavigation() {
     }, []);
 
     const navItems = [
-        { id: "about", label: "About" },
-        { id: "features", label: "Features" },
-        { id: "expansion", label: "Expansion" },
-        { id: "foundry", label: "Foundry VTT" },
-        { id: "tools", label: "Tools" },
-        { id: "soundtrack", label: "OST" },
+        { id: "about", label: dict?.about || "About" },
+        { id: "features", label: dict?.features || "Features" },
+        { id: "expansion", label: dict?.expansion || "Expansion" },
+        { id: "foundry", label: dict?.foundry || "Foundry VTT" },
+        { id: "roll20", label: dict?.roll20 || "Roll20" },
+        { id: "tools", label: dict?.tools || "Tools" },
+        { id: "soundtrack", label: dict?.soundtrack || "OST" },
     ];
 
     const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {

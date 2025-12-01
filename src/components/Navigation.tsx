@@ -6,7 +6,16 @@ import { useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
 import Image from "next/image";
 
-export default function Navigation() {
+interface NavDict {
+  home?: string;
+  projects?: string;
+  lostMark?: string;
+  timer?: string;
+  about?: string;
+  contact?: string;
+}
+
+export default function Navigation({ lang, dict }: { lang: string, dict: NavDict }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
   const menuButtonRef = useRef<HTMLButtonElement>(null);
@@ -14,18 +23,25 @@ export default function Navigation() {
   const mobileCloseButtonRef = useRef<HTMLButtonElement>(null);
 
   const navLinks = [
-    { href: "/", label: "HOME" },
-    { href: "/projects", label: "PROJECTS" },
-    { href: "/lost-mark", label: "LOST MARK" },
-    { href: "/timer", label: "TIMER" },
-    { href: "/about", label: "ABOUT" },
-    { href: "/contact", label: "CONTACT" },
+    { href: `/${lang}`, label: dict?.home || "HOME" },
+    { href: `/${lang}/projects`, label: dict?.projects || "PROJECTS" },
+    { href: `/${lang}/lost-mark`, label: dict?.lostMark || "LOST MARK" },
+    { href: `/${lang}/timer`, label: dict?.timer || "TIMER" },
+    { href: `/${lang}/about`, label: dict?.about || "ABOUT" },
+    { href: `/${lang}/contact`, label: dict?.contact || "CONTACT" },
   ];
 
   const isActive = (href: string) => {
-    if (href === "/" && pathname === "/") return true;
-    if (href !== "/" && pathname.startsWith(href)) return true;
+    if (href === `/${lang}` && pathname === `/${lang}`) return true;
+    if (href !== `/${lang}` && pathname.startsWith(href)) return true;
     return false;
+  };
+
+  const switchLanguage = (newLang: string) => {
+    if (!pathname) return `/${newLang}`;
+    const segments = pathname.split('/');
+    segments[1] = newLang;
+    return segments.join('/');
   };
 
   // Handle keyboard events for accessibility
@@ -80,7 +96,7 @@ export default function Navigation() {
         </Link>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex space-x-8">
+        <div className="hidden md:flex space-x-8 items-center">
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -93,6 +109,12 @@ export default function Navigation() {
               {link.label}
             </Link>
           ))}
+          {/* Language Switcher */}
+          <div className="flex items-center gap-2 font-orbitron font-bold text-sm ml-4 border-l border-gray-700 pl-4">
+             <Link href={switchLanguage('en')} className={`transition-colors ${lang === 'en' ? 'text-red-400' : 'text-gray-400 hover:text-white'}`}>EN</Link>
+             <span className="text-gray-600">|</span>
+             <Link href={switchLanguage('ru')} className={`transition-colors ${lang === 'ru' ? 'text-red-400' : 'text-gray-400 hover:text-white'}`}>RU</Link>
+          </div>
         </div>
 
         {/* Mobile Menu Button */}
@@ -169,6 +191,11 @@ export default function Navigation() {
                   {link.label}
                 </Link>
               ))}
+              <div className="flex items-center gap-4 font-orbitron font-bold text-xl mt-4">
+                 <Link href={switchLanguage('en')} className={`transition-colors ${lang === 'en' ? 'text-red-400' : 'text-gray-400 hover:text-white'}`} onClick={handleCloseMenu}>EN</Link>
+                 <span className="text-gray-600">|</span>
+                 <Link href={switchLanguage('ru')} className={`transition-colors ${lang === 'ru' ? 'text-red-400' : 'text-gray-400 hover:text-white'}`} onClick={handleCloseMenu}>RU</Link>
+              </div>
             </nav>
           </div>
         </>,

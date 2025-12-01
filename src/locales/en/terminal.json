@@ -1,0 +1,56 @@
+{
+  "interface": {
+    "system_navigation": "SYSTEM NAVIGATION",
+    "data_display": "DATA DISPLAY"
+  },
+  "menu": {
+    "logs": "[1] SHIP LOGS",
+    "silk_logs": "[2] SILK STAR LOGS",
+    "life_support": "[3] LIFE SUPPORT",
+    "crew_manifest": "[4] CREW MANIFEST",
+    "cryo_protocols": "[5] CRYO PROTOCOLS",
+    "corrupted": "[6] CORRUPTED DATA"
+  },
+  "status": {
+    "normal": "NORMAL",
+    "warning": "WARNING",
+    "error": "ERROR",
+    "critical": "CRITICAL",
+    "offline": "OFFLINE",
+    "online": "ONLINE",
+    "connection_lost": "CONNECTION LOST",
+    "deceased": "DECEASED"
+  },
+  "manifest": {
+    "role": "Role",
+    "name": "Name",
+    "status": "Status",
+    "timer": "Timer",
+    "engineer_history": "ENGINEER HISTORY",
+    "non_living": "NON-LIVING PERSONNEL",
+    "crew_complement": "CREW COMPLEMENT",
+    "vessel": "VESSEL"
+  },
+  "logs": {
+    "system_logs": "SYSTEM LOGS",
+    "silk_star_logs": "SILK STAR FLIGHT LOG",
+    "entry": "ENTRY"
+  },
+  "life_support": {
+    "header": "LIFE SUPPORT STATUS",
+    "legend": {
+      "no_connection": "no connection",
+      "critical_error": "critical error",
+      "error": "error"
+    }
+  },
+  "cryo": {
+    "header": "CRYO BAY"
+  },
+  "messages": {
+    "terminal_ready": "TERMINAL READY",
+    "access_denied": "ACCESS DENIED",
+    "corrupted_data": "[CORRUPTED DATA]",
+    "rest_corrupted": "[REST OF DATA CORRUPTED]"
+  }
+}

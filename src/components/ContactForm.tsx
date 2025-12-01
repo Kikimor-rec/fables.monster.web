@@ -10,7 +10,24 @@ interface FormErrors {
   general?: string;
 }
 
-export default function ContactForm() {
+interface ContactFormProps {
+  dict?: {
+    title?: string;
+    name?: string;
+    email?: string;
+    message?: string;
+    namePlaceholder?: string;
+    emailPlaceholder?: string;
+    messagePlaceholder?: string;
+    submit?: string;
+    sending?: string;
+    success?: string;
+    error?: string;
+    tip?: string;
+  };
+}
+
+export default function ContactForm({ dict }: ContactFormProps) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -83,26 +100,34 @@ export default function ContactForm() {
   return (
     <div className="bg-black border border-red-700 p-8">
       <h3 className="text-2xl font-bold text-white mb-6 font-orbitron">
-        SEND MESSAGE
+        {dict?.title || "SEND MESSAGE"}
       </h3>
 
       {submitStatus === "success" && (
-        <div className="mb-6 p-4 bg-green-900/20 border border-green-500 text-green-300 font-rajdhani text-sm">
-          ✓ Message sent successfully! We'll get back to you soon.
+        <div className="mb-6 p-4 bg-green-900/20 border border-green-500 text-green-300 font-rajdhani text-sm flex items-center gap-2">
+          <svg className="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M20 6L9 17l-5-5" />
+          </svg>
+          <span>{dict?.success || "Message sent successfully! We'll get back to you soon."}</span>
         </div>
       )}
 
       {submitStatus === "error" && (
-        <div className="mb-6 p-4 bg-red-900/20 border border-red-500 text-red-300 font-rajdhani text-sm">
-          ✗ Error sending message. Please try again or email us directly at info@fables.monster
-          {errors.general && <p className="mt-2">{errors.general}</p>}
+        <div className="mb-6 p-4 bg-red-900/20 border border-red-500 text-red-300 font-rajdhani text-sm flex items-start gap-2">
+          <svg className="w-5 h-5 flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M18 6L6 18M6 6l12 12" />
+          </svg>
+          <div>
+            <span>{dict?.error || "Error sending message. Please try again or email us directly at info@fables.monster"}</span>
+            {errors.general && <p className="mt-2">{errors.general}</p>}
+          </div>
         </div>
       )}
 
       <form onSubmit={handleSubmit} className="space-y-6">
         <div>
           <label className="block text-white font-orbitron font-bold mb-2">
-            NAME *
+            {dict?.name || "NAME"} *
           </label>
           <input
             type="text"
@@ -111,14 +136,14 @@ export default function ContactForm() {
             onChange={handleChange}
             required
             className="w-full bg-gray-800 border border-red-700 text-white px-4 py-3 font-rajdhani focus:outline-none focus:border-red-400"
-            placeholder="Your name"
+            placeholder={dict?.namePlaceholder || "Your name"}
           />
           {errors.name && <p className="text-red-400 text-xs mt-1">{errors.name}</p>}
         </div>
 
         <div>
           <label className="block text-white font-orbitron font-bold mb-2">
-            EMAIL *
+            {dict?.email || "EMAIL"} *
           </label>
           <input
             type="email"
@@ -127,14 +152,14 @@ export default function ContactForm() {
             onChange={handleChange}
             required
             className="w-full bg-gray-800 border border-red-700 text-white px-4 py-3 font-rajdhani focus:outline-none focus:border-red-400"
-            placeholder="your@email.com"
+            placeholder={dict?.emailPlaceholder || "your@email.com"}
           />
           {errors.email && <p className="text-red-400 text-xs mt-1">{errors.email}</p>}
         </div>
 
         <div>
           <label className="block text-white font-orbitron font-bold mb-2">
-            MESSAGE *
+            {dict?.message || "MESSAGE"} *
           </label>
           <textarea
             name="message"
@@ -143,7 +168,7 @@ export default function ContactForm() {
             required
             rows={6}
             className="w-full bg-gray-800 border border-red-700 text-white px-4 py-3 font-rajdhani focus:outline-none focus:border-red-400"
-            placeholder="Your message..."
+            placeholder={dict?.messagePlaceholder || "Your message..."}
           />
           {errors.message && <p className="text-red-400 text-xs mt-1">{errors.message}</p>}
         </div>
@@ -153,21 +178,17 @@ export default function ContactForm() {
           disabled={isSubmitting}
           className="w-full bg-red-700 hover:bg-red-600 disabled:bg-gray-600 disabled:cursor-not-allowed text-white px-6 py-3 font-orbitron font-bold transition-colors border border-red-600"
         >
-          {isSubmitting ? "SENDING..." : "SEND MESSAGE"}
+          {isSubmitting ? (dict?.sending || "SENDING...") : (dict?.submit || "SEND MESSAGE")}
         </button>
       </form>
 
-      <div className="mt-6 p-4 bg-gray-900 border border-gray-700">
-        <p className="text-gray-400 text-sm font-rajdhani">
-          💡 <strong>Tip:</strong> Your message will be sent directly to our team.
-          You can also email us directly at{" "}
-          <a
-            href="mailto:info@fables.monster"
-            className="text-red-400 hover:text-red-300 transition-colors"
-          >
-            info@fables.monster
-          </a>
-        </p>
+      <div className="mt-6 p-4 bg-gray-900 border border-gray-700 flex items-start gap-2">
+        <svg className="w-5 h-5 text-yellow-400 flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M9 21c0 .5.4 1 1 1h4c.6 0 1-.5 1-1v-1H9v1zm3-19C8.1 2 5 5.1 5 9c0 2.4 1.2 4.5 3 5.7V17c0 .5.4 1 1 1h6c.6 0 1-.5 1-1v-2.3c1.8-1.3 3-3.4 3-5.7 0-3.9-3.1-7-7-7z"/>
+        </svg>
+        <p className="text-gray-400 text-sm font-rajdhani" dangerouslySetInnerHTML={{ 
+          __html: `${dict?.tip || "<strong>Tip:</strong> Your message will be sent directly to our team. You can also email us directly at"} <a href="mailto:info@fables.monster" class="text-red-400 hover:text-red-300 transition-colors">info@fables.monster</a>`
+        }} />
       </div>
     </div>
   );

@@ -1,0 +1,55 @@
+{
+  "meta": {
+    "title": "Holiday Audit: KRAMP.EXE | Fables Monster Studio",
+    "description": "A Christmas Eve gone catastrophically wrong in deep space."
+  },
+  "hero": {
+    "title": "HOLIDAY AUDIT",
+    "subtitle": "KRAMP.EXE",
+    "tagline": "Christmas Eve gone catastrophically wrong in deep space",
+    "badges": {
+      "available": "AVAILABLE NOW",
+      "oneShot": "ONE-SHOT",
+      "postcard": "POSTCARD SIZE"
+    }
+  },
+  "buttons": {
+    "drivethru": "GET ON DRIVETHRU",
+    "itch": "GET ON ITCH.IO",
+    "patreon": "PATREON EXCLUSIVE"
+  },
+  "sections": {
+    "description": "St.N KRAMP — Holiday Audit in Deep Space",
+    "postcard": "POSTCARD FORMAT",
+    "stayInLoop": "Stay in the Loop"
+  },
+  "postcard": {
+    "description": "Unfold the horror. Perfect for stockings or last-minute gifts.",
+    "unfold": "// UNFOLD_AT_TABLE.EXE"
+  },
+  "backToProjects": "← Back to Projects",
+  "features": {
+    "sinTracking": {
+      "name": "Sin-Tracking Mechanic",
+      "description": "Document past transgressions and watch consequences snowball."
+    },
+    "postcardFormat": {
+      "name": "Postcard-Size Format",
+      "description": "Perfect for slipping into stockings or sending to your warden."
+    },
+    "singleSession": {
+      "name": "Single Session Horror",
+      "description": "Sci-fi suspense wrapped in tinsel and static."
+    },
+    "festiveSynth": {
+      "name": "Festive Synthwave",
+      "description": "Special sci-fi horror soundtrack for deeper immersion."
+    }
+  },
+  "links": {
+    "itch": "dev-logs & previews",
+    "patreon": "behind-the-scenes art & tools",
+    "drivethru": "PDF release & future bundles",
+    "discord": "playtests & community chat"
+  }
+}
