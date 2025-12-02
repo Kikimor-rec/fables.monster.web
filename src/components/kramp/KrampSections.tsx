@@ -2,6 +2,7 @@
 
 import KrampTerminalTables from "./KrampTerminalTables";
 import KrampAudioPlayer from "./KrampAudioPlayer";
+import KrampSFXPanel from "./KrampSFXPanel";
 
 interface KrampSectionsProps {
   lang: string;
@@ -9,6 +10,7 @@ interface KrampSectionsProps {
     sections?: Record<string, string>;
     soundtrack?: { description?: string };
     tables?: { description?: string };
+    sfx?: { description?: string };
   };
 }
 
@@ -32,8 +34,16 @@ export default function KrampSections({ lang, dict }: KrampSectionsProps) {
             </p>
           </div>
           
-          <div className="max-w-xl mx-auto">
-            <KrampAudioPlayer lang={lang} />
+          <div className="max-w-4xl mx-auto grid md:grid-cols-3 gap-6">
+            {/* Main Audio Player */}
+            <div className="md:col-span-2">
+              <KrampAudioPlayer lang={lang} />
+            </div>
+            
+            {/* SFX Panel */}
+            <div className="md:col-span-1">
+              <KrampSFXPanel lang={lang} />
+            </div>
           </div>
         </div>
       </section>
