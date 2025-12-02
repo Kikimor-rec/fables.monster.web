@@ -1,4 +1,6 @@
 test-tailwind.html
-*.md
+README.md
+docs/*.md
+.agent/**/*.md
 .vscode/
 .git/
