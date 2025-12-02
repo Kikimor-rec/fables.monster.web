@@ -28,6 +28,11 @@
     "description": "St.N KRAMP — Holiday Audit in Deep Space",
     "stayInLoop": "Stay in the Loop"
   },
+  "about": {
+    "paragraph1": "It's a story about <strong>control, hypocrisy, punishment, and bad gifts</strong>. It shifts between humor and horror, absurdity and paranoia.",
+    "paragraph2": "The station's AI, <strong>St. N-KRAMP</strong> (Standardized Node Karma Review Automation Mobile Processor), has been rebranded for the holidays and is assessing the crew's \"moral climate.\" But something has gone wrong—the system has begun hunting down those who violate corporate values, turning the holiday week into a brutal, cheerfully branded audit.",
+    "paragraph3": "Chain-rattling alerts, sealed bulkheads, and festive dread tighten with each passing minute. Can you cleanse your record before the system wipes you from it?"
+  },
   "soundtrack": {
     "description": "Festive synthwave for deeper immersion into holiday horror."
   },
