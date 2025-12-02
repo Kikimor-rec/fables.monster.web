@@ -23,7 +23,7 @@ export const teamMembers: TeamMember[] = [
     },
     {
         name: "Zlata (jamakuci) Ignatova",
-        role: "Artist",
+        role: "Concept Artist/Illustrator",
         bio: "Visual artist bringing our worlds to life with stunning illustrations",
         image: "zlata.webp",
         link: "https://taplink.cc/jamakuci"
