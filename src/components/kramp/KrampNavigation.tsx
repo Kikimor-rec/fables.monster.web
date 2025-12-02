@@ -78,14 +78,14 @@ export default function KrampNavigation({ dict }: KrampNavigationProps) {
         <div className="absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(0,255,0,0.03)_2px,rgba(0,255,0,0.03)_4px)]"></div>
       </div>
       
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 overflow-x-auto relative z-10">
-        <ul className="flex items-center justify-center gap-1 sm:gap-4 min-w-max">
+      <div className="max-w-7xl mx-auto px-2 sm:px-6 overflow-x-auto relative z-10 scrollbar-hide">
+        <ul className="flex items-center justify-start sm:justify-center gap-1 sm:gap-3 min-w-max px-1">
           {navItems.map((item) => (
             <li key={item.id}>
               <a
                 href={`#${item.id}`}
                 onClick={(e) => scrollToSection(e, item.id)}
-                className={`px-3 py-2 rounded text-xs sm:text-sm font-bold transition-all duration-200 uppercase tracking-wider ${
+                className={`px-2 sm:px-3 py-1.5 sm:py-2 rounded text-[10px] sm:text-xs font-bold transition-all duration-200 uppercase tracking-wide whitespace-nowrap ${
                   activeSection === item.id
                     ? "text-green-400 bg-green-900/30 border border-green-500/50 shadow-[0_0_10px_rgba(74,222,128,0.3)]"
                     : "text-gray-400 hover:text-red-400 hover:bg-red-900/20 border border-transparent hover:border-red-500/30"

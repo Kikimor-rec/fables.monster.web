@@ -178,19 +178,19 @@ export default async function HolidayAuditKramp({ params }: { params: Promise<{ 
               priority
             />
           </div>
-          <h1 className="text-6xl md:text-8xl font-bold text-white mb-6 font-orbitron tracking-wider text-glow">
+          <h1 className="text-4xl sm:text-6xl md:text-8xl font-bold text-white mb-6 font-orbitron tracking-wider text-glow">
             {contentTitle || dict.hero?.title || 'HOLIDAY AUDIT'}
           </h1>
-          <div className="text-4xl md:text-6xl font-bold text-red-500 mb-8 font-orbitron glitch-text" data-text="KRAMP.EXE">
+          <div className="text-2xl sm:text-4xl md:text-6xl font-bold text-red-500 mb-8 font-orbitron glitch-text" data-text="KRAMP.EXE">
             {dict.hero?.subtitle || "KRAMP.EXE"}
           </div>
-          <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-4xl mx-auto font-rajdhani">
+          <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-8 max-w-4xl mx-auto font-rajdhani px-4">
             {contentTagline || dict.hero?.tagline || 'Christmas Eve gone catastrophically wrong in deep space'}
           </p>
-          <div className="flex items-center justify-center gap-4 mb-8 flex-wrap">
-            <span className="bg-green-900/50 text-green-400 px-4 py-2 font-orbitron border border-green-600 clip-path-slant hover:box-glow-cyan transition-all animate-pulse">{dict.hero?.badges?.available || 'AVAILABLE NOW'}</span>
-            <span className="bg-red-900/50 text-red-400 px-4 py-2 font-orbitron border border-red-600 clip-path-slant hover:box-glow transition-all">{dict.hero?.badges?.oneShot || 'ONE-SHOT'}</span>
-            <span className="bg-green-900/50 text-green-400 px-4 py-2 font-orbitron border border-green-600 clip-path-slant hover:box-glow-cyan transition-all">{dict.hero?.badges?.postcard || 'POSTCARD SIZE'}</span>
+          <div className="flex items-center justify-center gap-2 sm:gap-4 mb-8 flex-wrap px-4">
+            <span className="bg-green-900/50 text-green-400 px-2 sm:px-4 py-1 sm:py-2 text-xs sm:text-sm font-orbitron border border-green-600 clip-path-slant hover:box-glow-cyan transition-all animate-pulse">{dict.hero?.badges?.available || 'AVAILABLE NOW'}</span>
+            <span className="bg-red-900/50 text-red-400 px-2 sm:px-4 py-1 sm:py-2 text-xs sm:text-sm font-orbitron border border-red-600 clip-path-slant hover:box-glow transition-all">{dict.hero?.badges?.oneShot || 'ONE-SHOT'}</span>
+            <span className="bg-green-900/50 text-green-400 px-2 sm:px-4 py-1 sm:py-2 text-xs sm:text-sm font-orbitron border border-green-600 clip-path-slant hover:box-glow-cyan transition-all">{dict.hero?.badges?.postcard || 'POSTCARD SIZE'}</span>
           </div>
           
           {/* Download Buttons */}
