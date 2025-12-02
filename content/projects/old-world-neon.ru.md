@@ -2,7 +2,7 @@
 title: "OLD WORLD NEON"
 tagline: "Секретная киберпанк-операция. Детали зашифрованы."
 description: "Совершенно секретный проект. Информация ограничена. Доступ запрещен."
-image: "/images/project-neon/preview.webp"
+image: "/images/old-world-neon/preview.webp"
 date: "2024-01-01"
 tags: ["КИБЕРПАНК", "СЕКРЕТНО", "???"]
 status: "in-development"

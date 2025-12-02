@@ -73,7 +73,7 @@ export const projects: Project[] = [
         description: "Highly classified project. Information restricted. Access denied.",
         status: "in-development",
         type: "Adventure",
-        image: "/images/old-world-neon-hero.webp",
+        image: "/images/old-world-neon/preview.webp",
         imageAlt: "Old World Neon - Classified Cyberpunk Operation",
         tags: ["CYBERPUNK", "CLASSIFIED", "???"],
     },

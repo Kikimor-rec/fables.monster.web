@@ -2,7 +2,7 @@
 title: "OLD WORLD NEON"
 tagline: "A classified cyberpunk operation. Details remain encrypted."
 description: "Highly classified project. Information restricted. Access denied."
-image: "/images/project-neon/preview.webp"
+image: "/images/old-world-neon/preview.webp"
 date: "2024-01-01"
 tags: ["CYBERPUNK", "CLASSIFIED", "???"]
 status: "in-development"
