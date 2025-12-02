@@ -238,7 +238,7 @@ export default function NotFound() {
     }, []);
 
     return (
-        <div className={`min-h-screen bg-black text-white flex items-center justify-center relative overflow-hidden ${konamiActivated ? 'animate-pulse' : ''}`}>
+        <div className={`min-h-screen bg-black text-white flex items-center justify-center relative overflow-hidden pt-20 ${konamiActivated ? 'animate-pulse' : ''}`}>
             {/* Secret message overlay */}
             {secretMessage && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center pointer-events-none">
