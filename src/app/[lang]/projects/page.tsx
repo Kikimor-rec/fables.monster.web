@@ -97,7 +97,6 @@ export default async function ProjectsPage({ params }: { params: Promise<{ lang:
       {/* All Projects Grid */}
       <section className="py-12 sm:py-20 bg-black border-t border-red-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <FadeIn delay={0.2}>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {sortedProjects.map((project) => {
                 const status = (getFrontmatterString(project.frontmatter, 'status') || 'in-development').toLowerCase();
@@ -184,7 +183,6 @@ export default async function ProjectsPage({ params }: { params: Promise<{ lang:
                 );
               })}
             </div>
-          </FadeIn>
         </div>
       </section>
 
