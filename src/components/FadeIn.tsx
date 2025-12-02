@@ -30,11 +30,12 @@ export default function FadeIn({
             setIsVisible(true);
             setGlitched(true);
           }, delay * 1000);
+          observer.disconnect(); // Stop observing once visible
         }
       },
       {
-        threshold: 0.1,
-        rootMargin: "-50px"
+        threshold: 0.05,
+        rootMargin: "0px"
       }
     );
 

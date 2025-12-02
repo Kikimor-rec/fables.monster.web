@@ -99,13 +99,13 @@ export default async function ProjectsPage({ params }: { params: Promise<{ lang:
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <FadeIn delay={0.2}>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {sortedProjects.map((project, index) => {
+              {sortedProjects.map((project) => {
                 const status = (getFrontmatterString(project.frontmatter, 'status') || 'in-development').toLowerCase();
                 const projectImage = getFrontmatterString(project.frontmatter, 'image') || '/images/placeholder.jpg';
                 const projectTitle = getFrontmatterString(project.frontmatter, 'title') || '';
                 return (
-                  <FadeIn key={project.slug} delay={0.1 * (index + 1)}>
                     <Link
+                      key={project.slug}
                       href={`/${lang}/${project.slug}`}
                       className="group flex border border-border bg-black hover:border-accent transition-all duration-300 h-full flex-col"
                     >
@@ -181,7 +181,6 @@ export default async function ProjectsPage({ params }: { params: Promise<{ lang:
                         )}
                       </div>
                     </Link>
-                  </FadeIn>
                 );
               })}
             </div>
