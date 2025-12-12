@@ -26,6 +26,19 @@ const nextConfig: NextConfig = {
           },
         ],
       },
+      {
+        source: '/.well-known/matrix/:path*',
+        headers: [
+          {
+            key: 'Content-Type',
+            value: 'application/json',
+          },
+          {
+            key: 'Access-Control-Allow-Origin',
+            value: '*',
+          },
+        ],
+      },
     ];
   },
 };
