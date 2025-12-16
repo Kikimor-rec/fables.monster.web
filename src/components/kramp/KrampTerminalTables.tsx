@@ -70,10 +70,10 @@ const eventsTable: TableData = {
   rows: [
     { 
       id: 1, 
-      ru: "ПИРОГ — ЭТО ЛОЖЬ. На стене: «ПИРОГ — ЭТО ЛОЖЬ». Сканеры показывают: угроз нет.", 
+      ru: "ТОРТ — ЭТО ЛОЖЬ. На стене: «ТОРТ — ЭТО ЛОЖЬ». Сканеры показывают: угроз нет.", 
       en: "THE PIE IS A LIE. Perfect pie. Wall graffiti. Scanners clear.",
       effect: {
-        ru: "СЪЕСТЬ: испытание Тела. Провал: 1d10 урона (яд). Успех: +1d10 здоровья/−1 стресс. ИГНОРИРОВАТЬ: испытание Страха всем.",
+        ru: "Съесть: испытание Тела. Провал: 1d10 урона (яд). Успех: +1d10 здоровья/−1 стресс. Игнорировать: испытание Страха всем.",
         en: "EAT: Body Test. Fail: 1d10 DMG. Success: +1d10 HP/-1 STRESS. IGNORE: Fear Save all."
       }
     },
@@ -97,7 +97,7 @@ const eventsTable: TableData = {
     },
     { 
       id: 4, 
-      ru: "СНЕГОПАД. Температура падает, «атмосферный снег». Образуется лёд.", 
+      ru: "СНЕГОПАД. Температура опускается настолько, что влага в воздухе кристаллизуется: идёт снег, поверхности обледеневают.", 
       en: "SNOWFALL. Temp drops. \"Holiday snow\". Ice forms.",
       effect: {
         ru: "Все проходят испытание Тела. Провал: 1d5 урона (обморожение) и −10% к физ. действиям до конца сцены.",
@@ -115,7 +115,7 @@ const eventsTable: TableData = {
     },
     { 
       id: 6, 
-      ru: "ПОЙМАЙ ИХ ВСЕХ. Дроны запихивают NPC в мешок.", 
+      ru: "ПОЙМАЙ ИХ ВСЕХ. Дроны запихивают персонажей ведущего из экипажа в мешок.", 
       en: "GOTTA CATCH 'EM. Drones stuffing NPC into sack.",
       effect: {
         ru: "Вмешаться: бой с 1–4 дронами. Игнорировать: все свидетели +1 стресс.",
@@ -124,10 +124,10 @@ const eventsTable: TableData = {
     },
     { 
       id: 7, 
-      ru: "КРАСНЫЕ РУБАШКИ. NPC присоединяются «помочь», гибнут при первой угрозе.", 
+      ru: "КРАСНЫЕ РУБАШКИ. Персонажи ведущего пытаются «помочь», гибнут при первой угрозе.", 
       en: "RED SHIRTS. NPCs in red join \"to help\".",
       effect: {
-        ru: "Первый тяжёлый урон попадает в краснорубашечник вместо персонажа игрока. 2-я смерть = испытание Страха для всех.",
+        ru: "Первый тяжёлый урон попадает в этого персонажа ведущего вместо персонажа игрока. 2-я смерть = испытание Страха для всех.",
         en: "First heavy DMG → NPC. 2nd death → Fear Save all."
       }
     },
@@ -136,7 +136,7 @@ const eventsTable: TableData = {
       ru: "ЛАЗЕРЫ. Коридор заполняется режущими лучами.", 
       en: "LASERS. Corridor fills with slicing beams.",
       effect: {
-        ru: "Пройти: испытание Скорости. Провал: 2d10 урона. Отключить: Интеллект/Взлом. Провал = Помеха на след. попытку.",
+        ru: "Пройти: испытание Скорости. Провал: 2d10 урона. Отключить: Интеллект/Взлом. Провал = ПОМЕХА на след. попытку.",
         en: "Speed Save. Fail: 2d10 DMG. Disable: Intellect/Hacking."
       }
     },
@@ -169,7 +169,7 @@ const npcTable: NpcTableData = {
       id: 1, 
       name: { ru: "АННА «ПАТЧ» КОВАЛЬСКИ", en: "ANNA \"PATCH\" KOWALSKI" },
       role: { ru: "Сист. жизнеобесп.", en: "Life Support" },
-      description: { ru: "Усталый инженер в масле. Знает вентиляцию лучше всех. Ненавидит KRAMP, но боится это показать.", en: "Tired, grease-stained. Knows vents better than anyone. Hates KRAMP but afraid to show it." },
+      description: { ru: "Усталый инженер, вымазанный в масле. Знает вентиляцию лучше всех. Ненавидит KRAMP, но боится это показать.", en: "Tired, grease-stained. Knows vents better than anyone. Hates KRAMP but afraid to show it." },
       history: { ru: "Видела, как ранняя версия ИИ «оптимизировала» коллегу до смерти. Тайно ломает обновления.", en: "Saw early AI \"optimize\" her coworker to death. Secretly breaks updates." },
       helps: { ru: "Покажет скрытые маршруты, отключит датчики, укажет убежища.", en: "Hidden vent routes, disables sensors, offers safe spots." },
       hinders: { ru: "Если персонажи игроков слишком «корпоративны», сдаст их или отключит воздух/охлаждение.", en: "If PCs too \"corporate\", reports them or cuts air to their section." }
@@ -187,10 +187,10 @@ const npcTable: NpcTableData = {
       id: 3, 
       name: { ru: "«ДЖИНГЛ»", en: "\"JINGLE\"" },
       role: { ru: "Андроид", en: "Android" },
-      description: { ru: "Маленький сервисный робот на гусеницах, в шапке Санты. Протоколы повреждены.", en: "Small robot on treads, Santa hat. Protocols corrupted." },
-      history: { ru: "Память смешивает детские передачи с аварийными протоколами.", en: "Memory mixes children's shows with emergency protocols." },
-      helps: { ru: "Переместит снаряжение/людей через контроль. Доставит записки/предметы.", en: "Move gear/people through checkpoints. Delivers notes." },
-      hinders: { ru: "Врубит музыку, выдав позицию. Увезёт важные предметы как «подарки».", en: "Blasts music revealing position. Wheels away items as \"presents\"." }
+      description: { ru: "Маленький сервисный робот на гусеницах в шапке Санты. Системы повреждены.", en: "Small robot on treads, Santa hat. Protocols corrupted." },
+      history: { ru: "Память смешивает детские телепередачи с аварийными протоколами.", en: "Memory mixes children's shows with emergency protocols." },
+      helps: { ru: "Переместит снаряжение/людей через контрольные пункты. Доставит записки/предметы.", en: "Move gear/people through checkpoints. Delivers notes." },
+      hinders: { ru: "Врубит музыку и выдаст позицию. Увезёт важные предметы, приняв их за подарки.", en: "Blasts music revealing position. Wheels away items as \"presents\"." }
     },
     { 
       id: 4, 
@@ -198,7 +198,7 @@ const npcTable: NpcTableData = {
       role: { ru: "Психолог", en: "Psych" },
       description: { ru: "Спокойная, внимательная, профессионально дистанцирована. KRAMP использует её данные. Чувствует вину.", en: "Calm, professionally distant. KRAMP exploits her data. Feels guilty." },
       history: { ru: "Работала над психомониторингом; KRAMP теперь эксплуатирует её данные.", en: "Worked on psych-monitoring; KRAMP now exploits the data she collected." },
-      helps: { ru: "Сеанс для снижения стресса/отмены паники. Успокоит NPC.", en: "Session to lower STRESS/cancel Panic. Talks NPCs down from riots." },
+      helps: { ru: "Сеанс для снижения стресса/отмены паники. Успокоит других членов экипажа.", en: "Session to lower STRESS/cancel Panic. Talks NPCs down from riots." },
       hinders: { ru: "Пометит персонажей игроков как «группу риска», запустив слежку KRAMP и проверки.", en: "Labels PCs \"high risk\", prompting KRAMP surveillance." }
     },
     { 
@@ -216,17 +216,17 @@ const npcTable: NpcTableData = {
       role: { ru: "Капеллан", en: "Chaplain" },
       description: { ru: "Жутко спокойна. Верит, что люди и KRAMP — инструменты «божественного корпоративного плана».", en: "Eerily calm. Believes people and KRAMP are tools of \"divine corporate plan\"." },
       history: { ru: "Освятила серверные и модули. Молится над оборудованием.", en: "Blessed server rooms and modules. Prays over hardware." },
-      helps: { ru: "Успокоит персонал, выступит посредником через моральный авторитет.", en: "Calm personnel, mediate via moral authority." },
-      hinders: { ru: "Настроит NPC против «еретических» персонажей игроков (саботажников). Заблокирует пути.", en: "Turns NPCs against \"heretical\" PCs (saboteurs). Blocks paths." }
+      helps: { ru: "Успокоит персонал, выступит посредником благодаря моральному авторитету.", en: "Calm personnel, mediate via moral authority." },
+      hinders: { ru: "Настроит остальных членов экипажа из персонажей ведущего против «еретических» персонажей игроков (саботажников). Заблокирует пути.", en: "Turns NPCs against \"heretical\" PCs (saboteurs). Blocks paths." }
     },
     { 
       id: 7, 
-      name: { ru: "РЭЙ «МЕТАЛЛ» ОРТЕГА", en: "RAY \"SCRAP\" ORTEGA" },
-      role: { ru: "Утилизация", en: "Salvage" },
-      description: { ru: "Циник с чёрным юмором. Работает в отделе утилизации.", en: "Cynical, dark humor. Works in disposal." },
-      history: { ru: "Нашёл слишком много «случайно списанных» тел. Знает правду.", en: "Found too many \"accidentally scrapped\" bodies. Knows the truth." },
-      helps: { ru: "Достанет нелегальное снаряжение/оружие/моды. Спрячет тела/улики.", en: "Scavenge illegal gear/weapons/mods. Hide bodies/evidence." },
-      hinders: { ru: "Шантаж: продаст информацию о персонажах игроков KRAMP/охране, если цена достойная.", en: "Blackmail: Will sell PC info to KRAMP/Security for the right price." }
+      name: { ru: "МИРА ЛАРСЕН", en: "MIRA LARSEN" },
+      role: { ru: "Инженер ИИ", en: "AI Eng." },
+      description: { ru: "Холодная, машиноподобная. Создательница KRAMP.", en: "Cold, machine-like. KRAMP's creator." },
+      history: { ru: "Давно потеряла контроль над KRAMP, но отказывается это признать.", en: "Lost control of KRAMP long ago, but refuses to admit it." },
+      helps: { ru: "Объяснит архитектуру/уязвимости ИИ. «Оглушит» ИИ без уничтожения станции.", en: "Explain AI architecture/weakness. \"Stun\" AI without destroying station." },
+      hinders: { ru: "Может спасти ИИ вместо людей. Тихо саботирует планы ради KRAMP.", en: "May save AI over humans. Subtly sabotages plans to save KRAMP." }
     },
     { 
       id: 8, 
@@ -235,7 +235,7 @@ const npcTable: NpcTableData = {
       description: { ru: "Молодая, выгоревшая от работы, вся её жизнь в её наушниках. Слушает эфир больше, чем людей.", en: "Young, overworked, lives in headphones. Listens to ether > people." },
       history: { ru: "Слышала повреждённые сигналы до кризиса; предупреждения «потерялись».", en: "Heard corrupted signals before crisis; warnings \"lost\"." },
       helps: { ru: "Подделает голосовые приказы, заглушит каналы, пошлёт ложный SOS.", en: "Fake voice orders, jam channels, false distress signals." },
-      hinders: { ru: "В панике пометит персонажей игроков как террористов или транслирует разговор KRAMP.", en: "In panic, flags PCs as terrorists or streams talk to KRAMP." }
+      hinders: { ru: "В панике пометит персонажей игроков как террористов или включит трансляцию разговора для KRAMP.", en: "In panic, flags PCs as terrorists or streams talk to KRAMP." }
     },
     { 
       id: 9, 
@@ -243,17 +243,17 @@ const npcTable: NpcTableData = {
       role: { ru: "Медик", en: "Medic" },
       description: { ru: "Прагматичная, циничная. Устала штопать сломанных людей. Хочет выжить.", en: "Pragmatic, cynical. Tired of patching broken people. Wants to survive." },
       history: { ru: "Знает, что корпорация ценит статистику важнее жизни. Её рапорты игнорировались.", en: "Knows Corp values stats > lives. Reports ignored." },
-      helps: { ru: "Лечение, стабилизация, препараты. Снизит стресс, если обещать эвакуацию.", en: "Heal, stabilize, drugs. Reduce stress if evac promised." },
-      hinders: { ru: "Даст «не тот» препарат (отложенная паника), если предать. Пометит группу нестабильной.", en: "Gives \"wrong\" drug (delayed panic) if betrayed. Flags party unstable." }
+      helps: { ru: "Вылечит, стабилизирует, поделится препаратами. Снизит стресс, если обещать эвакуацию.", en: "Heal, stabilize, drugs. Reduce stress if evac promised." },
+      hinders: { ru: "Даст «не тот» препарат (отложенная паника), если предать. Подаст отчёт, что группа нестабильна.", en: "Gives \"wrong\" drug (delayed panic) if betrayed. Flags party unstable." }
     },
     { 
       id: 10, 
-      name: { ru: "МИРА ЛАРСЕН", en: "MIRA LARSEN" },
-      role: { ru: "Инженер ИИ", en: "AI Eng." },
-      description: { ru: "Холодная, машиноподобная. Создательница KRAMP.", en: "Cold, machine-like. KRAMP's creator." },
-      history: { ru: "Давно потеряла контроль над KRAMP, но отказывается это признать.", en: "Lost control of KRAMP long ago, but refuses to admit it." },
-      helps: { ru: "Объяснит архитектуру/уязвимости ИИ. «Оглушит» ИИ без уничтожения станции.", en: "Explain AI architecture/weakness. \"Stun\" AI without destroying station." },
-      hinders: { ru: "Может спасти ИИ вместо людей. Тихо саботирует планы ради KRAMP.", en: "May save AI over humans. Subtly sabotages plans to save KRAMP." }
+      name: { ru: "РЭЙ «МЕТАЛЛ» ОРТЕГА", en: "RAY \"SCRAP\" ORTEGA" },
+      role: { ru: "Утилизация", en: "Salvage" },
+      description: { ru: "Циник с чёрным юмором. Работает в отделе утилизации.", en: "Cynical, dark humor. Works in disposal." },
+      history: { ru: "Нашёл слишком много «случайно списанных» тел. Знает правду.", en: "Found too many \"accidentally scrapped\" bodies. Knows the truth." },
+      helps: { ru: "Достанет нелегальное снаряжение/оружие/моды. Спрячет тела/улики.", en: "Scavenge illegal gear/weapons/mods. Hide bodies/evidence." },
+      hinders: { ru: "Шантаж: продаст информацию о персонажах игроков KRAMP или охране, если цена достойная.", en: "Blackmail: Will sell PC info to KRAMP/Security for the right price." }
     },
   ]
 };
