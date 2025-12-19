@@ -16,7 +16,8 @@
   "buttons": {
     "drivethru": "КУПИТЬ НА DRIVETHRU",
     "itch": "КУПИТЬ НА ITCH.IO",
-    "patreon": "ЭКСКЛЮЗИВ PATREON"
+    "patreon": "ЭКСКЛЮЗИВ PATREON",
+    "rpgbook": "КУПИТЬ НА СТАНЦИИ РОЛЕВОЙ"
   },
   "sections": {
     "about": "Описание",

@@ -25,7 +25,6 @@ export default function Navigation({ lang, dict }: { lang: string, dict: NavDict
   const navLinks = [
     { href: `/${lang}`, label: dict?.home || "HOME" },
     { href: `/${lang}/projects`, label: dict?.projects || "PROJECTS" },
-    { href: `/${lang}/lost-mark`, label: dict?.lostMark || "LOST MARK" },
     { href: `/${lang}/timer`, label: dict?.timer || "TIMER" },
     { href: `/${lang}/about`, label: dict?.about || "ABOUT" },
     { href: `/${lang}/contact`, label: dict?.contact || "CONTACT" },
@@ -111,9 +110,9 @@ export default function Navigation({ lang, dict }: { lang: string, dict: NavDict
           ))}
           {/* Language Switcher */}
           <div className="flex items-center gap-2 font-orbitron font-bold text-sm ml-4 border-l border-gray-700 pl-4">
-             <Link href={switchLanguage('en')} className={`transition-colors ${lang === 'en' ? 'text-red-400' : 'text-gray-400 hover:text-white'}`}>EN</Link>
-             <span className="text-gray-600">|</span>
-             <Link href={switchLanguage('ru')} className={`transition-colors ${lang === 'ru' ? 'text-red-400' : 'text-gray-400 hover:text-white'}`}>RU</Link>
+            <Link href={switchLanguage('en')} className={`transition-colors ${lang === 'en' ? 'text-red-400' : 'text-gray-400 hover:text-white'}`}>EN</Link>
+            <span className="text-gray-600">|</span>
+            <Link href={switchLanguage('ru')} className={`transition-colors ${lang === 'ru' ? 'text-red-400' : 'text-gray-400 hover:text-white'}`}>RU</Link>
           </div>
         </div>
 
@@ -192,9 +191,9 @@ export default function Navigation({ lang, dict }: { lang: string, dict: NavDict
                 </Link>
               ))}
               <div className="flex items-center gap-4 font-orbitron font-bold text-xl mt-4">
-                 <Link href={switchLanguage('en')} className={`transition-colors ${lang === 'en' ? 'text-red-400' : 'text-gray-400 hover:text-white'}`} onClick={handleCloseMenu}>EN</Link>
-                 <span className="text-gray-600">|</span>
-                 <Link href={switchLanguage('ru')} className={`transition-colors ${lang === 'ru' ? 'text-red-400' : 'text-gray-400 hover:text-white'}`} onClick={handleCloseMenu}>RU</Link>
+                <Link href={switchLanguage('en')} className={`transition-colors ${lang === 'en' ? 'text-red-400' : 'text-gray-400 hover:text-white'}`} onClick={handleCloseMenu}>EN</Link>
+                <span className="text-gray-600">|</span>
+                <Link href={switchLanguage('ru')} className={`transition-colors ${lang === 'ru' ? 'text-red-400' : 'text-gray-400 hover:text-white'}`} onClick={handleCloseMenu}>RU</Link>
               </div>
             </nav>
           </div>

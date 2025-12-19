@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const dict = await getDictionary(lang, 'kramp') as KrampDict;
   const title = content ? getFrontmatterString(content.frontmatter, 'title') || 'Holiday Audit: KRAMP.EXE' : 'Holiday Audit: KRAMP.EXE';
   const tagline = content ? getFrontmatterString(content.frontmatter, 'tagline') || 'A Christmas Eve gone catastrophically wrong in space.' : 'A Christmas Eve gone catastrophically wrong in space.';
-  
+
   return {
     title: dict.meta?.title || `${title} | Fables Monster Studio`,
     description: dict.meta?.description || tagline,
@@ -44,7 +44,7 @@ export default async function HolidayAuditKramp({ params }: { params: Promise<{ 
   const { lang } = await params;
   const content = await getContent('projects', 'holiday-audit-kramp', lang);
   const dict = await getDictionary(lang, 'kramp') as KrampDict;
-  
+
   const contentTitle = content ? getFrontmatterString(content.frontmatter, 'title') : '';
   const contentTagline = content ? getFrontmatterString(content.frontmatter, 'tagline') : '';
 
@@ -192,33 +192,53 @@ export default async function HolidayAuditKramp({ params }: { params: Promise<{ 
             <span className="bg-red-900/50 text-red-400 px-2 sm:px-4 py-1 sm:py-2 text-xs sm:text-sm font-orbitron border border-red-600 clip-path-slant hover:box-glow transition-all">{dict.hero?.badges?.oneShot || 'ONE-SHOT'}</span>
             <span className="bg-green-900/50 text-green-400 px-2 sm:px-4 py-1 sm:py-2 text-xs sm:text-sm font-orbitron border border-green-600 clip-path-slant hover:box-glow-cyan transition-all">{dict.hero?.badges?.postcard || 'POSTCARD SIZE'}</span>
           </div>
-          
+
           {/* Download Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-12">
-            <a
-              href="https://www.drivethrurpg.com/en/product/547046/kramp-exe-christmas-special-edition-for-mothership-1e?affiliate_id=2863466"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative px-8 py-4 bg-red-900/30 border-2 border-red-500 text-red-400 font-orbitron font-bold text-lg clip-path-slant hover:bg-red-900/50 hover:text-white transition-all duration-300 hover:box-glow min-w-[200px] text-center"
-            >
-              <span className="relative z-10">{dict.buttons?.drivethru || 'GET ON DRIVETHRU'}</span>
-            </a>
-            <a
-              href="https://fablesmonster.itch.io/krampexe-mothership-1e"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative px-8 py-4 bg-green-900/30 border-2 border-green-500 text-green-400 font-orbitron font-bold text-lg clip-path-slant hover:bg-green-900/50 hover:text-white transition-all duration-300 hover:box-glow-cyan min-w-[200px] text-center"
-            >
-              <span className="relative z-10">{dict.buttons?.itch || 'GET ON ITCH.IO'}</span>
-            </a>
-            <a
-              href="https://www.patreon.com/posts/kramp-exe-for-1e-144275102"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative px-8 py-4 bg-blue-900/30 border-2 border-blue-500 text-blue-400 font-orbitron font-bold text-lg clip-path-slant hover:bg-blue-900/50 hover:text-white transition-all duration-300 hover:shadow-[0_0_20px_rgba(59,130,246,0.5)] min-w-[200px] text-center"
-            >
-              <span className="relative z-10">{dict.buttons?.patreon || 'PATREON EXCLUSIVE'}</span>
-            </a>
+          <div className="flex flex-col items-center gap-4 mt-12">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              {lang === 'ru' ? (
+                <a
+                  href="https://rpgbook.ru/kramp_exe"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative px-8 py-4 bg-blue-900/30 border-2 border-blue-500 text-blue-400 font-orbitron font-bold text-lg clip-path-slant hover:bg-blue-900/50 hover:text-white transition-all duration-300 hover:shadow-[0_0_20px_rgba(59,130,246,0.5)] min-w-[200px] text-center"
+                >
+                  <span className="relative z-10">{dict.buttons?.rpgbook || "КУПИТЬ НА СТАНЦИИ РОЛЕВОЙ"}</span>
+                </a>
+              ) : (
+                <>
+                  <a
+                    href="https://www.drivethrurpg.com/en/product/547046/kramp-exe-christmas-special-edition-for-mothership-1e?affiliate_id=2863466"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group relative px-8 py-4 bg-red-900/30 border-2 border-red-500 text-red-400 font-orbitron font-bold text-lg clip-path-slant hover:bg-red-900/50 hover:text-white transition-all duration-300 hover:box-glow min-w-[200px] text-center"
+                  >
+                    <span className="relative z-10">{dict.buttons?.drivethru || 'GET ON DRIVETHRU'}</span>
+                  </a>
+                  <a
+                    href="https://fablesmonster.itch.io/krampexe-mothership-1e"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group relative px-8 py-4 bg-green-900/30 border-2 border-green-500 text-green-400 font-orbitron font-bold text-lg clip-path-slant hover:bg-green-900/50 hover:text-white transition-all duration-300 hover:box-glow-cyan min-w-[200px] text-center"
+                  >
+                    <span className="relative z-10">{dict.buttons?.itch || 'GET ON ITCH.IO'}</span>
+                  </a>
+                  <a
+                    href="https://www.patreon.com/posts/kramp-exe-for-1e-144275102"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group relative px-8 py-4 bg-blue-900/30 border-2 border-blue-500 text-blue-400 font-orbitron font-bold text-lg clip-path-slant hover:bg-blue-900/50 hover:text-white transition-all duration-300 hover:shadow-[0_0_20px_rgba(59,130,246,0.5)] min-w-[200px] text-center"
+                  >
+                    <span className="relative z-10">{dict.buttons?.patreon || 'PATREON EXCLUSIVE'}</span>
+                  </a>
+                </>
+              )}
+            </div>
+            {lang === 'ru' && (
+              <p className="text-gray-500 text-xs font-orbitron mt-2 text-center max-w-lg">
+                Версия на английском доступна на <a href="https://fablesmonster.itch.io/krampexe-mothership-1e" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white underline">Itch.io</a> и <a href="https://www.drivethrurpg.com/en/product/547046/kramp-exe-christmas-special-edition-for-mothership-1e?affiliate_id=2863466" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white underline">DriveThruRPG</a>
+              </p>
+            )}
           </div>
         </div>
       </section>
@@ -228,7 +248,7 @@ export default async function HolidayAuditKramp({ params }: { params: Promise<{ 
       {/* Sticky Navigation */}
       <KrampNavigation dict={{
         about: dict.sections?.about || "About",
-        features: dict.sections?.features || "Features", 
+        features: dict.sections?.features || "Features",
         postcard: dict.sections?.postcard || "Postcard",
         soundtrack: dict.sections?.soundtrack || "OST",
         tables: dict.sections?.tables || "Tables",
@@ -241,7 +261,7 @@ export default async function HolidayAuditKramp({ params }: { params: Promise<{ 
           <div className="bg-gray-900/50 border border-red-700/50 p-8 mb-12 hud-border relative overflow-hidden group">
             <div className="absolute top-0 right-0 p-4 opacity-20 group-hover:opacity-40 transition-opacity">
               <svg className="w-12 h-12 text-red-500" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2L1 21h22L12 2zm0 4l7.53 13H4.47L12 6zm-1 4v4h2v-4h-2zm0 6v2h2v-2h-2z"/>
+                <path d="M12 2L1 21h22L12 2zm0 4l7.53 13H4.47L12 6zm-1 4v4h2v-4h-2zm0 6v2h2v-2h-2z" />
               </svg>
             </div>
             <div className="flex flex-col md:flex-row gap-8 items-center">
@@ -292,7 +312,7 @@ export default async function HolidayAuditKramp({ params }: { params: Promise<{ 
               {dict.postcard?.description || 'Unfold the horror. Perfect for stockings or last-minute gifts.'}
             </p>
           </div>
-          
+
           <div className="relative max-w-4xl mx-auto">
             <div className="absolute inset-0 bg-red-500 blur-3xl opacity-20 animate-pulse"></div>
             <div className="relative bg-gray-900/50 border-2 border-red-700/50 p-4 md:p-8 hud-border">
