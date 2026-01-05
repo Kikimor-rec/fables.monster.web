@@ -7,6 +7,7 @@ date: "2024-01-01"
 tags: ["CYBERPUNK", "CLASSIFIED", "???"]
 status: "in-development"
 type: "????"
+system: "OWN"
 ---
 
 <div class="glitch-container">

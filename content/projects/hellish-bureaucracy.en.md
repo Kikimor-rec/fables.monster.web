@@ -4,7 +4,7 @@ subtitle: "Dark Comedy Horror Adventure"
 tagline: "Navigate the administrative nightmare of Hell in this darkly humorous tabletop RPG adventure."
 status: "in-development"
 type: "Adventure"
-system: "Mothership 1E"
+system: "DnD 14/24"
 image: "/images/hellish-bureaucracy/monster.webp"
 ---
 

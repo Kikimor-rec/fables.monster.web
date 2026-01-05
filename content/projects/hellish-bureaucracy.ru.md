@@ -4,7 +4,7 @@ subtitle: "Хоррор-комедия в жанре темного фэнтез
 tagline: "Пройдите через административный кошмар Ада в этом мрачно-юмористическом приключении для НРИ."
 status: "in-development"
 type: "Приключение"
-system: "Mothership 1E"
+system: "DnD 14/24"
 image: "/images/hellish-bureaucracy/monster.webp"
 ---
 

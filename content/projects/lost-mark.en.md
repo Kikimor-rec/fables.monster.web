@@ -34,6 +34,10 @@ The Lost Mark is available as a ready-to-play module on Roll20 Marketplace! Get 
 
 [Get it on Roll20 →](https://marketplace.roll20.net/browse/module/39314/lost-mark-sci-fi-horror-one-shot-for-mothership)
 
+### Physical Copy Bonus
+
+If you have a physical copy of The Lost Mark, email us at **info@fables.monster** and we'll provide **free access** to additional materials.
+
 ### Stats
 
 *   **Pages**: 2
