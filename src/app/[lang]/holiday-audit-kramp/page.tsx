@@ -33,6 +33,7 @@ export default async function HolidayAuditKramp({ params }: { params: Promise<{ 
   const { lang } = await params;
   const content = await getContent('projects', 'holiday-audit-kramp', lang);
   const dict = await getDictionary(lang, 'kramp');
+  const commonDict = await getDictionary(lang, 'common');
 
   const contentTitle = content ? getFrontmatterString(content.frontmatter, 'title') : '';
   const contentTagline = content ? getFrontmatterString(content.frontmatter, 'tagline') : '';
@@ -152,7 +153,7 @@ export default async function HolidayAuditKramp({ params }: { params: Promise<{ 
         ))}
       </div>
 
-      <Navigation lang={lang} dict={dict.nav || {}} />
+      <Navigation lang={lang} dict={commonDict.nav} />
 
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center pt-20 md:pt-24">
