@@ -205,7 +205,7 @@ export function useAudioPlayer({
         }));
       }
 
-      const blob = new Blob(chunks, { type: 'audio/mpeg' });
+      const blob = new Blob(chunks as unknown as BlobPart[], { type: 'audio/mpeg' });
       const url = URL.createObjectURL(blob);
 
       setPrefetch((prev) => ({

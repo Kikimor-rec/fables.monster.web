@@ -58,7 +58,7 @@ export async function getDictionary<T extends DictionaryNamespace>(
   }
 
   try {
-    return await loader();
+    return await loader() as GetDictionary<T>;
   } catch (error) {
     console.error(`Failed to load dictionary: ${lang}/${namespace}`, error);
     throw error;
@@ -90,10 +90,10 @@ export async function createTranslator(lang: string, namespace: DictionaryNamesp
   const enDict = lang !== fallbackLng ? await getDictionary(fallbackLng, namespace) : {};
 
   return (key: string): unknown => {
-    const value = getNestedValue(dict as Record<string, unknown>, key);
+    const value = getNestedValue(dict as unknown as Record<string, unknown>, key);
     if (value !== undefined) return value;
 
-    const fallbackValue = getNestedValue(enDict as Record<string, unknown>, key);
+    const fallbackValue = getNestedValue(enDict as unknown as Record<string, unknown>, key);
     return fallbackValue !== undefined ? fallbackValue : key;
   };
 }

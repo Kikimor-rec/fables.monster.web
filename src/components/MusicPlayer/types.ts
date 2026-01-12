@@ -25,7 +25,7 @@ export interface AudioPlayerState {
 }
 
 export interface UseAudioPlayerReturn extends AudioPlayerState {
-  audioRef: React.RefObject<HTMLAudioElement>;
+  audioRef: React.RefObject<HTMLAudioElement | null>;
   prefetch: Record<number, PrefetchState>;
   // Actions
   selectTrack: (index: number) => void;

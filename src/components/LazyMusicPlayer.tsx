@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { useState } from "react";
+import { LOST_MARK_TRACKS } from "@/lib/constants";
 
 const DynamicMusicPlayer = dynamic(
   () => import("./MusicPlayer"),
@@ -55,5 +56,5 @@ export default function LazyMusicPlayer() {
     );
   }
 
-  return <DynamicMusicPlayer />;
+  return <DynamicMusicPlayer tracks={[...LOST_MARK_TRACKS]} />;
 }

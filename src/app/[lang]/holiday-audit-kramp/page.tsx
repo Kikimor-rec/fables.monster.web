@@ -325,7 +325,7 @@ export default async function HolidayAuditKramp({ params }: { params: Promise<{ 
       <SectionDivider />
 
       {/* Audio & Tables Sections (Client Component) */}
-      <KrampSections lang={lang} dict={dict} />
+      <KrampSections lang={lang} dict={dict as unknown as Parameters<typeof KrampSections>[0]['dict']} />
 
       <SectionDivider />
 

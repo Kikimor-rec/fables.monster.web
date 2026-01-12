@@ -15,7 +15,7 @@ import {
 import LifeSupportPanel from '@/components/terminal/LifeSupportPanel';
 import { FC } from 'react';
 
-interface TerminalDict {
+interface TerminalClientDict {
   boot?: {
     initializing?: string;
     coreSystems?: string;
@@ -53,7 +53,7 @@ interface TerminalDict {
 
 interface Props {
   lang?: string;
-  dict?: TerminalDict;
+  dict?: TerminalClientDict;
 }
 
 export default function LostMarkTerminalClient({ lang = 'en', dict }: Props) {
@@ -123,14 +123,14 @@ export default function LostMarkTerminalClient({ lang = 'en', dict }: Props) {
     if (content?.ship_logs) {
       setShipLogs(prev => [
         ...prev,
-        ...(content.ship_logs as ShipLog[]).filter(l => !prev.some(p => p.id === l.id))
+        ...(content.ship_logs as unknown as ShipLog[]).filter(l => !prev.some(p => p.id === l.id))
       ]);
     }
 
     if (content?.silk_star_logs) {
       setSilkLogs(prev => [
         ...prev,
-        ...(content.silk_star_logs as SilkStarLog[]).filter(l => !prev.some(p => p.id === l.id))
+        ...(content.silk_star_logs as unknown as SilkStarLog[]).filter(l => !prev.some(p => p.id === l.id))
       ]);
     }
   }, [content]);
@@ -297,7 +297,7 @@ export default function LostMarkTerminalClient({ lang = 'en', dict }: Props) {
           corruptedLabel={dict?.manifest?.corrupted || '[REST OF DATA CORRUPTED]'}
         />;
       case 'cryo':
-        return <CryoBaySection header={dict?.cryo?.header || 'CRYO BAY'} activation={(content?.cryo_protocol || {}) as CryoProtocol} />;
+        return <CryoBaySection header={dict?.cryo?.header || 'CRYO BAY'} activation={(content?.cryo_protocol || {}) as unknown as CryoProtocol} />;
       case 'corrupted':
         return <CorruptedSection content={content || {}} showCorruptedMessage={showCorruptedMessage} typingText={typingText} handleCorruptedDataClear={handleCorruptedDataClear} asciiEye={asciiEye} />;
       default:

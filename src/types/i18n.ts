@@ -75,6 +75,8 @@ export interface FooterDict {
   tagline: string;
   projects: string;
   links: string;
+  about: string;
+  contact: string;
   social: string;
   copyright: string;
 }
@@ -254,6 +256,7 @@ export interface KrampButtonsDict {
   drivethru: string;
   itch: string;
   patreon: string;
+  rpgbook: string;
 }
 
 export interface KrampSectionsDict {
@@ -343,6 +346,7 @@ export interface LostMarkButtonsDict {
   drivethru: string;
   patreon: string;
   roll20: string;
+  rpgbook?: string;
   terminal: string;
   timer: string;
   moreProjects: string;
@@ -389,6 +393,10 @@ export interface LostMarkExpansionDict {
   description: string;
   badge: string;
   label: string;
+  russianNote?: string;
+  russianLink?: string;
+  russianUrl?: string;
+  englishOnlyNote?: string;
   list: LostMarkExpansionItem[];
 }
 
@@ -418,6 +426,7 @@ export interface LostMarkFoundryDict {
 
 export interface LostMarkRoll20Dict {
   description: string;
+  englishOnly?: string;
   features: string[];
 }
 

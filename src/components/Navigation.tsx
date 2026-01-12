@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 import { useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
 import Image from "next/image";
-
+import { NavDict } from '@/types/i18n';
 
 export default function Navigation({ lang, dict }: { lang: string, dict: NavDict }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

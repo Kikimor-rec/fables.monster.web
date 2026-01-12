@@ -39,5 +39,5 @@ import { getDictionary } from '@/lib/i18n';
 export default async function LostMarkTerminalPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   const dict = await getDictionary(lang, 'terminal');
-  return <LostMarkTerminalClient lang={lang} dict={dict} />;
+  return <LostMarkTerminalClient lang={lang} dict={dict as unknown as Parameters<typeof LostMarkTerminalClient>[0]['dict']} />;
 }
