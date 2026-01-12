@@ -16,7 +16,8 @@
   "buttons": {
     "drivethru": "GET ON DRIVETHRU",
     "itch": "GET ON ITCH.IO",
-    "patreon": "PATREON EXCLUSIVE"
+    "patreon": "PATREON EXCLUSIVE",
+    "rpgbook": "BUY ON RPG BOOK STATION"
   },
   "sections": {
     "about": "About",

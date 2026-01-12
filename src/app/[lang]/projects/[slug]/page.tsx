@@ -6,18 +6,7 @@ import { Metadata } from "next";
 import { getDictionary } from "@/lib/i18n";
 import Navigation from "@/components/Navigation";
 
-interface NavDict {
-    home?: string;
-    projects?: string;
-    lostMark?: string;
-    timer?: string;
-    about?: string;
-    contact?: string;
-}
 
-interface CommonDict {
-    nav?: NavDict;
-}
 
 interface PlatformsType {
     itch?: string;
@@ -64,7 +53,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 export default async function ProjectPage({ params }: { params: Promise<{ lang: string, slug: string }> }) {
     const { lang, slug } = await params;
     const content = await getContent('projects', slug, lang);
-    const dict = await getDictionary(lang, 'common') as CommonDict;
+    const dict = await getDictionary(lang, 'common');
 
     if (!content) {
         notFound();

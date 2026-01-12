@@ -9,92 +9,18 @@ import LostMarkNavigation from '@/components/LostMarkNavigation';
 import { getContent, getFrontmatterString } from '@/lib/content';
 import { getDictionary } from '@/lib/i18n';
 
-interface MetaDict {
-  title?: string;
-  description?: string;
-}
 
-interface FeatureItem {
-  title?: string;
-  description?: string;
-}
 
-interface HeroDict {
-  title?: string;
-  subtitle?: string;
-  description?: string;
-  interactiveNote?: string;
-}
 
-interface ExpansionListItem {
-  title?: string;
-  description?: string;
-}
 
-interface ExpansionDict {
-  badge?: string;
-  label?: string;
-  title?: string;
-  description?: string;
-  list?: ExpansionListItem[];
-  russianNote?: string;
-  russianLink?: string;
-  russianUrl?: string;
-  englishOnlyNote?: string;
-}
 
-interface ToolItem {
-  title?: string;
-  badge?: string;
-  description?: string;
-}
 
-interface ToolsDict {
-  terminal?: ToolItem;
-  timer?: ToolItem;
-}
 
-interface Roll20Dict {
-  description?: string;
-  englishOnly?: string;
-  features?: string[];
-}
-
-interface PricingDict {
-  freeEnglish?: string;
-  paidRussian?: string;
-  russianIncludesAll?: string;
-}
-
-interface LostMarkDict {
-  meta?: MetaDict;
-  hero?: HeroDict;
-  stats?: Record<string, string>;
-  features?: Record<string, string>;
-  featuresList?: FeatureItem[];
-  sections?: Record<string, string>;
-  buy?: Record<string, string>;
-  warning?: Record<string, string>;
-  moreProjects?: string;
-  buttons?: Record<string, string>;
-  nav?: Record<string, string>;
-  about?: Record<string, string>;
-  credits?: Record<string, string>;
-  gallery?: Record<string, string>;
-  music?: Record<string, string>;
-  cta?: Record<string, string>;
-  expansion?: ExpansionDict;
-  foundry?: Record<string, string>;
-  roll20?: Roll20Dict;
-  pricing?: PricingDict;
-  tools?: ToolsDict;
-  soundtrack?: Record<string, string>;
-}
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const content = await getContent('projects', 'lost-mark', lang);
-  const dict = await getDictionary(lang, 'lost-mark') as LostMarkDict;
+  const dict = await getDictionary(lang, 'lost-mark');
   const title = content ? getFrontmatterString(content.frontmatter, 'title') : '';
   const tagline = content ? getFrontmatterString(content.frontmatter, 'tagline') : '';
   
@@ -116,7 +42,7 @@ export const dynamic = 'force-static';
 export default async function LostMark({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   const content = await getContent('projects', 'lost-mark', lang);
-  const dict = await getDictionary(lang, 'lost-mark') as LostMarkDict;
+  const dict = await getDictionary(lang, 'lost-mark');
   
   const contentTitle = content ? getFrontmatterString(content.frontmatter, 'title') : '';
   const contentTagline = content ? getFrontmatterString(content.frontmatter, 'tagline') : '';

@@ -26,37 +26,15 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     };
 }
 
-interface NavDict {
-    home?: string;
-    projects?: string;
-    lostMark?: string;
-    timer?: string;
-    about?: string;
-    contact?: string;
-}
 
-interface StayConnectedDict {
-    label?: string;
-    title?: string;
-    titleHighlight?: string;
-    description?: string;
-    discord?: string;
-    allProjects?: string;
-}
 
-interface HomeDict {
-    stayConnected?: StayConnectedDict;
-}
 
-interface CommonDict {
-    nav?: NavDict;
-}
 
 export default async function ProjectNeonPage({ params }: { params: Promise<{ lang: string }> }) {
     const { lang } = await params;
     const content = await getContent('projects', 'old-world-neon', lang);
-    const dict = await getDictionary(lang, 'common') as CommonDict;
-    const homeDict = await getDictionary(lang, 'home') as HomeDict;
+    const dict = await getDictionary(lang, 'common');
+    const homeDict = await getDictionary(lang, 'home');
 
     return (
         <div className="min-h-screen bg-black relative overflow-hidden">

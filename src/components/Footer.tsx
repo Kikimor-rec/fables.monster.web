@@ -3,16 +3,7 @@
 import Link from 'next/link';
 import SocialLinks from "./SocialLinks";
 import Image from "next/image";
-
-interface FooterDict {
-  tagline?: string;
-  projects?: string;
-  links?: string;
-  social?: string;
-  copyright?: string;
-  about?: string;
-  contact?: string;
-}
+import { FooterDict } from '@/types/i18n';
 
 interface FooterProps {
   lang: string;
