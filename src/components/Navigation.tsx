@@ -6,14 +6,6 @@ import { useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
 import Image from "next/image";
 
-interface NavDict {
-  home?: string;
-  projects?: string;
-  lostMark?: string;
-  timer?: string;
-  about?: string;
-  contact?: string;
-}
 
 export default function Navigation({ lang, dict }: { lang: string, dict: NavDict }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

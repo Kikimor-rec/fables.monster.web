@@ -29,30 +29,6 @@ const nunito = Nunito({
     weight: ['300', '400', '500', '600', '700'],
 });
 
-interface NavDict {
-    home?: string;
-    projects?: string;
-    lostMark?: string;
-    timer?: string;
-    about?: string;
-    contact?: string;
-}
-
-interface FooterDict {
-    tagline?: string;
-    projects?: string;
-    links?: string;
-    social?: string;
-    copyright?: string;
-    about?: string;
-    contact?: string;
-}
-
-interface CommonDict {
-    nav?: NavDict;
-    footer?: FooterDict;
-}
-
 export const metadata: Metadata = {
     metadataBase: new URL('https://fables.monster'),
     title: {
@@ -74,7 +50,7 @@ export default async function RootLayout({
     params: Promise<{ lang: string }>;
 }) {
     const { lang } = await params;
-    const dict = await getDictionary(lang, 'common') as CommonDict;
+    const dict = await getDictionary(lang, 'common');
 
     return (
         <html lang={lang} className={`${orbitron.variable} ${rajdhani.variable} ${nunito.variable}`}>

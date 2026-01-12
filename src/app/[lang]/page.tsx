@@ -8,67 +8,14 @@ import { teamMembers } from "@/data/team";
 import { getDictionary } from '@/lib/i18n';
 import { getAllProjects, getFrontmatterString, getFrontmatterObject } from '@/lib/content';
 
-interface HeroDict {
-    title?: string;
-    subtitle?: string;
-    ctaProjects?: string;
-    ctaContact?: string;
-    ctaLostMark?: string;
-}
 
-interface FeaturedDict {
-    title?: string;
-    viewAll?: string;
-}
 
-interface LatestProjectsDict {
-    title?: string;
-    projects?: string;
-    viewAll?: string;
-}
 
-interface TeamDict {
-    title?: string;
-    subtitle?: string;
-    viewTeam?: string;
-}
 
-interface CtaDict {
-    title?: string;
-    subtitle?: string;
-    button?: string;
-}
 
-interface KrampDict {
-    badge?: string;
-    title?: string;
-    subtitle?: string;
-    description?: string;
-    cta?: string;
-}
 
-interface AboutDict {
-    title?: string;
-    description?: string;
-    cta?: string;
-}
 
-interface StatusDict {
-    released?: string;
-    inDev?: string;
-    comingSoon?: string;
-}
 
-interface HomeDict {
-    hero?: HeroDict;
-    featured?: FeaturedDict;
-    latestProjects?: LatestProjectsDict;
-    team?: TeamDict;
-    cta?: CtaDict;
-    kramp?: KrampDict;
-    about?: AboutDict;
-    status?: StatusDict;
-}
 
 export const metadata: Metadata = {
     title: 'Fables Monster Studio - Independent Tabletop RPG Creators',
@@ -78,7 +25,7 @@ export const metadata: Metadata = {
 
 export default async function Home({ params }: { params: Promise<{ lang: string }> }) {
     const { lang } = await params;
-    const dict = await getDictionary(lang, 'home') as HomeDict;
+    const dict = await getDictionary(lang, 'home');
     
     // Get localized projects from markdown files
     const allProjects = await getAllProjects(lang);

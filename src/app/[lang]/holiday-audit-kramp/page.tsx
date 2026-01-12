@@ -8,22 +8,11 @@ import { getContent, getFrontmatterString } from '@/lib/content';
 import { getDictionary } from '@/lib/i18n';
 import './christmas.css';
 
-interface KrampDict {
-  meta?: { title?: string; description?: string };
-  nav?: Record<string, string>;
-  hero?: { title?: string; subtitle?: string; tagline?: string; badges?: Record<string, string> };
-  features?: Record<string, { name?: string; description?: string }>;
-  sections?: Record<string, string>;
-  buttons?: Record<string, string>;
-  links?: Record<string, string>;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [key: string]: any;
-}
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const content = await getContent('projects', 'holiday-audit-kramp', lang);
-  const dict = await getDictionary(lang, 'kramp') as KrampDict;
+  const dict = await getDictionary(lang, 'kramp');
   const title = content ? getFrontmatterString(content.frontmatter, 'title') || 'Holiday Audit: KRAMP.EXE' : 'Holiday Audit: KRAMP.EXE';
   const tagline = content ? getFrontmatterString(content.frontmatter, 'tagline') || 'A Christmas Eve gone catastrophically wrong in space.' : 'A Christmas Eve gone catastrophically wrong in space.';
 
@@ -43,7 +32,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 export default async function HolidayAuditKramp({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   const content = await getContent('projects', 'holiday-audit-kramp', lang);
-  const dict = await getDictionary(lang, 'kramp') as KrampDict;
+  const dict = await getDictionary(lang, 'kramp');
 
   const contentTitle = content ? getFrontmatterString(content.frontmatter, 'title') : '';
   const contentTagline = content ? getFrontmatterString(content.frontmatter, 'tagline') : '';

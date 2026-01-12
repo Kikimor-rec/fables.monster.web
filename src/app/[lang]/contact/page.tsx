@@ -3,23 +3,13 @@ import Image from "next/image";
 import ContactForm from "@/components/ContactForm";
 import { getDictionary } from "@/lib/i18n";
 
-interface ContactDict {
-  contact?: {
-    metaTitle?: string;
-    metaDescription?: string;
-    title?: string;
-    subtitle?: string;
-    form?: Record<string, string>;
-  };
-}
-
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
-  const dict = await getDictionary(lang, 'common') as ContactDict;
-  
+  const dict = await getDictionary(lang, 'common');
+
   return {
-    title: dict.contact?.metaTitle || 'Contact | Fables Monster Studio',
-    description: dict.contact?.metaDescription || 'Get in touch with Fables Monster Studio',
+    title: dict.contact.metaTitle || 'Contact | Fables Monster Studio',
+    description: dict.contact.metaDescription || 'Get in touch with Fables Monster Studio',
     alternates: {
       canonical: `https://fables.monster/${lang}/contact`,
       languages: {
@@ -32,7 +22,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 
 export default async function Contact({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
-  const dict = await getDictionary(lang, 'common') as ContactDict;
+  const dict = await getDictionary(lang, 'common');
 
   return (
     <div className="bg-black">
@@ -42,7 +32,7 @@ export default async function Contact({ params }: { params: Promise<{ lang: stri
 
         <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
           <h1 className="text-6xl md:text-8xl font-bold text-white mb-6 font-orbitron tracking-wider text-glow-lg">
-            {dict.contact?.title || 'CONTACT'}
+            {dict.contact.title || 'CONTACT'}
           </h1>
 
         </div>
@@ -55,7 +45,7 @@ export default async function Contact({ params }: { params: Promise<{ lang: stri
             {/* Contact Information */}
             <div>
               <h2 className="text-3xl font-bold text-white mb-8 font-orbitron tracking-wide">
-                {(dict.contact as Record<string, string>)?.getInTouch || 'GET IN TOUCH'}
+                {dict.contact.getInTouch || 'GET IN TOUCH'}
               </h2>
               <div className="flex flex-col items-start gap-8 mb-8 p-3">
                 <a href="https://discord.gg/qJS4h5usxe" target="_blank" rel="noopener noreferrer" title="Discord" className="block hover:opacity-80 transition-opacity">
@@ -75,7 +65,7 @@ export default async function Contact({ params }: { params: Promise<{ lang: stri
             </div>
 
             {/* Contact Form */}
-            <ContactForm dict={dict.contact?.form} />
+            <ContactForm dict={dict.contact.form} />
           </div>
         </div>
       </section>

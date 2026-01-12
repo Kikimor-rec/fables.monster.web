@@ -2,15 +2,10 @@ import { Metadata } from 'next'
 import TeamMember from "@/components/TeamMember";
 import { getDictionary } from '@/lib/i18n';
 
-interface CommonDict {
-  nav?: { about?: string };
-  about?: { title?: string; subtitle?: string; values?: Array<{ title: string; description: string; icon?: string }> };
-  team?: Array<{ name: string; role: string; bio: string; image: string; link?: string }>;
-}
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
-  const dict = await getDictionary(lang, 'common') as CommonDict;
+  const dict = await getDictionary(lang, 'common');
   
   return {
     title: `${dict.nav?.about || 'About'} | Fables Monster Studio`,
@@ -27,7 +22,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 
 export default async function About({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
-  const dict = await getDictionary(lang, 'common') as CommonDict;
+  const dict = await getDictionary(lang, 'common');
 
   return (
     <div className="min-h-screen bg-black">

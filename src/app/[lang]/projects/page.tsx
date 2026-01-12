@@ -6,40 +6,9 @@ import { getAllProjects, getFrontmatterString } from "@/lib/content";
 import { getDictionary } from '@/lib/i18n';
 import Navigation from "@/components/Navigation";
 
-interface NavDict {
-  home?: string;
-  projects?: string;
-  lostMark?: string;
-  timer?: string;
-  about?: string;
-  contact?: string;
-}
-
-interface ProjectsDict {
-  description?: string;
-  featured?: string;
-  status?: {
-    released?: string;
-    inDev?: string;
-    comingSoon?: string;
-  };
-  joinCommunity?: {
-    title?: string;
-    description?: string;
-    discord?: string;
-    boosty?: string;
-    patreon?: string;
-  };
-}
-
-interface CommonDict {
-  nav?: NavDict;
-  projects?: ProjectsDict;
-}
-
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
-  const dict = await getDictionary(lang, 'common') as CommonDict;
+  const dict = await getDictionary(lang, 'common');
   
   return {
     title: `${dict.nav?.projects || 'Projects'} | Fables Monster Studio`,
@@ -56,7 +25,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 
 export default async function ProjectsPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
-  const dict = await getDictionary(lang, 'common') as CommonDict;
+  const dict = await getDictionary(lang, 'common');
   const allProjects = await getAllProjects(lang);
 
   // Sort projects: released -> coming-soon -> in-development

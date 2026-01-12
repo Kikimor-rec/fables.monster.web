@@ -23,24 +23,12 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   }
 }
 
-interface NavDict {
-  home?: string;
-  projects?: string;
-  lostMark?: string;
-  timer?: string;
-  about?: string;
-  contact?: string;
-}
 
-interface CommonDict {
-  nav?: NavDict;
-  footer?: Record<string, string>;
-}
 
 export default async function HellishBureaucracy({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   const content = await getContent('projects', 'hellish-bureaucracy', lang);
-  const dict = await getDictionary(lang, 'common') as CommonDict;
+  const dict = await getDictionary(lang, 'common');
   
   const title = content ? getFrontmatterString(content.frontmatter, 'title') : '';
   const tagline = content ? getFrontmatterString(content.frontmatter, 'tagline') : '';
