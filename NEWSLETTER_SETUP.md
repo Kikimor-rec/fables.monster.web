@@ -44,14 +44,15 @@ LISTMONK_API_USER=api_fables_site
 LISTMONK_API_PASSWORD=RuV0UsHczmBDPDe7pWmUjbUPDpA7w6Sf
 
 # Default mailing list ID (get from Listmonk admin)
-LISTMONK_LIST_ID=1
+# For "Fables subscribers" list (ID: 3)
+LISTMONK_LIST_ID=3
 ```
 
 ### 3. Get Your List ID
 
 1. Log in to Listmonk admin: `https://newsletter.fables.monster`
 2. Go to **Lists** in the sidebar
-3. Note the ID of your main mailing list (usually `1` for the first list)
+3. Click on your list to see its ID in the URL or header (e.g., "Fables subscribers" has ID: 3)
 4. Update `LISTMONK_LIST_ID` in your `.env.local`
 
 ## Listmonk Setup
