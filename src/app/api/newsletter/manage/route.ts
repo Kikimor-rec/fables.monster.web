@@ -13,7 +13,7 @@ const manageSchema = z.object({
 const updateSchema = z.object({
   email: z.string().email("Invalid email address"),
   name: z.string().max(100).optional(),
-  attribs: z.record(z.unknown()).optional(),
+  attribs: z.record(z.string(), z.unknown()).optional(),
 });
 
 // Schema for resending confirmation

@@ -1,7 +1,7 @@
 {
   "subscribe": {
     "title": "SUBSCRIBE TO NEWSLETTER",
-    "description": "Stay updated with our latest releases, behind-the-scenes content, and exclusive news from Fables Monster Studio.",
+    "description": "Stay updated with our latest releases, behind-the-scenes content, and exclusive news from Fables Monster Studio. We only send emails about major releases and important development milestones - no spam, just the essentials.",
     "name": "NAME",
     "email": "EMAIL",
     "namePlaceholder": "Your name",
@@ -10,7 +10,7 @@
     "subscribing": "SUBSCRIBING...",
     "success": "Successfully subscribed! Please check your email to confirm your subscription.",
     "error": "Error subscribing. Please try again later.",
-    "privacy": "We respect your privacy. You can unsubscribe at any time. Read our <a href='/en/privacy' class='text-red-400 hover:text-red-300'>privacy policy</a>.",
+    "privacy": "We respect your privacy. You can unsubscribe at any time. We only send emails about major releases and important updates - no spam. Read our <a href='/en/privacy' class='text-red-400 hover:text-red-300'>privacy policy</a>.",
     "metaTitle": "Subscribe to Newsletter - Fables Monster Studio",
     "metaDescription": "Subscribe to Fables Monster Studio newsletter for latest updates on tabletop RPG releases, exclusive content, and behind-the-scenes news."
   },

@@ -74,10 +74,7 @@ export default function NewsletterCTA({ lang }: NewsletterCTAProps) {
     <div className="relative z-10">
       {status === "success" ? (
         <div className="p-6 bg-green-900/20 border border-green-500 text-green-300 font-rajdhani text-center">
-          <div className="flex items-center justify-center gap-2 mb-2">
-            <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M20 6L9 17l-5-5" />
-            </svg>
+          <div className="mb-2">
             <span className="font-bold">{message}</span>
           </div>
           <Link

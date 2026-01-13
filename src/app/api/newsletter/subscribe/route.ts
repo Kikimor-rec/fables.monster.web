@@ -119,7 +119,68 @@ export async function POST(request: NextRequest) {
     if (!response.ok) {
       // Check if user already exists
       if (response.status === 409 || responseData.message?.includes('already exists')) {
-        logger.info('Subscriber already exists', { email });
+        logger.info('Subscriber already exists, checking lists', { email });
+
+        // Search for existing subscriber
+        const searchResponse = await fetch(
+          `${listmonkUrl}/api/subscribers?query=${encodeURIComponent(`email = '${email}'`)}`,
+          {
+            method: 'GET',
+            headers: {
+              'Authorization': authHeader,
+              'Content-Type': 'application/json',
+            },
+          }
+        );
+
+        const searchData = await searchResponse.json();
+
+        if (searchResponse.ok && searchData.data?.results?.length > 0) {
+          const subscriber = searchData.data.results[0];
+          const subscriberId = subscriber.id;
+          const currentListIds = subscriber.lists.map((l: { id: number }) => l.id);
+
+          // Check if already subscribed to this list
+          if (currentListIds.includes(listId)) {
+            logger.info('Subscriber already in list', { email, listId });
+            return NextResponse.json(
+              { message: 'You are already subscribed to our newsletter!' },
+              { status: 200 }
+            );
+          }
+
+          // Add to the list
+          logger.info('Adding existing subscriber to list', { email, listId });
+          const updateResponse = await fetch(`${listmonkUrl}/api/subscribers/${subscriberId}`, {
+            method: 'PUT',
+            headers: {
+              'Authorization': authHeader,
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              email: subscriber.email,
+              name: name || subscriber.name,
+              lists: [...currentListIds, listId],
+              status: 'enabled',
+              attribs: {
+                ...subscriber.attribs,
+                language: lang || subscriber.attribs?.language || 'en',
+              },
+            }),
+          });
+
+          if (updateResponse.ok) {
+            logger.info('Subscriber added to list successfully', { email, listId });
+            return NextResponse.json(
+              {
+                message: 'Successfully subscribed! Please check your email to confirm.',
+                requiresConfirmation: true,
+              },
+              { status: 200 }
+            );
+          }
+        }
+
         return NextResponse.json(
           { message: 'You are already subscribed to our newsletter!' },
           { status: 200 }
