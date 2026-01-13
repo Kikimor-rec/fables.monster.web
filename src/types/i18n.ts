@@ -7,7 +7,7 @@
 export type Language = 'en' | 'ru';
 
 // Словари для каждой секции
-export type DictionaryNamespace = 'common' | 'home' | 'kramp' | 'lost-mark' | 'terminal';
+export type DictionaryNamespace = 'common' | 'home' | 'kramp' | 'lost-mark' | 'terminal' | 'newsletter';
 
 // === COMMON DICTIONARY ===
 
@@ -544,6 +544,79 @@ export interface TerminalDict {
   messages: TerminalMessagesDict;
 }
 
+// === NEWSLETTER DICTIONARY ===
+
+export interface NewsletterSubscribeDict {
+  title: string;
+  description: string;
+  name: string;
+  email: string;
+  namePlaceholder: string;
+  emailPlaceholder: string;
+  submit: string;
+  subscribing: string;
+  success: string;
+  error: string;
+  privacy: string;
+  metaTitle: string;
+  metaDescription: string;
+}
+
+export interface NewsletterUnsubscribeDict {
+  title: string;
+  description: string;
+  email: string;
+  emailPlaceholder: string;
+  submit: string;
+  unsubscribing: string;
+  success: string;
+  notFound: string;
+  error: string;
+  metaTitle: string;
+  metaDescription: string;
+}
+
+export interface NewsletterConfirmationSuccessDict {
+  heading: string;
+  message: string;
+  action: string;
+}
+
+export interface NewsletterConfirmationErrorDict {
+  heading: string;
+  message: string;
+  action: string;
+}
+
+export interface NewsletterConfirmationDict {
+  title: string;
+  success: NewsletterConfirmationSuccessDict;
+  error: NewsletterConfirmationErrorDict;
+  metaTitle: string;
+  metaDescription: string;
+}
+
+export interface NewsletterCompactDict {
+  emailPlaceholder: string;
+  submit: string;
+  subscribing: string;
+  success: string;
+}
+
+export interface NewsletterFooterDict {
+  title: string;
+  description: string;
+  subscribe: string;
+}
+
+export interface NewsletterDict {
+  subscribe: NewsletterSubscribeDict;
+  unsubscribe: NewsletterUnsubscribeDict;
+  confirmation: NewsletterConfirmationDict;
+  compact: NewsletterCompactDict;
+  footer: NewsletterFooterDict;
+}
+
 // === MASTER DICTIONARY TYPE ===
 
 export interface Dictionary {
@@ -552,6 +625,7 @@ export interface Dictionary {
   kramp: KrampDict;
   'lost-mark': LostMarkDict;
   terminal: TerminalDict;
+  newsletter: NewsletterDict;
 }
 
 // === UTILITY TYPES ===

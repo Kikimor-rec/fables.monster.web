@@ -9,6 +9,7 @@ import type {
   KrampDict,
   LostMarkDict,
   TerminalDict,
+  NewsletterDict,
 } from '@/types/i18n';
 
 type DictionaryLoader<T> = () => Promise<T>;
@@ -19,6 +20,7 @@ interface DictionaryLoaders {
   'lost-mark': DictionaryLoader<LostMarkDict>;
   kramp: DictionaryLoader<KrampDict>;
   terminal: DictionaryLoader<TerminalDict>;
+  newsletter: DictionaryLoader<NewsletterDict>;
 }
 
 type Dictionaries = Record<Language, DictionaryLoaders>;
@@ -30,6 +32,7 @@ const dictionaries: Dictionaries = {
     'lost-mark': () => import('@/locales/en/lost-mark.json').then((module) => module.default as LostMarkDict),
     kramp: () => import('@/locales/en/kramp.json').then((module) => module.default as KrampDict),
     terminal: () => import('@/locales/en/terminal.json').then((module) => module.default as TerminalDict),
+    newsletter: () => import('@/locales/en/newsletter.json').then((module) => module.default as NewsletterDict),
   },
   ru: {
     common: () => import('@/locales/ru/common.json').then((module) => module.default as CommonDict),
@@ -37,6 +40,7 @@ const dictionaries: Dictionaries = {
     'lost-mark': () => import('@/locales/ru/lost-mark.json').then((module) => module.default as LostMarkDict),
     kramp: () => import('@/locales/ru/kramp.json').then((module) => module.default as KrampDict),
     terminal: () => import('@/locales/ru/terminal.json').then((module) => module.default as TerminalDict),
+    newsletter: () => import('@/locales/ru/newsletter.json').then((module) => module.default as NewsletterDict),
   },
 };
 

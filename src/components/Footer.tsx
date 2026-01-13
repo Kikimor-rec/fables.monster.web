@@ -3,14 +3,16 @@
 import Link from 'next/link';
 import SocialLinks from "./SocialLinks";
 import Image from "next/image";
-import { FooterDict } from '@/types/i18n';
+import NewsletterForm from "./NewsletterForm";
+import { FooterDict, NewsletterFooterDict } from '@/types/i18n';
 
 interface FooterProps {
   lang: string;
   dict: FooterDict;
+  newsletterDict?: NewsletterFooterDict;
 }
 
-export default function Footer({ lang, dict }: FooterProps) {
+export default function Footer({ lang, dict, newsletterDict }: FooterProps) {
   return (
     <footer className="bg-black py-12 border-t border-red-700">
       <div className="max-w-7xl mx-auto px-6">
@@ -59,9 +61,21 @@ export default function Footer({ lang, dict }: FooterProps) {
           </div>
           <div>
             <h4 className="text-lg font-bold text-white mb-4 font-nunito">
-              {dict?.social || "SOCIAL"}
+              {newsletterDict?.title || (lang === 'ru' ? 'РАССЫЛКА' : 'NEWSLETTER')}
             </h4>
-            <SocialLinks showLabels={false} className="justify-start" />
+            <p className="text-gray-300 text-sm mb-4 font-nunito">
+              {newsletterDict?.description || (lang === 'ru' ? 'Получайте новости о релизах' : 'Get updates on new releases')}
+            </p>
+            <NewsletterForm
+              dict={{
+                emailPlaceholder: newsletterDict?.subscribe || (lang === 'ru' ? 'ваш@email.com' : 'your@email.com'),
+                submit: newsletterDict?.subscribe || (lang === 'ru' ? 'ПОДПИСАТЬСЯ' : 'SUBSCRIBE'),
+                subscribing: '...',
+                success: lang === 'ru' ? 'Успешно! Проверьте почту.' : 'Success! Check your email.',
+              }}
+              lang={lang}
+              compact={true}
+            />
           </div>
         </div>
         <div className="mt-12 pt-8 border-t border-gray-800 text-center text-gray-400 font-nunito">
