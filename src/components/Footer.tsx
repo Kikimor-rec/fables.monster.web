@@ -36,8 +36,18 @@ export default function Footer({ lang, dict, newsletterDict }: FooterProps) {
                 </Link>
               </li>
               <li>
+                <Link href={`/${lang}/holiday-audit-kramp`} className="hover:text-red-400 transition-colors">
+                  Holiday Audit: Kramp.exe
+                </Link>
+              </li>
+              <li>
                 <Link href={`/${lang}/hellish-bureaucracy`} className="hover:text-red-400 transition-colors">
                   Hellish Bureaucracy
+                </Link>
+              </li>
+              <li>
+                <Link href={`/${lang}/old-world-neon`} className="hover:text-red-400 transition-colors">
+                  Old World Neon
                 </Link>
               </li>
             </ul>
