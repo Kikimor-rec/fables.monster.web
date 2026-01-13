@@ -104,13 +104,13 @@ export default async function PrivacyPolicy({ params }: { params: Promise<{ lang
           content: [
             "<strong>Data Storage Locations:</strong>",
             "• <strong>Website Hosting:</strong> Vercel (servers primarily in the United States and Europe)",
-            "• <strong>Newsletter Service:</strong> Listmonk, self-hosted on our servers (data location: check with hosting provider)",
+            "• <strong>Newsletter Service:</strong> Listmonk, self-hosted on our servers in Karlsruhe, Germany (European Union)",
             "• <strong>Email Service:</strong> For newsletter and transactional emails (server location varies by provider)",
             "",
             "<strong>International Transfers:</strong>",
-            "Your data may be transferred to and processed in countries outside your country of residence, including the United States and European Union. We ensure appropriate safeguards are in place in accordance with GDPR and other applicable data protection laws.",
+            "Your newsletter subscription data is stored in Germany (EU). Your website data may be processed in the United States and European Union through Vercel's infrastructure. We ensure appropriate safeguards are in place in accordance with GDPR and other applicable data protection laws.",
             "",
-            "For EEA/UK residents: When we transfer data outside the EEA/UK, we use approved safeguards such as Standard Contractual Clauses (SCCs) or rely on adequacy decisions by the European Commission."
+            "For EEA/UK residents: Your newsletter data remains within the EU. When we transfer other data outside the EEA/UK, we use approved safeguards such as Standard Contractual Clauses (SCCs) or rely on adequacy decisions by the European Commission."
           ]
         },
         {
@@ -225,13 +225,13 @@ export default async function PrivacyPolicy({ params }: { params: Promise<{ lang
           content: [
             "<strong>Местоположение хранения данных:</strong>",
             "• <strong>Хостинг сайта:</strong> Vercel (серверы преимущественно в США и Европе)",
-            "• <strong>Сервис рассылок:</strong> Listmonk, размещен на наших серверах (местоположение данных: уточните у провайдера хостинга)",
+            "• <strong>Сервис рассылок:</strong> Listmonk, размещен на наших серверах в Карлсруэ, Германия (Европейский Союз)",
             "• <strong>Email-сервис:</strong> Для рассылок и транзакционных писем (местоположение серверов зависит от провайдера)",
             "",
             "<strong>Международная передача данных:</strong>",
-            "Ваши данные могут передаваться и обрабатываться в странах за пределами вашей страны проживания, включая США и Европейский Союз. Мы обеспечиваем соответствующие меры защиты в соответствии с GDPR и другими применимыми законами о защите данных.",
+            "Ваши данные подписки на рассылку хранятся в Германии (ЕС). Данные сайта могут обрабатываться в США и Европейском Союзе через инфраструктуру Vercel. Мы обеспечиваем соответствующие меры защиты в соответствии с GDPR и другими применимыми законами о защите данных.",
             "",
-            "Для резидентов ЕЭЗ/Великобритании: При передаче данных за пределы ЕЭЗ/Великобритании мы используем утвержденные меры защиты, такие как Стандартные договорные оговорки (SCC), или полагаемся на решения Европейской комиссии о достаточности."
+            "Для резидентов ЕЭЗ/Великобритании: Ваши данные подписки остаются в пределах ЕС. При передаче других данных за пределы ЕЭЗ/Великобритании мы используем утвержденные меры защиты, такие как Стандартные договорные оговорки (SCC), или полагаемся на решения Европейской комиссии о достаточности."
           ]
         },
         {
