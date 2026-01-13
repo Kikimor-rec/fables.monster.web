@@ -1,0 +1,328 @@
+/**
+ * Simplified CSS for Listmonk Admin - Fables Monster Theme
+ * If the full CSS doesn't work, use this simplified version
+ *
+ * Installation: Copy this to Listmonk Settings → Appearance → Admin custom CSS
+ */
+
+/* IMPORTANT: Add !important to ALL properties for maximum specificity */
+
+/* Background */
+body,
+html,
+#app {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+/* All text */
+*:not(input):not(textarea):not(select) {
+  color: #ffffff !important;
+}
+
+/* Dark surfaces */
+.section,
+.container,
+.box,
+.card,
+.modal-background,
+.panel,
+.menu {
+  background-color: #0a0a0a !important;
+}
+
+/* Navigation */
+.navbar {
+  background-color: #0a0a0a !important;
+  border-bottom: 2px solid #ff1f1f !important;
+}
+
+/* Sidebar */
+aside,
+.menu-list,
+.aside {
+  background-color: #000000 !important;
+}
+
+.menu-list a {
+  color: #b0b0b0 !important;
+  background-color: transparent !important;
+}
+
+.menu-list a:hover,
+.menu-list a.is-active {
+  background-color: #1a1a1a !important;
+  color: #ff1f1f !important;
+  border-left: 3px solid #ff1f1f !important;
+}
+
+/* Tables */
+.table {
+  background-color: #0f0f0f !important;
+  color: #ffffff !important;
+}
+
+.table thead th {
+  background-color: #1a1a1a !important;
+  color: #ff1f1f !important;
+  border-color: #ff1f1f !important;
+}
+
+.table tbody td {
+  background-color: #0f0f0f !important;
+  color: #b0b0b0 !important;
+  border-color: #4a0000 !important;
+}
+
+.table tbody tr:hover {
+  background-color: #1a1a1a !important;
+}
+
+/* Inputs */
+input,
+textarea,
+select {
+  background-color: #1a1a1a !important;
+  color: #ffffff !important;
+  border: 1px solid #4a0000 !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #ff1f1f !important;
+  box-shadow: 0 0 0 0.125em rgba(255, 31, 31, 0.25) !important;
+}
+
+/* Buttons */
+.button {
+  font-weight: 600 !important;
+  border-radius: 0 !important;
+}
+
+.button.is-primary {
+  background-color: #ff1f1f !important;
+  border-color: #ff1f1f !important;
+  color: #ffffff !important;
+}
+
+.button.is-primary:hover {
+  background-color: #e01818 !important;
+  box-shadow: 0 0 10px rgba(255, 31, 31, 0.5) !important;
+}
+
+.button.is-light,
+.button.is-default {
+  background-color: #1a1a1a !important;
+  border-color: #4a0000 !important;
+  color: #ffffff !important;
+}
+
+.button.is-light:hover,
+.button.is-default:hover {
+  background-color: #0a0a0a !important;
+  border-color: #ff1f1f !important;
+  color: #ff1f1f !important;
+}
+
+/* Cards */
+.card {
+  background-color: #0f0f0f !important;
+  border: 1px solid #4a0000 !important;
+}
+
+.card-header {
+  background-color: #1a1a1a !important;
+  border-bottom: 1px solid #ff1f1f !important;
+}
+
+.card-header-title {
+  color: #ffffff !important;
+}
+
+/* Modals */
+.modal-card {
+  background-color: #0f0f0f !important;
+  border: 2px solid #ff1f1f !important;
+}
+
+.modal-card-head {
+  background-color: #1a1a1a !important;
+  border-bottom: 2px solid #ff1f1f !important;
+}
+
+.modal-card-title {
+  color: #ffffff !important;
+}
+
+.modal-card-body {
+  background-color: #0f0f0f !important;
+}
+
+.modal-card-foot {
+  background-color: #1a1a1a !important;
+  border-top: 1px solid #4a0000 !important;
+}
+
+/* Tags/Badges */
+.tag,
+.badge {
+  border-radius: 0 !important;
+  font-weight: 600 !important;
+}
+
+.tag.is-primary {
+  background-color: #ff1f1f !important;
+  color: #ffffff !important;
+}
+
+.tag.is-success {
+  background-color: #10b981 !important;
+  color: #ffffff !important;
+}
+
+.tag.is-danger {
+  background-color: #ef4444 !important;
+  color: #ffffff !important;
+}
+
+/* Notifications */
+.notification {
+  background-color: #0f0f0f !important;
+  border-left: 4px solid #ff1f1f !important;
+  color: #ffffff !important;
+}
+
+.notification.is-success {
+  border-left-color: #10b981 !important;
+}
+
+.notification.is-danger {
+  border-left-color: #ef4444 !important;
+}
+
+/* Dropdown */
+.dropdown-menu {
+  background-color: #0f0f0f !important;
+  border: 1px solid #4a0000 !important;
+}
+
+.dropdown-item {
+  color: #b0b0b0 !important;
+}
+
+.dropdown-item:hover {
+  background-color: #1a1a1a !important;
+  color: #ff1f1f !important;
+}
+
+/* Pagination */
+.pagination-link,
+.pagination-previous,
+.pagination-next {
+  background-color: #1a1a1a !important;
+  border-color: #4a0000 !important;
+  color: #ffffff !important;
+}
+
+.pagination-link:hover,
+.pagination-previous:hover,
+.pagination-next:hover {
+  background-color: #0a0a0a !important;
+  border-color: #ff1f1f !important;
+  color: #ff1f1f !important;
+}
+
+.pagination-link.is-current {
+  background-color: #ff1f1f !important;
+  border-color: #ff1f1f !important;
+}
+
+/* Tabs */
+.tabs a {
+  color: #b0b0b0 !important;
+}
+
+.tabs a:hover {
+  color: #ffffff !important;
+}
+
+.tabs a.is-active {
+  color: #ff1f1f !important;
+  border-bottom-color: #ff1f1f !important;
+  border-bottom-width: 3px !important;
+}
+
+/* Labels */
+.label {
+  color: #ffffff !important;
+  font-weight: 600 !important;
+}
+
+/* Help text */
+.help {
+  color: #707070 !important;
+}
+
+/* Progress bar */
+.progress {
+  background-color: #1a1a1a !important;
+}
+
+.progress::-webkit-progress-value {
+  background-color: #ff1f1f !important;
+}
+
+.progress::-moz-progress-bar {
+  background-color: #ff1f1f !important;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4a0000;
+  border: 2px solid #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ff1f1f;
+}
+
+/* Links */
+a {
+  color: #ff1f1f !important;
+}
+
+a:hover {
+  color: #e01818 !important;
+}
+
+/* Borders */
+hr {
+  background-color: #4a0000 !important;
+}
+
+/* Panel */
+.panel-heading {
+  background-color: #1a1a1a !important;
+  color: #ff1f1f !important;
+  border: 1px solid #ff1f1f !important;
+}
+
+.panel-block {
+  background-color: #0f0f0f !important;
+  color: #ffffff !important;
+  border: 1px solid #4a0000 !important;
+}
+
+.panel-block:hover {
+  background-color: #1a1a1a !important;
+}

@@ -4,6 +4,7 @@ import Image from "next/image";
 import FadeIn from "@/components/FadeIn";
 import OptimizedImage from "@/components/OptimizedImage";
 import CompactTeamMember from "@/components/CompactTeamMember";
+import NewsletterCTA from "@/components/NewsletterCTA";
 import { teamMembers } from "@/data/team";
 import { getDictionary } from '@/lib/i18n';
 import { getAllProjects, getFrontmatterString, getFrontmatterObject } from '@/lib/content';
@@ -261,6 +262,71 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
                             >
                                 {dict.about?.cta || 'MEET THE TEAM →'}
                             </Link>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Newsletter CTA Section */}
+            <section className="py-24 bg-gradient-to-b from-black to-red-950/20 border-t border-red-700/30 relative overflow-hidden">
+                <div className="absolute inset-0 bg-[url('/grid.png')] opacity-10"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-red-500/5 to-transparent"></div>
+
+                <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
+                    <div className="text-center mb-12">
+                        <div className="inline-block mb-4">
+                            <span className="text-red-400 font-orbitron text-sm tracking-[0.3em] uppercase border border-red-700 px-4 py-2">
+                                {lang === 'ru' ? 'Оставайтесь на связи' : 'Stay Connected'}
+                            </span>
+                        </div>
+                        <h2 className="text-4xl md:text-6xl font-bold text-white font-orbitron mb-6 text-glow-md">
+                            {lang === 'ru' ? 'ПОДПИШИТЕСЬ НА РАССЫЛКУ' : 'SUBSCRIBE TO NEWSLETTER'}
+                        </h2>
+                        <p className="text-lg md:text-xl text-gray-300 font-rajdhani max-w-2xl mx-auto mb-8">
+                            {lang === 'ru'
+                                ? 'Получайте эксклюзивные новости о релизах, закулисный контент и специальные предложения прямо на почту.'
+                                : 'Get exclusive updates on releases, behind-the-scenes content, and special offers delivered straight to your inbox.'}
+                        </p>
+                    </div>
+
+                    <div className="bg-black border-2 border-red-700 p-8 shadow-2xl shadow-red-900/30 relative">
+                        <div className="absolute inset-0 bg-gradient-to-br from-red-950/10 to-transparent"></div>
+                        <NewsletterCTA lang={lang} />
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+                        <div className="text-center p-6 bg-black/50 border border-red-700/30">
+                            <div className="text-3xl mb-3">🎲</div>
+                            <h3 className="text-lg font-bold text-white font-orbitron mb-2">
+                                {lang === 'ru' ? 'НОВЫЕ РЕЛИЗЫ' : 'NEW RELEASES'}
+                            </h3>
+                            <p className="text-gray-400 font-rajdhani text-sm">
+                                {lang === 'ru'
+                                    ? 'Узнавайте первыми о новых проектах'
+                                    : 'Be first to know about new projects'}
+                            </p>
+                        </div>
+                        <div className="text-center p-6 bg-black/50 border border-red-700/30">
+                            <div className="text-3xl mb-3">🎨</div>
+                            <h3 className="text-lg font-bold text-white font-orbitron mb-2">
+                                {lang === 'ru' ? 'ЭКСКЛЮЗИВЫ' : 'EXCLUSIVE CONTENT'}
+                            </h3>
+                            <p className="text-gray-400 font-rajdhani text-sm">
+                                {lang === 'ru'
+                                    ? 'За кулисами разработки'
+                                    : 'Behind-the-scenes insights'}
+                            </p>
+                        </div>
+                        <div className="text-center p-6 bg-black/50 border border-red-700/30">
+                            <div className="text-3xl mb-3">🎁</div>
+                            <h3 className="text-lg font-bold text-white font-orbitron mb-2">
+                                {lang === 'ru' ? 'СПЕЦИАЛЬНЫЕ ПРЕДЛОЖЕНИЯ' : 'SPECIAL OFFERS'}
+                            </h3>
+                            <p className="text-gray-400 font-rajdhani text-sm">
+                                {lang === 'ru'
+                                    ? 'Скидки и эксклюзивные промо'
+                                    : 'Discounts and exclusive promos'}
+                            </p>
                         </div>
                     </div>
                 </div>
