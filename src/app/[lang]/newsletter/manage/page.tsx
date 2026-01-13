@@ -4,6 +4,16 @@ import { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 
+interface SubscriberData {
+  email: string;
+  name: string;
+  status: string;
+  lists: Array<{ id: number; name: string }>;
+  attribs: Record<string, unknown>;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export default function NewsletterManage() {
   const params = useParams();
   const router = useRouter();
@@ -12,7 +22,7 @@ export default function NewsletterManage() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "found" | "notfound" | "error">("idle");
-  const [subscriberData, setSubscriberData] = useState<any>(null);
+  const [subscriberData, setSubscriberData] = useState<SubscriberData | null>(null);
   const [isUpdating, setIsUpdating] = useState(false);
   const [isResending, setIsResending] = useState(false);
   const [message, setMessage] = useState("");
@@ -74,8 +84,7 @@ export default function NewsletterManage() {
 
   const t = dict[lang as keyof typeof dict] || dict.en;
 
-  const handleCheckStatus = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const checkStatusRequest = async () => {
     setStatus("loading");
     setMessage("");
 
@@ -101,6 +110,11 @@ export default function NewsletterManage() {
     }
   };
 
+  const handleCheckStatus = async (e: React.FormEvent) => {
+    e.preventDefault();
+    await checkStatusRequest();
+  };
+
   const handleUpdate = async () => {
     setIsUpdating(true);
     setMessage("");
@@ -122,7 +136,7 @@ export default function NewsletterManage() {
       if (response.ok) {
         setMessage(t.updateSuccess);
         // Refresh subscriber data
-        handleCheckStatus(new Event('submit') as any);
+        await checkStatusRequest();
       } else {
         setMessage(data.error || "Update failed");
       }

@@ -13,7 +13,7 @@ const manageSchema = z.object({
 const updateSchema = z.object({
   email: z.string().email("Invalid email address"),
   name: z.string().max(100).optional(),
-  attribs: z.record(z.any()).optional(),
+  attribs: z.record(z.unknown()).optional(),
 });
 
 // Schema for resending confirmation
@@ -161,7 +161,7 @@ export async function PUT(request: NextRequest) {
     const subscriberId = searchData.data.results[0].id;
 
     // Update subscriber
-    const updateData: any = {};
+    const updateData: Record<string, unknown> = {};
     if (validatedData.name) updateData.name = validatedData.name;
     if (validatedData.attribs) updateData.attribs = validatedData.attribs;
 
@@ -280,7 +280,7 @@ export async function POST(request: NextRequest) {
       body: JSON.stringify({
         email: subscriber.email,
         name: subscriber.name,
-        lists: subscriber.lists.map((l: any) => l.id),
+        lists: subscriber.lists.map((l: { id: number }) => l.id),
         status: 'unconfirmed',
       }),
     });
