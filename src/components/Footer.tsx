@@ -46,7 +46,7 @@ export default function Footer({ lang, dict, newsletterDict }: FooterProps) {
             <h4 className="text-lg font-bold text-white mb-4 font-nunito">
               {dict?.links || "LINKS"}
             </h4>
-            <ul className="space-y-2 text-gray-300 font-nunito">
+            <ul className="space-y-2 text-gray-300 font-nunito mb-6">
               <li>
                 <Link href={`/${lang}/about`} className="hover:text-red-400 transition-colors">
                   {dict?.about || "About"}
@@ -58,6 +58,10 @@ export default function Footer({ lang, dict, newsletterDict }: FooterProps) {
                 </Link>
               </li>
             </ul>
+            <h4 className="text-lg font-bold text-white mb-4 font-nunito">
+              {dict?.social || "SOCIAL"}
+            </h4>
+            <SocialLinks showLabels={false} className="justify-start" />
           </div>
           <div>
             <h4 className="text-lg font-bold text-white mb-4 font-nunito">
