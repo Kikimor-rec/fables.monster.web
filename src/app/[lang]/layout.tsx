@@ -51,6 +51,7 @@ export default async function RootLayout({
 }) {
     const { lang } = await params;
     const dict = await getDictionary(lang, 'common');
+    const newsletterDict = await getDictionary(lang, 'newsletter');
 
     return (
         <html lang={lang} className={`${orbitron.variable} ${rajdhani.variable} ${nunito.variable}`}>
@@ -58,7 +59,7 @@ export default async function RootLayout({
                 {process.env.NEXT_PUBLIC_GA_ID && <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />}
                 <Navigation lang={lang} dict={dict.nav || {}} />
                 {children}
-                <Footer lang={lang} dict={dict.footer || {}} />
+                <Footer lang={lang} dict={dict.footer || {}} newsletterDict={newsletterDict.footer || undefined} />
                 <Analytics />
             </body>
         </html>

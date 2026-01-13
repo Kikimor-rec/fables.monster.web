@@ -1,0 +1,521 @@
+/**
+ * Custom CSS for Listmonk Admin Panel
+ * Theme: Fables Monster Studio - Sci-Fi Neon
+ *
+ * Installation:
+ * 1. Go to Listmonk Settings > Appearance
+ * 2. Paste this CSS into the "Admin custom CSS" field
+ * 3. Save settings
+ */
+
+/* ========== ROOT VARIABLES ========== */
+:root {
+  --primary-color: #ff1f1f;
+  --primary-hover: #e01818;
+  --primary-dark: #b31414;
+  --bg-dark: #000000;
+  --bg-darker: #0a0a0a;
+  --bg-surface: #1a1a1a;
+  --bg-card: #0f0f0f;
+  --border-color: #ff1f1f;
+  --border-dim: #4a0000;
+  --text-primary: #ffffff;
+  --text-secondary: #b0b0b0;
+  --text-dim: #707070;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --neon-glow: 0 0 10px rgba(255, 31, 31, 0.5);
+  --neon-glow-strong: 0 0 20px rgba(255, 31, 31, 0.8);
+}
+
+/* ========== GLOBAL OVERRIDES ========== */
+body {
+  background-color: var(--bg-dark) !important;
+  color: var(--text-primary) !important;
+  font-family: 'Rajdhani', 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+/* ========== NAVIGATION & HEADER ========== */
+.navbar,
+nav.navbar {
+  background-color: var(--bg-darker) !important;
+  border-bottom: 2px solid var(--border-color) !important;
+  box-shadow: var(--neon-glow) !important;
+}
+
+.navbar-brand,
+.navbar-item,
+.navbar-link {
+  color: var(--text-primary) !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.5px !important;
+}
+
+.navbar-item:hover,
+.navbar-link:hover {
+  background-color: var(--bg-surface) !important;
+  color: var(--primary-color) !important;
+}
+
+.navbar-dropdown {
+  background-color: var(--bg-card) !important;
+  border: 1px solid var(--border-dim) !important;
+}
+
+/* ========== SIDEBAR ========== */
+.menu,
+aside.menu {
+  background-color: var(--bg-darker) !important;
+}
+
+.menu-label {
+  color: var(--primary-color) !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  font-size: 0.75rem !important;
+}
+
+.menu-list a {
+  color: var(--text-secondary) !important;
+  border-left: 3px solid transparent !important;
+  transition: all 0.2s ease !important;
+}
+
+.menu-list a:hover {
+  background-color: var(--bg-surface) !important;
+  color: var(--text-primary) !important;
+  border-left-color: var(--primary-color) !important;
+}
+
+.menu-list a.is-active {
+  background-color: var(--bg-surface) !important;
+  color: var(--primary-color) !important;
+  border-left-color: var(--primary-color) !important;
+  box-shadow: inset var(--neon-glow) !important;
+}
+
+/* ========== CONTENT AREA ========== */
+.section {
+  background-color: var(--bg-dark) !important;
+}
+
+.box,
+.card {
+  background-color: var(--bg-card) !important;
+  border: 1px solid var(--border-dim) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5) !important;
+}
+
+.card-header {
+  background-color: var(--bg-surface) !important;
+  border-bottom: 1px solid var(--border-color) !important;
+  box-shadow: var(--neon-glow) !important;
+}
+
+.card-header-title {
+  color: var(--text-primary) !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+}
+
+/* ========== TABLES ========== */
+.table {
+  background-color: var(--bg-card) !important;
+  color: var(--text-primary) !important;
+  border: 1px solid var(--border-dim) !important;
+}
+
+.table thead {
+  background-color: var(--bg-surface) !important;
+  border-bottom: 2px solid var(--border-color) !important;
+}
+
+.table thead th {
+  color: var(--primary-color) !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  border-bottom: 2px solid var(--border-color) !important;
+}
+
+.table tbody tr {
+  border-bottom: 1px solid var(--border-dim) !important;
+  transition: background-color 0.2s ease !important;
+}
+
+.table tbody tr:hover {
+  background-color: var(--bg-surface) !important;
+}
+
+.table td {
+  color: var(--text-secondary) !important;
+  border-bottom: 1px solid var(--border-dim) !important;
+}
+
+/* ========== BUTTONS ========== */
+.button {
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  border-radius: 0 !important;
+  transition: all 0.2s ease !important;
+}
+
+.button.is-primary {
+  background-color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+  color: var(--text-primary) !important;
+}
+
+.button.is-primary:hover {
+  background-color: var(--primary-hover) !important;
+  box-shadow: var(--neon-glow-strong) !important;
+}
+
+.button.is-success {
+  background-color: var(--success) !important;
+  border-color: var(--success) !important;
+}
+
+.button.is-danger {
+  background-color: var(--error) !important;
+  border-color: var(--error) !important;
+}
+
+.button.is-light {
+  background-color: var(--bg-surface) !important;
+  border-color: var(--border-dim) !important;
+  color: var(--text-primary) !important;
+}
+
+.button.is-light:hover {
+  background-color: var(--bg-darker) !important;
+  border-color: var(--primary-color) !important;
+  color: var(--primary-color) !important;
+}
+
+/* ========== FORMS ========== */
+.input,
+.textarea,
+.select select {
+  background-color: var(--bg-surface) !important;
+  border: 1px solid var(--border-dim) !important;
+  color: var(--text-primary) !important;
+  border-radius: 0 !important;
+}
+
+.input:focus,
+.textarea:focus,
+.select select:focus {
+  border-color: var(--primary-color) !important;
+  box-shadow: var(--neon-glow) !important;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: var(--text-dim) !important;
+}
+
+.label {
+  color: var(--text-primary) !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  font-size: 0.75rem !important;
+  letter-spacing: 0.5px !important;
+}
+
+.help {
+  color: var(--text-dim) !important;
+}
+
+/* ========== TAGS & BADGES ========== */
+.tag,
+.badge {
+  border-radius: 0 !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  font-size: 0.7rem !important;
+  letter-spacing: 0.5px !important;
+}
+
+.tag.is-primary {
+  background-color: var(--primary-color) !important;
+  color: var(--text-primary) !important;
+}
+
+.tag.is-success {
+  background-color: var(--success) !important;
+  color: var(--text-primary) !important;
+}
+
+.tag.is-danger {
+  background-color: var(--error) !important;
+  color: var(--text-primary) !important;
+}
+
+.tag.is-warning {
+  background-color: var(--warning) !important;
+  color: var(--bg-dark) !important;
+}
+
+/* ========== NOTIFICATIONS ========== */
+.notification {
+  background-color: var(--bg-card) !important;
+  border-left: 4px solid var(--primary-color) !important;
+  color: var(--text-primary) !important;
+}
+
+.notification.is-success {
+  border-left-color: var(--success) !important;
+}
+
+.notification.is-danger {
+  border-left-color: var(--error) !important;
+}
+
+.notification.is-warning {
+  border-left-color: var(--warning) !important;
+}
+
+/* ========== MODALS ========== */
+.modal-background {
+  background-color: rgba(0, 0, 0, 0.9) !important;
+}
+
+.modal-card {
+  background-color: var(--bg-card) !important;
+  border: 2px solid var(--border-color) !important;
+  box-shadow: var(--neon-glow-strong), 0 8px 32px rgba(0, 0, 0, 0.8) !important;
+}
+
+.modal-card-head {
+  background-color: var(--bg-surface) !important;
+  border-bottom: 2px solid var(--border-color) !important;
+}
+
+.modal-card-title {
+  color: var(--text-primary) !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+}
+
+.modal-card-body {
+  background-color: var(--bg-card) !important;
+  color: var(--text-primary) !important;
+}
+
+.modal-card-foot {
+  background-color: var(--bg-surface) !important;
+  border-top: 1px solid var(--border-dim) !important;
+}
+
+/* ========== PAGINATION ========== */
+.pagination-link,
+.pagination-previous,
+.pagination-next {
+  background-color: var(--bg-surface) !important;
+  border-color: var(--border-dim) !important;
+  color: var(--text-primary) !important;
+  border-radius: 0 !important;
+}
+
+.pagination-link:hover,
+.pagination-previous:hover,
+.pagination-next:hover {
+  background-color: var(--bg-darker) !important;
+  border-color: var(--primary-color) !important;
+  color: var(--primary-color) !important;
+}
+
+.pagination-link.is-current {
+  background-color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+  box-shadow: var(--neon-glow) !important;
+}
+
+/* ========== TABS ========== */
+.tabs a {
+  color: var(--text-secondary) !important;
+  border-bottom-color: transparent !important;
+  transition: all 0.2s ease !important;
+}
+
+.tabs a:hover {
+  color: var(--text-primary) !important;
+  border-bottom-color: var(--border-dim) !important;
+}
+
+.tabs a.is-active {
+  color: var(--primary-color) !important;
+  border-bottom-color: var(--primary-color) !important;
+  border-bottom-width: 3px !important;
+}
+
+.tabs ul {
+  border-bottom-color: var(--border-dim) !important;
+}
+
+/* ========== DROPDOWN ========== */
+.dropdown-menu {
+  background-color: var(--bg-card) !important;
+  border: 1px solid var(--border-dim) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5) !important;
+}
+
+.dropdown-item {
+  color: var(--text-secondary) !important;
+}
+
+.dropdown-item:hover {
+  background-color: var(--bg-surface) !important;
+  color: var(--primary-color) !important;
+}
+
+/* ========== PROGRESS BAR ========== */
+.progress {
+  background-color: var(--bg-surface) !important;
+  border-radius: 0 !important;
+}
+
+.progress::-webkit-progress-value {
+  background-color: var(--primary-color) !important;
+}
+
+.progress::-moz-progress-bar {
+  background-color: var(--primary-color) !important;
+}
+
+/* ========== CODE & PRE ========== */
+code,
+pre {
+  background-color: var(--bg-darker) !important;
+  color: var(--primary-color) !important;
+  border: 1px solid var(--border-dim) !important;
+}
+
+/* ========== SCROLLBAR ========== */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-darker);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-dim);
+  border: 2px solid var(--bg-darker);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-color);
+  box-shadow: var(--neon-glow);
+}
+
+/* ========== CUSTOM ANIMATIONS ========== */
+@keyframes neonPulse {
+  0%, 100% {
+    box-shadow: var(--neon-glow);
+  }
+  50% {
+    box-shadow: var(--neon-glow-strong);
+  }
+}
+
+.button.is-primary:hover,
+.pagination-link.is-current {
+  animation: neonPulse 2s ease-in-out infinite;
+}
+
+/* ========== EDITOR OVERRIDES ========== */
+.ql-toolbar,
+.ql-container {
+  background-color: var(--bg-surface) !important;
+  border-color: var(--border-dim) !important;
+  color: var(--text-primary) !important;
+}
+
+.ql-stroke {
+  stroke: var(--text-primary) !important;
+}
+
+.ql-fill {
+  fill: var(--text-primary) !important;
+}
+
+.ql-picker-label {
+  color: var(--text-primary) !important;
+}
+
+/* ========== MISC ========== */
+.title,
+.subtitle {
+  color: var(--text-primary) !important;
+  font-weight: 700 !important;
+}
+
+.title {
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+}
+
+a {
+  color: var(--primary-color) !important;
+  transition: color 0.2s ease !important;
+}
+
+a:hover {
+  color: var(--primary-hover) !important;
+}
+
+hr {
+  background-color: var(--border-dim) !important;
+  height: 2px !important;
+}
+
+.hero {
+  background-color: var(--bg-darker) !important;
+}
+
+.panel {
+  background-color: var(--bg-card) !important;
+  border: 1px solid var(--border-dim) !important;
+}
+
+.panel-heading {
+  background-color: var(--bg-surface) !important;
+  color: var(--primary-color) !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  border-bottom: 2px solid var(--border-color) !important;
+}
+
+.panel-block {
+  color: var(--text-primary) !important;
+  border-bottom: 1px solid var(--border-dim) !important;
+}
+
+.panel-block:hover {
+  background-color: var(--bg-surface) !important;
+}
+
+/* ========== DARK MODE SPECIFIC ========== */
+body.theme-dark {
+  background-color: var(--bg-dark) !important;
+}
+
+/* Ensure all text is readable */
+* {
+  color: var(--text-primary);
+}
+
+/* Override any white backgrounds */
+div[class*="bg-white"],
+div[class*="background-white"] {
+  background-color: var(--bg-card) !important;
+}
