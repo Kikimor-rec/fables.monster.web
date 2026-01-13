@@ -100,9 +100,17 @@ export default async function PrivacyPolicy({ params }: { params: Promise<{ lang
           ]
         },
         {
-          title: "8. International Data Transfers",
+          title: "8. Data Location and International Transfers",
           content: [
-            "Your data may be transferred to and processed in countries outside your residence. We ensure appropriate safeguards are in place to protect your data in accordance with this Privacy Policy."
+            "<strong>Data Storage Locations:</strong>",
+            "• <strong>Website Hosting:</strong> Vercel (servers primarily in the United States and Europe)",
+            "• <strong>Newsletter Service:</strong> Listmonk, self-hosted on our servers (data location: check with hosting provider)",
+            "• <strong>Email Service:</strong> For newsletter and transactional emails (server location varies by provider)",
+            "",
+            "<strong>International Transfers:</strong>",
+            "Your data may be transferred to and processed in countries outside your country of residence, including the United States and European Union. We ensure appropriate safeguards are in place in accordance with GDPR and other applicable data protection laws.",
+            "",
+            "For EEA/UK residents: When we transfer data outside the EEA/UK, we use approved safeguards such as Standard Contractual Clauses (SCCs) or rely on adequacy decisions by the European Commission."
           ]
         },
         {
@@ -118,7 +126,16 @@ export default async function PrivacyPolicy({ params }: { params: Promise<{ lang
           ]
         },
         {
-          title: "11. Contact Us",
+          title: "11. Data Controller",
+          content: [
+            "The data controller responsible for processing your personal data is:",
+            "• <strong>Name:</strong> Fables Monster Studio",
+            "• <strong>Website:</strong> <a href='https://fables.monster' class='text-red-400 hover:text-red-300 transition-colors'>fables.monster</a>",
+            "• <strong>Email:</strong> <a href='mailto:info@fables.monster' class='text-red-400 hover:text-red-300 transition-colors'>info@fables.monster</a>"
+          ]
+        },
+        {
+          title: "12. Contact Us",
           content: [
             "If you have questions about this Privacy Policy or want to exercise your rights, contact us:",
             "• <strong>Email:</strong> <a href='mailto:info@fables.monster' class='text-red-400 hover:text-red-300 transition-colors'>info@fables.monster</a>",
@@ -204,9 +221,17 @@ export default async function PrivacyPolicy({ params }: { params: Promise<{ lang
           ]
         },
         {
-          title: "8. Международная передача данных",
+          title: "8. Местоположение данных и международная передача",
           content: [
-            "Ваши данные могут передаваться и обрабатываться в странах за пределами вашего места проживания. Мы обеспечиваем соответствующие меры защиты для защиты ваших данных в соответствии с этой Политикой конфиденциальности."
+            "<strong>Местоположение хранения данных:</strong>",
+            "• <strong>Хостинг сайта:</strong> Vercel (серверы преимущественно в США и Европе)",
+            "• <strong>Сервис рассылок:</strong> Listmonk, размещен на наших серверах (местоположение данных: уточните у провайдера хостинга)",
+            "• <strong>Email-сервис:</strong> Для рассылок и транзакционных писем (местоположение серверов зависит от провайдера)",
+            "",
+            "<strong>Международная передача данных:</strong>",
+            "Ваши данные могут передаваться и обрабатываться в странах за пределами вашей страны проживания, включая США и Европейский Союз. Мы обеспечиваем соответствующие меры защиты в соответствии с GDPR и другими применимыми законами о защите данных.",
+            "",
+            "Для резидентов ЕЭЗ/Великобритании: При передаче данных за пределы ЕЭЗ/Великобритании мы используем утвержденные меры защиты, такие как Стандартные договорные оговорки (SCC), или полагаемся на решения Европейской комиссии о достаточности."
           ]
         },
         {
@@ -222,7 +247,16 @@ export default async function PrivacyPolicy({ params }: { params: Promise<{ lang
           ]
         },
         {
-          title: "11. Связаться с нами",
+          title: "11. Оператор персональных данных",
+          content: [
+            "Оператором персональных данных, ответственным за обработку ваших данных, является:",
+            "• <strong>Название:</strong> Fables Monster Studio",
+            "• <strong>Веб-сайт:</strong> <a href='https://fables.monster' class='text-red-400 hover:text-red-300 transition-colors'>fables.monster</a>",
+            "• <strong>Email:</strong> <a href='mailto:info@fables.monster' class='text-red-400 hover:text-red-300 transition-colors'>info@fables.monster</a>"
+          ]
+        },
+        {
+          title: "12. Связаться с нами",
           content: [
             "Если у вас есть вопросы об этой Политике конфиденциальности или вы хотите реализовать свои права, свяжитесь с нами:",
             "• <strong>Email:</strong> <a href='mailto:info@fables.monster' class='text-red-400 hover:text-red-300 transition-colors'>info@fables.monster</a>",
