@@ -67,6 +67,11 @@ export default function Footer({ lang, dict, newsletterDict }: FooterProps) {
                   {dict?.contact || "Contact"}
                 </Link>
               </li>
+              <li>
+                <Link href={`/${lang}/privacy`} className="hover:text-red-400 transition-colors">
+                  {lang === 'ru' ? 'Конфиденциальность' : 'Privacy'}
+                </Link>
+              </li>
             </ul>
             <h4 className="text-lg font-bold text-white mb-4 font-nunito">
               {dict?.social || "SOCIAL"}
