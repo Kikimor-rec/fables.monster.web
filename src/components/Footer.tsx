@@ -95,6 +95,14 @@ export default function Footer({ lang, dict, newsletterDict }: FooterProps) {
               lang={lang}
               compact={true}
             />
+            <div className="mt-4 flex flex-col gap-2 text-xs font-nunito">
+              <Link href={`/${lang}/newsletter/manage`} className="text-gray-500 hover:text-red-400 transition-colors">
+                {lang === 'ru' ? '→ Управление подпиской' : '→ Manage subscription'}
+              </Link>
+              <Link href={`/${lang}/newsletter/subscribe`} className="text-gray-500 hover:text-red-400 transition-colors">
+                {lang === 'ru' ? '→ Полная форма подписки' : '→ Full subscription form'}
+              </Link>
+            </div>
           </div>
         </div>
         <div className="mt-12 pt-8 border-t border-gray-800 text-center text-gray-400 font-nunito">

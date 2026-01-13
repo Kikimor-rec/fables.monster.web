@@ -145,11 +145,20 @@ export default function NewsletterForm({ dict, lang = 'en', compact = false }: N
       )}
 
       {submitStatus === "success" && (
-        <div className="mb-6 p-4 bg-green-900/20 border border-green-500 text-green-300 font-rajdhani text-sm flex items-center gap-2">
-          <svg className="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M20 6L9 17l-5-5" />
-          </svg>
-          <span>{dict?.success || "Successfully subscribed! Please check your email to confirm your subscription."}</span>
+        <div className="mb-6 p-4 bg-green-900/20 border border-green-500 text-green-300 font-rajdhani text-sm">
+          <div className="flex items-center gap-2 mb-2">
+            <svg className="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M20 6L9 17l-5-5" />
+            </svg>
+            <span>{dict?.success || "Successfully subscribed! Please check your email to confirm your subscription."}</span>
+          </div>
+          <p className="text-xs text-green-400 mt-2">
+            {lang === 'ru' ? (
+              <>Не получили письмо? <a href={`/${lang}/newsletter/manage`} className="underline hover:text-green-200">Управление подпиской</a></>
+            ) : (
+              <>Didn't receive the email? <a href={`/${lang}/newsletter/manage`} className="underline hover:text-green-200">Manage subscription</a></>
+            )}
+          </p>
         </div>
       )}
 
@@ -213,6 +222,15 @@ export default function NewsletterForm({ dict, lang = 'en', compact = false }: N
           }} />
         </div>
       )}
+
+      <div className="mt-4 flex flex-wrap gap-4 justify-center text-xs font-rajdhani">
+        <a href={`/${lang}/newsletter/manage`} className="text-gray-500 hover:text-red-400 transition-colors">
+          {lang === 'ru' ? '→ Управление подпиской' : '→ Manage subscription'}
+        </a>
+        <a href={`/${lang}/newsletter/unsubscribe`} className="text-gray-500 hover:text-red-400 transition-colors">
+          {lang === 'ru' ? '→ Отписаться' : '→ Unsubscribe'}
+        </a>
+      </div>
     </div>
   );
 }
