@@ -98,9 +98,12 @@ export async function POST(request: NextRequest) {
       },
     };
 
-    logger.debug('Subscribing to newsletter', {
+    logger.info('Subscribing to newsletter', {
       email,
       listId,
+      listIdType: typeof listId,
+      subscriberData: JSON.stringify(subscriberData),
+      envListId: process.env.LISTMONK_LIST_ID,
       lang,
     });
 
@@ -115,6 +118,12 @@ export async function POST(request: NextRequest) {
     });
 
     const responseData = await response.json();
+
+    logger.info('Listmonk API response', {
+      status: response.status,
+      ok: response.ok,
+      data: JSON.stringify(responseData),
+    });
 
     if (!response.ok) {
       // Check if user already exists
