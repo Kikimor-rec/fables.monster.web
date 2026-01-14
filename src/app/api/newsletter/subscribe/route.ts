@@ -87,26 +87,97 @@ export async function POST(request: NextRequest) {
     // Create Basic Auth header
     const authHeader = 'Basic ' + Buffer.from(`${listmonkUser}:${listmonkPassword}`).toString('base64');
 
-    // Prepare subscriber data for Listmonk
-    // Note: Listmonk ignores 'lists' field on POST, so we create subscriber first, then add to list
-    // Use 'unconfirmed' status to trigger confirmation email (double opt-in)
+    // First, get list UUID from list ID for public API
+    // Public subscription API uses UUIDs and automatically handles double opt-in
+    logger.info('Getting list UUID', { listId });
+
+    const listsResponse = await fetch(`${listmonkUrl}/api/lists/${listId}`, {
+      headers: {
+        'Authorization': authHeader,
+      },
+    });
+
+    if (!listsResponse.ok) {
+      logger.error('Failed to get list info', {
+        listId,
+        status: listsResponse.status,
+      });
+      return NextResponse.json(
+        { error: 'Newsletter service configuration error' },
+        { status: 500 }
+      );
+    }
+
+    const listData = await listsResponse.json();
+    const listUuid = listData.data.uuid;
+
+    logger.info('Got list UUID, subscribing via public API', { listId, listUuid, email });
+
+    // Call public subscription API - this respects double opt-in settings
+    const response = await fetch(`${listmonkUrl}/api/public/subscription`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: email,
+        name: name || email.split('@')[0],
+        list_uuids: [listUuid],
+      }),
+    });
+
+    const responseData = await response.json();
+
+    logger.info('Public subscription response', {
+      status: response.status,
+      ok: response.ok,
+      data: JSON.stringify(responseData),
+    });
+
+    if (response.ok) {
+      logger.info('Subscription successful via public API', { email });
+      return NextResponse.json(
+        {
+          message: 'Successfully subscribed! Please check your email to confirm.',
+          requiresConfirmation: true,
+        },
+        { status: 200 }
+      );
+    }
+
+    // If public API returns error, check if it's because subscriber already exists
+    if (responseData.message?.includes('already exists') || responseData.message?.includes('subscribed')) {
+      logger.info('Subscriber already exists via public API', { email });
+      return NextResponse.json(
+        { message: 'You are already subscribed to our newsletter!' },
+        { status: 200 }
+      );
+    }
+
+    // If public API fails for other reasons, fall back to admin API
+    logger.warn('Public API failed, trying admin API fallback', {
+      status: response.status,
+      error: responseData,
+    });
+
+    // Prepare subscriber data for Listmonk admin API
     const subscriberData = {
       email: email,
       name: name || email.split('@')[0],
-      status: 'unconfirmed',
+      status: 'enabled',
       attribs: {
         language: lang || 'en',
       },
     };
 
-    logger.info('Creating subscriber in Listmonk', {
+    logger.info('Creating subscriber via admin API', {
       email,
       listId,
       lang,
     });
 
     // Call Listmonk API to create subscriber
-    const response = await fetch(`${listmonkUrl}/api/subscribers`, {
+    const adminResponse = await fetch(`${listmonkUrl}/api/subscribers`, {
       method: 'POST',
       headers: {
         'Authorization': authHeader,
@@ -115,17 +186,17 @@ export async function POST(request: NextRequest) {
       body: JSON.stringify(subscriberData),
     });
 
-    const responseData = await response.json();
+    const adminResponseData = await adminResponse.json();
 
     logger.info('Listmonk create subscriber response', {
-      status: response.status,
-      ok: response.ok,
-      subscriberId: responseData.data?.id,
+      status: adminResponse.status,
+      ok: adminResponse.ok,
+      subscriberId: adminResponseData.data?.id,
     });
 
-    if (response.ok && responseData.data?.id) {
+    if (adminResponse.ok && adminResponseData.data?.id) {
       // Subscriber created successfully, now add to list
-      const subscriberId = responseData.data.id;
+      const subscriberId = adminResponseData.data.id;
 
       logger.info('Adding subscriber to list', { subscriberId, listId });
 
@@ -139,7 +210,7 @@ export async function POST(request: NextRequest) {
           email: email,
           name: name || email.split('@')[0],
           lists: [listId],
-          status: 'unconfirmed',
+          status: 'enabled',
           attribs: {
             language: lang || 'en',
           },
@@ -181,9 +252,9 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    if (!response.ok) {
+    if (!adminResponse.ok) {
       // Check if user already exists
-      if (response.status === 409 || responseData.message?.includes('already exists')) {
+      if (adminResponse.status === 409 || adminResponseData.message?.includes('already exists')) {
         logger.info('Subscriber already exists, checking lists', { email });
 
         // Search for existing subscriber
@@ -252,9 +323,9 @@ export async function POST(request: NextRequest) {
         );
       }
 
-      logger.error('Listmonk API error', {
-        status: response.status,
-        error: responseData,
+      logger.error('Listmonk admin API error', {
+        status: adminResponse.status,
+        error: adminResponseData,
       });
 
       return NextResponse.json(
@@ -263,17 +334,15 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    logger.info('Newsletter subscription successful', {
+    // Should not reach here - admin API returned success without data
+    logger.error('Unexpected admin API response', {
       email,
-      subscriberId: responseData.data?.id,
+      response: adminResponseData,
     });
 
     return NextResponse.json(
-      {
-        message: 'Successfully subscribed! Please check your email to confirm.',
-        requiresConfirmation: true,
-      },
-      { status: 200 }
+      { error: 'Failed to subscribe. Please try again later.' },
+      { status: 500 }
     );
 
   } catch (error) {
