@@ -50,6 +50,8 @@ export async function GET(request: NextRequest) {
 
     const authHeader = 'Basic ' + Buffer.from(`${listmonkUser}:${listmonkPassword}`).toString('base64');
 
+    logger.info('Searching for subscriber', { email: validatedData.email });
+
     // Search for subscriber
     const searchResponse = await fetch(
       `${listmonkUrl}/api/subscribers?query=${encodeURIComponent(`email = '${validatedData.email}'`)}`,
@@ -59,6 +61,11 @@ export async function GET(request: NextRequest) {
         },
       }
     );
+
+    logger.info('Listmonk search response', {
+      status: searchResponse.ok,
+      statusCode: searchResponse.status,
+    });
 
     if (!searchResponse.ok) {
       logger.error('Listmonk subscriber search failed', {
@@ -73,7 +80,13 @@ export async function GET(request: NextRequest) {
 
     const searchData = await searchResponse.json();
 
+    logger.info('Search results', {
+      resultsCount: searchData.data?.results?.length || 0,
+      hasResults: !!searchData.data?.results?.length,
+    });
+
     if (!searchData.data?.results?.length) {
+      logger.warn('Subscriber not found', { email: validatedData.email });
       return NextResponse.json(
         { error: 'Subscriber not found', notFound: true },
         { status: 404 }
@@ -81,6 +94,12 @@ export async function GET(request: NextRequest) {
     }
 
     const subscriber = searchData.data.results[0];
+
+    logger.info('Subscriber found', {
+      email: subscriber.email,
+      status: subscriber.status,
+      lists: subscriber.lists?.length || 0,
+    });
 
     // Return sanitized subscriber data
     return NextResponse.json({

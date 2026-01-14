@@ -89,10 +89,11 @@ export async function POST(request: NextRequest) {
 
     // Prepare subscriber data for Listmonk
     // Note: Listmonk ignores 'lists' field on POST, so we create subscriber first, then add to list
+    // Use 'unconfirmed' status to trigger confirmation email (double opt-in)
     const subscriberData = {
       email: email,
       name: name || email.split('@')[0],
-      status: 'enabled',
+      status: 'unconfirmed',
       attribs: {
         language: lang || 'en',
       },
@@ -138,7 +139,7 @@ export async function POST(request: NextRequest) {
           email: email,
           name: name || email.split('@')[0],
           lists: [listId],
-          status: 'enabled',
+          status: 'unconfirmed',
           attribs: {
             language: lang || 'en',
           },
@@ -214,7 +215,7 @@ export async function POST(request: NextRequest) {
           }
 
           // Add to the list
-          logger.info('Adding existing subscriber to list', { email, listId });
+          logger.info('Adding existing subscriber to list', { email, listId, currentStatus: subscriber.status });
           const updateResponse = await fetch(`${listmonkUrl}/api/subscribers/${subscriberId}`, {
             method: 'PUT',
             headers: {
@@ -225,7 +226,7 @@ export async function POST(request: NextRequest) {
               email: subscriber.email,
               name: name || subscriber.name,
               lists: [...currentListIds, listId],
-              status: 'enabled',
+              status: subscriber.status, // Keep existing status
               attribs: {
                 ...subscriber.attribs,
                 language: lang || subscriber.attribs?.language || 'en',
