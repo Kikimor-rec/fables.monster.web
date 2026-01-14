@@ -88,22 +88,19 @@ export async function POST(request: NextRequest) {
     const authHeader = 'Basic ' + Buffer.from(`${listmonkUser}:${listmonkPassword}`).toString('base64');
 
     // Prepare subscriber data for Listmonk
+    // Note: Listmonk ignores 'lists' field on POST, so we create subscriber first, then add to list
     const subscriberData = {
       email: email,
       name: name || email.split('@')[0],
       status: 'enabled',
-      lists: [listId],
       attribs: {
         language: lang || 'en',
       },
     };
 
-    logger.info('Subscribing to newsletter', {
+    logger.info('Creating subscriber in Listmonk', {
       email,
       listId,
-      listIdType: typeof listId,
-      subscriberData: JSON.stringify(subscriberData),
-      envListId: process.env.LISTMONK_LIST_ID,
       lang,
     });
 
@@ -119,11 +116,69 @@ export async function POST(request: NextRequest) {
 
     const responseData = await response.json();
 
-    logger.info('Listmonk API response', {
+    logger.info('Listmonk create subscriber response', {
       status: response.status,
       ok: response.ok,
-      data: JSON.stringify(responseData),
+      subscriberId: responseData.data?.id,
     });
+
+    if (response.ok && responseData.data?.id) {
+      // Subscriber created successfully, now add to list
+      const subscriberId = responseData.data.id;
+
+      logger.info('Adding subscriber to list', { subscriberId, listId });
+
+      const updateResponse = await fetch(`${listmonkUrl}/api/subscribers/${subscriberId}`, {
+        method: 'PUT',
+        headers: {
+          'Authorization': authHeader,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: email,
+          name: name || email.split('@')[0],
+          lists: [listId],
+          status: 'enabled',
+          attribs: {
+            language: lang || 'en',
+          },
+        }),
+      });
+
+      const updateData = await updateResponse.json();
+
+      if (updateResponse.ok) {
+        logger.info('Subscriber added to list successfully', {
+          subscriberId,
+          listId,
+          lists: updateData.data?.lists,
+        });
+
+        return NextResponse.json(
+          {
+            message: 'Successfully subscribed! Please check your email to confirm.',
+            requiresConfirmation: true,
+          },
+          { status: 200 }
+        );
+      } else {
+        logger.error('Failed to add subscriber to list', {
+          subscriberId,
+          listId,
+          status: updateResponse.status,
+          error: updateData,
+        });
+
+        // Subscriber created but not added to list - still return success
+        return NextResponse.json(
+          {
+            message: 'Successfully subscribed! Please check your email to confirm.',
+            requiresConfirmation: true,
+          },
+          { status: 200 }
+        );
+      }
+    }
 
     if (!response.ok) {
       // Check if user already exists
