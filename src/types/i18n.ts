@@ -558,40 +558,7 @@ export interface NewsletterSubscribeDict {
   success: string;
   error: string;
   privacy: string;
-  metaTitle: string;
-  metaDescription: string;
-}
-
-export interface NewsletterUnsubscribeDict {
-  title: string;
-  description: string;
-  email: string;
-  emailPlaceholder: string;
-  submit: string;
-  unsubscribing: string;
-  success: string;
-  notFound: string;
-  error: string;
-  metaTitle: string;
-  metaDescription: string;
-}
-
-export interface NewsletterConfirmationSuccessDict {
-  heading: string;
-  message: string;
-  action: string;
-}
-
-export interface NewsletterConfirmationErrorDict {
-  heading: string;
-  message: string;
-  action: string;
-}
-
-export interface NewsletterConfirmationDict {
-  title: string;
-  success: NewsletterConfirmationSuccessDict;
-  error: NewsletterConfirmationErrorDict;
+  manageInfo: string;
   metaTitle: string;
   metaDescription: string;
 }
@@ -611,8 +578,6 @@ export interface NewsletterFooterDict {
 
 export interface NewsletterDict {
   subscribe: NewsletterSubscribeDict;
-  unsubscribe: NewsletterUnsubscribeDict;
-  confirmation: NewsletterConfirmationDict;
   compact: NewsletterCompactDict;
   footer: NewsletterFooterDict;
 }
