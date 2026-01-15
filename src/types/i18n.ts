@@ -576,10 +576,26 @@ export interface NewsletterFooterDict {
   subscribe: string;
 }
 
+export interface NewsletterManageDict {
+  title: string;
+  description: string;
+  email: string;
+  emailPlaceholder: string;
+  submit: string;
+  sending: string;
+  success: string;
+  error: string;
+  backToHome: string;
+  info: string;
+  metaTitle: string;
+  metaDescription: string;
+}
+
 export interface NewsletterDict {
   subscribe: NewsletterSubscribeDict;
   compact: NewsletterCompactDict;
   footer: NewsletterFooterDict;
+  manage: NewsletterManageDict;
 }
 
 // === MASTER DICTIONARY TYPE ===

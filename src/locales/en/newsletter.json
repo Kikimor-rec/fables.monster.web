@@ -25,5 +25,19 @@
     "title": "NEWSLETTER",
     "description": "Get updates on new releases",
     "subscribe": "SUBSCRIBE"
+  },
+  "manage": {
+    "title": "MANAGE SUBSCRIPTION",
+    "description": "Enter your email address to receive a management link. You'll be able to update your preferences or unsubscribe.",
+    "email": "EMAIL",
+    "emailPlaceholder": "your@email.com",
+    "submit": "SEND MANAGEMENT EMAIL",
+    "sending": "SENDING...",
+    "success": "If this email is subscribed, you will receive a management email shortly. Please check your inbox (and spam folder).",
+    "error": "An error occurred. Please try again later.",
+    "backToHome": "← Back to home",
+    "info": "The management email contains secure links to update your subscription preferences or unsubscribe. These links are unique and secure.",
+    "metaTitle": "Manage Newsletter Subscription - Fables Monster Studio",
+    "metaDescription": "Request a management email to update your newsletter preferences or unsubscribe from Fables Monster Studio newsletter."
   }
 }
