@@ -8,45 +8,18 @@
     "emailPlaceholder": "your@email.com",
     "submit": "SUBSCRIBE",
     "subscribing": "SUBSCRIBING...",
-    "success": "Successfully subscribed! Please check your email to confirm your subscription.",
+    "success": "Thanks! If this email address can receive our newsletter, you'll get a confirmation email shortly.",
     "error": "Error subscribing. Please try again later.",
-    "privacy": "We respect your privacy. You can unsubscribe at any time. We only send emails about major releases and important updates - no spam. Read our <a href='/en/privacy' class='text-red-400 hover:text-red-300'>privacy policy</a>.",
+    "privacy": "We respect your privacy. You can unsubscribe at any time using the link in any newsletter email. We only send emails about major releases and important updates - no spam. Read our <a href='/en/privacy' class='text-red-400 hover:text-red-300'>privacy policy</a>.",
+    "manageInfo": "To unsubscribe or manage your preferences, use the links provided in any newsletter email.",
     "metaTitle": "Subscribe to Newsletter - Fables Monster Studio",
     "metaDescription": "Subscribe to Fables Monster Studio newsletter for latest updates on tabletop RPG releases, exclusive content, and behind-the-scenes news."
-  },
-  "unsubscribe": {
-    "title": "UNSUBSCRIBE FROM NEWSLETTER",
-    "description": "We're sorry to see you go. Enter your email address to unsubscribe from our newsletter.",
-    "email": "EMAIL",
-    "emailPlaceholder": "your@email.com",
-    "submit": "UNSUBSCRIBE",
-    "unsubscribing": "UNSUBSCRIBING...",
-    "success": "Successfully unsubscribed. You won't receive any more emails from us.",
-    "notFound": "Email address not found in our subscriber list.",
-    "error": "Error unsubscribing. Please try again later or contact us directly.",
-    "metaTitle": "Unsubscribe from Newsletter - Fables Monster Studio",
-    "metaDescription": "Unsubscribe from Fables Monster Studio newsletter."
-  },
-  "confirmation": {
-    "title": "SUBSCRIPTION CONFIRMED",
-    "success": {
-      "heading": "Welcome Aboard!",
-      "message": "Your subscription has been confirmed. You'll now receive our latest updates and exclusive content.",
-      "action": "RETURN TO HOME"
-    },
-    "error": {
-      "heading": "Confirmation Failed",
-      "message": "We couldn't confirm your subscription. The link may be invalid or expired.",
-      "action": "TRY SUBSCRIBING AGAIN"
-    },
-    "metaTitle": "Subscription Confirmation - Fables Monster Studio",
-    "metaDescription": "Confirm your newsletter subscription to Fables Monster Studio."
   },
   "compact": {
     "emailPlaceholder": "your@email.com",
     "submit": "SUBSCRIBE",
     "subscribing": "...",
-    "success": "Successfully subscribed! Check your email to confirm."
+    "success": "Thanks! Check your email for confirmation."
   },
   "footer": {
     "title": "NEWSLETTER",
