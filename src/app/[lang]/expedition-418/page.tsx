@@ -10,7 +10,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 
   return {
     title: `${title || 'Expedition-418'} - Extraction TTRPG | Fables Monster Studio`,
-    description: tagline || 'An extraction TTRPG about small and big robots on very important missions.',
+    description: tagline || 'An extraction TTRPG about robots on missions that matter.',
     alternates: {
       canonical: `https://fables.monster/${lang}/expedition-418`,
       languages: {
@@ -23,8 +23,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 
 export const dynamic = 'force-static';
 
-// Static noise placeholder component
-function StaticNoisePlaceholder() {
+// Static noise placeholder component with ERR_418 easter egg
+function StaticNoisePlaceholder({ isRussian }: { isRussian: boolean }) {
   return (
     <div className="relative w-full aspect-video bg-gray-900 border-2 border-cyan-700 overflow-hidden static-noise-container">
       {/* SVG filter for noise effect */}
@@ -64,17 +64,24 @@ function StaticNoisePlaceholder() {
       {/* CRT vignette */}
       <div className="absolute inset-0 bg-radial-vignette"></div>
 
-      {/* Center text */}
+      {/* Center text with glitch */}
       <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
-        <div className="text-cyan-400 font-mono text-sm mb-2 glitch-text-fast opacity-70" data-text="SIGNAL LOST">
-          SIGNAL LOST
+        <div className="text-cyan-400 font-mono text-sm mb-2 glitch-text-fast opacity-70" data-text={isRussian ? "СИГНАЛ ПОТЕРЯН" : "SIGNAL LOST"}>
+          {isRussian ? "СИГНАЛ ПОТЕРЯН" : "SIGNAL LOST"}
         </div>
-        <div className="text-cyan-500 font-orbitron text-2xl md:text-4xl font-bold tracking-wider static-text-flicker">
-          TRANSMISSION PENDING
+        <div className="text-cyan-500 font-orbitron text-xl md:text-3xl font-bold tracking-wider static-text-flicker mb-2">
+          {isRussian ? "ВИЗУАЛЬНЫЙ КАНАЛ ОФФЛАЙН" : "VISUAL FEED OFFLINE"}
         </div>
-        <div className="text-gray-500 font-mono text-xs mt-4 opacity-60">
-          [ IMAGE DATA CORRUPTED ]
-        </div>
+        <a
+          href="https://en.wikipedia.org/wiki/Hyper_Text_Coffee_Pot_Control_Protocol"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-red-500 font-mono text-xs mt-4 opacity-80 hover:opacity-100 hover:text-red-400 transition-opacity cursor-help glitch-text-fast"
+          data-text={isRussian ? "[ ERR_418: ЮНИТ ЯВЛЯЕТСЯ ЧАЙНИКОМ ]" : "[ ERR_418: UNIT IS A TEAPOT ]"}
+          title={isRussian ? "Что это значит?" : "What does this mean?"}
+        >
+          {isRussian ? "[ ERR_418: ЮНИТ ЯВЛЯЕТСЯ ЧАЙНИКОМ ]" : "[ ERR_418: UNIT IS A TEAPOT ]"}
+        </a>
       </div>
 
       {/* Corner decorations */}
@@ -141,31 +148,31 @@ export default async function Expedition418({ params }: { params: Promise<{ lang
 
   const features = [
     {
-      title: isRussian ? "Создание роботов" : "Robot Creation",
+      title: isRussian ? "Собери своего бота" : "Build Your Bot",
       description: isRussian
-        ? "Необычная система сборки роботов. Шасси, модули, сенсоры — каждый бот уникален."
-        : "Unique robot building system. Chassis, modules, sensors — every bot is different.",
+        ? "Начни с шасси. Выбери корпус. Навесь манипуляторы. Настрой сенсоры. Одинаковых сборок не бывает."
+        : "Start with a chassis. Pick a frame. Attach manipulators. Calibrate sensors. No two builds are the same.",
       icon: FeatureIcons.robot
     },
     {
-      title: isRussian ? "Extraction-геймплей" : "Extraction Gameplay",
+      title: isRussian ? "Extraction-цикл" : "Extraction Loop",
       description: isRussian
-        ? "Войти, выполнить задачу, выбраться. Планы рушатся, оборудование ломается."
-        : "Get in, complete the objective, get out. Plans fall apart, equipment breaks down.",
+        ? "Высадка. Цель. Эвакуация. На брифинге всё просто — пока кто-то не застрял в яме, или не показал неудачно фокус."
+        : "Drop. Target. Extract. Briefing makes it sound simple — until someone gets stuck in a pit, or a trick goes sideways.",
       icon: FeatureIcons.extraction
     },
     {
-      title: isRussian ? "Кампании и ваншоты" : "Campaigns & One-shots",
+      title: isRussian ? "Сессии на твой вкус" : "Sessions Your Way",
       description: isRussian
-        ? "Быстрые ваншоты, полные абсурда, или длинные кампании с развитием персонажей."
-        : "Quick one-shots full of absurdity, or extended campaigns with character progression.",
+        ? "Двухчасовые вылазки или месячные кампании. Персонажи меняются, ломаются и пересобираются."
+        : "Two-hour runs or month-long campaigns. Characters change, break down, get rebuilt.",
       icon: FeatureIcons.campaign
     },
     {
-      title: isRussian ? "Абсурдные ситуации" : "Absurd Situations",
+      title: isRussian ? "Контролируемый хаос" : "Controlled Chaos",
       description: isRussian
-        ? "Опасные и абсурдные ситуации. Напряжение и неожиданный юмор."
-        : "Dangerous and absurd scenarios. High tension meets unexpected humor.",
+        ? "Переговоры со взбунтовавшимся ИИ. Маршрут по рушащемуся объекту. Спор, кто виноват. Будет напряжённо — и абсурдно ровно настолько, насколько опасно."
+        : "Negotiations with a rogue AI. Routes through collapsing facilities. Arguments about whose fault it was. Tense — and exactly as absurd as it is dangerous.",
       icon: FeatureIcons.chaos
     }
   ];
@@ -180,9 +187,9 @@ export default async function Expedition418({ params }: { params: Promise<{ lang
         <div className="absolute inset-0 bg-[url('/grid.png')] opacity-10"></div>
 
         <div className="relative z-10 max-w-5xl mx-auto px-6 text-center flex flex-col items-center pt-24 md:pt-32">
-          {/* Status badge */}
+          {/* Status badge with glitch */}
           <div className="mb-6">
-            <span className="px-4 py-2 bg-cyan-900/50 border border-cyan-500 text-cyan-400 font-orbitron text-sm tracking-wider">
+            <span className="px-4 py-2 bg-cyan-900/50 border border-cyan-500 text-cyan-400 font-orbitron text-sm tracking-wider glitch-text-fast" data-text={isRussian ? "В РАЗРАБОТКЕ" : "IN DEVELOPMENT"}>
               {isRussian ? "В РАЗРАБОТКЕ" : "IN DEVELOPMENT"}
             </span>
           </div>
@@ -192,20 +199,20 @@ export default async function Expedition418({ params }: { params: Promise<{ lang
           </h1>
 
           <p className="text-lg md:text-xl text-cyan-400 mb-6 font-orbitron tracking-wide">
-            {contentSubtitle || (isRussian ? 'Extraction TTRPG о роботах больших и маленьких' : 'Extraction TTRPG About Robots Big and Small')}
+            {contentSubtitle || (isRussian ? 'Extraction-НРИ о роботах' : 'Extraction TTRPG About Robots')}
           </p>
 
           <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-3xl mx-auto font-rajdhani">
             {contentTagline || (isRussian
-              ? 'Роботы всех размеров на критически важных миссиях. Собери бота, выполни экстракцию, постарайся не сломаться.'
-              : 'Robots big and small on critically important missions. Build your bot, complete the extraction, try not to break down.')}
+              ? 'Роботы разных конфигураций на миссиях, которые действительно важны. Собери бота. Выполни задачу. Постарайся вернуться.'
+              : 'Robots of various configurations on missions that actually matter. Build your bot. Complete the objective. Try to make it back.')}
           </p>
 
-          {/* Stats Grid */}
+          {/* Stats Grid with hover glitch */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-8 max-w-3xl mx-auto w-full">
             {stats.map((stat, index) => (
-              <div key={index} className="bg-black/60 border border-cyan-700 stat-block p-2 sm:p-3 hover:border-cyan-500 transition-colors">
-                <div className="text-lg sm:text-2xl font-bold text-cyan-400 font-orbitron mb-1">{stat.value}</div>
+              <div key={index} className="bg-black/60 border border-cyan-700 stat-block p-2 sm:p-3 hover:border-cyan-500 transition-colors group">
+                <div className="text-lg sm:text-2xl font-bold text-cyan-400 font-orbitron mb-1 group-hover:glitch-text-fast" data-text={stat.value}>{stat.value}</div>
                 <div className="stat-block-label text-gray-300 font-orbitron">
                   {stat.label}
                 </div>
@@ -215,14 +222,14 @@ export default async function Expedition418({ params }: { params: Promise<{ lang
 
           {/* Coming Soon Notice */}
           <div className="bg-cyan-950/30 border border-cyan-700/50 rounded-lg p-4 mb-6 max-w-xl">
-            <p className="text-cyan-300 font-orbitron text-sm">
+            <p className="text-cyan-300 font-mono text-sm">
               {isRussian
-                ? 'Игра находится в активной разработке. Следите за обновлениями!'
-                : 'The game is in active development. Stay tuned for updates!'}
+                ? '> Игра в активной разработке. Следите за обновлениями_'
+                : '> Game in active development. Stay tuned for updates_'}
             </p>
           </div>
 
-          {/* Newsletter / Follow buttons */}
+          {/* Follow buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href={`/${lang}/projects`}
@@ -237,9 +244,9 @@ export default async function Expedition418({ params }: { params: Promise<{ lang
       {/* Image Placeholder Section */}
       <section className="py-16 bg-gray-950 border-t border-cyan-900/30">
         <div className="max-w-4xl mx-auto px-6">
-          <StaticNoisePlaceholder />
+          <StaticNoisePlaceholder isRussian={isRussian} />
           <p className="text-center text-gray-500 font-mono text-sm mt-4">
-            {isRussian ? '[ Визуальные материалы в процессе разработки ]' : '[ Visual assets in development ]'}
+            {isRussian ? '[ Визуальные материалы в процессе загрузки... ]' : '[ Visual assets loading... ]'}
           </p>
         </div>
       </section>
@@ -247,19 +254,19 @@ export default async function Expedition418({ params }: { params: Promise<{ lang
       {/* Features Section */}
       <section id="features" className="py-20 border-t border-cyan-900/30">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-4xl font-bold text-white mb-12 text-center font-orbitron">
-            {isRussian ? 'КЛЮЧЕВЫЕ ОСОБЕННОСТИ' : 'KEY FEATURES'}
+          <h2 className="text-4xl font-bold text-white mb-12 text-center font-orbitron glitch-text" data-text={isRussian ? 'СИСТЕМЫ' : 'SYSTEMS'}>
+            {isRussian ? 'СИСТЕМЫ' : 'SYSTEMS'}
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
             {features.map((feature, index) => (
               <div
                 key={index}
-                className="bg-gray-900 border border-cyan-800 p-6 hover:bg-cyan-950/20 hover:border-cyan-600 transition-colors"
+                className="bg-gray-900 border border-cyan-800 p-6 hover:bg-cyan-950/20 hover:border-cyan-600 transition-colors group"
               >
                 <div className="flex items-start space-x-4">
-                  <div className="text-cyan-400 flex-shrink-0">{feature.icon}</div>
+                  <div className="text-cyan-400 flex-shrink-0 group-hover:animate-pulse">{feature.icon}</div>
                   <div>
-                    <h3 className="text-xl font-bold text-white mb-3 font-orbitron">
+                    <h3 className="text-xl font-bold text-white mb-3 font-orbitron group-hover:text-cyan-400 transition-colors">
                       {feature.title}
                     </h3>
                     <p className="text-gray-300 font-rajdhani">
@@ -277,17 +284,22 @@ export default async function Expedition418({ params }: { params: Promise<{ lang
       <section id="about" className="py-20 bg-gray-900 border-t border-cyan-900/30">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 font-orbitron">
-            {isRussian ? 'О ПРОЕКТЕ' : 'ABOUT THE GAME'}
+            {isRussian ? 'О ПРОЕКТЕ' : 'ABOUT'}
           </h2>
           <p className="text-lg text-gray-300 mb-6 font-rajdhani">
             {isRussian
-              ? 'Expedition-418 — настольная ролевая игра о роботах, выполняющих опасные миссии по экстракции. Вас ждёт уникальная система создания персонажей, где каждый робот собирается из модулей и компонентов, и геймплей, сочетающий напряжённые тактические ситуации с моментами неожиданного абсурда.'
-              : 'Expedition-418 is a tabletop RPG about robots performing dangerous extraction missions. Experience a unique character creation system where every robot is assembled from modules and components, and gameplay that combines tense tactical situations with moments of unexpected absurdity.'}
+              ? 'Expedition-418 — настольная ролевая игра про роботов на опасных миссиях. Вы собираете робота из деталей: шасси, корпус, манипуляторы, сенсорные массивы, вычислительное ядро. Каждая сборка — со своими плюсами и слабостями, и каждая миссия проверяет их на прочность.'
+              : 'Expedition-418 is a tabletop RPG about robots on dangerous missions. You build your robot from parts: chassis, frame, manipulators, sensor arrays, processing core. Every build has its strengths and weaknesses, and every mission tests them.'}
+          </p>
+          <p className="text-lg text-gray-300 mb-4 font-rajdhani">
+            {isRussian
+              ? 'Основа игры — extraction-цикл: войти, выполнить задачу, выбраться до того, как всё начнёт рушиться. Обычно рушится всё равно.'
+              : 'The core of the game is the extraction loop: get in, complete the objective, get out before everything starts falling apart. It usually falls apart anyway.'}
           </p>
           <p className="text-lg text-gray-300 mb-8 font-rajdhani">
             {isRussian
-              ? 'Играйте быстрые ваншоты или стройте длинные кампании. Ломайтесь, чинитесь, адаптируйтесь.'
-              : 'Play quick one-shots or build extended campaigns. Break down, repair, adapt.'}
+              ? 'Играйте короткие ваншоты или ведите долгие кампании. Ломайся, чинись, адаптируйся.'
+              : 'Play quick one-shots or run extended campaigns. Break down, repair, adapt.'}
           </p>
 
           {/* Easter egg - hidden 418 reference */}
@@ -311,12 +323,12 @@ export default async function Expedition418({ params }: { params: Promise<{ lang
       {/* CTA Section */}
       <section className="py-20 border-t border-cyan-900/30 text-center">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-4xl font-bold text-white mb-6 font-orbitron">
+          <h2 className="text-4xl font-bold text-white mb-6 font-orbitron glitch-text" data-text={isRussian ? 'СЛЕДИТЕ ЗА РАЗРАБОТКОЙ' : 'STAY TUNED'}>
             {isRussian ? 'СЛЕДИТЕ ЗА РАЗРАБОТКОЙ' : 'STAY TUNED'}
           </h2>
           <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto font-rajdhani">
             {isRussian
-              ? 'Игра находится в разработке. Подпишитесь на наши социальные сети, чтобы не пропустить анонсы и плейтесты.'
+              ? 'Игра в разработке. Подпишитесь на наши социальные сети, чтобы не пропустить анонсы и плейтесты.'
               : 'The game is in development. Follow our social media to catch announcements and playtests.'}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
