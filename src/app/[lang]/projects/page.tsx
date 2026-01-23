@@ -165,7 +165,7 @@ export default async function ProjectsPage({ params }: { params: Promise<{ lang:
             <p className="text-lg sm:text-xl text-red-100 mb-8 font-rajdhani">
               {dict.projects?.joinCommunity?.description || 'Follow our development and become part of the Fables Monster community'}
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center flex-wrap">
               <a
                 href="https://discord.gg/qJS4h5usxe"
                 target="_blank"
@@ -174,9 +174,14 @@ export default async function ProjectsPage({ params }: { params: Promise<{ lang:
               >
                 {dict.projects?.joinCommunity?.discord || 'JOIN DISCORD'}
               </a>
+              <Link
+                href={`/${lang}/newsletter/subscribe`}
+                className="w-full sm:w-auto bg-transparent border-2 border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-black px-8 py-4 text-lg font-orbitron font-bold transition-colors text-center"
+              >
+                {lang === 'ru' ? 'ПОДПИСАТЬСЯ' : 'SUBSCRIBE'}
+              </Link>
               <a
                 href="https://www.patreon.com/FablesMonster"
-
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto bg-transparent border-2 border-white text-white hover:bg-white hover:text-red-900 px-8 py-4 text-lg font-orbitron font-bold transition-colors text-center"

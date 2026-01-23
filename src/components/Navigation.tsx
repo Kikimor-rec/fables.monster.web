@@ -15,7 +15,7 @@ export default function Navigation({ lang, dict }: { lang: string, dict: NavDict
   const mobileCloseButtonRef = useRef<HTMLButtonElement>(null);
 
   const navLinks = [
-    { href: `/${lang}`, label: dict?.home || "HOME" },
+    { href: `/${lang}`, label: dict?.home || "HOME", exact: true },
     { href: `/${lang}/projects`, label: dict?.projects || "PROJECTS" },
     { href: `/${lang}/timer`, label: dict?.timer || "TIMER" },
     { href: `/${lang}/about`, label: dict?.about || "ABOUT" },
@@ -80,33 +80,68 @@ export default function Navigation({ lang, dict }: { lang: string, dict: NavDict
   };
 
   return (
-    <nav className="fixed top-0 w-full z-50 px-6 py-4 bg-black/80 backdrop-blur-sm border-b border-red-700">
-      <div className="max-w-7xl mx-auto flex justify-between items-center">
-        <Link href="/" className="flex items-center gap-3 focus:outline-none focus:ring-2 focus:ring-red-500 rounded">
-          <Image src="/logos/fm-logo-gorizntal-w.png" alt="Fables Monster Logo" width={160} height={56} className="h-12 w-auto logo-glitch" priority />
-        </Link>
+    <>
+      {/* Skip to main content link for accessibility */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[60] focus:bg-red-700 focus:text-white focus:px-4 focus:py-2 focus:rounded font-orbitron"
+      >
+        {lang === 'ru' ? 'Перейти к контенту' : 'Skip to content'}
+      </a>
 
-        {/* Desktop Menu */}
-        <div className="hidden md:flex space-x-8 items-center">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`nav-link transition-colors font-orbitron font-bold ${isActive(link.href)
-                ? "nav-link-active text-red-400"
-                : "text-white hover:text-red-400"
-                } focus:outline-none focus:ring-2 focus:ring-red-500 rounded px-1 py-2`}
-            >
-              {link.label}
-            </Link>
-          ))}
-          {/* Language Switcher */}
-          <div className="flex items-center gap-2 font-orbitron font-bold text-sm ml-4 border-l border-gray-700 pl-4">
-            <Link href={switchLanguage('en')} className={`transition-colors ${lang === 'en' ? 'text-red-400' : 'text-gray-400 hover:text-white'}`}>EN</Link>
-            <span className="text-gray-600">|</span>
-            <Link href={switchLanguage('ru')} className={`transition-colors ${lang === 'ru' ? 'text-red-400' : 'text-gray-400 hover:text-white'}`}>RU</Link>
+      <header role="banner" className="fixed top-0 w-full z-50 px-6 py-4 bg-black/80 backdrop-blur-sm border-b border-red-700">
+        <nav className="max-w-7xl mx-auto flex justify-between items-center" aria-label="Main navigation">
+          <Link
+            href={`/${lang}`}
+            className="flex items-center gap-3 focus:outline-none focus:ring-2 focus:ring-red-500 rounded"
+            aria-label={lang === 'ru' ? 'Fables Monster - На главную' : 'Fables Monster - Home'}
+          >
+            <Image src="/logos/fm-logo-gorizntal-w.png" alt="" width={160} height={56} className="h-12 w-auto logo-glitch" priority aria-hidden="true" />
+            <span className="sr-only">Fables Monster Studio</span>
+          </Link>
+
+          {/* Desktop Menu */}
+          <div className="hidden md:flex space-x-8 items-center" role="menubar">
+            {navLinks.map((link) => {
+              const isCurrent = isActive(link.href);
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`nav-link transition-colors font-orbitron font-bold ${isCurrent
+                    ? "nav-link-active text-red-400"
+                    : "text-white hover:text-red-400"
+                    } focus:outline-none focus:ring-2 focus:ring-red-500 rounded px-1 py-2`}
+                  aria-current={isCurrent ? 'page' : undefined}
+                  role="menuitem"
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
+            {/* Language Switcher */}
+            <div className="flex items-center gap-2 font-orbitron font-bold text-sm ml-4 border-l border-gray-700 pl-4" role="group" aria-label={lang === 'ru' ? 'Выбор языка' : 'Language selection'}>
+              <Link
+                href={switchLanguage('en')}
+                className={`transition-colors ${lang === 'en' ? 'text-red-400' : 'text-gray-400 hover:text-white'}`}
+                aria-label="English"
+                aria-current={lang === 'en' ? 'true' : undefined}
+                hrefLang="en"
+              >
+                EN
+              </Link>
+              <span className="text-gray-600" aria-hidden="true">|</span>
+              <Link
+                href={switchLanguage('ru')}
+                className={`transition-colors ${lang === 'ru' ? 'text-red-400' : 'text-gray-400 hover:text-white'}`}
+                aria-label="Русский"
+                aria-current={lang === 'ru' ? 'true' : undefined}
+                hrefLang="ru"
+              >
+                RU
+              </Link>
+            </div>
           </div>
-        </div>
 
         {/* Mobile Menu Button */}
         <button
@@ -140,7 +175,9 @@ export default function Navigation({ lang, dict }: { lang: string, dict: NavDict
             )}
           </svg>
         </button>
-      </div>
+        </nav>
+      </header>
+
       {/* Mobile Menu (Portal) */}
       {typeof window !== 'undefined' && isMenuOpen && createPortal(
         <>
@@ -157,41 +194,63 @@ export default function Navigation({ lang, dict }: { lang: string, dict: NavDict
             className="fixed left-0 top-0 z-50 w-full bg-black flex flex-col items-center shadow-2xl animate-slide-down pt-8 pb-8"
             role="dialog"
             aria-modal="true"
-            aria-label="Main menu"
+            aria-label={lang === 'ru' ? 'Главное меню' : 'Main menu'}
           >
             <button
               ref={mobileCloseButtonRef}
               className="absolute top-4 right-4 text-white text-4xl p-2 focus:outline-none focus:ring-2 focus:ring-red-500 rounded z-50"
               onClick={handleCloseMenu}
-              aria-label="Close menu"
+              aria-label={lang === 'ru' ? 'Закрыть меню' : 'Close menu'}
             >
               ×
             </button>
-            <nav className="w-full flex flex-col items-center gap-2" role="menubar">
-              {navLinks.map((link) => (
+            <nav className="w-full flex flex-col items-center gap-2" role="menubar" aria-label={lang === 'ru' ? 'Мобильная навигация' : 'Mobile navigation'}>
+              {navLinks.map((link) => {
+                const isCurrent = isActive(link.href);
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={`nav-link text-2xl font-orbitron font-bold py-6 w-full text-center transition-colors ${isCurrent
+                      ? "nav-link-active text-red-400"
+                      : "text-white hover:text-red-400"
+                      } focus:outline-none focus:ring-2 focus:ring-red-500 rounded mx-4`}
+                    onClick={handleCloseMenu}
+                    role="menuitem"
+                    aria-current={isCurrent ? 'page' : undefined}
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })}
+              <div className="flex items-center gap-4 font-orbitron font-bold text-xl mt-4" role="group" aria-label={lang === 'ru' ? 'Выбор языка' : 'Language selection'}>
                 <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`nav-link text-2xl font-orbitron font-bold py-6 w-full text-center transition-colors ${isActive(link.href)
-                    ? "nav-link-active text-red-400"
-                    : "text-white hover:text-red-400"
-                    } focus:outline-none focus:ring-2 focus:ring-red-500 rounded mx-4`}
+                  href={switchLanguage('en')}
+                  className={`transition-colors ${lang === 'en' ? 'text-red-400' : 'text-gray-400 hover:text-white'}`}
                   onClick={handleCloseMenu}
-                  role="menuitem"
+                  aria-label="English"
+                  aria-current={lang === 'en' ? 'true' : undefined}
+                  hrefLang="en"
                 >
-                  {link.label}
+                  EN
                 </Link>
-              ))}
-              <div className="flex items-center gap-4 font-orbitron font-bold text-xl mt-4">
-                <Link href={switchLanguage('en')} className={`transition-colors ${lang === 'en' ? 'text-red-400' : 'text-gray-400 hover:text-white'}`} onClick={handleCloseMenu}>EN</Link>
-                <span className="text-gray-600">|</span>
-                <Link href={switchLanguage('ru')} className={`transition-colors ${lang === 'ru' ? 'text-red-400' : 'text-gray-400 hover:text-white'}`} onClick={handleCloseMenu}>RU</Link>
+                <span className="text-gray-600" aria-hidden="true">|</span>
+                <Link
+                  href={switchLanguage('ru')}
+                  className={`transition-colors ${lang === 'ru' ? 'text-red-400' : 'text-gray-400 hover:text-white'}`}
+                  onClick={handleCloseMenu}
+                  aria-label="Русский"
+                  aria-current={lang === 'ru' ? 'true' : undefined}
+                  hrefLang="ru"
+                >
+                  RU
+                </Link>
               </div>
             </nav>
           </div>
         </>,
         document.body
       )}
-    </nav>
+    </>
   );
 }

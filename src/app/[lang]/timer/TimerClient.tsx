@@ -127,6 +127,7 @@ export default function TimerClient({ lang = 'en', dict }: Props) {
     }, 600);
 
     return () => clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Random glitch effect

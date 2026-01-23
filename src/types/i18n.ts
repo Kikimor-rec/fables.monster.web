@@ -222,6 +222,7 @@ export interface StayConnectedDict {
   titleHighlight: string;
   description: string;
   discord: string;
+  newsletter: string;
   allProjects: string;
 }
 

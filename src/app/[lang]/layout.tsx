@@ -32,11 +32,66 @@ const nunito = Nunito({
 export const metadata: Metadata = {
     metadataBase: new URL('https://fables.monster'),
     title: {
-        default: 'Fables & Monster',
-        template: '%s | Fables & Monster'
+        default: 'Fables Monster Studio',
+        template: '%s | Fables Monster Studio'
     },
-    description: 'Indie game development studio specializing in narrative-driven horror and sci-fi experiences',
+    description: 'Independent tabletop RPG content creation studio. Specializing in horror, sci-fi, and supernatural adventures for Mothership RPG, D&D, and more.',
+    keywords: ['tabletop RPG', 'TTRPG', 'Mothership RPG', 'indie games', 'horror RPG', 'sci-fi RPG', 'D&D adventures'],
+    authors: [{ name: 'Fables Monster Studio', url: 'https://fables.monster' }],
+    creator: 'Fables Monster Studio',
+    publisher: 'Fables Monster Studio',
+    openGraph: {
+        type: 'website',
+        locale: 'en_US',
+        alternateLocale: 'ru_RU',
+        siteName: 'Fables Monster Studio',
+    },
+    twitter: {
+        card: 'summary_large_image',
+        creator: '@fablesmonster',
+        site: '@fablesmonster',
+    },
+    robots: {
+        index: true,
+        follow: true,
+        googleBot: {
+            index: true,
+            follow: true,
+            'max-video-preview': -1,
+            'max-image-preview': 'large',
+            'max-snippet': -1,
+        },
+    },
 };
+
+// Organization JSON-LD for SEO
+function OrganizationJsonLd() {
+    const jsonLd = {
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        name: 'Fables Monster Studio',
+        url: 'https://fables.monster',
+        logo: 'https://fables.monster/logos/fm-logo-sqare.png',
+        description: 'Independent tabletop RPG content creation studio specializing in horror, sci-fi, and supernatural adventures.',
+        sameAs: [
+            'https://discord.gg/qJS4h5usxe',
+            'https://www.patreon.com/FablesMonster',
+            'https://fablesmonster.itch.io',
+            'https://legacy.drivethrurpg.com/browse/pub/30815/FablesMonster',
+        ],
+        contactPoint: {
+            '@type': 'ContactPoint',
+            contactType: 'customer service',
+            url: 'https://fables.monster/contact',
+        },
+    };
+    return (
+        <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+    );
+}
 
 export async function generateStaticParams() {
   return languages.map((lang) => ({ lang }))
@@ -55,10 +110,15 @@ export default async function RootLayout({
 
     return (
         <html lang={lang} className={`${orbitron.variable} ${rajdhani.variable} ${nunito.variable}`}>
+            <head>
+                <OrganizationJsonLd />
+            </head>
             <body className="bg-black text-white">
                 {process.env.NEXT_PUBLIC_GA_ID && <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />}
                 <Navigation lang={lang} dict={dict.nav || {}} />
-                {children}
+                <main id="main-content">
+                    {children}
+                </main>
                 <Footer lang={lang} dict={dict.footer || {}} newsletterDict={newsletterDict.footer || undefined} />
                 <Analytics />
             </body>

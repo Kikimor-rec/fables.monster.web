@@ -6,6 +6,7 @@ import LazyMusicPlayer from "@/components/LazyMusicPlayer";
 import OptimizedImage from "@/components/OptimizedImage";
 import { AdventureJson } from '@/components/SEO';
 import LostMarkNavigation from '@/components/LostMarkNavigation';
+import StayConnectedSection from "@/components/StayConnectedSection";
 import { getContent, getFrontmatterString } from '@/lib/content';
 import { getDictionary } from '@/lib/i18n';
 
@@ -43,6 +44,7 @@ export default async function LostMark({ params }: { params: Promise<{ lang: str
   const { lang } = await params;
   const content = await getContent('projects', 'lost-mark', lang);
   const dict = await getDictionary(lang, 'lost-mark');
+  const homeDict = await getDictionary(lang, 'home');
   
   const contentTitle = content ? getFrontmatterString(content.frontmatter, 'title') : '';
   const contentTagline = content ? getFrontmatterString(content.frontmatter, 'tagline') : '';
@@ -706,6 +708,12 @@ export default async function LostMark({ params }: { params: Promise<{ lang: str
             </div>
           </div>
         </section>
+
+        {/* Stay Connected Section */}
+        <StayConnectedSection
+          lang={lang}
+          dict={homeDict.stayConnected}
+        />
       </div>
     </>
   );

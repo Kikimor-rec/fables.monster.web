@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import Navigation from "@/components/Navigation";
 import { AdventureJson } from '@/components/SEO';
+import StayConnectedSection from "@/components/StayConnectedSection";
 import { getContent, getFrontmatterString } from '@/lib/content';
 import { getDictionary } from '@/lib/i18n';
 
@@ -29,6 +30,7 @@ export default async function HellishBureaucracy({ params }: { params: Promise<{
   const { lang } = await params;
   const content = await getContent('projects', 'hellish-bureaucracy', lang);
   const dict = await getDictionary(lang, 'common');
+  const homeDict = await getDictionary(lang, 'home');
   
   const title = content ? getFrontmatterString(content.frontmatter, 'title') : '';
   const tagline = content ? getFrontmatterString(content.frontmatter, 'tagline') : '';
@@ -72,6 +74,12 @@ export default async function HellishBureaucracy({ params }: { params: Promise<{
             <div className="prose prose-invert prose-lg max-w-none" dangerouslySetInnerHTML={{ __html: content?.contentHtml || '' }} />
           </div>
         </section>
+
+        {/* Stay Connected Section */}
+        <StayConnectedSection
+          lang={lang}
+          dict={homeDict.stayConnected}
+        />
       </div>
     </>
   );

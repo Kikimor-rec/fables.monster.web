@@ -1,9 +1,9 @@
 import { Metadata } from 'next'
-import Link from 'next/link';
 import Image from "next/image";
 import Navigation from "@/components/Navigation";
 import KrampNavigation from "@/components/kramp/KrampNavigation";
 import KrampSections from "@/components/kramp/KrampSections";
+import StayConnectedSection from "@/components/StayConnectedSection";
 import { getContent, getFrontmatterString } from '@/lib/content';
 import { getDictionary } from '@/lib/i18n';
 import './christmas.css';
@@ -34,6 +34,7 @@ export default async function HolidayAuditKramp({ params }: { params: Promise<{ 
   const content = await getContent('projects', 'holiday-audit-kramp', lang);
   const dict = await getDictionary(lang, 'kramp');
   const commonDict = await getDictionary(lang, 'common');
+  const homeDict = await getDictionary(lang, 'home');
 
   const contentTitle = content ? getFrontmatterString(content.frontmatter, 'title') : '';
   const contentTagline = content ? getFrontmatterString(content.frontmatter, 'tagline') : '';
@@ -367,17 +368,11 @@ export default async function HolidayAuditKramp({ params }: { params: Promise<{ 
 
       <SectionDivider />
 
-      {/* Back to Projects */}
-      <section className="py-12 relative z-10">
-        <div className="max-w-6xl mx-auto px-6 text-center">
-          <Link
-            href={`/${lang}/projects`}
-            className="inline-flex items-center gap-2 text-red-500 hover:text-red-400 font-orbitron transition-colors text-lg hover:text-glow"
-          >
-            {dict.backToProjects || '← Back to Projects'}
-          </Link>
-        </div>
-      </section>
+      {/* Stay Connected Section */}
+      <StayConnectedSection
+        lang={lang}
+        dict={homeDict.stayConnected}
+      />
     </div>
   );
 }

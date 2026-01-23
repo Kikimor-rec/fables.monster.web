@@ -4,6 +4,7 @@ import Image from "next/image";
 import FadeIn from "@/components/FadeIn";
 import OptimizedImage from "@/components/OptimizedImage";
 import CompactTeamMember from "@/components/CompactTeamMember";
+import StayConnectedSection from "@/components/StayConnectedSection";
 import { teamMembers } from "@/data/team";
 import { getDictionary } from '@/lib/i18n';
 import { getAllProjects, getFrontmatterString, getFrontmatterObject } from '@/lib/content';
@@ -17,11 +18,43 @@ import { getAllProjects, getFrontmatterString, getFrontmatterObject } from '@/li
 
 
 
-export const metadata: Metadata = {
-    title: 'Fables Monster Studio - Independent Tabletop RPG Creators',
-    description: 'Create unforgettable tabletop RPG experiences with Fables Monster Studio. Specializing in horror, sci-fi, and supernatural adventures for Mothership RPG, D&D, and more.',
-    keywords: 'tabletop RPG, horror RPG, Mothership RPG, indie games, D&D adventures, cosmic horror, sci-fi RPG, supernatural adventures',
-};
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+    const { lang } = await params;
+    const isRussian = lang === 'ru';
+
+    return {
+        title: isRussian
+            ? 'Fables Monster Studio - Независимая студия настольных ролевых игр'
+            : 'Fables Monster Studio - Independent Tabletop RPG Creators',
+        description: isRussian
+            ? 'Создаём незабываемые приключения для настольных ролевых игр. Специализируемся на хорроре, научной фантастике и сверхъестественных приключениях для Mothership RPG, D&D и других систем.'
+            : 'Create unforgettable tabletop RPG experiences with Fables Monster Studio. Specializing in horror, sci-fi, and supernatural adventures for Mothership RPG, D&D, and more.',
+        keywords: isRussian
+            ? 'настольные ролевые игры, НРИ, хоррор, Mothership RPG, D&D приключения, космический хоррор, научная фантастика'
+            : 'tabletop RPG, horror RPG, Mothership RPG, indie games, D&D adventures, cosmic horror, sci-fi RPG, supernatural adventures',
+        alternates: {
+            canonical: `https://fables.monster/${lang}`,
+            languages: {
+                'en': 'https://fables.monster/en',
+                'ru': 'https://fables.monster/ru',
+                'x-default': 'https://fables.monster/en',
+            },
+        },
+        openGraph: {
+            title: isRussian
+                ? 'Fables Monster Studio - Независимая студия настольных ролевых игр'
+                : 'Fables Monster Studio - Independent Tabletop RPG Creators',
+            description: isRussian
+                ? 'Создаём незабываемые приключения для настольных ролевых игр.'
+                : 'Create unforgettable tabletop RPG experiences.',
+            url: `https://fables.monster/${lang}`,
+            siteName: 'Fables Monster Studio',
+            locale: isRussian ? 'ru_RU' : 'en_US',
+            type: 'website',
+            images: ['/logos/fm-logo-sqare.png'],
+        },
+    };
+}
 
 export default async function Home({ params }: { params: Promise<{ lang: string }> }) {
     const { lang } = await params;
@@ -265,6 +298,12 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
                     </div>
                 </div>
             </section>
+
+            {/* Stay Connected Section */}
+            <StayConnectedSection
+                lang={lang}
+                dict={dict.stayConnected}
+            />
         </div>
     );
 }
