@@ -116,6 +116,7 @@ export default function LostMarkTerminalClient({ lang = 'en', dict }: Props) {
     }, 1000);
 
     return () => clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [content]);
 
   // Append new logs when content changes
