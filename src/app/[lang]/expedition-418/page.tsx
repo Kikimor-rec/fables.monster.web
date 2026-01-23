@@ -1,6 +1,8 @@
 import { Metadata } from "next";
 import Link from 'next/link';
 import { getContent, getFrontmatterString } from '@/lib/content';
+import { getDictionary } from '@/lib/i18n';
+import StayConnectedSection from "@/components/StayConnectedSection";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -96,6 +98,7 @@ function StaticNoisePlaceholder({ isRussian }: { isRussian: boolean }) {
 export default async function Expedition418({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   const content = await getContent('projects', 'expedition-418', lang);
+  const homeDict = await getDictionary(lang, 'home');
 
   const contentTitle = content ? getFrontmatterString(content.frontmatter, 'title') : '';
   const contentTagline = content ? getFrontmatterString(content.frontmatter, 'tagline') : '';
@@ -320,27 +323,12 @@ export default async function Expedition418({ params }: { params: Promise<{ lang
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 border-t border-cyan-900/30 text-center">
-        <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-4xl font-bold text-white mb-6 font-orbitron glitch-text" data-text={isRussian ? 'СЛЕДИТЕ ЗА РАЗРАБОТКОЙ' : 'STAY TUNED'}>
-            {isRussian ? 'СЛЕДИТЕ ЗА РАЗРАБОТКОЙ' : 'STAY TUNED'}
-          </h2>
-          <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto font-rajdhani">
-            {isRussian
-              ? 'Игра в разработке. Подпишитесь на наши социальные сети, чтобы не пропустить анонсы и плейтесты.'
-              : 'The game is in development. Follow our social media to catch announcements and playtests.'}
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href={`/${lang}/projects`}
-              className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-black px-8 py-4 text-lg font-orbitron font-bold transition-colors"
-            >
-              {isRussian ? 'ДРУГИЕ ПРОЕКТЫ' : 'MORE PROJECTS'}
-            </Link>
-          </div>
-        </div>
-      </section>
+      {/* Stay Connected Section */}
+      <StayConnectedSection
+        lang={lang}
+        dict={homeDict.stayConnected}
+        variant="cyberpunk"
+      />
     </div>
   );
 }

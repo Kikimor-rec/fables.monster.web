@@ -1,11 +1,11 @@
 import { Metadata } from 'next';
-import Link from 'next/link';
 import Image from "next/image";
 import { getContent, getFrontmatterString } from '@/lib/content';
 import { getDictionary } from '@/lib/i18n';
 import EncryptedText from "@/components/EncryptedText";
 import NoSignalPlaceholder from "@/components/NoSignalPlaceholder";
 import Navigation from "@/components/Navigation";
+import StayConnectedSection from "@/components/StayConnectedSection";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
     const { lang } = await params;
@@ -203,35 +203,11 @@ export default async function ProjectNeonPage({ params }: { params: Promise<{ la
             </section>
 
             {/* Call to Action */}
-            <section className="py-20 bg-black border-t border-cyan-700/30 relative z-10">
-                <div className="max-w-4xl mx-auto text-center px-6">
-                    <div className="mb-8">
-                        <div className="text-cyan-400 font-mono text-sm mb-2 tracking-[0.3em]">{homeDict.stayConnected?.label || 'STATUS UPDATE'}</div>
-                        <h2 className="text-4xl font-bold text-white mb-6 font-orbitron">
-                            {homeDict.stayConnected?.title || 'STAY'} <span className="text-magenta-400">{homeDict.stayConnected?.titleHighlight || 'CONNECTED'}</span>
-                        </h2>
-                        <p className="text-xl text-gray-300 mb-8 font-rajdhani">
-                            {homeDict.stayConnected?.description || 'More intel will be declassified soon. Join our network to receive updates when the data drops.'}
-                        </p>
-                    </div>
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <a
-                            href="https://discord.gg/qJS4h5usxe"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="bg-cyan-600 hover:bg-cyan-700 text-white px-8 py-4 text-lg font-orbitron font-bold transition-all border border-cyan-500 shadow-[0_0_20px_rgba(0,255,255,0.3)]"
-                        >
-                            {homeDict.stayConnected?.discord || 'JOIN DISCORD'}
-                        </a>
-                        <Link
-                            href={`/${lang}/projects`}
-                            className="bg-transparent border-2 border-magenta-500 text-magenta-400 hover:bg-magenta-500 hover:text-black px-8 py-4 text-lg font-orbitron font-bold transition-all"
-                        >
-                            {homeDict.stayConnected?.allProjects || 'ALL PROJECTS'}
-                        </Link>
-                    </div>
-                </div>
-            </section>
+            <StayConnectedSection
+                lang={lang}
+                dict={homeDict.stayConnected}
+                variant="cyberpunk"
+            />
         </div>
     );
 }
