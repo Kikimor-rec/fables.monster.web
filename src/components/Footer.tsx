@@ -84,6 +84,11 @@ export default function Footer({ lang, dict, newsletterDict }: FooterProps) {
                     {lang === 'ru' ? 'Конфиденциальность' : 'Privacy'}
                   </Link>
                 </li>
+                <li>
+                  <Link href={`/${lang}/legal`} className="hover:text-red-400 transition-colors">
+                    {lang === 'ru' ? 'Юридическая информация' : 'Legal'}
+                  </Link>
+                </li>
               </ul>
             </nav>
             <div>
