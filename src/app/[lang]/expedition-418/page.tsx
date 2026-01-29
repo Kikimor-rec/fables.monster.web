@@ -31,7 +31,7 @@ function CCTVImageDisplay({ isRussian }: { isRussian: boolean }) {
     <div className="relative w-full aspect-video bg-gray-900 border-2 border-cyan-700 overflow-hidden cctv-container cctv-corners">
       {/* Main image */}
       <img
-        src="/images/expedition-418/teapot-concept.webp"
+        src="/images/teapot-concept.webp"
         alt={isRussian ? "Концепт-арт робота-чайника" : "Teapot robot concept art"}
         className="cctv-image"
       />
