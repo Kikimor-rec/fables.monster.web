@@ -25,72 +25,62 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 
 export const dynamic = 'force-static';
 
-// Static noise placeholder component with ERR_418 easter egg
-function StaticNoisePlaceholder({ isRussian }: { isRussian: boolean }) {
+// CCTV display component with camera feed effect
+function CCTVImageDisplay({ isRussian }: { isRussian: boolean }) {
   return (
-    <div className="relative w-full aspect-video bg-gray-900 border-2 border-cyan-700 overflow-hidden static-noise-container">
-      {/* SVG filter for noise effect */}
-      <svg className="absolute w-0 h-0">
-        <filter id="noise-filter">
-          <feTurbulence
-            type="fractalNoise"
-            baseFrequency="0.9"
-            numOctaves="4"
-            stitchTiles="stitch"
-            result="noise"
-          />
-          <feColorMatrix
-            type="saturate"
-            values="0"
-            in="noise"
-            result="monoNoise"
-          />
-          <feComponentTransfer in="monoNoise" result="brighterNoise">
-            <feFuncR type="linear" slope="1.5" intercept="-0.1"/>
-            <feFuncG type="linear" slope="1.5" intercept="-0.1"/>
-            <feFuncB type="linear" slope="1.5" intercept="-0.1"/>
-          </feComponentTransfer>
-        </filter>
-      </svg>
+    <div className="relative w-full aspect-video bg-gray-900 border-2 border-cyan-700 overflow-hidden cctv-container cctv-corners">
+      {/* Main image */}
+      <img
+        src="/images/teapot-concept.webp"
+        alt={isRussian ? "Концепт-арт робота-чайника" : "Teapot robot concept art"}
+        className="cctv-image"
+      />
 
-      {/* Static noise layers */}
-      <div className="absolute inset-0 static-noise-layer opacity-80"></div>
-      <div className="absolute inset-0 static-noise-layer-2 opacity-60"></div>
+      {/* CCTV Color tint */}
+      <div className="cctv-tint"></div>
 
-      {/* Scanlines overlay */}
-      <div className="absolute inset-0 scanlines-overlay"></div>
+      {/* CCTV Noise overlay */}
+      <div className="cctv-noise"></div>
 
-      {/* Interference bars */}
-      <div className="absolute inset-0 interference-bars"></div>
+      {/* CCTV Scanlines */}
+      <div className="cctv-scanlines"></div>
 
-      {/* CRT vignette */}
-      <div className="absolute inset-0 bg-radial-vignette"></div>
+      {/* CCTV Interlace */}
+      <div className="cctv-interlace"></div>
 
-      {/* Center text with glitch */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
-        <div className="text-cyan-400 font-mono text-sm mb-2 glitch-text-fast opacity-70" data-text={isRussian ? "СИГНАЛ ПОТЕРЯН" : "SIGNAL LOST"}>
-          {isRussian ? "СИГНАЛ ПОТЕРЯН" : "SIGNAL LOST"}
-        </div>
-        <div className="text-cyan-500 font-orbitron text-xl md:text-3xl font-bold tracking-wider static-text-flicker mb-2">
-          {isRussian ? "ВИЗУАЛЬНЫЙ КАНАЛ ОФФЛАЙН" : "VISUAL FEED OFFLINE"}
-        </div>
+      {/* CCTV Vignette */}
+      <div className="cctv-vignette"></div>
+
+      {/* CCTV Glitch bar */}
+      <div className="cctv-glitch-bar"></div>
+
+      {/* Camera ID */}
+      <div className="cctv-cam-id">
+        CAM_418 // UNIT_TEAPOT
+      </div>
+
+      {/* REC indicator */}
+      <div className="cctv-rec">
+        <span className="cctv-rec-dot"></span>
+        REC
+      </div>
+
+      {/* Timestamp */}
+      <div className="cctv-timestamp">
         <a
           href="https://en.wikipedia.org/wiki/Hyper_Text_Coffee_Pot_Control_Protocol"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-red-500 font-mono text-xs mt-4 opacity-80 hover:opacity-100 hover:text-red-400 transition-opacity cursor-help glitch-text-fast"
-          data-text={isRussian ? "[ ERR_418: ЮНИТ ЯВЛЯЕТСЯ ЧАЙНИКОМ ]" : "[ ERR_418: UNIT IS A TEAPOT ]"}
-          title={isRussian ? "Что это значит?" : "What does this mean?"}
+          className="hover:text-cyan-300 transition-colors cursor-help"
+          title={isRussian ? "Почему 418?" : "Why 418?"}
         >
-          {isRussian ? "[ ERR_418: ЮНИТ ЯВЛЯЕТСЯ ЧАЙНИКОМ ]" : "[ ERR_418: UNIT IS A TEAPOT ]"}
+          2418.04.18 // 04:18:00 // ERR_418
         </a>
       </div>
 
-      {/* Corner decorations */}
-      <div className="absolute top-2 left-2 w-4 h-4 border-t-2 border-l-2 border-cyan-500 opacity-50"></div>
-      <div className="absolute top-2 right-2 w-4 h-4 border-t-2 border-r-2 border-cyan-500 opacity-50"></div>
-      <div className="absolute bottom-2 left-2 w-4 h-4 border-b-2 border-l-2 border-cyan-500 opacity-50"></div>
-      <div className="absolute bottom-2 right-2 w-4 h-4 border-b-2 border-r-2 border-cyan-500 opacity-50"></div>
+      {/* Corner markers for CCTV look */}
+      <div className="corner-bl"></div>
+      <div className="corner-br"></div>
     </div>
   );
 }
@@ -244,12 +234,12 @@ export default async function Expedition418({ params }: { params: Promise<{ lang
         </div>
       </section>
 
-      {/* Image Placeholder Section */}
+      {/* Concept Art Section with CCTV effect */}
       <section className="py-16 bg-gray-950 border-t border-cyan-900/30">
         <div className="max-w-4xl mx-auto px-6">
-          <StaticNoisePlaceholder isRussian={isRussian} />
+          <CCTVImageDisplay isRussian={isRussian} />
           <p className="text-center text-gray-500 font-mono text-sm mt-4">
-            {isRussian ? '[ Визуальные материалы в процессе загрузки... ]' : '[ Visual assets loading... ]'}
+            {isRussian ? '[ Трансляция с камеры наблюдения // Сектор 418 ]' : '[ Surveillance feed // Sector 418 ]'}
           </p>
         </div>
       </section>
