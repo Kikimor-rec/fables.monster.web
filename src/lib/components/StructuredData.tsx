@@ -24,7 +24,7 @@ export default function StructuredData({ type, product }: StructuredDataProps) {
     "url": "https://fables.monster",
     "logo": "https://fables.monster/logos/fables-monster-logo.png",
     "sameAs": [
-      "https://discord.gg/fables-monster",
+      "https://discord.gg/eAwK9DfKf4",
       "https://patreon.com/fables-monster",
       "https://fables-monster.itch.io",
       "https://drivethrurpg.com/browse/pub/22950/Fables-Monster-Studio"

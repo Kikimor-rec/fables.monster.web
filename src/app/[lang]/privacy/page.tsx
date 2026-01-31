@@ -122,7 +122,7 @@ export default async function PrivacyPolicy({ params }: { params: Promise<{ lang
           content: [
             "If you have questions about this Privacy Policy or want to exercise your rights, contact us:",
             "• <strong>Email:</strong> <a href='mailto:info@fables.monster' class='text-red-400 hover:text-red-300 transition-colors'>info@fables.monster</a>",
-            "• <strong>Discord:</strong> <a href='https://discord.gg/qJS4h5usxe' target='_blank' rel='noopener noreferrer' class='text-red-400 hover:text-red-300 transition-colors'>Join our Discord</a>"
+            "• <strong>Discord:</strong> <a href='https://discord.gg/eAwK9DfKf4' target='_blank' rel='noopener noreferrer' class='text-red-400 hover:text-red-300 transition-colors'>Join our Discord</a>"
           ]
         }
       ]
@@ -226,7 +226,7 @@ export default async function PrivacyPolicy({ params }: { params: Promise<{ lang
           content: [
             "Если у вас есть вопросы об этой Политике конфиденциальности или вы хотите реализовать свои права, свяжитесь с нами:",
             "• <strong>Email:</strong> <a href='mailto:info@fables.monster' class='text-red-400 hover:text-red-300 transition-colors'>info@fables.monster</a>",
-            "• <strong>Discord:</strong> <a href='https://discord.gg/qJS4h5usxe' target='_blank' rel='noopener noreferrer' class='text-red-400 hover:text-red-300 transition-colors'>Присоединяйтесь к Discord</a>"
+            "• <strong>Discord:</strong> <a href='https://discord.gg/eAwK9DfKf4' target='_blank' rel='noopener noreferrer' class='text-red-400 hover:text-red-300 transition-colors'>Присоединяйтесь к Discord</a>"
           ]
         }
       ]

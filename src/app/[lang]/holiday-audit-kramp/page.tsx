@@ -123,7 +123,7 @@ export default async function HolidayAuditKramp({ params }: { params: Promise<{ 
     },
     {
       platform: "Discord",
-      url: "https://discord.gg/qJS4h5usxe",
+      url: "https://discord.gg/eAwK9DfKf4",
       description: dict.links?.discord || "playtests & community chat",
       icon: "/logos/Discord-Symbol-White.svg"
     }

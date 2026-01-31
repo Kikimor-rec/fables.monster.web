@@ -154,7 +154,7 @@ When updating the CSS:
 
 For issues or questions:
 - Email: info@fables.monster
-- Discord: https://discord.gg/qJS4h5usxe
+- Discord: https://discord.gg/eAwK9DfKf4
 - Website: https://fables.monster
 
 ## License

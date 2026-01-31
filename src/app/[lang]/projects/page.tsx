@@ -167,7 +167,7 @@ export default async function ProjectsPage({ params }: { params: Promise<{ lang:
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center flex-wrap">
               <a
-                href="https://discord.gg/qJS4h5usxe"
+                href="https://discord.gg/eAwK9DfKf4"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto bg-white text-red-900 px-8 py-4 text-lg font-orbitron font-bold hover:bg-gray-200 transition-colors text-center"

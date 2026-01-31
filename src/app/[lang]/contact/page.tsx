@@ -48,7 +48,7 @@ export default async function Contact({ params }: { params: Promise<{ lang: stri
                 {dict.contact.getInTouch || 'GET IN TOUCH'}
               </h2>
               <div className="flex flex-col items-start gap-8 mb-8 p-3">
-                <a href="https://discord.gg/qJS4h5usxe" target="_blank" rel="noopener noreferrer" title="Discord" className="block hover:opacity-80 transition-opacity">
+                <a href="https://discord.gg/eAwK9DfKf4" target="_blank" rel="noopener noreferrer" title="Discord" className="block hover:opacity-80 transition-opacity">
                   <Image src="/logos/discord-badge-color.png" alt="Discord" width={200} height={40} className="h-10 w-auto drop-shadow mx-0" />
                 </a>
                 <a href="https://fablesmonster.itch.io/" target="_blank" rel="noopener noreferrer" title="Itch.io" className="block hover:opacity-80 transition-opacity">

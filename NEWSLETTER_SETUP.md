@@ -339,4 +339,4 @@ For issues or questions:
 - Check Listmonk logs: `docker logs listmonk` (if using Docker)
 - Review website logs for API errors
 - Contact: info@fables.monster
-- Discord: [Join our Discord](https://discord.gg/qJS4h5usxe)
+- Discord: [Join our Discord](https://discord.gg/eAwK9DfKf4)
