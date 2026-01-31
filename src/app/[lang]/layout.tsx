@@ -74,7 +74,7 @@ function OrganizationJsonLd() {
         logo: 'https://fables.monster/logos/fm-logo-sqare.png',
         description: 'Independent tabletop RPG content creation studio specializing in horror, sci-fi, and supernatural adventures.',
         sameAs: [
-            'https://discord.gg/qJS4h5usxe',
+            'https://discord.gg/eAwK9DfKf4',
             'https://www.patreon.com/FablesMonster',
             'https://fablesmonster.itch.io',
             'https://legacy.drivethrurpg.com/browse/pub/30815/FablesMonster',

@@ -8,7 +8,7 @@ interface SocialLinksProps {
 export default function SocialLinks({ className = "", showLabels = true }: SocialLinksProps) {
   const links = [
     {
-      href: "https://discord.gg/qJS4h5usxe",
+      href: "https://discord.gg/eAwK9DfKf4",
       icon: "/logos/Discord-Symbol-White.svg",
       label: "Discord",
       description: "Join our community"
