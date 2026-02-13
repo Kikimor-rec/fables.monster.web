@@ -1,4 +1,5 @@
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Orbitron, Rajdhani, Nunito } from 'next/font/google';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
@@ -121,6 +122,7 @@ export default async function RootLayout({
                 </main>
                 <Footer lang={lang} dict={dict.footer || {}} newsletterDict={newsletterDict.footer || undefined} />
                 <Analytics />
+                <SpeedInsights />
             </body>
         </html>
     );
