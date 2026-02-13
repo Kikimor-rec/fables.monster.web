@@ -88,7 +88,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
         <div className="bg-black">
             {/* Hero Section */}
             <section className="relative min-h-screen flex items-center justify-center text-center overflow-hidden">
-                <div className="absolute inset-0 bg-[url('/grid.png')] opacity-20 animate-pulse"></div>
+                <div className="absolute inset-0 opacity-20 animate-pulse [background-image:linear-gradient(rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.08)_1px,transparent_1px)] [background-size:36px_36px]"></div>
                 <div className="absolute inset-0 bg-gradient-to-b from-black via-black/90 to-red-950/20"></div>
                 <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6">
                     <FadeIn delay={0.2}>
@@ -156,7 +156,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
                         {sortedProjects.slice(0, 3).map((project, index) => {
                             const title = getFrontmatterString(project.frontmatter, 'title');
                             const tagline = getFrontmatterString(project.frontmatter, 'tagline');
-                            const image = getFrontmatterString(project.frontmatter, 'image') || '/images/placeholder.jpg';
+                            const image = getFrontmatterString(project.frontmatter, 'image') || '/images/placeholder.webp';
                             const type = getFrontmatterString(project.frontmatter, 'type') || getFrontmatterString(project.frontmatter, 'system') || 'Adventure';
                             const status = getFrontmatterString(project.frontmatter, 'status') || 'in-development';
                             const platforms = getFrontmatterObject<Record<string, string>>(project.frontmatter, 'platforms');
@@ -234,7 +234,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
 
             {/* KRAMP.EXE Special Section */}
             <section className="py-24 bg-red-950/10 border-y border-red-900/30 relative overflow-hidden">
-                <div className="absolute inset-0 bg-[url('/noise.png')] opacity-5 mix-blend-overlay"></div>
+                <div className="absolute inset-0 opacity-5 mix-blend-overlay [background-image:radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.3)_1px,transparent_1px)] [background-size:8px_8px]"></div>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
                     <div className="grid md:grid-cols-2 gap-12 items-center">
                         <div>

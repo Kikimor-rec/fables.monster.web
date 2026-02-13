@@ -249,22 +249,33 @@ export default function TimerClient({ lang = 'en', dict }: Props) {
     return ((totalSeconds - currentSeconds) / totalSeconds) * 100;
   };
 
+  const getTimerStatusKey = () => {
+    if (currentSeconds === 0 && totalSeconds > 0) return 'completed' as const;
+    if (isRunning && !isPaused) return 'running' as const;
+    if (isPaused) return 'paused' as const;
+    if (currentSeconds > 0) return 'ready' as const;
+    return 'standby' as const;
+  };
+
   const getTimerStatus = () => {
-    if (currentSeconds === 0 && totalSeconds > 0) return dict?.status?.completed || "COMPLETED";
-    if (isRunning && !isPaused) return dict?.status?.running || "RUNNING";
-    if (isPaused) return dict?.status?.paused || "PAUSED";
-    if (currentSeconds > 0) return dict?.status?.ready || "READY";
-    return dict?.status?.standby || "STANDBY";
+    const statusKey = getTimerStatusKey();
+    switch (statusKey) {
+      case 'completed': return dict?.status?.completed || 'COMPLETED';
+      case 'running': return dict?.status?.running || 'RUNNING';
+      case 'paused': return dict?.status?.paused || 'PAUSED';
+      case 'ready': return dict?.status?.ready || 'READY';
+      default: return dict?.status?.standby || 'STANDBY';
+    }
   };
 
   const getStatusColor = () => {
-    const status = getTimerStatus();
-    switch (status) {
-      case "RUNNING": return "text-cyan-400";
-      case "PAUSED": return "text-yellow-400";
-      case "COMPLETED": return "text-red-500";
-      case "READY": return "text-white";
-      default: return "text-gray-400";
+    const statusKey = getTimerStatusKey();
+    switch (statusKey) {
+      case 'running': return 'text-cyan-400';
+      case 'paused': return 'text-yellow-400';
+      case 'completed': return 'text-red-500';
+      case 'ready': return 'text-white';
+      default: return 'text-gray-400';
     }
   };
 
@@ -290,7 +301,7 @@ export default function TimerClient({ lang = 'en', dict }: Props) {
   if (isLoading) {
     return (
       <div className="min-h-screen bg-black text-cyan-400 font-orbitron flex items-center justify-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/grid.png')] opacity-10"></div>
+        <div className="absolute inset-0 opacity-10 [background-image:linear-gradient(rgba(34,211,238,0.2)_1px,transparent_1px),linear-gradient(90deg,rgba(34,211,238,0.2)_1px,transparent_1px)] [background-size:36px_36px]"></div>
         <div className="text-center px-4 relative z-10">
           <div className="mb-8">
             <div className="text-cyan-500 font-mono text-xs sm:text-sm animate-pulse tracking-widest">
@@ -311,7 +322,7 @@ export default function TimerClient({ lang = 'en', dict }: Props) {
   return (
     <div className={`min-h-screen bg-black text-gray-300 font-rajdhani relative overflow-hidden ${glitch ? 'glitch-effect' : ''}`}>
       {/* Background Grid */}
-      <div className="absolute inset-0 bg-[url('/grid.png')] opacity-5 pointer-events-none"></div>
+      <div className="absolute inset-0 opacity-5 pointer-events-none [background-image:linear-gradient(rgba(34,211,238,0.15)_1px,transparent_1px),linear-gradient(90deg,rgba(34,211,238,0.15)_1px,transparent_1px)] [background-size:36px_36px]"></div>
 
       {/* Glitch Overlay */}
       {glitch && (

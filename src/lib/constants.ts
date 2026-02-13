@@ -66,7 +66,7 @@ export const SITE_CONFIG = {
   name: 'Fables Monster Studio',
   description: 'Independent tabletop RPG content creation studio',
   url: 'https://fables.monster',
-  ogImage: '/og-image.png',
+  ogImage: '/logos/fm-logo-sqare.png',
   twitter: '@fablesmonster',
 } as const;
 

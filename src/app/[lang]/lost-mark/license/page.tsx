@@ -2,46 +2,57 @@ import { Metadata } from 'next'
 import Link from 'next/link';
 import FadeIn from "@/components/FadeIn";
 
-export const metadata: Metadata = {
-  title: 'Lost Mark License - Third-Party Content License',
-  description: 'License information for Lost Mark RPG adventure. Learn about third-party content usage, attribution requirements, and licensing terms.',
-  keywords: 'Lost Mark license, RPG license, third-party content, Mothership RPG license, attribution, copyright',
-  openGraph: {
-    title: 'Lost Mark License - Third-Party Content Information',
-    description: 'Legal information and licensing terms for the Lost Mark RPG adventure and related content.',
-    url: 'https://fables.monster/lost-mark/license',
-    siteName: 'Fables Monster Studio',
-    images: [
-      {
-        url: 'https://fables.monster/lost-mark/cover.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Lost Mark License Information',
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+  const { lang } = await params;
+  const imageUrl = 'https://fables.monster/images/lost-mark/lm_promo_1.webp';
+
+  return {
+    title: 'Lost Mark License - Third-Party Content License',
+    description: 'License information for Lost Mark RPG adventure. Learn about third-party content usage, attribution requirements, and licensing terms.',
+    keywords: 'Lost Mark license, RPG license, third-party content, Mothership RPG license, attribution, copyright',
+    openGraph: {
+      title: 'Lost Mark License - Third-Party Content Information',
+      description: 'Legal information and licensing terms for the Lost Mark RPG adventure and related content.',
+      url: `https://fables.monster/${lang}/lost-mark/license`,
+      siteName: 'Fables Monster Studio',
+      images: [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: 'Lost Mark License Information',
+        },
+      ],
+      locale: lang === 'ru' ? 'ru_RU' : 'en_US',
+      type: 'article',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'Lost Mark License Information',
+      description: 'Legal information and licensing terms for the Lost Mark RPG adventure.',
+      images: [imageUrl],
+    },
+    alternates: {
+      canonical: `https://fables.monster/${lang}/lost-mark/license`,
+      languages: {
+        en: 'https://fables.monster/en/lost-mark/license',
+        ru: 'https://fables.monster/ru/lost-mark/license',
       },
-    ],
-    locale: 'en_US',
-    type: 'article',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Lost Mark License Information',
-    description: 'Legal information and licensing terms for the Lost Mark RPG adventure.',
-    images: ['https://fables.monster/lost-mark/cover.jpg'],
-  },
-  alternates: {
-    canonical: 'https://fables.monster/lost-mark/license',
-  },
+    },
+  };
 }
 
 
-export default function LostMarkLicense() {
+export default async function LostMarkLicense({ params }: { params: Promise<{ lang: string }> }) {
+  const { lang } = await params;
+
   return (
     <div className="min-h-screen bg-black text-white">
       <div className="max-w-4xl mx-auto px-4 py-12">
         <FadeIn>
           <div className="mb-8">
             <Link
-              href="/lost-mark"
+              href={`/${lang}/lost-mark`}
               className="text-red-400 hover:text-red-300 font-mono text-sm transition-colors"
             >
               ← Back to Lost Mark
@@ -130,13 +141,13 @@ export default function LostMarkLicense() {
         <FadeIn delay={0.8}>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/lost-mark"
+              href={`/${lang}/lost-mark`}
               className="bg-red-700 hover:bg-red-600 text-white px-8 py-4 font-mono font-bold transition-colors border border-red-600 text-center"
             >
               BACK TO LOST MARK
             </Link>
             <Link
-              href="/projects"
+              href={`/${lang}/projects`}
               className="bg-transparent border-2 border-red-700 text-red-400 hover:bg-red-700 hover:text-white px-8 py-4 font-mono font-bold transition-colors text-center"
             >
               VIEW ALL PROJECTS

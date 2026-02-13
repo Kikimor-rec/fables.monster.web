@@ -22,11 +22,11 @@ export default function StructuredData({ type, product }: StructuredDataProps) {
     "name": "Fables Monster Studio",
     "description": "Independent tabletop RPG content creation studio specializing in horror, sci-fi, and supernatural adventures",
     "url": "https://fables.monster",
-    "logo": "https://fables.monster/logos/fables-monster-logo.png",
+    "logo": "https://fables.monster/logos/fm-logo-sqare.png",
     "sameAs": [
       "https://discord.gg/eAwK9DfKf4",
-      "https://patreon.com/fables-monster",
-      "https://fables-monster.itch.io",
+      "https://www.patreon.com/FablesMonster",
+      "https://fablesmonster.itch.io",
       "https://drivethrurpg.com/browse/pub/22950/Fables-Monster-Studio"
     ],
     "founder": {

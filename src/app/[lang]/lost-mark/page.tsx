@@ -215,7 +215,7 @@ export default async function LostMark({ params }: { params: Promise<{ lang: str
             <div className="text-center">
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <Link
-                  href="/lost-mark/terminal"
+                  href={`/${lang}/lost-mark/terminal`}
                   className="inline-flex items-center gap-2 bg-green-700 text-green-200 font-orbitron font-bold px-6 py-3 rounded border-2 border-green-500 shadow-lg hover:bg-green-600 hover:border-green-400 transition-all duration-200"
                 >
                   <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -227,7 +227,7 @@ export default async function LostMark({ params }: { params: Promise<{ lang: str
                 </Link>
 
                 <Link
-                  href="/timer"
+                  href={`/${lang}/timer`}
                   className="inline-flex items-center gap-2 bg-green-700 text-green-200 font-orbitron font-bold px-6 py-3 rounded border-2 border-green-500 shadow-lg hover:bg-green-600 hover:border-green-400 transition-all duration-200"
                 >
                   <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -569,7 +569,7 @@ export default async function LostMark({ params }: { params: Promise<{ lang: str
             </h2>
             <div className="grid md:grid-cols-2 gap-8">
               <Link
-                href="/lost-mark/terminal"
+                href={`/${lang}/lost-mark/terminal`}
                 className="bg-black/60 border-2 border-green-500 p-6 rounded hover:bg-white/10 transition-all duration-200 shadow-lg"
               >
                 <div className="flex items-center gap-3 mb-4">
@@ -589,7 +589,7 @@ export default async function LostMark({ params }: { params: Promise<{ lang: str
                 </p>
               </Link>
               <Link
-                href="/timer"
+                href={`/${lang}/timer`}
                 className="bg-black/60 border-2 border-green-500 p-6 rounded hover:bg-white/10 transition-all duration-200 shadow-lg"
               >
                 <div className="flex items-center gap-3 mb-4">
@@ -690,7 +690,7 @@ export default async function LostMark({ params }: { params: Promise<{ lang: str
                 label={dict.buttons?.drivethru}
               />
               <Link
-                href="/projects"
+                href={`/${lang}/projects`}
                 className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-black px-8 py-4 text-lg font-orbitron font-bold transition-colors"
               >
                 {dict.buttons?.moreProjects || "MORE PROJECTS"}
@@ -700,7 +700,7 @@ export default async function LostMark({ params }: { params: Promise<{ lang: str
             {/* License Link */}
             <div className="mt-8 pt-6 border-t border-red-700/50">
               <Link
-                href="/lost-mark/license"
+                href={`/${lang}/lost-mark/license`}
                 className="text-gray-400 hover:text-red-400 font-orbitron text-sm underline transition-colors"
               >
                 📄 {dict.buttons?.viewLicense || "View License Information (CC BY-NC-SA 4.0)"}

@@ -104,7 +104,7 @@ export default function ProjectCard({ project, featured = false }: ProjectCardPr
   return (
     <div className={`bg-black border p-4 sm:p-6 transition-all duration-300 group relative overflow-hidden ${project.isEncrypted ? 'border-green-900 hover:border-green-500' : 'border-red-900 hover:border-red-500'}`}>
       {project.isEncrypted && (
-        <div className="absolute inset-0 bg-[url('/grid.png')] opacity-10 pointer-events-none"></div>
+        <div className="absolute inset-0 opacity-10 pointer-events-none [background-image:linear-gradient(rgba(34,197,94,0.2)_1px,transparent_1px),linear-gradient(90deg,rgba(34,197,94,0.2)_1px,transparent_1px)] [background-size:36px_36px]"></div>
       )}
 
       <div className="flex items-center justify-between mb-4 relative z-10">

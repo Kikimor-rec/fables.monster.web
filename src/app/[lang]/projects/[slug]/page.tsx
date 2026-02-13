@@ -5,6 +5,7 @@ import StoreButton from "@/components/StoreButton";
 import { Metadata } from "next";
 import { getDictionary } from "@/lib/i18n";
 import Navigation from "@/components/Navigation";
+import { languages } from '@/i18n/settings';
 
 
 
@@ -16,12 +17,20 @@ interface PlatformsType {
 }
 
 // Force static generation for all known projects
-export async function generateStaticParams({ params }: { params: Promise<{ lang: string }> }) {
-    const { lang } = await params;
-    const projects = await getAllProjects(lang);
-    return projects.map((project) => ({
-        slug: project.slug,
-    }));
+export async function generateStaticParams() {
+    const allParams: Array<{ lang: string; slug: string }> = [];
+
+    for (const lang of languages) {
+        const projects = await getAllProjects(lang);
+        for (const project of projects) {
+            allParams.push({
+                lang,
+                slug: project.slug,
+            });
+        }
+    }
+
+    return allParams;
 }
 
 // Generate metadata for the page

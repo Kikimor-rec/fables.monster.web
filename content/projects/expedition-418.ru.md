@@ -5,7 +5,7 @@ tagline: "Роботы разных конфигураций на миссиях
 status: "В разработке"
 system: "Expedition-418"
 type: "Базовая книга правил"
-image: "/images/expedition-418/placeholder.webp"
+image: "/images/teapot-concept.webp"
 platforms: {}
 ---
 

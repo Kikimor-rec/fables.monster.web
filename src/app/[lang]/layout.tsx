@@ -113,7 +113,7 @@ export default async function RootLayout({
             <head>
                 <OrganizationJsonLd />
             </head>
-            <body className="bg-black text-white">
+            <body className="bg-black text-white" suppressHydrationWarning>
                 {process.env.NEXT_PUBLIC_GA_ID && <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />}
                 <Navigation lang={lang} dict={dict.nav || {}} />
                 <main id="main-content">

@@ -69,7 +69,7 @@ export default async function ProjectsPage({ params }: { params: Promise<{ lang:
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {sortedProjects.map((project) => {
                 const status = (getFrontmatterString(project.frontmatter, 'status') || 'in-development').toLowerCase();
-                const projectImage = getFrontmatterString(project.frontmatter, 'image') || '/images/placeholder.jpg';
+                const projectImage = getFrontmatterString(project.frontmatter, 'image') || '/images/placeholder.webp';
                 const projectTitle = getFrontmatterString(project.frontmatter, 'title') || '';
                 return (
                     <Link

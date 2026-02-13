@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from 'next/link';
+import Image from 'next/image';
 import { getContent, getFrontmatterString } from '@/lib/content';
 import { getDictionary } from '@/lib/i18n';
 import StayConnectedSection from "@/components/StayConnectedSection";
@@ -30,9 +31,11 @@ function CCTVImageDisplay({ isRussian }: { isRussian: boolean }) {
   return (
     <div className="relative w-full aspect-video bg-gray-900 border-2 border-cyan-700 overflow-hidden cctv-container cctv-corners">
       {/* Main image */}
-      <img
+      <Image
         src="/images/teapot-concept.webp"
         alt={isRussian ? "Концепт-арт робота-чайника" : "Teapot robot concept art"}
+        fill
+        sizes="(max-width: 768px) 100vw, 1280px"
         className="cctv-image"
       />
 
@@ -177,7 +180,7 @@ export default async function Expedition418({ params }: { params: Promise<{ lang
         <div className="absolute inset-0 bg-gradient-to-b from-black via-black to-cyan-950/20"></div>
 
         {/* Background grid pattern */}
-        <div className="absolute inset-0 bg-[url('/grid.png')] opacity-10"></div>
+        <div className="absolute inset-0 opacity-10 [background-image:linear-gradient(rgba(34,211,238,0.25)_1px,transparent_1px),linear-gradient(90deg,rgba(34,211,238,0.25)_1px,transparent_1px)] [background-size:36px_36px]"></div>
 
         <div className="relative z-10 max-w-5xl mx-auto px-6 text-center flex flex-col items-center pt-24 md:pt-32">
           {/* Status badge with glitch */}
