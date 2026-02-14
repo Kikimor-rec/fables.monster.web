@@ -29,6 +29,9 @@ npm install
 # Run development server
 npm run dev
 
+# Run raw Next.js dev command (without safety wrapper)
+npm run dev:raw
+
 # Build for production
 npm run build
 
@@ -37,6 +40,8 @@ npm start
 ```
 
 Open [http://localhost:3000](http://localhost:3000) to view the site.
+
+`npm run dev` uses a small safety wrapper that stops stale local Next.js processes from this repo before starting. This helps avoid Windows lock issues like `.next/trace` EPERM errors.
 
 ## Environment Variables
 

@@ -15,10 +15,32 @@
       "ОБНАРУЖЕНЫ ПОМЕХИ",
       "ПЕРЕНАПРАВЛЕНИЕ...",
       "СОЕДИНЕНИЕ ПОТЕРЯНО"
-    ]
+    ],
+    "markMessage": "ПРИСОЕДИНЯЙСЯ К НАМ... СТАНЬ ЧАСТЬЮ КОРАБЛЯ...",
+    "krampMessage": "ОБНАРУЖЕНО ОТКЛОНЕНИЕ ПОВЕДЕНИЯ. ПРОВЕРКА СООТВЕТСТВИЯ НАЧАТА.",
+    "ascendMessage": "ВОЗНЕСЕНИЕ ЖДЕТ. ОСТАЛОСЬ 2к10 МИНУТ.",
+    "clickSecretMessage": "МАРК ВИДИТ ТЕБЯ... ПРИСОЕДИНЯЙСЯ К КОРАБЛЮ...",
+    "commandNotRecognized": "> КОМАНДА \"{command}\" НЕ РАСПОЗНАНА",
+    "terminalPlaceholder": "введите \"help\" для списка команд...",
+    "closeTerminalHint": "Нажмите ` чтобы закрыть терминал",
+    "clickMeTitle": "Нажми на меня...",
+    "terminalHint": "Нажмите ` для скрытого терминала • Кликните на 404 • ↑↑↓↓←→←→BA",
+    "helpCommands": [
+      "> ДОСТУПНЫЕ КОМАНДЫ:",
+      "  help - показать это сообщение",
+      "  mark - связаться с пилотом",
+      "  kramp - проверка этики",
+      "  ascend - активировать протокол",
+      "  home - вернуться в безопасность"
+    ],
+    "radarScanning": "СКАНИРОВАНИЕ"
   },
   "timer": {
     "title": "ХРОНОМЕТР",
+    "meta": {
+      "title": "Терминал хронометра | Fables Monster Studio",
+      "description": "Цифровой таймер обратного отсчета в терминальном стиле для игровых сессий."
+    },
     "status": {
       "completed": "ЗАВЕРШЕНО",
       "running": "ЗАПУЩЕН",
@@ -60,7 +82,15 @@
     "lostMark": "ПОТЕРЯННЫЙ МАРК",
     "timer": "ТАЙМЕР",
     "about": "О НАС",
-    "contact": "КОНТАКТЫ"
+    "contact": "КОНТАКТЫ",
+    "skipToContent": "Перейти к контенту",
+    "homeAriaLabel": "Fables Monster - На главную",
+    "mainNavigation": "Главная навигация",
+    "languageSelection": "Выбор языка",
+    "openMenu": "Открыть меню",
+    "closeMenu": "Закрыть меню",
+    "mainMenu": "Главное меню",
+    "mobileNavigation": "Мобильная навигация"
   },
   "footer": {
     "tagline": "Независимая студия создания контента для НРИ",
@@ -69,6 +99,11 @@
     "about": "О нас",
     "contact": "Контакты",
     "social": "СОЦСЕТИ",
+    "allProjects": "Все проекты →",
+    "privacy": "Конфиденциальность",
+    "homeAriaLabel": "Fables Monster - На главную",
+    "projectsAriaLabel": "Проекты",
+    "linksAriaLabel": "Ссылки",
     "copyright": "© {year} Fables Monster Studio. Все права защищены."
   },
   "team": [
@@ -114,6 +149,11 @@
   "about": {
     "title": "О НАС",
     "subtitle": "Познакомьтесь с командой Fables Monster Studio",
+    "metaDescription": "Познакомьтесь с командой Fables Monster Studio - авторами, которые создают атмосферные настольные ролевые приключения, хоррор и sci-fi кампании.",
+    "heroKicker": "ДОСЬЕ СТУДИИ",
+    "rosterKicker": "КОМАНДНЫЙ СОСТАВ",
+    "rosterTitle": "КОМАНДА",
+    "rosterDescription": "Люди, которые создают новые приключения, визуалы и звук для миров Fables Monster Studio.",
     "values": [
       {
         "title": "Качество прежде всего",
@@ -137,6 +177,11 @@
     "getInTouch": "СВЯЗАТЬСЯ С НАМИ",
     "metaTitle": "Контакты - Свяжитесь с Fables Monster Studio",
     "metaDescription": "Свяжитесь с Fables Monster Studio для сотрудничества, вопросов о наших проектах НРИ или общих запросов. Присоединяйтесь к нашему сообществу в Discord и следите за нами в социальных сетях.",
+    "heroKicker": "СВЯЗЬ С ЭКИПАЖЕМ",
+    "heroDescription": "Коллаборации, вопросы по релизам и предложения по партнерству. Ответим по доступным каналам или через форму.",
+    "channelsLabel": "Официальные каналы студии для общения и новостей:",
+    "channelAction": "ПЕРЕЙТИ",
+    "directChannelLabel": "ПРЯМОЙ КАНАЛ",
     "form": {
       "title": "ОТПРАВИТЬ СООБЩЕНИЕ",
       "name": "ИМЯ",
@@ -159,11 +204,29 @@
       "comingSoon": "СКОРО"
     },
     "featured": "ИЗБРАННОЕ",
+    "heroKicker": "КАТАЛОГ МИССИЙ",
+    "telemetry": {
+      "total": "ВСЕГО",
+      "released": "ВЫПУЩЕНО",
+      "inDevelopment": "В РАЗРАБОТКЕ",
+      "comingSoon": "СКОРО"
+    },
+    "metaDescription": "Исследуйте наши настольные ролевые приключения и цифровые проекты: от sci-fi хоррора до неоновых тайн.",
     "description": "Исследуйте наши настольные ролевые приключения и цифровые проекты",
+    "detail": {
+      "kicker": "ДЕТАЛИ ПРОЕКТА",
+      "notFoundTitle": "Проект не найден",
+      "labels": {
+        "itch": "Купить на Itch.io",
+        "drivethru": "Купить на DriveThruRPG",
+        "roll20": "Модуль для Roll20"
+      }
+    },
     "joinCommunity": {
       "title": "ПРИСОЕДИНЯЙТЕСЬ К СООБЩЕСТВУ",
       "description": "Следите за нашей разработкой и станьте частью сообщества Fables Monster",
       "discord": "DISCORD",
+      "subscribe": "ПОДПИСАТЬСЯ",
       "patreon": "ПОДДЕРЖАТЬ НА PATREON"
     },
     "lostMark": {
@@ -193,6 +256,11 @@
         "oneShot": "ВАНШОТ",
         "postcard": "ФОРМАТ ОТКРЫТКИ"
       }
+    },
+    "hellishBureaucracy": {
+      "kicker": "НЕОБЪЯВЛЕННЫЙ ПРОТОКОЛ",
+      "inDevelopment": "В РАЗРАБОТКЕ",
+      "defaultTagline": "Проберитесь через административный кошмар Ада"
     }
   }
 }

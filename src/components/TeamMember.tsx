@@ -19,7 +19,7 @@ export default function TeamMember({ member }: TeamMemberProps) {
 
   const content = (
     <div
-      className="group relative w-72 h-[30rem] bg-black border border-red-700 p-6 hover:border-red-500 transition-all duration-300 overflow-hidden"
+      className="group relative w-full max-w-[18rem] min-h-[30rem] bg-black border border-red-700 p-6 hover:border-red-500 transition-all duration-300 overflow-hidden"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >

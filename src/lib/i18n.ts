@@ -8,8 +8,12 @@ import type {
   HomeDict,
   KrampDict,
   LostMarkDict,
+  LostMarkLicenseDict,
+  Expedition418Dict,
+  OldWorldNeonDict,
   TerminalDict,
   NewsletterDict,
+  PrivacyDict,
 } from '@/types/i18n';
 
 type DictionaryLoader<T> = () => Promise<T>;
@@ -18,9 +22,13 @@ interface DictionaryLoaders {
   common: DictionaryLoader<CommonDict>;
   home: DictionaryLoader<HomeDict>;
   'lost-mark': DictionaryLoader<LostMarkDict>;
+  'lost-mark-license': DictionaryLoader<LostMarkLicenseDict>;
+  'expedition-418': DictionaryLoader<Expedition418Dict>;
+  'old-world-neon': DictionaryLoader<OldWorldNeonDict>;
   kramp: DictionaryLoader<KrampDict>;
   terminal: DictionaryLoader<TerminalDict>;
   newsletter: DictionaryLoader<NewsletterDict>;
+  privacy: DictionaryLoader<PrivacyDict>;
 }
 
 type Dictionaries = Record<Language, DictionaryLoaders>;
@@ -30,17 +38,25 @@ const dictionaries: Dictionaries = {
     common: () => import('@/locales/en/common.json').then((module) => module.default as CommonDict),
     home: () => import('@/locales/en/home.json').then((module) => module.default as HomeDict),
     'lost-mark': () => import('@/locales/en/lost-mark.json').then((module) => module.default as LostMarkDict),
+    'lost-mark-license': () => import('@/locales/en/lost-mark-license.json').then((module) => module.default as LostMarkLicenseDict),
+    'expedition-418': () => import('@/locales/en/expedition-418.json').then((module) => module.default as Expedition418Dict),
+    'old-world-neon': () => import('@/locales/en/old-world-neon.json').then((module) => module.default as OldWorldNeonDict),
     kramp: () => import('@/locales/en/kramp.json').then((module) => module.default as KrampDict),
     terminal: () => import('@/locales/en/terminal.json').then((module) => module.default as TerminalDict),
     newsletter: () => import('@/locales/en/newsletter.json').then((module) => module.default as NewsletterDict),
+    privacy: () => import('@/locales/en/privacy.json').then((module) => module.default as PrivacyDict),
   },
   ru: {
     common: () => import('@/locales/ru/common.json').then((module) => module.default as CommonDict),
     home: () => import('@/locales/ru/home.json').then((module) => module.default as HomeDict),
     'lost-mark': () => import('@/locales/ru/lost-mark.json').then((module) => module.default as LostMarkDict),
+    'lost-mark-license': () => import('@/locales/ru/lost-mark-license.json').then((module) => module.default as LostMarkLicenseDict),
+    'expedition-418': () => import('@/locales/ru/expedition-418.json').then((module) => module.default as Expedition418Dict),
+    'old-world-neon': () => import('@/locales/ru/old-world-neon.json').then((module) => module.default as OldWorldNeonDict),
     kramp: () => import('@/locales/ru/kramp.json').then((module) => module.default as KrampDict),
     terminal: () => import('@/locales/ru/terminal.json').then((module) => module.default as TerminalDict),
     newsletter: () => import('@/locales/ru/newsletter.json').then((module) => module.default as NewsletterDict),
+    privacy: () => import('@/locales/ru/privacy.json').then((module) => module.default as PrivacyDict),
   },
 };
 

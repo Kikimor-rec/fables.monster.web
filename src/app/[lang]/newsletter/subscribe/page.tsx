@@ -49,7 +49,7 @@ export default async function NewsletterSubscribe({ params }: { params: Promise<
               href={`/${lang}`}
               className="text-gray-400 hover:text-red-400 transition-colors font-rajdhani text-sm"
             >
-              ← {lang === 'ru' ? 'Вернуться на главную' : 'Back to home'}
+              {dict.subscribe.backToHome || '← Back to home'}
             </Link>
           </div>
         </div>
@@ -59,44 +59,20 @@ export default async function NewsletterSubscribe({ params }: { params: Promise<
       <section className="py-20 bg-gray-900 border-t border-red-700">
         <div className="max-w-4xl mx-auto px-6">
           <h2 className="text-3xl font-bold text-white mb-12 font-orbitron tracking-wide text-center">
-            {lang === 'ru' ? 'ЧТО ВЫ ПОЛУЧИТЕ' : 'WHAT YOU\'LL GET'}
+            {dict.subscribe.benefitsTitle || "WHAT YOU'LL GET"}
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-black border border-red-700 p-6 text-center">
-              <div className="text-4xl mb-4">🎲</div>
-              <h3 className="text-xl font-bold text-white mb-2 font-orbitron">
-                {lang === 'ru' ? 'НОВЫЕ РЕЛИЗЫ' : 'NEW RELEASES'}
-              </h3>
-              <p className="text-gray-400 font-rajdhani">
-                {lang === 'ru'
-                  ? 'Узнавайте первыми о новых проектах и релизах'
-                  : 'Be the first to know about new projects and releases'}
-              </p>
-            </div>
-
-            <div className="bg-black border border-red-700 p-6 text-center">
-              <div className="text-4xl mb-4">🎨</div>
-              <h3 className="text-xl font-bold text-white mb-2 font-orbitron">
-                {lang === 'ru' ? 'ЭКСКЛЮЗИВНЫЙ КОНТЕНТ' : 'EXCLUSIVE CONTENT'}
-              </h3>
-              <p className="text-gray-400 font-rajdhani">
-                {lang === 'ru'
-                  ? 'За кулисами разработки и эксклюзивные материалы'
-                  : 'Behind-the-scenes content and exclusive materials'}
-              </p>
-            </div>
-
-            <div className="bg-black border border-red-700 p-6 text-center">
-              <div className="text-4xl mb-4">📰</div>
-              <h3 className="text-xl font-bold text-white mb-2 font-orbitron">
-                {lang === 'ru' ? 'НОВОСТИ СТУДИИ' : 'STUDIO NEWS'}
-              </h3>
-              <p className="text-gray-400 font-rajdhani">
-                {lang === 'ru'
-                  ? 'Важные анонсы и обновления проектов'
-                  : 'Important announcements and project updates'}
-              </p>
-            </div>
+            {[
+              dict.subscribe.benefits?.releases,
+              dict.subscribe.benefits?.exclusive,
+              dict.subscribe.benefits?.studioNews,
+            ].map((benefit, index) => (
+              <div key={`${benefit?.title || 'benefit'}-${index}`} className="bg-black border border-red-700 p-6 text-center">
+                <div className="text-4xl mb-4">{benefit?.emoji || '•'}</div>
+                <h3 className="text-xl font-bold text-white mb-2 font-orbitron">{benefit?.title || 'UPDATE'}</h3>
+                <p className="text-gray-400 font-rajdhani">{benefit?.description || ''}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>

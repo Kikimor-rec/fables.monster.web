@@ -1,14 +1,51 @@
 {
+  "meta": {
+    "title": "Fables Monster Studio - Independent Tabletop RPG Creators",
+    "description": "Create unforgettable tabletop RPG experiences with Fables Monster Studio. Specializing in horror, sci-fi, and supernatural adventures for Mothership RPG, D&D, and more.",
+    "keywords": [
+      "tabletop RPG",
+      "horror RPG",
+      "Mothership RPG",
+      "indie games",
+      "D&D adventures",
+      "cosmic horror",
+      "sci-fi RPG",
+      "supernatural adventures"
+    ],
+    "ogTitle": "Fables Monster Studio - Independent Tabletop RPG Creators",
+    "ogDescription": "Create unforgettable tabletop RPG experiences."
+  },
   "hero": {
+    "logoAlt": "Fables Monster Mascot",
     "title": "FABLES MONSTER",
     "subtitle": "Independent tabletop RPG content creation studio",
     "ctaProjects": "VIEW PROJECTS",
-    "ctaLostMark": "LOST MARK"
+    "ctaLostMark": "LOST MARK",
+    "statusBadges": [
+      "SYSTEM READY",
+      "SECURE CHANNEL",
+      "NEW DROPS"
+    ],
+    "marqueePhrases": [
+      "SCI-FI HORROR",
+      "MOTHERSHIP READY",
+      "HANDCRAFTED MODULES",
+      "ATMOSPHERIC TOOLS",
+      "COMMUNITY FIRST"
+    ]
+  },
+  "telemetry": {
+    "modules": "MODULES",
+    "available": "AVAILABLE",
+    "inDevelopment": "IN DEVELOPMENT",
+    "locales": "LOCALES",
+    "localesValue": "EN / RU"
   },
   "latestProjects": {
     "title": "LATEST",
     "projects": "PROJECTS",
-    "viewAll": "VIEW ALL PROJECTS →"
+    "viewAll": "VIEW ALL PROJECTS →",
+    "defaultType": "Adventure"
   },
   "status": {
     "released": "RELEASED",
@@ -23,6 +60,7 @@
     "cta": "ACCESS TERMINAL"
   },
   "about": {
+    "titlePrefix": "THE",
     "title": "THE CREW",
     "description": "We are a collective of designers, writers, and artists dedicated to creating immersive, high-quality tabletop RPG content. Our mission is to bring fresh nightmares and wonders to your gaming table.",
     "cta": "MEET THE TEAM →"

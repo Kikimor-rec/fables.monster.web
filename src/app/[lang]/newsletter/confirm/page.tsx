@@ -65,18 +65,14 @@ export default async function NewsletterConfirm({ params }: { params: Promise<{ 
                   <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
                 <h3 className="text-2xl font-bold text-white font-orbitron">
-                  {lang === 'ru' ? 'ПРОВЕРЬТЕ ПОЧТУ' : 'CHECK YOUR EMAIL'}
+                  {dict.confirmation.pending?.heading || 'CHECK YOUR EMAIL'}
                 </h3>
               </div>
               <p className="text-gray-300 font-rajdhani text-lg mb-4">
-                {lang === 'ru'
-                  ? 'Мы отправили письмо с подтверждением на ваш email. Нажмите на ссылку в письме, чтобы завершить подписку.'
-                  : 'We\'ve sent a confirmation email to your address. Click the link in the email to complete your subscription.'}
+                {dict.confirmation.pending?.message || 'We\'ve sent a confirmation email to your address. Click the link in the email to complete your subscription.'}
               </p>
               <p className="text-gray-400 font-rajdhani text-sm">
-                {lang === 'ru'
-                  ? 'Не получили письмо? Проверьте папку "Спам" или попробуйте подписаться снова.'
-                  : 'Didn\'t receive the email? Check your spam folder or try subscribing again.'}
+                {dict.confirmation.pending?.hint || 'Didn\'t receive the email? Check your spam folder or try subscribing again.'}
               </p>
             </div>
           </div>
@@ -86,7 +82,7 @@ export default async function NewsletterConfirm({ params }: { params: Promise<{ 
               href={`/${lang}/newsletter/subscribe`}
               className="text-gray-400 hover:text-red-400 transition-colors font-rajdhani text-sm"
             >
-              {lang === 'ru' ? '← Вернуться к форме подписки' : '← Back to subscription form'}
+              {dict.confirmation.backToSubscribe || '← Back to subscription form'}
             </Link>
           </div>
         </div>

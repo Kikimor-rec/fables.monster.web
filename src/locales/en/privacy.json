@@ -1,0 +1,107 @@
+{
+  "metaTitle": "Privacy Policy | Fables Monster Studio",
+  "metaDescription": "Fables Monster Studio Privacy Policy. How we collect, use, and protect your information.",
+  "title": "PRIVACY POLICY",
+  "lastUpdated": "Last Updated: January 13, 2025",
+  "intro": "At Fables Monster Studio, we respect your privacy and are committed to protecting your personal information. This Privacy Policy explains how we collect, use, and safeguard your data.",
+  "sections": [
+    {
+      "title": "1. Information We Collect",
+      "content": [
+        "When you interact with our website, we may collect:",
+        "• <strong>Contact Information:</strong> Name and email address when you contact us or subscribe to our newsletter",
+        "• <strong>Usage Data:</strong> Anonymous analytics data about how you use our website",
+        "• <strong>Technical Data:</strong> IP address, browser type, and device information"
+      ]
+    },
+    {
+      "title": "2. How We Use Your Information",
+      "content": [
+        "We use your information to:",
+        "• Send you newsletters and updates about our projects (with your consent)",
+        "• Respond to your inquiries and support requests",
+        "• Improve our website and services",
+        "• Comply with legal obligations"
+      ]
+    },
+    {
+      "title": "3. Newsletter Subscriptions",
+      "content": [
+        "When you subscribe to our newsletter:",
+        "• We use <strong>double opt-in</strong> to confirm your subscription",
+        "• You can unsubscribe at any time using the link in our emails",
+        "• Your email is stored securely and never shared with third parties for marketing purposes",
+        "• We use Listmonk, a self-hosted newsletter service, to manage subscriptions"
+      ]
+    },
+    {
+      "title": "4. Data Storage and Security",
+      "content": [
+        "• Your data is stored on secure servers",
+        "• We use industry-standard encryption for data transmission",
+        "• We implement appropriate technical and organizational measures to protect your data",
+        "• We retain your data only as long as necessary for the purposes stated in this policy"
+      ]
+    },
+    {
+      "title": "5. Your Rights",
+      "content": [
+        "Under GDPR and other privacy laws, you have the right to:",
+        "• <strong>Access:</strong> Request a copy of your personal data",
+        "• <strong>Rectification:</strong> Correct inaccurate or incomplete data",
+        "• <strong>Erasure:</strong> Request deletion of your data",
+        "• <strong>Portability:</strong> Receive your data in a structured format",
+        "• <strong>Withdraw Consent:</strong> Unsubscribe from communications at any time"
+      ]
+    },
+    {
+      "title": "6. Cookies and Analytics",
+      "content": [
+        "We use cookies and analytics tools to:",
+        "• Understand how visitors use our website",
+        "• Improve user experience",
+        "• Measure the effectiveness of our content",
+        "",
+        "We use <strong>Vercel Analytics</strong> (privacy-friendly, no personal data collected) and optionally <strong>Google Analytics</strong>. You can control cookies through your browser settings."
+      ]
+    },
+    {
+      "title": "7. Third-Party Services",
+      "content": [
+        "We use the following third-party services:",
+        "• <strong>Vercel:</strong> Website hosting (privacy policy: vercel.com/legal/privacy-policy)",
+        "• <strong>Listmonk:</strong> Self-hosted newsletter service (data stored on our servers)",
+        "• <strong>Email Service:</strong> For transactional and newsletter emails",
+        "",
+        "These services may have their own privacy policies, which we recommend reviewing."
+      ]
+    },
+    {
+      "title": "8. International Data Transfers",
+      "content": [
+        "Your data may be transferred to and processed in countries outside your residence. We ensure appropriate safeguards are in place to protect your data in accordance with this Privacy Policy."
+      ]
+    },
+    {
+      "title": "9. Children's Privacy",
+      "content": [
+        "Our services are not directed to individuals under 16 years of age. We do not knowingly collect personal information from children. If you believe we have collected information from a child, please contact us immediately."
+      ]
+    },
+    {
+      "title": "10. Changes to This Policy",
+      "content": [
+        "We may update this Privacy Policy from time to time. We will notify you of significant changes by posting the new policy on this page with an updated \"Last Updated\" date."
+      ]
+    },
+    {
+      "title": "11. Contact Us",
+      "content": [
+        "If you have questions about this Privacy Policy or want to exercise your rights, contact us:",
+        "• <strong>Email:</strong> <a href='mailto:info@fables.monster' class='text-red-400 hover:text-red-300 transition-colors'>info@fables.monster</a>",
+        "• <strong>Discord:</strong> <a href='https://discord.gg/eAwK9DfKf4' target='_blank' rel='noopener noreferrer' class='text-red-400 hover:text-red-300 transition-colors'>Join our Discord</a>"
+      ]
+    }
+  ],
+  "backToHome": "← BACK TO HOME"
+}

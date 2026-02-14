@@ -320,7 +320,7 @@ export default function TimerClient({ lang = 'en', dict }: Props) {
   }
 
   return (
-    <div className={`min-h-screen bg-black text-gray-300 font-rajdhani relative overflow-hidden ${glitch ? 'glitch-effect' : ''}`}>
+    <div className={`min-h-screen pt-20 bg-black text-gray-300 font-rajdhani relative overflow-hidden ${glitch ? 'glitch-effect' : ''}`}>
       {/* Background Grid */}
       <div className="absolute inset-0 opacity-5 pointer-events-none [background-image:linear-gradient(rgba(34,211,238,0.15)_1px,transparent_1px),linear-gradient(90deg,rgba(34,211,238,0.15)_1px,transparent_1px)] [background-size:36px_36px]"></div>
 
@@ -330,7 +330,7 @@ export default function TimerClient({ lang = 'en', dict }: Props) {
       )}
 
       {/* Navigation Link */}
-      <div className="absolute top-4 left-4 z-50">
+      <div className="absolute top-24 left-4 z-50">
         <Link href={`/${lang}`} className="text-xs font-orbitron text-gray-500 hover:text-cyan-400 transition-colors border border-gray-800 hover:border-cyan-500 px-3 py-1">
           {dict?.buttons?.return || "< RETURN TO BASE"}
         </Link>

@@ -1,11 +1,11 @@
 "use client";
 
 import { useState, useRef, useCallback } from "react";
+import type { KrampDictionary } from "./types";
 
 interface SFXTrack {
   id: string;
-  name: string;
-  nameRu: string;
+  defaultName: string;
   src: string;
   icon: "jingle" | "glitch" | "announcement";
 }
@@ -13,42 +13,54 @@ interface SFXTrack {
 const sfxTracks: SFXTrack[] = [
   {
     id: "jingle-normal-1",
-    name: "PA Jingle",
-    nameRu: "Джингл объявления",
+    defaultName: "PA Jingle",
     src: "/music/krampsfx/attention-jingle-1.mp3",
     icon: "jingle",
   },
   {
     id: "jingle-normal-2",
-    name: "PA Jingle Alt",
-    nameRu: "Джингл объявления 2",
+    defaultName: "PA Jingle Alt",
     src: "/music/krampsfx/attention-jingle-2.mp3",
     icon: "jingle",
   },
   {
     id: "jingle-glitch-1",
-    name: "Corrupted Jingle",
-    nameRu: "Искажённый джингл",
+    defaultName: "Corrupted Jingle",
     src: "/music/krampsfx/attention-glitch-1.mp3",
     icon: "glitch",
   },
   {
     id: "jingle-glitch-2",
-    name: "Corrupted Jingle Alt",
-    nameRu: "Искажённый джингл 2",
+    defaultName: "Corrupted Jingle Alt",
     src: "/music/krampsfx/attention-glitch-2.mp3",
     icon: "glitch",
   },
 ];
 
 interface KrampSFXPanelProps {
-  lang?: string;
+  labels?: KrampDictionary["soundtrack"]["sfx"];
 }
 
-export default function KrampSFXPanel({ lang = "en" }: KrampSFXPanelProps) {
+export default function KrampSFXPanel({ labels }: KrampSFXPanelProps) {
   const [volume, setVolume] = useState(0.7);
   const [playingId, setPlayingId] = useState<string | null>(null);
   const audioRefs = useRef<Map<string, HTMLAudioElement>>(new Map());
+
+  const getTrackName = useCallback((track: SFXTrack) => {
+    const localizedTracks = labels?.tracks;
+    switch (track.id) {
+      case "jingle-normal-1":
+        return localizedTracks?.jingleNormal1 || track.defaultName;
+      case "jingle-normal-2":
+        return localizedTracks?.jingleNormal2 || track.defaultName;
+      case "jingle-glitch-1":
+        return localizedTracks?.jingleGlitch1 || track.defaultName;
+      case "jingle-glitch-2":
+        return localizedTracks?.jingleGlitch2 || track.defaultName;
+      default:
+        return track.defaultName;
+    }
+  }, [labels]);
 
   const getAudioRef = useCallback((id: string, src: string) => {
     if (!audioRefs.current.has(id)) {
@@ -118,8 +130,6 @@ export default function KrampSFXPanel({ lang = "en" }: KrampSFXPanelProps) {
     }
   };
 
-  const isRu = lang === "ru";
-
   return (
     <div className="bg-gray-950 border border-green-900 rounded-lg p-4">
       {/* Header */}
@@ -128,7 +138,7 @@ export default function KrampSFXPanel({ lang = "en" }: KrampSFXPanelProps) {
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
           </svg>
-          {isRu ? "SFX Панель" : "SFX Panel"}
+          {labels?.panelTitle || "SFX Panel"}
         </h3>
         
         {/* Stop button */}
@@ -136,7 +146,7 @@ export default function KrampSFXPanel({ lang = "en" }: KrampSFXPanelProps) {
           <button
             onClick={stopSound}
             className="text-red-400 hover:text-red-300 transition-colors"
-            title={isRu ? "Остановить" : "Stop"}
+            title={labels?.stop || "Stop"}
           >
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
               <rect x="6" y="6" width="12" height="12" rx="1" />
@@ -157,6 +167,7 @@ export default function KrampSFXPanel({ lang = "en" }: KrampSFXPanelProps) {
           step="0.05"
           value={volume}
           onChange={(e) => handleVolumeChange(parseFloat(e.target.value))}
+          aria-label={labels?.volumeLabel || "SFX volume"}
           className="flex-1 h-2 bg-green-900/50 rounded-lg appearance-none cursor-pointer
             [&::-webkit-slider-thumb]:appearance-none
             [&::-webkit-slider-thumb]:w-4
@@ -205,23 +216,21 @@ export default function KrampSFXPanel({ lang = "en" }: KrampSFXPanelProps) {
                 <span className={`absolute top-1 right-1 w-2 h-2 rounded-full animate-pulse ${isGlitch ? "bg-red-500" : "bg-green-500"}`} />
               )}
               
-              <span className={isGlitch ? "text-red-600" : "text-green-600"}>
-                {getIcon(track.icon)}
-              </span>
-              
-              <span className="text-xs font-rajdhani truncate">
-                {isRu ? track.nameRu : track.name}
-              </span>
-            </button>
-          );
-        })}
-      </div>
+               <span className={isGlitch ? "text-red-600" : "text-green-600"}>
+                 {getIcon(track.icon)}
+               </span>
+               
+               <span className="text-xs font-rajdhani truncate">
+                {getTrackName(track)}
+               </span>
+             </button>
+           );
+         })}
+       </div>
 
-      {/* Hint */}
+       {/* Hint */}
       <p className="text-green-700 text-xs mt-3 text-center font-rajdhani">
-        {isRu 
-          ? "Джинглы для объявлений по громкой связи" 
-          : "PA announcement jingles for your game"}
+        {labels?.hint || "PA announcement jingles for your game"}
       </p>
     </div>
   );

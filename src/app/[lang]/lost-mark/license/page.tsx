@@ -1,18 +1,21 @@
-import { Metadata } from 'next'
+import { Metadata } from 'next';
 import Link from 'next/link';
-import FadeIn from "@/components/FadeIn";
+import FadeIn from '@/components/FadeIn';
+import { getDictionary } from '@/lib/i18n';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
+  const dict = await getDictionary(lang, 'lost-mark-license');
   const imageUrl = 'https://fables.monster/images/lost-mark/lm_promo_1.webp';
+  const openGraphLocale = lang === 'ru' ? 'ru_RU' : 'en_US';
 
   return {
-    title: 'Lost Mark License - Third-Party Content License',
-    description: 'License information for Lost Mark RPG adventure. Learn about third-party content usage, attribution requirements, and licensing terms.',
-    keywords: 'Lost Mark license, RPG license, third-party content, Mothership RPG license, attribution, copyright',
+    title: dict.meta.title,
+    description: dict.meta.description,
+    keywords: dict.meta.keywords,
     openGraph: {
-      title: 'Lost Mark License - Third-Party Content Information',
-      description: 'Legal information and licensing terms for the Lost Mark RPG adventure and related content.',
+      title: dict.meta.ogTitle,
+      description: dict.meta.ogDescription,
       url: `https://fables.monster/${lang}/lost-mark/license`,
       siteName: 'Fables Monster Studio',
       images: [
@@ -20,16 +23,16 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
           url: imageUrl,
           width: 1200,
           height: 630,
-          alt: 'Lost Mark License Information',
+          alt: dict.meta.imageAlt,
         },
       ],
-      locale: lang === 'ru' ? 'ru_RU' : 'en_US',
+      locale: openGraphLocale,
       type: 'article',
     },
     twitter: {
       card: 'summary_large_image',
-      title: 'Lost Mark License Information',
-      description: 'Legal information and licensing terms for the Lost Mark RPG adventure.',
+      title: dict.meta.twitterTitle,
+      description: dict.meta.twitterDescription,
       images: [imageUrl],
     },
     alternates: {
@@ -42,9 +45,9 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   };
 }
 
-
 export default async function LostMarkLicense({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
+  const dict = await getDictionary(lang, 'lost-mark-license');
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -55,69 +58,52 @@ export default async function LostMarkLicense({ params }: { params: Promise<{ la
               href={`/${lang}/lost-mark`}
               className="text-red-400 hover:text-red-300 font-mono text-sm transition-colors"
             >
-              ← Back to Lost Mark
+              {dict.backToProject}
             </Link>
           </div>
         </FadeIn>
 
         <FadeIn delay={0.2}>
           <div className="bg-gray-900 border border-red-700 p-8 mb-8">
-            <h1 className="text-3xl md:text-4xl font-mono font-bold text-red-400 mb-2">
-              LOST MARK LICENSE
-            </h1>
-            <div className="text-xl font-mono text-gray-300 mb-6">
-              (2025)
-            </div>
+            <h1 className="text-3xl md:text-4xl font-mono font-bold text-red-400 mb-2">{dict.header.title}</h1>
+            <div className="text-xl font-mono text-gray-300 mb-6">{dict.header.year}</div>
             <div className="text-gray-400 font-mono">
-              By Fables Monster — <a href="https://fables.monster" className="text-red-400 hover:underline">https://fables.monster</a>
+              {dict.header.byline} -{' '}
+              <a href="https://fables.monster" className="text-red-400 hover:underline">https://fables.monster</a>
             </div>
           </div>
         </FadeIn>
 
         <FadeIn delay={0.4}>
           <div className="bg-gray-900 border border-red-700 p-8 mb-8">
-            <h2 className="text-xl font-mono font-bold text-white mb-4">
-              License: Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)
-            </h2>
+            <h2 className="text-xl font-mono font-bold text-white mb-4">{dict.licenseTitle}</h2>
 
             <div className="mb-6">
-              <h3 className="text-lg font-mono font-bold text-green-400 mb-3">
-                You are free to:
-              </h3>
+              <h3 className="text-lg font-mono font-bold text-green-400 mb-3">{dict.freeToUseTitle}</h3>
               <ul className="space-y-2 text-gray-300 font-mono">
-                <li>• Use this adventure, its illustrations, and music in personal games, streams, and videos (including monetized platforms like YouTube or Twitch);</li>
-                <li>• Share it freely for non-commercial use;</li>
-                <li>• Remix, transform, and build upon the material;</li>
-                <li>• Translate the text or make fan versions, as long as you credit us.</li>
+                {dict.freeToUseItems.map((item, index) => (
+                  <li key={`free-${index}`}>- {item}</li>
+                ))}
               </ul>
             </div>
 
             <div className="mb-6">
-              <h3 className="text-lg font-mono font-bold text-yellow-400 mb-3">
-                Under the following terms:
-              </h3>
+              <h3 className="text-lg font-mono font-bold text-yellow-400 mb-3">{dict.termsTitle}</h3>
               <ul className="space-y-2 text-gray-300 font-mono">
-                <li>
-                  <strong className="text-white">Attribution</strong> — You must give appropriate credit. Please list the creators of text, art, and music where applicable.
-                </li>
-                <li>
-                  <strong className="text-white">NonCommercial</strong> — You may not use the material for commercial purposes without permission.
-                </li>
-                <li>
-                  <strong className="text-white">ShareAlike</strong> — If you remix, adapt, or build upon the material, you must license your modified content under the same terms.
-                </li>
+                {dict.terms.map((term) => (
+                  <li key={term.term}>
+                    <strong className="text-white">{term.term}</strong> - {term.description}
+                  </li>
+                ))}
               </ul>
             </div>
 
             <div className="mb-6">
-              <h3 className="text-lg font-mono font-bold text-blue-400 mb-3">
-                Suggested attribution:
-              </h3>
+              <h3 className="text-lg font-mono font-bold text-blue-400 mb-3">{dict.attributionTitle}</h3>
               <div className="bg-black border border-gray-600 p-4 font-mono text-gray-300 text-sm">
-                <div>• Original product by Fables Monster</div>
-                <div>• Written by Stepan Kulikov</div>
-                <div>• Illustrations by Zlata Ignatova</div>
-                <div>• Music by Stanislav DariDa</div>
+                {dict.attributionLines.map((line, index) => (
+                  <div key={`attr-${index}`}>- {line}</div>
+                ))}
               </div>
             </div>
           </div>
@@ -125,15 +111,21 @@ export default async function LostMarkLicense({ params }: { params: Promise<{ la
 
         <FadeIn delay={0.6}>
           <div className="bg-gray-900 border border-red-700 p-8 mb-8">
-            <h3 className="text-lg font-mono font-bold text-red-400 mb-3">
-              Contact for commercial inquiries or special permissions:
-            </h3>
+            <h3 className="text-lg font-mono font-bold text-red-400 mb-3">{dict.contactTitle}</h3>
             <div className="text-gray-300 font-mono mb-4">
-              → <a href="mailto:info@fables.monster" className="text-red-400 hover:underline">info@fables.monster</a>
+              - <a href="mailto:info@fables.monster" className="text-red-400 hover:underline">info@fables.monster</a>
             </div>
 
             <div className="text-sm text-gray-400 font-mono">
-              License details: <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" className="text-blue-400 hover:underline" target="_blank" rel="noopener noreferrer">https://creativecommons.org/licenses/by-nc-sa/4.0/</a>
+              {dict.licenseDetailsLabel}{' '}
+              <a
+                href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+                className="text-blue-400 hover:underline"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                https://creativecommons.org/licenses/by-nc-sa/4.0/
+              </a>
             </div>
           </div>
         </FadeIn>
@@ -144,13 +136,13 @@ export default async function LostMarkLicense({ params }: { params: Promise<{ la
               href={`/${lang}/lost-mark`}
               className="bg-red-700 hover:bg-red-600 text-white px-8 py-4 font-mono font-bold transition-colors border border-red-600 text-center"
             >
-              BACK TO LOST MARK
+              {dict.actions.backToProject}
             </Link>
             <Link
               href={`/${lang}/projects`}
               className="bg-transparent border-2 border-red-700 text-red-400 hover:bg-red-700 hover:text-white px-8 py-4 font-mono font-bold transition-colors text-center"
             >
-              VIEW ALL PROJECTS
+              {dict.actions.viewProjects}
             </Link>
           </div>
         </FadeIn>

@@ -5,15 +5,25 @@ import { NpcTableData, NpcRow } from "./kramp-tables-data";
 interface NpcTableProps {
   tableData: NpcTableData;
   lang: string;
+  tags?: {
+    history?: string;
+    helps?: string;
+    hinders?: string;
+  };
 }
 
 interface NpcCardProps {
   npc: NpcRow;
   isSelected: boolean;
   lang: string;
+  tags?: {
+    history?: string;
+    helps?: string;
+    hinders?: string;
+  };
 }
 
-function NpcCard({ npc, isSelected, lang }: NpcCardProps) {
+function NpcCard({ npc, isSelected, lang, tags }: NpcCardProps) {
   const isRu = lang === "ru";
 
   return (
@@ -36,27 +46,27 @@ function NpcCard({ npc, isSelected, lang }: NpcCardProps) {
       {/* History (if exists) */}
       {npc.history && (
         <div className="px-2 py-1 text-xs border-b border-green-900/50 flex items-start gap-1">
-          <span className="bg-green-700 text-white px-1 text-[10px] font-bold shrink-0">HIST</span>
+          <span className="bg-green-700 text-white px-1 text-[10px] font-bold shrink-0">{tags?.history || "HIST"}</span>
           <span className="text-gray-400">{isRu ? npc.history.ru : npc.history.en}</span>
         </div>
       )}
 
       {/* Helps */}
       <div className="px-2 py-1 text-xs border-b border-green-900/50 flex items-start gap-1">
-        <span className="bg-green-700 text-white px-1 text-[10px] font-bold shrink-0">HELPS</span>
+        <span className="bg-green-700 text-white px-1 text-[10px] font-bold shrink-0">{tags?.helps || "HELPS"}</span>
         <span className="text-gray-400">{isRu ? npc.helps.ru : npc.helps.en}</span>
       </div>
 
       {/* Hinders */}
       <div className="px-2 py-1 text-xs flex items-start gap-1">
-        <span className="bg-red-700 text-white px-1 text-[10px] font-bold shrink-0">HINDERS</span>
+        <span className="bg-red-700 text-white px-1 text-[10px] font-bold shrink-0">{tags?.hinders || "HINDERS"}</span>
         <span className="text-gray-400">{isRu ? npc.hinders.ru : npc.hinders.en}</span>
       </div>
     </div>
   );
 }
 
-export default function NpcTable({ tableData, lang }: NpcTableProps) {
+export default function NpcTable({ tableData, lang, tags }: NpcTableProps) {
   const isRu = lang === "ru";
   const maxDice = parseInt(tableData.dice.replace("D", ""));
   const { selectedRow, isRolling, isExpanded, rollDice, toggleExpanded } = useDiceRoller();
@@ -82,7 +92,7 @@ export default function NpcTable({ tableData, lang }: NpcTableProps) {
               </span>
             </div>
           ) : (
-            <NpcCard npc={tableData.rows[selectedRow - 1]} isSelected={true} lang={lang} />
+            <NpcCard npc={tableData.rows[selectedRow - 1]} isSelected={true} lang={lang} tags={tags} />
           )}
         </div>
       )}
@@ -92,7 +102,7 @@ export default function NpcTable({ tableData, lang }: NpcTableProps) {
         <div className="p-2 grid grid-cols-1 md:grid-cols-2 gap-2 max-h-[500px] overflow-y-auto">
           {tableData.rows.map((npc) => (
             <div key={npc.id}>
-              <NpcCard npc={npc} isSelected={selectedRow === npc.id && !isRolling} lang={lang} />
+              <NpcCard npc={npc} isSelected={selectedRow === npc.id && !isRolling} lang={lang} tags={tags} />
             </div>
           ))}
         </div>

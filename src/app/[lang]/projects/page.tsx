@@ -1,23 +1,28 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import Image from "next/image";
-import FadeIn from "@/components/FadeIn";
-import { getAllProjects, getFrontmatterString } from "@/lib/content";
+import Image from 'next/image';
+import FadeIn from '@/components/FadeIn';
+import { getAllProjects, getFrontmatterString } from '@/lib/content';
 import { getDictionary } from '@/lib/i18n';
-import Navigation from "@/components/Navigation";
+
+const normalizeStatus = (status: string) => status.toLowerCase().trim();
+
+const isReleasedStatus = (status: string) => ['released', 'вышло'].includes(normalizeStatus(status));
+
+const isInDevelopmentStatus = (status: string) => ['in-development', 'in development', 'в разработке'].includes(normalizeStatus(status));
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const dict = await getDictionary(lang, 'common');
-  
+
   return {
     title: `${dict.nav?.projects || 'Projects'} | Fables Monster Studio`,
-    description: 'Explore our tabletop RPG adventures and digital experiences. From sci-fi horror to cyberpunk mysteries.',
+    description: dict.projects?.metaDescription || 'Explore our tabletop RPG adventures and digital experiences. From sci-fi horror to cyberpunk mysteries.',
     alternates: {
       canonical: `https://fables.monster/${lang}/projects`,
       languages: {
-        'en': 'https://fables.monster/en/projects',
-        'ru': 'https://fables.monster/ru/projects',
+        en: 'https://fables.monster/en/projects',
+        ru: 'https://fables.monster/ru/projects',
       },
     },
   };
@@ -28,166 +33,198 @@ export default async function ProjectsPage({ params }: { params: Promise<{ lang:
   const dict = await getDictionary(lang, 'common');
   const allProjects = await getAllProjects(lang);
 
-  // Sort projects: released -> coming-soon -> in-development
   const statusOrder: Record<string, number> = {
-    "released": 1,
-    "coming-soon": 2,
-    "in-development": 3,
+    released: 1,
+    вышло: 1,
+    'coming-soon': 2,
+    'coming soon': 2,
+    скоро: 2,
+    'in-development': 3,
+    'in development': 3,
+    'в разработке': 3,
   };
 
   const sortedProjects = [...allProjects].sort((a, b) => {
-    const statusA = (getFrontmatterString(a.frontmatter, 'status') || 'in-development').toLowerCase();
-    const statusB = (getFrontmatterString(b.frontmatter, 'status') || 'in-development').toLowerCase();
-    
-    const orderA = statusOrder[statusA] || 99;
-    const orderB = statusOrder[statusB] || 99;
-    
-    return orderA - orderB;
+    const statusA = normalizeStatus(getFrontmatterString(a.frontmatter, 'status') || 'in-development');
+    const statusB = normalizeStatus(getFrontmatterString(b.frontmatter, 'status') || 'in-development');
+    return (statusOrder[statusA] || 99) - (statusOrder[statusB] || 99);
   });
 
+  const releasedCount = sortedProjects.filter((project) =>
+    isReleasedStatus(getFrontmatterString(project.frontmatter, 'status') || '')
+  ).length;
+
+  const inDevCount = sortedProjects.filter((project) =>
+    isInDevelopmentStatus(getFrontmatterString(project.frontmatter, 'status') || '')
+  ).length;
+
+  const comingSoonCount = sortedProjects.length - releasedCount - inDevCount;
+
+  const telemetry = [
+    { label: dict.projects?.telemetry?.total || 'TOTAL', value: String(sortedProjects.length) },
+    { label: dict.projects?.telemetry?.released || 'RELEASED', value: String(releasedCount) },
+    { label: dict.projects?.telemetry?.inDevelopment || 'IN DEVELOPMENT', value: String(inDevCount) },
+    { label: dict.projects?.telemetry?.comingSoon || 'COMING SOON', value: String(Math.max(comingSoonCount, 0)) },
+  ];
+
   return (
-    <div className="min-h-screen bg-black">
-      <Navigation lang={lang} dict={dict.nav || {}} />
-      
-      {/* Header */}
-      <section className="pt-24 sm:pt-32 pb-12 sm:pb-20 bg-gradient-to-b from-gray-950 to-black">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center">
+    <div className="fm-page">
+      <section className="fm-page-hero">
+        <div className="fm-shell">
           <FadeIn>
-            <h1 className="text-5xl sm:text-6xl md:text-8xl font-bold text-white mb-6 font-orbitron tracking-wider text-glow-lg">
-              {(dict.nav?.projects || 'Projects').toUpperCase()}
-            </h1>
-            <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto font-rajdhani uppercase tracking-widest">
-              {dict.projects?.description || 'Explore our tabletop RPG adventures and digital experiences'}
-            </p>
+            <div className="fm-page-hero-panel text-center">
+              <p className="fm-page-kicker mb-5">{dict.projects?.heroKicker || 'MISSION CATALOG'}</p>
+              <h1 className="fm-display-title font-bold text-white font-orbitron tracking-[0.06em] text-glow-lg">
+                {(dict.nav?.projects || 'Projects').toUpperCase()}
+              </h1>
+              <p className="fm-page-subtitle mt-5">
+                {dict.projects?.description || 'Explore our tabletop RPG adventures and digital experiences'}
+              </p>
+              <div className="fm-stat-grid max-w-3xl mx-auto">
+                {telemetry.map((entry) => (
+                  <div key={entry.label} className="fm-stat-card">
+                    <span className="fm-stat-label">{entry.label}</span>
+                    <span className="fm-stat-value">{entry.value}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </FadeIn>
         </div>
       </section>
 
-      {/* All Projects Grid */}
-      <section className="py-12 sm:py-20 bg-black border-t border-red-700">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {sortedProjects.map((project) => {
-                const status = (getFrontmatterString(project.frontmatter, 'status') || 'in-development').toLowerCase();
-                const projectImage = getFrontmatterString(project.frontmatter, 'image') || '/images/placeholder.webp';
-                const projectTitle = getFrontmatterString(project.frontmatter, 'title') || '';
-                return (
-                    <Link
-                      key={project.slug}
-                      href={`/${lang}/${project.slug}`}
-                      className="group flex border border-border bg-black hover:border-accent transition-all duration-300 h-full flex-col"
-                    >
-                      {/* Project Image */}
-                      <div className="relative h-64 overflow-hidden">
-                        <Image
-                          src={projectImage}
-                          alt={projectTitle}
-                          fill
-                          className="object-cover group-hover:scale-105 transition-transform duration-300"
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
+      <section className="fm-section fm-section-bordered">
+        <div className="fm-shell">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {sortedProjects.map((project, index) => {
+              const statusRaw = getFrontmatterString(project.frontmatter, 'status') || 'in-development';
+              const projectImage = getFrontmatterString(project.frontmatter, 'image') || '/images/placeholder.webp';
+              const projectTitle = getFrontmatterString(project.frontmatter, 'title') || '';
+              const isReleased = isReleasedStatus(statusRaw);
+              const isInDevelopment = isInDevelopmentStatus(statusRaw);
 
-                        {/* Status Badge */}
-                        <div className="absolute top-4 right-4">
-                          <span className={`px-3 py-1 text-xs font-orbitron font-bold border ${
-                            status === 'released' ? 'bg-green-900/50 text-green-400 border-green-500' :
-                            status === 'in-development' ? 'bg-yellow-900/50 text-yellow-400 border-yellow-500' :
-                              'bg-blue-900/50 text-blue-400 border-blue-500'
-                            }`}>
-                            {status === 'released' ? (dict.projects?.status?.released || 'RELEASED') :
-                              status === 'in-development' ? (dict.projects?.status?.inDev || 'IN DEV') :
-                                (dict.projects?.status?.comingSoon || 'COMING SOON')}
+              const statusClass = isReleased
+                ? 'border-green-500/70 bg-green-950/50 text-green-300'
+                : isInDevelopment
+                  ? 'border-yellow-500/70 bg-yellow-950/50 text-yellow-300'
+                  : 'border-blue-500/70 bg-blue-950/50 text-blue-300';
+
+              const statusText = isReleased
+                ? (dict.projects?.status?.released || 'RELEASED')
+                : isInDevelopment
+                  ? (dict.projects?.status?.inDev || 'IN DEV')
+                  : (dict.projects?.status?.comingSoon || 'COMING SOON');
+
+              return (
+                <FadeIn key={project.slug} delay={(index % 6) * 0.08}>
+                  <Link
+                    href={`/${lang}/${project.slug}`}
+                    className="group flex h-full flex-col overflow-hidden border border-red-950/70 bg-zinc-950/70 transition-all duration-300 hover:-translate-y-1 hover:border-red-500/65 hover:shadow-[0_20px_36px_rgba(120,0,0,0.28)]"
+                  >
+                    <div className="relative h-60 overflow-hidden">
+                      <Image
+                        src={projectImage}
+                        alt={projectTitle}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+
+                      <div className="absolute left-4 right-4 top-4 flex items-center justify-between gap-2">
+                        {project.frontmatter.featured ? (
+                          <span className="fm-chip border-red-600/70 bg-red-950/70 text-red-200">
+                            {dict.projects?.featured || 'FEATURED'}
                           </span>
-                        </div>
+                        ) : (
+                          <span className="fm-chip invisible" aria-hidden="true">
+                            FEATURED
+                          </span>
+                        )}
+                        <span className={`px-3 py-1 text-[11px] font-orbitron font-bold border tracking-[0.12em] ${statusClass}`}>
+                          {statusText}
+                        </span>
+                      </div>
+                    </div>
 
-                        {/* Featured Badge */}
-                        {project.frontmatter.featured && (
-                          <div className="absolute top-4 left-4">
-                            <span className="px-3 py-1 text-xs font-orbitron font-bold bg-red-900/80 text-red-400 border border-red-500">
-                              {dict.projects?.featured || 'FEATURED'}
-                            </span>
-                          </div>
+                    <div className="p-5 flex-grow flex flex-col">
+                      <h3 className="text-2xl font-bold text-white mb-2 font-orbitron group-hover:text-red-300 transition-colors">
+                        {projectTitle}
+                      </h3>
+
+                      <div className="flex flex-wrap gap-2 mb-3">
+                        {getFrontmatterString(project.frontmatter, 'system') && (
+                          <span className="text-xs font-rajdhani uppercase tracking-wide text-cyan-300 border border-cyan-800/80 px-2 py-1">
+                            {getFrontmatterString(project.frontmatter, 'system')}
+                          </span>
+                        )}
+                        {getFrontmatterString(project.frontmatter, 'type') && (
+                          <span className="text-xs font-rajdhani uppercase tracking-wide text-zinc-400 border border-zinc-700 px-2 py-1">
+                            {getFrontmatterString(project.frontmatter, 'type')}
+                          </span>
                         )}
                       </div>
 
-                      {/* Project Info */}
-                      <div className="p-6 flex-grow flex flex-col">
-                        <h3 className="text-2xl font-bold text-white mb-2 font-orbitron group-hover:text-accent transition-colors">
-                          {projectTitle}
-                        </h3>
+                      <p className="text-zinc-300 text-sm font-rajdhani leading-relaxed mb-4 flex-grow line-clamp-3">
+                        {getFrontmatterString(project.frontmatter, 'tagline')}
+                      </p>
 
-                        <div className="flex flex-wrap gap-2 mb-3">
-                          {getFrontmatterString(project.frontmatter, 'system') && (
-                            <span className="text-xs font-rajdhani uppercase tracking-wide text-cyan-400 border border-cyan-700 px-2 py-1">
-                              {getFrontmatterString(project.frontmatter, 'system')}
+                      {Array.isArray(project.frontmatter.tags) && project.frontmatter.tags.length > 0 && (
+                        <div className="flex flex-wrap gap-2 mt-auto">
+                          {(project.frontmatter.tags as string[]).slice(0, 3).map((tag: string, i: number) => (
+                            <span
+                              key={i}
+                              className="text-xs px-2 py-1 bg-zinc-900 text-zinc-400 border border-zinc-800 font-rajdhani uppercase tracking-wide"
+                            >
+                              {tag}
                             </span>
-                          )}
-                          {getFrontmatterString(project.frontmatter, 'type') && (
-                            <span className="text-xs font-rajdhani uppercase tracking-wide text-gray-400 border border-gray-700 px-2 py-1">
-                              {getFrontmatterString(project.frontmatter, 'type')}
-                            </span>
-                          )}
+                          ))}
                         </div>
-
-                        <p className="text-gray-300 text-sm font-rajdhani leading-relaxed mb-4 flex-grow">
-                          {getFrontmatterString(project.frontmatter, 'tagline')}
-                        </p>
-
-                        {/* Tags */}
-                        {Array.isArray(project.frontmatter.tags) && project.frontmatter.tags.length > 0 && (
-                          <div className="flex flex-wrap gap-2 mt-auto">
-                            {(project.frontmatter.tags as string[]).slice(0, 3).map((tag: string, i: number) => (
-                              <span
-                                key={i}
-                                className="text-xs px-2 py-1 bg-gray-800 text-gray-400 border border-gray-700 font-rajdhani uppercase tracking-wide"
-                              >
-                                {tag}
-                              </span>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    </Link>
-                );
-              })}
-            </div>
+                      )}
+                    </div>
+                  </Link>
+                </FadeIn>
+              );
+            })}
+          </div>
         </div>
       </section>
 
-      {/* Call to Action */}
-      <section className="py-12 sm:py-20 bg-red-900 border-t border-red-700">
-        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6">
+      <section className="fm-section fm-section-bordered">
+        <div className="fm-shell">
           <FadeIn>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6 font-orbitron">
-              {dict.projects?.joinCommunity?.title || 'JOIN THE COMMUNITY'}
-            </h2>
-            <p className="text-lg sm:text-xl text-red-100 mb-8 font-rajdhani">
-              {dict.projects?.joinCommunity?.description || 'Follow our development and become part of the Fables Monster community'}
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center flex-wrap">
-              <a
-                href="https://discord.gg/eAwK9DfKf4"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full sm:w-auto bg-white text-red-900 px-8 py-4 text-lg font-orbitron font-bold hover:bg-gray-200 transition-colors text-center"
-              >
-                {dict.projects?.joinCommunity?.discord || 'JOIN DISCORD'}
-              </a>
-              <Link
-                href={`/${lang}/newsletter/subscribe`}
-                className="w-full sm:w-auto bg-transparent border-2 border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-black px-8 py-4 text-lg font-orbitron font-bold transition-colors text-center"
-              >
-                {lang === 'ru' ? 'ПОДПИСАТЬСЯ' : 'SUBSCRIBE'}
-              </Link>
-              <a
-                href="https://www.patreon.com/FablesMonster"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full sm:w-auto bg-transparent border-2 border-white text-white hover:bg-white hover:text-red-900 px-8 py-4 text-lg font-orbitron font-bold transition-colors text-center"
-              >
-                {dict.projects?.joinCommunity?.patreon || 'SUPPORT ON PATREON'}
-              </a>
+            <div className="fm-panel text-center max-w-4xl mx-auto">
+              <h2 className="fm-section-title font-bold text-white font-orbitron mb-4">
+                {dict.projects?.joinCommunity?.title || 'JOIN THE COMMUNITY'}
+              </h2>
+              <p className="fm-lead text-zinc-300 max-w-2xl mx-auto">
+                {dict.projects?.joinCommunity?.description || 'Follow our development and become part of the Fables Monster community'}
+              </p>
+
+              <div className="fm-page-actions mt-8">
+                <a
+                  href="https://discord.gg/eAwK9DfKf4"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto bg-red-700 text-white px-7 py-3 text-base font-orbitron font-bold hover:bg-red-600 transition-colors border border-red-500"
+                >
+                  {dict.projects?.joinCommunity?.discord || 'JOIN DISCORD'}
+                </a>
+                <Link
+                  href={`/${lang}/newsletter/subscribe`}
+                  className="w-full sm:w-auto border border-cyan-500/80 text-cyan-300 hover:bg-cyan-500 hover:text-black px-7 py-3 text-base font-orbitron font-bold transition-colors"
+                >
+                  {dict.projects?.joinCommunity?.subscribe || 'SUBSCRIBE'}
+                </Link>
+                <a
+                  href="https://www.patreon.com/FablesMonster"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto border border-zinc-500 text-zinc-200 hover:border-white hover:text-white px-7 py-3 text-base font-orbitron font-bold transition-colors"
+                >
+                  {dict.projects?.joinCommunity?.patreon || 'SUPPORT ON PATREON'}
+                </a>
+              </div>
             </div>
           </FadeIn>
         </div>

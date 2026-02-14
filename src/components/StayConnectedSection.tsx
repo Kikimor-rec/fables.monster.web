@@ -15,19 +15,20 @@ export default function StayConnectedSection({
   const isCyberpunk = variant === 'cyberpunk';
 
   return (
-    <section className={`py-20 bg-black relative z-10 ${isCyberpunk ? 'border-t border-cyan-700/30' : 'border-t border-red-700'}`}>
-      <div className="max-w-4xl mx-auto text-center px-6">
+    <section className={`py-16 sm:py-20 bg-black relative z-10 overflow-hidden ${isCyberpunk ? 'border-t border-cyan-700/30' : 'border-t border-red-700/70'}`}>
+      <div className={`absolute inset-0 pointer-events-none ${isCyberpunk ? 'bg-[radial-gradient(circle_at_15%_0%,rgba(34,211,238,0.18),transparent_45%),radial-gradient(circle_at_85%_100%,rgba(217,70,239,0.16),transparent_45%)]' : 'bg-[radial-gradient(circle_at_15%_0%,rgba(239,68,68,0.18),transparent_45%),radial-gradient(circle_at_85%_100%,rgba(34,211,238,0.12),transparent_45%)]'}`}></div>
+      <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 relative z-10">
         <div className="mb-8">
           <div className={`font-mono text-sm mb-2 tracking-[0.3em] ${isCyberpunk ? 'text-cyan-400' : 'text-red-400'}`}>
             {dict.label}
           </div>
-          <h2 className="text-4xl font-bold text-white mb-6 font-orbitron">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6 font-orbitron">
             {dict.title}{' '}
-            <span className={isCyberpunk ? 'text-magenta-400' : 'text-red-500'}>
+            <span className={isCyberpunk ? 'text-fuchsia-400' : 'text-red-500'}>
               {dict.titleHighlight}
             </span>
           </h2>
-          <p className="text-xl text-gray-300 mb-8 font-rajdhani">
+          <p className="text-lg sm:text-xl text-gray-300 mb-8 font-rajdhani">
             {dict.description}
           </p>
         </div>
@@ -48,7 +49,7 @@ export default function StayConnectedSection({
             href={`/${lang}/newsletter/subscribe`}
             className={`px-8 py-4 text-lg font-orbitron font-bold transition-all border-2 ${
               isCyberpunk
-                ? 'bg-transparent border-magenta-500 text-magenta-400 hover:bg-magenta-500 hover:text-black'
+                ? 'bg-transparent border-fuchsia-500 text-fuchsia-400 hover:bg-fuchsia-500 hover:text-black'
                 : 'bg-transparent border-cyan-500 text-cyan-400 hover:bg-cyan-950/30 hover:text-white'
             }`}
           >

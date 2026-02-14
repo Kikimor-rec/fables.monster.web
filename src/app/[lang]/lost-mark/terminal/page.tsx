@@ -4,15 +4,18 @@ import { getDictionary } from '@/lib/i18n';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
+  const dict = await getDictionary(lang, 'terminal');
+  const meta = dict.meta;
   const imageUrl = 'https://fables.monster/images/lost-mark/lm_promo_1.webp';
+  const openGraphLocale = lang === 'ru' ? 'ru_RU' : 'en_US';
 
   return {
-    title: 'Lost Mark Terminal - Interactive Mothership RPG Experience',
-    description: 'Access the Lost Mark terminal interface. Experience the horror of the Parallax Mining Station through an interactive computer terminal simulation.',
-    keywords: 'Mothership RPG, interactive terminal, Lost Mark adventure, horror RPG, sci-fi interface, space station computer',
+    title: meta?.title || 'Lost Mark Terminal - Interactive Mothership RPG Experience',
+    description: meta?.description || 'Access the Lost Mark terminal interface. Experience the horror of the Parallax Mining Station through an interactive computer terminal simulation.',
+    keywords: meta?.keywords || 'Mothership RPG, interactive terminal, Lost Mark adventure, horror RPG, sci-fi interface, space station computer',
     openGraph: {
-      title: 'Lost Mark Terminal - Interactive Horror Experience',
-      description: 'Step into the digital nightmare of Parallax Mining Station through this immersive terminal interface.',
+      title: meta?.ogTitle || meta?.title || 'Lost Mark Terminal - Interactive Horror Experience',
+      description: meta?.ogDescription || meta?.description || 'Step into the digital nightmare of Parallax Mining Station through this immersive terminal interface.',
       url: `https://fables.monster/${lang}/lost-mark/terminal`,
       siteName: 'Fables Monster Studio',
       images: [
@@ -20,17 +23,21 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
           url: imageUrl,
           width: 1200,
           height: 630,
-          alt: 'Lost Mark Terminal Interface',
+          alt: meta?.imageAlt || 'Lost Mark Terminal Interface',
         },
       ],
-      locale: lang === 'ru' ? 'ru_RU' : 'en_US',
+      locale: openGraphLocale,
       type: 'article',
     },
     twitter: {
       card: 'summary_large_image',
-      title: 'Lost Mark Terminal - Interactive Horror Experience',
-      description: 'Experience the horror through an interactive terminal interface.',
+      title: meta?.twitterTitle || meta?.ogTitle || meta?.title || 'Lost Mark Terminal - Interactive Horror Experience',
+      description: meta?.twitterDescription || meta?.ogDescription || meta?.description || 'Experience the horror through an interactive terminal interface.',
       images: [imageUrl],
+    },
+    robots: {
+      index: false,
+      follow: false,
     },
     alternates: {
       canonical: `https://fables.monster/${lang}/lost-mark/terminal`,

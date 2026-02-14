@@ -4,83 +4,13 @@ import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { useState, useEffect, useCallback } from 'react';
 import FadeIn from "@/components/FadeIn";
+import commonEn from '@/locales/en/common.json';
+import commonRu from '@/locales/ru/common.json';
+import type { CommonDict, Language } from '@/types/i18n';
 
-// Translations
-const translations = {
-    en: {
-        title: "Signal Lost",
-        diagnostic: "> SYSTEM DIAGNOSTIC: CRITICAL FAILURE",
-        heading: "The Void Has Consumed This Page",
-        description: "You've ventured too far into the unknown. The coordinates you're looking for have been redacted by the",
-        bureaucracy: "Hellish Bureaucracy",
-        orLostIn: "or lost in the",
-        neon: "Neon Rain",
-        errorCode: "Error Code: ID-10-T // Sector: UNKNOWN",
-        evac: "EMERGENCY EVAC",
-        archives: "SEARCH ARCHIVES",
-        home: "HOME",
-        projects: "PROJECTS",
-        contact: "CONTACT",
-        terminalLines: [
-            "SCANNING SECTOR...",
-            "COORDINATES NOT FOUND",
-            "SIGNAL INTERFERENCE DETECTED",
-            "REROUTING...",
-            "CONNECTION LOST"
-        ],
-        // Easter egg messages
-        markMessage: "JOIN US... BECOME PART OF THE SHIP...",
-        krampMessage: "BEHAVIOR DEVIATION DETECTED. COMPLIANCE CHECK INITIATED.",
-        ascendMessage: "THE ASCENSION AWAITS. 2k10 MINUTES REMAINING.",
-        helpCommands: [
-            "> AVAILABLE COMMANDS:",
-            "  help - display this message",
-            "  mark - contact the pilot",
-            "  kramp - ethical compliance check", 
-            "  ascend - initiate protocol",
-            "  home - return to safety"
-        ],
-        secretFound: "SECRET DISCOVERED",
-        radarScanning: "SCANNING",
-        targetLost: "TARGET LOST"
-    },
-    ru: {
-        title: "Сигнал Потерян",
-        diagnostic: "> ДИАГНОСТИКА СИСТЕМЫ: КРИТИЧЕСКИЙ СБОЙ",
-        heading: "Пустота поглотила эту страницу",
-        description: "Вы зашли слишком далеко в неизведанное. Координаты, которые вы ищете, были удалены",
-        bureaucracy: "Адской Бюрократией",
-        orLostIn: "или затерялись в",
-        neon: "Неоновом Дожде",
-        errorCode: "Код ошибки: ID-10-T // Сектор: НЕИЗВЕСТЕН",
-        evac: "ЭВАКУАЦИЯ",
-        archives: "ПОИСК В АРХИВАХ",
-        home: "ГЛАВНАЯ",
-        projects: "ПРОЕКТЫ",
-        contact: "КОНТАКТЫ",
-        terminalLines: [
-            "СКАНИРОВАНИЕ СЕКТОРА...",
-            "КООРДИНАТЫ НЕ НАЙДЕНЫ",
-            "ОБНАРУЖЕНЫ ПОМЕХИ",
-            "ПЕРЕНАПРАВЛЕНИЕ...",
-            "СОЕДИНЕНИЕ ПОТЕРЯНО"
-        ],
-        // Easter egg messages
-        markMessage: "ПРИСОЕДИНЯЙСЯ К НАМ... СТАНЬ ЧАСТЬЮ КОРАБЛЯ...",
-        krampMessage: "ОБНАРУЖЕНО ОТКЛОНЕНИЕ ПОВЕДЕНИЯ. ПРОВЕРКА СООТВЕТСТВИЯ НАЧАТА.",
-        ascendMessage: "ВОЗНЕСЕНИЕ ЖДЁТ. ОСТАЛОСЬ 2к10 МИНУТ.",
-        helpCommands: [
-            "> ДОСТУПНЫЕ КОМАНДЫ:",
-            "  help - показать это сообщение",
-            "  mark - связаться с пилотом",
-            "  kramp - проверка этики",
-            "  ascend - активировать протокол",
-            "  home - вернуться в безопасность"
-        ],
-        secretFound: "СЕКРЕТ ОБНАРУЖЕН",
-        radarScanning: "СКАНИРОВАНИЕ",
-        targetLost: "ЦЕЛЬ ПОТЕРЯНА"
-    }
+const dictionaries: Record<Language, CommonDict> = {
+    en: commonEn as CommonDict,
+    ru: commonRu as CommonDict,
 };
 
 // Konami code sequence
@@ -88,8 +18,12 @@ const KONAMI_CODE = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft'
 
 export default function NotFound() {
     const params = useParams();
-    const lang = (params?.lang as string) || 'en';
-    const t = translations[lang as keyof typeof translations] || translations.en;
+    const lang = (params?.lang as string) === 'ru' ? 'ru' : 'en';
+    const commonDict = dictionaries[lang];
+    const t = commonDict.notFound;
+    const nav = commonDict.nav;
+    const [descriptionPrefix, descriptionTail = ''] = t.description.split('{bureaucracy}');
+    const [descriptionMiddle, descriptionSuffix = ''] = descriptionTail.split('{neon}');
     
     const [terminalLine, setTerminalLine] = useState(0);
     const [glitchActive, setGlitchActive] = useState(false);
@@ -183,14 +117,14 @@ export default function NotFound() {
         const newCount = clickCount + 1;
         setClickCount(newCount);
         if (newCount >= 7) {
-            setSecretMessage(lang === 'en' ? "MARK SEES YOU... JOIN THE SHIP..." : "МАРК ВИДИТ ТЕБЯ... ПРИСОЕДИНЯЙСЯ К КОРАБЛЮ...");
+            setSecretMessage(t.clickSecretMessage);
             setClickCount(0);
             setTimeout(() => setSecretMessage(null), 4000);
         } else if (newCount === 4) {
             setGlitchActive(true);
             setTimeout(() => setGlitchActive(false), 500);
         }
-    }, [clickCount, lang]);
+    }, [clickCount, t.clickSecretMessage]);
     
     // Handle terminal command
     const handleTerminalCommand = useCallback((cmd: string) => {
@@ -218,7 +152,7 @@ export default function NotFound() {
             case '':
                 return;
             default:
-                response = [lang === 'en' ? `> COMMAND "${command}" NOT RECOGNIZED` : `> КОМАНДА "${command}" НЕ РАСПОЗНАНА`];
+                response = [t.commandNotRecognized.replace('{command}', command)];
         }
         
         setTerminalHistory(prev => [...prev.slice(-8), `$ ${cmd}`, ...response]);
@@ -272,11 +206,11 @@ export default function NotFound() {
                                 }}
                                 className="flex-1 bg-transparent outline-none text-green-400 caret-green-400"
                                 autoFocus
-                                placeholder={lang === 'en' ? 'type "help" for commands...' : 'введите "help" для списка команд...'}
+                                placeholder={t.terminalPlaceholder}
                             />
                         </div>
                         <div className="text-gray-600 text-xs mt-2">
-                            {lang === 'en' ? 'Press ` to close terminal' : 'Нажмите ` чтобы закрыть терминал'}
+                            {t.closeTerminalHint}
                         </div>
                     </div>
                 </div>
@@ -394,7 +328,7 @@ export default function NotFound() {
                                     : '0 0 20px rgba(255,0,0,0.5)'
                             }}
                             onClick={handle404Click}
-                            title={lang === 'en' ? 'Click me...' : 'Нажми на меня...'}
+                            title={t.clickMeTitle}
                         >
                             404
                         </h1>
@@ -437,11 +371,16 @@ export default function NotFound() {
                             {t.heading}
                         </h2>
 
+                        <p className="text-red-400/80 font-mono text-xs uppercase tracking-wider mb-4">
+                            {t.diagnostic}
+                        </p>
+
                         <p className="text-gray-300 font-rajdhani mb-6 text-lg leading-relaxed">
-                            {t.description}{' '}
-                            <span className="text-red-400">{t.bureaucracy}</span>{' '}
-                            {t.orLostIn}{' '}
-                            <span className="text-cyan-400">{t.neon}</span>.
+                            {descriptionPrefix}
+                            <span className="text-red-400">{t.bureaucracy}</span>
+                            {descriptionMiddle}
+                            <span className="text-cyan-400">{t.neon}</span>
+                            {descriptionSuffix}
                         </p>
 
                         <p className="text-gray-500 font-mono text-xs uppercase tracking-widest">
@@ -482,19 +421,19 @@ export default function NotFound() {
                                 href={`/${lang}`}
                                 className="px-4 py-2 text-gray-400 hover:text-white font-mono text-sm border border-gray-700 hover:border-gray-400 transition-all"
                             >
-                                [{t.home}]
+                                [{nav.home}]
                             </Link>
                             <Link
                                 href={`/${lang}/projects`}
                                 className="px-4 py-2 text-gray-400 hover:text-white font-mono text-sm border border-gray-700 hover:border-gray-400 transition-all"
                             >
-                                [{t.projects}]
+                                [{nav.projects}]
                             </Link>
                             <Link
                                 href={`/${lang}/contact`}
                                 className="px-4 py-2 text-gray-400 hover:text-white font-mono text-sm border border-gray-700 hover:border-gray-400 transition-all"
                             >
-                                [{t.contact}]
+                                [{nav.contact}]
                             </Link>
                         </div>
                     </div>
@@ -510,12 +449,7 @@ export default function NotFound() {
                 {/* Terminal hint */}
                 <FadeIn delay={0.6}>
                     <div className="mt-8 text-gray-600 font-mono text-xs text-center">
-                        <span className="opacity-50">
-                            {lang === 'en' 
-                                ? 'Press ` to access hidden terminal • Click 404 for secrets • ↑↑↓↓←→←→BA'
-                                : 'Нажмите ` для скрытого терминала • Кликните на 404 • ↑↑↓↓←→←→BA'
-                            }
-                        </span>
+                        <span className="opacity-50">{t.terminalHint}</span>
                     </div>
                 </FadeIn>
             </div>

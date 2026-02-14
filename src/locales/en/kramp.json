@@ -4,9 +4,12 @@
     "description": "A Christmas Eve gone catastrophically wrong in deep space."
   },
   "hero": {
+    "kicker": "FESTIVE INCIDENT REPORT",
     "title": "HOLIDAY AUDIT",
     "subtitle": "KRAMP.EXE",
     "tagline": "Christmas Eve gone catastrophically wrong in deep space",
+    "storeMode": "global",
+    "englishVersionNote": "English edition is available on",
     "badges": {
       "available": "AVAILABLE NOW",
       "oneShot": "ONE-SHOT",
@@ -27,7 +30,7 @@
     "tables": "Tables",
     "links": "Links",
     "description": "St.N KRAMP — Holiday Audit in Deep Space",
-    "stayInLoop": "Stay in the Loop"
+    "stayInLoop": "STAY IN THE LOOP"
   },
   "about": {
     "paragraph1": "It's a story about <strong>control, hypocrisy, punishment, and bad gifts</strong>. It shifts between humor and horror, absurdity and paranoia.",
@@ -35,10 +38,50 @@
     "paragraph3": "Chain-rattling alerts, sealed bulkheads, and festive dread tighten with each passing minute. Can you cleanse your record before the system wipes you from it?"
   },
   "soundtrack": {
-    "description": "Festive synthwave for deeper immersion into holiday horror."
+    "description": "Festive synthwave for deeper immersion into holiday horror.",
+    "listenStreaming": "Listen on Streaming",
+    "youtubeIframeTitle": "KRAMP.EXE soundtrack on YouTube",
+    "youtubeFooter": "▲ FULL PLAYLIST ON YOUTUBE ▲",
+    "player": {
+      "loading": "Loading...",
+      "noTracks": "NO TRACKS",
+      "noTracksHint": "Add audio files to public/music/krampmusic/",
+      "terminalCommand": "soundtrack",
+      "nowPlaying": "NOW PLAYING",
+      "trackLabel": "Track",
+      "unknownTrack": "Unknown Track",
+      "repeatTrack": "Repeat track",
+      "repeatAll": "Repeat all",
+      "noRepeat": "No repeat",
+      "loopTrackStatus": "🔂 Repeat track",
+      "loopPlaylistStatus": "🔁 Repeat playlist",
+      "playlist": "PLAYLIST",
+      "tracks": "tracks",
+      "online": "ONLINE"
+    },
+    "sfx": {
+      "panelTitle": "SFX Panel",
+      "stop": "Stop",
+      "hint": "PA announcement jingles for your game",
+      "volumeLabel": "SFX volume",
+      "tracks": {
+        "jingleNormal1": "PA Jingle",
+        "jingleNormal2": "PA Jingle Alt",
+        "jingleGlitch1": "Corrupted Jingle",
+        "jingleGlitch2": "Corrupted Jingle Alt"
+      }
+    }
   },
   "tables": {
-    "description": "Roll the dice to spark your imagination during the game."
+    "description": "Roll the dice to spark your imagination during the game.",
+    "headerNote": "These tables are designed to spark your imagination. Change values and checks to fit your table.",
+    "footerStamp": "DATE: 25-12-XX // LOC: \"SILENT NIGHT\" // AUTH: KRAMP.EXE",
+    "mechLabel": "MECH",
+    "npcTags": {
+      "history": "HIST",
+      "helps": "HELPS",
+      "hinders": "HINDERS"
+    }
   },
   "postcard": {
     "description": "Unfold the horror. Perfect for stockings or last-minute gifts.",

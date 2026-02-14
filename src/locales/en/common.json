@@ -15,10 +15,32 @@
       "SIGNAL INTERFERENCE DETECTED",
       "REROUTING...",
       "CONNECTION LOST"
-    ]
+    ],
+    "markMessage": "JOIN US... BECOME PART OF THE SHIP...",
+    "krampMessage": "BEHAVIOR DEVIATION DETECTED. COMPLIANCE CHECK INITIATED.",
+    "ascendMessage": "THE ASCENSION AWAITS. 2k10 MINUTES REMAINING.",
+    "clickSecretMessage": "MARK SEES YOU... JOIN THE SHIP...",
+    "commandNotRecognized": "> COMMAND \"{command}\" NOT RECOGNIZED",
+    "terminalPlaceholder": "type \"help\" for commands...",
+    "closeTerminalHint": "Press ` to close terminal",
+    "clickMeTitle": "Click me...",
+    "terminalHint": "Press ` to access hidden terminal • Click 404 for secrets • ↑↑↓↓←→←→BA",
+    "helpCommands": [
+      "> AVAILABLE COMMANDS:",
+      "  help - display this message",
+      "  mark - contact the pilot",
+      "  kramp - ethical compliance check",
+      "  ascend - initiate protocol",
+      "  home - return to safety"
+    ],
+    "radarScanning": "SCANNING"
   },
   "timer": {
     "title": "CHRONOMETER",
+    "meta": {
+      "title": "Chronometer Terminal | Fables Monster Studio",
+      "description": "Digital countdown timer with terminal interface for tabletop gaming sessions."
+    },
     "status": {
       "completed": "COMPLETED",
       "running": "RUNNING",
@@ -60,7 +82,15 @@
     "lostMark": "LOST MARK",
     "timer": "TIMER",
     "about": "ABOUT",
-    "contact": "CONTACT"
+    "contact": "CONTACT",
+    "skipToContent": "Skip to content",
+    "homeAriaLabel": "Fables Monster - Home",
+    "mainNavigation": "Main navigation",
+    "languageSelection": "Language selection",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "mainMenu": "Main menu",
+    "mobileNavigation": "Mobile navigation"
   },
   "footer": {
     "tagline": "Independent tabletop RPG content creation studio",
@@ -69,6 +99,11 @@
     "about": "About",
     "contact": "Contact",
     "social": "SOCIAL",
+    "allProjects": "All projects →",
+    "privacy": "Privacy",
+    "homeAriaLabel": "Fables Monster - Home",
+    "projectsAriaLabel": "Projects",
+    "linksAriaLabel": "Links",
     "copyright": "© {year} Fables Monster Studio. All rights reserved."
   },
   "team": [
@@ -114,6 +149,11 @@
   "about": {
     "title": "ABOUT US",
     "subtitle": "Meet the team behind Fables Monster Studio",
+    "metaDescription": "Meet the team behind Fables Monster Studio - creators crafting immersive tabletop RPG experiences, horror adventures, and sci-fi campaigns.",
+    "heroKicker": "STUDIO DOSSIER",
+    "rosterKicker": "TEAM ROSTER",
+    "rosterTitle": "THE CREW",
+    "rosterDescription": "The people building new adventures, visuals, and sound for the worlds of Fables Monster Studio.",
     "values": [
       {
         "title": "Quality First",
@@ -137,6 +177,11 @@
     "getInTouch": "GET IN TOUCH",
     "metaTitle": "Contact - Get in Touch with Fables Monster Studio",
     "metaDescription": "Contact Fables Monster Studio for collaborations, questions about our tabletop RPG projects, or general inquiries. Join our Discord community and follow us on social media.",
+    "heroKicker": "OPEN COMM CHANNEL",
+    "heroDescription": "Collaborations, release questions, and partnership ideas. Reach us through your preferred channel or the direct form.",
+    "channelsLabel": "Official studio channels for discussion, updates, and support:",
+    "channelAction": "ENTER",
+    "directChannelLabel": "DIRECT CHANNEL",
     "form": {
       "title": "SEND MESSAGE",
       "name": "NAME",
@@ -159,11 +204,29 @@
       "comingSoon": "COMING SOON"
     },
     "featured": "FEATURED",
+    "heroKicker": "MISSION CATALOG",
+    "telemetry": {
+      "total": "TOTAL",
+      "released": "RELEASED",
+      "inDevelopment": "IN DEVELOPMENT",
+      "comingSoon": "COMING SOON"
+    },
+    "metaDescription": "Explore our tabletop RPG adventures and digital experiences. From sci-fi horror to cyberpunk mysteries.",
     "description": "Explore our tabletop RPG adventures and digital experiences",
+    "detail": {
+      "kicker": "PROJECT DOSSIER",
+      "notFoundTitle": "Project Not Found",
+      "labels": {
+        "itch": "Get it on Itch.io",
+        "drivethru": "Get it on DriveThruRPG",
+        "roll20": "Roll20 Module"
+      }
+    },
     "joinCommunity": {
       "title": "JOIN THE COMMUNITY",
       "description": "Follow our development and become part of the Fables Monster community",
       "discord": "JOIN DISCORD",
+      "subscribe": "SUBSCRIBE",
       "patreon": "SUPPORT ON PATREON"
     },
     "lostMark": {
@@ -193,6 +256,11 @@
         "oneShot": "ONE-SHOT",
         "postcard": "POSTCARD SIZE"
       }
+    },
+    "hellishBureaucracy": {
+      "kicker": "UNANNOUNCED PROTOCOL",
+      "inDevelopment": "IN DEVELOPMENT",
+      "defaultTagline": "Navigate the administrative nightmare of Hell"
     }
   }
 }

@@ -1,16 +1,3 @@
-import type { Metadata } from "next";
-import { createMetadata } from "@/lib/seo";
-
-export const metadata: Metadata = {
-  ...createMetadata({
-    title: "SILK STAR Terminal Access | Lost Mark",
-    description: "Secure terminal access to SILK STAR ship systems. Classification required.",
-    path: "/lost-mark/terminal",
-    image: "/opengraph-image",
-  }),
-  robots: "noindex, nofollow",
-};
-
 export default function TerminalLayout({
   children,
 }: {

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect, useCallback } from "react";
+import type { KrampDictionary } from "./types";
 
 interface Track {
   title: string;
@@ -8,14 +9,12 @@ interface Track {
 }
 
 interface KrampAudioPlayerProps {
-  lang: string;
+  labels?: KrampDictionary["soundtrack"];
 }
 
-export default function KrampAudioPlayer({ lang }: KrampAudioPlayerProps) {
-  const isRu = lang === "ru";
-  
-  // Треки будут загружены из папки public/music/krampmusic/
-  // Названия без номеров, как указано пользователем
+export default function KrampAudioPlayer({ labels }: KrampAudioPlayerProps) {
+  const player = labels?.player;
+
   const [tracks, setTracks] = useState<Track[]>([]);
   const [tracksLoaded, setTracksLoaded] = useState(false);
   const [currentTrack, setCurrentTrack] = useState(0);
@@ -29,10 +28,7 @@ export default function KrampAudioPlayer({ lang }: KrampAudioPlayerProps) {
 
   const audioRef = useRef<HTMLAudioElement>(null);
 
-  // Загружаем список треков при монтировании
   useEffect(() => {
-    // Попытаемся получить список файлов через fetch к директории
-    // Если не получится - используем статический список
     const loadTracks = async () => {
       try {
         const response = await fetch('/api/dev/kramp-tracks');
@@ -41,10 +37,7 @@ export default function KrampAudioPlayer({ lang }: KrampAudioPlayerProps) {
           setTracks(data.tracks);
         }
       } catch {
-        // Fallback: статический список треков
-        // Пользователь должен загрузить файлы вручную
         setTracks([
-          // Placeholder tracks - будут заменены реальными файлами
           { title: "Festive Synthwave", filename: "festive-synthwave.mp3" },
           { title: "Holiday Horror", filename: "holiday-horror.mp3" },
         ]);
@@ -197,7 +190,7 @@ export default function KrampAudioPlayer({ lang }: KrampAudioPlayerProps) {
       <div className="bg-black/90 border border-red-700/50 rounded-lg p-6">
         <div className="flex items-center justify-center gap-3">
           <div className="w-4 h-4 border-2 border-red-500 border-t-transparent rounded-full animate-spin"></div>
-          <span className="text-red-400 font-mono">{isRu ? "Загрузка..." : "Loading..."}</span>
+          <span className="text-red-400 font-mono">{player?.loading || "Loading..."}</span>
         </div>
       </div>
     );
@@ -207,12 +200,9 @@ export default function KrampAudioPlayer({ lang }: KrampAudioPlayerProps) {
     return (
       <div className="bg-black/90 border border-red-700/50 rounded-lg p-6">
         <div className="text-center">
-          <div className="text-red-500 font-orbitron mb-2">⚠ {isRu ? "НЕТ ТРЕКОВ" : "NO TRACKS"}</div>
+          <div className="text-red-500 font-orbitron mb-2">⚠ {player?.noTracks || "NO TRACKS"}</div>
           <p className="text-gray-400 font-mono text-sm">
-            {isRu 
-              ? "Добавьте аудио файлы в папку public/music/krampmusic/"
-              : "Add audio files to public/music/krampmusic/"
-            }
+            {player?.noTracksHint || "Add audio files to public/music/krampmusic/"}
           </p>
         </div>
       </div>
@@ -233,7 +223,7 @@ export default function KrampAudioPlayer({ lang }: KrampAudioPlayerProps) {
             <div className="w-3 h-3 rounded-full bg-green-500"></div>
           </div>
           <span className="text-green-400 font-mono text-sm">
-            kramp@station:~/audio-player$ {isRu ? "саундтрек" : "soundtrack"}
+            kramp@station:~/audio-player$ {player?.terminalCommand || "soundtrack"}
           </span>
         </div>
       </div>
@@ -252,13 +242,13 @@ export default function KrampAudioPlayer({ lang }: KrampAudioPlayerProps) {
           
           <div className="flex-1 min-w-0">
             <div className="text-xs text-red-500 font-mono mb-1">
-              {isRu ? "СЕЙЧАС ИГРАЕТ" : "NOW PLAYING"}
+              {player?.nowPlaying || "NOW PLAYING"}
             </div>
             <div className="text-white font-orbitron text-lg truncate">
-              {tracks[currentTrack]?.title || "Unknown Track"}
+              {tracks[currentTrack]?.title || player?.unknownTrack || "Unknown Track"}
             </div>
             <div className="text-gray-500 font-mono text-xs">
-              KRAMP.EXE OST • {isRu ? "Трек" : "Track"} {currentTrack + 1}/{tracks.length}
+              KRAMP.EXE OST • {player?.trackLabel || "Track"} {currentTrack + 1}/{tracks.length}
             </div>
           </div>
         </div>
@@ -295,7 +285,7 @@ export default function KrampAudioPlayer({ lang }: KrampAudioPlayerProps) {
                 ? "text-green-400" 
                 : "text-gray-500 hover:text-white"
           }`}
-          title={loop ? (isRu ? "Повтор трека" : "Repeat track") : loopAll ? (isRu ? "Повтор всех" : "Repeat all") : (isRu ? "Без повтора" : "No repeat")}
+          title={loop ? (player?.repeatTrack || "Repeat track") : loopAll ? (player?.repeatAll || "Repeat all") : (player?.noRepeat || "No repeat")}
         >
           {loop ? (
             <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
@@ -383,8 +373,8 @@ export default function KrampAudioPlayer({ lang }: KrampAudioPlayerProps) {
         <div className="px-6 py-1 text-center">
           <span className={`text-xs font-mono ${loop ? "text-red-400" : "text-green-400"}`}>
             {loop 
-              ? (isRu ? "🔂 Повтор трека" : "🔂 Repeat track")
-              : (isRu ? "🔁 Повтор плейлиста" : "🔁 Repeat playlist")
+              ? (player?.loopTrackStatus || "🔂 Repeat track")
+              : (player?.loopPlaylistStatus || "🔁 Repeat playlist")
             }
           </span>
         </div>
@@ -393,8 +383,8 @@ export default function KrampAudioPlayer({ lang }: KrampAudioPlayerProps) {
       {/* Track List */}
       <div className="border-t border-red-700/30">
         <div className="px-4 py-2 bg-gray-900/30 text-xs font-mono text-gray-500 flex items-center justify-between">
-          <span>📁 PLAYLIST</span>
-          <span>{tracks.length} {isRu ? "треков" : "tracks"}</span>
+          <span>📁 {player?.playlist || "PLAYLIST"}</span>
+          <span>{tracks.length} {player?.tracks || "tracks"}</span>
         </div>
         <div className="max-h-[200px] overflow-y-auto scrollbar-thin scrollbar-thumb-red-700 scrollbar-track-black">
           {tracks.map((track, index) => (
@@ -426,7 +416,7 @@ export default function KrampAudioPlayer({ lang }: KrampAudioPlayerProps) {
       {/* Footer */}
       <div className="px-4 py-2 bg-gray-900/50 border-t border-red-700/30 flex items-center justify-between text-xs font-mono text-gray-500">
         <span>KRAMP.EXE AUDIO MODULE</span>
-        <span className="text-red-600">{isRu ? "ОНЛАЙН" : "ONLINE"}</span>
+        <span className="text-red-600">{player?.online || "ONLINE"}</span>
       </div>
     </div>
   );

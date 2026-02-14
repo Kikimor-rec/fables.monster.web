@@ -3,6 +3,7 @@
     "title": "SUBSCRIBE TO NEWSLETTER",
     "description": "Stay updated with our latest releases, behind-the-scenes content, and exclusive news from Fables Monster Studio.",
     "name": "NAME",
+    "nameOptionalLabel": "optional",
     "email": "EMAIL",
     "namePlaceholder": "Your name",
     "emailPlaceholder": "your@email.com",
@@ -11,6 +12,25 @@
     "success": "Successfully subscribed! Please check your email to confirm your subscription.",
     "error": "Error subscribing. Please try again later.",
     "privacy": "We respect your privacy. You can unsubscribe at any time. Read our <a href='/en/privacy' class='text-red-400 hover:text-red-300'>privacy policy</a>.",
+    "backToHome": "← Back to home",
+    "benefitsTitle": "WHAT YOU'LL GET",
+    "benefits": {
+      "releases": {
+        "emoji": "🎲",
+        "title": "NEW RELEASES",
+        "description": "Be the first to know about new projects and releases"
+      },
+      "exclusive": {
+        "emoji": "🎨",
+        "title": "EXCLUSIVE CONTENT",
+        "description": "Behind-the-scenes content and exclusive materials"
+      },
+      "studioNews": {
+        "emoji": "📰",
+        "title": "STUDIO NEWS",
+        "description": "Important announcements and project updates"
+      }
+    },
     "metaTitle": "Subscribe to Newsletter - Fables Monster Studio",
     "metaDescription": "Subscribe to Fables Monster Studio newsletter for latest updates on tabletop RPG releases, exclusive content, and behind-the-scenes news."
   },
@@ -24,6 +44,7 @@
     "success": "Successfully unsubscribed. You won't receive any more emails from us.",
     "notFound": "Email address not found in our subscriber list.",
     "error": "Error unsubscribing. Please try again later or contact us directly.",
+    "backToHome": "Back to home",
     "metaTitle": "Unsubscribe from Newsletter - Fables Monster Studio",
     "metaDescription": "Unsubscribe from Fables Monster Studio newsletter."
   },
@@ -39,6 +60,12 @@
       "message": "We couldn't confirm your subscription. The link may be invalid or expired.",
       "action": "TRY SUBSCRIBING AGAIN"
     },
+    "pending": {
+      "heading": "CHECK YOUR EMAIL",
+      "message": "We've sent a confirmation email to your address. Click the link in the email to complete your subscription.",
+      "hint": "Didn't receive the email? Check your spam folder or try subscribing again."
+    },
+    "backToSubscribe": "← Back to subscription form",
     "metaTitle": "Subscription Confirmation - Fables Monster Studio",
     "metaDescription": "Confirm your newsletter subscription to Fables Monster Studio."
   },
@@ -51,6 +78,7 @@
   "footer": {
     "title": "NEWSLETTER",
     "description": "Get updates on new releases",
-    "subscribe": "SUBSCRIBE"
+    "subscribe": "SUBSCRIBE",
+    "learnMore": "Learn more →"
   }
 }

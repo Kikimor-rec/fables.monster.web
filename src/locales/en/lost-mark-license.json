@@ -1,0 +1,54 @@
+{
+  "meta": {
+    "title": "Lost Mark License - Third-Party Content License",
+    "description": "License information for Lost Mark RPG adventure. Learn about third-party content usage, attribution requirements, and licensing terms.",
+    "keywords": "Lost Mark license, RPG license, third-party content, Mothership RPG license, attribution, copyright",
+    "ogTitle": "Lost Mark License - Third-Party Content Information",
+    "ogDescription": "Legal information and licensing terms for the Lost Mark RPG adventure and related content.",
+    "twitterTitle": "Lost Mark License Information",
+    "twitterDescription": "Legal information and licensing terms for the Lost Mark RPG adventure.",
+    "imageAlt": "Lost Mark License Information"
+  },
+  "backToProject": "← Back to Lost Mark",
+  "header": {
+    "title": "LOST MARK LICENSE",
+    "year": "(2025)",
+    "byline": "By Fables Monster"
+  },
+  "licenseTitle": "License: Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)",
+  "freeToUseTitle": "You are free to:",
+  "freeToUseItems": [
+    "Use this adventure, its illustrations, and music in personal games, streams, and videos (including monetized platforms like YouTube or Twitch);",
+    "Share it freely for non-commercial use;",
+    "Remix, transform, and build upon the material;",
+    "Translate the text or make fan versions, as long as you credit us."
+  ],
+  "termsTitle": "Under the following terms:",
+  "terms": [
+    {
+      "term": "Attribution",
+      "description": "You must give appropriate credit. Please list the creators of text, art, and music where applicable."
+    },
+    {
+      "term": "NonCommercial",
+      "description": "You may not use the material for commercial purposes without permission."
+    },
+    {
+      "term": "ShareAlike",
+      "description": "If you remix, adapt, or build upon the material, you must license your modified content under the same terms."
+    }
+  ],
+  "attributionTitle": "Suggested attribution:",
+  "attributionLines": [
+    "Original product by Fables Monster",
+    "Written by Stepan Kulikov",
+    "Illustrations by Zlata Ignatova",
+    "Music by Stanislav DariDa"
+  ],
+  "contactTitle": "Contact for commercial inquiries or special permissions:",
+  "licenseDetailsLabel": "License details:",
+  "actions": {
+    "backToProject": "BACK TO LOST MARK",
+    "viewProjects": "VIEW ALL PROJECTS"
+  }
+}

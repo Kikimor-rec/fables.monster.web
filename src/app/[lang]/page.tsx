@@ -20,18 +20,12 @@ import { getAllProjects, getFrontmatterString, getFrontmatterObject } from '@/li
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
     const { lang } = await params;
-    const isRussian = lang === 'ru';
+    const dict = await getDictionary(lang, 'home');
 
     return {
-        title: isRussian
-            ? 'Fables Monster Studio - Независимая студия настольных ролевых игр'
-            : 'Fables Monster Studio - Independent Tabletop RPG Creators',
-        description: isRussian
-            ? 'Создаём незабываемые приключения для настольных ролевых игр. Специализируемся на хорроре, научной фантастике и сверхъестественных приключениях для Mothership RPG, D&D и других систем.'
-            : 'Create unforgettable tabletop RPG experiences with Fables Monster Studio. Specializing in horror, sci-fi, and supernatural adventures for Mothership RPG, D&D, and more.',
-        keywords: isRussian
-            ? 'настольные ролевые игры, НРИ, хоррор, Mothership RPG, D&D приключения, космический хоррор, научная фантастика'
-            : 'tabletop RPG, horror RPG, Mothership RPG, indie games, D&D adventures, cosmic horror, sci-fi RPG, supernatural adventures',
+        title: dict.meta?.title || 'Fables Monster Studio - Independent Tabletop RPG Creators',
+        description: dict.meta?.description || 'Create unforgettable tabletop RPG experiences with Fables Monster Studio.',
+        keywords: dict.meta?.keywords,
         alternates: {
             canonical: `https://fables.monster/${lang}`,
             languages: {
@@ -41,15 +35,11 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
             },
         },
         openGraph: {
-            title: isRussian
-                ? 'Fables Monster Studio - Независимая студия настольных ролевых игр'
-                : 'Fables Monster Studio - Independent Tabletop RPG Creators',
-            description: isRussian
-                ? 'Создаём незабываемые приключения для настольных ролевых игр.'
-                : 'Create unforgettable tabletop RPG experiences.',
+            title: dict.meta?.ogTitle || dict.meta?.title || 'Fables Monster Studio - Independent Tabletop RPG Creators',
+            description: dict.meta?.ogDescription || dict.meta?.description || 'Create unforgettable tabletop RPG experiences.',
             url: `https://fables.monster/${lang}`,
             siteName: 'Fables Monster Studio',
-            locale: isRussian ? 'ru_RU' : 'en_US',
+            locale: lang === 'ru' ? 'ru_RU' : 'en_US',
             type: 'website',
             images: ['/logos/fm-logo-sqare.png'],
         },
@@ -84,32 +74,67 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
         return orderA - orderB;
     });
 
+    const normalizeStatus = (status: string) => status.toLowerCase().trim();
+    const releasedStatuses = new Set(['released', 'вышло']);
+    const inDevStatuses = new Set(['in-development', 'in development', 'в разработке']);
+
+    const releasedCount = allProjects.filter((project) => {
+        const status = normalizeStatus(getFrontmatterString(project.frontmatter, 'status') || '');
+        return releasedStatuses.has(status);
+    }).length;
+
+    const inDevCount = allProjects.filter((project) => {
+        const status = normalizeStatus(getFrontmatterString(project.frontmatter, 'status') || '');
+        return inDevStatuses.has(status);
+    }).length;
+
+    const heroStatusBadges = dict.hero?.statusBadges || ['SYSTEM READY', 'SECURE CHANNEL', 'NEW DROPS'];
+
+    const telemetry = [
+        { label: dict.telemetry?.modules || 'MODULES', value: String(allProjects.length) },
+        { label: dict.telemetry?.available || 'AVAILABLE', value: String(releasedCount) },
+        { label: dict.telemetry?.inDevelopment || 'IN DEVELOPMENT', value: String(inDevCount) },
+        { label: dict.telemetry?.locales || 'LOCALES', value: dict.telemetry?.localesValue || 'EN / RU' },
+    ];
+
+    const marqueePhrases = dict.hero?.marqueePhrases || ['SCI-FI HORROR', 'MOTHERSHIP READY', 'HANDCRAFTED MODULES', 'ATMOSPHERIC TOOLS', 'COMMUNITY FIRST'];
+
     return (
         <div className="bg-black">
             {/* Hero Section */}
             <section className="relative min-h-screen flex items-center justify-center text-center overflow-hidden">
-                <div className="absolute inset-0 opacity-20 animate-pulse [background-image:linear-gradient(rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.08)_1px,transparent_1px)] [background-size:36px_36px]"></div>
+                <div className="absolute inset-0 opacity-20 motion-safe:animate-pulse [background-image:linear-gradient(rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.08)_1px,transparent_1px)] [background-size:36px_36px]"></div>
                 <div className="absolute inset-0 bg-gradient-to-b from-black via-black/90 to-red-950/20"></div>
                 <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6">
                     <FadeIn delay={0.2}>
+                        <div className="mb-6 flex flex-wrap items-center justify-center gap-2">
+                            {heroStatusBadges.map((badge) => (
+                                <span
+                                    key={badge}
+                                    className="border border-cyan-900/70 bg-black/60 px-3 py-1 text-[11px] font-mono tracking-[0.22em] text-cyan-400"
+                                >
+                                    {badge}
+                                </span>
+                            ))}
+                        </div>
                         <div className="flex flex-col items-center justify-center mb-6 group">
                             <div className="relative">
                                 <Image
                                     src="/logos/mascot_white.PNG"
-                                    alt="Fables Monster Mascot"
+                                    alt={dict.hero?.logoAlt || 'Fables Monster Mascot'}
                                     width={320}
                                     height={320}
                                     className="w-[320px] max-w-full mb-4 mt-16 sm:mt-0 relative z-10 logo-glitch"
                                     priority
                                 />
                             </div>
-                            <h1 className="text-6xl sm:text-7xl md:text-8xl font-bold text-white font-orbitron tracking-wider text-glow-lg glitch-text" data-text={dict.hero?.title || ''}>
+                            <h1 className="fm-display-title font-bold text-white font-orbitron tracking-wider text-glow-lg glitch-text" data-text={dict.hero?.title || ''}>
                                 {dict.hero?.title}
                             </h1>
                         </div>
                     </FadeIn>
                     <FadeIn delay={0.4}>
-                        <p className="text-lg sm:text-xl md:text-2xl text-cyan-400 mb-8 max-w-3xl mx-auto font-rajdhani tracking-widest uppercase border-b border-cyan-900/50 pb-4 inline-block">
+                        <p className="fm-lead text-cyan-400 mb-8 max-w-3xl mx-auto font-rajdhani tracking-widest uppercase border-b border-cyan-900/50 pb-4 inline-block">
                             {dict.hero?.subtitle}
                         </p>
                     </FadeIn>
@@ -118,14 +143,12 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
                             <Link
                                 href={`/${lang}/projects`}
                                 className="w-full sm:w-auto bg-red-700 hover:bg-red-600 text-white px-8 py-4 text-lg font-orbitron font-bold transition-all border border-red-500 hover:box-glow clip-path-slant"
-                                style={{ clipPath: 'polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%)' }}
                             >
                                 {dict.hero?.ctaProjects}
                             </Link>
                             <Link
                                 href={`/${lang}/lost-mark`}
                                 className="w-full sm:w-auto bg-transparent border border-cyan-500 text-cyan-400 hover:bg-cyan-950/30 px-8 py-4 text-lg font-orbitron font-bold transition-all hover:text-white hover:box-glow-cyan"
-                                style={{ clipPath: 'polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%)' }}
                             >
                                 {dict.hero?.ctaLostMark}
                             </Link>
@@ -134,12 +157,35 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
                 </div>
             </section>
 
+            <section className="border-y border-red-900/30 bg-black/70 backdrop-blur-sm">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 py-5 grid grid-cols-2 md:grid-cols-4 gap-4">
+                    {telemetry.map((item) => (
+                        <div key={item.label} className="border border-zinc-800 bg-zinc-950/70 px-4 py-3 text-center">
+                            <div className="text-[11px] text-zinc-500 font-mono tracking-[0.22em] mb-1">{item.label}</div>
+                            <div className="font-orbitron text-lg sm:text-xl text-white">{item.value}</div>
+                        </div>
+                    ))}
+                </div>
+            </section>
+
+            <section className="overflow-hidden border-y-2 border-black bg-red-600 text-black -skew-y-1">
+                <div className="py-3">
+                    <div className="fm-marquee-track flex min-w-max items-center gap-6 sm:gap-8 whitespace-nowrap px-4 sm:px-6">
+                        {[...marqueePhrases, ...marqueePhrases].map((phrase, index) => (
+                            <span key={`${phrase}-${index}`} className="font-orbitron font-black text-sm sm:text-base md:text-lg tracking-[0.16em] uppercase">
+                                {phrase}
+                            </span>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
             {/* Projects Preview Section */}
             <section className="py-24 bg-black relative">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6">
                     <div className="flex justify-between items-end mb-12 border-b border-red-900/30 pb-4">
                         <div>
-                            <h2 className="text-4xl md:text-5xl font-bold text-white font-orbitron mb-2">
+                            <h2 className="fm-section-title font-bold text-white font-orbitron mb-2">
                                 <span className="text-red-600">{dict.latestProjects?.title}</span> {dict.latestProjects?.projects}
                             </h2>
                             <div className="h-1 w-24 bg-red-600"></div>
@@ -157,7 +203,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
                             const title = getFrontmatterString(project.frontmatter, 'title');
                             const tagline = getFrontmatterString(project.frontmatter, 'tagline');
                             const image = getFrontmatterString(project.frontmatter, 'image') || '/images/placeholder.webp';
-                            const type = getFrontmatterString(project.frontmatter, 'type') || getFrontmatterString(project.frontmatter, 'system') || 'Adventure';
+                            const type = getFrontmatterString(project.frontmatter, 'type') || getFrontmatterString(project.frontmatter, 'system') || dict.latestProjects?.defaultType || 'Adventure';
                             const status = getFrontmatterString(project.frontmatter, 'status') || 'in-development';
                             const platforms = getFrontmatterObject<Record<string, string>>(project.frontmatter, 'platforms');
                             
@@ -241,10 +287,10 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
                             <div className="inline-block bg-red-600 text-black font-bold px-2 py-1 mb-4 font-mono text-sm">
                                 {dict.kramp?.badge || 'FEATURED RELEASE'}
                             </div>
-                            <h2 className="text-4xl md:text-6xl font-bold text-white font-orbitron mb-6 glitch-text" data-text="HOLIDAY AUDIT">
+                            <h2 className="fm-section-title font-bold text-white font-orbitron mb-6 glitch-text" data-text="HOLIDAY AUDIT">
                                 {dict.kramp?.title || 'HOLIDAY AUDIT:'} <span className="text-red-500">{dict.kramp?.subtitle || 'KRAMP.EXE'}</span>
                             </h2>
-                            <p className="text-xl text-gray-300 font-rajdhani mb-8">
+                            <p className="fm-lead text-gray-300 font-rajdhani mb-8">
                                 {dict.kramp?.description || 'A holiday horror one-shot for Mothership RPG 1e. Survive the corporate holiday party where the audit is mandatory and failure is terminal.'}
                             </p>
                             <div className="flex gap-4">
@@ -257,7 +303,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
                             </div>
                         </div>
                         <div className="relative">
-                            <div className="absolute inset-0 bg-red-500 blur-3xl opacity-20 animate-pulse"></div>
+                            <div className="absolute inset-0 bg-red-500 blur-3xl opacity-20 motion-safe:animate-pulse"></div>
                             <OptimizedImage
                                 src="/images/kramp/promo.webp"
                                 alt="KRAMP.EXE Promo"
@@ -282,8 +328,8 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
                             </div>
                         </div>
                         <div className="order-1 md:order-2">
-                            <h2 className="text-4xl md:text-5xl font-bold text-white font-orbitron mb-6">
-                                {lang === 'ru' ? '' : 'THE '}<span className="text-cyan-500">{dict.about?.title || 'CREW'}</span>
+                            <h2 className="fm-section-title font-bold text-white font-orbitron mb-6">
+                                {dict.about?.titlePrefix ? `${dict.about.titlePrefix} ` : ''}<span className="text-cyan-500">{dict.about?.title || 'CREW'}</span>
                             </h2>
                             <p className="text-lg text-gray-300 font-rajdhani mb-6">
                                 {dict.about?.description || 'We are a collective of designers, writers, and artists dedicated to creating immersive, high-quality tabletop RPG content. Our mission is to bring fresh nightmares and wonders to your gaming table.'}

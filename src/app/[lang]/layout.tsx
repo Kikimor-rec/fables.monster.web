@@ -1,9 +1,9 @@
 import { Analytics } from '@vercel/analytics/react';
-import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Orbitron, Rajdhani, Nunito } from 'next/font/google';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import GoogleAnalytics from '@/components/GoogleAnalytics';
+import SpeedInsightsClient from '@/components/SpeedInsightsClient';
 import { languages } from '@/i18n/settings';
 import { getDictionary } from '@/lib/i18n';
 import '../globals.css';
@@ -120,9 +120,9 @@ export default async function RootLayout({
                 <main id="main-content">
                     {children}
                 </main>
-                <Footer lang={lang} dict={dict.footer || {}} newsletterDict={newsletterDict.footer || undefined} />
+                <Footer lang={lang} dict={dict.footer || {}} newsletterDict={newsletterDict || undefined} />
                 <Analytics />
-                <SpeedInsights />
+                <SpeedInsightsClient />
             </body>
         </html>
     );

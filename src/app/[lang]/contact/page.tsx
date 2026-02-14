@@ -1,7 +1,8 @@
-import { Metadata } from "next";
-import Image from "next/image";
-import ContactForm from "@/components/ContactForm";
-import { getDictionary } from "@/lib/i18n";
+import { Metadata } from 'next';
+import Image from 'next/image';
+import FadeIn from '@/components/FadeIn';
+import ContactForm from '@/components/ContactForm';
+import { getDictionary } from '@/lib/i18n';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -13,8 +14,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     alternates: {
       canonical: `https://fables.monster/${lang}/contact`,
       languages: {
-        'en': 'https://fables.monster/en/contact',
-        'ru': 'https://fables.monster/ru/contact',
+        en: 'https://fables.monster/en/contact',
+        ru: 'https://fables.monster/ru/contact',
       },
     },
   };
@@ -24,49 +25,105 @@ export default async function Contact({ params }: { params: Promise<{ lang: stri
   const { lang } = await params;
   const dict = await getDictionary(lang, 'common');
 
+  const channels = [
+    {
+      href: 'https://discord.gg/eAwK9DfKf4',
+      title: 'Discord',
+      image: '/logos/discord-badge-color.png',
+      imageWidth: 200,
+      imageHeight: 40,
+    },
+    {
+      href: 'https://fablesmonster.itch.io/',
+      title: 'Itch.io',
+      image: '/logos/logo-white-new.svg',
+      imageWidth: 200,
+      imageHeight: 40,
+    },
+    {
+      href: 'https://patreon.com/FablesMonster?fables.monster',
+      title: 'Patreon',
+      image: '/logos/patreon-badge-color.png',
+      imageWidth: 200,
+      imageHeight: 40,
+    },
+    {
+      href: 'https://www.drivethrurpg.com/en/publisher/30815/Stepan%20Kulikov?affiliate_id=2863466',
+      title: 'DriveThruRPG',
+      image: '/logos/drivethrurpg-badge-color.png',
+      imageWidth: 200,
+      imageHeight: 40,
+    },
+  ];
+
   return (
-    <div className="bg-black">
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center pt-20">
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-black to-red-950/20"></div>
-
-        <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
-          <h1 className="text-6xl md:text-8xl font-bold text-white mb-6 font-orbitron tracking-wider text-glow-lg">
-            {dict.contact.title || 'CONTACT'}
-          </h1>
-
+    <div className="fm-page">
+      <section className="fm-page-hero">
+        <div className="fm-shell">
+          <FadeIn>
+            <div className="fm-page-hero-panel text-center">
+              <p className="fm-page-kicker mb-5">{dict.contact.heroKicker || 'OPEN COMM CHANNEL'}</p>
+              <h1 className="fm-display-title font-bold text-white font-orbitron tracking-[0.06em] text-glow-lg">
+                {dict.contact.title || 'CONTACT'}
+              </h1>
+              <p className="fm-page-subtitle mt-5">
+                {dict.contact.heroDescription ||
+                  'Collaborations, release questions, and partnership ideas. Reach us through your preferred channel or the direct form.'}
+              </p>
+            </div>
+          </FadeIn>
         </div>
       </section>
 
-      {/* Contact Form Section */}
-      <section className="py-20 bg-gray-900 border-t border-red-700">
-        <div className="max-w-4xl mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-12">
-            {/* Contact Information */}
-            <div>
-              <h2 className="text-3xl font-bold text-white mb-8 font-orbitron tracking-wide">
+      <section className="fm-section fm-section-bordered">
+        <div className="fm-shell grid lg:grid-cols-[0.92fr_1.08fr] gap-6 lg:gap-8">
+          <FadeIn>
+            <aside className="fm-panel h-full">
+              <h2 className="text-3xl font-bold text-white mb-5 font-orbitron tracking-wide">
                 {dict.contact.getInTouch || 'GET IN TOUCH'}
               </h2>
-              <div className="flex flex-col items-start gap-8 mb-8 p-3">
-                <a href="https://discord.gg/eAwK9DfKf4" target="_blank" rel="noopener noreferrer" title="Discord" className="block hover:opacity-80 transition-opacity">
-                  <Image src="/logos/discord-badge-color.png" alt="Discord" width={200} height={40} className="h-10 w-auto drop-shadow mx-0" />
-                </a>
-                <a href="https://fablesmonster.itch.io/" target="_blank" rel="noopener noreferrer" title="Itch.io" className="block hover:opacity-80 transition-opacity">
-                  <Image src="/logos/logo-white-new.svg" alt="Itch.io" width={200} height={40} className="h-10 w-auto drop-shadow mx-0" />
-                </a>
-                <a href="https://patreon.com/FablesMonster?fables.monster" target="_blank" rel="noopener noreferrer" title="Patreon" className="block hover:opacity-80 transition-opacity">
-                  <Image src="/logos/patreon-badge-color.png" alt="Patreon" width={200} height={40} className="h-10 w-auto drop-shadow mx-0" />
-                </a>
-                <a href="https://www.drivethrurpg.com/en/publisher/30815/Stepan%20Kulikov?affiliate_id=2863466" target="_blank" rel="noopener noreferrer" title="DriveThruRPG" className="block hover:opacity-80 transition-opacity">
-                  <Image src="/logos/drivethrurpg-badge-color.png" alt="DriveThruRPG" width={200} height={40} className="h-10 w-auto drop-shadow mx-0" />
-                </a>
+              <p className="text-zinc-300 font-rajdhani text-lg leading-relaxed mb-6">
+                {dict.contact.channelsLabel || 'Official studio channels for discussion, updates, and support:'}
+              </p>
+
+              <div className="space-y-3">
+                {channels.map((channel) => (
+                  <a
+                    key={channel.title}
+                    href={channel.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title={channel.title}
+                    className="group fm-panel fm-panel-muted flex items-center justify-between gap-4 transition-colors hover:border-red-500/70"
+                  >
+                    <Image
+                      src={channel.image}
+                      alt={channel.title}
+                      width={channel.imageWidth}
+                      height={channel.imageHeight}
+                      className="h-10 w-auto"
+                    />
+                    <span className="fm-link-arrow text-sm font-orbitron tracking-[0.14em] text-zinc-400 group-hover:text-red-300">
+                      {dict.contact.channelAction || 'ENTER'}
+                    </span>
+                  </a>
+                ))}
               </div>
 
-            </div>
+              <div className="mt-6 border border-zinc-800 bg-black/40 p-4">
+                <p className="text-xs font-orbitron tracking-[0.18em] text-zinc-500 mb-2">
+                  {dict.contact.directChannelLabel || 'DIRECT CHANNEL'}
+                </p>
+                <a href="mailto:info@fables.monster" className="text-cyan-300 font-rajdhani text-lg hover:text-cyan-200 transition-colors">
+                  info@fables.monster
+                </a>
+              </div>
+            </aside>
+          </FadeIn>
 
-            {/* Contact Form */}
+          <FadeIn delay={0.1}>
             <ContactForm dict={dict.contact.form} />
-          </div>
+          </FadeIn>
         </div>
       </section>
     </div>

@@ -13,10 +13,25 @@ const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=[]{}|;:,.<>?';
 export default function EncryptedText({ text, className = '', revealOnHover = true }: EncryptedTextProps) {
     const [displayText, setDisplayText] = useState('');
     const [isHovered, setIsHovered] = useState(false);
+    const [reduceMotion, setReduceMotion] = useState(false);
+
+    useEffect(() => {
+        if (typeof window === 'undefined') return;
+
+        const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+        const updatePreference = () => setReduceMotion(mediaQuery.matches);
+
+        updatePreference();
+        mediaQuery.addEventListener('change', updatePreference);
+
+        return () => {
+            mediaQuery.removeEventListener('change', updatePreference);
+        };
+    }, []);
 
     useEffect(() => {
         // Initial scrambling
-        if (!isHovered) {
+        if (!isHovered && !reduceMotion) {
             setDisplayText(
                 text.split('').map(char => {
                     if (char === ' ') return ' ';
@@ -26,10 +41,10 @@ export default function EncryptedText({ text, className = '', revealOnHover = tr
         } else {
             setDisplayText(text);
         }
-    }, [text, isHovered]);
+    }, [text, isHovered, reduceMotion]);
 
     useEffect(() => {
-        if (isHovered) return;
+        if (isHovered || reduceMotion) return;
 
         const interval = setInterval(() => {
             setDisplayText(prev =>
@@ -42,16 +57,16 @@ export default function EncryptedText({ text, className = '', revealOnHover = tr
                     return char;
                 }).join('')
             );
-        }, 100);
+        }, 140);
 
         return () => clearInterval(interval);
-    }, [text, isHovered]);
+    }, [text, isHovered, reduceMotion]);
 
     return (
         <span
             className={`${className} ${revealOnHover ? 'cursor-pointer' : ''} font-mono`}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
+            onMouseEnter={revealOnHover ? () => setIsHovered(true) : undefined}
+            onMouseLeave={revealOnHover ? () => setIsHovered(false) : undefined}
             title={revealOnHover ? "Hover to decrypt" : undefined}
         >
             {displayText}

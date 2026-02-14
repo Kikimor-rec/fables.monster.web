@@ -19,7 +19,7 @@ const CompactTeamMember = memo(function CompactTeamMember({ member }: CompactTea
 
   return (
     <div 
-      className="group relative flex items-center bg-black border border-red-700 p-2 sm:p-3 hover:border-red-500 transition-all duration-300 hover:bg-red-950/20 w-56 sm:w-64 h-16 sm:h-20"
+      className="group relative flex items-center bg-black border border-red-700 p-2 sm:p-3 hover:border-red-500 transition-all duration-300 hover:bg-red-950/20 w-full min-w-0 h-16 sm:h-20"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >

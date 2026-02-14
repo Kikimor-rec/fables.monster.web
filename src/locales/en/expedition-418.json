@@ -1,0 +1,85 @@
+{
+  "meta": {
+    "title": "Expedition-418 - Extraction TTRPG | Fables Monster Studio",
+    "description": "A tabletop RPG about exploration robots in space."
+  },
+  "genre": {
+    "label": "Sci-Fi Mission TTRPG"
+  },
+  "nav": {
+    "intel": "Intel",
+    "dispatcher": "Dispatcher",
+    "features": "Features",
+    "about": "About",
+    "playtest": "Playtest"
+  },
+  "hero": {
+    "title": "EXPEDITION-418",
+    "subtitle": "A tabletop RPG about exploration robots in space",
+    "paragraph1": "The automated exploration ship APEX-418 launched over 400 years ago to prepare the ground for future colonies. Due to relativistic effects, the ship has actually spent far more time on its expedition than has passed on Earth.",
+    "paragraph2": "And every time its sensors find something important or useful, it sends a team of robots to sort it out. You'll be one of those robots.",
+    "statusNote": "Game in active development. Public playtest launches April 2026.",
+    "projectCodeLabel": "Project code:",
+    "allProjects": "ALL PROJECTS"
+  },
+  "stats": {
+    "labels": {
+      "system": "System",
+      "players": "Players",
+      "duration": "Session length",
+      "format": "Format"
+    },
+    "values": {
+      "system": "Expedition-418 (5d10)",
+      "players": "2-5",
+      "duration": "2-4 hours",
+      "format": "Episodic missions and campaigns"
+    }
+  },
+  "intel": {
+    "imageAlt": "Teapot robot concept art",
+    "feedCaption": "[ Surveillance feed // Sector 418 ]",
+    "whyTitle": "Why 418?"
+  },
+  "dispatcher": {
+    "quote": "Attention, exploration team. Objective: reach designated coordinates. Assess anomaly. Collect data. Return to extraction point. Estimated difficulty: moderate. Survival probability: adequate. Good luck. End of transmission.",
+    "author": "APEX-418-CORE (Dispatcher)"
+  },
+  "features": {
+    "title": "FEATURES",
+    "buildBot": {
+      "title": "Build your bot",
+      "description": "Four simple stats: Locomotion, Manipulators, Hull, and Systems. Pick a chassis, install upgrades, and put together a unique robot for each mission. Build an armored box on wheels, or go with spider legs and powerful sensors."
+    },
+    "missions": {
+      "title": "Missions",
+      "description": "The ship's AI gives you an assignment and sends you down to a planet, a station, or something much less identifiable. Each session is usually a complete episode. Keep playing and the episodes build into a campaign, like a TV series."
+    },
+    "personalityModules": {
+      "title": "Personality modules",
+      "description": "Every robot has a module that shapes how it approaches problems. Some want to get everything done fast. Others will do anything to keep the team intact, even if it means failing the mission."
+    },
+    "synchronization": {
+      "title": "Synchronization",
+      "description": "Earn Sync points for good teamwork and following protocol. Lose them for breaking the laws of robotics."
+    }
+  },
+  "about": {
+    "aboutTitle": "ABOUT",
+    "paragraph1": "Expedition-418 is a tabletop RPG for 2-5 players. You play as exploration robots aboard an old automated ship that is still carrying out its mission, even though Earth went silent a long time ago.",
+    "paragraph2": "The ship's AI, the Dispatcher, hands out assignments. Your team lands wherever the sensors found something and figures out what's actually going on. The briefing is usually incomplete.",
+    "paragraph3": "The game uses a 5d10 dice pool. Players decide how many dice to roll, raising both the chance of success and the chance of side effects.",
+    "paragraph4": "For the mood, mix Futurama, 2001: A Space Odyssey, Star Trek, or whatever sci-fi you know best. Adventures can be tense, strange, funny, and sometimes all of that in the same scene.",
+    "paragraph5": "Play short sessions, long campaigns, or use an open table. Swap robot configurations and piece together the real story of what happened to humanity and the ship."
+  },
+  "playtest": {
+    "incoming": "INCOMING TRANSMISSION // CLASSIFICATION: OPEN",
+    "paragraph1": "In April 2026, we plan to release a quickstart kit for open testing: quickstart rules, several pre-built robots, a character creation guide, and a few starter missions so you can try it all yourself.",
+    "paragraph2": "If you're willing to play, test the system, and share what you find, subscribe for updates or join our Discord so you don't miss anything.",
+    "buttons": {
+      "discord": "DISCORD",
+      "subscribe": "SUBSCRIBE",
+      "patreon": "SUPPORT ON PATREON"
+    }
+  }
+}

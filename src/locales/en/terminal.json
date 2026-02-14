@@ -1,4 +1,14 @@
 {
+  "meta": {
+    "title": "Lost Mark Terminal - Interactive Mothership RPG Experience",
+    "description": "Access the Lost Mark terminal interface. Experience the horror of the Parallax Mining Station through an interactive computer terminal simulation.",
+    "keywords": "Mothership RPG, interactive terminal, Lost Mark adventure, horror RPG, sci-fi interface, space station computer",
+    "ogTitle": "Lost Mark Terminal - Interactive Horror Experience",
+    "ogDescription": "Step into the digital nightmare of Parallax Mining Station through this immersive terminal interface.",
+    "twitterTitle": "Lost Mark Terminal - Interactive Horror Experience",
+    "twitterDescription": "Experience the horror through an interactive terminal interface.",
+    "imageAlt": "Lost Mark Terminal Interface"
+  },
   "interface": {
     "system_navigation": "SYSTEM NAVIGATION",
     "data_display": "DATA DISPLAY"

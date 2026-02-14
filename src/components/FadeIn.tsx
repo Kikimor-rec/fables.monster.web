@@ -18,24 +18,51 @@ export default function FadeIn({
   const elementRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [glitched, setGlitched] = useState(false);
+  const [reduceMotion, setReduceMotion] = useState(false);
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const updatePreference = () => setReduceMotion(mediaQuery.matches);
+
+    updatePreference();
+    mediaQuery.addEventListener("change", updatePreference);
+
+    return () => {
+      mediaQuery.removeEventListener("change", updatePreference);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (reduceMotion) {
+      setIsVisible(true);
+      setGlitched(false);
+      return;
+    }
+
     const element = elementRef.current;
     if (!element) return;
+
+    let revealTimeout: ReturnType<typeof setTimeout> | undefined;
+    let glitchTimeout: ReturnType<typeof setTimeout> | undefined;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setTimeout(() => {
+          revealTimeout = setTimeout(() => {
             setIsVisible(true);
             setGlitched(true);
+            glitchTimeout = setTimeout(() => {
+              setGlitched(false);
+            }, 450);
           }, delay * 1000);
           observer.disconnect(); // Stop observing once visible
         }
       },
       {
         threshold: 0.05,
-        rootMargin: "0px"
+        rootMargin: "0px 0px -10% 0px"
       }
     );
 
@@ -43,8 +70,10 @@ export default function FadeIn({
 
     return () => {
       observer.disconnect();
+      if (revealTimeout) clearTimeout(revealTimeout);
+      if (glitchTimeout) clearTimeout(glitchTimeout);
     };
-  }, [delay]);
+  }, [delay, reduceMotion]);
 
   const getInitialTransform = () => {
     switch (direction) {
@@ -64,7 +93,7 @@ export default function FadeIn({
   return (
     <div
       ref={elementRef}
-      className={`${className} transition-all duration-700 ease-in-out ${isVisible ? 'opacity-100' : 'opacity-0'} ${glitched ? "terminal-glitch" : ""}`}
+      className={`${className} transition-all duration-700 ease-in-out motion-reduce:duration-0 ${isVisible ? 'opacity-100' : 'opacity-0'} ${glitched ? "terminal-glitch" : ""}`}
       style={{
         transform: isVisible ? 'translate3d(0, 0, 0)' : getInitialTransform()
       }}

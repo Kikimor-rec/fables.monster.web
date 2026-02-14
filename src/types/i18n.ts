@@ -7,7 +7,17 @@
 export type Language = 'en' | 'ru';
 
 // Словари для каждой секции
-export type DictionaryNamespace = 'common' | 'home' | 'kramp' | 'lost-mark' | 'terminal' | 'newsletter';
+export type DictionaryNamespace =
+  | 'common'
+  | 'home'
+  | 'kramp'
+  | 'lost-mark'
+  | 'lost-mark-license'
+  | 'terminal'
+  | 'newsletter'
+  | 'privacy'
+  | 'expedition-418'
+  | 'old-world-neon';
 
 // === COMMON DICTIONARY ===
 
@@ -22,10 +32,25 @@ export interface NotFoundDict {
   evac: string;
   archives: string;
   terminalLines: string[];
+  markMessage: string;
+  krampMessage: string;
+  ascendMessage: string;
+  clickSecretMessage: string;
+  commandNotRecognized: string;
+  terminalPlaceholder: string;
+  closeTerminalHint: string;
+  clickMeTitle: string;
+  terminalHint: string;
+  helpCommands: string[];
+  radarScanning: string;
 }
 
 export interface TimerDict {
   title: string;
+  meta?: {
+    title: string;
+    description: string;
+  };
   status: {
     completed: string;
     running: string;
@@ -69,6 +94,14 @@ export interface NavDict {
   timer: string;
   about: string;
   contact: string;
+  skipToContent?: string;
+  homeAriaLabel?: string;
+  mainNavigation?: string;
+  languageSelection?: string;
+  openMenu?: string;
+  closeMenu?: string;
+  mainMenu?: string;
+  mobileNavigation?: string;
 }
 
 export interface FooterDict {
@@ -78,6 +111,11 @@ export interface FooterDict {
   about: string;
   contact: string;
   social: string;
+  allProjects?: string;
+  privacy?: string;
+  homeAriaLabel?: string;
+  projectsAriaLabel?: string;
+  linksAriaLabel?: string;
   copyright: string;
 }
 
@@ -98,6 +136,11 @@ export interface AboutValue {
 export interface AboutDict {
   title: string;
   subtitle: string;
+  metaDescription?: string;
+  heroKicker?: string;
+  rosterKicker?: string;
+  rosterTitle?: string;
+  rosterDescription?: string;
   values: AboutValue[];
 }
 
@@ -121,6 +164,11 @@ export interface ContactDict {
   getInTouch: string;
   metaTitle: string;
   metaDescription: string;
+  heroKicker?: string;
+  heroDescription?: string;
+  channelsLabel?: string;
+  channelAction?: string;
+  directChannelLabel?: string;
   form: ContactFormDict;
 }
 
@@ -134,7 +182,27 @@ export interface JoinCommunityDict {
   title: string;
   description: string;
   discord: string;
+  subscribe?: string;
   patreon: string;
+}
+
+export interface ProjectsTelemetryDict {
+  total?: string;
+  released?: string;
+  inDevelopment?: string;
+  comingSoon?: string;
+}
+
+export interface ProjectDetailLabelsDict {
+  itch?: string;
+  drivethru?: string;
+  roll20?: string;
+}
+
+export interface ProjectDetailDict {
+  kicker?: string;
+  notFoundTitle?: string;
+  labels?: ProjectDetailLabelsDict;
 }
 
 export interface LostMarkProjectDict {
@@ -167,13 +235,24 @@ export interface HolidayAuditProjectDict {
   };
 }
 
+export interface HellishBureaucracyProjectDict {
+  kicker?: string;
+  inDevelopment?: string;
+  defaultTagline?: string;
+}
+
 export interface ProjectsDict {
   status: ProjectStatusDict;
   featured: string;
+  heroKicker?: string;
+  telemetry?: ProjectsTelemetryDict;
+  detail?: ProjectDetailDict;
+  metaDescription?: string;
   description: string;
   joinCommunity: JoinCommunityDict;
   lostMark: LostMarkProjectDict;
   holidayAudit: HolidayAuditProjectDict;
+  hellishBureaucracy?: HellishBureaucracyProjectDict;
 }
 
 export interface CommonDict {
@@ -190,16 +269,36 @@ export interface CommonDict {
 // === HOME DICTIONARY ===
 
 export interface HeroDict {
+  logoAlt?: string;
   title: string;
   subtitle: string;
   ctaProjects: string;
   ctaLostMark: string;
+  statusBadges?: string[];
+  marqueePhrases?: string[];
+}
+
+export interface HomeMetaDict {
+  title: string;
+  description: string;
+  keywords: string[];
+  ogTitle: string;
+  ogDescription: string;
+}
+
+export interface HomeTelemetryDict {
+  modules?: string;
+  available?: string;
+  inDevelopment?: string;
+  locales?: string;
+  localesValue?: string;
 }
 
 export interface LatestProjectsDict {
   title: string;
   projects: string;
   viewAll: string;
+  defaultType?: string;
 }
 
 export interface KrampFeatureDict {
@@ -211,6 +310,7 @@ export interface KrampFeatureDict {
 }
 
 export interface AboutSectionDict {
+  titlePrefix?: string;
   title: string;
   description: string;
   cta: string;
@@ -227,7 +327,9 @@ export interface StayConnectedDict {
 }
 
 export interface HomeDict {
+  meta: HomeMetaDict;
   hero: HeroDict;
+  telemetry?: HomeTelemetryDict;
   latestProjects: LatestProjectsDict;
   status: ProjectStatusDict;
   kramp: KrampFeatureDict;
@@ -243,9 +345,12 @@ export interface KrampMetaDict {
 }
 
 export interface KrampHeroDict {
+  kicker?: string;
   title: string;
   subtitle: string;
   tagline: string;
+  englishVersionNote?: string;
+  storeMode?: 'global' | 'rpgbook-only';
   badges: {
     available: string;
     oneShot: string;
@@ -279,10 +384,50 @@ export interface KrampAboutDict {
 
 export interface KrampSoundtrackDict {
   description: string;
+  listenStreaming?: string;
+  youtubeIframeTitle?: string;
+  youtubeFooter?: string;
+  player?: {
+    loading?: string;
+    noTracks?: string;
+    noTracksHint?: string;
+    terminalCommand?: string;
+    nowPlaying?: string;
+    trackLabel?: string;
+    unknownTrack?: string;
+    repeatTrack?: string;
+    repeatAll?: string;
+    noRepeat?: string;
+    loopTrackStatus?: string;
+    loopPlaylistStatus?: string;
+    playlist?: string;
+    tracks?: string;
+    online?: string;
+  };
+  sfx?: {
+    panelTitle?: string;
+    stop?: string;
+    hint?: string;
+    volumeLabel?: string;
+    tracks?: {
+      jingleNormal1?: string;
+      jingleNormal2?: string;
+      jingleGlitch1?: string;
+      jingleGlitch2?: string;
+    };
+  };
 }
 
 export interface KrampTablesDict {
   description: string;
+  headerNote?: string;
+  footerStamp?: string;
+  mechLabel?: string;
+  npcTags?: {
+    history?: string;
+    helps?: string;
+    hinders?: string;
+  };
 }
 
 export interface KrampPostcardDict {
@@ -331,8 +476,17 @@ export interface LostMarkMetaDict {
 }
 
 export interface LostMarkHeroDict {
+  kicker?: string;
   interactiveNote: string;
   description: string;
+}
+
+export interface LostMarkPricingDict {
+  freeEnglish?: string;
+  paidRussian?: string;
+  russianIncludesAll?: string;
+  baseModuleFree?: string;
+  freeLabel?: string;
 }
 
 export interface LostMarkStatsDict {
@@ -378,6 +532,7 @@ export interface LostMarkSectionsDict {
 
 export interface LostMarkCtaDict {
   description: string;
+  licensePrefix?: string;
 }
 
 export interface LostMarkFeature {
@@ -423,11 +578,21 @@ export interface LostMarkWarningDict {
 
 export interface LostMarkFoundryDict {
   description: string;
+  supportNote?: string;
+  videoTitle?: string;
+}
+
+export interface LostMarkRoll20BadgesDict {
+  maps?: string;
+  tokens?: string;
+  handouts?: string;
+  lighting?: string;
 }
 
 export interface LostMarkRoll20Dict {
   description: string;
   englishOnly?: string;
+  badges?: LostMarkRoll20BadgesDict;
   features: string[];
 }
 
@@ -447,6 +612,7 @@ export interface LostMarkSoundtrackDict {
   streamingDesc: string;
   youtubeTitle: string;
   youtubeDesc: string;
+  youtubeIframeTitle?: string;
   playerTitle: string;
   playerDesc: string;
 }
@@ -455,6 +621,7 @@ export interface LostMarkDict {
   meta: LostMarkMetaDict;
   hero: LostMarkHeroDict;
   stats: LostMarkStatsDict;
+  pricing?: LostMarkPricingDict;
   buttons: LostMarkButtonsDict;
   nav: LostMarkNavDict;
   sections: LostMarkSectionsDict;
@@ -468,6 +635,218 @@ export interface LostMarkDict {
   roll20: LostMarkRoll20Dict;
   tools: LostMarkToolsDict;
   soundtrack: LostMarkSoundtrackDict;
+}
+
+// === LOST MARK LICENSE DICTIONARY ===
+
+export interface LostMarkLicenseMetaDict {
+  title: string;
+  description: string;
+  keywords: string;
+  ogTitle: string;
+  ogDescription: string;
+  twitterTitle: string;
+  twitterDescription: string;
+  imageAlt: string;
+}
+
+export interface LostMarkLicenseTermDict {
+  term: string;
+  description: string;
+}
+
+export interface LostMarkLicenseDict {
+  meta: LostMarkLicenseMetaDict;
+  backToProject: string;
+  header: {
+    title: string;
+    year: string;
+    byline: string;
+  };
+  licenseTitle: string;
+  freeToUseTitle: string;
+  freeToUseItems: string[];
+  termsTitle: string;
+  terms: LostMarkLicenseTermDict[];
+  attributionTitle: string;
+  attributionLines: string[];
+  contactTitle: string;
+  licenseDetailsLabel: string;
+  actions: {
+    backToProject: string;
+    viewProjects: string;
+  };
+}
+
+// === EXPEDITION-418 DICTIONARY ===
+
+export interface Expedition418MetaDict {
+  title: string;
+  description: string;
+}
+
+export interface Expedition418GenreDict {
+  label: string;
+}
+
+export interface Expedition418NavDict {
+  intel: string;
+  dispatcher: string;
+  features: string;
+  about: string;
+  playtest: string;
+}
+
+export interface Expedition418HeroDict {
+  title: string;
+  subtitle: string;
+  paragraph1: string;
+  paragraph2: string;
+  statusNote: string;
+  projectCodeLabel: string;
+  allProjects: string;
+}
+
+export interface Expedition418StatLabelsDict {
+  system: string;
+  players: string;
+  duration: string;
+  format: string;
+}
+
+export interface Expedition418StatValuesDict {
+  system: string;
+  players: string;
+  duration: string;
+  format: string;
+}
+
+export interface Expedition418IntelDict {
+  imageAlt: string;
+  feedCaption: string;
+  whyTitle: string;
+}
+
+export interface Expedition418DispatcherDict {
+  quote: string;
+  author: string;
+}
+
+export interface Expedition418FeatureItemDict {
+  title: string;
+  description: string;
+}
+
+export interface Expedition418FeaturesDict {
+  title: string;
+  buildBot: Expedition418FeatureItemDict;
+  missions: Expedition418FeatureItemDict;
+  personalityModules: Expedition418FeatureItemDict;
+  synchronization: Expedition418FeatureItemDict;
+}
+
+export interface Expedition418AboutDict {
+  aboutTitle: string;
+  paragraph1: string;
+  paragraph2: string;
+  paragraph3: string;
+  paragraph4: string;
+  paragraph5: string;
+}
+
+export interface Expedition418PlaytestDict {
+  incoming: string;
+  paragraph1: string;
+  paragraph2: string;
+  buttons: {
+    discord: string;
+    subscribe: string;
+    patreon: string;
+  };
+}
+
+export interface Expedition418Dict {
+  meta: Expedition418MetaDict;
+  genre: Expedition418GenreDict;
+  nav: Expedition418NavDict;
+  hero: Expedition418HeroDict;
+  stats: {
+    labels: Expedition418StatLabelsDict;
+    values: Expedition418StatValuesDict;
+  };
+  intel: Expedition418IntelDict;
+  dispatcher: Expedition418DispatcherDict;
+  features: Expedition418FeaturesDict;
+  about: Expedition418AboutDict;
+  playtest: Expedition418PlaytestDict;
+}
+
+// === OLD WORLD NEON DICTIONARY ===
+
+export interface OldWorldNeonMetaDict {
+  title: string;
+  description: string;
+}
+
+export interface OldWorldNeonNavDict {
+  teaser: string;
+  features: string;
+}
+
+export interface OldWorldNeonHeroDict {
+  classified: string;
+  oldWorld: string;
+  neon: string;
+  system: string;
+  statusTags: {
+    cyberpunk: string;
+    classified: string;
+    unknown: string;
+  };
+  accessLines: {
+    first: string;
+    second: string;
+    third: string;
+  };
+  restrictedTitle: string;
+  taglineFallback: string;
+  descriptionFallback: string;
+}
+
+export interface OldWorldNeonTeaserDict {
+  titleLead: string;
+  titleTail: string;
+  paragraph1: string;
+  paragraph2: string;
+  tags: {
+    corporateEspionage: string;
+    digitalShadows: string;
+    neonDarkness: string;
+  };
+  locationLabel: string;
+  locationValue: string;
+  signalText: string;
+}
+
+export interface OldWorldNeonFeatureCardDict {
+  title: string;
+  description: string;
+}
+
+export interface OldWorldNeonFeaturesDict {
+  titlePrefix: string;
+  title: string;
+  urbanSprawl: OldWorldNeonFeatureCardDict;
+  digitalWarfare: OldWorldNeonFeatureCardDict;
+  highStakesHeists: OldWorldNeonFeatureCardDict;
+}
+
+export interface OldWorldNeonDict {
+  meta: OldWorldNeonMetaDict;
+  nav: OldWorldNeonNavDict;
+  hero: OldWorldNeonHeroDict;
+  teaser: OldWorldNeonTeaserDict;
+  features: OldWorldNeonFeaturesDict;
 }
 
 // === TERMINAL DICTIONARY ===
@@ -535,6 +914,16 @@ export interface TerminalMessagesDict {
 }
 
 export interface TerminalDict {
+  meta?: {
+    title: string;
+    description: string;
+    keywords?: string;
+    ogTitle?: string;
+    ogDescription?: string;
+    twitterTitle?: string;
+    twitterDescription?: string;
+    imageAlt?: string;
+  };
   interface: TerminalInterfaceDict;
   menu: TerminalMenuDict;
   status: TerminalStatusDict;
@@ -551,6 +940,7 @@ export interface NewsletterSubscribeDict {
   title: string;
   description: string;
   name: string;
+  nameOptionalLabel?: string;
   email: string;
   namePlaceholder: string;
   emailPlaceholder: string;
@@ -559,6 +949,25 @@ export interface NewsletterSubscribeDict {
   success: string;
   error: string;
   privacy: string;
+  backToHome?: string;
+  benefitsTitle?: string;
+  benefits?: {
+    releases?: {
+      emoji?: string;
+      title?: string;
+      description?: string;
+    };
+    exclusive?: {
+      emoji?: string;
+      title?: string;
+      description?: string;
+    };
+    studioNews?: {
+      emoji?: string;
+      title?: string;
+      description?: string;
+    };
+  };
   metaTitle: string;
   metaDescription: string;
 }
@@ -573,6 +982,7 @@ export interface NewsletterUnsubscribeDict {
   success: string;
   notFound: string;
   error: string;
+  backToHome?: string;
   metaTitle: string;
   metaDescription: string;
 }
@@ -593,6 +1003,12 @@ export interface NewsletterConfirmationDict {
   title: string;
   success: NewsletterConfirmationSuccessDict;
   error: NewsletterConfirmationErrorDict;
+  pending?: {
+    heading?: string;
+    message?: string;
+    hint?: string;
+  };
+  backToSubscribe?: string;
   metaTitle: string;
   metaDescription: string;
 }
@@ -608,6 +1024,7 @@ export interface NewsletterFooterDict {
   title: string;
   description: string;
   subscribe: string;
+  learnMore?: string;
 }
 
 export interface NewsletterDict {
@@ -618,6 +1035,23 @@ export interface NewsletterDict {
   footer: NewsletterFooterDict;
 }
 
+// === PRIVACY DICTIONARY ===
+
+export interface PrivacySectionDict {
+  title: string;
+  content: string[];
+}
+
+export interface PrivacyDict {
+  metaTitle: string;
+  metaDescription: string;
+  title: string;
+  lastUpdated: string;
+  intro: string;
+  sections: PrivacySectionDict[];
+  backToHome: string;
+}
+
 // === MASTER DICTIONARY TYPE ===
 
 export interface Dictionary {
@@ -625,8 +1059,12 @@ export interface Dictionary {
   home: HomeDict;
   kramp: KrampDict;
   'lost-mark': LostMarkDict;
+  'lost-mark-license': LostMarkLicenseDict;
+  'expedition-418': Expedition418Dict;
+  'old-world-neon': OldWorldNeonDict;
   terminal: TerminalDict;
   newsletter: NewsletterDict;
+  privacy: PrivacyDict;
 }
 
 // === UTILITY TYPES ===

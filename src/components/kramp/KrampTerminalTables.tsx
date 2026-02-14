@@ -9,14 +9,14 @@ import {
   npcTable,
   announcementsTable,
 } from "./kramp-tables-data";
+import type { KrampDictionary } from "./types";
 
 interface KrampTerminalTablesProps {
   lang: string;
+  labels?: KrampDictionary["tables"];
 }
 
-export default function KrampTerminalTables({ lang }: KrampTerminalTablesProps) {
-  const isRu = lang === "ru";
-
+export default function KrampTerminalTables({ lang, labels }: KrampTerminalTablesProps) {
   return (
     <div className="space-y-4 md:space-y-6">
       {/* Header */}
@@ -30,10 +30,7 @@ export default function KrampTerminalTables({ lang }: KrampTerminalTablesProps) 
           </div>
         </div>
         <p className="text-sm text-gray-400">
-          {isRu
-            ? "Эти таблицы созданы, чтобы подстегнуть вашу фантазию. Меняйте значения и проверки под свой стол."
-            : "These tables are designed to spark your imagination. Change values and checks to fit your table."
-          }
+          {labels?.headerNote || "These tables are designed to spark your imagination. Change values and checks to fit your table."}
         </p>
       </div>
 
@@ -47,14 +44,14 @@ export default function KrampTerminalTables({ lang }: KrampTerminalTablesProps) 
 
         {/* Right column */}
         <div className="space-y-4">
-          <EventsTable tableData={eventsTable} lang={lang} />
-          <NpcTable tableData={npcTable} lang={lang} />
+          <EventsTable tableData={eventsTable} lang={lang} mechLabel={labels?.mechLabel} />
+          <NpcTable tableData={npcTable} lang={lang} tags={labels?.npcTags} />
         </div>
       </div>
 
       {/* Footer */}
       <div className="text-center text-xs text-green-600 font-mono py-2">
-        DATE: 25-12-XX // LOC: &quot;SILENT NIGHT&quot; // AUTH: KRAMP.EXE
+        {labels?.footerStamp || 'DATE: 25-12-XX // LOC: "SILENT NIGHT" // AUTH: KRAMP.EXE'}
       </div>
     </div>
   );

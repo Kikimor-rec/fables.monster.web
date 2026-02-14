@@ -24,42 +24,45 @@ export default function CSSGlitchImage({
   sizes,
   theme = 'default'
 }: CSSGlitchImageProps) {
-  const [isPaused, setIsPaused] = useState(false);
+  const [isHovering, setIsHovering] = useState(false);
+  const [isInView, setIsInView] = useState(true);
+  const [reduceMotion, setReduceMotion] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Handle hover pause
-  const handleMouseEnter = () => {
-    setIsPaused(true);
-  };
+  const isPaused = reduceMotion || isHovering || !isInView;
 
-  const handleMouseLeave = () => {
-    setIsPaused(false);
-  };
-
-  // Handle scroll pause (when image is in viewport center)
   useEffect(() => {
-    const handleScroll = () => {
-      if (!containerRef.current) return;
-      
-      const rect = containerRef.current.getBoundingClientRect();
-      const windowHeight = window.innerHeight || document.documentElement.clientHeight;
-      
-      // Check if the image is in the center of the viewport (within 20% of center)
-      const centerY = windowHeight / 2;
-      const imageCenterY = rect.top + rect.height / 2;
-      const distanceFromCenter = Math.abs(imageCenterY - centerY);
-      const threshold = windowHeight * 0.2; // 20% of viewport height
-      
-      setIsPaused(distanceFromCenter < threshold);
-    };
+    if (typeof window === 'undefined') return;
 
-    // Add scroll listener
-    window.addEventListener('scroll', handleScroll);
-    // Initial check
-    handleScroll();
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const updatePreference = () => setReduceMotion(mediaQuery.matches);
+
+    updatePreference();
+    mediaQuery.addEventListener('change', updatePreference);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      mediaQuery.removeEventListener('change', updatePreference);
+    };
+  }, []);
+
+  useEffect(() => {
+    const element = containerRef.current;
+    if (!element) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      {
+        rootMargin: '20% 0px 20% 0px',
+        threshold: 0.01,
+      }
+    );
+
+    observer.observe(element);
+
+    return () => {
+      observer.disconnect();
     };
   }, []);
 
@@ -75,8 +78,8 @@ export default function CSSGlitchImage({
         position: 'relative',
         boxSizing: 'border-box'
       }}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      onMouseEnter={() => setIsHovering(true)}
+      onMouseLeave={() => setIsHovering(false)}
     >
       <div 
         className="glitch-main-image"

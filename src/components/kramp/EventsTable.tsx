@@ -5,6 +5,7 @@ import { TableData } from "./kramp-tables-data";
 interface EventsTableProps {
   tableData: TableData;
   lang: string;
+  mechLabel?: string;
 }
 
 function splitEventText(text: string): { title: string; description: string } {
@@ -15,7 +16,7 @@ function splitEventText(text: string): { title: string; description: string } {
   };
 }
 
-export default function EventsTable({ tableData, lang }: EventsTableProps) {
+export default function EventsTable({ tableData, lang, mechLabel = "MECH" }: EventsTableProps) {
   const isRu = lang === "ru";
   const maxDice = parseInt(tableData.dice.replace("D", ""));
   const { selectedRow, isRolling, isExpanded, rollDice, toggleExpanded } = useDiceRoller();
@@ -57,7 +58,7 @@ export default function EventsTable({ tableData, lang }: EventsTableProps) {
               })()}
               {tableData.rows[selectedRow - 1]?.effect && !isRolling && (
                 <div className="mt-2 bg-green-900/50 text-green-300 text-xs md:text-sm px-2 py-1 border-l-4 border-green-500">
-                  <span className="font-bold">MECH:</span> {isRu ? tableData.rows[selectedRow - 1].effect?.ru : tableData.rows[selectedRow - 1].effect?.en}
+                  <span className="font-bold">{mechLabel}:</span> {isRu ? tableData.rows[selectedRow - 1].effect?.ru : tableData.rows[selectedRow - 1].effect?.en}
                 </div>
               )}
             </div>

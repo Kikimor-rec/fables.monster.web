@@ -14,6 +14,7 @@ interface NewsletterFormProps {
     title?: string;
     description?: string;
     name?: string;
+    nameOptionalLabel?: string;
     email?: string;
     namePlaceholder?: string;
     emailPlaceholder?: string;
@@ -168,7 +169,7 @@ export default function NewsletterForm({ dict, lang = 'en', compact = false }: N
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label className="block text-white font-orbitron font-bold mb-2 text-sm">
-            {dict?.name || "NAME"} ({lang === 'ru' ? 'опционально' : 'optional'})
+            {dict?.name || "NAME"} ({dict?.nameOptionalLabel || "optional"})
           </label>
           <input
             type="text"

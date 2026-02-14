@@ -11,7 +11,7 @@ export default function Navigation({ lang, dict }: { lang: string, dict: NavDict
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
   const menuButtonRef = useRef<HTMLButtonElement>(null);
-  const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const mobileMenuRef = useRef<HTMLElement>(null);
   const mobileCloseButtonRef = useRef<HTMLButtonElement>(null);
 
   const navLinks = [
@@ -70,6 +70,10 @@ export default function Navigation({ lang, dict }: { lang: string, dict: NavDict
     };
   }, [isMenuOpen]);
 
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [pathname]);
+
   const handleMenuToggle = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -86,22 +90,23 @@ export default function Navigation({ lang, dict }: { lang: string, dict: NavDict
         href="#main-content"
         className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[60] focus:bg-red-700 focus:text-white focus:px-4 focus:py-2 focus:rounded font-orbitron"
       >
-        {lang === 'ru' ? 'Перейти к контенту' : 'Skip to content'}
+        {dict.skipToContent || 'Skip to content'}
       </a>
 
-      <header role="banner" className="fixed top-0 w-full z-50 px-6 py-4 bg-black/80 backdrop-blur-sm border-b border-red-700">
-        <nav className="max-w-7xl mx-auto flex justify-between items-center" aria-label="Main navigation">
+      <header role="banner" className="fixed top-0 inset-x-0 z-50 px-4 sm:px-6 py-3 bg-black/70 supports-[backdrop-filter]:bg-black/55 backdrop-blur-xl border-b border-red-900/70 shadow-[0_10px_30px_rgba(0,0,0,0.35)]">
+        <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-red-500/60 to-transparent pointer-events-none" />
+        <nav className="max-w-7xl mx-auto flex justify-between items-center" aria-label={dict.mainNavigation || 'Main navigation'}>
           <Link
             href={`/${lang}`}
             className="flex items-center gap-3 focus:outline-none focus:ring-2 focus:ring-red-500 rounded"
-            aria-label={lang === 'ru' ? 'Fables Monster - На главную' : 'Fables Monster - Home'}
+            aria-label={dict.homeAriaLabel || 'Fables Monster - Home'}
           >
-            <Image src="/logos/fm-logo-gorizntal-w.png" alt="" width={160} height={56} className="h-12 w-auto logo-glitch" priority aria-hidden="true" />
+            <Image src="/logos/fm-logo-gorizntal-w.png" alt="" width={160} height={56} className="h-10 sm:h-12 w-auto logo-glitch" priority aria-hidden="true" />
             <span className="sr-only">Fables Monster Studio</span>
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex space-x-8 items-center" role="menubar">
+          <div className="hidden md:flex space-x-6 lg:space-x-8 items-center" role="menubar">
             {navLinks.map((link) => {
               const isCurrent = isActive(link.href);
               return (
@@ -120,7 +125,7 @@ export default function Navigation({ lang, dict }: { lang: string, dict: NavDict
               );
             })}
             {/* Language Switcher */}
-            <div className="flex items-center gap-2 font-orbitron font-bold text-sm ml-4 border-l border-gray-700 pl-4" role="group" aria-label={lang === 'ru' ? 'Выбор языка' : 'Language selection'}>
+            <div className="flex items-center gap-2 font-orbitron font-bold text-sm ml-4 border-l border-gray-700 pl-4" role="group" aria-label={dict.languageSelection || 'Language selection'}>
               <Link
                 href={switchLanguage('en')}
                 className={`transition-colors ${lang === 'en' ? 'text-red-400' : 'text-gray-400 hover:text-white'}`}
@@ -146,9 +151,9 @@ export default function Navigation({ lang, dict }: { lang: string, dict: NavDict
         {/* Mobile Menu Button */}
         <button
           ref={menuButtonRef}
-          className="md:hidden text-white p-2 focus:outline-none focus:ring-2 focus:ring-red-500 rounded"
+          className="md:hidden text-white p-2 rounded border border-red-900/50 bg-black/40 focus:outline-none focus:ring-2 focus:ring-red-500"
           onClick={handleMenuToggle}
-          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          aria-label={isMenuOpen ? (dict.closeMenu || 'Close menu') : (dict.openMenu || 'Open menu')}
           aria-expanded={isMenuOpen}
           aria-controls="mobile-menu"
         >
@@ -183,38 +188,38 @@ export default function Navigation({ lang, dict }: { lang: string, dict: NavDict
         <>
           {/* Darkened Background */}
           <div
-            className="fixed inset-0 z-40 bg-black/70"
+            className="fixed inset-0 z-40 bg-black/75 backdrop-blur-sm"
             onClick={handleCloseMenu}
             aria-hidden="true"
           />
           {/* Menu Panel */}
-          <div
+          <aside
             ref={mobileMenuRef}
             id="mobile-menu"
-            className="fixed left-0 top-0 z-50 w-full bg-black flex flex-col items-center shadow-2xl animate-slide-down pt-8 pb-8"
+            className="fixed right-0 top-0 z-50 h-dvh w-[min(92vw,420px)] bg-black/95 border-l border-red-900 shadow-2xl pt-16 px-6 pb-8 overflow-y-auto"
             role="dialog"
             aria-modal="true"
-            aria-label={lang === 'ru' ? 'Главное меню' : 'Main menu'}
+            aria-label={dict.mainMenu || 'Main menu'}
           >
             <button
               ref={mobileCloseButtonRef}
-              className="absolute top-4 right-4 text-white text-4xl p-2 focus:outline-none focus:ring-2 focus:ring-red-500 rounded z-50"
+              className="absolute top-4 right-4 text-white text-3xl p-2 border border-red-900/50 bg-black/40 focus:outline-none focus:ring-2 focus:ring-red-500 rounded"
               onClick={handleCloseMenu}
-              aria-label={lang === 'ru' ? 'Закрыть меню' : 'Close menu'}
+              aria-label={dict.closeMenu || 'Close menu'}
             >
               ×
             </button>
-            <nav className="w-full flex flex-col items-center gap-2" role="menubar" aria-label={lang === 'ru' ? 'Мобильная навигация' : 'Mobile navigation'}>
+            <nav className="w-full flex flex-col items-stretch gap-1" role="menubar" aria-label={dict.mobileNavigation || 'Mobile navigation'}>
               {navLinks.map((link) => {
                 const isCurrent = isActive(link.href);
                 return (
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`nav-link text-2xl font-orbitron font-bold py-6 w-full text-center transition-colors ${isCurrent
+                    className={`nav-link text-xl font-orbitron font-bold py-4 border-b border-red-900/30 transition-colors ${isCurrent
                       ? "nav-link-active text-red-400"
                       : "text-white hover:text-red-400"
-                      } focus:outline-none focus:ring-2 focus:ring-red-500 rounded mx-4`}
+                      } focus:outline-none focus:ring-2 focus:ring-red-500 rounded`}
                     onClick={handleCloseMenu}
                     role="menuitem"
                     aria-current={isCurrent ? 'page' : undefined}
@@ -223,7 +228,7 @@ export default function Navigation({ lang, dict }: { lang: string, dict: NavDict
                   </Link>
                 );
               })}
-              <div className="flex items-center gap-4 font-orbitron font-bold text-xl mt-4" role="group" aria-label={lang === 'ru' ? 'Выбор языка' : 'Language selection'}>
+              <div className="flex items-center gap-4 font-orbitron font-bold text-lg mt-6 pt-4 border-t border-red-900/50" role="group" aria-label={dict.languageSelection || 'Language selection'}>
                 <Link
                   href={switchLanguage('en')}
                   className={`transition-colors ${lang === 'en' ? 'text-red-400' : 'text-gray-400 hover:text-white'}`}
@@ -247,7 +252,7 @@ export default function Navigation({ lang, dict }: { lang: string, dict: NavDict
                 </Link>
               </div>
             </nav>
-          </div>
+          </aside>
         </>,
         document.body
       )}

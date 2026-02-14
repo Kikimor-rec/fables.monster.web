@@ -1,0 +1,59 @@
+{
+  "meta": {
+    "title": "OLD WORLD NEON | Fables Monster Studio",
+    "description": "A classified cyberpunk RPG project shrouded in mystery."
+  },
+  "nav": {
+    "teaser": "City",
+    "features": "Data"
+  },
+  "hero": {
+    "classified": "CLASSIFIED",
+    "oldWorld": "OLD WORLD",
+    "neon": "NEON",
+    "system": "SYSTEM ???",
+    "statusTags": {
+      "cyberpunk": "CYBERPUNK",
+      "classified": "CLASSIFIED",
+      "unknown": "???"
+    },
+    "accessLines": {
+      "first": "> ACCESSING ENCRYPTED DATA STREAM...",
+      "second": "> SECURITY CLEARANCE: INSUFFICIENT",
+      "third": "> ACCESS DENIED"
+    },
+    "restrictedTitle": "INFORMATION RESTRICTED",
+    "taglineFallback": "Rain-slicked neon streets hide corporate secrets. Those who ask too many questions tend to disappear into the digital void.",
+    "descriptionFallback": "More details will be revealed when the time is right. Follow our channels for updates."
+  },
+  "teaser": {
+    "titleLead": "THE CITY",
+    "titleTail": "THAT NEVER SLEEPS",
+    "paragraph1": "Neon signs flicker in the perpetual rain. Corporate towers pierce the smog-choked sky. In the shadows between the light, deals are made, lives are bought, and secrets are buried.",
+    "paragraph2": "You're just another piece on the board. But even pawns can topple kings... if they know which wires to cut.",
+    "tags": {
+      "corporateEspionage": "CORPORATE ESPIONAGE",
+      "digitalShadows": "DIGITAL SHADOWS",
+      "neonDarkness": "NEON DARKNESS"
+    },
+    "locationLabel": "LOCATION: CLASSIFIED",
+    "locationValue": "SECTOR 7 - NEON DISTRICT",
+    "signalText": "CLASSIFIED"
+  },
+  "features": {
+    "titlePrefix": "ENCRYPTED",
+    "title": "FEATURES",
+    "urbanSprawl": {
+      "title": "URBAN SPRAWL",
+      "description": "Navigate a city where every street corner hides danger and opportunity in equal measure."
+    },
+    "digitalWarfare": {
+      "title": "DIGITAL WARFARE",
+      "description": "Hack systems, steal data, and erase your tracks before the corps trace you back."
+    },
+    "highStakesHeists": {
+      "title": "HIGH-STAKES HEISTS",
+      "description": "Plan the job, assemble your crew, and pray your tech doesn't glitch at the worst moment."
+    }
+  }
+}
