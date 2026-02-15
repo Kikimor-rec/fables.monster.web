@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Fables Monster Studio - Independent Tabletop RPG Creators",
-    "description": "Create unforgettable tabletop RPG experiences with Fables Monster Studio. Specializing in horror, sci-fi, and supernatural adventures for Mothership RPG, D&D, and more.",
+    "description": "Fables Monster Studio makes horror, sci-fi, and supernatural adventures for Mothership RPG, D&D, and other tabletop systems.",
     "keywords": [
       "tabletop RPG",
       "horror RPG",
@@ -13,7 +13,7 @@
       "supernatural adventures"
     ],
     "ogTitle": "Fables Monster Studio - Independent Tabletop RPG Creators",
-    "ogDescription": "Create unforgettable tabletop RPG experiences."
+    "ogDescription": "Independent tabletop RPG content creation studio."
   },
   "hero": {
     "logoAlt": "Fables Monster Mascot",
@@ -62,14 +62,14 @@
   "about": {
     "titlePrefix": "THE",
     "title": "THE CREW",
-    "description": "We are a collective of designers, writers, and artists dedicated to creating immersive, high-quality tabletop RPG content. Our mission is to bring fresh nightmares and wonders to your gaming table.",
+    "description": "Designers, writers, and artists making tabletop RPG content. Horror, sci-fi, and the weird stuff in between. We bring fresh nightmares to your table.",
     "cta": "MEET THE TEAM →"
   },
   "stayConnected": {
     "label": "STATUS UPDATE",
     "title": "STAY",
     "titleHighlight": "CONNECTED",
-    "description": "More intel will be declassified soon. Join our network to receive updates when the data drops.",
+    "description": "More intel will be declassified soon. Join our network to get updates when the data drops.",
     "discord": "JOIN DISCORD",
     "newsletter": "SUBSCRIBE",
     "allProjects": "ALL PROJECTS"

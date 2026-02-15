@@ -49,7 +49,7 @@
     "cta": "READY TO EXPLORE THE LOST MARK?"
   },
   "cta": {
-    "description": "Download now and begin your descent into sci-fi horror. Available on multiple platforms.",
+    "description": "Download the adventure and start playing. Available on multiple platforms.",
     "licensePrefix": "PROTOCOL"
   },
   "featuresList": [
@@ -71,7 +71,7 @@
     }
   ],
   "expansion": {
-    "description": "A special expansion pack available separately from the main free module. Enhance your session with premium assets designed to immerse your players in the horror.",
+    "description": "Additional art and ambient tracks, available separately from the free base module. Made to deepen the atmosphere at your table.",
     "badge": "AVAILABLE NOW",
     "label": "EXPANSION CONTENT",
     "list": [
@@ -95,7 +95,7 @@
     "writtenBy": "Written by:",
     "layoutBy": "Layout by:",
     "artBy": "Art by:",
-    "musicBy": "Music By:",
+    "musicBy": "Music by:",
     "codingBy": "Coding by:"
   },
   "warning": {
@@ -103,12 +103,12 @@
     "content": "This adventure contains Sci-Fi horror themes, body horror, and psychological stress. Player discretion advised."
   },
   "foundry": {
-    "description": "Experience Lost Mark in Foundry Virtual Tabletop. Fully configured with dynamic lighting, walls, ambient sounds, and journal entries for a seamless horror experience.",
+    "description": "Play Lost Mark in Foundry Virtual Tabletop. Comes with dynamic lighting, walls, ambient sounds, and journal entries — ready to run out of the box.",
     "supportNote": "Includes Russian language support.",
     "videoTitle": "Lost Mark Foundry VTT teaser"
   },
   "roll20": {
-    "description": "Experience Lost Mark on Roll20. Ready-to-play module with all maps, tokens, and handouts configured for an immersive virtual tabletop experience.",
+    "description": "Play Lost Mark on Roll20. All maps, tokens, and handouts are set up and ready to go.",
     "badges": {
       "maps": "MAPS",
       "tokens": "TOKENS",
@@ -126,21 +126,21 @@
     "terminal": {
       "title": "SILK STAR TERMINAL",
       "badge": "AVAILABLE NOW",
-      "description": "Access the ship's computer system and uncover the dark secrets hidden in the logs. Navigate through corrupted data, system failures, and mysterious transmissions."
+      "description": "Dig through the ship's computer: corrupted logs, system failures, and transmissions that probably shouldn't exist."
     },
     "timer": {
       "title": "CHRONOMETER TERMINAL",
       "badge": "AVAILABLE NOW",
-      "description": "A digital countdown timer designed for tabletop gaming sessions. Perfect for time-sensitive scenarios and building tension during gameplay."
+      "description": "A countdown timer built for the table. Use it when the clock matters and the tension needs to be real."
     }
   },
   "soundtrack": {
     "streamingTitle": "Use Your Favorite Streaming Service",
-    "streamingDesc": "Access the full soundtrack on any platform you prefer for convenient listening during your game sessions.",
+    "streamingDesc": "The full soundtrack is on all major platforms. Pick the one you use and hit play.",
     "youtubeTitle": "YouTube Playlist",
-    "youtubeDesc": "Watch and listen to the complete soundtrack on YouTube with our dedicated playlist.",
+    "youtubeDesc": "All tracks in one YouTube playlist.",
     "youtubeIframeTitle": "Lost Mark soundtrack playlist",
     "playerTitle": "Website Player",
-    "playerDesc": "Use our embedded player to enjoy the full soundtrack directly on our website with all 11 tracks."
+    "playerDesc": "Listen to all 11 tracks right here without leaving the site."
   }
 }

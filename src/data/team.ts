@@ -18,33 +18,33 @@ export const teamMembers: TeamMember[] = [
     {
         name: "Tatiana Bond",
         role: "Graphic & Layout Designer",
-        bio: "Creates beautiful and functional layout designs for our publications",
+        bio: "Turns raw text and art into publications that look and read well.",
         image: "tanka-bond.webp"
     },
     {
         name: "Zlata (jamakuci) Ignatova",
         role: "Concept Artist/Illustrator",
-        bio: "Visual artist bringing our worlds to life with stunning illustrations",
+        bio: "Draws the creatures, locations, and everything in between.",
         image: "zlata.webp",
         link: "https://taplink.cc/jamakuci"
     },
     {
         name: "Stanislav DariDai",
         role: "Composer",
-        bio: "Creates atmospheric music and sound design for our projects",
+        bio: "Writes the music. Sets the mood. Makes you check your headphones twice.",
         image: "stanislav-darida.webp",
         link: "https://linktr.ee/stanislavdaridai"
     },
     {
         name: "Allecks",
         role: "Developer",
-        bio: "Handles coding, web development, and technical implementation for VTT",
+        bio: "Builds the website, the VTT modules, and whatever else needs code.",
         image: "alleks.webp"
     },
     {
         name: "Dan Tarkov",
         role: "Game Designer",
-        bio: "Game designer and creative mind behind new mechanics and adventures",
+        bio: "Designs game mechanics and breaks them until they work.",
         image: ""
     }
 ];

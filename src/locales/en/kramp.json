@@ -53,8 +53,8 @@
       "repeatTrack": "Repeat track",
       "repeatAll": "Repeat all",
       "noRepeat": "No repeat",
-      "loopTrackStatus": "🔂 Repeat track",
-      "loopPlaylistStatus": "🔁 Repeat playlist",
+      "loopTrackStatus": "Repeat track",
+      "loopPlaylistStatus": "Repeat playlist",
       "playlist": "PLAYLIST",
       "tracks": "tracks",
       "online": "ONLINE"
