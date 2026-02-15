@@ -62,7 +62,7 @@ export default function StoryBackToTop({ tone = "red" }: StoryBackToTopProps) {
     <button
       type="button"
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      className={`fixed bottom-5 right-4 z-40 border px-3 py-2 text-xs tracking-[0.14em] uppercase backdrop-blur transition-colors ${toneFontClasses[tone]} ${toneClasses[tone]}`}
+      className={`fixed bottom-5 right-4 z-40 min-h-[44px] min-w-[44px] border px-3 py-2.5 text-xs tracking-[0.14em] uppercase backdrop-blur transition-colors ${toneFontClasses[tone]} ${toneClasses[tone]}`}
       aria-label="Back to top"
     >
       Top

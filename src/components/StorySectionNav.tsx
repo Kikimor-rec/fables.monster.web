@@ -128,7 +128,7 @@ export default function StorySectionNav({
                 <a
                   href={`#${item.id}`}
                   onClick={(event) => scrollToSection(event, item.id)}
-                  className={`inline-flex items-center border px-3 py-1.5 text-[11px] tracking-[0.15em] uppercase transition-colors ${toneFontClasses[tone]} ${
+                  className={`inline-flex min-h-[44px] items-center border px-3 py-2.5 text-[11px] tracking-[0.15em] uppercase transition-colors sm:min-h-0 sm:py-1.5 ${toneFontClasses[tone]} ${
                     isActive ? toneClasses[tone].active : toneClasses[tone].idle
                   }`}
                   aria-current={isActive ? "true" : undefined}
