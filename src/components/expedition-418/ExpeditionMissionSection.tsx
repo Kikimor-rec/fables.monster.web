@@ -23,7 +23,7 @@ export default function ExpeditionMissionSection({ lang, dict, stats }: Expediti
           <article className="expedition-fade-up relative border border-[#505c64]/60 bg-[#d0e2cf] p-6 shadow-[6px_6px_0_0_rgba(236,84,76,0.42)] md:p-8" style={{ animationDelay: "120ms" }}>
             <div className="expedition-brief-outline-outer pointer-events-none absolute -inset-4 border-2 border-[#505c64] opacity-30" />
             <div className="expedition-brief-outline-inner pointer-events-none absolute -inset-2 border border-[#f67b40] opacity-60" />
-            <h2 className="mb-6 text-5xl font-bold uppercase tracking-tight [font-family:var(--font-exp-heading)] md:text-6xl">
+            <h2 className="mb-6 text-4xl font-bold uppercase tracking-tight [font-family:var(--font-exp-heading)] sm:text-5xl md:text-6xl">
               {heading} <span className="text-[#ec544c]">{headingAccent}</span>
             </h2>
             <p className="text-lg font-semibold leading-relaxed text-[#081329] [font-family:var(--font-exp-body)] md:text-xl">
@@ -42,15 +42,15 @@ export default function ExpeditionMissionSection({ lang, dict, stats }: Expediti
             <div className="space-y-4">
               {stats.map((stat) => (
                 <div key={stat.label} className="flex items-center justify-between gap-4 border-b border-[#505c64]/45 pb-3">
-                  <span className="text-2xl uppercase text-[#243149] [font-family:var(--font-exp-heading)]">{stat.label}</span>
-                  <span className="text-xl font-semibold text-[#081329] [font-family:var(--font-exp-body)]">{stat.value}</span>
+                  <span className="text-lg uppercase text-[#243149] [font-family:var(--font-exp-heading)] sm:text-2xl">{stat.label}</span>
+                  <span className="text-base font-semibold text-[#081329] [font-family:var(--font-exp-body)] sm:text-xl">{stat.value}</span>
                 </div>
               ))}
             </div>
 
             <div className="mt-6 bg-[#505c64] px-6 py-5 text-center">
               <p className="text-sm uppercase tracking-[0.14em] text-[#c6d9c6] [font-family:var(--font-exp-ui)]">{currentStatus}</p>
-              <p className="mt-1 text-3xl font-semibold uppercase text-[#f67b40] [font-family:var(--font-exp-heading)]">{currentStatusValue}</p>
+              <p className="mt-1 text-2xl font-semibold uppercase text-[#f67b40] [font-family:var(--font-exp-heading)] sm:text-3xl">{currentStatusValue}</p>
               <p className="mt-1 text-sm text-[#f7a37a] [font-family:var(--font-exp-ui)]">{targetLaunch}</p>
             </div>
           </article>

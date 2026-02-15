@@ -2315,8 +2315,8 @@
 .cctv-corners > .corner-br {
     content: '';
     position: absolute;
-    width: 30px;
-    height: 30px;
+    width: clamp(18px, 6vw, 30px);
+    height: clamp(18px, 6vw, 30px);
     border-color: rgba(255, 104, 61, 0.72);
     border-style: solid;
     z-index: 5;
@@ -2349,10 +2349,10 @@
 /* CCTV Timestamp */
 .cctv-timestamp {
     position: absolute;
-    bottom: 16px;
-    left: 16px;
+    bottom: 10px;
+    left: 10px;
     font-family: 'Courier New', monospace;
-    font-size: 12px;
+    font-size: 10px;
     color: rgba(247, 136, 64, 0.92);
     text-shadow: 0 0 4px rgba(247, 136, 64, 0.55);
     z-index: 6;
@@ -2362,13 +2362,13 @@
 /* CCTV REC indicator */
 .cctv-rec {
     position: absolute;
-    top: 16px;
-    right: 16px;
+    top: 10px;
+    right: 10px;
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 5px;
     font-family: 'Courier New', monospace;
-    font-size: 14px;
+    font-size: 11px;
     font-weight: bold;
     color: #ff3333;
     text-shadow: 0 0 6px rgba(255, 50, 50, 0.8);
@@ -2376,8 +2376,8 @@
 }
 
 .cctv-rec-dot {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     background: #ff3333;
     border-radius: 50%;
     animation: cctv-rec-blink 1s ease-in-out infinite;
@@ -2387,10 +2387,10 @@
 /* CCTV Camera ID */
 .cctv-cam-id {
     position: absolute;
-    top: 16px;
-    left: 16px;
+    top: 10px;
+    left: 10px;
     font-family: 'Courier New', monospace;
-    font-size: 11px;
+    font-size: 9px;
     color: rgba(188, 214, 187, 0.86);
     text-shadow: 0 0 4px rgba(188, 214, 187, 0.45);
     z-index: 6;
@@ -2488,5 +2488,32 @@
     98% {
         opacity: 0.6;
         top: 90%;
+    }
+}
+
+/* CCTV responsive scaling for larger screens */
+@media (min-width: 640px) {
+    .cctv-timestamp {
+        bottom: 16px;
+        left: 16px;
+        font-size: 12px;
+    }
+
+    .cctv-rec {
+        top: 16px;
+        right: 16px;
+        font-size: 14px;
+        gap: 6px;
+    }
+
+    .cctv-rec-dot {
+        width: 10px;
+        height: 10px;
+    }
+
+    .cctv-cam-id {
+        top: 16px;
+        left: 16px;
+        font-size: 11px;
     }
 }
