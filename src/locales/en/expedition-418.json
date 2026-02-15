@@ -67,9 +67,9 @@
   "about": {
     "aboutTitle": "ABOUT",
     "paragraph1": "Expedition-418 is a tabletop RPG for 2-5 players. You play as exploration robots aboard an old automated ship that is still carrying out its mission, even though Earth went silent a long time ago.",
-    "paragraph2": "The ship's AI, the Dispatcher, hands out assignments. Your team lands wherever the sensors found something and figures out what's actually going on. The briefing is usually incomplete.",
+    "paragraph2": "The ship assigns missions. Your team lands wherever the sensors found something and figures out what's actually going on. The briefing is usually incomplete.",
     "paragraph3": "The game uses a 5d10 dice pool. Players decide how many dice to roll, raising both the chance of success and the chance of side effects.",
-    "paragraph4": "For the mood, mix Futurama, 2001: A Space Odyssey, Star Trek, or whatever sci-fi you know best. Adventures can be tense, strange, funny, and sometimes all of that in the same scene.",
+    "paragraph4": "For the mood, mix Futurama, 2001: A Space Odyssey, Star Trek, or whatever sci-fi you know best. Adventures can be tense, mysterious, funny — and sometimes all of that in the same scene.",
     "paragraph5": "Play short sessions, long campaigns, or use an open table. Swap robot configurations and piece together the real story of what happened to humanity and the ship."
   },
   "playtest": {

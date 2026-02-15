@@ -2,7 +2,6 @@ import { Metadata } from "next";
 import { Exo_2, Inter, Manrope, Oswald, Rock_Salt } from "next/font/google";
 import { getDictionary } from "@/lib/i18n";
 import type { Expedition418Dict } from "@/types/i18n";
-import StayConnectedSection from "@/components/StayConnectedSection";
 import StoryProgressBar from "@/components/StoryProgressBar";
 import StorySectionNav from "@/components/StorySectionNav";
 import StoryBackToTop from "@/components/StoryBackToTop";
@@ -71,7 +70,6 @@ export const dynamic = "force-static";
 export default async function Expedition418({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   const dict = (await getDictionary(lang, "expedition-418")) as Expedition418Dict;
-  const homeDict = await getDictionary(lang, "home");
 
   const sectionNavItems = [
     { id: "intel", label: dict.nav.intel },
@@ -124,7 +122,6 @@ export default async function Expedition418({ params }: { params: Promise<{ lang
       <ExpeditionAboutSection dict={dict} />
       <ExpeditionPlaytestSection lang={lang} dict={dict} />
 
-      <StayConnectedSection lang={lang} dict={homeDict.stayConnected} variant="expedition" />
       <StoryBackToTop tone="amber" />
     </div>
   );
