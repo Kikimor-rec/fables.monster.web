@@ -7,19 +7,32 @@ interface ExpeditionFeaturesSectionProps {
 
 export default function ExpeditionFeaturesSection({ title, features }: ExpeditionFeaturesSectionProps) {
   return (
-    <section id="features" className="py-20 border-t border-cyan-900/30 scroll-mt-36">
-      <div className="fm-shell">
-        <h2 className="text-4xl font-bold text-white mb-12 text-center font-orbitron glitch-text" data-text={title}>
+    <section id="features" className="scroll-mt-36 border-t border-[#505c64] bg-[#18213c] py-20">
+      <div className="fm-shell max-w-6xl">
+        <h2 className="mb-12 text-center text-4xl font-bold uppercase text-[#c6d9c6] md:text-5xl [font-family:var(--font-exp-heading)]">
           {title}
         </h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          {features.map((feature) => (
-            <div key={feature.title} className="bg-gray-900 border border-cyan-800 p-6 hover:bg-cyan-950/20 hover:border-cyan-600 transition-colors group">
-              <div className="flex items-start space-x-4">
-                <div className="text-cyan-400 flex-shrink-0 group-hover:animate-pulse">{feature.icon}</div>
+        <div className="grid gap-6 md:grid-cols-2">
+          {features.map((feature, index) => (
+            <div
+              key={feature.title}
+              className="expedition-fade-up group relative border border-[#c6d9c6]/70 bg-[#202b49] p-7 shadow-[7px_7px_0_0_rgba(236,84,76,0.42)] transition-all duration-300 hover:-translate-y-1 hover:border-[#f67b40] hover:shadow-[10px_10px_0_0_rgba(236,84,76,0.56)]"
+              style={{ animationDelay: `${index * 90}ms` }}
+            >
+              <span className="pointer-events-none absolute right-4 top-4 text-[10px] tracking-[0.2em] text-[#9aa8b7] [font-family:var(--font-exp-ui)]">
+                0{index + 1}
+              </span>
+              <div className="flex items-start gap-4">
+                <div className="shrink-0 border border-[#ec544c] bg-[#18213c] p-2 text-[#f67b40] transition-colors group-hover:bg-[#ec544c] group-hover:text-[#f5efe0]">
+                  {feature.icon}
+                </div>
                 <div>
-                  <h3 className="text-xl font-bold text-white mb-3 font-orbitron group-hover:text-cyan-400 transition-colors">{feature.title}</h3>
-                  <p className="text-gray-300 font-rajdhani">{feature.description}</p>
+                  <h3 className="mb-3 text-[34px] font-semibold leading-[0.95] text-[#f5efe0] [font-family:var(--font-exp-heading)] md:text-[40px]">
+                    {feature.title}
+                  </h3>
+                  <p className="max-w-[42ch] text-lg leading-relaxed text-[#d1dfd1] [font-family:var(--font-exp-body)]">
+                    {feature.description}
+                  </p>
                 </div>
               </div>
             </div>

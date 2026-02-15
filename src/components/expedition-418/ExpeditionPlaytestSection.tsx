@@ -8,25 +8,26 @@ interface ExpeditionPlaytestSectionProps {
 
 export default function ExpeditionPlaytestSection({ lang, dict }: ExpeditionPlaytestSectionProps) {
   return (
-    <section id="playtest" className="py-20 border-t border-cyan-900/30 bg-black/80 scroll-mt-36">
+    <section id="playtest" className="scroll-mt-36 border-t border-[#505c64] bg-[#18213c] py-20">
       <div className="fm-shell max-w-5xl">
-        <div className="fm-panel border-cyan-800/70 bg-cyan-950/20">
-          <p className="font-orbitron text-xs tracking-[0.2em] uppercase text-cyan-300 mb-5">{dict.playtest.incoming}</p>
-          <p className="text-zinc-200 font-rajdhani text-lg mb-5 leading-relaxed">{dict.playtest.paragraph1}</p>
-          <p className="text-zinc-200 font-rajdhani text-lg leading-relaxed">{dict.playtest.paragraph2}</p>
+        <div className="expedition-fade-up relative overflow-hidden border border-[#f67b40] bg-[#202b49] px-6 py-8 shadow-[8px_8px_0_0_rgba(236,84,76,0.4)] md:px-10 md:py-10">
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_0%,rgba(246,123,64,0.18),transparent_36%)]" />
+          <p className="relative mb-5 inline-flex border border-[#f67b40]/70 bg-[#18213c] px-3 py-1 text-xs uppercase tracking-[0.2em] text-[#f7a37a] [font-family:var(--font-exp-ui)]">{dict.playtest.incoming}</p>
+          <p className="relative mb-5 text-xl leading-relaxed text-[#d9e7d9] [font-family:var(--font-exp-body)]">{dict.playtest.paragraph1}</p>
+          <p className="relative text-xl leading-relaxed text-[#d9e7d9] [font-family:var(--font-exp-body)]">{dict.playtest.paragraph2}</p>
 
-          <div className="mt-8 flex flex-col sm:flex-row gap-3">
+          <div className="relative mt-8 grid gap-3 sm:grid-cols-3">
             <a
               href="https://discord.gg/eAwK9DfKf4"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center border border-cyan-500/80 bg-cyan-900/30 px-5 py-3 font-orbitron text-sm text-cyan-200 hover:bg-cyan-800/40 transition-colors"
+              className="inline-flex min-h-12 items-center justify-center border border-[#f67b40] bg-[#f67b40] px-5 py-3 text-base uppercase tracking-[0.08em] text-[#18213c] transition-colors hover:bg-[#ec544c] hover:text-[#f5efe0] [font-family:var(--font-exp-heading)]"
             >
               {dict.playtest.buttons.discord}
             </a>
             <Link
               href={`/${lang}/newsletter/subscribe`}
-              className="inline-flex items-center justify-center border border-zinc-500/80 bg-zinc-900/40 px-5 py-3 font-orbitron text-sm text-zinc-200 hover:bg-zinc-800/45 transition-colors"
+              className="inline-flex min-h-12 items-center justify-center border border-[#c6d9c6] bg-transparent px-5 py-3 text-base uppercase tracking-[0.08em] text-[#c6d9c6] transition-colors hover:bg-[#c6d9c6] hover:text-[#18213c] [font-family:var(--font-exp-heading)]"
             >
               {dict.playtest.buttons.subscribe}
             </Link>
@@ -34,7 +35,7 @@ export default function ExpeditionPlaytestSection({ lang, dict }: ExpeditionPlay
               href="https://www.patreon.com/FablesMonster"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center border border-red-500/80 bg-red-900/30 px-5 py-3 font-orbitron text-sm text-red-200 hover:bg-red-800/40 transition-colors"
+              className="inline-flex min-h-12 items-center justify-center border border-[#ec544c] bg-transparent px-5 py-3 text-base uppercase tracking-[0.08em] text-[#f7a37a] transition-colors hover:bg-[#ec544c]/20 hover:text-[#f5efe0] [font-family:var(--font-exp-heading)]"
             >
               {dict.playtest.buttons.patreon}
             </a>

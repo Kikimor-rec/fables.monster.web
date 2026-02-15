@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-type Tone = "red" | "cyan" | "green" | "fuchsia";
+type Tone = "red" | "cyan" | "green" | "fuchsia" | "amber";
 
 interface StoryBackToTopProps {
   tone?: Tone;
@@ -13,6 +13,15 @@ const toneClasses: Record<Tone, string> = {
   cyan: "border-cyan-500/60 bg-cyan-950/80 text-cyan-200 hover:bg-cyan-900/85 hover:border-cyan-400",
   green: "border-green-500/60 bg-green-950/80 text-green-200 hover:bg-green-900/85 hover:border-green-400",
   fuchsia: "border-fuchsia-500/60 bg-fuchsia-950/80 text-fuchsia-200 hover:bg-fuchsia-900/85 hover:border-fuchsia-400",
+  amber: "border-[#f78840]/70 bg-[#2f3f58]/90 text-[#f7c89f] hover:bg-[#2f3f58] hover:border-[#ff683d]",
+};
+
+const toneFontClasses: Record<Tone, string> = {
+  red: "font-orbitron",
+  cyan: "font-orbitron",
+  green: "font-orbitron",
+  fuchsia: "font-orbitron",
+  amber: "[font-family:var(--font-exp-heading)]",
 };
 
 export default function StoryBackToTop({ tone = "red" }: StoryBackToTopProps) {
@@ -53,7 +62,7 @@ export default function StoryBackToTop({ tone = "red" }: StoryBackToTopProps) {
     <button
       type="button"
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      className={`fixed bottom-5 right-4 z-40 border px-3 py-2 font-orbitron text-xs tracking-[0.14em] uppercase backdrop-blur transition-colors ${toneClasses[tone]}`}
+      className={`fixed bottom-5 right-4 z-40 border px-3 py-2 text-xs tracking-[0.14em] uppercase backdrop-blur transition-colors ${toneFontClasses[tone]} ${toneClasses[tone]}`}
       aria-label="Back to top"
     >
       Top

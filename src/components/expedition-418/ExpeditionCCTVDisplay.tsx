@@ -7,7 +7,7 @@ interface ExpeditionCCTVDisplayProps {
 
 export default function ExpeditionCCTVDisplay({ imageAlt, whyTitle }: ExpeditionCCTVDisplayProps) {
   return (
-    <div className="relative w-full aspect-video bg-gray-900 border-2 border-cyan-700 overflow-hidden cctv-container cctv-corners">
+    <div className="cctv-container cctv-corners relative aspect-video w-full overflow-hidden border-2 border-[#c6d9c6] bg-[#18213c] shadow-[8px_8px_0_0_#ec544c]">
       <Image src="/images/teapot-concept.webp" alt={imageAlt} fill sizes="(max-width: 768px) 100vw, 1280px" className="cctv-image" />
 
       <div className="cctv-tint" />
@@ -29,7 +29,7 @@ export default function ExpeditionCCTVDisplay({ imageAlt, whyTitle }: Expedition
           href="https://en.wikipedia.org/wiki/Hyper_Text_Coffee_Pot_Control_Protocol"
           target="_blank"
           rel="noopener noreferrer"
-          className="hover:text-cyan-300 transition-colors cursor-help"
+          className="cursor-help text-[#f67b40] transition-colors hover:text-[#ec544c]"
           title={whyTitle}
         >
           2418.04.18 // 04:18:00 // ERR_418

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-type Accent = "red" | "cyan" | "green" | "fuchsia";
+type Accent = "red" | "cyan" | "green" | "fuchsia" | "amber";
 
 interface StoryProgressBarProps {
   accent?: Accent;
@@ -14,6 +14,7 @@ const accentClasses: Record<Accent, string> = {
   cyan: "from-cyan-700 via-cyan-400 to-cyan-700 shadow-[0_0_14px_rgba(34,211,238,0.6)]",
   green: "from-green-700 via-green-400 to-green-700 shadow-[0_0_14px_rgba(74,222,128,0.55)]",
   fuchsia: "from-fuchsia-700 via-fuchsia-400 to-fuchsia-700 shadow-[0_0_14px_rgba(232,121,249,0.55)]",
+  amber: "from-[#f78840] via-[#ff683d] to-[#f78840] shadow-[0_0_14px_rgba(247,136,64,0.55)]",
 };
 
 export default function StoryProgressBar({ accent = "red", topClassName = "top-[76px]" }: StoryProgressBarProps) {

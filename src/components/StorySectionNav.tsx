@@ -9,7 +9,7 @@ interface StorySectionNavItem {
 
 interface StorySectionNavProps {
   items: StorySectionNavItem[];
-  tone?: "red" | "cyan" | "green" | "fuchsia";
+  tone?: "red" | "cyan" | "green" | "fuchsia" | "amber";
   topClassName?: string;
 }
 
@@ -30,6 +30,26 @@ const toneClasses = {
     active: "text-fuchsia-300 border-fuchsia-500/70 bg-fuchsia-950/50",
     idle: "text-zinc-400 border-transparent hover:text-fuchsia-200 hover:border-fuchsia-800/70 hover:bg-fuchsia-950/25",
   },
+  amber: {
+    active: "text-[#f7c89f] border-[#ff683d]/80 bg-[#2f3f58]/55",
+    idle: "text-[#a9b2bf] border-transparent hover:text-[#f7c89f] hover:border-[#f78840]/60 hover:bg-[#2f3f58]/25",
+  },
+};
+
+const toneContainerClasses = {
+  red: "border-zinc-800/80 bg-black/85",
+  cyan: "border-zinc-800/80 bg-black/85",
+  green: "border-zinc-800/80 bg-black/85",
+  fuchsia: "border-zinc-800/80 bg-black/85",
+  amber: "border-[#2f3f58] bg-[#02071d]/95",
+};
+
+const toneFontClasses = {
+  red: "font-orbitron",
+  cyan: "font-orbitron",
+  green: "font-orbitron",
+  fuchsia: "font-orbitron",
+  amber: "[font-family:var(--font-exp-heading)]",
 };
 
 export default function StorySectionNav({
@@ -98,7 +118,7 @@ export default function StorySectionNav({
   };
 
   return (
-    <nav className={`sticky ${topClassName} z-30 border-y border-zinc-800/80 bg-black/85 backdrop-blur-lg`} aria-label="Section navigation">
+    <nav className={`sticky ${topClassName} z-30 border-y backdrop-blur-lg ${toneContainerClasses[tone]}`} aria-label="Section navigation">
       <div className="fm-shell overflow-x-auto scrollbar-hide">
         <ul className="flex min-w-max items-center justify-start gap-2 py-2">
           {items.map((item) => {
@@ -108,7 +128,7 @@ export default function StorySectionNav({
                 <a
                   href={`#${item.id}`}
                   onClick={(event) => scrollToSection(event, item.id)}
-                  className={`inline-flex items-center border px-3 py-1.5 font-orbitron text-[11px] tracking-[0.15em] uppercase transition-colors ${
+                  className={`inline-flex items-center border px-3 py-1.5 text-[11px] tracking-[0.15em] uppercase transition-colors ${toneFontClasses[tone]} ${
                     isActive ? toneClasses[tone].active : toneClasses[tone].idle
                   }`}
                   aria-current={isActive ? "true" : undefined}

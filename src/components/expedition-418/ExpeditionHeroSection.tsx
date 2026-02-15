@@ -1,63 +1,58 @@
-import Link from "next/link";
-import type { ExpeditionStat } from "@/components/expedition-418/types";
 import type { Expedition418Dict } from "@/types/i18n";
 
 interface ExpeditionHeroSectionProps {
-  lang: string;
   dict: Expedition418Dict;
-  stats: ExpeditionStat[];
 }
 
-export default function ExpeditionHeroSection({ lang, dict, stats }: ExpeditionHeroSectionProps) {
+export default function ExpeditionHeroSection({ dict }: ExpeditionHeroSectionProps) {
   return (
-    <section className="relative min-h-screen flex items-center justify-center">
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-black to-cyan-950/20" />
-      <div className="absolute inset-0 opacity-10 [background-image:linear-gradient(rgba(34,211,238,0.25)_1px,transparent_1px),linear-gradient(90deg,rgba(34,211,238,0.25)_1px,transparent_1px)] [background-size:36px_36px]" />
+    <section className="relative overflow-hidden border-b border-[#505c64] bg-[#18213c] pt-28 pb-20 md:pt-36 md:pb-24">
+      <div className="absolute inset-0 opacity-[0.14] [background-image:linear-gradient(rgba(188,214,187,0.25)_1px,transparent_1px),linear-gradient(90deg,rgba(188,214,187,0.25)_1px,transparent_1px)] [background-size:34px_34px]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_0%,rgba(246,123,64,0.2),transparent_40%),radial-gradient(circle_at_82%_12%,rgba(236,84,76,0.18),transparent_36%)]" />
 
-      <div className="relative z-10 fm-shell max-w-5xl text-center flex flex-col items-center pt-24 md:pt-32">
-        <p className="fm-page-kicker mb-5">{dict.genre.label}</p>
+      <div className="pointer-events-none absolute left-4 top-6 h-16 w-16 rounded-tl-2xl border-l-2 border-t-2 border-[#ff683d]/70 md:left-8 md:top-8 md:h-24 md:w-24" />
+      <div className="pointer-events-none absolute right-4 top-6 h-16 w-16 rounded-tr-2xl border-r-2 border-t-2 border-[#ff683d]/70 md:right-8 md:top-8 md:h-24 md:w-24" />
+      <div className="pointer-events-none absolute bottom-6 left-4 h-16 w-16 rounded-bl-2xl border-b-2 border-l-2 border-[#ff683d]/70 md:bottom-8 md:left-8 md:h-24 md:w-24" />
+      <div className="pointer-events-none absolute bottom-6 right-4 h-16 w-16 rounded-br-2xl border-b-2 border-r-2 border-[#ff683d]/70 md:bottom-8 md:right-8 md:h-24 md:w-24" />
 
-        <h1 className="text-4xl sm:text-6xl md:text-8xl font-bold text-white mb-4 font-orbitron tracking-wider glitch-text" data-text={dict.hero.title}>
-          {dict.hero.title}
-        </h1>
+      <div className="relative z-10 fm-shell max-w-6xl text-center">
+        <p className="mb-8 block text-center text-[11px] uppercase tracking-[0.24em] text-[#f67b40] [font-family:var(--font-exp-ui)] md:mb-10">
+          {dict.genre.label}
+        </p>
 
-        <p className="text-lg md:text-xl text-cyan-400 mb-6 font-orbitron tracking-wide">{dict.hero.subtitle}</p>
-
-        <p className="text-lg md:text-xl text-gray-300 mb-6 max-w-4xl mx-auto font-rajdhani">{dict.hero.paragraph1}</p>
-        <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-4xl mx-auto font-rajdhani">{dict.hero.paragraph2}</p>
-
-        <div className="max-w-4xl w-full border border-cyan-900/50 bg-black/40 p-4 sm:p-6 mb-8">
-          <div className="grid grid-cols-1 sm:grid-cols-[1fr_1fr] gap-2 sm:gap-3 text-left">
-            <div className="text-zinc-500 text-xs font-orbitron uppercase tracking-[0.14em]">{stats[0]?.label}</div>
-            <div className="text-zinc-200 text-sm font-rajdhani">{stats[0]?.value}</div>
-
-            <div className="text-zinc-500 text-xs font-orbitron uppercase tracking-[0.14em]">{stats[1]?.label}</div>
-            <div className="text-zinc-200 text-sm font-rajdhani">{stats[1]?.value}</div>
-
-            <div className="text-zinc-500 text-xs font-orbitron uppercase tracking-[0.14em]">{stats[2]?.label}</div>
-            <div className="text-zinc-200 text-sm font-rajdhani">{stats[2]?.value}</div>
-
-            <div className="text-zinc-500 text-xs font-orbitron uppercase tracking-[0.14em]">{stats[3]?.label}</div>
-            <div className="text-zinc-200 text-sm font-rajdhani">{stats[3]?.value}</div>
+        <div className="mb-8 mt-2 inline-block max-w-full text-center md:mb-10">
+          <div className="relative inline-block max-w-full">
+            <h1 className="relative z-10 text-5xl font-bold uppercase tracking-tight text-[#c6d9c6] opacity-90 drop-shadow-[0_6px_0_rgba(24,33,60,0.45)] sm:text-7xl md:text-8xl lg:text-9xl [font-family:var(--font-exp-heading)]">
+              {dict.hero.title}
+            </h1>
+            <div className="absolute -right-8 -top-6 rotate-12 bg-[#ec544c] px-3 py-1 text-xs font-bold text-[#18213c] shadow-lg transition-transform hover:scale-110 sm:-right-10 sm:px-4 sm:text-sm md:-right-16 [font-family:var(--font-exp-heading)]">
+              EST. 2426
+            </div>
           </div>
         </div>
 
-        <div className="bg-cyan-950/30 border border-cyan-700/50 rounded-lg p-4 mb-6 max-w-2xl">
-          <p className="text-cyan-300 font-mono text-sm">{`> ${dict.hero.statusNote}`}</p>
+        <div className="mb-12 relative">
+          <div className="relative whitespace-nowrap text-2xl tracking-[0.12em] text-[#f67b40] md:text-4xl [font-family:var(--font-exp-heading)]">
+            <span className="relative inline-block">
+              <span className="expedition-strike-hand">ROLE</span>
+              <span className="absolute -top-7 left-1/2 -translate-x-1/2 -rotate-6 whitespace-nowrap text-3xl text-[#ec544c] drop-shadow-md md:-top-8 md:text-5xl [font-family:var(--font-exp-hand)]">
+                Rover
+              </span>
+            </span>
+            <span>PLAYING GAME</span>
+          </div>
         </div>
 
-        <p className="text-zinc-400 font-mono text-xs mb-8">
-          {dict.hero.projectCodeLabel} <span className="text-zinc-300">EXP-418-HTCPCP</span>
+        <div className="mx-auto mt-2 max-w-2xl border-y border-[#505c64] bg-[#18213c]/60 px-4 py-6 backdrop-blur-sm sm:px-8">
+          <p className="text-pretty text-xl leading-relaxed text-[#c6d9c6] md:text-2xl [font-family:var(--font-exp-accent)]">
+            {dict.hero.subtitle}
+          </p>
+          <p className="mt-2 text-sm uppercase tracking-[0.24em] text-[#f67b40] [font-family:var(--font-exp-ui)]">SYSTEM STATUS: CRITICAL</p>
+        </div>
+
+        <p className="mt-8 text-xs text-[#8b97a5] [font-family:var(--font-exp-ui)]">
+          {dict.hero.projectCodeLabel} <span className="text-[#c6d9c6]">EXP-418-HTCPCP</span>
         </p>
-
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link
-            href={`/${lang}/projects`}
-            className="bg-transparent border-2 border-cyan-500 text-cyan-400 hover:bg-cyan-950/30 px-8 py-4 text-lg font-orbitron font-bold transition-all hover:text-white"
-          >
-            {dict.hero.allProjects}
-          </Link>
-        </div>
       </div>
     </section>
   );
