@@ -1,16 +1,16 @@
 {
   "meta": {
     "title": "Fables Monster Studio - Independent Tabletop RPG Creators",
-    "description": "Fables Monster Studio makes horror, sci-fi, and supernatural adventures for Mothership RPG, D&D, and other tabletop systems.",
+    "description": "Fables Monster Studio makes tabletop RPG adventures and tools — from heroic fantasy to sci-fi horror, one-shots to full campaigns, for Mothership RPG, D&D, and other systems.",
     "keywords": [
       "tabletop RPG",
-      "horror RPG",
+      "TTRPG adventures",
       "Mothership RPG",
-      "indie games",
+      "indie RPG studio",
       "D&D adventures",
-      "cosmic horror",
       "sci-fi RPG",
-      "supernatural adventures"
+      "fantasy RPG",
+      "RPG modules"
     ],
     "ogTitle": "Fables Monster Studio - Independent Tabletop RPG Creators",
     "ogDescription": "Independent tabletop RPG content creation studio."
@@ -27,10 +27,10 @@
       "NEW DROPS"
     ],
     "marqueePhrases": [
-      "SCI-FI HORROR",
+      "ADVENTURES & TOOLS",
       "MOTHERSHIP READY",
       "HANDCRAFTED MODULES",
-      "ATMOSPHERIC TOOLS",
+      "FROM HORROR TO COMEDY",
       "COMMUNITY FIRST"
     ]
   },
@@ -62,7 +62,7 @@
   "about": {
     "titlePrefix": "THE",
     "title": "THE CREW",
-    "description": "Designers, writers, and artists making tabletop RPG content. Horror, sci-fi, and the weird stuff in between. We bring fresh nightmares to your table.",
+    "description": "Designers, writers, and artists making tabletop RPG content. Sci-fi, horror, dark comedy, fantasy — we work across genres and bring new stories to your table.",
     "cta": "MEET THE TEAM →"
   },
   "stayConnected": {

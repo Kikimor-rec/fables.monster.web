@@ -9,8 +9,8 @@ interface ExpeditionMissionSectionProps {
 
 export default function ExpeditionMissionSection({ lang, dict, stats }: ExpeditionMissionSectionProps) {
   const targetLaunch = lang === "ru" ? "Целевой релиз: Апрель 2026" : "Target Launch: April 2026";
-  const heading = lang === "ru" ? "МИССИЯ" : "MISSION";
-  const headingAccent = lang === "ru" ? "БРИФИНГ" : "BRIEFING";
+  const heading = lang === "ru" ? "ОПЕРАТИВНАЯ" : "MISSION";
+  const headingAccent = lang === "ru" ? "СВОДКА" : "BRIEFING";
   const parametersTitle = lang === "ru" ? "ПАРАМЕТРЫ МИССИИ" : "MISSION PARAMETERS";
   const currentStatus = lang === "ru" ? "ТЕКУЩИЙ СТАТУС" : "CURRENT STATUS";
   const currentStatusValue = lang === "ru" ? "В АКТИВНОЙ РАЗРАБОТКЕ" : "IN ACTIVE DEVELOPMENT";

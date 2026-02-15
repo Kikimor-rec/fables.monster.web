@@ -149,7 +149,7 @@
   "about": {
     "title": "ABOUT US",
     "subtitle": "Meet the team behind Fables Monster Studio",
-    "metaDescription": "Meet the team behind Fables Monster Studio. We make horror, sci-fi, and weird adventures for tabletop RPGs.",
+    "metaDescription": "Meet the team behind Fables Monster Studio. We make tabletop RPG adventures across genres — from sci-fi horror to dark comedy to fantasy.",
     "heroKicker": "STUDIO DOSSIER",
     "rosterKicker": "TEAM ROSTER",
     "rosterTitle": "THE CREW",
@@ -161,8 +161,8 @@
         "icon": "QUALITY"
       },
       {
-        "title": "Human Creativity",
-        "description": "We believe in human art and writing. No AI generation in our final products.",
+        "title": "Made by People",
+        "description": "All art, text, and music in our products is made by people. No AI generation in final releases.",
         "icon": "HUMAN"
       },
       {
@@ -211,7 +211,7 @@
       "inDevelopment": "IN DEVELOPMENT",
       "comingSoon": "COMING SOON"
     },
-    "metaDescription": "Explore our tabletop RPG adventures and digital experiences. From sci-fi horror to cyberpunk mysteries.",
+    "metaDescription": "Tabletop RPG adventures and tools by Fables Monster Studio. Sci-fi, horror, dark comedy, fantasy — from one-shots to full campaigns.",
     "description": "Explore our tabletop RPG adventures and digital experiences",
     "detail": {
       "kicker": "PROJECT DOSSIER",
@@ -260,7 +260,7 @@
     "hellishBureaucracy": {
       "kicker": "UNANNOUNCED PROTOCOL",
       "inDevelopment": "IN DEVELOPMENT",
-      "defaultTagline": "Navigate the administrative nightmare of Hell"
+      "defaultTagline": "The worst nightmare: infinite paperwork in Hell"
     }
   }
 }
