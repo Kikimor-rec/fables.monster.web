@@ -19,4 +19,4 @@ Inside you'll find a bespoke **sin-tracking mechanic** that lets the table gleef
 transgressions and watch the consequences snowball. Slip the card into a stocking, unfold at the table,
 and survive a one-shot session of sci-fi suspense wrapped in tinsel and static.
 
-Launching November 24, 2025—just in time to haunt your holiday schedule.
+Available now — just in time to haunt your holiday schedule.

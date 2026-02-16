@@ -34,7 +34,7 @@ platforms:
 
 [Получить на Roll20 →](https://marketplace.roll20.net/browse/module/39314/lost-mark-sci-fi-horror-one-shot-for-mothership)
 
-> ⚠️ **Примечание**: Продукты на itch.io, DriveThruRPG и Roll20 доступны только на английском языке.
+> **Примечание**: Продукты на itch.io, DriveThruRPG и Roll20 доступны только на английском языке.
 
 ### Русская версия
 

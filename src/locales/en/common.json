@@ -116,44 +116,44 @@
     {
       "name": "Tatiana Bond",
       "role": "Graphic & Layout Designer",
-      "bio": "Creates beautiful and functional layout designs for our publications",
+      "bio": "Turns raw text and art into publications that look and read well.",
       "image": "tanka-bond.webp"
     },
     {
       "name": "Zlata (jamakuci) Ignatova",
       "role": "Concept Artist/Illustrator",
-      "bio": "Visual artist bringing our worlds to life with stunning illustrations",
+      "bio": "Draws the creatures, locations, and everything in between.",
       "image": "zlata.webp",
       "link": "https://taplink.cc/jamakuci"
     },
     {
       "name": "Stanislav DariDai",
       "role": "Composer",
-      "bio": "Creates atmospheric music and sound design for our projects",
+      "bio": "Writes the music. Sets the mood. Makes you check your headphones twice.",
       "image": "stanislav-darida.webp",
       "link": "https://linktr.ee/stanislavdaridai"
     },
     {
       "name": "Allecks",
       "role": "Developer",
-      "bio": "Handles coding, web development, and technical implementation for VTT",
+      "bio": "Builds the website, the VTT modules, and whatever else needs code.",
       "image": "alleks.webp"
     },
     {
       "name": "Dan Tarkov",
       "role": "Game Designer",
-      "bio": "Creative mind behind new mechanics and adventures",
+      "bio": "Designs game mechanics and breaks them until they work.",
       "image": ""
     }
   ],
   "about": {
     "title": "ABOUT US",
     "subtitle": "Meet the team behind Fables Monster Studio",
-    "metaDescription": "Meet the team behind Fables Monster Studio - creators crafting immersive tabletop RPG experiences, horror adventures, and sci-fi campaigns.",
+    "metaDescription": "Meet the team behind Fables Monster Studio. We make tabletop RPG adventures across genres — from sci-fi horror to dark comedy to fantasy.",
     "heroKicker": "STUDIO DOSSIER",
     "rosterKicker": "TEAM ROSTER",
     "rosterTitle": "THE CREW",
-    "rosterDescription": "The people building new adventures, visuals, and sound for the worlds of Fables Monster Studio.",
+    "rosterDescription": "The people behind the adventures, the art, and the sound.",
     "values": [
       {
         "title": "Quality First",
@@ -161,8 +161,8 @@
         "icon": "QUALITY"
       },
       {
-        "title": "Human Creativity",
-        "description": "We believe in human art and writing. No AI generation in our final products.",
+        "title": "Made by People",
+        "description": "All art, text, and music in our products is made by people. No AI generation in final releases.",
         "icon": "HUMAN"
       },
       {
@@ -176,10 +176,10 @@
     "title": "CONTACT",
     "getInTouch": "GET IN TOUCH",
     "metaTitle": "Contact - Get in Touch with Fables Monster Studio",
-    "metaDescription": "Contact Fables Monster Studio for collaborations, questions about our tabletop RPG projects, or general inquiries. Join our Discord community and follow us on social media.",
+    "metaDescription": "Get in touch with Fables Monster Studio. Collaborations, questions, or just say hi. Find us on Discord or drop a message.",
     "heroKicker": "OPEN COMM CHANNEL",
-    "heroDescription": "Collaborations, release questions, and partnership ideas. Reach us through your preferred channel or the direct form.",
-    "channelsLabel": "Official studio channels for discussion, updates, and support:",
+    "heroDescription": "Collaborations, release questions, partnership ideas. Pick a channel or use the form below.",
+    "channelsLabel": "Where to find us:",
     "channelAction": "ENTER",
     "directChannelLabel": "DIRECT CHANNEL",
     "form": {
@@ -211,7 +211,7 @@
       "inDevelopment": "IN DEVELOPMENT",
       "comingSoon": "COMING SOON"
     },
-    "metaDescription": "Explore our tabletop RPG adventures and digital experiences. From sci-fi horror to cyberpunk mysteries.",
+    "metaDescription": "Tabletop RPG adventures and tools by Fables Monster Studio. Sci-fi, horror, dark comedy, fantasy — from one-shots to full campaigns.",
     "description": "Explore our tabletop RPG adventures and digital experiences",
     "detail": {
       "kicker": "PROJECT DOSSIER",
@@ -260,7 +260,7 @@
     "hellishBureaucracy": {
       "kicker": "UNANNOUNCED PROTOCOL",
       "inDevelopment": "IN DEVELOPMENT",
-      "defaultTagline": "Navigate the administrative nightmare of Hell"
+      "defaultTagline": "The worst nightmare: infinite paperwork in Hell"
     }
   }
 }

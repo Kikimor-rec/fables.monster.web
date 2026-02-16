@@ -16,17 +16,14 @@
     "benefitsTitle": "WHAT YOU'LL GET",
     "benefits": {
       "releases": {
-        "emoji": "🎲",
         "title": "NEW RELEASES",
         "description": "Be the first to know about new projects and releases"
       },
       "exclusive": {
-        "emoji": "🎨",
         "title": "EXCLUSIVE CONTENT",
         "description": "Behind-the-scenes content and exclusive materials"
       },
       "studioNews": {
-        "emoji": "📰",
         "title": "STUDIO NEWS",
         "description": "Important announcements and project updates"
       }
