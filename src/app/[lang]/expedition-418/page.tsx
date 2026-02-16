@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { Exo_2, Inter, Manrope, Oswald, Rock_Salt } from "next/font/google";
+import { Exo_2, Inter, Manrope, Saira_Stencil_One, Rock_Salt } from "next/font/google";
 import { getDictionary } from "@/lib/i18n";
 import type { Expedition418Dict } from "@/types/i18n";
 import StoryProgressBar from "@/components/StoryProgressBar";
@@ -13,11 +13,11 @@ import ExpeditionAboutSection from "@/components/expedition-418/ExpeditionAboutS
 import ExpeditionPlaytestSection from "@/components/expedition-418/ExpeditionPlaytestSection";
 import { getExpeditionFeatures, getExpeditionStats } from "@/components/expedition-418/expedition-data";
 
-const expeditionHeading = Oswald({
-  subsets: ["latin", "cyrillic"],
+const expeditionHeading = Saira_Stencil_One({
+  subsets: ["latin"],
   variable: "--font-exp-heading",
   display: "swap",
-  weight: ["400", "500", "600", "700"],
+  weight: "400",
 });
 
 const expeditionBody = Manrope({
