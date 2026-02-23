@@ -11,6 +11,7 @@ import LostMarkAudioCtaSection from "@/components/lost-mark/LostMarkAudioCtaSect
 import type { LostMarkDictionary } from "@/components/lost-mark/types";
 import { getContent, getFrontmatterString } from "@/lib/content";
 import { getDictionary } from "@/lib/i18n";
+import { buildSocialMetadata } from "@/lib/metadata";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -18,17 +19,23 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const dict = (await getDictionary(lang, "lost-mark")) as LostMarkDictionary;
   const title = content ? getFrontmatterString(content.frontmatter, "title") : "";
   const tagline = content ? getFrontmatterString(content.frontmatter, "tagline") : "";
+  const resolvedTitle = dict.meta?.title || `${title || "The Lost Mark"} - Sci-Fi Horror Adventure | Fables Monster Studio`;
+  const resolvedDescription = dict.meta?.description || tagline || "A complete Sci-Fi horror adventure for Mothership RPG.";
+  const social = buildSocialMetadata({
+    lang,
+    path: "/lost-mark",
+    title: resolvedTitle,
+    description: resolvedDescription,
+    type: "article",
+    imagePath: `/${lang}/lost-mark/opengraph-image`,
+    twitterImagePath: `/${lang}/lost-mark/twitter-image`,
+    imageAlt: title || "The Lost Mark",
+  });
 
   return {
-    title: dict.meta?.title || `${title || "The Lost Mark"} - Sci-Fi Horror Adventure | Fables Monster Studio`,
-    description: dict.meta?.description || tagline || "A complete Sci-Fi horror adventure for Mothership RPG.",
-    alternates: {
-      canonical: `https://fables.monster/${lang}/lost-mark`,
-      languages: {
-        en: "https://fables.monster/en/lost-mark",
-        ru: "https://fables.monster/ru/lost-mark",
-      },
-    },
+    title: resolvedTitle,
+    description: resolvedDescription,
+    ...social,
   };
 }
 

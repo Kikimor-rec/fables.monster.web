@@ -76,6 +76,12 @@
     "incoming": "INCOMING TRANSMISSION // CLASSIFICATION: OPEN",
     "paragraph1": "In April 2026, we plan to release a quickstart kit for open testing: quickstart rules, several pre-built robots, a character creation guide, and a few starter missions so you can try it all yourself.",
     "paragraph2": "If you're willing to play, test the system, and share what you find, subscribe for updates or join our Discord so you don't miss anything.",
+    "portal": {
+      "overline": "FULL MISSION PORTAL",
+      "title": "More details at Expedition418.com",
+      "description": "Visit expedition418.com for expanded lore, deeper project materials, and an interactive character sheet you can use right in the browser.",
+      "button": "OPEN EXPEDITION418.COM"
+    },
     "buttons": {
       "discord": "DISCORD",
       "subscribe": "SUBSCRIBE",

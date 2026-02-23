@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { getContent, getFrontmatterString } from "@/lib/content";
 import { getDictionary } from "@/lib/i18n";
+import { buildSocialMetadata } from "@/lib/metadata";
 import type { OldWorldNeonDict } from "@/types/i18n";
 import StayConnectedSection from "@/components/StayConnectedSection";
 import StoryProgressBar from "@/components/StoryProgressBar";
@@ -14,17 +15,20 @@ import type { NeonStatusTag } from "@/components/old-world-neon/types";
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const dict = (await getDictionary(lang, "old-world-neon")) as OldWorldNeonDict;
+  const social = buildSocialMetadata({
+    lang,
+    path: "/old-world-neon",
+    title: dict.meta.title,
+    description: dict.meta.description,
+    type: "article",
+    imagePath: `/${lang}/old-world-neon/opengraph-image`,
+    twitterImagePath: `/${lang}/old-world-neon/twitter-image`,
+  });
 
   return {
     title: dict.meta.title,
     description: dict.meta.description,
-    alternates: {
-      canonical: `https://fables.monster/${lang}/old-world-neon`,
-      languages: {
-        en: "https://fables.monster/en/old-world-neon",
-        ru: "https://fables.monster/ru/old-world-neon",
-      },
-    },
+    ...social,
   };
 }
 

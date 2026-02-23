@@ -1,21 +1,23 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { getDictionary } from "@/lib/i18n";
+import { buildSocialMetadata } from "@/lib/metadata";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const dict = await getDictionary(lang, "privacy");
+  const social = buildSocialMetadata({
+    lang,
+    path: "/privacy",
+    title: dict.metaTitle,
+    description: dict.metaDescription,
+    imagePath: `/${lang}/opengraph-image`,
+  });
 
   return {
     title: dict.metaTitle,
     description: dict.metaDescription,
-    alternates: {
-      canonical: `https://fables.monster/${lang}/privacy`,
-      languages: {
-        en: "https://fables.monster/en/privacy",
-        ru: "https://fables.monster/ru/privacy",
-      },
-    },
+    ...social,
   };
 }
 

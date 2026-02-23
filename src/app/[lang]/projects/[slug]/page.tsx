@@ -1,5 +1,6 @@
 import { getAllProjects, getContent, getFrontmatterString, getFrontmatterObject } from '@/lib/content';
 import { getDictionary } from '@/lib/i18n';
+import { buildSocialMetadata } from '@/lib/metadata';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import StoreButton from '@/components/StoreButton';
@@ -43,15 +44,22 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const title = getFrontmatterString(content.frontmatter, 'title');
   const tagline = getFrontmatterString(content.frontmatter, 'tagline');
   const image = getFrontmatterString(content.frontmatter, 'image');
+  const resolvedTitle = title || dict.projects?.detail?.notFoundTitle || 'Project';
+  const resolvedDescription = tagline || dict.projects?.metaDescription || 'Tabletop RPG project by Fables Monster Studio.';
+  const social = buildSocialMetadata({
+    lang,
+    path: `/projects/${slug}`,
+    title: resolvedTitle,
+    description: resolvedDescription,
+    type: 'article',
+    imagePath: image || `/${lang}/opengraph-image`,
+    imageAlt: resolvedTitle,
+  });
 
   return {
-    title: `${title} | Fables Monster Studio`,
-    description: tagline || undefined,
-    openGraph: {
-      title: title || undefined,
-      description: tagline || undefined,
-      images: image ? [image] : undefined,
-    },
+    title: resolvedTitle,
+    description: resolvedDescription,
+    ...social,
   };
 }
 

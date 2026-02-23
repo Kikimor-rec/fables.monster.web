@@ -13,6 +13,7 @@ export default function Navigation({ lang, dict }: { lang: string, dict: NavDict
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const mobileMenuRef = useRef<HTMLElement>(null);
   const mobileCloseButtonRef = useRef<HTMLButtonElement>(null);
+  const previousFocusedElementRef = useRef<HTMLElement | null>(null);
 
   const navLinks = [
     { href: `/${lang}`, label: dict?.home || "HOME", exact: true },
@@ -35,25 +36,81 @@ export default function Navigation({ lang, dict }: { lang: string, dict: NavDict
     return segments.join('/');
   };
 
-  // Handle keyboard events for accessibility
+  // Handle keyboard events and focus trap for accessibility
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isMenuOpen) {
+    if (!isMenuOpen) {
+      return;
+    }
+
+    previousFocusedElementRef.current = document.activeElement as HTMLElement | null;
+
+    const getFocusableElements = () => {
+      const menu = mobileMenuRef.current;
+      if (!menu) {
+        return [] as HTMLElement[];
+      }
+
+      const selector = [
+        'a[href]',
+        'button:not([disabled])',
+        'input:not([disabled])',
+        'select:not([disabled])',
+        'textarea:not([disabled])',
+        '[tabindex]:not([tabindex="-1"])',
+      ].join(', ');
+
+      return Array.from(menu.querySelectorAll<HTMLElement>(selector)).filter((element) => {
+        return element.getAttribute('aria-hidden') !== 'true';
+      });
+    };
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
         setIsMenuOpen(false);
-        menuButtonRef.current?.focus();
+        return;
+      }
+
+      if (event.key !== 'Tab') {
+        return;
+      }
+
+      const focusableElements = getFocusableElements();
+      if (focusableElements.length === 0) {
+        event.preventDefault();
+        mobileMenuRef.current?.focus();
+        return;
+      }
+
+      const first = focusableElements[0];
+      const last = focusableElements[focusableElements.length - 1];
+      const activeElement = document.activeElement;
+
+      if (event.shiftKey && activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && activeElement === last) {
+        event.preventDefault();
+        first.focus();
       }
     };
 
-    if (isMenuOpen) {
-      document.addEventListener('keydown', handleKeyDown);
-      // Focus the close button when menu opens
-      setTimeout(() => {
+    document.addEventListener('keydown', handleKeyDown);
+
+    requestAnimationFrame(() => {
+      const focusableElements = getFocusableElements();
+      if (focusableElements[0]) {
+        focusableElements[0].focus();
+      } else {
         mobileCloseButtonRef.current?.focus();
-      }, 100);
-    }
+      }
+    });
 
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
+      if (previousFocusedElementRef.current) {
+        previousFocusedElementRef.current.focus();
+      }
     };
   }, [isMenuOpen]);
 
@@ -200,6 +257,7 @@ export default function Navigation({ lang, dict }: { lang: string, dict: NavDict
             role="dialog"
             aria-modal="true"
             aria-label={dict.mainMenu || 'Main menu'}
+            tabIndex={-1}
           >
             <button
               ref={mobileCloseButtonRef}

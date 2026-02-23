@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import TeamMember from '@/components/TeamMember';
 import FadeIn from '@/components/FadeIn';
+import { buildSocialMetadata } from '@/lib/metadata';
 import { getDictionary } from '@/lib/i18n';
 
 const valueMarkers: Record<string, string> = {
@@ -12,19 +13,22 @@ const valueMarkers: Record<string, string> = {
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const dict = await getDictionary(lang, 'common');
+  const title = dict.nav?.about || 'About';
+  const description =
+    dict.about?.metaDescription ||
+    'Meet the team behind Fables Monster Studio - talented creators crafting immersive tabletop RPG experiences, horror adventures, and sci-fi campaigns.';
+  const social = buildSocialMetadata({
+    lang,
+    path: '/about',
+    title,
+    description,
+    imagePath: `/${lang}/opengraph-image`,
+  });
 
   return {
-    title: `${dict.nav?.about || 'About'} | Fables Monster Studio`,
-    description:
-      dict.about?.metaDescription ||
-      'Meet the team behind Fables Monster Studio - talented creators crafting immersive tabletop RPG experiences, horror adventures, and sci-fi campaigns.',
-    alternates: {
-      canonical: `https://fables.monster/${lang}/about`,
-      languages: {
-        en: 'https://fables.monster/en/about',
-        ru: 'https://fables.monster/ru/about',
-      },
-    },
+    title,
+    description,
+    ...social,
   };
 }
 

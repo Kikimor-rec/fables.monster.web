@@ -1,47 +1,19 @@
-import { ImageResponse } from 'next/og';
+import { createStudioOgImage, OG_IMAGE_CONTENT_TYPE, OG_IMAGE_SIZE } from "@/lib/og-image";
 
-export const runtime = 'edge';
-export const size = { width: 1200, height: 630 };
-export const contentType = 'image/png';
+export const runtime = "edge";
+export const size = OG_IMAGE_SIZE;
+export const contentType = OG_IMAGE_CONTENT_TYPE;
 
-export default async function Image() {
-  return new ImageResponse(
-    (
-      <div style={{
-        fontSize: 48,
-        background: 'linear-gradient(135deg, #0a0a0a 0%, #7a0000 100%)',
-        color: 'white',
-        width: '100%',
-        height: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: '40px',
-      }}>
-        <div style={{ 
-          fontSize: 72, 
-          fontWeight: 900,
-          marginBottom: '20px',
-          textAlign: 'center',
-          letterSpacing: '0.1em',
-          textTransform: 'uppercase',
-        }}>
-          FABLES MONSTER
-        </div>
-        <div style={{ 
-          fontSize: 32, 
-          textAlign: 'center',
-          maxWidth: '80%',
-          opacity: 0.9,
-          letterSpacing: '0.05em',
-        }}>
-          Tabletop RPG Adventures & Content
-        </div>
-      </div>
-    ),
-    {
-      ...size,
-    }
-  );
+export default async function Image({ params }: { params: Promise<{ lang: string }> | { lang: string } }) {
+  const { lang } = await params;
+
+  const isRu = lang === "ru";
+
+  return createStudioOgImage({
+    theme: "core",
+    kicker: "Fables Monster",
+    title: isRu ? "Новые миры для НРИ" : "New Worlds for TTRPG",
+    subtitle: isRu ? "Sci-fi, хоррор, тёмная комедия и фэнтези" : "Sci-fi, horror, dark comedy, and fantasy",
+    badge: "Social",
+  });
 }

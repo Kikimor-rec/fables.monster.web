@@ -12,28 +12,34 @@ import StorySectionNav from "@/components/StorySectionNav";
 import StoryBackToTop from "@/components/StoryBackToTop";
 import { getContent, getFrontmatterString } from "@/lib/content";
 import { getDictionary } from "@/lib/i18n";
+import { buildSocialMetadata } from "@/lib/metadata";
 import "./christmas.css";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const content = await getContent("projects", "holiday-audit-kramp", lang);
   const dict = (await getDictionary(lang, "kramp")) as KrampDictionary;
-  const title = content ? getFrontmatterString(content.frontmatter, "title") || "Holiday Audit: KRAMP.EXE" : "Holiday Audit: KRAMP.EXE";
+  const fallbackTitle = content ? getFrontmatterString(content.frontmatter, "title") || "Holiday Audit: KRAMP.EXE" : "Holiday Audit: KRAMP.EXE";
   const tagline =
     content
       ? getFrontmatterString(content.frontmatter, "tagline") || "A Christmas Eve gone catastrophically wrong in space."
       : "A Christmas Eve gone catastrophically wrong in space.";
+  const title = dict.meta?.title || `${fallbackTitle} | Fables Monster Studio`;
+  const description = dict.meta?.description || tagline;
+  const social = buildSocialMetadata({
+    lang,
+    path: "/holiday-audit-kramp",
+    title,
+    description,
+    type: "article",
+    imagePath: `/${lang}/holiday-audit-kramp/opengraph-image`,
+    twitterImagePath: `/${lang}/holiday-audit-kramp/twitter-image`,
+  });
 
   return {
-    title: dict.meta?.title || `${title} | Fables Monster Studio`,
-    description: dict.meta?.description || tagline,
-    alternates: {
-      canonical: `https://fables.monster/${lang}/holiday-audit-kramp`,
-      languages: {
-        en: "https://fables.monster/en/holiday-audit-kramp",
-        ru: "https://fables.monster/ru/holiday-audit-kramp",
-      },
-    },
+    title,
+    description,
+    ...social,
   };
 }
 

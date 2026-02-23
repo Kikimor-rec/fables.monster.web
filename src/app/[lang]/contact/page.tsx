@@ -2,22 +2,26 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import FadeIn from '@/components/FadeIn';
 import ContactForm from '@/components/ContactForm';
+import { buildSocialMetadata } from '@/lib/metadata';
 import { getDictionary } from '@/lib/i18n';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const dict = await getDictionary(lang, 'common');
+  const title = dict.contact.metaTitle || 'Contact';
+  const description = dict.contact.metaDescription || 'Get in touch with Fables Monster Studio';
+  const social = buildSocialMetadata({
+    lang,
+    path: '/contact',
+    title,
+    description,
+    imagePath: `/${lang}/opengraph-image`,
+  });
 
   return {
-    title: dict.contact.metaTitle || 'Contact | Fables Monster Studio',
-    description: dict.contact.metaDescription || 'Get in touch with Fables Monster Studio',
-    alternates: {
-      canonical: `https://fables.monster/${lang}/contact`,
-      languages: {
-        en: 'https://fables.monster/en/contact',
-        ru: 'https://fables.monster/ru/contact',
-      },
-    },
+    title,
+    description,
+    ...social,
   };
 }
 

@@ -7,6 +7,9 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 const nextConfig: NextConfig = {
   outputFileTracingRoot: path.resolve(__dirname),
+  experimental: {
+    devtoolSegmentExplorer: false,
+  },
   images: {
     formats: ['image/webp', 'image/avif'],
     qualities: [75, 85, 90],

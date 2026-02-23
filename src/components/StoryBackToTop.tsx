@@ -27,6 +27,11 @@ const toneFontClasses: Record<Tone, string> = {
 export default function StoryBackToTop({ tone = "red" }: StoryBackToTopProps) {
   const [visible, setVisible] = useState(false);
 
+  const scrollToTop = () => {
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.scrollTo({ top: 0, behavior: prefersReducedMotion ? "auto" : "smooth" });
+  };
+
   useEffect(() => {
     let rafId: number | null = null;
 
@@ -61,7 +66,7 @@ export default function StoryBackToTop({ tone = "red" }: StoryBackToTopProps) {
   return (
     <button
       type="button"
-      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      onClick={scrollToTop}
       className={`fixed bottom-5 right-4 z-40 min-h-[44px] min-w-[44px] border px-3 py-2.5 text-xs tracking-[0.14em] uppercase backdrop-blur transition-colors ${toneFontClasses[tone]} ${toneClasses[tone]}`}
       aria-label="Back to top"
     >

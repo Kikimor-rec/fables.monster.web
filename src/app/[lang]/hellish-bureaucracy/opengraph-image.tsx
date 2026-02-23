@@ -10,10 +10,10 @@ export default async function Image({ params }: { params: Promise<{ lang: string
   const isRu = lang === "ru";
 
   return createStudioOgImage({
-    theme: "core",
-    kicker: isRu ? "Независимая студия НРИ" : "Independent TTRPG Studio",
-    title: "Fables Monster",
-    subtitle: isRu ? "Приключения и инструменты для настольных ролевых игр" : "Tabletop RPG adventures and tools",
-    badge: "Studio",
+    theme: "hellish",
+    kicker: isRu ? "Административный протокол" : "Administrative Protocol",
+    title: "Hellish Bureaucracy",
+    subtitle: isRu ? "Тёмная комедия о выживании в аду бумажной волокиты" : "Dark comedy about surviving infernal paperwork",
+    badge: "In Development",
   });
 }

@@ -1,22 +1,26 @@
 import { Metadata } from "next";
 import NewsletterForm from "@/components/NewsletterForm";
 import { getDictionary } from "@/lib/i18n";
+import { buildSocialMetadata } from "@/lib/metadata";
 import Link from "next/link";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const dict = await getDictionary(lang, 'newsletter');
+  const title = dict.subscribe.metaTitle || 'Subscribe to Newsletter';
+  const description = dict.subscribe.metaDescription || 'Subscribe to Fables Monster Studio newsletter';
+  const social = buildSocialMetadata({
+    lang,
+    path: '/newsletter/subscribe',
+    title,
+    description,
+    imagePath: `/${lang}/opengraph-image`,
+  });
 
   return {
-    title: dict.subscribe.metaTitle || 'Subscribe to Newsletter | Fables Monster Studio',
-    description: dict.subscribe.metaDescription || 'Subscribe to Fables Monster Studio newsletter',
-    alternates: {
-      canonical: `https://fables.monster/${lang}/newsletter/subscribe`,
-      languages: {
-        'en': 'https://fables.monster/en/newsletter/subscribe',
-        'ru': 'https://fables.monster/ru/newsletter/subscribe',
-      },
-    },
+    title,
+    description,
+    ...social,
   };
 }
 
@@ -32,7 +36,7 @@ export default async function NewsletterSubscribe({ params }: { params: Promise<
 
         <div className="relative z-10 max-w-4xl mx-auto px-6">
           <div className="text-center mb-12">
-            <h1 className="text-6xl md:text-8xl font-bold text-white mb-6 font-orbitron tracking-wider text-glow-lg">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-white mb-6 font-orbitron tracking-[0.06em] text-glow-lg">
               {dict.subscribe.title || 'SUBSCRIBE'}
             </h1>
             <p className="text-xl text-gray-300 font-rajdhani max-w-2xl mx-auto">

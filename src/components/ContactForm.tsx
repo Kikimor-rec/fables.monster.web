@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useId, useState } from "react";
 import { ZodIssue } from "zod";
 
 interface FormErrors {
@@ -36,6 +36,15 @@ export default function ContactForm({ dict }: ContactFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
   const [errors, setErrors] = useState<FormErrors>({});
+  const inputPrefix = useId();
+
+  const nameInputId = `${inputPrefix}-name`;
+  const emailInputId = `${inputPrefix}-email`;
+  const messageInputId = `${inputPrefix}-message`;
+  const nameErrorId = `${nameInputId}-error`;
+  const emailErrorId = `${emailInputId}-error`;
+  const messageErrorId = `${messageInputId}-error`;
+  const generalErrorId = `${inputPrefix}-error-general`;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -104,7 +113,7 @@ export default function ContactForm({ dict }: ContactFormProps) {
       </h3>
 
       {submitStatus === "success" && (
-        <div className="mb-6 p-4 bg-green-900/20 border border-green-500/80 text-green-300 font-rajdhani text-sm flex items-center gap-2">
+        <div role="status" aria-live="polite" className="mb-6 p-4 bg-green-900/20 border border-green-500/80 text-green-300 font-rajdhani text-sm flex items-center gap-2">
           <svg className="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M20 6L9 17l-5-5" />
           </svg>
@@ -113,7 +122,7 @@ export default function ContactForm({ dict }: ContactFormProps) {
       )}
 
       {submitStatus === "error" && (
-        <div className="mb-6 p-4 bg-red-950/40 border border-red-500/80 text-red-300 font-rajdhani text-sm flex items-start gap-2">
+        <div id={generalErrorId} role="alert" aria-live="assertive" className="mb-6 p-4 bg-red-950/40 border border-red-500/80 text-red-300 font-rajdhani text-sm flex items-start gap-2">
           <svg className="w-5 h-5 flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M18 6L6 18M6 6l12 12" />
           </svg>
@@ -126,51 +135,72 @@ export default function ContactForm({ dict }: ContactFormProps) {
 
       <form onSubmit={handleSubmit} className="space-y-6">
         <div>
-          <label className="block text-white font-orbitron font-bold mb-2">
+          <label htmlFor={nameInputId} className="block text-white font-orbitron font-bold mb-2">
             {dict?.name || "NAME"} *
           </label>
           <input
+            id={nameInputId}
             type="text"
             name="name"
             value={formData.name}
             onChange={handleChange}
             required
+            aria-invalid={Boolean(errors.name)}
+            aria-describedby={errors.name ? nameErrorId : undefined}
             className="w-full bg-black/55 border border-zinc-700 text-white px-4 py-3 font-rajdhani focus:outline-none focus:border-red-400"
             placeholder={dict?.namePlaceholder || "Your name"}
           />
-          {errors.name && <p className="text-red-400 text-xs mt-1">{errors.name}</p>}
+          {errors.name && (
+            <p id={nameErrorId} className="text-red-400 text-xs mt-1" role="alert" aria-live="assertive">
+              {errors.name}
+            </p>
+          )}
         </div>
 
         <div>
-          <label className="block text-white font-orbitron font-bold mb-2">
+          <label htmlFor={emailInputId} className="block text-white font-orbitron font-bold mb-2">
             {dict?.email || "EMAIL"} *
           </label>
           <input
+            id={emailInputId}
             type="email"
             name="email"
             value={formData.email}
             onChange={handleChange}
             required
+            aria-invalid={Boolean(errors.email)}
+            aria-describedby={errors.email ? emailErrorId : errors.general ? generalErrorId : undefined}
             className="w-full bg-black/55 border border-zinc-700 text-white px-4 py-3 font-rajdhani focus:outline-none focus:border-red-400"
             placeholder={dict?.emailPlaceholder || "your@email.com"}
           />
-          {errors.email && <p className="text-red-400 text-xs mt-1">{errors.email}</p>}
+          {errors.email && (
+            <p id={emailErrorId} className="text-red-400 text-xs mt-1" role="alert" aria-live="assertive">
+              {errors.email}
+            </p>
+          )}
         </div>
 
         <div>
-          <label className="block text-white font-orbitron font-bold mb-2">
+          <label htmlFor={messageInputId} className="block text-white font-orbitron font-bold mb-2">
             {dict?.message || "MESSAGE"} *
           </label>
           <textarea
+            id={messageInputId}
             name="message"
             value={formData.message}
             onChange={handleChange}
             required
             rows={6}
+            aria-invalid={Boolean(errors.message)}
+            aria-describedby={errors.message ? messageErrorId : undefined}
             className="w-full bg-black/55 border border-zinc-700 text-white px-4 py-3 font-rajdhani focus:outline-none focus:border-red-400"
             placeholder={dict?.messagePlaceholder || "Your message..."}
           />
-          {errors.message && <p className="text-red-400 text-xs mt-1">{errors.message}</p>}
+          {errors.message && (
+            <p id={messageErrorId} className="text-red-400 text-xs mt-1" role="alert" aria-live="assertive">
+              {errors.message}
+            </p>
+          )}
         </div>
 
         <button

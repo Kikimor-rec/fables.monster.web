@@ -10,10 +10,10 @@ export default async function Image({ params }: { params: Promise<{ lang: string
   const isRu = lang === "ru";
 
   return createStudioOgImage({
-    theme: "core",
-    kicker: isRu ? "Независимая студия НРИ" : "Independent TTRPG Studio",
-    title: "Fables Monster",
-    subtitle: isRu ? "Приключения и инструменты для настольных ролевых игр" : "Tabletop RPG adventures and tools",
-    badge: "Studio",
+    theme: "expedition",
+    kicker: isRu ? "Миссия // APEX-418" : "Mission // APEX-418",
+    title: isRu ? "Экспедиция-418" : "Expedition-418",
+    subtitle: isRu ? "Extraction-НРИ о роботах в глубоком космосе" : "Extraction TTRPG about robots in deep space",
+    badge: "In Development",
   });
 }

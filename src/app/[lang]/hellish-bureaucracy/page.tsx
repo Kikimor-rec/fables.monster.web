@@ -5,6 +5,7 @@ import StoryProgressBar from '@/components/StoryProgressBar';
 import StoryBackToTop from '@/components/StoryBackToTop';
 import { getContent, getFrontmatterString } from '@/lib/content';
 import { getDictionary } from '@/lib/i18n';
+import { buildSocialMetadata } from '@/lib/metadata';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -16,17 +17,20 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const title = content ? getFrontmatterString(content.frontmatter, 'title') || 'Hellish Bureaucracy' : 'Hellish Bureaucracy';
   const fallbackTagline = projectDict?.defaultTagline || 'Navigate the administrative nightmare of Hell.';
   const tagline = content ? getFrontmatterString(content.frontmatter, 'tagline') || fallbackTagline : fallbackTagline;
+  const social = buildSocialMetadata({
+    lang,
+    path: '/hellish-bureaucracy',
+    title,
+    description: tagline,
+    type: 'article',
+    imagePath: `/${lang}/hellish-bureaucracy/opengraph-image`,
+    twitterImagePath: `/${lang}/hellish-bureaucracy/twitter-image`,
+  });
   
   return {
-    title: `${title} | Fables Monster Studio`,
+    title,
     description: tagline,
-    alternates: {
-      canonical: `https://fables.monster/${lang}/hellish-bureaucracy`,
-      languages: {
-        'en': 'https://fables.monster/en/hellish-bureaucracy',
-        'ru': 'https://fables.monster/ru/hellish-bureaucracy',
-      },
-    },
+    ...social,
   }
 }
 

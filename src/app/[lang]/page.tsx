@@ -5,6 +5,7 @@ import FadeIn from "@/components/FadeIn";
 import OptimizedImage from "@/components/OptimizedImage";
 import CompactTeamMember from "@/components/CompactTeamMember";
 import StayConnectedSection from "@/components/StayConnectedSection";
+import { buildSocialMetadata } from "@/lib/metadata";
 import { teamMembers } from "@/data/team";
 import { getDictionary } from '@/lib/i18n';
 import { getAllProjects, getFrontmatterString, getFrontmatterObject } from '@/lib/content';
@@ -22,27 +23,23 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     const { lang } = await params;
     const dict = await getDictionary(lang, 'home');
 
+    const title = dict.meta?.title || 'Fables Monster Studio - Independent Tabletop RPG Creators';
+    const description = dict.meta?.description || 'Create unforgettable tabletop RPG experiences with Fables Monster Studio.';
+    const social = buildSocialMetadata({
+        lang,
+        path: '',
+        title: dict.meta?.ogTitle || title,
+        description: dict.meta?.ogDescription || description,
+        imagePath: `/${lang}/opengraph-image`,
+        twitterImagePath: `/${lang}/twitter-image`,
+        includeXDefault: true,
+    });
+
     return {
-        title: dict.meta?.title || 'Fables Monster Studio - Independent Tabletop RPG Creators',
-        description: dict.meta?.description || 'Create unforgettable tabletop RPG experiences with Fables Monster Studio.',
+        title,
+        description,
         keywords: dict.meta?.keywords,
-        alternates: {
-            canonical: `https://fables.monster/${lang}`,
-            languages: {
-                'en': 'https://fables.monster/en',
-                'ru': 'https://fables.monster/ru',
-                'x-default': 'https://fables.monster/en',
-            },
-        },
-        openGraph: {
-            title: dict.meta?.ogTitle || dict.meta?.title || 'Fables Monster Studio - Independent Tabletop RPG Creators',
-            description: dict.meta?.ogDescription || dict.meta?.description || 'Create unforgettable tabletop RPG experiences.',
-            url: `https://fables.monster/${lang}`,
-            siteName: 'Fables Monster Studio',
-            locale: lang === 'ru' ? 'ru_RU' : 'en_US',
-            type: 'website',
-            images: ['/logos/fm-logo-sqare.png'],
-        },
+        ...social,
     };
 }
 

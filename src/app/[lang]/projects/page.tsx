@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import FadeIn from '@/components/FadeIn';
+import { buildSocialMetadata } from '@/lib/metadata';
 import { getAllProjects, getFrontmatterString } from '@/lib/content';
 import { getDictionary } from '@/lib/i18n';
 
@@ -14,17 +15,20 @@ const isInDevelopmentStatus = (status: string) => ['in-development', 'in develop
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const dict = await getDictionary(lang, 'common');
+  const title = dict.nav?.projects || 'Projects';
+  const description = dict.projects?.metaDescription || 'Explore our tabletop RPG adventures and digital experiences. From sci-fi horror to cyberpunk mysteries.';
+  const social = buildSocialMetadata({
+    lang,
+    path: '/projects',
+    title,
+    description,
+    imagePath: `/${lang}/opengraph-image`,
+  });
 
   return {
-    title: `${dict.nav?.projects || 'Projects'} | Fables Monster Studio`,
-    description: dict.projects?.metaDescription || 'Explore our tabletop RPG adventures and digital experiences. From sci-fi horror to cyberpunk mysteries.',
-    alternates: {
-      canonical: `https://fables.monster/${lang}/projects`,
-      languages: {
-        en: 'https://fables.monster/en/projects',
-        ru: 'https://fables.monster/ru/projects',
-      },
-    },
+    title,
+    description,
+    ...social,
   };
 }
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useId, useState, type FormEvent } from "react";
 import Link from "next/link";
 import type { NewsletterUnsubscribeDict } from "@/types/i18n";
 
@@ -14,6 +14,8 @@ export default function NewsletterUnsubscribeClient({ lang, dict }: NewsletterUn
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error" | "notfound">("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const emailInputId = useId();
+  const errorMessageId = `${emailInputId}-error`;
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -58,7 +60,7 @@ export default function NewsletterUnsubscribeClient({ lang, dict }: NewsletterUn
 
         <div className="relative z-10 max-w-4xl mx-auto px-6">
           <div className="text-center mb-12">
-            <h1 className="text-6xl md:text-8xl font-bold text-white mb-6 font-orbitron tracking-wider text-glow-lg">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-white mb-6 font-orbitron tracking-[0.06em] text-glow-lg">
               {dict.title}
             </h1>
             <p className="text-xl text-gray-300 font-rajdhani max-w-2xl mx-auto">{dict.description}</p>
@@ -67,7 +69,7 @@ export default function NewsletterUnsubscribeClient({ lang, dict }: NewsletterUn
           <div className="max-w-2xl mx-auto">
             <div className="bg-black border border-red-700 p-8">
               {submitStatus === "success" && (
-                <div className="mb-6 p-4 bg-green-900/20 border border-green-500 text-green-300 font-rajdhani text-sm flex items-center gap-2">
+                <div role="status" aria-live="polite" className="mb-6 p-4 bg-green-900/20 border border-green-500 text-green-300 font-rajdhani text-sm flex items-center gap-2">
                   <svg className="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M20 6L9 17l-5-5" />
                   </svg>
@@ -76,7 +78,7 @@ export default function NewsletterUnsubscribeClient({ lang, dict }: NewsletterUn
               )}
 
               {submitStatus === "notfound" && (
-                <div className="mb-6 p-4 bg-yellow-900/20 border border-yellow-500 text-yellow-300 font-rajdhani text-sm flex items-start gap-2">
+                <div id={errorMessageId} role="alert" aria-live="assertive" className="mb-6 p-4 bg-yellow-900/20 border border-yellow-500 text-yellow-300 font-rajdhani text-sm flex items-start gap-2">
                   <svg className="w-5 h-5 flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                   </svg>
@@ -85,7 +87,7 @@ export default function NewsletterUnsubscribeClient({ lang, dict }: NewsletterUn
               )}
 
               {submitStatus === "error" && (
-                <div className="mb-6 p-4 bg-red-900/20 border border-red-500 text-red-300 font-rajdhani text-sm flex items-start gap-2">
+                <div id={errorMessageId} role="alert" aria-live="assertive" className="mb-6 p-4 bg-red-900/20 border border-red-500 text-red-300 font-rajdhani text-sm flex items-start gap-2">
                   <svg className="w-5 h-5 flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M18 6L6 18M6 6l12 12" />
                   </svg>
@@ -95,12 +97,15 @@ export default function NewsletterUnsubscribeClient({ lang, dict }: NewsletterUn
 
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label className="block text-white font-orbitron font-bold mb-2 text-sm">{dict.email} *</label>
+                  <label htmlFor={emailInputId} className="block text-white font-orbitron font-bold mb-2 text-sm">{dict.email} *</label>
                   <input
+                    id={emailInputId}
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
+                    aria-invalid={submitStatus === "error" || submitStatus === "notfound"}
+                    aria-describedby={submitStatus === "error" || submitStatus === "notfound" ? errorMessageId : undefined}
                     className="w-full bg-gray-800 border border-red-700 text-white px-4 py-3 font-rajdhani focus:outline-none focus:border-red-400"
                     placeholder={dict.emailPlaceholder}
                   />

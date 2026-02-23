@@ -1,21 +1,25 @@
 import { Metadata } from "next";
 import { getDictionary } from "@/lib/i18n";
+import { buildSocialMetadata } from "@/lib/metadata";
 import Link from "next/link";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const dict = await getDictionary(lang, 'newsletter');
+  const title = dict.confirmation.metaTitle || 'Subscription Confirmation';
+  const description = dict.confirmation.metaDescription || 'Confirm your newsletter subscription';
+  const social = buildSocialMetadata({
+    lang,
+    path: '/newsletter/confirm',
+    title,
+    description,
+    imagePath: `/${lang}/opengraph-image`,
+  });
 
   return {
-    title: dict.confirmation.metaTitle || 'Subscription Confirmation | Fables Monster Studio',
-    description: dict.confirmation.metaDescription || 'Confirm your newsletter subscription',
-    alternates: {
-      canonical: `https://fables.monster/${lang}/newsletter/confirm`,
-      languages: {
-        'en': 'https://fables.monster/en/newsletter/confirm',
-        'ru': 'https://fables.monster/ru/newsletter/confirm',
-      },
-    },
+    title,
+    description,
+    ...social,
   };
 }
 
@@ -31,7 +35,7 @@ export default async function NewsletterConfirm({ params }: { params: Promise<{ 
 
         <div className="relative z-10 max-w-4xl mx-auto px-6">
           <div className="text-center mb-12">
-            <h1 className="text-6xl md:text-8xl font-bold text-white mb-6 font-orbitron tracking-wider text-glow-lg">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-white mb-6 font-orbitron tracking-[0.06em] text-glow-lg">
               {dict.confirmation.title || 'CONFIRMATION'}
             </h1>
           </div>

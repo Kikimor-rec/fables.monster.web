@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useId, useState } from "react";
 import { ZodIssue } from "zod";
 
 interface FormErrors {
@@ -36,6 +36,13 @@ export default function NewsletterForm({ dict, lang = 'en', compact = false }: N
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
   const [errors, setErrors] = useState<FormErrors>({});
+  const inputPrefix = useId();
+
+  const nameInputId = `${inputPrefix}-name`;
+  const emailInputId = `${inputPrefix}-email`;
+  const nameErrorId = `${nameInputId}-error`;
+  const emailErrorId = `${emailInputId}-error`;
+  const generalErrorId = `${inputPrefix}-error-general`;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -101,7 +108,7 @@ export default function NewsletterForm({ dict, lang = 'en', compact = false }: N
     return (
       <div className="w-full">
         {submitStatus === "success" ? (
-          <div className="p-4 bg-green-900/20 border border-green-500 text-green-300 font-rajdhani text-sm flex items-center gap-2">
+          <div role="status" aria-live="polite" className="p-4 bg-green-900/20 border border-green-500 text-green-300 font-rajdhani text-sm flex items-center gap-2">
             <svg className="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M20 6L9 17l-5-5" />
             </svg>
@@ -109,12 +116,18 @@ export default function NewsletterForm({ dict, lang = 'en', compact = false }: N
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2">
+            <label htmlFor={emailInputId} className="sr-only">
+              {dict?.email || "Email"}
+            </label>
             <input
+              id={emailInputId}
               type="email"
               name="email"
               value={formData.email}
               onChange={handleChange}
               required
+              aria-invalid={Boolean(errors.email)}
+              aria-describedby={errors.email ? emailErrorId : errors.general ? generalErrorId : undefined}
               className="flex-1 bg-gray-800 border border-red-700 text-white px-4 py-2 font-rajdhani text-sm focus:outline-none focus:border-red-400"
               placeholder={dict?.emailPlaceholder || "your@email.com"}
             />
@@ -127,8 +140,16 @@ export default function NewsletterForm({ dict, lang = 'en', compact = false }: N
             </button>
           </form>
         )}
-        {errors.email && <p className="text-red-400 text-xs mt-1">{errors.email}</p>}
-        {errors.general && <p className="text-red-400 text-xs mt-1">{errors.general}</p>}
+        {errors.email && (
+          <p id={emailErrorId} className="text-red-400 text-xs mt-1" role="alert" aria-live="assertive">
+            {errors.email}
+          </p>
+        )}
+        {errors.general && (
+          <p id={generalErrorId} className="text-red-400 text-xs mt-1" role="alert" aria-live="assertive">
+            {errors.general}
+          </p>
+        )}
       </div>
     );
   }
@@ -146,7 +167,7 @@ export default function NewsletterForm({ dict, lang = 'en', compact = false }: N
       )}
 
       {submitStatus === "success" && (
-        <div className="mb-6 p-4 bg-green-900/20 border border-green-500 text-green-300 font-rajdhani text-sm flex items-center gap-2">
+        <div role="status" aria-live="polite" className="mb-6 p-4 bg-green-900/20 border border-green-500 text-green-300 font-rajdhani text-sm flex items-center gap-2">
           <svg className="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M20 6L9 17l-5-5" />
           </svg>
@@ -155,7 +176,7 @@ export default function NewsletterForm({ dict, lang = 'en', compact = false }: N
       )}
 
       {submitStatus === "error" && (
-        <div className="mb-6 p-4 bg-red-900/20 border border-red-500 text-red-300 font-rajdhani text-sm flex items-start gap-2">
+        <div id={generalErrorId} role="alert" aria-live="assertive" className="mb-6 p-4 bg-red-900/20 border border-red-500 text-red-300 font-rajdhani text-sm flex items-start gap-2">
           <svg className="w-5 h-5 flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M18 6L6 18M6 6l12 12" />
           </svg>
@@ -168,34 +189,48 @@ export default function NewsletterForm({ dict, lang = 'en', compact = false }: N
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label className="block text-white font-orbitron font-bold mb-2 text-sm">
+          <label htmlFor={nameInputId} className="block text-white font-orbitron font-bold mb-2 text-sm">
             {dict?.name || "NAME"} ({dict?.nameOptionalLabel || "optional"})
           </label>
           <input
+            id={nameInputId}
             type="text"
             name="name"
             value={formData.name}
             onChange={handleChange}
+            aria-invalid={Boolean(errors.name)}
+            aria-describedby={errors.name ? nameErrorId : undefined}
             className="w-full bg-gray-800 border border-red-700 text-white px-4 py-3 font-rajdhani focus:outline-none focus:border-red-400"
             placeholder={dict?.namePlaceholder || "Your name"}
           />
-          {errors.name && <p className="text-red-400 text-xs mt-1">{errors.name}</p>}
+          {errors.name && (
+            <p id={nameErrorId} className="text-red-400 text-xs mt-1" role="alert" aria-live="assertive">
+              {errors.name}
+            </p>
+          )}
         </div>
 
         <div>
-          <label className="block text-white font-orbitron font-bold mb-2 text-sm">
+          <label htmlFor={emailInputId} className="block text-white font-orbitron font-bold mb-2 text-sm">
             {dict?.email || "EMAIL"} *
           </label>
           <input
+            id={emailInputId}
             type="email"
             name="email"
             value={formData.email}
             onChange={handleChange}
             required
+            aria-invalid={Boolean(errors.email)}
+            aria-describedby={errors.email ? emailErrorId : errors.general ? generalErrorId : undefined}
             className="w-full bg-gray-800 border border-red-700 text-white px-4 py-3 font-rajdhani focus:outline-none focus:border-red-400"
             placeholder={dict?.emailPlaceholder || "your@email.com"}
           />
-          {errors.email && <p className="text-red-400 text-xs mt-1">{errors.email}</p>}
+          {errors.email && (
+            <p id={emailErrorId} className="text-red-400 text-xs mt-1" role="alert" aria-live="assertive">
+              {errors.email}
+            </p>
+          )}
         </div>
 
         <button

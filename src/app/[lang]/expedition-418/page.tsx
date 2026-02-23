@@ -1,6 +1,7 @@
 import { Metadata } from "next";
-import { Exo_2, Inter, Manrope, Saira_Stencil_One, Rock_Salt } from "next/font/google";
+import { Exo_2, Inter, Rock_Salt, Russo_One, Saira_Stencil_One, Tektur } from "next/font/google";
 import { getDictionary } from "@/lib/i18n";
+import { buildSocialMetadata } from "@/lib/metadata";
 import type { Expedition418Dict } from "@/types/i18n";
 import StoryProgressBar from "@/components/StoryProgressBar";
 import StorySectionNav from "@/components/StorySectionNav";
@@ -13,14 +14,21 @@ import ExpeditionAboutSection from "@/components/expedition-418/ExpeditionAboutS
 import ExpeditionPlaytestSection from "@/components/expedition-418/ExpeditionPlaytestSection";
 import { getExpeditionFeatures, getExpeditionStats } from "@/components/expedition-418/expedition-data";
 
-const expeditionHeading = Saira_Stencil_One({
+const expeditionHeadingLatin = Saira_Stencil_One({
   subsets: ["latin"],
   variable: "--font-exp-heading",
   display: "swap",
   weight: "400",
 });
 
-const expeditionBody = Manrope({
+const expeditionHeadingCyr = Russo_One({
+  subsets: ["latin", "cyrillic"],
+  variable: "--font-exp-heading",
+  display: "swap",
+  weight: "400",
+});
+
+const expeditionBody = Tektur({
   subsets: ["latin", "cyrillic"],
   variable: "--font-exp-body",
   display: "swap",
@@ -51,17 +59,21 @@ const expeditionHand = Rock_Salt({
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const dict = (await getDictionary(lang, "expedition-418")) as Expedition418Dict;
+  const social = buildSocialMetadata({
+    lang,
+    path: "/expedition-418",
+    title: dict.meta.title,
+    description: dict.meta.description,
+    type: "article",
+    imagePath: `/${lang}/expedition-418/opengraph-image`,
+    twitterImagePath: `/${lang}/expedition-418/twitter-image`,
+    imageAlt: dict.hero.title,
+  });
 
   return {
     title: dict.meta.title,
     description: dict.meta.description,
-    alternates: {
-      canonical: `https://fables.monster/${lang}/expedition-418`,
-      languages: {
-        en: "https://fables.monster/en/expedition-418",
-        ru: "https://fables.monster/ru/expedition-418",
-      },
-    },
+    ...social,
   };
 }
 
@@ -70,6 +82,7 @@ export const dynamic = "force-static";
 export default async function Expedition418({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   const dict = (await getDictionary(lang, "expedition-418")) as Expedition418Dict;
+  const headingVariable = lang === "ru" ? expeditionHeadingCyr.variable : expeditionHeadingLatin.variable;
 
   const sectionNavItems = [
     { id: "intel", label: dict.nav.intel },
@@ -84,7 +97,7 @@ export default async function Expedition418({ params }: { params: Promise<{ lang
 
   return (
     <div
-      className={`${expeditionHeading.variable} ${expeditionBody.variable} ${expeditionAccent.variable} ${expeditionUi.variable} ${expeditionHand.variable} min-h-screen bg-[#18213c] text-[#c6d9c6]`}
+      className={`${headingVariable} ${expeditionBody.variable} ${expeditionAccent.variable} ${expeditionUi.variable} ${expeditionHand.variable} min-h-screen bg-[#18213c] text-[#c6d9c6]`}
     >
       <StoryProgressBar accent="amber" />
       <div aria-hidden="true" className="expedition-scanline" />

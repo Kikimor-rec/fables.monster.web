@@ -758,6 +758,12 @@ export interface Expedition418PlaytestDict {
   incoming: string;
   paragraph1: string;
   paragraph2: string;
+  portal: {
+    overline: string;
+    title: string;
+    description: string;
+    button: string;
+  };
   buttons: {
     discord: string;
     subscribe: string;

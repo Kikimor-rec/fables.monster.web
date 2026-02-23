@@ -1,21 +1,25 @@
 import { Metadata } from "next";
 import { getDictionary } from "@/lib/i18n";
+import { buildSocialMetadata } from "@/lib/metadata";
 import NewsletterUnsubscribeClient from "@/components/NewsletterUnsubscribeClient";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const dict = await getDictionary(lang, "newsletter");
+  const title = dict.unsubscribe.metaTitle || "Unsubscribe from Newsletter";
+  const description = dict.unsubscribe.metaDescription || "Unsubscribe from Fables Monster Studio newsletter.";
+  const social = buildSocialMetadata({
+    lang,
+    path: "/newsletter/unsubscribe",
+    title,
+    description,
+    imagePath: `/${lang}/opengraph-image`,
+  });
 
   return {
-    title: dict.unsubscribe.metaTitle || "Unsubscribe from Newsletter | Fables Monster Studio",
-    description: dict.unsubscribe.metaDescription || "Unsubscribe from Fables Monster Studio newsletter.",
-    alternates: {
-      canonical: `https://fables.monster/${lang}/newsletter/unsubscribe`,
-      languages: {
-        en: "https://fables.monster/en/newsletter/unsubscribe",
-        ru: "https://fables.monster/ru/newsletter/unsubscribe",
-      },
-    },
+    title,
+    description,
+    ...social,
   };
 }
 

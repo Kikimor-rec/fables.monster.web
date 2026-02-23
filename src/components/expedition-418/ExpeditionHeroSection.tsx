@@ -22,24 +22,24 @@ export default function ExpeditionHeroSection({ dict }: ExpeditionHeroSectionPro
 
         <div className="mb-8 mt-2 inline-block max-w-full text-center md:mb-10">
           <div className="relative inline-block max-w-full">
-            <h1 className="relative z-10 text-4xl font-bold uppercase tracking-tight text-[#c6d9c6] opacity-90 drop-shadow-[0_6px_0_rgba(24,33,60,0.45)] sm:text-6xl md:text-8xl lg:text-9xl [font-family:var(--font-exp-heading)]">
+            <h1 className="relative z-10 text-4xl font-bold uppercase tracking-tight leading-[0.92] text-[#c6d9c6] opacity-90 drop-shadow-[0_6px_0_rgba(24,33,60,0.45)] sm:text-6xl md:text-8xl lg:text-9xl [font-family:var(--font-exp-heading)]">
               {dict.hero.title}
             </h1>
-            <div className="absolute -right-8 -top-6 rotate-12 bg-[#ec544c] px-3 py-1 text-xs font-bold text-[#18213c] shadow-lg transition-transform hover:scale-110 sm:-right-10 sm:px-4 sm:text-sm md:-right-16 [font-family:var(--font-exp-heading)]">
+            <div className="absolute right-0 top-0 translate-x-1 -translate-y-2 rotate-12 bg-[#ec544c] px-2 py-1 text-[10px] font-bold text-[#18213c] shadow-lg transition-transform hover:scale-110 sm:-right-10 sm:-top-6 sm:translate-x-0 sm:translate-y-0 sm:px-4 sm:text-sm md:-right-16 [font-family:var(--font-exp-heading)]">
               EST. 2426
             </div>
           </div>
         </div>
 
         <div className="mb-12 relative">
-          <div className="relative whitespace-nowrap text-xl tracking-[0.08em] text-[#f67b40] sm:text-2xl sm:tracking-[0.12em] md:text-4xl [font-family:var(--font-exp-heading)]">
-            <span className="relative inline-block">
+          <div className="relative flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-lg tracking-[0.08em] text-[#f67b40] sm:text-2xl sm:tracking-[0.12em] md:text-4xl [font-family:var(--font-exp-heading)]">
+            <span className="relative inline-flex flex-col items-center sm:inline-block">
               <span className="expedition-strike-hand">ROLE</span>
-              <span className="absolute -top-6 left-1/2 -translate-x-1/2 -rotate-6 whitespace-nowrap text-2xl text-[#ec544c] drop-shadow-md sm:text-3xl sm:-top-7 md:-top-8 md:text-5xl [font-family:var(--font-exp-hand)]">
+              <span className="mt-1 -rotate-6 whitespace-nowrap text-2xl text-[#ec544c] drop-shadow-md sm:absolute sm:-top-7 sm:left-1/2 sm:mt-0 sm:-translate-x-1/2 sm:text-3xl md:-top-8 md:text-5xl [font-family:var(--font-exp-hand)]">
                 Rover
               </span>
             </span>
-            <span>PLAYING GAME</span>
+            <span className="sm:pl-1">PLAYING GAME</span>
           </div>
         </div>
 

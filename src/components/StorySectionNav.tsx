@@ -111,15 +111,17 @@ export default function StorySectionNav({
       return;
     }
 
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
     window.scrollTo({
       top: section.offsetTop - 130,
-      behavior: "smooth",
+      behavior: prefersReducedMotion ? "auto" : "smooth",
     });
   };
 
   return (
     <nav className={`sticky ${topClassName} z-30 border-y backdrop-blur-lg ${toneContainerClasses[tone]}`} aria-label="Section navigation">
-      <div className="fm-shell overflow-x-auto scrollbar-hide">
+      <div className="fm-shell overflow-x-auto">
         <ul className="flex min-w-max items-center justify-start gap-2 py-2">
           {items.map((item) => {
             const isActive = activeSection === item.id;
