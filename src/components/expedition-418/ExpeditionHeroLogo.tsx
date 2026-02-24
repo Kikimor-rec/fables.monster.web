@@ -20,12 +20,12 @@ export default function ExpeditionHeroLogo({ title }: ExpeditionHeroLogoProps) {
 
   return (
     <Image
-      src="/logos/logo-white-new.svg"
+      src="/logos/expedition-418-logo.png"
       alt={title}
       width={520}
-      height={134}
+      height={520}
       priority
-      className="mx-auto w-64 sm:w-80 md:w-[420px] lg:w-[520px] drop-shadow-[0_6px_18px_rgba(246,123,64,0.35)]"
+      className="mx-auto w-48 sm:w-64 md:w-80 lg:w-96 drop-shadow-[0_6px_18px_rgba(246,123,64,0.35)]"
       onError={() => setLogoFailed(true)}
     />
   );
