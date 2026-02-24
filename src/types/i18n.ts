@@ -768,6 +768,7 @@ export interface Expedition418PlaytestDict {
     discord: string;
     subscribe: string;
     patreon: string;
+    itch: string;
   };
 }
 

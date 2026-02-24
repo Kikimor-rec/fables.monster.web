@@ -85,7 +85,8 @@
     "buttons": {
       "discord": "DISCORD",
       "subscribe": "SUBSCRIBE",
-      "patreon": "SUPPORT ON PATREON"
+      "patreon": "SUPPORT ON PATREON",
+      "itch": "PLAY ON ITCH.IO"
     }
   }
 }
