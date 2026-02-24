@@ -1,32 +1,16 @@
-"use client";
-
-import { useState } from "react";
 import Image from "next/image";
 
-interface ExpeditionHeroLogoProps {
-  title: string;
-}
-
-export default function ExpeditionHeroLogo({ title }: ExpeditionHeroLogoProps) {
-  const [logoFailed, setLogoFailed] = useState(false);
-
-  if (logoFailed) {
-    return (
-      <h1 className="relative z-10 text-4xl font-bold uppercase tracking-tight leading-[0.92] text-[#c6d9c6] opacity-90 drop-shadow-[0_6px_0_rgba(24,33,60,0.45)] sm:text-6xl md:text-8xl lg:text-9xl [font-family:var(--font-exp-heading)]">
-        {title}
-      </h1>
-    );
-  }
-
+export default function ExpeditionHeroLogo() {
   return (
     <Image
-      src="/logos/logo-white-new.svg"
-      alt={title}
-      width={520}
-      height={134}
+      src="/logos/expedition-418-logo.png"
+      alt=""
+      aria-hidden="true"
+      width={4096}
+      height={1845}
+      sizes="(max-width: 640px) 320px, (max-width: 768px) 520px, (max-width: 1024px) 700px, 820px"
       priority
-      className="mx-auto w-64 sm:w-80 md:w-[420px] lg:w-[520px] drop-shadow-[0_6px_18px_rgba(246,123,64,0.35)]"
-      onError={() => setLogoFailed(true)}
+      className="mx-auto h-auto w-[320px] sm:w-[520px] md:w-[700px] lg:w-[820px] drop-shadow-[0_8px_26px_rgba(246,123,64,0.35)]"
     />
   );
 }

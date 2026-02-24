@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { Black_Ops_One, Exo_2, Inter, Rock_Salt, Tektur } from "next/font/google";
+import { Exo_2, Inter, Russo_One, Saira_Stencil_One, Tektur } from "next/font/google";
 import { getDictionary } from "@/lib/i18n";
 import { buildSocialMetadata } from "@/lib/metadata";
 import type { Expedition418Dict } from "@/types/i18n";
@@ -14,8 +14,15 @@ import ExpeditionAboutSection from "@/components/expedition-418/ExpeditionAboutS
 import ExpeditionPlaytestSection from "@/components/expedition-418/ExpeditionPlaytestSection";
 import { getExpeditionFeatures, getExpeditionStats } from "@/components/expedition-418/expedition-data";
 
-const expeditionHeading = Black_Ops_One({
+const expeditionHeadingLatin = Saira_Stencil_One({
   subsets: ["latin"],
+  variable: "--font-exp-heading",
+  display: "swap",
+  weight: "400",
+});
+
+const expeditionHeadingCyr = Russo_One({
+  subsets: ["latin", "cyrillic"],
   variable: "--font-exp-heading",
   display: "swap",
   weight: "400",
@@ -40,13 +47,6 @@ const expeditionUi = Inter({
   variable: "--font-exp-ui",
   display: "swap",
   weight: ["400", "500", "600", "700"],
-});
-
-const expeditionHand = Rock_Salt({
-  subsets: ["latin"],
-  variable: "--font-exp-hand",
-  display: "swap",
-  weight: "400",
 });
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
@@ -75,7 +75,7 @@ export const dynamic = "force-static";
 export default async function Expedition418({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   const dict = (await getDictionary(lang, "expedition-418")) as Expedition418Dict;
-  const headingVariable = expeditionHeading.variable;
+  const headingVariable = lang === "ru" ? expeditionHeadingCyr.variable : expeditionHeadingLatin.variable;
 
   const sectionNavItems = [
     { id: "intel", label: dict.nav.intel },
@@ -90,7 +90,7 @@ export default async function Expedition418({ params }: { params: Promise<{ lang
 
   return (
     <div
-      className={`${headingVariable} ${expeditionBody.variable} ${expeditionAccent.variable} ${expeditionUi.variable} ${expeditionHand.variable} min-h-screen bg-[#18213c] text-[#c6d9c6]`}
+      className={`${headingVariable} ${expeditionBody.variable} ${expeditionAccent.variable} ${expeditionUi.variable} min-h-screen bg-[#18213c] text-[#c6d9c6]`}
     >
       <StoryProgressBar accent="amber" />
       <div aria-hidden="true" className="expedition-scanline" />

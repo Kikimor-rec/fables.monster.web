@@ -795,28 +795,6 @@
     transform: scaleX(1);
 }
 
-.expedition-strike-hand {
-    position: relative;
-    display: inline-block;
-    margin-right: 0.35rem;
-}
-
-.expedition-strike-hand::before {
-    content: "";
-    position: absolute;
-    left: -5%;
-    top: 55%;
-    width: 110%;
-    height: 12px;
-    transform: translateY(-50%) rotate(-2deg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 100% 100%;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 10C40 5 70 18 110 10C150 2 180 12 198 8' stroke='%23FF683D' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-    pointer-events: none;
-    opacity: 0.9;
-}
-
 @keyframes expeditionBorderPulse {
     0%,
     100% {

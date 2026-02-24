@@ -21,28 +21,18 @@ export default function ExpeditionHeroSection({ dict }: ExpeditionHeroSectionPro
           {dict.genre.label}
         </p>
 
+        <h1 className="sr-only">{dict.hero.title}</h1>
+
         <div className="mb-8 mt-2 inline-block max-w-full text-center md:mb-10">
           <div className="relative inline-block max-w-full">
-            <ExpeditionHeroLogo title={dict.hero.title} />
+            <ExpeditionHeroLogo />
             <div className="absolute right-0 top-0 translate-x-1 -translate-y-2 rotate-12 bg-[#ec544c] px-2 py-1 text-[10px] font-bold text-[#18213c] shadow-lg transition-transform hover:scale-110 sm:-right-10 sm:-top-6 sm:translate-x-0 sm:translate-y-0 sm:px-4 sm:text-sm md:-right-16 [font-family:var(--font-exp-heading)]">
               EST. 2426
             </div>
           </div>
         </div>
 
-        <div className="mb-12 relative">
-          <div className="relative flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-lg tracking-[0.08em] text-[#f67b40] sm:text-2xl sm:tracking-[0.12em] md:text-4xl [font-family:var(--font-exp-heading)]">
-            <span className="relative inline-flex flex-col items-center sm:inline-block">
-              <span className="expedition-strike-hand">ROLE</span>
-              <span className="mt-1 -rotate-6 whitespace-nowrap text-2xl text-[#ec544c] drop-shadow-md sm:absolute sm:-top-7 sm:left-1/2 sm:mt-0 sm:-translate-x-1/2 sm:text-3xl md:-top-8 md:text-5xl [font-family:var(--font-exp-hand)]">
-                Rover
-              </span>
-            </span>
-            <span className="sm:pl-1">PLAYING GAME</span>
-          </div>
-        </div>
-
-        <div className="mx-auto mt-2 max-w-2xl border-y border-[#505c64] bg-[#18213c]/60 px-4 py-6 backdrop-blur-sm sm:px-8">
+        <div className="mx-auto mt-6 max-w-2xl border-y border-[#505c64] bg-[#18213c]/60 px-4 py-6 backdrop-blur-sm sm:px-8">
           <p className="text-pretty text-lg leading-relaxed text-[#c6d9c6] sm:text-xl md:text-2xl [font-family:var(--font-exp-accent)]">
             {dict.hero.subtitle}
           </p>
