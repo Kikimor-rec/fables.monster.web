@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { Exo_2, Inter, Rock_Salt, Russo_One, Saira_Stencil_One, Tektur } from "next/font/google";
+import { Black_Ops_One, Exo_2, Inter, Rock_Salt, Tektur } from "next/font/google";
 import { getDictionary } from "@/lib/i18n";
 import { buildSocialMetadata } from "@/lib/metadata";
 import type { Expedition418Dict } from "@/types/i18n";
@@ -14,15 +14,8 @@ import ExpeditionAboutSection from "@/components/expedition-418/ExpeditionAboutS
 import ExpeditionPlaytestSection from "@/components/expedition-418/ExpeditionPlaytestSection";
 import { getExpeditionFeatures, getExpeditionStats } from "@/components/expedition-418/expedition-data";
 
-const expeditionHeadingLatin = Saira_Stencil_One({
+const expeditionHeading = Black_Ops_One({
   subsets: ["latin"],
-  variable: "--font-exp-heading",
-  display: "swap",
-  weight: "400",
-});
-
-const expeditionHeadingCyr = Russo_One({
-  subsets: ["latin", "cyrillic"],
   variable: "--font-exp-heading",
   display: "swap",
   weight: "400",
@@ -82,7 +75,7 @@ export const dynamic = "force-static";
 export default async function Expedition418({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   const dict = (await getDictionary(lang, "expedition-418")) as Expedition418Dict;
-  const headingVariable = lang === "ru" ? expeditionHeadingCyr.variable : expeditionHeadingLatin.variable;
+  const headingVariable = expeditionHeading.variable;
 
   const sectionNavItems = [
     { id: "intel", label: dict.nav.intel },

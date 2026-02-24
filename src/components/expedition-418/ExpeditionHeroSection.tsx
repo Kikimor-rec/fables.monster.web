@@ -1,4 +1,5 @@
 import type { Expedition418Dict } from "@/types/i18n";
+import ExpeditionHeroLogo from "./ExpeditionHeroLogo";
 
 interface ExpeditionHeroSectionProps {
   dict: Expedition418Dict;
@@ -22,9 +23,7 @@ export default function ExpeditionHeroSection({ dict }: ExpeditionHeroSectionPro
 
         <div className="mb-8 mt-2 inline-block max-w-full text-center md:mb-10">
           <div className="relative inline-block max-w-full">
-            <h1 className="relative z-10 text-4xl font-bold uppercase tracking-tight leading-[0.92] text-[#c6d9c6] opacity-90 drop-shadow-[0_6px_0_rgba(24,33,60,0.45)] sm:text-6xl md:text-8xl lg:text-9xl [font-family:var(--font-exp-heading)]">
-              {dict.hero.title}
-            </h1>
+            <ExpeditionHeroLogo title={dict.hero.title} />
             <div className="absolute right-0 top-0 translate-x-1 -translate-y-2 rotate-12 bg-[#ec544c] px-2 py-1 text-[10px] font-bold text-[#18213c] shadow-lg transition-transform hover:scale-110 sm:-right-10 sm:-top-6 sm:translate-x-0 sm:translate-y-0 sm:px-4 sm:text-sm md:-right-16 [font-family:var(--font-exp-heading)]">
               EST. 2426
             </div>

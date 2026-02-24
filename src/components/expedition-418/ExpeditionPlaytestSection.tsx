@@ -31,7 +31,7 @@ export default function ExpeditionPlaytestSection({ lang, dict }: ExpeditionPlay
             </a>
           </div>
 
-          <div className="relative mt-6 grid gap-3 sm:grid-cols-3">
+          <div className="relative mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             <a
               href="https://discord.gg/eAwK9DfKf4"
               target="_blank"
@@ -39,6 +39,14 @@ export default function ExpeditionPlaytestSection({ lang, dict }: ExpeditionPlay
               className="inline-flex min-h-12 items-center justify-center border border-[#f67b40] bg-[#f67b40] px-5 py-3 text-base uppercase tracking-[0.08em] text-[#18213c] transition-colors hover:bg-[#ec544c] hover:text-[#f5efe0] [font-family:var(--font-exp-heading)]"
             >
               {dict.playtest.buttons.discord}
+            </a>
+            <a
+              href="https://fablesmonster.itch.io/expedition-418"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-12 items-center justify-center border border-[#f67b40] bg-[#f67b40] px-5 py-3 text-base uppercase tracking-[0.08em] text-[#18213c] transition-colors hover:bg-[#ec544c] hover:text-[#f5efe0] [font-family:var(--font-exp-heading)]"
+            >
+              {dict.playtest.buttons.itch}
             </a>
             <Link
               href={`/${lang}/newsletter/subscribe`}

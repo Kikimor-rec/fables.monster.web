@@ -85,7 +85,8 @@
     "buttons": {
       "discord": "DISCORD",
       "subscribe": "ПОДПИСАТЬСЯ",
-      "patreon": "ПОДДЕРЖАТЬ НА PATREON"
+      "patreon": "ПОДДЕРЖАТЬ НА PATREON",
+      "itch": "ИГРАТЬ НА ITCH.IO"
     }
   }
 }
