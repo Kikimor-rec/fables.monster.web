@@ -16,11 +16,11 @@ export default function ExpeditionArtSection({ dict }: ExpeditionArtSectionProps
           <div className="mb-0.5 h-px flex-1 bg-[#505c64]/60" />
         </div>
 
-        {/* World Art — full-width key art */}
+        {/* Cover — full-width key art */}
         <div className="expedition-fade-up relative mb-4 w-full overflow-hidden border border-[#505c64] shadow-[6px_6px_0_0_rgba(236,84,76,0.35)]">
           <div className="relative aspect-[16/7] w-full">
             <Image
-              src="/images/expedition-418/world-art.webp"
+              src="/images/cover.webp"
               alt={dict.art?.worldAlt ?? "Expedition-418 world concept art"}
               fill
               sizes="(max-width: 768px) 100vw, 1200px"
@@ -41,16 +41,17 @@ export default function ExpeditionArtSection({ dict }: ExpeditionArtSectionProps
 
         {/* Two robot concepts side by side */}
         <div className="grid gap-4 sm:grid-cols-2">
+          {/* Rover — white background image, dark container */}
           <div className="expedition-fade-up group relative overflow-hidden border border-[#505c64] shadow-[4px_4px_0_0_rgba(246,123,64,0.25)] transition-transform duration-300 hover:-translate-y-1">
-            <div className="relative aspect-[4/3] w-full bg-[#0d1423]">
+            <div className="relative aspect-[4/3] w-full bg-[#e8e0d4]">
               <Image
-                src="/images/teapot-concept.webp"
-                alt={dict.intel?.imageAlt ?? "Teapot unit concept art"}
+                src="/images/rover.webp"
+                alt={dict.intel?.imageAlt ?? "Teapot rover unit concept art"}
                 fill
                 sizes="(max-width: 640px) 100vw, 600px"
-                className="object-contain object-center p-4 transition-transform duration-500 group-hover:scale-105"
+                className="object-contain object-center transition-transform duration-500 group-hover:scale-105"
               />
-              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,transparent_55%,rgba(17,24,39,0.7))]" />
+              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,transparent_60%,rgba(232,224,212,0.6))]" />
             </div>
             <div className="border-t border-[#505c64] bg-[#18213c] px-4 py-3">
               <p className="text-[10px] uppercase tracking-[0.22em] text-[#f67b40] [font-family:var(--font-exp-ui)]">
@@ -59,16 +60,17 @@ export default function ExpeditionArtSection({ dict }: ExpeditionArtSectionProps
             </div>
           </div>
 
+          {/* Square rover — white background image, dark container */}
           <div className="expedition-fade-up group relative overflow-hidden border border-[#505c64] shadow-[4px_4px_0_0_rgba(246,123,64,0.25)] transition-transform duration-300 hover:-translate-y-1">
-            <div className="relative aspect-[4/3] w-full bg-[#0d1423]">
+            <div className="relative aspect-[4/3] w-full bg-[#e8e0d4]">
               <Image
-                src="/images/expedition-418/robot-sketch.webp"
+                src="/images/square-reover.webp"
                 alt={dict.art?.robotAlt ?? "Robot unit concept sketch"}
                 fill
                 sizes="(max-width: 640px) 100vw, 600px"
-                className="object-contain object-center p-4 transition-transform duration-500 group-hover:scale-105"
+                className="object-contain object-center transition-transform duration-500 group-hover:scale-105"
               />
-              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,transparent_55%,rgba(17,24,39,0.7))]" />
+              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,transparent_60%,rgba(232,224,212,0.6))]" />
             </div>
             <div className="border-t border-[#505c64] bg-[#18213c] px-4 py-3">
               <p className="text-[10px] uppercase tracking-[0.22em] text-[#f67b40] [font-family:var(--font-exp-ui)]">
