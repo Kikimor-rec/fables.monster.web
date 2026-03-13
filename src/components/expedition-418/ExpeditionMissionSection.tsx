@@ -8,12 +8,14 @@ interface ExpeditionMissionSectionProps {
 }
 
 export default function ExpeditionMissionSection({ lang, dict, stats }: ExpeditionMissionSectionProps) {
-  const targetLaunch = lang === "ru" ? "Правила быстрого старта: Март 2026" : "Target Launch: May–June 2026";
-  const heading = lang === "ru" ? "ОПЕРАТИВНАЯ" : "MISSION";
-  const headingAccent = lang === "ru" ? "СВОДКА" : "BRIEFING";
-  const parametersTitle = lang === "ru" ? "ПАРАМЕТРЫ МИССИИ" : "MISSION PARAMETERS";
-  const currentStatus = lang === "ru" ? "ТЕКУЩИЙ СТАТУС" : "CURRENT STATUS";
-  const currentStatusValue = lang === "ru" ? "БЫСТРЫЙ СТАРТ ВЫПУЩЕН" : "IN ACTIVE DEVELOPMENT";
+  const isRu = lang === "ru";
+  const targetLaunch = isRu ? "Книга правил: Март 2026 — expedition418.com" : "Target Launch: May–June 2026";
+  const targetLaunchHref = isRu ? "https://expedition418.com" : null;
+  const heading = isRu ? "ОПЕРАТИВНАЯ" : "MISSION";
+  const headingAccent = isRu ? "СВОДКА" : "BRIEFING";
+  const parametersTitle = isRu ? "ПАРАМЕТРЫ МИССИИ" : "MISSION PARAMETERS";
+  const currentStatus = isRu ? "ТЕКУЩИЙ СТАТУС" : "CURRENT STATUS";
+  const currentStatusValue = isRu ? "КНИГА ПРАВИЛ ВЫПУЩЕНА" : "IN ACTIVE DEVELOPMENT";
 
   return (
     <section className="relative border-t border-[#505c64] bg-[#c6d9c6] py-16 text-[#18213c]">
@@ -51,7 +53,18 @@ export default function ExpeditionMissionSection({ lang, dict, stats }: Expediti
             <div className="mt-6 bg-[#505c64] px-6 py-5 text-center">
               <p className="text-sm uppercase tracking-[0.14em] text-[#c6d9c6] [font-family:var(--font-exp-ui)]">{currentStatus}</p>
               <p className="mt-1 text-2xl font-semibold uppercase text-[#f67b40] [font-family:var(--font-exp-heading)] sm:text-3xl">{currentStatusValue}</p>
-              <p className="mt-1 text-sm text-[#f7a37a] [font-family:var(--font-exp-ui)]">{targetLaunch}</p>
+              {targetLaunchHref ? (
+                <a
+                  href={targetLaunchHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-2 inline-block border border-[#f67b40] px-4 py-1.5 text-sm uppercase tracking-[0.1em] text-[#f67b40] transition-colors hover:bg-[#f67b40] hover:text-[#18213c] [font-family:var(--font-exp-ui)]"
+                >
+                  {targetLaunch} ↗
+                </a>
+              ) : (
+                <p className="mt-1 text-sm text-[#f7a37a] [font-family:var(--font-exp-ui)]">{targetLaunch}</p>
+              )}
             </div>
           </article>
         </div>
