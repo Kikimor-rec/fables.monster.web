@@ -12,7 +12,7 @@ import ExpeditionCCTVDisplay from "@/components/expedition-418/ExpeditionCCTVDis
 import ExpeditionFeaturesSection from "@/components/expedition-418/ExpeditionFeaturesSection";
 import ExpeditionAboutSection from "@/components/expedition-418/ExpeditionAboutSection";
 import ExpeditionPlaytestSection from "@/components/expedition-418/ExpeditionPlaytestSection";
-import ExpeditionArtSection from "@/components/expedition-418/ExpeditionArtSection";
+import ExpeditionFloatingRover from "@/components/expedition-418/ExpeditionFloatingRover";
 import { getExpeditionFeatures, getExpeditionStats } from "@/components/expedition-418/expedition-data";
 
 const expeditionHeadingLatin = Saira_Stencil_One({
@@ -126,8 +126,20 @@ export default async function Expedition418({ params }: { params: Promise<{ lang
       </section>
 
       <ExpeditionFeaturesSection title={dict.features.title} features={features} />
-      <ExpeditionAboutSection dict={dict} />
-      <ExpeditionArtSection dict={dict} />
+
+      {/* About section with kikimor rover floating at the boundary */}
+      <div className="relative">
+        <ExpeditionAboutSection dict={dict} />
+        <ExpeditionFloatingRover
+          src="/images/square-reover.webp"
+          width={800}
+          height={600}
+          sizes="(max-width: 768px) 120px, (max-width: 1024px) 180px, 240px"
+          parallaxFactor={0.1}
+          className="absolute -bottom-12 left-[3%] w-[120px] md:w-[180px] lg:w-[240px] z-30 opacity-70 md:opacity-85 hidden sm:block"
+        />
+      </div>
+
       <ExpeditionPlaytestSection lang={lang} dict={dict} />
 
       <StoryBackToTop tone="amber" />
