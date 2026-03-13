@@ -26,16 +26,34 @@ export default function SocialLinks({ className = "", showLabels = true }: Socia
       description: "Support us"
     },
     {
+      href: "https://boosty.to/fables.monster",
+      icon: "/logos/boosty-logo-white.svg",
+      label: "Boosty",
+      description: "Support us"
+    },
+    {
       href: "https://www.drivethrurpg.com/en/publisher/30815/fables-monster?affiliate_id=2863466",
       icon: "/logos/dtrpg-logo-small.png",
       label: "DriveThruRPG",
       description: "RPG collection"
     },
-        {
+    {
       href: "https://www.youtube.com/@fables.monster",
       icon: "/logos/yt_icon_mono_dark.png",
       label: "YouTube",
       description: "Watch our videos"
+    },
+    {
+      href: "https://x.com/FablesMonster",
+      icon: "/logos/x-logo-white.svg",
+      label: "X",
+      description: "Follow us"
+    },
+    {
+      href: "https://www.facebook.com/fables.monster",
+      icon: "/logos/facebook-logo-white.svg",
+      label: "Facebook",
+      description: "Follow us"
     },
     {
       href: "mailto:info@fables.monster",

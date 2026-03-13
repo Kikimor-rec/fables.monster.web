@@ -42,6 +42,24 @@ export default function ExpeditionHeroSection({ dict }: ExpeditionHeroSectionPro
         <p className="mt-8 text-xs text-[#8b97a5] [font-family:var(--font-exp-ui)]">
           {dict.hero.projectCodeLabel} <span className="text-[#c6d9c6]">EXP-418-HTCPCP</span>
         </p>
+
+        <div className="mt-8 flex flex-wrap justify-center gap-4">
+          <a
+            href="https://expedition418.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex min-h-12 items-center justify-center gap-2 border border-[#f67b40] bg-[#f67b40] px-6 py-3 text-sm uppercase tracking-[0.12em] text-[#18213c] font-bold transition-colors hover:bg-[#ec544c] hover:text-[#f5efe0] [font-family:var(--font-exp-heading)] sm:text-base"
+          >
+            <span>expedition418.com</span>
+            <span aria-hidden="true">↗</span>
+          </a>
+          <a
+            href="#playtest"
+            className="inline-flex min-h-12 items-center justify-center border border-[#c6d9c6]/60 bg-transparent px-6 py-3 text-sm uppercase tracking-[0.12em] text-[#c6d9c6] transition-colors hover:bg-[#c6d9c6]/10 [font-family:var(--font-exp-heading)] sm:text-base"
+          >
+            {dict.nav.playtest}
+          </a>
+        </div>
       </div>
     </section>
   );
