@@ -1,4 +1,3 @@
-import Image from "next/image";
 import type { Expedition418Dict } from "@/types/i18n";
 import ExpeditionHeroLogo from "./ExpeditionHeroLogo";
 import ExpeditionFloatingRover from "./ExpeditionFloatingRover";
@@ -13,18 +12,16 @@ export default function ExpeditionHeroSection({ dict }: ExpeditionHeroSectionPro
       {/* Dark base gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#0d1628] via-[#18213c] to-[#18213c]" />
 
-      {/* Cover art — atmospheric, sits on top of gradient */}
-      <div className="absolute inset-0 opacity-[0.38]">
-        <Image
-          src="/images/cover.webp"
-          alt=""
-          fill
-          style={{ objectFit: "cover", objectPosition: "center" }}
-          priority
-          sizes="100vw"
-          quality={80}
-        />
-      </div>
+      {/* Cover art — atmospheric background */}
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundImage: 'url("/images/cover.webp")',
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          opacity: 0.4,
+        }}
+      />
 
       {/* Bottom fade so cover blends into next section */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#18213c]" />
