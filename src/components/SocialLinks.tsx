@@ -8,6 +8,12 @@ interface SocialLinksProps {
 export default function SocialLinks({ className = "", showLabels = true }: SocialLinksProps) {
   const links = [
     {
+      href: "https://t.me/fablesmonster",
+      icon: "/logos/telegram-logo-white.svg",
+      label: "Telegram",
+      description: "Follow us"
+    },
+    {
       href: "https://discord.gg/eAwK9DfKf4",
       icon: "/logos/Discord-Symbol-White.svg",
       label: "Discord",

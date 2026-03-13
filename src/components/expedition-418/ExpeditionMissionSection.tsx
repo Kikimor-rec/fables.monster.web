@@ -8,12 +8,12 @@ interface ExpeditionMissionSectionProps {
 }
 
 export default function ExpeditionMissionSection({ lang, dict, stats }: ExpeditionMissionSectionProps) {
-  const targetLaunch = lang === "ru" ? "Целевой релиз: Апрель 2026" : "Target Launch: April 2026";
+  const targetLaunch = lang === "ru" ? "Правила быстрого старта: Март 2026" : "Target Launch: May–June 2026";
   const heading = lang === "ru" ? "ОПЕРАТИВНАЯ" : "MISSION";
   const headingAccent = lang === "ru" ? "СВОДКА" : "BRIEFING";
   const parametersTitle = lang === "ru" ? "ПАРАМЕТРЫ МИССИИ" : "MISSION PARAMETERS";
   const currentStatus = lang === "ru" ? "ТЕКУЩИЙ СТАТУС" : "CURRENT STATUS";
-  const currentStatusValue = lang === "ru" ? "В АКТИВНОЙ РАЗРАБОТКЕ" : "IN ACTIVE DEVELOPMENT";
+  const currentStatusValue = lang === "ru" ? "БЫСТРЫЙ СТАРТ ВЫПУЩЕН" : "IN ACTIVE DEVELOPMENT";
 
   return (
     <section className="relative border-t border-[#505c64] bg-[#c6d9c6] py-16 text-[#18213c]">

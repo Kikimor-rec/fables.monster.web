@@ -2,10 +2,10 @@
 title: "EXPEDITION-418"
 subtitle: "Extraction-НРИ о роботах"
 tagline: "Роботы разных конфигураций на миссиях, которые действительно важны. Собери бота. Выполни задачу. Постарайся вернуться."
-status: "В разработке"
+status: "Выпущен"
 system: "Expedition-418"
 type: "Базовая книга правил"
-image: "/images/teapot-concept.webp"
+image: "/images/cover.webp"
 platforms: {}
 ---
 

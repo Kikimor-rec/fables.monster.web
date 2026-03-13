@@ -765,6 +765,7 @@ export interface Expedition418PlaytestDict {
     button: string;
   };
   buttons: {
+    telegram: string;
     discord: string;
     subscribe: string;
     patreon: string;
