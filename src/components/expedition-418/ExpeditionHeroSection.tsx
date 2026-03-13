@@ -19,12 +19,15 @@ export default function ExpeditionHeroSection({ dict }: ExpeditionHeroSectionPro
           backgroundImage: 'url("/images/cover.webp")',
           backgroundSize: "cover",
           backgroundPosition: "center",
-          opacity: 0.4,
+          opacity: 0.25,
         }}
       />
 
-      {/* Bottom fade so cover blends into next section */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#18213c]" />
+      {/* Dark vignette — darkens edges and center so text stays readable */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_70%_at_50%_50%,rgba(13,22,40,0.55)_0%,rgba(13,22,40,0.0)_100%)]" />
+
+      {/* Top + bottom fades */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#0d1628]/80 via-transparent to-[#18213c]" />
 
       {/* Grid pattern overlay */}
       <div className="absolute inset-0 opacity-[0.14] [background-image:linear-gradient(rgba(188,214,187,0.25)_1px,transparent_1px),linear-gradient(90deg,rgba(188,214,187,0.25)_1px,transparent_1px)] [background-size:34px_34px]" />
@@ -55,7 +58,7 @@ export default function ExpeditionHeroSection({ dict }: ExpeditionHeroSectionPro
           </div>
         </div>
 
-        <div className="mx-auto mt-6 max-w-2xl border-y border-[#505c64] bg-[#18213c]/60 px-4 py-6 backdrop-blur-sm sm:px-8">
+        <div className="mx-auto mt-6 max-w-2xl border-y border-[#505c64] bg-[#18213c]/80 px-4 py-6 backdrop-blur-sm sm:px-8">
           <p className="text-pretty text-lg leading-relaxed text-[#c6d9c6] sm:text-xl md:text-2xl [font-family:var(--font-exp-accent)]">
             {dict.hero.subtitle}
           </p>
@@ -92,7 +95,7 @@ export default function ExpeditionHeroSection({ dict }: ExpeditionHeroSectionPro
         height={600}
         sizes="(max-width: 768px) 140px, (max-width: 1024px) 200px, 280px"
         parallaxFactor={0.06}
-        className="absolute -bottom-16 right-[5%] z-20 hidden w-[140px] opacity-80 sm:block md:w-[200px] md:opacity-90 lg:w-[280px]"
+        className="absolute -bottom-24 right-[3%] z-20 hidden w-[200px] opacity-90 sm:block md:w-[300px] lg:w-[400px]"
       />
     </section>
   );
