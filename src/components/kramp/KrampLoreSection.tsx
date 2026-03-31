@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { KrampDictionary, KrampFeature } from "@/components/kramp/types";
+import { sanitizeHtml } from "@/lib/sanitize";
 
 interface KrampLoreSectionProps {
   contentTitle: string;
@@ -25,23 +26,26 @@ export default function KrampLoreSection({ contentTitle, dict, features }: Kramp
               <div className="text-lg text-gray-300 font-rajdhani leading-relaxed space-y-4">
                 <p
                   dangerouslySetInnerHTML={{
-                    __html:
+                    __html: sanitizeHtml(
                       dict.about?.paragraph1 ||
                       "It's a story about control, hypocrisy, punishment, and bad gifts. It shifts between humor and horror, absurdity and paranoia.",
+                    ),
                   }}
                 />
                 <p
                   dangerouslySetInnerHTML={{
-                    __html:
+                    __html: sanitizeHtml(
                       dict.about?.paragraph2 ||
                       "The station's AI, St. N-KRAMP, has been rebranded for the holidays and is assessing the crew's moral climate.",
+                    ),
                   }}
                 />
                 <p
                   dangerouslySetInnerHTML={{
-                    __html:
+                    __html: sanitizeHtml(
                       dict.about?.paragraph3 ||
                       "Chain-rattling alerts, sealed bulkheads, and festive dread tighten with each passing minute.",
+                    ),
                   }}
                 />
               </div>

@@ -48,10 +48,11 @@ export default function StoreButton({ store, href, price, className = '', label 
       target="_blank"
       rel="noopener noreferrer"
       className={`
-        inline-flex items-center gap-2 px-4 py-2 
-        bg-gray-900 border border-gray-700 text-white 
+        inline-flex items-center gap-2 px-4 py-2
+        bg-gray-900 border border-gray-700 text-white
         font-orbitron text-sm font-bold tracking-wide
         transition-all duration-300
+        focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-black
         ${config.color} hover:border-transparent hover:scale-105
         ${className}
       `}

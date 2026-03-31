@@ -2,6 +2,7 @@
 
 import { useId, useState } from "react";
 import { ZodIssue } from "zod";
+import { logger } from "@/lib/logger";
 
 interface FormErrors {
   name?: string;
@@ -80,7 +81,7 @@ export default function ContactForm({ dict }: ContactFormProps) {
         setSubmitStatus("success");
         setFormData({ name: "", email: "", message: "" });
       } else {
-        console.error("API Error:", data);
+        logger.error("API Error", { status: response.status });
         setSubmitStatus("error");
         if (data.details && Array.isArray(data.details)) {
           // Map Zod errors to form fields
@@ -98,7 +99,7 @@ export default function ContactForm({ dict }: ContactFormProps) {
         }
       }
     } catch (error) {
-      console.error("Error submitting form:", error);
+      logger.exception(error);
       setSubmitStatus("error");
       setErrors({ general: "Failed to connect to the server. Please check your internet connection." });
     } finally {

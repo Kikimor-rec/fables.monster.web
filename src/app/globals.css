@@ -31,45 +31,16 @@
     --glow-md: 0 0 20px;
     --glow-lg: 0 0 30px;
     --glow-xl: 0 0 50px;
-}
 
-/* Spaceship UI - Neon Text Glow Effects */
-.text-glow-sm {
-    text-shadow: 0 0 10px currentColor;
-}
-
-.text-glow-md {
-    text-shadow: 0 0 20px currentColor, 0 0 30px currentColor;
-}
-
-.text-glow-lg {
-    text-shadow: 0 0 30px currentColor, 0 0 50px currentColor, 0 0 70px currentColor;
-}
-
-/* Box glow utilities */
-.box-glow {
-    box-shadow: 0 0 20px rgba(255, 31, 31, 0.5), 0 0 40px rgba(255, 31, 31, 0.3);
-}
-
-.box-glow-cyan {
-    box-shadow: 0 0 20px rgba(0, 212, 255, 0.5), 0 0 40px rgba(0, 212, 255, 0.3);
-}
-
-.box-glow-purple {
-    box-shadow: 0 0 20px rgba(176, 102, 255, 0.5), 0 0 40px rgba(176, 102, 255, 0.3);
-}
-
-.box-glow-green {
-    box-shadow: 0 0 20px rgba(0, 255, 159, 0.5), 0 0 40px rgba(0, 255, 159, 0.3);
-}
-
-/* Neon border glow on hover */
-.border-glow-hover {
-    transition: all 0.3s ease;
-}
-
-.border-glow-hover:hover {
-    box-shadow: 0 0 15px currentColor, inset 0 0 15px currentColor;
+    /* Expedition-418 palette */
+    --exp-accent: #ff683d;
+    --exp-accent-alt: #f67b40;
+    --exp-bg: #18213c;
+    --exp-bg-alt: #1a2442;
+    --exp-border: #505c64;
+    --exp-text-primary: #c6d9c6;
+    --exp-text-secondary: #f7a37a;
+    --exp-text-muted: #8b97a5;
 }
 
 /* Cyberpunk Palette */

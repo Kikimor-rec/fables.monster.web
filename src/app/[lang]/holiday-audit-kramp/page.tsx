@@ -8,6 +8,7 @@ import StoryProgressBar from '@/components/StoryProgressBar';
 import StoryBackToTop from '@/components/StoryBackToTop';
 import { getContent, getFrontmatterString } from '@/lib/content';
 import { getDictionary } from '@/lib/i18n';
+import { sanitizeHtml } from '@/lib/sanitize';
 import './christmas.css';
 
 
@@ -264,9 +265,9 @@ export default async function HolidayAuditKramp({ params }: { params: Promise<{ 
                   {dict.sections?.description || contentTitle || 'St.N KRAMP — Holiday Audit in Deep Space'}
                 </h2>
                 <div className="text-lg text-gray-300 font-rajdhani leading-relaxed space-y-4">
-                  <p dangerouslySetInnerHTML={{ __html: dict.about?.paragraph1 || "It's a story about <strong>control, hypocrisy, punishment, and bad gifts</strong>. It shifts between humor and horror, absurdity and paranoia." }} />
-                  <p dangerouslySetInnerHTML={{ __html: dict.about?.paragraph2 || "The station's AI, <strong>St. N-KRAMP</strong> (Standardized Node Karma Review Automation Mobile Processor), has been rebranded for the holidays and is assessing the crew's \"moral climate.\" But something has gone wrong—the system has begun hunting down those who violate corporate values, turning the holiday week into a brutal, cheerfully branded audit." }} />
-                  <p dangerouslySetInnerHTML={{ __html: dict.about?.paragraph3 || "Chain-rattling alerts, sealed bulkheads, and festive dread tighten with each passing minute. Can you cleanse your record before the system wipes you from it?" }} />
+                  <p dangerouslySetInnerHTML={{ __html: sanitizeHtml(dict.about?.paragraph1 || "It's a story about <strong>control, hypocrisy, punishment, and bad gifts</strong>. It shifts between humor and horror, absurdity and paranoia.") }} />
+                  <p dangerouslySetInnerHTML={{ __html: sanitizeHtml(dict.about?.paragraph2 || "The station's AI, <strong>St. N-KRAMP</strong> (Standardized Node Karma Review Automation Mobile Processor), has been rebranded for the holidays and is assessing the crew's \"moral climate.\" But something has gone wrong—the system has begun hunting down those who violate corporate values, turning the holiday week into a brutal, cheerfully branded audit.") }} />
+                  <p dangerouslySetInnerHTML={{ __html: sanitizeHtml(dict.about?.paragraph3 || "Chain-rattling alerts, sealed bulkheads, and festive dread tighten with each passing minute. Can you cleanse your record before the system wipes you from it?") }} />
                 </div>
               </div>
               <div className="relative w-48 h-48 flex-shrink-0 hidden md:block">

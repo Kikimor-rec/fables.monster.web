@@ -19,7 +19,21 @@ const nextConfig: NextConfig = {
   distDir: '.next',
   cleanDistDir: true,
   async headers() {
+    const cspValue = [
+      "default-src 'self'",
+      "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://va.vercel-scripts.com",
+      "style-src 'self' 'unsafe-inline'",
+      "img-src 'self' https: data:",
+      "font-src 'self'",
+      "connect-src 'self' https://news.fables.monster https://www.google-analytics.com https://va.vercel-scripts.com https://vitals.vercel-insights.com",
+      "frame-ancestors 'none'",
+    ].join('; ');
+
     const securityHeaders = [
+      {
+        key: 'Content-Security-Policy',
+        value: cspValue,
+      },
       {
         key: 'X-Content-Type-Options',
         value: 'nosniff',
@@ -69,7 +83,7 @@ const nextConfig: NextConfig = {
           },
           {
             key: 'Access-Control-Allow-Origin',
-            value: '*',
+            value: 'https://fables.monster',
           },
         ],
       },

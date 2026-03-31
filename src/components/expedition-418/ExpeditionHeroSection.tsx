@@ -8,21 +8,21 @@ interface ExpeditionHeroSectionProps {
 
 export default function ExpeditionHeroSection({ dict }: ExpeditionHeroSectionProps) {
   return (
-    <section className="relative overflow-hidden border-b border-[#505c64] bg-[#18213c] pt-28 pb-20 md:pt-36 md:pb-24">
+    <section className="relative overflow-hidden border-b border-exp-border bg-exp-bg pt-28 pb-20 md:pt-36 md:pb-24">
       <div className="absolute inset-0 opacity-[0.14] [background-image:linear-gradient(rgba(188,214,187,0.25)_1px,transparent_1px),linear-gradient(90deg,rgba(188,214,187,0.25)_1px,transparent_1px)] [background-size:34px_34px]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_0%,rgba(246,123,64,0.2),transparent_40%),radial-gradient(circle_at_82%_12%,rgba(236,84,76,0.18),transparent_36%)]" />
 
-      <div className="pointer-events-none absolute left-4 top-6 h-16 w-16 rounded-tl-2xl border-l-2 border-t-2 border-[#ff683d]/70 md:left-8 md:top-8 md:h-24 md:w-24" />
-      <div className="pointer-events-none absolute right-4 top-6 h-16 w-16 rounded-tr-2xl border-r-2 border-t-2 border-[#ff683d]/70 md:right-8 md:top-8 md:h-24 md:w-24" />
-      <div className="pointer-events-none absolute bottom-6 left-4 h-16 w-16 rounded-bl-2xl border-b-2 border-l-2 border-[#ff683d]/70 md:bottom-8 md:left-8 md:h-24 md:w-24" />
-      <div className="pointer-events-none absolute bottom-6 right-4 h-16 w-16 rounded-br-2xl border-b-2 border-r-2 border-[#ff683d]/70 md:bottom-8 md:right-8 md:h-24 md:w-24" />
+      <div className="pointer-events-none absolute left-4 top-6 h-16 w-16 rounded-tl-2xl border-l-2 border-t-2 border-exp-accent/70 md:left-8 md:top-8 md:h-24 md:w-24" />
+      <div className="pointer-events-none absolute right-4 top-6 h-16 w-16 rounded-tr-2xl border-r-2 border-t-2 border-exp-accent/70 md:right-8 md:top-8 md:h-24 md:w-24" />
+      <div className="pointer-events-none absolute bottom-6 left-4 h-16 w-16 rounded-bl-2xl border-b-2 border-l-2 border-exp-accent/70 md:bottom-8 md:left-8 md:h-24 md:w-24" />
+      <div className="pointer-events-none absolute bottom-6 right-4 h-16 w-16 rounded-br-2xl border-b-2 border-r-2 border-exp-accent/70 md:bottom-8 md:right-8 md:h-24 md:w-24" />
 
       <div className="relative z-10 fm-shell max-w-6xl text-center">
-        <p className="mb-3 block text-center text-[10px] uppercase tracking-[0.3em] text-[#c6d9c6]/60 [font-family:var(--font-exp-ui)]">
+        <p className="mb-3 block text-center text-[10px] uppercase tracking-[0.3em] text-exp-text-primary/60 [font-family:var(--font-exp-ui)]">
           {dict.hero.transmission}
         </p>
 
-        <p className="mb-8 block text-center text-[11px] uppercase tracking-[0.24em] text-[#f67b40] [font-family:var(--font-exp-ui)] md:mb-10">
+        <p className="mb-8 block text-center text-[11px] uppercase tracking-[0.24em] text-exp-accent-alt [font-family:var(--font-exp-ui)] md:mb-10">
           {dict.genre.label}
         </p>
 
@@ -31,7 +31,7 @@ export default function ExpeditionHeroSection({ dict }: ExpeditionHeroSectionPro
         <div className="mb-8 mt-2 inline-block max-w-full text-center md:mb-10">
           <div className="relative inline-block max-w-full">
             <ExpeditionHeroLogo />
-            <div className="absolute right-0 top-0 translate-x-1 -translate-y-2 rotate-12 bg-[#ec544c] px-2 py-1 text-[10px] font-bold text-[#18213c] shadow-lg transition-transform hover:scale-110 sm:-right-10 sm:-top-6 sm:translate-x-0 sm:translate-y-0 sm:px-4 sm:text-sm md:-right-16 [font-family:var(--font-exp-heading)]">
+            <div className="absolute right-0 top-0 translate-x-1 -translate-y-2 rotate-12 bg-exp-accent px-2 py-1 text-[10px] font-bold text-exp-bg shadow-lg transition-transform hover:scale-110 sm:-right-10 sm:-top-6 sm:translate-x-0 sm:translate-y-0 sm:px-4 sm:text-sm md:-right-16 [font-family:var(--font-exp-heading)]">
               EST. 2426
             </div>
           </div>
@@ -41,7 +41,7 @@ export default function ExpeditionHeroSection({ dict }: ExpeditionHeroSectionPro
         <div className="mx-auto mt-2 flex flex-col items-center gap-8 md:flex-row md:items-start md:justify-center md:gap-12">
           {/* Official Cover Art */}
           <div className="w-56 flex-shrink-0 sm:w-64 md:w-72">
-            <div className="relative overflow-hidden border-2 border-[#505c64] shadow-[0_0_40px_rgba(246,123,64,0.15)] transition-shadow hover:shadow-[0_0_60px_rgba(246,123,64,0.25)]">
+            <div className="relative overflow-hidden border-2 border-exp-border shadow-[0_0_40px_rgba(246,123,64,0.15)] transition-shadow hover:shadow-[0_0_60px_rgba(246,123,64,0.25)]">
               <Image
                 src="/images/expedition-418/E418_Digital_Cover.jpg"
                 alt="Expedition 418 — Rover's Field Guide, Flight Test Edition cover art"
@@ -56,20 +56,20 @@ export default function ExpeditionHeroSection({ dict }: ExpeditionHeroSectionPro
 
           {/* Info block */}
           <div className="flex max-w-lg flex-col items-center text-center md:items-start md:text-left">
-            <p className="mb-4 text-lg italic text-[#c6d9c6]/80 [font-family:var(--font-exp-accent)] md:text-xl">
+            <p className="mb-4 text-lg italic text-exp-text-primary/80 [font-family:var(--font-exp-accent)] md:text-xl">
               {dict.hero.tagline}
             </p>
 
-            <div className="w-full border-y border-[#505c64] bg-[#18213c]/60 px-4 py-6 backdrop-blur-sm sm:px-8">
-              <p className="text-pretty text-lg leading-relaxed text-[#c6d9c6] sm:text-xl md:text-2xl [font-family:var(--font-exp-accent)]">
+            <div className="w-full border-y border-exp-border bg-exp-bg/60 px-4 py-6 backdrop-blur-sm sm:px-8">
+              <p className="text-pretty text-lg leading-relaxed text-exp-text-primary sm:text-xl md:text-2xl [font-family:var(--font-exp-accent)]">
                 {dict.hero.subtitle}
               </p>
-              <p className="mt-2 text-sm uppercase tracking-[0.24em] text-[#f67b40] [font-family:var(--font-exp-ui)]">SYSTEM STATUS: CRITICAL</p>
+              <p className="mt-2 text-sm uppercase tracking-[0.24em] text-exp-accent-alt [font-family:var(--font-exp-ui)]">SYSTEM STATUS: CRITICAL</p>
             </div>
 
             <div className="mt-6 flex flex-wrap items-center justify-center gap-2 md:justify-start">
               {dict.hero.tags.map((tag) => (
-                <span key={tag} className="border border-[#505c64] bg-[#1a2442] px-3 py-1.5 text-[10px] uppercase tracking-[0.16em] text-[#c6d9c6]/80 [font-family:var(--font-exp-ui)] sm:text-xs">
+                <span key={tag} className="border border-exp-border bg-exp-bg-alt px-3 py-1.5 text-[10px] uppercase tracking-[0.16em] text-exp-text-primary/80 [font-family:var(--font-exp-ui)] sm:text-xs">
                   {tag}
                 </span>
               ))}
@@ -77,8 +77,8 @@ export default function ExpeditionHeroSection({ dict }: ExpeditionHeroSectionPro
           </div>
         </div>
 
-        <p className="mt-8 text-xs text-[#8b97a5] [font-family:var(--font-exp-ui)]">
-          {dict.hero.projectCodeLabel} <span className="text-[#c6d9c6]">EXP-418-HTCPCP</span>
+        <p className="mt-8 text-xs text-exp-text-muted [font-family:var(--font-exp-ui)]">
+          {dict.hero.projectCodeLabel} <span className="text-exp-text-primary">EXP-418-HTCPCP</span>
         </p>
 
         <div className="mt-8 flex flex-wrap justify-center gap-4">
@@ -86,14 +86,14 @@ export default function ExpeditionHeroSection({ dict }: ExpeditionHeroSectionPro
             href="https://expedition418.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex min-h-12 items-center justify-center gap-2 border border-[#f67b40] bg-[#f67b40] px-6 py-3 text-sm uppercase tracking-[0.12em] text-[#18213c] font-bold transition-colors hover:bg-[#ec544c] hover:text-[#f5efe0] [font-family:var(--font-exp-heading)] sm:text-base"
+            className="inline-flex min-h-12 items-center justify-center gap-2 border border-exp-accent-alt bg-exp-accent-alt px-6 py-3 text-sm uppercase tracking-[0.12em] text-exp-bg font-bold transition-colors hover:bg-exp-accent hover:text-white focus:outline-none focus:ring-2 focus:ring-exp-accent-alt focus:ring-offset-2 focus:ring-offset-exp-bg [font-family:var(--font-exp-heading)] sm:text-base"
           >
             <span>expedition418.com</span>
             <span aria-hidden="true">↗</span>
           </a>
           <a
             href="#playtest"
-            className="inline-flex min-h-12 items-center justify-center border border-[#c6d9c6]/60 bg-transparent px-6 py-3 text-sm uppercase tracking-[0.12em] text-[#c6d9c6] transition-colors hover:bg-[#c6d9c6]/10 [font-family:var(--font-exp-heading)] sm:text-base"
+            className="inline-flex min-h-12 items-center justify-center border border-exp-text-primary/60 bg-transparent px-6 py-3 text-sm uppercase tracking-[0.12em] text-exp-text-primary transition-colors hover:bg-exp-text-primary/10 focus:outline-none focus:ring-2 focus:ring-exp-text-primary/60 focus:ring-offset-2 focus:ring-offset-exp-bg [font-family:var(--font-exp-heading)] sm:text-base"
           >
             {dict.nav.playtest}
           </a>

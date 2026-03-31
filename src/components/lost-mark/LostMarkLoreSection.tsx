@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import GlitchReveal from "@/components/GlitchReveal";
 import OptimizedImage from "@/components/OptimizedImage";
 import type { LostMarkDictionary } from "@/components/lost-mark/types";
+import { sanitizeHtml } from "@/lib/sanitize";
 
 interface FeatureItem {
   title: string;
@@ -29,25 +30,28 @@ export default function LostMarkLoreSection({ dict, features }: LostMarkLoreSect
               <p
                 className="text-base sm:text-lg text-gray-300 mb-4 sm:mb-6 font-orbitron"
                 dangerouslySetInnerHTML={{
-                  __html:
+                  __html: sanitizeHtml(
                     dict.about?.paragraph1 ||
                     "After making the final jump, the players' ship finds themselves in the proximity of a compact but active black hole. There are no jump cores left. All they observe is a very old hyper beacon, a cloud of debris, and the Ship of the Lost - a giant drifting structure assembled from dozens of other ships.",
+                  ),
                 }}
               />
               <p
                 className="text-base sm:text-lg text-gray-300 mb-4 sm:mb-6 font-orbitron"
                 dangerouslySetInnerHTML={{
-                  __html:
+                  __html: sanitizeHtml(
                     dict.about?.paragraph2 ||
                     "On board lives and rots Mark Opollo, a pilot who was fused to the ship during a crash 217 years ago. His surviving companions have become a cult. His flesh is metal. His mind is a net.",
+                  ),
                 }}
               />
               <p
                 className="text-base sm:text-lg text-gray-300 mb-4 sm:mb-6 font-orbitron"
                 dangerouslySetInnerHTML={{
-                  __html:
+                  __html: sanitizeHtml(
                     dict.about?.paragraph3 ||
                     "Deep within the ship lies a cryopod containing a child, the final element for Mark's Ascension. Mark plans to transfer his consciousness into the child or someone more convenient and finally leave this place. Players will have to choose whether to stop it or allow it to happen.",
+                  ),
                 }}
               />
 

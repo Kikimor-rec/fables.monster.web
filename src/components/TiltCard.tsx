@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useCallback } from "react";
+import { useReducedMotion } from "framer-motion";
 
 interface TiltCardProps {
   children: React.ReactNode;
@@ -16,9 +17,11 @@ export default function TiltCard({
   glowColor = "rgba(255, 31, 31, 0.15)",
 }: TiltCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
+  const prefersReducedMotion = useReducedMotion();
 
   const handleMouseMove = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
+      if (prefersReducedMotion) return;
       const card = cardRef.current;
       if (!card) return;
       const rect = card.getBoundingClientRect();
@@ -31,14 +34,15 @@ export default function TiltCard({
       card.style.setProperty("--mouse-x", `${x * 100}%`);
       card.style.setProperty("--mouse-y", `${y * 100}%`);
     },
-    [maxTilt]
+    [maxTilt, prefersReducedMotion]
   );
 
   const handleMouseLeave = useCallback(() => {
+    if (prefersReducedMotion) return;
     const card = cardRef.current;
     if (!card) return;
     card.style.transform = "perspective(800px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)";
-  }, []);
+  }, [prefersReducedMotion]);
 
   return (
     <div
@@ -46,9 +50,13 @@ export default function TiltCard({
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       className={`transition-transform duration-300 ease-out will-change-transform ${className}`}
-      style={{
-        background: `radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), ${glowColor}, transparent 60%)`,
-      }}
+      style={
+        prefersReducedMotion
+          ? undefined
+          : {
+              background: `radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), ${glowColor}, transparent 60%)`,
+            }
+      }
     >
       {children}
     </div>
