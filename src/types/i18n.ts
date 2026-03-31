@@ -806,6 +806,11 @@ export interface Expedition418Dict {
   features: Expedition418FeaturesDict;
   about: Expedition418AboutDict;
   playtest: Expedition418PlaytestDict;
+  art?: {
+    overline?: string;
+    worldAlt?: string;
+    robotAlt?: string;
+  };
 }
 
 // === OLD WORLD NEON DICTIONARY ===

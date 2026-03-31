@@ -12,6 +12,7 @@ import ExpeditionCCTVDisplay from "@/components/expedition-418/ExpeditionCCTVDis
 import ExpeditionFeaturesSection from "@/components/expedition-418/ExpeditionFeaturesSection";
 import ExpeditionAboutSection from "@/components/expedition-418/ExpeditionAboutSection";
 import ExpeditionPlaytestSection from "@/components/expedition-418/ExpeditionPlaytestSection";
+import ExpeditionArtSection from "@/components/expedition-418/ExpeditionArtSection";
 import { getExpeditionFeatures, getExpeditionStats } from "@/components/expedition-418/expedition-data";
 
 const expeditionHeadingLatin = Saira_Stencil_One({
@@ -126,6 +127,7 @@ export default async function Expedition418({ params }: { params: Promise<{ lang
 
       <ExpeditionFeaturesSection title={dict.features.title} features={features} />
       <ExpeditionAboutSection dict={dict} />
+      <ExpeditionArtSection dict={dict} />
       <ExpeditionPlaytestSection lang={lang} dict={dict} />
 
       <StoryBackToTop tone="amber" />
