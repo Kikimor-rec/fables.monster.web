@@ -1,5 +1,5 @@
 import Link from "next/link";
-import StoreButton from "@/components/StoreButton";
+import GlitchReveal from "@/components/GlitchReveal";
 import LazyMusicPlayer from "@/components/LazyMusicPlayer";
 import type { LostMarkDictionary } from "@/components/lost-mark/types";
 
@@ -11,7 +11,8 @@ interface LostMarkAudioCtaSectionProps {
 export default function LostMarkAudioCtaSection({ lang, dict }: LostMarkAudioCtaSectionProps) {
   return (
     <>
-      <section id="soundtrack" className="py-20 border-t border-red-700 bg-gray-900 scroll-mt-36">
+      <hr className="fm-section-divider-glow" />
+      <section id="soundtrack" className="lm-section lm-section-muted scroll-mt-36">
         <div className="fm-shell">
           <h2 className="text-4xl font-bold text-white mb-12 text-center font-orbitron flex items-center justify-center gap-3">
             <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -19,7 +20,7 @@ export default function LostMarkAudioCtaSection({ lang, dict }: LostMarkAudioCta
               <circle cx="6" cy="18" r="3" />
               <circle cx="18" cy="16" r="3" />
             </svg>
-            <span>{dict.sections?.soundtrack || "ATMOSPHERIC SOUNDTRACK"}</span>
+            {dict.sections?.soundtrack || "ATMOSPHERIC SOUNDTRACK"}
           </h2>
 
           <div className="py-6 mb-12 text-center">
@@ -34,7 +35,7 @@ export default function LostMarkAudioCtaSection({ lang, dict }: LostMarkAudioCta
               href="https://distrokid.com/hyperfollow/fablesmonsters/lost-mark-original-soundtrack"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block bg-red-700 hover:bg-red-600 text-white font-orbitron font-bold py-3 px-6 rounded border-2 border-red-600 transition-colors mb-3"
+              className="lm-btn lm-btn-red"
             >
               {dict.buttons?.listenStreaming || "Listen on streaming services"}
             </a>
@@ -47,6 +48,7 @@ export default function LostMarkAudioCtaSection({ lang, dict }: LostMarkAudioCta
             <p className="text-gray-300 font-orbitron mb-6 max-w-2xl mx-auto text-center">
               {dict.soundtrack?.youtubeDesc || "Watch and listen to the complete soundtrack on YouTube with our dedicated playlist."}
             </p>
+            <div className="lm-panel p-2 overflow-hidden">
             <iframe
               width="560"
               height="315"
@@ -58,6 +60,7 @@ export default function LostMarkAudioCtaSection({ lang, dict }: LostMarkAudioCta
               allowFullScreen
               className="w-full aspect-video"
             />
+            </div>
           </div>
 
           <div className="max-w-4xl mx-auto">
@@ -68,13 +71,17 @@ export default function LostMarkAudioCtaSection({ lang, dict }: LostMarkAudioCta
               {dict.soundtrack?.playerDesc ||
                 "Use our embedded player to enjoy the full soundtrack directly on our website with all 11 tracks."}
             </p>
+            <div className="lm-panel p-4">
             <LazyMusicPlayer />
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="py-20 border-t border-red-700 text-center">
+      <hr className="fm-section-divider-glow" />
+      <section className="lm-section lm-section-dark text-center">
         <div className="fm-shell">
+          <GlitchReveal variant="horror">
           <h2 className="text-4xl font-bold text-white mb-6 font-orbitron">
             {dict.sections?.cta || "READY TO EXPLORE THE LOST MARK?"}
           </h2>
@@ -82,22 +89,27 @@ export default function LostMarkAudioCtaSection({ lang, dict }: LostMarkAudioCta
             {dict.cta?.description ||
               "Download now and begin your descent into sci-fi horror. Available on multiple platforms."}
           </p>
+          </GlitchReveal>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <StoreButton
-              store="itch"
+            <a
               href="https://fablesmonster.itch.io/lost-mark"
-              price="Free or PWYW"
-              label={dict.buttons?.itch}
-            />
-            <StoreButton
-              store="drivethrurpg"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="lm-btn lm-btn-red lm-btn-lg"
+            >
+              Itch.io — Free or PWYW
+            </a>
+            <a
               href="https://www.drivethrurpg.com/en/product/530242?affiliate_id=2863466"
-              price="Free or PWYW"
-              label={dict.buttons?.drivethru}
-            />
+              target="_blank"
+              rel="noopener noreferrer"
+              className="lm-btn lm-btn-red lm-btn-lg"
+            >
+              DriveThruRPG — Free or PWYW
+            </a>
             <Link
               href={`/${lang}/projects`}
-              className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-black px-8 py-4 text-lg font-orbitron font-bold transition-colors"
+              className="lm-btn lm-btn-ghost lm-btn-lg"
             >
               {dict.buttons?.moreProjects || "MORE PROJECTS"}
             </Link>

@@ -1,10 +1,12 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from "next/image";
-import FadeIn from "@/components/FadeIn";
+import FadeIn, { FadeInItem } from "@/components/FadeIn";
 import OptimizedImage from "@/components/OptimizedImage";
 import CompactTeamMember from "@/components/CompactTeamMember";
 import StayConnectedSection from "@/components/StayConnectedSection";
+import ParallaxHero from "@/components/ParallaxHero";
+import MagneticButton from "@/components/MagneticButton";
 import { buildSocialMetadata } from "@/lib/metadata";
 import { teamMembers } from "@/data/team";
 import { getDictionary } from '@/lib/i18n';
@@ -99,10 +101,8 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
     return (
         <div className="bg-black">
             {/* Hero Section */}
-            <section className="relative min-h-screen flex items-center justify-center text-center overflow-hidden">
-                <div className="absolute inset-0 opacity-20 motion-safe:animate-pulse [background-image:linear-gradient(rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.08)_1px,transparent_1px)] [background-size:36px_36px]"></div>
-                <div className="absolute inset-0 bg-gradient-to-b from-black via-black/90 to-red-950/20"></div>
-                <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6">
+            <ParallaxHero className="min-h-screen flex items-center justify-center text-center">
+                <div className="max-w-5xl mx-auto px-4 sm:px-6 py-24">
                     <FadeIn delay={0.2}>
                         <div className="mb-6 flex flex-wrap items-center justify-center gap-2">
                             {heroStatusBadges.map((badge) => (
@@ -137,22 +137,26 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
                     </FadeIn>
                     <FadeIn delay={0.6}>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                            <Link
-                                href={`/${lang}/projects`}
-                                className="w-full sm:w-auto bg-red-700 hover:bg-red-600 text-white px-8 py-4 text-lg font-orbitron font-bold transition-all border border-red-500 hover:box-glow clip-path-slant"
-                            >
-                                {dict.hero?.ctaProjects}
-                            </Link>
-                            <Link
-                                href={`/${lang}/lost-mark`}
-                                className="w-full sm:w-auto bg-transparent border border-cyan-500 text-cyan-400 hover:bg-cyan-950/30 px-8 py-4 text-lg font-orbitron font-bold transition-all hover:text-white hover:box-glow-cyan"
-                            >
-                                {dict.hero?.ctaLostMark}
-                            </Link>
+                            <MagneticButton>
+                                <Link
+                                    href={`/${lang}/projects`}
+                                    className="w-full sm:w-auto bg-red-700 hover:bg-red-600 text-white px-8 py-4 text-lg font-orbitron font-bold transition-all border border-red-500 hover:box-glow clip-path-slant inline-block"
+                                >
+                                    {dict.hero?.ctaProjects}
+                                </Link>
+                            </MagneticButton>
+                            <MagneticButton>
+                                <Link
+                                    href={`/${lang}/lost-mark`}
+                                    className="w-full sm:w-auto bg-transparent border border-cyan-500 text-cyan-400 hover:bg-cyan-950/30 px-8 py-4 text-lg font-orbitron font-bold transition-all hover:text-white hover:box-glow-cyan inline-block"
+                                >
+                                    {dict.hero?.ctaLostMark}
+                                </Link>
+                            </MagneticButton>
                         </div>
                     </FadeIn>
                 </div>
-            </section>
+            </ParallaxHero>
 
             <section className="border-y border-red-900/30 bg-black/70 backdrop-blur-sm">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 py-5 grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -195,8 +199,9 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
                         </Link>
                     </div>
 
+                    <FadeIn stagger staggerDelay={0.12}>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {sortedProjects.slice(0, 3).map((project, index) => {
+                        {sortedProjects.slice(0, 3).map((project) => {
                             const title = getFrontmatterString(project.frontmatter, 'title');
                             const tagline = getFrontmatterString(project.frontmatter, 'tagline');
                             const image = getFrontmatterString(project.frontmatter, 'image') || '/images/placeholder.webp';
@@ -209,7 +214,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
                             const isInDev = ['in-development', 'In Development', 'В разработке'].includes(status);
                             
                             return (
-                                <FadeIn key={project.slug} delay={index * 0.1}>
+                                <FadeInItem key={project.slug}>
                                     <Link href={`/${lang}/${project.slug}`} className="group block h-full">
                                         <div className="bg-gray-900 border border-gray-800 hover:border-red-600 transition-all duration-300 h-full flex flex-col relative overflow-hidden group-hover:box-glow">
                                             <div className="relative h-64 overflow-hidden">
@@ -259,10 +264,11 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
                                             </div>
                                         </div>
                                     </Link>
-                                </FadeIn>
+                                </FadeInItem>
                             );
                         })}
                     </div>
+                    </FadeIn>
 
                     <div className="mt-12 text-center sm:hidden">
                         <Link

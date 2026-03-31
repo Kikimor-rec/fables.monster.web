@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import GlitchReveal from "@/components/GlitchReveal";
 import OptimizedImage from "@/components/OptimizedImage";
 import type { LostMarkDictionary } from "@/components/lost-mark/types";
 
@@ -16,10 +17,12 @@ interface LostMarkLoreSectionProps {
 export default function LostMarkLoreSection({ dict, features }: LostMarkLoreSectionProps) {
   return (
     <>
-      <section id="about" className="py-10 sm:py-16 md:py-20 bg-gray-900 border-t border-red-700 scroll-mt-36">
+      <hr className="fm-section-divider-glow" />
+      <section id="about" className="lm-section lm-section-muted scroll-mt-36">
         <div className="fm-shell">
           <div className="grid md:grid-cols-2 gap-6 md:gap-12 items-center">
-            <div>
+            <GlitchReveal variant="horror">
+              <div className="border-l-2 border-red-700/40 pl-6">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 sm:mb-6 font-orbitron">
                 {dict.sections?.about || "ABOUT THE ADVENTURE"}
               </h2>
@@ -48,7 +51,7 @@ export default function LostMarkLoreSection({ dict, features }: LostMarkLoreSect
                 }}
               />
 
-              <div className="bg-black border border-red-700 p-4 sm:p-6 mb-4 sm:mb-6">
+              <div className="lm-panel p-4 sm:p-6 mb-4 sm:mb-6">
                 <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-4 font-orbitron">
                   {dict.credits?.title || "CREDITS"}
                 </h3>
@@ -75,20 +78,21 @@ export default function LostMarkLoreSection({ dict, features }: LostMarkLoreSect
                   </div>
                 </div>
               </div>
-            </div>
+              </div>
+            </GlitchReveal>
 
-            <div className="flex flex-col items-center w-full">
-              <div className="bg-black border-2 border-red-700 shadow-lg mb-4 w-full aspect-[3/2] mx-auto overflow-hidden">
+            <GlitchReveal className="flex flex-col items-center w-full" variant="warp" delay={150}>
+              <div className="lm-panel w-full aspect-[3/2] mx-auto overflow-hidden mb-4">
                 <OptimizedImage
                   src="/images/lost-mark/ship_lm.webp"
                   alt="The Lost Mark spaceship drifting in deep space"
                   width={600}
                   height={400}
                   quality={85}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover lm-scroll-distort"
                 />
               </div>
-              <div className="w-full max-w-full sm:max-w-[400px] md:max-w-[500px] lg:max-w-[600px] bg-red-950/20 border-2 border-red-700 p-4 sm:p-6">
+              <div className="w-full max-w-full sm:max-w-[400px] md:max-w-[500px] lg:max-w-[600px] lm-panel !border-red-700/60 p-4 sm:p-6">
                 <div className="text-white font-orbitron font-bold text-lg sm:text-xl mb-2 text-center flex items-center justify-center gap-2">
                   <svg className="w-5 h-5 text-red-400" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M12 2L1 21h22L12 2zm0 4l7.53 13H4.47L12 6zm-1 4v4h2v-4h-2zm0 6v2h2v-2h-2z" />
@@ -100,19 +104,21 @@ export default function LostMarkLoreSection({ dict, features }: LostMarkLoreSect
                     "This adventure contains sci-fi horror themes, body horror, and psychological stress. Player discretion advised."}
                 </div>
               </div>
-            </div>
+            </GlitchReveal>
           </div>
         </div>
       </section>
 
-      <section id="features" className="py-20 border-t border-red-700 scroll-mt-36">
+      <hr className="fm-section-divider-glow" />
+      <section id="features" className="lm-section lm-section-dark scroll-mt-36">
         <div className="fm-shell">
           <h2 className="text-4xl font-bold text-white mb-12 text-center font-orbitron">
             {dict.sections?.features || "KEY FEATURES"}
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
-            {features.map((feature) => (
-              <div key={feature.title} className="bg-gray-900 border border-red-700 p-6 hover:bg-red-950/20 transition-colors">
+            {features.map((feature, index) => (
+              <GlitchReveal key={feature.title} variant="poweron" delay={index * 100}>
+              <div className="lm-panel p-6">
                 <div className="flex items-start space-x-4">
                   <div className="text-red-400 flex-shrink-0">{feature.icon}</div>
                   <div>
@@ -121,6 +127,7 @@ export default function LostMarkLoreSection({ dict, features }: LostMarkLoreSect
                   </div>
                 </div>
               </div>
+              </GlitchReveal>
             ))}
           </div>
         </div>

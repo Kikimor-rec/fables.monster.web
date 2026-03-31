@@ -15,7 +15,10 @@
   },
   "hero": {
     "title": "EXPEDITION-418",
+    "transmission": "APEX-418 // PRIORITY TRANSMISSION",
+    "tagline": "Do androids dream of electric sheep?",
     "subtitle": "A tabletop RPG about exploration robots in space",
+    "tags": ["EXPLORATION", "MORAL CHOICES", "D10", "COOPERATIVE", "NARRATIVE"],
     "paragraph1": "The automated exploration ship APEX-418 launched over 400 years ago to prepare the ground for future colonies. Due to relativistic effects, the ship has actually spent far more time on its expedition than has passed on Earth.",
     "paragraph2": "And every time its sensors find something important or useful, it sends a team of robots to sort it out. You'll be one of those robots.",
     "statusNote": "Game in active development. Public playtest launches April 2026.",
@@ -82,10 +85,27 @@
       "description": "Visit expedition418.com for expanded lore, deeper project materials, and an interactive character sheet you can use right in the browser.",
       "button": "OPEN EXPEDITION418.COM"
     },
+    "downloads": {
+      "title": "DOWNLOAD FREE",
+      "flightTestBadge": "FLIGHT TESTS",
+      "rulesTitle": "Field Guide for Droids (PDF)",
+      "rulesDescription": "Flight Test edition. Complete mechanics reference for the expedition.",
+      "rulesButton": "DOWNLOAD PDF",
+      "charsheetTitle": "Character Sheet (PDF)",
+      "charsheetDescription": "Printable version of the character sheet.",
+      "charsheetButton": "DOWNLOAD PDF",
+      "interactiveTitle": "Build Your Droid",
+      "interactiveDescription": "Interactive character sheet — right in your browser. Pick a chassis, install modules, set your stats and start playing.",
+      "interactiveButton": "OPEN INTERACTIVE SHEET",
+      "tutorialTitle": "Tutorial",
+      "tutorialDescription": "Learn how to play Expedition-418 step by step.",
+      "tutorialButton": "START TUTORIAL"
+    },
     "buttons": {
       "discord": "DISCORD",
       "subscribe": "SUBSCRIBE",
       "patreon": "SUPPORT ON PATREON",
+      "boosty": "BOOSTY",
       "itch": "PLAY ON ITCH.IO"
     }
   }

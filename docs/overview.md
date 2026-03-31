@@ -37,13 +37,25 @@ The repository structure is organized as follows:
 ## Internationalization
 
 The site supports English (default) and Russian languages:
+
 - Translations in `src/locales/[lang]/[page].json`
 - Middleware handles language detection and redirects
 - Use `getDictionary(lang, page)` to load translations
 
+## API Routes
+
+| Endpoint | Method | Description |
+| --- | --- | --- |
+| `/api/contact` | POST | Contact form submission with Zod validation, rate limiting, SMTP email |
+| `/api/newsletter/subscribe` | POST | Newsletter subscription via Listmonk |
+| `/api/newsletter/unsubscribe` | POST | Newsletter unsubscription (by email or UUID) |
+| `/api/dev/content` | GET | Dev-only: serves static content JSON files (403 in production) |
+| `/api/dev/kramp-tracks` | GET | Dev-only: lists Kramp audio files |
+
 ## Store Buttons
 
 The `StoreButton` component supports:
+
 - `itch` – Itch.io
 - `drivethrurpg` – DriveThruRPG
 - `patreon` – Patreon
@@ -52,4 +64,3 @@ The `StoreButton` component supports:
 - `vk` – VK
 
 For Russian visitors, the main purchase option for Lost Mark is Станция Ролевая (rpgbook.ru).
-

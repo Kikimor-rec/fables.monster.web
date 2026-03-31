@@ -4,6 +4,11 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import GoogleAnalytics from '@/components/GoogleAnalytics';
 import SpeedInsightsClient from '@/components/SpeedInsightsClient';
+import LenisProvider from '@/components/LenisProvider';
+import CursorGlow from '@/components/CursorGlow';
+import BootSequence from '@/components/BootSequence';
+import EasterEggs from '@/components/EasterEggs';
+import PageTransition from '@/components/PageTransition';
 import { languages } from '@/i18n/settings';
 import { getDictionary } from '@/lib/i18n';
 import '../globals.css';
@@ -116,11 +121,18 @@ export default async function RootLayout({
             </head>
             <body className="bg-black text-white" suppressHydrationWarning>
                 {process.env.NEXT_PUBLIC_GA_ID && <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />}
-                <Navigation lang={lang} dict={dict.nav || {}} />
-                <main id="main-content">
-                    {children}
-                </main>
-                <Footer lang={lang} dict={dict.footer || {}} newsletterDict={newsletterDict || undefined} />
+                <LenisProvider>
+                    <BootSequence />
+                    <CursorGlow />
+                    <EasterEggs />
+                    <Navigation lang={lang} dict={dict.nav || {}} />
+                    <main id="main-content">
+                        <PageTransition>
+                            {children}
+                        </PageTransition>
+                    </main>
+                    <Footer lang={lang} dict={dict.footer || {}} newsletterDict={newsletterDict || undefined} />
+                </LenisProvider>
                 <Analytics />
                 <SpeedInsightsClient />
             </body>

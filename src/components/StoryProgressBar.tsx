@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type Accent = "red" | "cyan" | "green" | "fuchsia" | "amber";
 
@@ -18,9 +18,22 @@ const accentClasses: Record<Accent, string> = {
 };
 
 export default function StoryProgressBar({ accent = "red", topClassName = "top-[76px]" }: StoryProgressBarProps) {
+  const barRef = useRef<HTMLDivElement>(null);
+  const [useJsFallback, setUseJsFallback] = useState(false);
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
+    // Check for CSS scroll-driven animation support
+    const supportsScrollTimeline = CSS.supports("animation-timeline", "scroll()");
+    if (!supportsScrollTimeline) {
+      setUseJsFallback(true);
+    }
+  }, []);
+
+  // JS fallback for browsers without scroll-timeline support
+  useEffect(() => {
+    if (!useJsFallback) return;
+
     let rafId: number | null = null;
 
     const updateProgress = () => {
@@ -31,9 +44,7 @@ export default function StoryProgressBar({ accent = "red", topClassName = "top-[
     };
 
     const onScrollOrResize = () => {
-      if (rafId !== null) {
-        return;
-      }
+      if (rafId !== null) return;
       rafId = window.requestAnimationFrame(() => {
         rafId = null;
         updateProgress();
@@ -45,20 +56,21 @@ export default function StoryProgressBar({ accent = "red", topClassName = "top-[
     window.addEventListener("resize", onScrollOrResize);
 
     return () => {
-      if (rafId !== null) {
-        window.cancelAnimationFrame(rafId);
-      }
+      if (rafId !== null) window.cancelAnimationFrame(rafId);
       window.removeEventListener("scroll", onScrollOrResize);
       window.removeEventListener("resize", onScrollOrResize);
     };
-  }, []);
+  }, [useJsFallback]);
 
   return (
     <div aria-hidden="true" className={`pointer-events-none fixed left-0 right-0 z-[39] ${topClassName}`}>
       <div className="h-[3px] bg-black/70 border-y border-white/5">
         <div
-          className={`h-full bg-gradient-to-r ${accentClasses[accent]} transition-[width] duration-150 motion-reduce:transition-none`}
-          style={{ width: `${progress}%` }}
+          ref={barRef}
+          className={`h-full bg-gradient-to-r ${accentClasses[accent]} ${
+            useJsFallback ? "transition-[width] duration-150 motion-reduce:transition-none" : "story-progress-css"
+          }`}
+          style={useJsFallback ? { width: `${progress}%` } : undefined}
         />
       </div>
     </div>

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from 'zod';
 import { logger } from '@/lib/logger';
+import { RATE_LIMITS } from '@/lib/constants';
 
 export const runtime = 'nodejs';
 
@@ -12,7 +13,47 @@ const unsubscribeSchema = z.object({
   message: "Either email or subscriber ID is required"
 });
 
+// Rate limiting for unsubscribe
+const rateLimitMap = new Map<string, number[]>();
+
+function checkRateLimit(ip: string | null): boolean {
+  if (!ip) return true;
+
+  const now = Date.now();
+  const requests = (rateLimitMap.get(ip) || []).filter(
+    timestamp => now - timestamp < RATE_LIMITS.contact.windowMs
+  );
+  requests.push(now);
+  rateLimitMap.set(ip, requests);
+
+  return requests.length <= RATE_LIMITS.contact.maxRequests;
+}
+
+// Clean up old entries periodically
+setInterval(() => {
+  const now = Date.now();
+  for (const [ip, timestamps] of rateLimitMap.entries()) {
+    const validTimestamps = timestamps.filter(
+      t => now - t < RATE_LIMITS.contact.windowMs
+    );
+    if (validTimestamps.length === 0) {
+      rateLimitMap.delete(ip);
+    } else {
+      rateLimitMap.set(ip, validTimestamps);
+    }
+  }
+}, 5 * 60 * 1000);
+
 export async function POST(request: NextRequest) {
+  const ip = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip');
+
+  if (!checkRateLimit(ip)) {
+    return NextResponse.json(
+      { error: 'Too many requests. Please try again later.' },
+      { status: 429 }
+    );
+  }
+
   try {
     const body = await request.json();
     const validatedData = unsubscribeSchema.parse(body);
@@ -60,8 +101,10 @@ export async function POST(request: NextRequest) {
 
     // If email provided, search for subscriber first
     if (email) {
+      // Escape single quotes to prevent query injection in Listmonk API
+      const sanitizedEmail = email.replace(/'/g, "''");
       const searchResponse = await fetch(
-        `${listmonkUrl}/api/subscribers?query=${encodeURIComponent(`email = '${email}'`)}`,
+        `${listmonkUrl}/api/subscribers?query=${encodeURIComponent(`email = '${sanitizedEmail}'`)}`,
         {
           headers: {
             'Authorization': authHeader,
@@ -152,28 +195,4 @@ export async function POST(request: NextRequest) {
       { status: 500 }
     );
   }
-}
-
-// Also support GET requests for direct unsubscribe links
-export async function GET(request: NextRequest) {
-  const searchParams = request.nextUrl.searchParams;
-  const uuid = searchParams.get('uuid');
-
-  if (!uuid) {
-    return NextResponse.json(
-      { error: 'Missing subscriber ID' },
-      { status: 400 }
-    );
-  }
-
-  // Forward to POST handler
-  return POST(
-    new NextRequest(request.url, {
-      method: 'POST',
-      body: JSON.stringify({ uuid }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-  );
 }

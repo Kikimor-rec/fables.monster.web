@@ -5,7 +5,7 @@ tagline: "Robots of various configurations on missions that actually matter. Bui
 status: "in-development"
 system: "Expedition-418"
 type: "Core Rulebook"
-image: "/images/teapot-concept.webp"
+image: "/images/expedition-418/E418_Digital_Cover.jpg"
 platforms: {}
 ---
 

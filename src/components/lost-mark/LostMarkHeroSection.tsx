@@ -25,7 +25,7 @@ export default function LostMarkHeroSection({
   const showRpgbookPrimary = Boolean(dict.buttons?.rpgbook && dict.pricing?.russianIncludesAll);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center">
+    <section className="relative min-h-screen flex items-center justify-center fm-scanlines overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-black via-black to-red-950/20" />
 
       <div className="absolute inset-0 opacity-20">
@@ -43,7 +43,10 @@ export default function LostMarkHeroSection({
       <div className="relative z-10 fm-shell max-w-5xl text-center flex flex-col items-center pt-24 md:pt-32">
         <p className="fm-page-kicker mb-4">{dict.hero?.kicker || "MISSION DOSSIER // LOST MARK"}</p>
 
-        <h1 className="text-4xl sm:text-6xl md:text-8xl font-bold text-white mb-6 font-orbitron tracking-wider">
+        <h1
+          className="text-4xl sm:text-6xl md:text-8xl font-bold text-white mb-6 font-orbitron tracking-wider fm-glitch-text"
+          data-text={contentTitle || "THE LOST MARK"}
+        >
           {contentTitle || "THE LOST MARK"}
         </h1>
         <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto font-rajdhani">
@@ -58,7 +61,9 @@ export default function LostMarkHeroSection({
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-8 max-w-2xl mx-auto w-full">
           {stats.map((stat, index) => (
             <div key={stat.label} className="bg-black/60 border border-red-700 stat-block p-2 sm:p-3">
-              <div className="text-lg sm:text-2xl font-bold text-red-400 font-orbitron mb-1">{stat.value}</div>
+              <div className="text-lg sm:text-2xl font-bold text-red-400 font-orbitron mb-1">
+                {stat.value}
+              </div>
               <div className="stat-block-label text-gray-300 font-orbitron">
                 <span className="sm:hidden">{index === 0 ? "Mothership" : stat.label}</span>
                 <span className="hidden sm:inline">{stat.label}</span>
@@ -67,7 +72,7 @@ export default function LostMarkHeroSection({
           ))}
         </div>
 
-        <div className="bg-gradient-to-r from-red-950/50 via-red-900/30 to-red-950/50 border border-red-700/50 rounded-xl p-6 mb-6 backdrop-blur-sm">
+        <div className="lm-panel p-6 mb-6 backdrop-blur-sm">
           {showRpgbookPrimary ? (
             <>
               <p className="text-emerald-400 text-sm font-orbitron mb-4 text-center">
@@ -78,9 +83,9 @@ export default function LostMarkHeroSection({
                   href="https://rpgbook.ru/lost_mark"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center justify-center gap-3 bg-gradient-to-r from-[#3B82F6] to-[#2563EB] hover:from-[#60A5FA] hover:to-[#3B82F6] text-white font-orbitron font-bold px-10 py-5 rounded-lg shadow-lg shadow-blue-900/30 transition-all duration-300 transform hover:scale-105 ring-2 ring-blue-400/50"
+                  className="lm-btn lm-btn-blue lm-btn-lg"
                 >
-                  <span className="text-xl">{dict.buttons?.rpgbook || "RPG Book Station"}</span>
+                  {dict.buttons?.rpgbook || "RPG Book Station"}
                 </a>
               </div>
               <p className="text-gray-500 text-xs font-orbitron mt-4 text-center">
@@ -95,20 +100,20 @@ export default function LostMarkHeroSection({
                   href="https://fablesmonster.itch.io/lost-mark"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center justify-center gap-3 bg-gradient-to-r from-[#FA5C5C] to-[#e74c4c] hover:from-[#ff6b6b] hover:to-[#FA5C5C] text-white font-orbitron font-bold px-8 py-4 rounded-lg shadow-lg shadow-red-900/30 transition-all duration-300 transform hover:scale-105"
+                  className="lm-btn lm-btn-red lm-btn-lg"
                 >
-                  <span className="text-lg">Itch.io</span>
-                  <span className="text-xs bg-white/20 px-2 py-1 rounded">{dict.pricing?.freeLabel || "FREE"}</span>
+                  <span>Itch.io</span>
+                  <span className="text-xs border border-current/30 px-2 py-0.5">{dict.pricing?.freeLabel || "FREE"}</span>
                 </a>
                 <a
                   href="https://www.drivethrurpg.com/en/product/530242?affiliate_id=2863466"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center justify-center gap-3 bg-gradient-to-r from-[#e67e22] to-[#d35400] hover:from-[#f39c12] hover:to-[#e67e22] text-white font-orbitron font-bold px-8 py-4 rounded-lg shadow-lg shadow-orange-900/30 transition-all duration-300 transform hover:scale-105"
+                  className="lm-btn lm-btn-red lm-btn-lg"
                 >
                   <Image src="/logos/dtrpg-logo-small.webp" alt="DriveThruRPG" width={24} height={24} className="w-6 h-6" />
-                  <span className="text-lg">DriveThruRPG</span>
-                  <span className="text-xs bg-white/20 px-2 py-1 rounded">{dict.pricing?.freeLabel || "FREE"}</span>
+                  <span>DriveThruRPG</span>
+                  <span className="text-xs border border-current/30 px-2 py-0.5">{dict.pricing?.freeLabel || "FREE"}</span>
                 </a>
               </div>
             </>
@@ -119,7 +124,7 @@ export default function LostMarkHeroSection({
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link
               href={`/${lang}/lost-mark/terminal`}
-              className="inline-flex items-center gap-2 bg-green-700 text-green-200 font-orbitron font-bold px-6 py-3 rounded border-2 border-green-500 shadow-lg hover:bg-green-600 hover:border-green-400 transition-all duration-200"
+              className="lm-btn lm-btn-green"
             >
               <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <rect x="2" y="3" width="20" height="14" rx="2" />
@@ -131,7 +136,7 @@ export default function LostMarkHeroSection({
 
             <Link
               href={`/${lang}/timer`}
-              className="inline-flex items-center gap-2 bg-green-700 text-green-200 font-orbitron font-bold px-6 py-3 rounded border-2 border-green-500 shadow-lg hover:bg-green-600 hover:border-green-400 transition-all duration-200"
+              className="lm-btn lm-btn-green"
             >
               <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <circle cx="12" cy="12" r="10" />

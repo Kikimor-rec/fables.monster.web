@@ -7,6 +7,16 @@ import { RATE_LIMITS } from '@/lib/constants';
 // Принудительно используем Node.js runtime для поддержки TCP соединений
 export const runtime = 'nodejs';
 
+// Escape HTML special characters to prevent injection in email content
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
 // Define schema for contact form data
 const contactFormSchema = z.object({
   name: z.string().min(1, "Name is required").max(100, "Name is too long"),
@@ -109,7 +119,7 @@ export async function POST(request: NextRequest) {
     const mailOptions = {
       from: `"Fables Monster Contact Form" <${process.env.SMTP_USER}>`,
       to: process.env.SMTP_TO,
-      subject: `New Contact Form Message from ${name}`,
+      subject: `New Contact Form Message from ${escapeHtml(name)}`,
       text: `
 Name: ${name}
 Email: ${email}
@@ -117,10 +127,10 @@ Message: ${message}
       `,
       html: `
         <h3>New Contact Form Message</h3>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Name:</strong> ${escapeHtml(name)}</p>
+        <p><strong>Email:</strong> ${escapeHtml(email)}</p>
         <p><strong>Message:</strong></p>
-        <p>${message.replace(/\n/g, '<br>')}</p>
+        <p>${escapeHtml(message).replace(/\n/g, '<br>')}</p>
       `,
     };
 

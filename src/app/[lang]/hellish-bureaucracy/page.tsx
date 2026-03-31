@@ -57,17 +57,24 @@ export default async function HellishBureaucracy({ params }: { params: Promise<{
         date="2024-12-20"
         genre="Fantasy Comedy"
       />
-      <div className="fm-page">
+      <div className="fm-page relative">
         <StoryProgressBar accent="red" />
+
+        {/* Bureaucratic ledger-line background pattern */}
+        <div className="fm-pattern-ledger absolute inset-0 pointer-events-none" aria-hidden="true" />
+
         {/* Hero Section */}
-        <section className="fm-page-hero">
+        <section className="fm-page-hero relative z-10">
           <div className="fm-shell">
-            <div className="fm-page-hero-panel text-center">
+            <div className="fm-page-hero-panel text-center animate-glow-pulse" style={{ animationDuration: '6s' }}>
               <p className="fm-page-kicker mb-5">{projectDict?.kicker || 'UNANNOUNCED PROTOCOL'}</p>
-              <h1 className="fm-display-title font-bold text-white mb-5 font-orbitron tracking-wider text-glow">
+              <h1
+                className="fm-display-title font-bold text-white mb-5 font-orbitron tracking-wider text-glow fm-glitch-text"
+                data-text={title || 'HELLISH BUREAUCRACY'}
+              >
                 {title || 'HELLISH BUREAUCRACY'}
               </h1>
-              <p className="fm-page-subtitle text-red-300 mb-8">
+              <p className="fm-page-subtitle text-red-300 mb-8 text-glow-red" style={{ textShadow: '0 0 15px rgba(248,113,113,0.3)' }}>
                 {tagline || projectDict?.defaultTagline || 'Navigate the administrative nightmare of Hell'}
               </p>
 
@@ -80,10 +87,13 @@ export default async function HellishBureaucracy({ params }: { params: Promise<{
           </div>
         </section>
 
+        {/* Section divider */}
+        <hr className="fm-section-divider-glow relative z-10" />
+
         {/* Content Section */}
-        <section className="fm-section fm-section-bordered">
+        <section className="fm-section relative z-10">
           <div className="fm-shell max-w-4xl">
-            <article className="fm-panel prose prose-invert prose-lg max-w-none" dangerouslySetInnerHTML={{ __html: content?.contentHtml || '' }} />
+            <article className="fm-panel fm-panel-accented fm-prose-dropcap prose prose-invert prose-lg max-w-none" dangerouslySetInnerHTML={{ __html: content?.contentHtml || '' }} />
           </div>
         </section>
 

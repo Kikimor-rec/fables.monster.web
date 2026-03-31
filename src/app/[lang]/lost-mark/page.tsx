@@ -1,13 +1,13 @@
 import { Metadata } from "next";
 import { AdventureJson } from "@/components/SEO";
 import StayConnectedSection from "@/components/StayConnectedSection";
-import StoryProgressBar from "@/components/StoryProgressBar";
 import StorySectionNav from "@/components/StorySectionNav";
 import StoryBackToTop from "@/components/StoryBackToTop";
 import LostMarkHeroSection from "@/components/lost-mark/LostMarkHeroSection";
 import LostMarkLoreSection from "@/components/lost-mark/LostMarkLoreSection";
 import LostMarkPlatformSections from "@/components/lost-mark/LostMarkPlatformSections";
 import LostMarkAudioCtaSection from "@/components/lost-mark/LostMarkAudioCtaSection";
+import LostMarkScrollFx from "@/components/lost-mark/LostMarkScrollFx";
 import type { LostMarkDictionary } from "@/components/lost-mark/types";
 import { getContent, getFrontmatterString } from "@/lib/content";
 import { getDictionary } from "@/lib/i18n";
@@ -35,6 +35,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   return {
     title: resolvedTitle,
     description: resolvedDescription,
+    // Font preloading for better LCP (Largest Contentful Paint)
+    metadataBase: new URL("https://fables.monster"),
     ...social,
   };
 }
@@ -127,8 +129,8 @@ export default async function LostMark({ params }: { params: Promise<{ lang: str
         date="2024-10-05"
         genre="Science Fiction Horror"
       />
-      <div className="fm-page">
-        <StoryProgressBar accent="red" />
+      <div className="fm-page relative fm-pattern-stardust">
+        <LostMarkScrollFx />
         <LostMarkHeroSection
           lang={lang}
           contentTitle={contentTitle}

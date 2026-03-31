@@ -157,30 +157,33 @@ export default function Navigation({ lang, dict }: { lang: string, dict: NavDict
             href={`/${lang}`}
             className="flex items-center gap-3 focus:outline-none focus:ring-2 focus:ring-red-500 rounded"
             aria-label={dict.homeAriaLabel || 'Fables Monster - Home'}
+            data-easter="logo"
           >
             <Image src="/logos/fm-logo-gorizntal-w.png" alt="" width={160} height={56} className="h-10 sm:h-12 w-auto logo-glitch" priority aria-hidden="true" />
             <span className="sr-only">Fables Monster Studio</span>
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex space-x-6 lg:space-x-8 items-center" role="menubar">
+          <div className="hidden md:flex space-x-6 lg:space-x-8 items-center">
+            <ul className="flex space-x-6 lg:space-x-8 items-center list-none m-0 p-0">
             {navLinks.map((link) => {
               const isCurrent = isActive(link.href);
               return (
+                <li key={link.href}>
                 <Link
-                  key={link.href}
                   href={link.href}
                   className={`nav-link transition-colors font-orbitron font-bold ${isCurrent
                     ? "nav-link-active text-red-400"
                     : "text-white hover:text-red-400"
                     } focus:outline-none focus:ring-2 focus:ring-red-500 rounded px-1 py-2`}
                   aria-current={isCurrent ? 'page' : undefined}
-                  role="menuitem"
                 >
                   {link.label}
                 </Link>
+                </li>
               );
             })}
+            </ul>
             {/* Language Switcher */}
             <div className="flex items-center gap-2 font-orbitron font-bold text-sm ml-4 border-l border-gray-700 pl-4" role="group" aria-label={dict.languageSelection || 'Language selection'}>
               <Link
@@ -267,7 +270,7 @@ export default function Navigation({ lang, dict }: { lang: string, dict: NavDict
             >
               ×
             </button>
-            <nav className="w-full flex flex-col items-stretch gap-1" role="menubar" aria-label={dict.mobileNavigation || 'Mobile navigation'}>
+            <nav className="w-full flex flex-col items-stretch gap-1" aria-label={dict.mobileNavigation || 'Mobile navigation'}>
               {navLinks.map((link) => {
                 const isCurrent = isActive(link.href);
                 return (
@@ -279,7 +282,6 @@ export default function Navigation({ lang, dict }: { lang: string, dict: NavDict
                       : "text-white hover:text-red-400"
                       } focus:outline-none focus:ring-2 focus:ring-red-500 rounded`}
                     onClick={handleCloseMenu}
-                    role="menuitem"
                     aria-current={isCurrent ? 'page' : undefined}
                   >
                     {link.label}

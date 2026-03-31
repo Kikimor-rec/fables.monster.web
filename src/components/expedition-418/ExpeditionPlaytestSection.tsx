@@ -62,6 +62,59 @@ export default function ExpeditionPlaytestSection({ lang, dict }: ExpeditionPlay
             >
               {dict.playtest.buttons.patreon}
             </a>
+            <a
+              href="https://boosty.to/fables.monster"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-12 items-center justify-center border border-[#ec544c] bg-transparent px-5 py-3 text-base uppercase tracking-[0.08em] text-[#f7a37a] transition-colors hover:bg-[#ec544c]/20 hover:text-[#f5efe0] [font-family:var(--font-exp-heading)]"
+            >
+              {dict.playtest.buttons.boosty}
+            </a>
+          </div>
+        </div>
+
+        {/* Downloads Section */}
+        <div className="expedition-fade-up mt-10 border border-[#505c64] bg-[#1a2442] px-4 py-6 sm:px-6 sm:py-8 md:px-10 md:py-10">
+          <div className="mb-6 flex items-center gap-3">
+            <h2 className="text-2xl uppercase text-[#f5efe0] [font-family:var(--font-exp-heading)] sm:text-3xl">{dict.playtest.downloads.title}</h2>
+            <span className="border border-[#f67b40]/70 bg-[#18213c] px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-[#f7a37a] [font-family:var(--font-exp-ui)] sm:text-xs">
+              {dict.playtest.downloads.flightTestBadge}
+            </span>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div className="border border-[#505c64] bg-[#18213c]/60 p-4 sm:p-5">
+              <h3 className="mb-2 text-lg uppercase text-[#f5efe0] [font-family:var(--font-exp-heading)]">{dict.playtest.downloads.rulesTitle}</h3>
+              <p className="mb-4 text-sm text-[#d9e7d9] [font-family:var(--font-exp-body)]">{dict.playtest.downloads.rulesDescription}</p>
+              <a href="https://expedition418.com/docs/downloads/exp418-rules.pdf" target="_blank" rel="noopener noreferrer"
+                className="inline-flex min-h-10 items-center justify-center border border-[#f67b40] bg-[#f67b40] px-4 py-2 text-sm uppercase tracking-[0.08em] text-[#18213c] transition-colors hover:bg-[#ec544c] hover:text-[#f5efe0] [font-family:var(--font-exp-heading)]">
+                {dict.playtest.downloads.rulesButton}
+              </a>
+            </div>
+
+            <div className="border border-[#505c64] bg-[#18213c]/60 p-4 sm:p-5">
+              <h3 className="mb-2 text-lg uppercase text-[#f5efe0] [font-family:var(--font-exp-heading)]">{dict.playtest.downloads.charsheetTitle}</h3>
+              <p className="mb-4 text-sm text-[#d9e7d9] [font-family:var(--font-exp-body)]">{dict.playtest.downloads.charsheetDescription}</p>
+              <a href="https://expedition418.com/docs/downloads/exp418-charsheet.pdf" target="_blank" rel="noopener noreferrer"
+                className="inline-flex min-h-10 items-center justify-center border border-[#f67b40] bg-[#f67b40] px-4 py-2 text-sm uppercase tracking-[0.08em] text-[#18213c] transition-colors hover:bg-[#ec544c] hover:text-[#f5efe0] [font-family:var(--font-exp-heading)]">
+                {dict.playtest.downloads.charsheetButton}
+              </a>
+            </div>
+
+            <div className="border border-[#c6d9c6]/30 bg-[#18213c]/60 p-4 sm:col-span-2 sm:p-5">
+              <h3 className="mb-2 text-lg uppercase text-[#f5efe0] [font-family:var(--font-exp-heading)]">{dict.playtest.downloads.interactiveTitle}</h3>
+              <p className="mb-4 text-sm text-[#d9e7d9] [font-family:var(--font-exp-body)]">{dict.playtest.downloads.interactiveDescription}</p>
+              <div className="flex flex-wrap gap-3">
+                <a href="https://expedition418.com/charsheet/" target="_blank" rel="noopener noreferrer"
+                  className="inline-flex min-h-10 items-center justify-center border border-[#f67b40] bg-[#f67b40] px-4 py-2 text-sm uppercase tracking-[0.08em] text-[#18213c] transition-colors hover:bg-[#ec544c] hover:text-[#f5efe0] [font-family:var(--font-exp-heading)]">
+                  {dict.playtest.downloads.interactiveButton}
+                </a>
+                <a href="https://expedition418.com/tutorial/" target="_blank" rel="noopener noreferrer"
+                  className="inline-flex min-h-10 items-center justify-center border border-[#c6d9c6] bg-transparent px-4 py-2 text-sm uppercase tracking-[0.08em] text-[#c6d9c6] transition-colors hover:bg-[#c6d9c6] hover:text-[#18213c] [font-family:var(--font-exp-heading)]">
+                  {dict.playtest.downloads.tutorialButton}
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>

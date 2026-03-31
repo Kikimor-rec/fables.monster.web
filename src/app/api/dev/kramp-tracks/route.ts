@@ -3,6 +3,10 @@ import { promises as fs } from 'fs';
 import path from 'path';
 
 export async function GET() {
+  if (process.env.NODE_ENV !== 'development') {
+    return NextResponse.json({ error: 'Not available in production' }, { status: 403 });
+  }
+
   try {
     const musicDir = path.join(process.cwd(), 'public', 'music', 'krampmusic');
     

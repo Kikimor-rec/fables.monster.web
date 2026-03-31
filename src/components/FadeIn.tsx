@@ -1,104 +1,119 @@
 "use client";
 
-import { ReactNode, useRef, useEffect, useState } from "react";
+import { ReactNode } from "react";
+import { motion, type Variants } from "framer-motion";
 
 interface FadeInProps {
   children: ReactNode;
   delay?: number;
   direction?: "up" | "down" | "left" | "right";
   className?: string;
+  /** Enable staggered animation for direct children (wrap each child in its own motion.div) */
+  stagger?: boolean;
+  staggerDelay?: number;
 }
+
+const getOffset = (direction: string) => {
+  switch (direction) {
+    case "up":    return { x: 0, y: 30 };
+    case "down":  return { x: 0, y: -30 };
+    case "left":  return { x: 30, y: 0 };
+    case "right": return { x: -30, y: 0 };
+    default:      return { x: 0, y: 30 };
+  }
+};
 
 export default function FadeIn({
   children,
   delay = 0,
   direction = "up",
-  className = ""
+  className = "",
+  stagger = false,
+  staggerDelay = 0.08,
 }: FadeInProps) {
-  const elementRef = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
-  const [glitched, setGlitched] = useState(false);
-  const [reduceMotion, setReduceMotion] = useState(false);
+  const offset = getOffset(direction);
 
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const updatePreference = () => setReduceMotion(mediaQuery.matches);
-
-    updatePreference();
-    mediaQuery.addEventListener("change", updatePreference);
-
-    return () => {
-      mediaQuery.removeEventListener("change", updatePreference);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (reduceMotion) {
-      setIsVisible(true);
-      setGlitched(false);
-      return;
-    }
-
-    const element = elementRef.current;
-    if (!element) return;
-
-    let revealTimeout: ReturnType<typeof setTimeout> | undefined;
-    let glitchTimeout: ReturnType<typeof setTimeout> | undefined;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          revealTimeout = setTimeout(() => {
-            setIsVisible(true);
-            setGlitched(true);
-            glitchTimeout = setTimeout(() => {
-              setGlitched(false);
-            }, 450);
-          }, delay * 1000);
-          observer.disconnect(); // Stop observing once visible
-        }
+  const containerVariants: Variants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: stagger ? staggerDelay : 0,
+        delayChildren: delay,
       },
-      {
-        threshold: 0.05,
-        rootMargin: "0px 0px -10% 0px"
-      }
-    );
-
-    observer.observe(element);
-
-    return () => {
-      observer.disconnect();
-      if (revealTimeout) clearTimeout(revealTimeout);
-      if (glitchTimeout) clearTimeout(glitchTimeout);
-    };
-  }, [delay, reduceMotion]);
-
-  const getInitialTransform = () => {
-    switch (direction) {
-      case "up":
-        return "translate3d(0, 30px, 0)";
-      case "down":
-        return "translate3d(0, -30px, 0)";
-      case "left":
-        return "translate3d(30px, 0, 0)";
-      case "right":
-        return "translate3d(-30px, 0, 0)";
-      default:
-        return "translate3d(0, 30px, 0)";
-    }
+    },
   };
 
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, x: offset.x, y: offset.y },
+    visible: {
+      opacity: 1,
+      x: 0,
+      y: 0,
+      transition: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] },
+    },
+  };
+
+  if (stagger) {
+    return (
+      <motion.div
+        className={className}
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.05 }}
+      >
+        {children}
+      </motion.div>
+    );
+  }
+
   return (
-    <div
-      ref={elementRef}
-      className={`${className} transition-all duration-700 ease-in-out motion-reduce:duration-0 ${isVisible ? 'opacity-100' : 'opacity-0'} ${glitched ? "terminal-glitch" : ""}`}
-      style={{
-        transform: isVisible ? 'translate3d(0, 0, 0)' : getInitialTransform()
+    <motion.div
+      className={className}
+      variants={itemVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.05 }}
+      transition={{ delay }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+/**
+ * Wrap each child of a staggered FadeIn in this component.
+ * Usage:
+ *   <FadeIn stagger>
+ *     <FadeInItem><Card /></FadeInItem>
+ *     <FadeInItem><Card /></FadeInItem>
+ *   </FadeIn>
+ */
+export function FadeInItem({
+  children,
+  className = "",
+  direction = "up",
+}: {
+  children: ReactNode;
+  className?: string;
+  direction?: "up" | "down" | "left" | "right";
+}) {
+  const offset = getOffset(direction);
+
+  return (
+    <motion.div
+      className={className}
+      variants={{
+        hidden: { opacity: 0, x: offset.x, y: offset.y },
+        visible: {
+          opacity: 1,
+          x: 0,
+          y: 0,
+          transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] },
+        },
       }}
     >
       {children}
-    </div>
+    </motion.div>
   );
 }

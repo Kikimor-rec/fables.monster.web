@@ -699,7 +699,10 @@ export interface Expedition418NavDict {
 
 export interface Expedition418HeroDict {
   title: string;
+  transmission: string;
+  tagline: string;
   subtitle: string;
+  tags: string[];
   paragraph1: string;
   paragraph2: string;
   statusNote: string;
@@ -764,10 +767,27 @@ export interface Expedition418PlaytestDict {
     description: string;
     button: string;
   };
+  downloads: {
+    title: string;
+    flightTestBadge: string;
+    rulesTitle: string;
+    rulesDescription: string;
+    rulesButton: string;
+    charsheetTitle: string;
+    charsheetDescription: string;
+    charsheetButton: string;
+    interactiveTitle: string;
+    interactiveDescription: string;
+    interactiveButton: string;
+    tutorialTitle: string;
+    tutorialDescription: string;
+    tutorialButton: string;
+  };
   buttons: {
     discord: string;
     subscribe: string;
     patreon: string;
+    boosty: string;
     itch: string;
   };
 }

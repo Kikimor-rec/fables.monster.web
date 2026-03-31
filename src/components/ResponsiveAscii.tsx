@@ -33,11 +33,11 @@ export default function ResponsiveAscii({
   }, [longest]);
 
   return (
-    <div style={{ maxWidth: "100vw", overflowX: "auto" }}>
+    <div className="max-w-[100vw] overflow-x-auto">
       <pre
         ref={preRef}
-        style={{ fontSize: fontSize, lineHeight: "1.05", width: `${longest}ch`, minWidth: "min-content" }}
-        className={className + " whitespace-pre inline-block"}
+        style={{ fontSize: fontSize, lineHeight: "1.05", width: `${longest}ch` }}
+        className={className + " whitespace-pre inline-block min-w-min"}
       >
         {ascii}
       </pre>

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { Expedition418Dict } from "@/types/i18n";
 import ExpeditionHeroLogo from "./ExpeditionHeroLogo";
 
@@ -17,6 +18,10 @@ export default function ExpeditionHeroSection({ dict }: ExpeditionHeroSectionPro
       <div className="pointer-events-none absolute bottom-6 right-4 h-16 w-16 rounded-br-2xl border-b-2 border-r-2 border-[#ff683d]/70 md:bottom-8 md:right-8 md:h-24 md:w-24" />
 
       <div className="relative z-10 fm-shell max-w-6xl text-center">
+        <p className="mb-3 block text-center text-[10px] uppercase tracking-[0.3em] text-[#c6d9c6]/60 [font-family:var(--font-exp-ui)]">
+          {dict.hero.transmission}
+        </p>
+
         <p className="mb-8 block text-center text-[11px] uppercase tracking-[0.24em] text-[#f67b40] [font-family:var(--font-exp-ui)] md:mb-10">
           {dict.genre.label}
         </p>
@@ -32,11 +37,44 @@ export default function ExpeditionHeroSection({ dict }: ExpeditionHeroSectionPro
           </div>
         </div>
 
-        <div className="mx-auto mt-6 max-w-2xl border-y border-[#505c64] bg-[#18213c]/60 px-4 py-6 backdrop-blur-sm sm:px-8">
-          <p className="text-pretty text-lg leading-relaxed text-[#c6d9c6] sm:text-xl md:text-2xl [font-family:var(--font-exp-accent)]">
-            {dict.hero.subtitle}
-          </p>
-          <p className="mt-2 text-sm uppercase tracking-[0.24em] text-[#f67b40] [font-family:var(--font-exp-ui)]">SYSTEM STATUS: CRITICAL</p>
+        {/* Cover + Info side by side on desktop */}
+        <div className="mx-auto mt-2 flex flex-col items-center gap-8 md:flex-row md:items-start md:justify-center md:gap-12">
+          {/* Official Cover Art */}
+          <div className="w-56 flex-shrink-0 sm:w-64 md:w-72">
+            <div className="relative overflow-hidden border-2 border-[#505c64] shadow-[0_0_40px_rgba(246,123,64,0.15)] transition-shadow hover:shadow-[0_0_60px_rgba(246,123,64,0.25)]">
+              <Image
+                src="/images/expedition-418/E418_Digital_Cover.jpg"
+                alt="Expedition 418 — Rover's Field Guide, Flight Test Edition cover art"
+                width={800}
+                height={1120}
+                quality={90}
+                className="w-full h-auto"
+                priority
+              />
+            </div>
+          </div>
+
+          {/* Info block */}
+          <div className="flex max-w-lg flex-col items-center text-center md:items-start md:text-left">
+            <p className="mb-4 text-lg italic text-[#c6d9c6]/80 [font-family:var(--font-exp-accent)] md:text-xl">
+              {dict.hero.tagline}
+            </p>
+
+            <div className="w-full border-y border-[#505c64] bg-[#18213c]/60 px-4 py-6 backdrop-blur-sm sm:px-8">
+              <p className="text-pretty text-lg leading-relaxed text-[#c6d9c6] sm:text-xl md:text-2xl [font-family:var(--font-exp-accent)]">
+                {dict.hero.subtitle}
+              </p>
+              <p className="mt-2 text-sm uppercase tracking-[0.24em] text-[#f67b40] [font-family:var(--font-exp-ui)]">SYSTEM STATUS: CRITICAL</p>
+            </div>
+
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-2 md:justify-start">
+              {dict.hero.tags.map((tag) => (
+                <span key={tag} className="border border-[#505c64] bg-[#1a2442] px-3 py-1.5 text-[10px] uppercase tracking-[0.16em] text-[#c6d9c6]/80 [font-family:var(--font-exp-ui)] sm:text-xs">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
         </div>
 
         <p className="mt-8 text-xs text-[#8b97a5] [font-family:var(--font-exp-ui)]">

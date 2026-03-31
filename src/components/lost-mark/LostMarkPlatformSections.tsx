@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import GlitchReveal from "@/components/GlitchReveal";
 import OptimizedImage from "@/components/OptimizedImage";
 import type { LostMarkDictionary } from "@/components/lost-mark/types";
 
@@ -11,18 +12,19 @@ interface LostMarkPlatformSectionsProps {
 export default function LostMarkPlatformSections({ lang, dict }: LostMarkPlatformSectionsProps) {
   return (
     <>
-      <section id="expansion" className="py-16 bg-black border-t border-red-700 scroll-mt-36">
+      <hr className="fm-section-divider-glow" />
+      <section id="expansion" className="lm-section lm-section-dark scroll-mt-36">
         <div className="fm-shell">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="order-2 md:order-1">
-              <div className="bg-black border-2 border-red-700 shadow-lg w-full aspect-video mx-auto overflow-hidden relative group">
+            <GlitchReveal className="order-2 md:order-1" variant="warp">
+              <div className="lm-panel w-full aspect-video mx-auto overflow-hidden relative group">
                 <OptimizedImage
                   src="/images/lost-mark/Lost mark ext.jpg"
                   alt="Lost Mark expansion pack"
                   width={800}
                   height={450}
                   quality={90}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover lm-scroll-distort"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60" />
                 <div className="absolute bottom-4 left-4 right-4">
@@ -32,8 +34,8 @@ export default function LostMarkPlatformSections({ lang, dict }: LostMarkPlatfor
                   <div className="text-white font-bold font-orbitron text-xl">{dict.expansion?.label || "EXPANSION CONTENT"}</div>
                 </div>
               </div>
-            </div>
-            <div className="order-1 md:order-2">
+            </GlitchReveal>
+            <GlitchReveal className="order-1 md:order-2" variant="horror" delay={100}>
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 font-orbitron">
                 {dict.sections?.expansion || "EXPANSION PACK"}
               </h2>
@@ -89,36 +91,37 @@ export default function LostMarkPlatformSections({ lang, dict }: LostMarkPlatfor
                   href="https://www.patreon.com/posts/lost-mark-pack-143990208?fables.monster"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-[#FF424D] hover:bg-[#E63B45] text-white px-6 py-3 rounded font-orbitron font-bold transition-colors flex items-center justify-center gap-2"
+                  className="lm-btn lm-btn-red"
                 >
-                  <span>{dict.buttons?.patreon || "Get on Patreon"}</span>
+                  {dict.buttons?.patreon || "Get on Patreon"}
                 </a>
                 <a
                   href="https://fablesmonster.itch.io/lost-mark"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-[#FA5C5C] hover:bg-[#D44E4E] text-white px-6 py-3 rounded font-orbitron font-bold transition-colors flex items-center justify-center gap-2"
+                  className="lm-btn lm-btn-red"
                 >
-                  <span>{dict.buttons?.itch || "Get on Itch.io"}</span>
+                  {dict.buttons?.itch || "Get on Itch.io"}
                 </a>
                 <a
                   href="https://www.drivethrurpg.com/en/product/546658/mothership-lost-mark-expansion-pack"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-[#e67e22] hover:bg-[#d35400] text-white px-6 py-3 rounded font-orbitron font-bold transition-colors flex items-center justify-center gap-2"
+                  className="lm-btn lm-btn-red"
                 >
-                  <span>{dict.buttons?.drivethru || "Get on DriveThruRPG"}</span>
+                  {dict.buttons?.drivethru || "Get on DriveThruRPG"}
                 </a>
               </div>
-            </div>
+            </GlitchReveal>
           </div>
         </div>
       </section>
 
-      <section id="foundry" className="py-16 bg-gray-900 border-t border-red-700 scroll-mt-36">
+      <hr className="fm-section-divider-glow" />
+      <section id="foundry" className="lm-section lm-section-muted scroll-mt-36">
         <div className="fm-shell">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="order-1">
+            <GlitchReveal className="order-1" variant="horror">
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 font-orbitron">
                 {dict.sections?.foundry || "FOUNDRY VTT MODULE"}
               </h2>
@@ -135,23 +138,23 @@ export default function LostMarkPlatformSections({ lang, dict }: LostMarkPlatfor
                   href="https://www.patreon.com/posts/lost-mark-vtt-143997921"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center justify-center gap-3 bg-gradient-to-r from-[#FF424D] to-[#E63B45] hover:from-[#ff5a65] hover:to-[#FF424D] text-white px-6 py-4 rounded-lg font-orbitron font-bold transition-all duration-300 shadow-lg shadow-red-900/30 transform hover:scale-[1.02]"
+                  className="lm-btn lm-btn-red"
                 >
                   <Image src="/logos/PATREON_SYMBOL_1_WHITE_RGB.svg" alt="Patreon" width={20} height={20} className="w-5 h-5" />
-                  <span>Patreon</span>
+                  Patreon
                 </a>
                 <a
                   href="https://fablesmonster.itch.io/lost-mark-foundry-vtt"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center justify-center gap-3 bg-gradient-to-r from-[#FA5C5C] to-[#D44E4E] hover:from-[#ff6b6b] hover:to-[#FA5C5C] text-white px-6 py-4 rounded-lg font-orbitron font-bold transition-all duration-300 shadow-lg shadow-red-900/30 transform hover:scale-[1.02]"
+                  className="lm-btn lm-btn-red"
                 >
-                  <span>Itch.io</span>
+                  Itch.io
                 </a>
               </div>
-            </div>
-            <div className="order-2">
-              <div className="border-2 border-red-700 shadow-lg w-full aspect-video mx-auto overflow-hidden relative bg-black">
+            </GlitchReveal>
+            <GlitchReveal className="order-2" variant="warp" delay={150}>
+              <div className="lm-panel w-full aspect-video mx-auto overflow-hidden relative">
                 <iframe
                   width="100%"
                   height="100%"
@@ -163,19 +166,22 @@ export default function LostMarkPlatformSections({ lang, dict }: LostMarkPlatfor
                   className="absolute inset-0 w-full h-full"
                 />
               </div>
-            </div>
+            </GlitchReveal>
           </div>
         </div>
       </section>
 
-      <section id="roll20" className="py-16 border-t border-red-700 bg-gray-900/50 scroll-mt-36">
+      <hr className="fm-section-divider-glow" />
+      <section id="roll20" className="lm-section lm-section-dark scroll-mt-36">
         <div className="fm-shell max-w-6xl">
-          <h2 className="text-3xl font-bold text-white mb-8 text-center font-orbitron">
-            {dict.sections?.roll20 || "ROLL20 MODULE"}
+          <h2 className="text-3xl font-bold text-white mb-8 text-center font-orbitron lm-heading-lined">
+            <span className="lm-heading-line" />
+            <span>{dict.sections?.roll20 || "ROLL20 MODULE"}</span>
+            <span className="lm-heading-line" />
           </h2>
 
           <div className="grid md:grid-cols-2 gap-8 items-center">
-            <div>
+            <GlitchReveal variant="horror">
               <p className="text-gray-300 mb-6">
                 {dict.roll20?.description ||
                   "Experience Lost Mark on Roll20. Ready-to-play module with all maps, tokens, and handouts configured for an immersive virtual tabletop experience."}
@@ -202,11 +208,11 @@ export default function LostMarkPlatformSections({ lang, dict }: LostMarkPlatfor
                 href="https://marketplace.roll20.net/browse/module/39314/lost-mark-sci-fi-horror-one-shot-for-mothership"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center justify-center gap-3 bg-gradient-to-r from-[#E02020] to-[#B81C1C] hover:from-[#FF2D2D] hover:to-[#E02020] text-white font-bold py-4 px-8 rounded-lg transition-all duration-300 font-orbitron shadow-lg shadow-red-900/30 transform hover:scale-105"
+                className="lm-btn lm-btn-red"
               >
-                <span className="text-lg">{dict.buttons?.roll20 || "Roll20 Marketplace"}</span>
-                <span className="text-xs bg-white/20 px-2 py-1 rounded">$6.99</span>
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 group-hover:translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">
+                <span>{dict.buttons?.roll20 || "Roll20 Marketplace"}</span>
+                <span className="text-xs border border-current/30 px-2 py-0.5">$9.99</span>
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                   <path
                     fillRule="evenodd"
                     d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
@@ -214,18 +220,18 @@ export default function LostMarkPlatformSections({ lang, dict }: LostMarkPlatfor
                   />
                 </svg>
               </a>
-            </div>
-            <div className="relative">
-              <div className="bg-gradient-to-br from-gray-800/80 to-gray-900/80 rounded-xl p-4 border-2 border-red-700/50 shadow-2xl shadow-red-900/20 overflow-hidden">
+            </GlitchReveal>
+            <GlitchReveal className="relative" variant="warp" delay={100}>
+              <div className="lm-panel p-4 overflow-hidden">
                 <div className="absolute top-2 right-2 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full z-10 font-orbitron">
                   Roll20
                 </div>
                 <OptimizedImage
-                  src="/images/lost-mark/roll20-preview.webp"
+                  src="/images/lost-mark/roll20-marketplace.jpg"
                   alt="Lost Mark Roll20 module preview"
                   width={500}
                   height={300}
-                  className="rounded-lg w-full h-auto transition-transform duration-500 hover:scale-105"
+                  className="w-full h-auto transition-transform duration-500 hover:scale-105"
                 />
                 <div className="mt-4 flex flex-wrap gap-2 justify-center">
                   <span className="bg-red-900/50 text-red-300 text-xs px-3 py-1 rounded-full border border-red-700/50 font-orbitron">{dict.roll20?.badges?.maps || "MAPS"}</span>
@@ -234,20 +240,24 @@ export default function LostMarkPlatformSections({ lang, dict }: LostMarkPlatfor
                   <span className="bg-red-900/50 text-red-300 text-xs px-3 py-1 rounded-full border border-red-700/50 font-orbitron">{dict.roll20?.badges?.lighting || "LIGHTING"}</span>
                 </div>
               </div>
-            </div>
+            </GlitchReveal>
           </div>
         </div>
       </section>
 
-      <section id="tools" className="py-16 border-t border-red-700 bg-gray-950/50 scroll-mt-36">
+      <hr className="fm-section-divider-glow" />
+      <section id="tools" className="lm-section lm-section-muted scroll-mt-36">
         <div className="fm-shell max-w-6xl">
-          <h2 className="text-3xl font-bold text-white mb-8 text-center font-orbitron">
-            {dict.sections?.tools || "INTERACTIVE TOOLS"}
+          <h2 className="text-3xl font-bold text-white mb-8 text-center font-orbitron lm-heading-lined">
+            <span className="lm-heading-line" />
+            <span>{dict.sections?.tools || "INTERACTIVE TOOLS"}</span>
+            <span className="lm-heading-line" />
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
+            <GlitchReveal variant="static">
             <Link
               href={`/${lang}/lost-mark/terminal`}
-              className="bg-black/60 border-2 border-green-500 p-6 rounded hover:bg-white/10 transition-all duration-200 shadow-lg"
+              className="block lm-panel !border-green-700/40 hover:!border-green-500/60 p-6 transition-all duration-200"
             >
               <div className="flex items-center gap-3 mb-4">
                 <svg className="w-8 h-8 text-green-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -265,10 +275,12 @@ export default function LostMarkPlatformSections({ lang, dict }: LostMarkPlatfor
                   "Access the ship's computer system and uncover the dark secrets hidden in the logs. Navigate through corrupted data, system failures, and mysterious transmissions."}
               </p>
             </Link>
+            </GlitchReveal>
 
+            <GlitchReveal variant="static" delay={120}>
             <Link
               href={`/${lang}/timer`}
-              className="bg-black/60 border-2 border-green-500 p-6 rounded hover:bg-white/10 transition-all duration-200 shadow-lg"
+              className="block lm-panel !border-green-700/40 hover:!border-green-500/60 p-6 transition-all duration-200"
             >
               <div className="flex items-center gap-3 mb-4">
                 <svg className="w-8 h-8 text-green-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -285,6 +297,7 @@ export default function LostMarkPlatformSections({ lang, dict }: LostMarkPlatfor
                   "A digital countdown timer designed for tabletop gaming sessions. Perfect for time-sensitive scenarios and building tension during gameplay."}
               </p>
             </Link>
+            </GlitchReveal>
           </div>
         </div>
       </section>

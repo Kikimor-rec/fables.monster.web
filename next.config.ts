@@ -1,5 +1,5 @@
 import type { NextConfig } from "next";
-import path from 'path';
+import path from "path";
 
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
@@ -7,9 +7,6 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 const nextConfig: NextConfig = {
   outputFileTracingRoot: path.resolve(__dirname),
-  experimental: {
-    devtoolSegmentExplorer: false,
-  },
   images: {
     formats: ['image/webp', 'image/avif'],
     qualities: [75, 85, 90],
@@ -22,7 +19,38 @@ const nextConfig: NextConfig = {
   distDir: '.next',
   cleanDistDir: true,
   async headers() {
+    const securityHeaders = [
+      {
+        key: 'X-Content-Type-Options',
+        value: 'nosniff',
+      },
+      {
+        key: 'X-Frame-Options',
+        value: 'DENY',
+      },
+      {
+        key: 'X-XSS-Protection',
+        value: '1; mode=block',
+      },
+      {
+        key: 'Referrer-Policy',
+        value: 'strict-origin-when-cross-origin',
+      },
+      {
+        key: 'Permissions-Policy',
+        value: 'camera=(), microphone=(), geolocation=()',
+      },
+      {
+        key: 'Strict-Transport-Security',
+        value: 'max-age=31536000; includeSubDomains',
+      },
+    ];
+
     return [
+      {
+        source: '/(.*)',
+        headers: securityHeaders,
+      },
       {
         source: '/:path*.(webp|avif|jpg|jpeg|png|css|js)',
         headers: [

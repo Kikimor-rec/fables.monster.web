@@ -28,19 +28,10 @@ export default function NotFound() {
     
     if (isRedirecting) {
         return (
-            <div style={{ 
-                backgroundColor: 'black', 
-                color: 'white', 
-                display: 'flex', 
-                alignItems: 'center', 
-                justifyContent: 'center', 
-                height: '100vh',
-                margin: 0,
-                fontFamily: 'system-ui, sans-serif'
-            }}>
-                <div style={{ textAlign: 'center' }}>
-                    <h1 style={{ fontSize: '6rem', margin: 0, color: '#ef4444' }}>404</h1>
-                    <p style={{ color: '#9ca3af' }}>Redirecting...</p>
+            <div className="bg-black text-white flex items-center justify-center h-screen m-0 font-sans">
+                <div className="text-center">
+                    <h1 className="text-[6rem] m-0 text-red-500">404</h1>
+                    <p className="text-gray-400">Redirecting...</p>
                 </div>
             </div>
         );
@@ -48,20 +39,11 @@ export default function NotFound() {
     
     // Fallback 404 - should rarely be shown as middleware handles redirection
     return (
-        <div style={{ 
-            backgroundColor: 'black', 
-            color: 'white', 
-            display: 'flex', 
-            alignItems: 'center', 
-            justifyContent: 'center', 
-            height: '100vh',
-            margin: 0,
-            fontFamily: 'system-ui, sans-serif'
-        }}>
-            <div style={{ textAlign: 'center' }}>
-                <h1 style={{ fontSize: '6rem', margin: 0, color: '#ef4444' }}>404</h1>
-                <p style={{ color: '#9ca3af' }}>Page not found</p>
-                <Link href="/en" style={{ color: '#60a5fa', marginTop: '1rem', display: 'inline-block' }}>
+        <div className="bg-black text-white flex items-center justify-center h-screen m-0 font-sans">
+            <div className="text-center">
+                <h1 className="text-[6rem] m-0 text-red-500">404</h1>
+                <p className="text-gray-400">Page not found</p>
+                <Link href="/en" className="text-blue-400 mt-4 inline-block">
                     Return Home
                 </Link>
             </div>

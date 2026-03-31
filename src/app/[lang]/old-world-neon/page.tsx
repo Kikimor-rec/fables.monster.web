@@ -55,16 +55,19 @@ export default async function ProjectNeonPage({ params }: { params: Promise<{ la
   const contentHtml = content?.contentHtml || "";
 
   return (
-    <div className="fm-page relative overflow-hidden">
+    <div className="fm-page relative overflow-hidden fm-glitch-pulse fm-pattern-datarain">
       <StoryProgressBar accent="fuchsia" />
 
-      <div className="absolute inset-0 opacity-10">
+      {/* Cyan grid pattern — brighter near top, fading lower */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div
           className="absolute inset-0"
           style={{
             backgroundImage:
               "linear-gradient(0deg, transparent 24%, rgba(0,255,255,0.05) 25%, rgba(0,255,255,0.05) 26%, transparent 27%, transparent 74%, rgba(0,255,255,0.05) 75%, rgba(0,255,255,0.05) 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba(0,255,255,0.05) 25%, rgba(0,255,255,0.05) 26%, transparent 27%, transparent 74%, rgba(0,255,255,0.05) 75%, rgba(0,255,255,0.05) 76%, transparent 77%, transparent)",
             backgroundSize: "50px 50px",
+            maskImage: "linear-gradient(to bottom, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.06) 50%, transparent 100%)",
+            WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.06) 50%, transparent 100%)",
           }}
         />
       </div>
