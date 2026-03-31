@@ -2,6 +2,8 @@
 
 import { useId, useState } from "react";
 import { ZodIssue } from "zod";
+import { sanitizeHtml } from "@/lib/sanitize";
+import { logger } from "@/lib/logger";
 
 interface FormErrors {
   name?: string;
@@ -78,7 +80,7 @@ export default function NewsletterForm({ dict, lang = 'en', compact = false }: N
         setSubmitStatus("success");
         setFormData({ name: "", email: "" });
       } else {
-        console.error("API Error:", data);
+        logger.error("Newsletter API Error", { status: response.status });
         setSubmitStatus("error");
         if (data.details && Array.isArray(data.details)) {
           // Map Zod errors to form fields
@@ -96,7 +98,7 @@ export default function NewsletterForm({ dict, lang = 'en', compact = false }: N
         }
       }
     } catch (error) {
-      console.error("Error submitting form:", error);
+      logger.exception(error);
       setSubmitStatus("error");
       setErrors({ general: "Failed to connect to the server. Please check your internet connection." });
     } finally {
@@ -245,7 +247,7 @@ export default function NewsletterForm({ dict, lang = 'en', compact = false }: N
       {dict?.privacy && (
         <div className="mt-6 p-4 bg-gray-900 border border-gray-700">
           <p className="text-gray-400 text-xs font-rajdhani" dangerouslySetInnerHTML={{
-            __html: dict.privacy
+            __html: sanitizeHtml(dict.privacy)
           }} />
         </div>
       )}

@@ -3,6 +3,7 @@
 import { useId, useState, type FormEvent } from "react";
 import Link from "next/link";
 import type { NewsletterUnsubscribeDict } from "@/types/i18n";
+import { logger } from "@/lib/logger";
 
 interface NewsletterUnsubscribeClientProps {
   lang: string;
@@ -45,7 +46,7 @@ export default function NewsletterUnsubscribeClient({ lang, dict }: NewsletterUn
         setErrorMessage(data.error || dict.error);
       }
     } catch (error) {
-      console.error("Error unsubscribing:", error);
+      logger.exception(error);
       setSubmitStatus("error");
       setErrorMessage(dict.error);
     } finally {

@@ -375,6 +375,22 @@ body {
     color: rgba(248, 113, 113, 0.85);
 }
 
+/* ─── Glow utilities (single source of truth) ─── */
+
+/* Size-based — adapts to currentColor */
+.text-glow-sm {
+    text-shadow: 0 0 10px currentColor;
+}
+
+.text-glow-md {
+    text-shadow: 0 0 20px currentColor, 0 0 30px currentColor;
+}
+
+.text-glow-lg {
+    text-shadow: 0 0 30px currentColor, 0 0 50px currentColor, 0 0 70px currentColor;
+}
+
+/* Color-specific text glows */
 .text-glow-cyan {
     text-shadow: 0 0 10px rgba(34, 211, 238, 0.75), 0 0 24px rgba(34, 211, 238, 0.35);
 }
@@ -389,6 +405,32 @@ body {
 
 .text-glow-white {
     text-shadow: 0 0 12px rgba(255, 255, 255, 0.75), 0 0 26px rgba(255, 255, 255, 0.28);
+}
+
+/* Box glow utilities */
+.box-glow {
+    box-shadow: 0 0 20px rgba(255, 31, 31, 0.5), 0 0 40px rgba(255, 31, 31, 0.3);
+}
+
+.box-glow-cyan {
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.5), 0 0 40px rgba(0, 212, 255, 0.3);
+}
+
+.box-glow-purple {
+    box-shadow: 0 0 20px rgba(176, 102, 255, 0.5), 0 0 40px rgba(176, 102, 255, 0.3);
+}
+
+.box-glow-green {
+    box-shadow: 0 0 20px rgba(0, 255, 159, 0.5), 0 0 40px rgba(0, 255, 159, 0.3);
+}
+
+/* Neon border glow on hover */
+.border-glow-hover {
+    transition: box-shadow 0.3s ease;
+}
+
+.border-glow-hover:hover {
+    box-shadow: 0 0 15px currentColor, inset 0 0 15px currentColor;
 }
 
 .glitch-effect {

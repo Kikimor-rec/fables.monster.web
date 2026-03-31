@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 
 interface ParallaxHeroProps {
   children: React.ReactNode;
@@ -13,6 +13,7 @@ interface ParallaxHeroProps {
 /**
  * Wraps hero section content with parallax scroll effect.
  * The background layer translates at `speed` rate relative to scroll.
+ * Disabled automatically when prefers-reduced-motion is set.
  */
 export default function ParallaxHero({
   children,
@@ -20,12 +21,17 @@ export default function ParallaxHero({
   speed = 0.3,
 }: ParallaxHeroProps) {
   const ref = useRef<HTMLDivElement>(null);
+  const prefersReducedMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", `${speed * 100}%`]);
+  const y = useTransform(
+    scrollYProgress,
+    [0, 1],
+    prefersReducedMotion ? ["0%", "0%"] : ["0%", `${speed * 100}%`]
+  );
 
   return (
     <div ref={ref} className={`relative overflow-hidden ${className}`}>

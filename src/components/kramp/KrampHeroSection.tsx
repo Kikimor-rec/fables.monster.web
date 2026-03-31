@@ -57,7 +57,7 @@ export default function KrampHeroSection({ contentTitle, contentTagline, dict }:
                 href="https://rpgbook.ru/kramp_exe"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative px-8 py-4 bg-blue-900/30 border-2 border-blue-500 text-blue-400 font-orbitron font-bold text-lg clip-path-slant hover:bg-blue-900/50 hover:text-white transition-all duration-300 hover:shadow-[0_0_20px_rgba(59,130,246,0.5)] min-w-[200px] text-center"
+                className="group relative px-8 py-4 bg-blue-900/30 border-2 border-blue-500 text-blue-400 font-orbitron font-bold text-lg clip-path-slant hover:bg-blue-900/50 hover:text-white transition-all duration-300 hover:shadow-glow-blue min-w-[200px] text-center"
               >
                 <span className="relative z-10">{dict.buttons?.rpgbook || "BUY ON RPG BOOK STATION"}</span>
               </a>
@@ -83,7 +83,7 @@ export default function KrampHeroSection({ contentTitle, contentTagline, dict }:
                   href="https://www.patreon.com/posts/kramp-exe-for-1e-144275102"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative px-8 py-4 bg-blue-900/30 border-2 border-blue-500 text-blue-400 font-orbitron font-bold text-lg clip-path-slant hover:bg-blue-900/50 hover:text-white transition-all duration-300 hover:shadow-[0_0_20px_rgba(59,130,246,0.5)] min-w-[200px] text-center"
+                  className="group relative px-8 py-4 bg-blue-900/30 border-2 border-blue-500 text-blue-400 font-orbitron font-bold text-lg clip-path-slant hover:bg-blue-900/50 hover:text-white transition-all duration-300 hover:shadow-glow-blue min-w-[200px] text-center"
                 >
                   <span className="relative z-10">{dict.buttons?.patreon || "PATREON EXCLUSIVE"}</span>
                 </a>

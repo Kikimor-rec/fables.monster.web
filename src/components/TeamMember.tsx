@@ -108,7 +108,13 @@ export default function TeamMember({ member }: TeamMemberProps) {
   // If member has a link, wrap in Link component
   if (member.link) {
     return (
-      <Link href={member.link} target="_blank" rel="noopener noreferrer" className="block cursor-pointer">
+      <Link
+        href={member.link}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`${member.name} — ${member.role} (opens in new tab)`}
+        className="block cursor-pointer focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-black"
+      >
         {content}
       </Link>
     );

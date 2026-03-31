@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { getDictionary } from "@/lib/i18n";
 import { buildSocialMetadata } from "@/lib/metadata";
+import { sanitizeHtml } from "@/lib/sanitize";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -55,7 +56,7 @@ export default async function PrivacyPolicy({ params }: { params: Promise<{ lang
                     <p
                       key={pIdx}
                       className="text-gray-300 font-rajdhani text-lg leading-relaxed"
-                      dangerouslySetInnerHTML={{ __html: paragraph }}
+                      dangerouslySetInnerHTML={{ __html: sanitizeHtml(paragraph) }}
                     />
                   ))}
                 </div>
