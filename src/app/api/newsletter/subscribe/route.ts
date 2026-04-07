@@ -16,6 +16,16 @@ const subscribeSchema = z.object({
 // Basic in-memory rate limiter
 const rateLimitMap = new Map<string, number[]>();
 
+function getClientIp(request: NextRequest): string | null {
+  const forwarded = request.headers.get('x-forwarded-for');
+  if (forwarded) {
+    const first = forwarded.split(',')[0]?.trim();
+    if (first) return first;
+  }
+
+  return request.headers.get('x-real-ip');
+}
+
 function checkRateLimit(ip: string | null): boolean {
   if (!ip) {
     logger.warn('Rate limit check with unknown IP');
@@ -24,12 +34,12 @@ function checkRateLimit(ip: string | null): boolean {
 
   const now = Date.now();
   const requests = (rateLimitMap.get(ip) || []).filter(
-    timestamp => now - timestamp < RATE_LIMITS.contact.windowMs
+    timestamp => now - timestamp < RATE_LIMITS.newsletter.windowMs
   );
   requests.push(now);
   rateLimitMap.set(ip, requests);
 
-  const allowed = requests.length <= RATE_LIMITS.contact.maxRequests;
+  const allowed = requests.length <= RATE_LIMITS.newsletter.maxRequests;
 
   if (!allowed) {
     logger.warn('Rate limit exceeded for newsletter subscription', { ip, requestCount: requests.length });
@@ -39,11 +49,11 @@ function checkRateLimit(ip: string | null): boolean {
 }
 
 // Clean up old entries periodically
-setInterval(() => {
+const cleanupInterval = setInterval(() => {
   const now = Date.now();
   for (const [ip, timestamps] of rateLimitMap.entries()) {
     const validTimestamps = timestamps.filter(
-      t => now - t < RATE_LIMITS.contact.windowMs
+      t => now - t < RATE_LIMITS.newsletter.windowMs
     );
     if (validTimestamps.length === 0) {
       rateLimitMap.delete(ip);
@@ -53,8 +63,10 @@ setInterval(() => {
   }
 }, 5 * 60 * 1000);
 
+cleanupInterval.unref?.();
+
 export async function POST(request: NextRequest) {
-  const ip = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip');
+  const ip = getClientIp(request);
 
   if (!checkRateLimit(ip)) {
     return NextResponse.json(
@@ -111,10 +123,11 @@ export async function POST(request: NextRequest) {
         'Authorization': authHeader,
         'Content-Type': 'application/json',
       },
+      cache: 'no-store',
       body: JSON.stringify(subscriberData),
     });
 
-    const responseData = await response.json();
+    const responseData = await response.json().catch(() => ({}));
 
     if (!response.ok) {
       // Check if user already exists

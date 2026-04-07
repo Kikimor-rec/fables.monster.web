@@ -20,7 +20,6 @@ const accentClasses: Record<Accent, string> = {
 export default function StoryProgressBar({ accent = "red", topClassName = "top-[76px]" }: StoryProgressBarProps) {
   const barRef = useRef<HTMLDivElement>(null);
   const [useJsFallback, setUseJsFallback] = useState(false);
-  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     // Check for CSS scroll-driven animation support
@@ -40,7 +39,9 @@ export default function StoryProgressBar({ accent = "red", topClassName = "top-[
       const doc = document.documentElement;
       const maxScroll = Math.max(0, doc.scrollHeight - window.innerHeight);
       const next = maxScroll > 0 ? Math.min(100, (window.scrollY / maxScroll) * 100) : 0;
-      setProgress(next);
+      if (barRef.current) {
+        barRef.current.style.width = `${next}%`;
+      }
     };
 
     const onScrollOrResize = () => {
@@ -70,7 +71,6 @@ export default function StoryProgressBar({ accent = "red", topClassName = "top-[
           className={`h-full bg-gradient-to-r ${accentClasses[accent]} ${
             useJsFallback ? "transition-[width] duration-150 motion-reduce:transition-none" : "story-progress-css"
           }`}
-          style={useJsFallback ? { width: `${progress}%` } : undefined}
         />
       </div>
     </div>

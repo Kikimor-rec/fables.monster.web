@@ -4,6 +4,8 @@ import FadeIn from '@/components/FadeIn';
 import { buildSocialMetadata } from '@/lib/metadata';
 import { getDictionary } from '@/lib/i18n';
 
+export const revalidate = 3600; // ISR: revalidate every hour
+
 const valueMarkers: Record<string, string> = {
   QUALITY: '01',
   HUMAN: '02',

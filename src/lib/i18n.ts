@@ -71,6 +71,7 @@ export async function getDictionary<T extends DictionaryNamespace>(
   namespace: T
 ): Promise<GetDictionary<T>> {
   const lang = (dictionaries[locale as Language] ? locale : fallbackLng) as Language;
+
   const loader = dictionaries[lang][namespace];
 
   if (!loader) {

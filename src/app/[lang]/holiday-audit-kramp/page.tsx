@@ -11,6 +11,7 @@ import { getDictionary } from '@/lib/i18n';
 import { sanitizeHtml } from '@/lib/sanitize';
 import './christmas.css';
 
+export const revalidate = 3600; // ISR: revalidate every hour
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -126,7 +127,7 @@ export default async function HolidayAuditKramp({ params }: { params: Promise<{ 
     },
     {
       platform: "Discord",
-      url: "https://discord.gg/eAwK9DfKf4",
+      url: "https://discord.gg/uw2uvny7n6",
       description: dict.links?.discord || "playtests & community chat",
       icon: "/logos/Discord-Symbol-White.svg"
     }

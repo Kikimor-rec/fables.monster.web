@@ -5,6 +5,8 @@ import ContactForm from '@/components/ContactForm';
 import { buildSocialMetadata } from '@/lib/metadata';
 import { getDictionary } from '@/lib/i18n';
 
+export const revalidate = 3600; // ISR: revalidate every hour
+
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const dict = await getDictionary(lang, 'common');
@@ -31,7 +33,7 @@ export default async function Contact({ params }: { params: Promise<{ lang: stri
 
   const channels = [
     {
-      href: 'https://discord.gg/eAwK9DfKf4',
+      href: 'https://discord.gg/uw2uvny7n6',
       title: 'Discord',
       image: '/logos/discord-badge-color.png',
       imageWidth: 200,

@@ -12,7 +12,7 @@ import type { LostMarkDictionary } from "@/components/lost-mark/types";
 import { getContent, getFrontmatterString } from "@/lib/content";
 import { getDictionary } from "@/lib/i18n";
 import { buildSocialMetadata } from "@/lib/metadata";
-
+export const revalidate = 3600; // ISR: revalidate every hour
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const content = await getContent("projects", "lost-mark", lang);

@@ -50,6 +50,8 @@ const expeditionUi = Inter({
   weight: ["400", "500", "600", "700"],
 });
 
+export const revalidate = 3600; // ISR: revalidate every hour
+
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const dict = (await getDictionary(lang, "expedition-418")) as Expedition418Dict;

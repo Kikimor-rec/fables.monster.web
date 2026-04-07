@@ -487,6 +487,35 @@ body {
         animation-duration: 0.001ms !important;
         animation-iteration-count: 1 !important;
     }
+
+    .lm-scroll-fx,
+    .lm-warning-pulse,
+    .lm-fog,
+    .lm-particles {
+        display: none !important;
+    }
+
+    .lm-btn,
+    .lm-panel,
+    .fm-section-divider-glow::before {
+        animation: none !important;
+    }
+
+    .fm-reveal-horror,
+    .fm-reveal-poweron,
+    .fm-reveal-warp,
+    .fm-reveal-static {
+        animation: none !important;
+        opacity: 1 !important;
+        filter: none !important;
+        clip-path: none !important;
+        transform: none !important;
+    }
+
+    .lm-scroll-distort {
+        transition: none !important;
+        transform: none !important;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -686,6 +715,8 @@ body {
     background-position-y: var(--lm-scan-drift, 0px);
     opacity: 0.35;
     mix-blend-mode: overlay;
+    will-change: background-position;
+    contain: layout style;
 }
 
 /* ── Lost Mark HUD Buttons ────────────────────────────────── */
@@ -976,6 +1007,7 @@ body {
         radial-gradient(ellipse 60% 50% at 80% 40%, rgba(20, 0, 0, 0.25), transparent);
     animation: lm-fog-drift 60s ease-in-out infinite alternate;
     mix-blend-mode: screen;
+    contain: layout style;
 }
 
 @keyframes lm-fog-drift {
@@ -991,8 +1023,9 @@ body {
     pointer-events: none;
     z-index: 38;
     background: radial-gradient(ellipse 70% 60% at 50% 50%, transparent 30%, rgba(0, 0, 0, 0.6) 100%);
-    opacity: var(--lm-vignette-intensity, 0.3);
-    transition: opacity 0.5s ease;
+    opacity: 0.3;
+    transition: opacity 0.25s linear;
+    contain: layout style;
 }
 
 /* ── Lost Mark Horror Reveal ──────────────────────────────── */
@@ -1094,9 +1127,20 @@ body {
 /* ── Lost Mark Image Scroll Distortion ────────────────────── */
 
 .lm-scroll-distort {
-    transition: transform 0.3s ease, filter 0.3s ease;
+    transition: transform 0.2s ease;
     transform: skewX(calc(var(--lm-scroll-skew, 0) * 1deg));
-    filter: brightness(calc(1 + var(--lm-scroll-flicker, 0) * 0.1));
+    will-change: transform;
+}
+
+@media (max-width: 1024px) {
+    .lm-scroll-fx {
+        mix-blend-mode: normal;
+        opacity: 0.2;
+    }
+
+    .lm-fog {
+        display: none;
+    }
 }
 
 /* ── Lost Mark Floating Particles ─────────────────────────── */
@@ -1107,6 +1151,7 @@ body {
     pointer-events: none;
     z-index: 37;
     overflow: hidden;
+    contain: layout style;
 }
 
 .lm-particle {

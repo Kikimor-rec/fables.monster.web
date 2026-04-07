@@ -47,12 +47,16 @@ export const RATE_LIMITS = {
     maxRequests: 5,
     windowMs: 60000, // 1 minute
   },
+  newsletter: {
+    maxRequests: 5,
+    windowMs: 60000, // 1 minute
+  },
 } as const;
 
 // === EXTERNAL LINKS ===
 
 export const EXTERNAL_LINKS = {
-  discord: 'https://discord.gg/eAwK9DfKf4',
+  discord: 'https://discord.gg/uw2uvny7n6',
   patreon: 'https://patreon.com/fablesmonster',
   itch: 'https://fablesmonster.itch.io',
   driveThru: 'https://drivethrurpg.com/browse/pub/22136/Fables-Monster-Studio',

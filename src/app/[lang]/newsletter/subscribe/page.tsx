@@ -4,6 +4,8 @@ import { getDictionary } from "@/lib/i18n";
 import { buildSocialMetadata } from "@/lib/metadata";
 import Link from "next/link";
 
+export const revalidate = 3600; // ISR: revalidate every hour
+
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const dict = await getDictionary(lang, 'newsletter');

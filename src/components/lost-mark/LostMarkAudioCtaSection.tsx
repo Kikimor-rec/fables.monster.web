@@ -55,6 +55,7 @@ export default function LostMarkAudioCtaSection({ lang, dict }: LostMarkAudioCta
               src="https://www.youtube.com/embed/videoseries?si=enlxSeQmCInMMZ95&list=PLO8bKMtLeNZT3DrnjgMhfhDl18NJbaFHl"
               title={dict.soundtrack?.youtubeIframeTitle || "Lost Mark soundtrack playlist"}
               frameBorder="0"
+              loading="lazy"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerPolicy="strict-origin-when-cross-origin"
               allowFullScreen

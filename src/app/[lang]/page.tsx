@@ -12,14 +12,7 @@ import { teamMembers } from "@/data/team";
 import { getDictionary } from '@/lib/i18n';
 import { getAllProjects, getFrontmatterString, getFrontmatterObject } from '@/lib/content';
 
-
-
-
-
-
-
-
-
+export const revalidate = 3600; // ISR: revalidate every hour
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
     const { lang } = await params;

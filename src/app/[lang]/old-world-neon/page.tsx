@@ -12,6 +12,8 @@ import NeonTeaserSection from "@/components/old-world-neon/NeonTeaserSection";
 import NeonFeaturesSection from "@/components/old-world-neon/NeonFeaturesSection";
 import type { NeonStatusTag } from "@/components/old-world-neon/types";
 
+export const revalidate = 3600; // ISR: revalidate every hour
+
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const dict = (await getDictionary(lang, "old-world-neon")) as OldWorldNeonDict;

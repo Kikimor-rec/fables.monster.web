@@ -38,54 +38,94 @@ function generateParticles(count: number): Particle[] {
 
 export default function LostMarkScrollFx() {
   const overlayRef = useRef<HTMLDivElement>(null);
+  const vignetteRef = useRef<HTMLDivElement>(null);
+  const rafRef = useRef<number | null>(null);
+  const latestScrollY = useRef(0);
+  const isTicking = useRef(false);
   const lastScrollY = useRef(0);
+  const lastVignette = useRef(-1);
+  const lastSkew = useRef(Number.NaN);
+  const [enabled, setEnabled] = useState(true);
   const [particles, setParticles] = useState<Particle[]>([]);
   const [showParticles, setShowParticles] = useState(false);
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (mq.matches) return;
+    const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
+    const isMobileViewport = window.innerWidth < 1024;
+    const hasSaveData = Boolean(connection?.saveData);
+    const deviceMemory = (navigator as Navigator & { deviceMemory?: number }).deviceMemory;
+    const isLowPowerDevice = typeof deviceMemory === "number" ? deviceMemory <= 4 : false;
 
-    // Generate particles on client
-    const isMobile = window.innerWidth < 768;
-    setParticles(generateParticles(isMobile ? 12 : 24));
+    if (mq.matches || isMobileViewport || hasSaveData || isLowPowerDevice) {
+      setEnabled(false);
+      setShowParticles(false);
+      return;
+    }
+
+    setEnabled(true);
+
+    // Generate particles on client — reduced from 16 to 8 for performance
+    setParticles(generateParticles(8));
     setShowParticles(true);
 
     const overlay = overlayRef.current;
+    const vignette = vignetteRef.current;
     if (!overlay) return;
 
-    const handleScroll = () => {
-      const currentY = window.scrollY;
+    const applyScrollFx = () => {
+      isTicking.current = false;
+
+      const currentY = latestScrollY.current;
       const delta = Math.abs(currentY - lastScrollY.current);
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
       const scrollDepth = docHeight > 0 ? currentY / docHeight : 0;
 
-      // Drive scanline drift via CSS variable
+      // Drive scanline drift via CSS variable (scoped to overlay — no cascade)
       overlay.style.setProperty("--lm-scan-drift", `${currentY * 0.15}px`);
 
-      // Drive vignette intensity (0.3 at top → 0.7 at bottom)
-      const vignetteIntensity = 0.3 + scrollDepth * 0.4;
-      document.documentElement.style.setProperty("--lm-vignette-intensity", String(vignetteIntensity));
+      // Drive vignette intensity (0.3 at top -> 0.7 at bottom) — scoped to vignette element
+      const vignetteIntensity = Math.round((0.3 + scrollDepth * 0.4) * 20) / 20; // coarser steps (0.05 increments)
+      if (vignetteIntensity !== lastVignette.current && vignette) {
+        vignette.style.opacity = String(vignetteIntensity);
+        lastVignette.current = vignetteIntensity;
+      }
 
       // Drive subtle image distortion based on scroll velocity
-      const skew = Math.min(Math.max(delta * 0.03, 0), 1.5) * (currentY > lastScrollY.current ? 1 : -1);
-      const flicker = delta > 30 ? Math.random() * 0.5 : 0;
-      document.documentElement.style.setProperty("--lm-scroll-skew", String(skew));
-      document.documentElement.style.setProperty("--lm-scroll-flicker", String(flicker));
+      const direction = currentY >= lastScrollY.current ? 1 : -1;
+      const skew = Math.min(delta * 0.018, 0.6) * direction;
+
+      if (Math.abs(skew - lastSkew.current) > 0.05) {
+        document.documentElement.style.setProperty("--lm-scroll-skew", String(skew));
+        lastSkew.current = skew;
+      }
 
       lastScrollY.current = currentY;
     };
 
+    const handleScroll = () => {
+      latestScrollY.current = window.scrollY;
+      if (isTicking.current) return;
+      isTicking.current = true;
+      rafRef.current = window.requestAnimationFrame(applyScrollFx);
+    };
+
+    handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      if (rafRef.current !== null) {
+        window.cancelAnimationFrame(rafRef.current);
+      }
     };
   }, []);
+
+  if (!enabled) return null;
 
   return (
     <>
       <div ref={overlayRef} className="lm-scroll-fx" aria-hidden="true" />
-      <div className="lm-vignette" aria-hidden="true" />
+      <div ref={vignetteRef} className="lm-vignette" aria-hidden="true" />
       <div className="lm-fog" aria-hidden="true" />
       {showParticles && particles.length > 0 && (
         <div className="lm-particles" aria-hidden="true">

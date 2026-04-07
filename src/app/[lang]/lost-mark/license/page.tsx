@@ -3,6 +3,8 @@ import Link from 'next/link';
 import FadeIn from '@/components/FadeIn';
 import { getDictionary } from '@/lib/i18n';
 
+export const revalidate = 3600; // ISR: revalidate every hour
+
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const dict = await getDictionary(lang, 'lost-mark-license');

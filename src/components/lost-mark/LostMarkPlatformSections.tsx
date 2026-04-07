@@ -161,6 +161,8 @@ export default function LostMarkPlatformSections({ lang, dict }: LostMarkPlatfor
                   src="https://www.youtube.com/embed/0v8utSfPluw"
                   title={dict.foundry?.videoTitle || "Lost Mark Foundry VTT teaser"}
                   frameBorder="0"
+                  loading="lazy"
+                  referrerPolicy="strict-origin-when-cross-origin"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
                   className="absolute inset-0 w-full h-full"

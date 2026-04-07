@@ -28,6 +28,60 @@ const contactFormSchema = z.object({
 // NOTE: In production, consider using Redis or a service like Upstash
 // for persistent rate limiting across server restarts and multiple instances
 const rateLimitMap = new Map<string, number[]>();
+let transporterPromise: Promise<nodemailer.Transporter> | null = null;
+
+function getClientIp(request: NextRequest): string | null {
+  const forwarded = request.headers.get('x-forwarded-for');
+  if (forwarded) {
+    const first = forwarded.split(',')[0]?.trim();
+    if (first) return first;
+  }
+
+  return request.headers.get('x-real-ip');
+}
+
+async function getTransporter(): Promise<nodemailer.Transporter> {
+  if (!transporterPromise) {
+    const isDevelopment = process.env.NODE_ENV === 'development';
+    const rejectUnauthorized = isDevelopment
+      ? process.env.SMTP_REJECT_UNAUTHORIZED !== 'false'
+      : true;
+
+    transporterPromise = (async () => {
+      const transporter = nodemailer.createTransport({
+        host: process.env.SMTP_HOST,
+        port: parseInt(process.env.SMTP_PORT || '587'),
+        secure: process.env.SMTP_SECURE === 'true',
+        auth: {
+          user: process.env.SMTP_USER,
+          pass: process.env.SMTP_PASSWORD,
+        },
+        tls: {
+          rejectUnauthorized,
+          minVersion: 'TLSv1.2',
+        },
+      });
+
+      await transporter.verify();
+
+      logger.debug('SMTP transporter verified', {
+        host: process.env.SMTP_HOST,
+        port: process.env.SMTP_PORT,
+        secure: process.env.SMTP_SECURE === 'true',
+        rejectUnauthorized,
+      });
+
+      return transporter;
+    })();
+  }
+
+  try {
+    return await transporterPromise;
+  } catch (error) {
+    transporterPromise = null;
+    throw error;
+  }
+}
 
 function checkRateLimit(ip: string | null): boolean {
   if (!ip) {
@@ -52,7 +106,7 @@ function checkRateLimit(ip: string | null): boolean {
 }
 
 // Clean up old entries periodically (every 5 minutes)
-setInterval(() => {
+const cleanupInterval = setInterval(() => {
   const now = Date.now();
   for (const [ip, timestamps] of rateLimitMap.entries()) {
     const validTimestamps = timestamps.filter(
@@ -66,8 +120,10 @@ setInterval(() => {
   }
 }, 5 * 60 * 1000);
 
+cleanupInterval.unref?.();
+
 export async function POST(request: NextRequest) {
-  const ip = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip');
+  const ip = getClientIp(request);
 
   if (!checkRateLimit(ip)) {
     return NextResponse.json(
@@ -83,37 +139,7 @@ export async function POST(request: NextRequest) {
     const validatedData = contactFormSchema.parse(body);
     const { name, email, message } = validatedData;
 
-    // Create transporter using your SMTP server
-    // Security: Only disable certificate validation in development
-    const isDevelopment = process.env.NODE_ENV === 'development';
-    const rejectUnauthorized = isDevelopment
-      ? process.env.SMTP_REJECT_UNAUTHORIZED !== 'false'
-      : true; // Always validate certificates in production
-
-    const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: parseInt(process.env.SMTP_PORT || '587'),
-      secure: process.env.SMTP_SECURE === 'true', // true for SSL (port 465), false for STARTTLS (port 587)
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASSWORD,
-      },
-      tls: {
-        rejectUnauthorized,
-        // Add minimum TLS version for security
-        minVersion: 'TLSv1.2',
-      },
-    });
-
-    logger.debug('SMTP transporter created', {
-      host: process.env.SMTP_HOST,
-      port: process.env.SMTP_PORT,
-      secure: process.env.SMTP_SECURE === 'true',
-      rejectUnauthorized,
-    });
-
-    // Verify connection
-    await transporter.verify();
+    const transporter = await getTransporter();
 
     // Email content
     const mailOptions = {
@@ -167,6 +193,8 @@ Message: ${message}
       error: error instanceof Error ? error.message : 'Unknown error',
       stack: error instanceof Error ? error.stack : undefined,
     });
+
+    transporterPromise = null;
 
     return NextResponse.json(
       { error: 'Failed to send message. Please try again later.' },
