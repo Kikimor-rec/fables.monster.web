@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     title: dict.meta.title,
     description: dict.meta.description,
     type: "article",
-    imagePath: "/images/career-twilight/career-twilight-promo.webp",
+    imagePath: "/images/career-twilight/dr-reiner.webp",
     imageAlt: "Career Twilight",
   });
 

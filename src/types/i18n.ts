@@ -1108,7 +1108,7 @@ export interface CareerTwilightDict {
   hero: { kicker: string; title: string; tagline: string; badge: string };
   buttons: { itch: string };
   cta: { followPrompt: string; discord: string };
-  intro: { credit: string; editor: string; p1: string; p2: string; p3: string };
+  intro: { credit: string; editor: string; polaroidCaption: string; p1: string; p2: string; p3: string };
   timeline: {
     title: string;
     caseFile: string;

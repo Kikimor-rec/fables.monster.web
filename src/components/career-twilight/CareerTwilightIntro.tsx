@@ -2,7 +2,7 @@ import Image from "next/image";
 
 interface CareerTwilightIntroProps {
   dict: {
-    intro: { credit: string; editor: string; p1: string; p2: string; p3: string };
+    intro: { credit: string; editor: string; polaroidCaption: string; p1: string; p2: string; p3: string };
   };
 }
 
@@ -25,18 +25,21 @@ export default function CareerTwilightIntro({ dict }: CareerTwilightIntroProps) 
             </div>
           </div>
 
-          {/* Image column */}
-          <div className="order-1 md:order-2">
-            <div className="ct-intro-image relative aspect-[3/4] max-w-md mx-auto md:ml-auto md:mr-0">
+          {/* Polaroid image column */}
+          <div className="order-1 md:order-2 flex flex-col items-center md:items-end">
+            <div className="ct-intro-image relative aspect-[3/4] w-full max-w-sm">
               <Image
-                src="/images/career-twilight/career-twilight-promo.webp"
-                alt="Career Twilight"
+                src="/images/career-twilight/dr-reiner.webp"
+                alt="Dr. Sofia Reiner — Career Twilight"
                 fill
                 className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
+                sizes="(max-width: 768px) 100vw, 384px"
                 priority
               />
             </div>
+            <p className="ct-polaroid-caption w-full max-w-sm">
+              {dict.intro.polaroidCaption}
+            </p>
           </div>
         </div>
       </div>

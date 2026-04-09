@@ -104,7 +104,7 @@ export const projects: Project[] = [
         description: "A sci-fi corporate horror one-shot for Mothership RPG. A routine evacuation gone catastrophically wrong aboard a research vessel where nothing — and no one — is what they seem.",
         status: "coming-soon",
         type: "One-Shot",
-        image: "/images/career-twilight/career-twilight-promo.webp",
+        image: "/images/career-twilight/dr-reiner.webp",
         imageAlt: "Career Twilight - Sci-Fi Corporate Horror One-Shot",
         tags: ["MOTHERSHIP", "SCI-FI HORROR", "CORPORATE"],
         platforms: {

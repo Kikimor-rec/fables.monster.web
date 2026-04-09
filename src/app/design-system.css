@@ -406,9 +406,29 @@ body {
 
 /* ── Career Twilight: Intro image ── */
 .ct-intro-image {
-    border: 1px solid rgba(0, 240, 255, 0.25);
-    box-shadow: 0 0 30px rgba(0, 240, 255, 0.08), inset 0 0 20px rgba(0, 0, 0, 0.4);
     overflow: hidden;
+    transform: rotate(-2.5deg);
+    box-shadow: 4px 6px 20px rgba(0, 0, 0, 0.45), 1px 2px 4px rgba(0, 0, 0, 0.25);
+    transition: transform 0.4s ease;
+}
+.ct-intro-image:hover {
+    transform: rotate(-0.5deg) scale(1.02);
+}
+.ct-polaroid-caption {
+    font-family: 'Segoe Script', 'Bradley Hand', 'Comic Sans MS', cursive;
+    color: #3a3a3a;
+    font-size: 0.95rem;
+    text-align: center;
+    margin-top: -2px;
+    padding: 4px 8px 8px;
+    background: #e8e4df;
+    transform: rotate(-2.5deg);
+    box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.3);
+    transition: transform 0.4s ease;
+}
+.ct-intro-image:hover + .ct-polaroid-caption,
+.ct-polaroid-caption:hover {
+    transform: rotate(-0.5deg);
 }
 
 /* ── Career Twilight: Terminal ── */
