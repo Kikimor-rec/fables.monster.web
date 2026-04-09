@@ -69,6 +69,13 @@
     "about": "About",
     "contact": "Contact",
     "social": "SOCIAL",
+    "allProjects": "All projects →",
+    "projectLostMark": "The Lost Mark",
+    "projectCareerTwilight": "Career Twilight",
+    "projectKramp": "Holiday Audit: Kramp.exe",
+    "projectExpedition": "Expedition-418",
+    "projectHellishBureaucracy": "Hellish Bureaucracy",
+    "projectNeon": "Old World Neon",
     "copyright": "© {year} Fables Monster Studio. All rights reserved."
   },
   "team": [

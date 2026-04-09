@@ -17,7 +17,8 @@ export type DictionaryNamespace =
   | 'newsletter'
   | 'privacy'
   | 'expedition-418'
-  | 'old-world-neon';
+  | 'old-world-neon'
+  | 'career-twilight';
 
 // === COMMON DICTIONARY ===
 
@@ -116,6 +117,12 @@ export interface FooterDict {
   homeAriaLabel?: string;
   projectsAriaLabel?: string;
   linksAriaLabel?: string;
+  projectLostMark?: string;
+  projectCareerTwilight?: string;
+  projectKramp?: string;
+  projectExpedition?: string;
+  projectHellishBureaucracy?: string;
+  projectNeon?: string;
   copyright: string;
 }
 
@@ -1084,6 +1091,68 @@ export interface PrivacyDict {
   backToHome: string;
 }
 
+// === CAREER TWILIGHT DICTIONARY ===
+
+export interface CareerTwilightTimelineEntry {
+  time: string;
+  text: string;
+}
+
+export interface CareerTwilightCompensationItem {
+  label: string;
+  value: string;
+}
+
+export interface CareerTwilightDict {
+  meta: { title: string; description: string };
+  hero: { kicker: string; title: string; tagline: string; badge: string };
+  buttons: { itch: string };
+  cta: { followPrompt: string; discord: string };
+  intro: { credit: string; editor: string; p1: string; p2: string; p3: string };
+  timeline: {
+    title: string;
+    caseFile: string;
+    warning: string;
+    confirmButton: string;
+    accessGranted: string;
+    entries: CareerTwilightTimelineEntry[];
+  };
+  contract: {
+    heading: string;
+    subheading: string;
+    stamp: string;
+    client: string;
+    clientValue: string;
+    contractor: string;
+    contractorValue: string;
+    vessel: string;
+    vesselValue: string;
+    type: string;
+    typeValue: string;
+    briefing: string;
+    authorization: string;
+    task1title: string;
+    task1: string;
+    task2title: string;
+    task2: string;
+    ndaReminder: string;
+    compensationTitle: string;
+    compensation: CareerTwilightCompensationItem[];
+    ndaClause: string;
+    liability: string;
+  };
+  stats: {
+    title: string;
+    players: string;
+    playersValue: string;
+    hours: string;
+    hoursValue: string;
+    system: string;
+    systemValue: string;
+  };
+  backToProjects: string;
+}
+
 // === MASTER DICTIONARY TYPE ===
 
 export interface Dictionary {
@@ -1094,6 +1163,7 @@ export interface Dictionary {
   'lost-mark-license': LostMarkLicenseDict;
   'expedition-418': Expedition418Dict;
   'old-world-neon': OldWorldNeonDict;
+  'career-twilight': CareerTwilightDict;
   terminal: TerminalDict;
   newsletter: NewsletterDict;
   privacy: PrivacyDict;

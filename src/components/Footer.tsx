@@ -30,44 +30,52 @@ export default function Footer({ lang, dict, newsletterDict }: FooterProps) {
 
           {/* Projects Navigation */}
           <nav aria-label={dict.projectsAriaLabel || 'Projects'}>
-            <h4 className="text-lg font-bold text-white mb-4 font-nunito">
+            <h3 className="text-lg font-bold text-white mb-4 font-nunito">
               {dict?.projects || "PROJECTS"}
-            </h4>
+            </h3>
             <ul className="space-y-2 text-gray-300 font-nunito">
               <li>
                 <Link href={`/${lang}/lost-mark`} className="hover:text-red-400 transition-colors">
-                  The Lost Mark
+                  {dict.projectLostMark || "The Lost Mark"}
+                </Link>
+              </li>
+              <li>
+                <Link href={`/${lang}/career-twilight`} className="hover:text-red-400 transition-colors">
+                  {dict.projectCareerTwilight || "Career Twilight"}
                 </Link>
               </li>
               <li>
                 <Link href={`/${lang}/holiday-audit-kramp`} className="hover:text-red-400 transition-colors">
-                  Holiday Audit: Kramp.exe
+                  {dict.projectKramp || "Holiday Audit: Kramp.exe"}
                 </Link>
               </li>
               <li>
                 <Link href={`/${lang}/expedition-418`} className="hover:text-red-400 transition-colors">
-                  Expedition-418
+                  {dict.projectExpedition || "Expedition-418"}
+                </Link>
+              </li>
+              <li>
+                <Link href={`/${lang}/hellish-bureaucracy`} className="hover:text-red-400 transition-colors">
+                  {dict.projectHellishBureaucracy || "Hellish Bureaucracy"}
                 </Link>
               </li>
               <li>
                 <Link href={`/${lang}/old-world-neon`} className="hover:text-red-400 transition-colors">
-                  Old World Neon
+                  {dict.projectNeon || "Old World Neon"}
                 </Link>
               </li>
               <li>
                 <Link href={`/${lang}/projects`} className="hover:text-red-400 transition-colors text-gray-400">
-                  {dict.allProjects || 'All projects →'}
+                  {dict.allProjects || "All projects →"}
                 </Link>
               </li>
             </ul>
           </nav>
-
-          {/* Links and Social */}
           <div>
             <nav aria-label={dict.linksAriaLabel || 'Links'}>
-              <h4 className="text-lg font-bold text-white mb-4 font-nunito">
+              <h3 className="text-lg font-bold text-white mb-4 font-nunito">
                 {dict?.links || "LINKS"}
-              </h4>
+              </h3>
               <ul className="space-y-2 text-gray-300 font-nunito mb-6">
                 <li>
                   <Link href={`/${lang}/about`} className="hover:text-red-400 transition-colors">
@@ -87,18 +95,18 @@ export default function Footer({ lang, dict, newsletterDict }: FooterProps) {
               </ul>
             </nav>
             <div>
-              <h4 className="text-lg font-bold text-white mb-4 font-nunito">
+              <h3 className="text-lg font-bold text-white mb-4 font-nunito">
                 {dict?.social || "SOCIAL"}
-              </h4>
+              </h3>
               <SocialLinks showLabels={false} className="justify-start" />
             </div>
           </div>
 
           {/* Newsletter Section */}
           <div>
-            <h4 className="text-lg font-bold text-white mb-4 font-nunito">
+            <h3 className="text-lg font-bold text-white mb-4 font-nunito">
               {newsletterDict?.footer.title || 'NEWSLETTER'}
-            </h4>
+            </h3>
             <p className="text-gray-300 text-sm mb-4 font-nunito">
               {newsletterDict?.footer.description || 'Get updates on new releases'}
             </p>

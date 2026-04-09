@@ -139,18 +139,32 @@ export default function ContactForm({ dict }: ContactFormProps) {
           <label htmlFor={nameInputId} className="block text-white font-orbitron font-bold mb-2">
             {dict?.name || "NAME"} *
           </label>
-          <input
-            id={nameInputId}
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-            aria-invalid={Boolean(errors.name)}
-            aria-describedby={errors.name ? nameErrorId : undefined}
-            className="w-full bg-black/55 border border-zinc-700 text-white px-4 py-3 font-rajdhani focus:outline-none focus:border-red-400"
-            placeholder={dict?.namePlaceholder || "Your name"}
-          />
+          {errors.name ? (
+            <input
+              id={nameInputId}
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+              aria-invalid="true"
+              aria-describedby={nameErrorId}
+              className="w-full bg-black/55 border border-zinc-700 text-white px-4 py-3 font-rajdhani focus:outline-none focus:border-red-400"
+              placeholder={dict?.namePlaceholder || "Your name"}
+            />
+          ) : (
+            <input
+              id={nameInputId}
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+              aria-invalid="false"
+              className="w-full bg-black/55 border border-zinc-700 text-white px-4 py-3 font-rajdhani focus:outline-none focus:border-red-400"
+              placeholder={dict?.namePlaceholder || "Your name"}
+            />
+          )}
           {errors.name && (
             <p id={nameErrorId} className="text-red-400 text-xs mt-1" role="alert" aria-live="assertive">
               {errors.name}
@@ -162,18 +176,33 @@ export default function ContactForm({ dict }: ContactFormProps) {
           <label htmlFor={emailInputId} className="block text-white font-orbitron font-bold mb-2">
             {dict?.email || "EMAIL"} *
           </label>
-          <input
-            id={emailInputId}
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-            aria-invalid={Boolean(errors.email)}
-            aria-describedby={errors.email ? emailErrorId : errors.general ? generalErrorId : undefined}
-            className="w-full bg-black/55 border border-zinc-700 text-white px-4 py-3 font-rajdhani focus:outline-none focus:border-red-400"
-            placeholder={dict?.emailPlaceholder || "your@email.com"}
-          />
+          {errors.email ? (
+            <input
+              id={emailInputId}
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+              aria-invalid="true"
+              aria-describedby={emailErrorId}
+              className="w-full bg-black/55 border border-zinc-700 text-white px-4 py-3 font-rajdhani focus:outline-none focus:border-red-400"
+              placeholder={dict?.emailPlaceholder || "your@email.com"}
+            />
+          ) : (
+            <input
+              id={emailInputId}
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+              aria-invalid="false"
+              aria-describedby={errors.general ? generalErrorId : undefined}
+              className="w-full bg-black/55 border border-zinc-700 text-white px-4 py-3 font-rajdhani focus:outline-none focus:border-red-400"
+              placeholder={dict?.emailPlaceholder || "your@email.com"}
+            />
+          )}
           {errors.email && (
             <p id={emailErrorId} className="text-red-400 text-xs mt-1" role="alert" aria-live="assertive">
               {errors.email}
@@ -185,18 +214,32 @@ export default function ContactForm({ dict }: ContactFormProps) {
           <label htmlFor={messageInputId} className="block text-white font-orbitron font-bold mb-2">
             {dict?.message || "MESSAGE"} *
           </label>
-          <textarea
-            id={messageInputId}
-            name="message"
-            value={formData.message}
-            onChange={handleChange}
-            required
-            rows={6}
-            aria-invalid={Boolean(errors.message)}
-            aria-describedby={errors.message ? messageErrorId : undefined}
-            className="w-full bg-black/55 border border-zinc-700 text-white px-4 py-3 font-rajdhani focus:outline-none focus:border-red-400"
-            placeholder={dict?.messagePlaceholder || "Your message..."}
-          />
+          {errors.message ? (
+            <textarea
+              id={messageInputId}
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              required
+              rows={6}
+              aria-invalid="true"
+              aria-describedby={messageErrorId}
+              className="w-full bg-black/55 border border-zinc-700 text-white px-4 py-3 font-rajdhani focus:outline-none focus:border-red-400"
+              placeholder={dict?.messagePlaceholder || "Your message..."}
+            />
+          ) : (
+            <textarea
+              id={messageInputId}
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              required
+              rows={6}
+              aria-invalid="false"
+              className="w-full bg-black/55 border border-zinc-700 text-white px-4 py-3 font-rajdhani focus:outline-none focus:border-red-400"
+              placeholder={dict?.messagePlaceholder || "Your message..."}
+            />
+          )}
           {errors.message && (
             <p id={messageErrorId} className="text-red-400 text-xs mt-1" role="alert" aria-live="assertive">
               {errors.message}
@@ -217,9 +260,13 @@ export default function ContactForm({ dict }: ContactFormProps) {
         <svg className="w-5 h-5 text-yellow-400 flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="currentColor">
           <path d="M9 21c0 .5.4 1 1 1h4c.6 0 1-.5 1-1v-1H9v1zm3-19C8.1 2 5 5.1 5 9c0 2.4 1.2 4.5 3 5.7V17c0 .5.4 1 1 1h6c.6 0 1-.5 1-1v-2.3c1.8-1.3 3-3.4 3-5.7 0-3.9-3.1-7-7-7z"/>
         </svg>
-        <p className="text-gray-400 text-sm font-rajdhani" dangerouslySetInnerHTML={{ 
-          __html: `${dict?.tip || "<strong>Tip:</strong> Your message will be sent directly to our team. You can also email us directly at"} <a href="mailto:info@fables.monster" class="text-red-400 hover:text-red-300 transition-colors">info@fables.monster</a>`
-        }} />
+        <p className="text-gray-400 text-sm font-rajdhani">
+          <strong>{dict?.tip ? dict.tip : "Tip:"}</strong>{" "}
+          {!dict?.tip && "Your message will be sent directly to our team. You can also email us directly at"}{" "}
+          <a href="mailto:info@fables.monster" className="text-red-400 hover:text-red-300 transition-colors">
+            info@fables.monster
+          </a>
+        </p>
       </div>
     </div>
   );

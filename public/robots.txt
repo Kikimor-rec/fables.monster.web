@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://fables.monster
+
+# Sitemaps
+Sitemap: https://fables.monster/sitemap.xml

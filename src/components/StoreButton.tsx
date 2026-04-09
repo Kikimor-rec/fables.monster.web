@@ -1,3 +1,5 @@
+import MagneticButton from "@/components/MagneticButton";
+
 type Store = 'itch' | 'drivethrurpg' | 'patreon' | 'boosty' | 'vk' | 'roll20' | 'rpgbook';
 
 interface StoreButtonProps {
@@ -6,6 +8,7 @@ interface StoreButtonProps {
   price?: string;
   className?: string;
   label?: string;
+  disabled?: boolean;
 }
 
 const storeConfig: Record<Store, { label: string; color: string }> = {
@@ -39,28 +42,50 @@ const storeConfig: Record<Store, { label: string; color: string }> = {
   }
 };
 
-export default function StoreButton({ store, href, price, className = '', label }: StoreButtonProps) {
+export default function StoreButton({ store, href, price, className = '', label, disabled }: StoreButtonProps) {
   const config = storeConfig[store];
 
+  if (disabled) {
+    return (
+      <div className={className}>
+        <span
+          className={`
+            inline-flex items-center gap-2 px-4 py-2 w-full justify-center
+            bg-gray-900/50 border border-gray-700/50 text-gray-500
+            font-orbitron text-sm font-bold tracking-wide
+            cursor-not-allowed select-none
+          `}
+          aria-disabled="true"
+        >
+          <span className="uppercase">{label || config.label}</span>
+          {price && (
+            <span className="text-xs sm:text-sm whitespace-nowrap ml-1 opacity-80">({price})</span>
+          )}
+        </span>
+      </div>
+    );
+  }
+
   return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className={`
-        inline-flex items-center gap-2 px-4 py-2
-        bg-gray-900 border border-gray-700 text-white
-        font-orbitron text-sm font-bold tracking-wide
-        transition-all duration-300
-        focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-black
-        ${config.color} hover:border-transparent hover:scale-105
-        ${className}
-      `}
-    >
-      <span className="uppercase">{label || config.label}</span>
-      {price && (
-        <span className="text-xs sm:text-sm whitespace-nowrap ml-1 opacity-80">({price})</span>
-      )}
-    </a>
+    <MagneticButton className={className}>
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`
+          inline-flex items-center gap-2 px-4 py-2 w-full justify-center
+          bg-gray-900 border border-gray-700 text-white
+          font-orbitron text-sm font-bold tracking-wide
+          transition-all duration-300
+          focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-black
+          ${config.color} hover:border-transparent hover:scale-105
+        `}
+      >
+        <span className="uppercase">{label || config.label}</span>
+        {price && (
+          <span className="text-xs sm:text-sm whitespace-nowrap ml-1 opacity-80">({price})</span>
+        )}
+      </a>
+    </MagneticButton>
   );
 }

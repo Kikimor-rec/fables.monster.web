@@ -209,37 +209,53 @@ export default function Navigation({ lang, dict }: { lang: string, dict: NavDict
           </div>
 
         {/* Mobile Menu Button */}
-        <button
-          ref={menuButtonRef}
-          className="md:hidden text-white p-2 rounded border border-red-900/50 bg-black/40 focus:outline-none focus:ring-2 focus:ring-red-500"
-          onClick={handleMenuToggle}
-          aria-label={isMenuOpen ? (dict.closeMenu || 'Close menu') : (dict.openMenu || 'Open menu')}
-          aria-expanded={isMenuOpen}
-          aria-controls="mobile-menu"
-        >
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
+        {isMenuOpen ? (
+          <button
+            ref={menuButtonRef}
+            className="md:hidden text-white p-2 rounded border border-red-900/50 bg-black/40 focus:outline-none focus:ring-2 focus:ring-red-500"
+            onClick={handleMenuToggle}
+            aria-label={dict.closeMenu || 'Close menu'}
+            aria-expanded="true"
+            aria-controls="mobile-menu"
           >
-            {isMenuOpen ? (
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth={2}
                 d="M6 18L18 6M6 6l12 12"
               />
-            ) : (
+            </svg>
+          </button>
+        ) : (
+          <button
+            ref={menuButtonRef}
+            className="md:hidden text-white p-2 rounded border border-red-900/50 bg-black/40 focus:outline-none focus:ring-2 focus:ring-red-500"
+            onClick={handleMenuToggle}
+            aria-label={dict.openMenu || 'Open menu'}
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+          >
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth={2}
                 d="M4 6h16M4 12h16M4 18h16"
               />
-            )}
-          </svg>
-        </button>
+            </svg>
+          </button>
+        )}
         </nav>
       </header>
 

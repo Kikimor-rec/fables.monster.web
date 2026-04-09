@@ -1,0 +1,83 @@
+{
+  "meta": {
+    "title": "Career Twilight | Fables Monster Studio",
+    "description": "A sci-fi corporate horror one-shot for Mothership RPG. A routine evacuation gone catastrophically wrong aboard a research vessel."
+  },
+  "hero": {
+    "kicker": "PROJECT DOSSIER",
+    "title": "CAREER TWILIGHT",
+    "tagline": "A routine corporate evacuation mission. But could this be the twilight of your career?",
+    "badge": "COMING SOON"
+  },
+  "buttons": {
+    "itch": "GET ON ITCH.IO"
+  },
+  "cta": {
+    "followPrompt": "Don't want to miss the release? Follow us on",
+    "discord": "or join our Discord"
+  },
+  "intro": {
+    "credit": "By <strong>Anastasia Neuer</strong> in collaboration with <strong>Fables.Monster</strong>",
+    "editor": "Edited by Stepan Kulikov",
+    "p1": "A routine corporate evacuation mission. Inner Rim, safe sector. You have dozens of these under your belt. Crumbs of information, corporate secrets. NDAs, top-secret scientific research…",
+    "p2": "Something went wrong on <strong>Twilight</strong> long before you arrived. Ambitions, paranoid secrecy, and systemic errors led to a catastrophe. Now the Twilight is a ticking time bomb ready to go off.",
+    "p3": "…Just another contract. But could this be the twilight of your career?"
+  },
+  "timeline": {
+    "title": "RESTRICTED — CLEARANCE LEVEL: WARDEN ONLY",
+    "caseFile": "CASE FILE: TW-CLASS-A // INCIDENT TIMELINE",
+    "warning": "This section contains full plot details and spoilers. If you are a player, stop reading now.",
+    "confirmButton": "CONFIRM WARDEN ACCESS",
+    "accessGranted": "ACCESS GRANTED — LOADING TIMELINE...",
+    "entries": [
+      { "time": "5 YEARS AGO", "text": "The Corporation purchased the tourist vessel Twilight and retrofitted it into a research laboratory." },
+      { "time": "4 YEARS AGO", "text": "Dr. Sofia Reiner took charge of the lab and began developing technology to integrate human consciousness into android bodies. Corporate prison inmates were shipped to the Twilight for experimentation." },
+      { "time": "2 YEARS AGO", "text": "Having made significant progress, Dr. Reiner secretly began testing the technology on her own staff — systematically murdering scientific personnel and transferring their consciousnesses into androids visually identical to the originals." },
+      { "time": "1 YEAR AGO", "text": "Test subjects began exhibiting increased aggression. Regular doses of specialized tranquilizers and mandatory medical examinations were prescribed." },
+      { "time": "2 MONTHS AGO", "text": "Representatives of the Syndicate approached Dr. Reiner, offering to purchase her research." },
+      { "time": "1 WEEK AGO", "text": "Dr. Reiner was caught attempting to leak data to the Syndicate. She was escorted to Corporate HQ along with her closest staff — secretly androids. The remaining personnel were ordered to freeze all research and await further instructions." },
+      { "time": "4 DAYS AGO", "text": "A shortage of tranquilizers caused the android staff's mental state to deteriorate rapidly." },
+      { "time": "1 DAY AGO", "text": "The Corporation dispatched your crew to evacuate the remaining personnel and prisoners." },
+      { "time": "1 HOUR AGO", "text": "Dr. Howard Meyer completely lost his mind. He locked himself in the aft section, intent on reaching the reactor and destroying the ship." }
+    ]
+  },
+  "contract": {
+    "heading": "CORPORATE CONTRACT — FORM TW-7",
+    "subheading": "EVACUATION PROTOCOL",
+    "stamp": "CONFIDENTIAL",
+    "client": "CLIENT",
+    "clientValue": "[REDACTED] Corporation",
+    "contractor": "CONTRACTOR",
+    "contractorValue": "[Your Crew]",
+    "vessel": "VESSEL",
+    "vesselValue": "\"Twilight\" — Inner Rim Sector",
+    "type": "TYPE",
+    "typeValue": "Personnel Evacuation — Priority Delta",
+    "briefing": "One week ago, Dr. Sofia Reiner — head of the R&D lab aboard the Twilight — was caught attempting to transfer classified information to the Syndicate. Dr. Reiner was escorted to HQ along with two top-clearance staff members. The remaining personnel were ordered to freeze operations and await further instructions.",
+    "authorization": "The Corporation has now authorized your squad to complete the evacuation.",
+    "task1title": "TASK 01",
+    "task1": "Evacuate the employees (6 people) and the corporate prisoners (5 people). A crew manifest has been transmitted to each contractor.",
+    "task2title": "TASK 02",
+    "task2": "Activate the ship's autonomous mode via the internal control panel.",
+    "ndaReminder": "The Corporation reminds you of your signed NDAs. Exercise extreme caution when transporting prisoners to the corporate vessel's cryopods.",
+    "compensationTitle": "COMPENSATION STRUCTURE",
+    "compensation": [
+      { "label": "Mission completion", "value": "50,000 cr" },
+      { "label": "Per rescued employee (alive)", "value": "+10,000 cr" },
+      { "label": "Per live prisoner delivered", "value": "+5,000 cr" },
+      { "label": "Corporate lab data secured", "value": "+30,000 cr" }
+    ],
+    "ndaClause": "NDA CLAUSE: Viewing the contents of secured data is strictly prohibited.",
+    "liability": "§ 14.2 — LIABILITY CLAUSE: Damage to corporate property, or intentional/unintentional harm inflicted upon Twilight personnel results in fines deducted directly from contractor pay, assessed on a case-by-case basis."
+  },
+  "stats": {
+    "title": "MISSION PARAMETERS",
+    "players": "Players",
+    "playersValue": "3–5",
+    "hours": "Duration",
+    "hoursValue": "3–4 hrs",
+    "system": "System",
+    "systemValue": "Mothership 1E"
+  },
+  "backToProjects": "← Back to Projects"
+}

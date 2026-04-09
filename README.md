@@ -17,8 +17,11 @@ Fables Monster Studio is a team of enthusiasts dedicated to creating immersive t
 ## Projects
 
 - **The Lost Mark** - Sci-Fi horror adventure for Mothership RPG
-- **Cemetery of Broken Ships** - Space exploration and survival
+- **Career Twilight** - Corporate sci-fi horror one-shot for Mothership RPG
+- **Expedition-418** - Signal-hunt expedition in deep space
 - **Hellish Bureaucracy** - Satirical bureaucratic horror
+- **Holiday Audit: KRAMP.EXE** - Holiday special one-shot
+- **Old World Neon** - Neon noir horror setting
 
 ## Getting Started
 
@@ -87,7 +90,12 @@ Additional guides are available in the [docs](docs/) folder:
 
 ## Deploy
 
-The site is configured for deployment on Vercel. Simply connect your GitHub repository to Vercel for automatic deployments.
+The site is configured for deployment on Vercel.
+
+- Push commits to `main` to trigger automatic production deployment.
+- Push commits to feature branches to trigger preview deployments.
+
+If Vercel integration is not connected yet, connect this GitHub repository in Vercel once and keep auto-deploy enabled.
 
 ## Contact
 

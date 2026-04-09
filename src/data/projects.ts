@@ -95,6 +95,22 @@ export const projects: Project[] = [
             patreon: "https://www.patreon.com/posts/kramp-exe-for-1e-144275102",
         },
     },
+    {
+        id: "career-twilight",
+        slug: "career-twilight",
+        title: "CAREER TWILIGHT",
+        system: "Mothership 1E",
+        tagline: "A routine corporate evacuation mission. But could this be the twilight of your career?",
+        description: "A sci-fi corporate horror one-shot for Mothership RPG. A routine evacuation gone catastrophically wrong aboard a research vessel where nothing — and no one — is what they seem.",
+        status: "coming-soon",
+        type: "One-Shot",
+        image: "/images/career-twilight/career-twilight-promo.webp",
+        imageAlt: "Career Twilight - Sci-Fi Corporate Horror One-Shot",
+        tags: ["MOTHERSHIP", "SCI-FI HORROR", "CORPORATE"],
+        platforms: {
+            itch: "https://fablesmonster.itch.io/career-twilight",
+        },
+    },
 ];
 
 // Helper to get featured project

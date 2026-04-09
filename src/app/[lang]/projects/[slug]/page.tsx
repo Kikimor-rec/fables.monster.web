@@ -14,16 +14,28 @@ interface PlatformsType {
   foundry?: string;
 }
 
+// Projects with dedicated pages — excluded from generic [slug] rendering
+const DEDICATED_PROJECT_SLUGS = new Set([
+  'lost-mark',
+  'career-twilight',
+  'expedition-418',
+  'hellish-bureaucracy',
+  'holiday-audit-kramp',
+  'old-world-neon',
+]);
+
 export async function generateStaticParams() {
   const allParams: Array<{ lang: string; slug: string }> = [];
 
   for (const lang of languages) {
     const projects = await getAllProjects(lang);
     for (const project of projects) {
-      allParams.push({
-        lang,
-        slug: project.slug,
-      });
+      if (!DEDICATED_PROJECT_SLUGS.has(project.slug)) {
+        allParams.push({
+          lang,
+          slug: project.slug,
+        });
+      }
     }
   }
 
@@ -76,9 +88,11 @@ export default async function ProjectPage({ params }: { params: Promise<{ lang: 
   const contentImage = getFrontmatterString(content.frontmatter, 'image');
   const contentTagline = getFrontmatterString(content.frontmatter, 'tagline');
   const platforms = getFrontmatterObject<PlatformsType>(content.frontmatter, 'platforms');
+  const pageClassName = 'fm-page text-gray-200';
+  const articleClassName = 'fm-panel prose prose-invert prose-lg prose-red max-w-none';
 
   return (
-    <main className="fm-page text-gray-200">
+    <main className={pageClassName}>
       <section className="fm-page-hero">
         <div className="fm-shell">
           <div className="fm-page-hero-panel relative overflow-hidden">
@@ -130,7 +144,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ lang: 
 
       <section className="fm-section fm-section-bordered">
         <div className="fm-shell">
-          <article className="fm-panel prose prose-invert prose-lg prose-red max-w-none">
+          <article className={articleClassName}>
             <div dangerouslySetInnerHTML={{ __html: content.contentHtml }} />
           </article>
         </div>

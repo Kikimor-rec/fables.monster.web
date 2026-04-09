@@ -112,6 +112,8 @@ export default async function RootLayout({
     const { lang } = await params;
     const dict = await getDictionary(lang, 'common');
     const newsletterDict = await getDictionary(lang, 'newsletter');
+    const gaId = process.env.NEXT_PUBLIC_GA_ID;
+    const shouldLoadGa = !!gaId && /^G-[A-Z0-9]+$/i.test(gaId) && gaId !== 'G-XXXXXXXXXX';
 
     return (
         <html lang={lang} className={`${orbitron.variable} ${rajdhani.variable} ${nunito.variable}`}>
@@ -119,7 +121,7 @@ export default async function RootLayout({
                 <OrganizationJsonLd />
             </head>
             <body className="bg-black text-white" suppressHydrationWarning>
-                {process.env.NEXT_PUBLIC_GA_ID && <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />}
+                {shouldLoadGa && <GoogleAnalytics gaId={gaId} />}
                     <BootSequence />
                     <CursorGlow />
                     <EasterEggs />

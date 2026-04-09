@@ -18,10 +18,33 @@ const nextConfig: NextConfig = {
   trailingSlash: false,
   distDir: '.next',
   cleanDistDir: true,
+  async redirects() {
+    return [
+      'career-twilight',
+      'lost-mark',
+      'expedition-418',
+      'hellish-bureaucracy',
+      'holiday-audit-kramp',
+      'old-world-neon',
+    ].map((slug) => ({
+      source: `/:lang(en|ru)/projects/${slug}`,
+      destination: `/:lang/${slug}`,
+      permanent: true,
+    }));
+  },
   async headers() {
+    const isDev = process.env.NODE_ENV !== 'production';
+    const scriptSrc = [
+      "script-src 'self' 'unsafe-inline'",
+      isDev ? "'unsafe-eval'" : '',
+      'https://www.googletagmanager.com',
+      'https://www.google-analytics.com',
+      'https://va.vercel-scripts.com',
+    ].filter(Boolean).join(' ');
+
     const cspValue = [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://va.vercel-scripts.com",
+      scriptSrc,
       "style-src 'self' 'unsafe-inline'",
       "img-src 'self' https: data:",
       "font-src 'self'",

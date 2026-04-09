@@ -69,6 +69,13 @@
     "about": "О нас",
     "contact": "Контакты",
     "social": "СОЦСЕТИ",
+    "allProjects": "Все проекты →",
+    "projectLostMark": "Потерянный знак",
+    "projectCareerTwilight": "Закат карьеры",
+    "projectKramp": "Holiday Audit: Kramp.exe",
+    "projectExpedition": "Экспедиция-418",
+    "projectHellishBureaucracy": "Адская бюрократия",
+    "projectNeon": "Old World Neon",
     "copyright": "© {year} Fables Monster Studio. Все права защищены."
   },
   "team": [

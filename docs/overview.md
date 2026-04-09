@@ -12,6 +12,12 @@ The repository structure is organized as follows:
 
 ## Key Pages
 
+- **Career Twilight** (`/[lang]/career-twilight`) - Dedicated cinematic product page with:
+  - Hero section and release CTA
+  - Interactive spoiler terminal timeline with access confirmation
+  - Printed-sheet contract block with mission terms
+  - Mission parameters and credits summary
+
 - **Lost Mark** (`/[lang]/lost-mark`) – Main product page with:
   - Interactive terminal and timer tools
   - Store buttons (Itch.io, DriveThruRPG, Roll20, Станция Ролевая)
@@ -32,6 +38,7 @@ The repository structure is organized as follows:
     - `KrampSections.tsx` – Wrapper for soundtrack and tables sections
 
 - **Projects** (`/[lang]/projects`) – Project listing from markdown files
+- **Generic project fallback** (`/[lang]/projects/[slug]`) - Used only for projects that do not have a dedicated page route
 - **404 Page** – Custom not-found page with radar scanner animation
 
 ## Internationalization

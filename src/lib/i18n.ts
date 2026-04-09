@@ -1,5 +1,6 @@
 import 'server-only';
 import { fallbackLng } from '@/i18n/settings';
+import { logger } from '@/lib/logger';
 import type {
   Language,
   DictionaryNamespace,
@@ -11,6 +12,7 @@ import type {
   LostMarkLicenseDict,
   Expedition418Dict,
   OldWorldNeonDict,
+  CareerTwilightDict,
   TerminalDict,
   NewsletterDict,
   PrivacyDict,
@@ -25,6 +27,7 @@ interface DictionaryLoaders {
   'lost-mark-license': DictionaryLoader<LostMarkLicenseDict>;
   'expedition-418': DictionaryLoader<Expedition418Dict>;
   'old-world-neon': DictionaryLoader<OldWorldNeonDict>;
+  'career-twilight': DictionaryLoader<CareerTwilightDict>;
   kramp: DictionaryLoader<KrampDict>;
   terminal: DictionaryLoader<TerminalDict>;
   newsletter: DictionaryLoader<NewsletterDict>;
@@ -41,6 +44,7 @@ const dictionaries: Dictionaries = {
     'lost-mark-license': () => import('@/locales/en/lost-mark-license.json').then((module) => module.default as LostMarkLicenseDict),
     'expedition-418': () => import('@/locales/en/expedition-418.json').then((module) => module.default as Expedition418Dict),
     'old-world-neon': () => import('@/locales/en/old-world-neon.json').then((module) => module.default as OldWorldNeonDict),
+    'career-twilight': () => import('@/locales/en/career-twilight.json').then((module) => module.default as CareerTwilightDict),
     kramp: () => import('@/locales/en/kramp.json').then((module) => module.default as KrampDict),
     terminal: () => import('@/locales/en/terminal.json').then((module) => module.default as TerminalDict),
     newsletter: () => import('@/locales/en/newsletter.json').then((module) => module.default as NewsletterDict),
@@ -53,6 +57,7 @@ const dictionaries: Dictionaries = {
     'lost-mark-license': () => import('@/locales/ru/lost-mark-license.json').then((module) => module.default as LostMarkLicenseDict),
     'expedition-418': () => import('@/locales/ru/expedition-418.json').then((module) => module.default as Expedition418Dict),
     'old-world-neon': () => import('@/locales/ru/old-world-neon.json').then((module) => module.default as OldWorldNeonDict),
+    'career-twilight': () => import('@/locales/ru/career-twilight.json').then((module) => module.default as CareerTwilightDict),
     kramp: () => import('@/locales/ru/kramp.json').then((module) => module.default as KrampDict),
     terminal: () => import('@/locales/ru/terminal.json').then((module) => module.default as TerminalDict),
     newsletter: () => import('@/locales/ru/newsletter.json').then((module) => module.default as NewsletterDict),
@@ -81,7 +86,7 @@ export async function getDictionary<T extends DictionaryNamespace>(
   try {
     return await loader() as GetDictionary<T>;
   } catch (error) {
-    console.error(`Failed to load dictionary: ${lang}/${namespace}`, error);
+    logger.error(`Failed to load dictionary: ${lang}/${namespace}`, { error });
     throw error;
   }
 }
