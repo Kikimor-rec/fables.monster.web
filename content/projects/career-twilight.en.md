@@ -5,7 +5,7 @@ tagline: "A routine corporate evacuation mission. But could this be the twilight
 status: "coming-soon"
 system: "Mothership 1E"
 type: "One-Shot"
-image: "/images/career-twilight/career-twilight-promo.webp"
+image: "/images/career-twilight/dr-reiner.webp"
 platforms: {}
 ---
 

@@ -36,10 +36,10 @@ export default function CareerTwilightIntro({ dict }: CareerTwilightIntroProps) 
                 sizes="(max-width: 768px) 100vw, 384px"
                 priority
               />
+              <p className="ct-polaroid-caption">
+                {dict.intro.polaroidCaption}
+              </p>
             </div>
-            <p className="ct-polaroid-caption w-full max-w-sm">
-              {dict.intro.polaroidCaption}
-            </p>
           </div>
         </div>
       </div>

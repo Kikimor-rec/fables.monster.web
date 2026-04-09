@@ -415,20 +415,17 @@ body {
     transform: rotate(-0.5deg) scale(1.02);
 }
 .ct-polaroid-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
     font-family: 'Segoe Script', 'Bradley Hand', 'Comic Sans MS', cursive;
     color: #3a3a3a;
     font-size: 0.95rem;
     text-align: center;
-    margin-top: -2px;
-    padding: 4px 8px 8px;
-    background: #e8e4df;
-    transform: rotate(-2.5deg);
-    box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.3);
-    transition: transform 0.4s ease;
-}
-.ct-intro-image:hover + .ct-polaroid-caption,
-.ct-polaroid-caption:hover {
-    transform: rotate(-0.5deg);
+    padding: 6px 8px 10px;
+    background: rgba(232, 228, 223, 0.85);
+    z-index: 1;
 }
 
 /* ── Career Twilight: Terminal ── */
