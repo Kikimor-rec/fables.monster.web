@@ -49,6 +49,7 @@ const nextConfig: NextConfig = {
       "img-src 'self' https: data:",
       "font-src 'self'",
       "connect-src 'self' https://news.fables.monster https://www.google-analytics.com https://va.vercel-scripts.com https://vitals.vercel-insights.com",
+      "frame-src 'self' https://www.youtube.com",
       "frame-ancestors 'none'",
     ].join('; ');
 
