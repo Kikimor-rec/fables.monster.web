@@ -83,6 +83,11 @@ export default function Footer({ lang, dict, newsletterDict }: FooterProps) {
                   </Link>
                 </li>
                 <li>
+                  <Link href={`/${lang}/vtt`} className="hover:text-red-400 transition-colors">
+                    {dict.vttServices || "VTT Services"}
+                  </Link>
+                </li>
+                <li>
                   <Link href={`/${lang}/contact`} className="hover:text-red-400 transition-colors">
                     {dict?.contact || "Contact"}
                   </Link>

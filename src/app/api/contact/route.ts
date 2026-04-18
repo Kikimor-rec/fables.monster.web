@@ -21,7 +21,8 @@ function escapeHtml(str: string): string {
 const contactFormSchema = z.object({
   name: z.string().min(1, "Name is required").max(100, "Name is too long"),
   email: z.string().email("Invalid email address").max(255, "Email is too long"),
-  message: z.string().min(1, "Message is required").max(1000, "Message is too long"),
+  subject: z.string().max(160, "Subject is too long").optional(),
+  message: z.string().min(1, "Message is required").max(5000, "Message is too long"),
 });
 
 // Basic in-memory rate limiter
@@ -137,7 +138,8 @@ export async function POST(request: NextRequest) {
 
     // Validate input using Zod
     const validatedData = contactFormSchema.parse(body);
-    const { name, email, message } = validatedData;
+    const { name, email, message, subject } = validatedData;
+    const safeSubject = subject?.replace(/[\r\n]+/g, ' ').trim();
 
     const transporter = await getTransporter();
 
@@ -145,16 +147,18 @@ export async function POST(request: NextRequest) {
     const mailOptions = {
       from: `"Fables Monster Contact Form" <${process.env.SMTP_USER}>`,
       to: process.env.SMTP_TO,
-      subject: `New Contact Form Message from ${escapeHtml(name)}`,
+      subject: safeSubject || `New Contact Form Message from ${escapeHtml(name)}`,
       text: `
 Name: ${name}
 Email: ${email}
+Subject: ${safeSubject || 'Contact form'}
 Message: ${message}
       `,
       html: `
         <h3>New Contact Form Message</h3>
         <p><strong>Name:</strong> ${escapeHtml(name)}</p>
         <p><strong>Email:</strong> ${escapeHtml(email)}</p>
+        <p><strong>Subject:</strong> ${escapeHtml(safeSubject || 'Contact form')}</p>
         <p><strong>Message:</strong></p>
         <p>${escapeHtml(message).replace(/\n/g, '<br>')}</p>
       `,

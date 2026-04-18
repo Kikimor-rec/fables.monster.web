@@ -6,6 +6,15 @@ status: "coming-soon"
 system: "Mothership 1E"
 type: "One-Shot"
 image: "/images/career-twilight/dr-reiner.webp"
+author: "Anastasia Neuer"
+authors:
+  - "Anastasia Neuer"
+studioShowcase: true
+showcaseDescription: "A corporate sci-fi horror one-shot for Mothership RPG."
+studioInvolvementType: "Author collaboration"
+studioInvolvement: "Editorial development, production support, layout planning and release preparation"
+cardImage: "/images/career-twilight/dr-reiner.webp"
+projectPage: "/career-twilight"
 platforms: {}
 ---
 

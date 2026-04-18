@@ -18,6 +18,7 @@ export default function Navigation({ lang, dict }: { lang: string, dict: NavDict
   const navLinks = [
     { href: `/${lang}`, label: dict?.home || "HOME", exact: true },
     { href: `/${lang}/projects`, label: dict?.projects || "PROJECTS" },
+    { href: `/${lang}/vtt`, label: dict?.vtt || "VTT" },
     { href: `/${lang}/timer`, label: dict?.timer || "TIMER" },
     { href: `/${lang}/about`, label: dict?.about || "ABOUT" },
     { href: `/${lang}/contact`, label: dict?.contact || "CONTACT" },

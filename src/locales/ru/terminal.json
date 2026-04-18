@@ -18,7 +18,7 @@
     "silk_logs": "[2] ЖУРНАЛ SILK STAR",
     "life_support": "[3] ЖИЗНЕОБЕСПЕЧЕНИЕ",
     "crew_manifest": "[4] МАНИФЕСТ ЭКИПАЖА",
-    "cryo_protocols": "[5] КРИО ПРОТОКОЛЫ",
+    "cryo_protocols": "[5] КРИОПРОТОКОЛЫ",
     "corrupted": "[6] ПОВРЕЖДЕННЫЕ ДАННЫЕ"
   },
   "status": {
@@ -29,7 +29,7 @@
     "offline": "ОТКЛЮЧЕНО",
     "online": "В СЕТИ",
     "connection_lost": "СВЯЗЬ ПОТЕРЯНА",
-    "deceased": "МЕРТВ"
+    "deceased": "МЁРТВ"
   },
   "manifest": {
     "role": "Роль",
@@ -43,7 +43,7 @@
   },
   "logs": {
     "system_logs": "СИСТЕМНЫЕ ЛОГИ",
-    "silk_star_logs": "ПОЛЕТНЫЙ ЖУРНАЛ SILK STAR",
+    "silk_star_logs": "ПОЛЁТНЫЙ ЖУРНАЛ SILK STAR",
     "entry": "ЗАПИСЬ"
   },
   "life_support": {
@@ -59,7 +59,7 @@
   },
   "messages": {
     "terminal_ready": "ТЕРМИНАЛ ГОТОВ",
-    "access_denied": "ДОСТУП ЗАПРЕЩЕН",
+    "access_denied": "ДОСТУП ЗАПРЕЩЁН",
     "corrupted_data": "[ДАННЫЕ ПОВРЕЖДЕНЫ]",
     "rest_corrupted": "[ОСТАЛЬНЫЕ ДАННЫЕ ПОВРЕЖДЕНЫ]"
   }

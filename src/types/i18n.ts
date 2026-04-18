@@ -92,6 +92,7 @@ export interface NavDict {
   home: string;
   projects: string;
   lostMark: string;
+  vtt?: string;
   timer: string;
   about: string;
   contact: string;
@@ -110,6 +111,7 @@ export interface FooterDict {
   projects: string;
   links: string;
   about: string;
+  vttServices?: string;
   contact: string;
   social: string;
   allProjects?: string;

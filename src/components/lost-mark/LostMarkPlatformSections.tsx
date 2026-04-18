@@ -1,8 +1,10 @@
-import Image from "next/image";
 import Link from "next/link";
 import GlitchReveal from "@/components/GlitchReveal";
 import OptimizedImage from "@/components/OptimizedImage";
 import type { LostMarkDictionary } from "@/components/lost-mark/types";
+
+const LOST_MARK_FOUNDRY_DRIVETHRU_URL =
+  "https://www.drivethrurpg.com/en/product/564197/mothership-lost-mark-foundryvtt-module?";
 
 interface LostMarkPlatformSectionsProps {
   lang: string;
@@ -135,13 +137,12 @@ export default function LostMarkPlatformSections({ lang, dict }: LostMarkPlatfor
 
               <div className="flex flex-col gap-4">
                 <a
-                  href="https://www.patreon.com/posts/lost-mark-vtt-143997921"
+                  href={LOST_MARK_FOUNDRY_DRIVETHRU_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="lm-btn lm-btn-red"
                 >
-                  <Image src="/logos/PATREON_SYMBOL_1_WHITE_RGB.svg" alt="Patreon" width={20} height={20} className="w-5 h-5" />
-                  Patreon
+                  {dict.buttons?.drivethru || "DriveThruRPG"}
                 </a>
                 <a
                   href="https://fablesmonster.itch.io/lost-mark-foundry-vtt"

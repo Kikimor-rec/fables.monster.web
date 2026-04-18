@@ -58,6 +58,7 @@
     "home": "HOME",
     "projects": "PROJECTS",
     "lostMark": "LOST MARK",
+    "vtt": "VTT",
     "timer": "TIMER",
     "about": "ABOUT",
     "contact": "CONTACT"
@@ -70,6 +71,7 @@
     "contact": "Contact",
     "social": "SOCIAL",
     "allProjects": "All projects →",
+    "vttServices": "VTT Services",
     "projectLostMark": "The Lost Mark",
     "projectCareerTwilight": "Career Twilight",
     "projectKramp": "Holiday Audit: Kramp.exe",

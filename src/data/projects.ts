@@ -48,7 +48,7 @@ export const projects: Project[] = [
             itch: "https://fables-monster-studio.itch.io/the-lost-mark",
             driveThru: "https://www.drivethrurpg.com/en/product/530242",
             roll20: "https://marketplace.roll20.net/browse/module/39314/lost-mark-sci-fi-horror-one-shot-for-mothership",
-            foundry: "#",
+            foundry: "https://www.drivethrurpg.com/en/product/564197/mothership-lost-mark-foundryvtt-module?",
         },
     },
     {

@@ -6,6 +6,15 @@ status: "released"
 type: "One-Shot"
 system: "Mothership 1e"
 image: "/images/kramp/promo.webp"
+author: "Stepan Kulikov"
+authors:
+  - "Stepan Kulikov"
+studioShowcase: true
+showcaseDescription: "A festive corporate horror one-shot for Mothership RPG 1e."
+studioInvolvementType: "Studio release"
+studioInvolvement: "Game design, editing, layout, art direction and digital release packaging"
+cardImage: "/images/kramp/promo.webp"
+projectPage: "/holiday-audit-kramp"
 ---
 
 It's a story about **control, hypocrisy, punishment, and bad gifts**. It shifts between humor and horror, absurdity and paranoia.
