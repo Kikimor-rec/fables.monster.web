@@ -4,7 +4,7 @@ import Image from "next/image";
 import FadeIn, { FadeInItem } from "@/components/FadeIn";
 import { getAllProjects, getFrontmatterString } from "@/lib/content";
 import { getDictionary } from '@/lib/i18n';
-import Navigation from "@/components/Navigation";
+import { JsonLd, buildBreadcrumbJsonLd, buildCollectionPageJsonLd } from '@/lib/seo/jsonld';
 
 export const revalidate = 3600; // ISR: revalidate every hour
 
@@ -47,10 +47,26 @@ export default async function ProjectsPage({ params }: { params: Promise<{ lang:
     return orderA - orderB;
   });
 
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd([
+    { name: dict.nav?.home || 'Home', path: `/${lang}` },
+    { name: dict.nav?.projects || 'Projects', path: `/${lang}/projects` },
+  ]);
+
+  const projectsCollectionJsonLd = buildCollectionPageJsonLd({
+    name: dict.nav?.projects || 'Projects',
+    description: dict.projects?.description || 'Explore our tabletop RPG adventures and digital experiences.',
+    path: `/${lang}/projects`,
+    items: sortedProjects.map((project) => ({
+      name: getFrontmatterString(project.frontmatter, 'title') || project.slug,
+      path: `/${lang}/${project.slug}`,
+    })),
+  });
+
   return (
-    <div className="min-h-screen bg-black">
-      <Navigation lang={lang} dict={dict.nav || {}} />
-      
+    <>
+      <JsonLd id="projects-breadcrumb-jsonld" data={breadcrumbJsonLd} />
+      <JsonLd id="projects-collection-jsonld" data={projectsCollectionJsonLd} />
+      <div className="min-h-screen bg-black">
       {/* Header */}
       <section className="pt-24 sm:pt-32 pb-12 sm:pb-20 bg-gradient-to-b from-gray-950 to-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center">
@@ -198,5 +214,6 @@ export default async function ProjectsPage({ params }: { params: Promise<{ lang:
         </div>
       </section>
     </div>
+    </>
   );
 }

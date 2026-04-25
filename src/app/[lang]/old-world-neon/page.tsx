@@ -11,6 +11,7 @@ import NeonHeroSection from "@/components/old-world-neon/NeonHeroSection";
 import NeonTeaserSection from "@/components/old-world-neon/NeonTeaserSection";
 import NeonFeaturesSection from "@/components/old-world-neon/NeonFeaturesSection";
 import type { NeonStatusTag } from "@/components/old-world-neon/types";
+import { JsonLd, buildBreadcrumbJsonLd, buildCreativeWorkJsonLd } from "@/lib/seo/jsonld";
 
 export const revalidate = 3600; // ISR: revalidate every hour
 
@@ -55,9 +56,26 @@ export default async function ProjectNeonPage({ params }: { params: Promise<{ la
   const heroTagline = (content ? getFrontmatterString(content.frontmatter, "tagline") : "") || dict.hero.taglineFallback;
   const heroDescription = (content ? getFrontmatterString(content.frontmatter, "description") : "") || dict.hero.descriptionFallback;
   const contentHtml = content?.contentHtml || "";
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd([
+    { name: "Home", path: `/${lang}` },
+    { name: "Projects", path: `/${lang}/projects` },
+    { name: "Old World Neon", path: `/${lang}/old-world-neon` },
+  ]);
+  const oldWorldNeonJsonLd = buildCreativeWorkJsonLd({
+    name: "Old World Neon",
+    description: dict.meta.description,
+    path: `/${lang}/old-world-neon`,
+    lang,
+    imagePath: imageSrc,
+    genre: "Cyberpunk",
+    keywords: ["Cyberpunk", "Classified", "In Development"],
+  });
 
   return (
-    <div className="fm-page relative overflow-hidden fm-glitch-pulse fm-pattern-datarain">
+    <>
+      <JsonLd id="old-world-neon-breadcrumb-jsonld" data={breadcrumbJsonLd} />
+      <JsonLd id="old-world-neon-creativework-jsonld" data={oldWorldNeonJsonLd} />
+      <div className="fm-page relative overflow-hidden fm-glitch-pulse fm-pattern-datarain">
       <StoryProgressBar accent="fuchsia" />
 
       {/* Cyan grid pattern — brighter near top, fading lower */}
@@ -98,5 +116,6 @@ export default async function ProjectNeonPage({ params }: { params: Promise<{ la
       <StayConnectedSection lang={lang} dict={homeDict.stayConnected} variant="cyberpunk" />
       <StoryBackToTop tone="fuchsia" />
     </div>
+    </>
   );
 }

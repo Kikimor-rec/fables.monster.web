@@ -49,8 +49,12 @@ const nextConfig: NextConfig = {
       "img-src 'self' https: data:",
       "font-src 'self'",
       "connect-src 'self' https://news.fables.monster https://www.google-analytics.com https://va.vercel-scripts.com https://vitals.vercel-insights.com",
+      "form-action 'self'",
       "frame-src 'self' https://www.youtube.com",
       "frame-ancestors 'none'",
+      "object-src 'none'",
+      "base-uri 'self'",
+      isDev ? "" : "upgrade-insecure-requests",
     ].join('; ');
 
     const securityHeaders = [
@@ -69,6 +73,14 @@ const nextConfig: NextConfig = {
       {
         key: 'X-XSS-Protection',
         value: '1; mode=block',
+      },
+      {
+        key: 'Cross-Origin-Opener-Policy',
+        value: 'same-origin',
+      },
+      {
+        key: 'Cross-Origin-Resource-Policy',
+        value: 'same-site',
       },
       {
         key: 'Referrer-Policy',

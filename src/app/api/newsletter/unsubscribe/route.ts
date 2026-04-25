@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from 'zod';
 import { logger } from '@/lib/logger';
 import { RATE_LIMITS } from '@/lib/constants';
+import { checkRateLimit } from '@/lib/rate-limit';
+import { getClientIdentifier, isAllowedOrigin, maskEmail } from '@/lib/security';
 
 export const runtime = 'nodejs';
 
@@ -13,41 +15,22 @@ const unsubscribeSchema = z.object({
   message: "Either email or subscriber ID is required"
 });
 
-// Rate limiting for unsubscribe
-const rateLimitMap = new Map<string, number[]>();
-
-function checkRateLimit(ip: string | null): boolean {
-  if (!ip) return true;
-
-  const now = Date.now();
-  const requests = (rateLimitMap.get(ip) || []).filter(
-    timestamp => now - timestamp < RATE_LIMITS.contact.windowMs
-  );
-  requests.push(now);
-  rateLimitMap.set(ip, requests);
-
-  return requests.length <= RATE_LIMITS.contact.maxRequests;
-}
-
-// Clean up old entries periodically
-setInterval(() => {
-  const now = Date.now();
-  for (const [ip, timestamps] of rateLimitMap.entries()) {
-    const validTimestamps = timestamps.filter(
-      t => now - t < RATE_LIMITS.contact.windowMs
-    );
-    if (validTimestamps.length === 0) {
-      rateLimitMap.delete(ip);
-    } else {
-      rateLimitMap.set(ip, validTimestamps);
-    }
-  }
-}, 5 * 60 * 1000);
+const genericSuccessPayload = {
+  message: 'If this address exists, it has been unsubscribed from the newsletter.',
+};
 
 export async function POST(request: NextRequest) {
-  const ip = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip');
+  const clientKey = getClientIdentifier(request);
 
-  if (!checkRateLimit(ip)) {
+  if (!isAllowedOrigin(request)) {
+    logger.warn('Blocked newsletter unsubscribe request from disallowed origin', { clientKey });
+    return NextResponse.json(
+      { error: 'Forbidden' },
+      { status: 403 }
+    );
+  }
+
+  if (!checkRateLimit(`newsletter-unsubscribe:${clientKey}`, RATE_LIMITS.newsletter)) {
     return NextResponse.json(
       { error: 'Too many requests. Please try again later.' },
       { status: 429 }
@@ -58,6 +41,7 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const validatedData = unsubscribeSchema.parse(body);
     const { email, uuid } = validatedData;
+    const maskedEmail = email ? maskEmail(email) : undefined;
 
     const listmonkUrl = process.env.LISTMONK_API_URL || 'https://news.fables.monster';
     const listmonkUser = process.env.LISTMONK_API_USER;
@@ -82,6 +66,11 @@ export async function POST(request: NextRequest) {
       });
 
       if (!response.ok) {
+        if (response.status === 404) {
+          logger.info('Unsubscribe UUID not found, returning generic success', { uuid });
+          return NextResponse.json(genericSuccessPayload, { status: 200 });
+        }
+
         logger.error('Listmonk unsubscribe by UUID failed', {
           uuid,
           status: response.status,
@@ -93,10 +82,7 @@ export async function POST(request: NextRequest) {
       }
 
       logger.info('Newsletter unsubscribe successful (by UUID)', { uuid });
-      return NextResponse.json(
-        { message: 'Successfully unsubscribed from newsletter.' },
-        { status: 200 }
-      );
+      return NextResponse.json(genericSuccessPayload, { status: 200 });
     }
 
     // If email provided, search for subscriber first
@@ -114,7 +100,7 @@ export async function POST(request: NextRequest) {
 
       if (!searchResponse.ok) {
         logger.error('Listmonk subscriber search failed', {
-          email,
+          email: maskedEmail,
           status: searchResponse.status,
         });
         return NextResponse.json(
@@ -126,11 +112,8 @@ export async function POST(request: NextRequest) {
       const searchData = await searchResponse.json();
 
       if (!searchData.data?.results?.length) {
-        logger.info('Subscriber not found', { email });
-        return NextResponse.json(
-          { message: 'Email not found in our newsletter list.' },
-          { status: 404 }
-        );
+        logger.info('Subscriber not found, returning generic success', { email: maskedEmail });
+        return NextResponse.json(genericSuccessPayload, { status: 200 });
       }
 
       subscriberId = searchData.data.results[0].id;
@@ -159,14 +142,11 @@ export async function POST(request: NextRequest) {
       }
 
       logger.info('Newsletter unsubscribe successful', {
-        email,
+        email: maskedEmail,
         subscriberId,
       });
 
-      return NextResponse.json(
-        { message: 'Successfully unsubscribed from newsletter.' },
-        { status: 200 }
-      );
+      return NextResponse.json(genericSuccessPayload, { status: 200 });
     }
 
     return NextResponse.json(
@@ -177,6 +157,7 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     if (error instanceof z.ZodError) {
       logger.warn('Newsletter unsubscribe validation failed', {
+        clientKey,
         errors: error.issues.map(i => i.message),
       });
       return NextResponse.json(
@@ -186,6 +167,7 @@ export async function POST(request: NextRequest) {
     }
 
     logger.error('Newsletter unsubscribe failed', {
+      clientKey,
       error: error instanceof Error ? error.message : 'Unknown error',
       stack: error instanceof Error ? error.stack : undefined,
     });

@@ -1,6 +1,5 @@
 import { Metadata } from 'next'
 import Image from "next/image";
-import Navigation from "@/components/Navigation";
 import KrampNavigation from "@/components/kramp/KrampNavigation";
 import KrampSections from "@/components/kramp/KrampSections";
 import StayConnectedSection from "@/components/StayConnectedSection";
@@ -9,6 +8,7 @@ import StoryBackToTop from '@/components/StoryBackToTop';
 import { getContent, getFrontmatterString } from '@/lib/content';
 import { getDictionary } from '@/lib/i18n';
 import { sanitizeHtml } from '@/lib/sanitize';
+import { JsonLd, buildBreadcrumbJsonLd, buildProductJsonLd } from '@/lib/seo/jsonld';
 import './christmas.css';
 
 export const revalidate = 3600; // ISR: revalidate every hour
@@ -37,11 +37,30 @@ export default async function HolidayAuditKramp({ params }: { params: Promise<{ 
   const { lang } = await params;
   const content = await getContent('projects', 'holiday-audit-kramp', lang);
   const dict = await getDictionary(lang, 'kramp');
-  const commonDict = await getDictionary(lang, 'common');
   const homeDict = await getDictionary(lang, 'home');
 
   const contentTitle = content ? getFrontmatterString(content.frontmatter, 'title') : '';
   const contentTagline = content ? getFrontmatterString(content.frontmatter, 'tagline') : '';
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd([
+    { name: 'Home', path: `/${lang}` },
+    { name: 'Projects', path: `/${lang}/projects` },
+    { name: contentTitle || 'Holiday Audit: KRAMP.EXE', path: `/${lang}/holiday-audit-kramp` },
+  ]);
+  const krampJsonLd = buildProductJsonLd({
+    name: contentTitle || 'Holiday Audit: KRAMP.EXE',
+    description: contentTagline || 'A festive corporate horror one-shot for Mothership RPG 1E.',
+    path: `/${lang}/holiday-audit-kramp`,
+    lang,
+    imagePath: '/images/kramp/promo.webp',
+    category: 'Holiday Horror One-Shot',
+    genre: 'Science Fiction Horror',
+    offerUrls: [
+      'https://fablesmonster.itch.io/krampexe-mothership-1e',
+      'https://www.drivethrurpg.com/en/product/547046/kramp-exe-christmas-special-edition-for-mothership-1e?affiliate_id=2863466',
+      'https://www.patreon.com/posts/kramp-exe-for-1e-144275102',
+    ],
+    keywords: ['Mothership 1E', 'Holiday Horror', 'One-Shot'],
+  });
 
   // Component for section divider lights
   const SectionDivider = () => (
@@ -134,7 +153,10 @@ export default async function HolidayAuditKramp({ params }: { params: Promise<{ 
   ];
 
   return (
-    <div className="min-h-screen bg-black relative overflow-hidden font-rajdhani">
+    <>
+      <JsonLd id="kramp-breadcrumb-jsonld" data={breadcrumbJsonLd} />
+      <JsonLd id="kramp-product-jsonld" data={krampJsonLd} />
+      <div className="min-h-screen bg-black relative overflow-hidden font-rajdhani">
       <StoryProgressBar accent="red" />
       {/* Christmas Lights Animation */}
       <div className="christmas-lights opacity-30 pointer-events-none">
@@ -158,8 +180,6 @@ export default async function HolidayAuditKramp({ params }: { params: Promise<{ 
           <div key={i} className="snowflake">❄</div>
         ))}
       </div>
-
-      <Navigation lang={lang} dict={commonDict.nav} />
 
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center pt-20 md:pt-24">
@@ -380,5 +400,6 @@ export default async function HolidayAuditKramp({ params }: { params: Promise<{ 
       />
       <StoryBackToTop tone="red" />
     </div>
+    </>
   );
 }

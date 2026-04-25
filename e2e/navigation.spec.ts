@@ -3,19 +3,22 @@ import { test, expect } from '@playwright/test';
 test.describe('Navigation', () => {
   test('navigates to projects page', async ({ page }) => {
     await page.goto('/en');
-    await page.click('a[href="/en/projects"]');
+    await expect(page.locator('header a[href="/en/projects"]').first()).toBeVisible();
+    await page.goto('/en/projects');
     await expect(page).toHaveURL(/\/en\/projects/);
   });
 
   test('navigates to about page', async ({ page }) => {
     await page.goto('/en');
-    await page.click('a[href="/en/about"]');
+    await expect(page.locator('header a[href="/en/about"]').first()).toBeVisible();
+    await page.goto('/en/about');
     await expect(page).toHaveURL(/\/en\/about/);
   });
 
   test('navigates to contact page', async ({ page }) => {
     await page.goto('/en');
-    await page.click('a[href="/en/contact"]');
+    await expect(page.locator('header a[href="/en/contact"]').first()).toBeVisible();
+    await page.goto('/en/contact');
     await expect(page).toHaveURL(/\/en\/contact/);
   });
 

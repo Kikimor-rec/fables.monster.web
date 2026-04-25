@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import { AdventureJson } from "@/components/SEO";
 import StayConnectedSection from "@/components/StayConnectedSection";
 import StorySectionNav from "@/components/StorySectionNav";
 import StoryBackToTop from "@/components/StoryBackToTop";
@@ -12,6 +11,7 @@ import type { LostMarkDictionary } from "@/components/lost-mark/types";
 import { getContent, getFrontmatterString } from "@/lib/content";
 import { getDictionary } from "@/lib/i18n";
 import { buildSocialMetadata } from "@/lib/metadata";
+import { JsonLd, buildBreadcrumbJsonLd, buildProductJsonLd } from "@/lib/seo/jsonld";
 export const revalidate = 3600; // ISR: revalidate every hour
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -51,6 +51,27 @@ export default async function LostMark({ params }: { params: Promise<{ lang: str
 
   const contentTitle = content ? getFrontmatterString(content.frontmatter, "title") : "";
   const contentTagline = content ? getFrontmatterString(content.frontmatter, "tagline") : "";
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd([
+    { name: "Home", path: `/${lang}` },
+    { name: "Projects", path: `/${lang}/projects` },
+    { name: contentTitle || "The Lost Mark", path: `/${lang}/lost-mark` },
+  ]);
+  const lostMarkJsonLd = buildProductJsonLd({
+    name: contentTitle || "The Lost Mark",
+    description: contentTagline || "2-page sci-fi horror adventure for Mothership 1E.",
+    path: `/${lang}/lost-mark`,
+    lang,
+    imagePath: "/images/lost-mark/lm_promo_1.webp",
+    category: "Sci-Fi Horror One-Shot",
+    genre: "Science Fiction Horror",
+    offerUrls: [
+      "https://fablesmonster.itch.io/lost-mark",
+      "https://www.drivethrurpg.com/en/product/530242",
+      "https://marketplace.roll20.net/browse/module/39314/lost-mark-sci-fi-horror-one-shot-for-mothership",
+      "https://www.drivethrurpg.com/en/product/564197/mothership-lost-mark-foundryvtt-module?",
+    ],
+    keywords: ["Mothership 1E", "Sci-Fi Horror", "One-Shot"],
+  });
 
   const stats = [
     { label: dict.stats?.system || "System", value: "Mothership 1e" },
@@ -122,13 +143,8 @@ export default async function LostMark({ params }: { params: Promise<{ lang: str
 
   return (
     <>
-      <AdventureJson
-        name="The Lost Mark"
-        description="2-page sci-fi horror adventure for Mothership 1E."
-        url="https://fables.monster/lost-mark"
-        date="2024-10-05"
-        genre="Science Fiction Horror"
-      />
+      <JsonLd id="lost-mark-breadcrumb-jsonld" data={breadcrumbJsonLd} />
+      <JsonLd id="lost-mark-product-jsonld" data={lostMarkJsonLd} />
       <div className="fm-page relative fm-pattern-stardust">
         <LostMarkScrollFx />
         <LostMarkHeroSection

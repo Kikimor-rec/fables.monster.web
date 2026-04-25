@@ -13,7 +13,7 @@ interface NewsletterUnsubscribeClientProps {
 export default function NewsletterUnsubscribeClient({ lang, dict }: NewsletterUnsubscribeClientProps) {
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error" | "notfound">("idle");
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
   const emailInputId = useId();
   const errorMessageId = `${emailInputId}-error`;
@@ -38,9 +38,6 @@ export default function NewsletterUnsubscribeClient({ lang, dict }: NewsletterUn
       if (response.ok) {
         setSubmitStatus("success");
         setEmail("");
-      } else if (response.status === 404) {
-        setSubmitStatus("notfound");
-        setErrorMessage(data.error || dict.notFound);
       } else {
         setSubmitStatus("error");
         setErrorMessage(data.error || dict.error);
@@ -78,15 +75,6 @@ export default function NewsletterUnsubscribeClient({ lang, dict }: NewsletterUn
                 </div>
               )}
 
-              {submitStatus === "notfound" && (
-                <div id={errorMessageId} role="alert" aria-live="assertive" className="mb-6 p-4 bg-yellow-900/20 border border-yellow-500 text-yellow-300 font-rajdhani text-sm flex items-start gap-2">
-                  <svg className="w-5 h-5 flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                  </svg>
-                  <span>{errorMessage}</span>
-                </div>
-              )}
-
               {submitStatus === "error" && (
                 <div id={errorMessageId} role="alert" aria-live="assertive" className="mb-6 p-4 bg-red-900/20 border border-red-500 text-red-300 font-rajdhani text-sm flex items-start gap-2">
                   <svg className="w-5 h-5 flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -105,8 +93,8 @@ export default function NewsletterUnsubscribeClient({ lang, dict }: NewsletterUn
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
-                    aria-invalid={submitStatus === "error" || submitStatus === "notfound"}
-                    aria-describedby={submitStatus === "error" || submitStatus === "notfound" ? errorMessageId : undefined}
+                    aria-invalid={submitStatus === "error"}
+                    aria-describedby={submitStatus === "error" ? errorMessageId : undefined}
                     className="w-full bg-gray-800 border border-red-700 text-white px-4 py-3 font-rajdhani focus:outline-none focus:border-red-400"
                     placeholder={dict.emailPlaceholder}
                   />

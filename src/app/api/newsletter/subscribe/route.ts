@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from 'zod';
 import { logger } from '@/lib/logger';
 import { RATE_LIMITS } from '@/lib/constants';
+import { checkRateLimit } from '@/lib/rate-limit';
+import { getClientIdentifier, isAllowedOrigin, maskEmail } from '@/lib/security';
 
 // Force Node.js runtime for fetch with auth
 export const runtime = 'nodejs';
@@ -13,62 +15,18 @@ const subscribeSchema = z.object({
   lang: z.enum(['en', 'ru']).optional(),
 });
 
-// Basic in-memory rate limiter
-const rateLimitMap = new Map<string, number[]>();
-
-function getClientIp(request: NextRequest): string | null {
-  const forwarded = request.headers.get('x-forwarded-for');
-  if (forwarded) {
-    const first = forwarded.split(',')[0]?.trim();
-    if (first) return first;
-  }
-
-  return request.headers.get('x-real-ip');
-}
-
-function checkRateLimit(ip: string | null): boolean {
-  if (!ip) {
-    logger.warn('Rate limit check with unknown IP');
-    return true;
-  }
-
-  const now = Date.now();
-  const requests = (rateLimitMap.get(ip) || []).filter(
-    timestamp => now - timestamp < RATE_LIMITS.newsletter.windowMs
-  );
-  requests.push(now);
-  rateLimitMap.set(ip, requests);
-
-  const allowed = requests.length <= RATE_LIMITS.newsletter.maxRequests;
-
-  if (!allowed) {
-    logger.warn('Rate limit exceeded for newsletter subscription', { ip, requestCount: requests.length });
-  }
-
-  return allowed;
-}
-
-// Clean up old entries periodically
-const cleanupInterval = setInterval(() => {
-  const now = Date.now();
-  for (const [ip, timestamps] of rateLimitMap.entries()) {
-    const validTimestamps = timestamps.filter(
-      t => now - t < RATE_LIMITS.newsletter.windowMs
-    );
-    if (validTimestamps.length === 0) {
-      rateLimitMap.delete(ip);
-    } else {
-      rateLimitMap.set(ip, validTimestamps);
-    }
-  }
-}, 5 * 60 * 1000);
-
-cleanupInterval.unref?.();
-
 export async function POST(request: NextRequest) {
-  const ip = getClientIp(request);
+  const clientKey = getClientIdentifier(request);
 
-  if (!checkRateLimit(ip)) {
+  if (!isAllowedOrigin(request)) {
+    logger.warn('Blocked newsletter subscribe request from disallowed origin', { clientKey });
+    return NextResponse.json(
+      { error: 'Forbidden' },
+      { status: 403 }
+    );
+  }
+
+  if (!checkRateLimit(`newsletter-subscribe:${clientKey}`, RATE_LIMITS.newsletter)) {
     return NextResponse.json(
       { error: 'Too many requests. Please try again later.' },
       { status: 429 }
@@ -81,6 +39,7 @@ export async function POST(request: NextRequest) {
     // Validate input using Zod
     const validatedData = subscribeSchema.parse(body);
     const { email, name, lang } = validatedData;
+    const maskedEmail = maskEmail(email);
 
     // Get Listmonk configuration from environment
     const listmonkUrl = process.env.LISTMONK_API_URL || 'https://news.fables.monster';
@@ -111,7 +70,7 @@ export async function POST(request: NextRequest) {
     };
 
     logger.debug('Subscribing to newsletter', {
-      email,
+      email: maskedEmail,
       listId,
       lang,
     });
@@ -132,9 +91,9 @@ export async function POST(request: NextRequest) {
     if (!response.ok) {
       // Check if user already exists
       if (response.status === 409 || responseData.message?.includes('already exists')) {
-        logger.info('Subscriber already exists', { email });
+        logger.info('Subscriber already exists', { email: maskedEmail });
         return NextResponse.json(
-          { message: 'You are already subscribed to our newsletter!' },
+          { message: 'Subscription request accepted. Please check your email to confirm.' },
           { status: 200 }
         );
       }
@@ -151,7 +110,7 @@ export async function POST(request: NextRequest) {
     }
 
     logger.info('Newsletter subscription successful', {
-      email,
+      email: maskedEmail,
       subscriberId: responseData.data?.id,
     });
 
@@ -166,7 +125,7 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     if (error instanceof z.ZodError) {
       logger.warn('Newsletter subscription validation failed', {
-        ip,
+        clientKey,
         errors: error.issues.map(i => i.message),
       });
       return NextResponse.json(
@@ -176,7 +135,7 @@ export async function POST(request: NextRequest) {
     }
 
     logger.error('Newsletter subscription failed', {
-      ip,
+      clientKey,
       error: error instanceof Error ? error.message : 'Unknown error',
       stack: error instanceof Error ? error.stack : undefined,
     });

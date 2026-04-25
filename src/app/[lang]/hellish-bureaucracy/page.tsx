@@ -1,11 +1,11 @@
 import { Metadata } from 'next'
-import { AdventureJson } from '@/components/SEO';
 import StayConnectedSection from "@/components/StayConnectedSection";
 import StoryProgressBar from '@/components/StoryProgressBar';
 import StoryBackToTop from '@/components/StoryBackToTop';
 import { getContent, getFrontmatterString } from '@/lib/content';
 import { getDictionary } from '@/lib/i18n';
 import { buildSocialMetadata } from '@/lib/metadata';
+import { JsonLd, buildBreadcrumbJsonLd, buildCreativeWorkJsonLd } from '@/lib/seo/jsonld';
 
 export const revalidate = 3600; // ISR: revalidate every hour
 
@@ -49,16 +49,25 @@ export default async function HellishBureaucracy({ params }: { params: Promise<{
   
   const title = content ? getFrontmatterString(content.frontmatter, 'title') : '';
   const tagline = content ? getFrontmatterString(content.frontmatter, 'tagline') : '';
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd([
+    { name: 'Home', path: `/${lang}` },
+    { name: 'Projects', path: `/${lang}/projects` },
+    { name: title || 'Hellish Bureaucracy', path: `/${lang}/hellish-bureaucracy` },
+  ]);
+  const hellishJsonLd = buildCreativeWorkJsonLd({
+    name: title || 'Hellish Bureaucracy',
+    description: tagline || 'Fantasy adventure about surviving infernal administration.',
+    path: `/${lang}/hellish-bureaucracy`,
+    lang,
+    imagePath: '/images/hellish-bureaucracy/monster.webp',
+    genre: 'Fantasy Comedy',
+    keywords: ['Mothership 1E', 'Adventure', 'In Development'],
+  });
 
   return (
     <>
-      <AdventureJson
-        name="Hellish Bureaucracy"
-        description="Fantasy adventure about surviving infernal administration."
-        url="https://fables.monster/hellish-bureaucracy"
-        date="2024-12-20"
-        genre="Fantasy Comedy"
-      />
+      <JsonLd id="hellish-breadcrumb-jsonld" data={breadcrumbJsonLd} />
+      <JsonLd id="hellish-creativework-jsonld" data={hellishJsonLd} />
       <div className="fm-page relative">
         <StoryProgressBar accent="red" />
 

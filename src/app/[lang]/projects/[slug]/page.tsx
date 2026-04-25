@@ -1,6 +1,12 @@
 import { getAllProjects, getContent, getFrontmatterString, getFrontmatterObject } from '@/lib/content';
 import { getDictionary } from '@/lib/i18n';
 import { buildSocialMetadata } from '@/lib/metadata';
+import {
+  JsonLd,
+  buildBreadcrumbJsonLd,
+  buildCreativeWorkJsonLd,
+  buildProductJsonLd,
+} from '@/lib/seo/jsonld';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import StoreButton from '@/components/StoreButton';
@@ -87,12 +93,46 @@ export default async function ProjectPage({ params }: { params: Promise<{ lang: 
   const contentTitle = getFrontmatterString(content.frontmatter, 'title');
   const contentImage = getFrontmatterString(content.frontmatter, 'image');
   const contentTagline = getFrontmatterString(content.frontmatter, 'tagline');
+  const contentStatus = (getFrontmatterString(content.frontmatter, 'status') || 'in-development').toLowerCase();
+  const contentType = getFrontmatterString(content.frontmatter, 'type');
+  const contentSystem = getFrontmatterString(content.frontmatter, 'system');
   const platforms = getFrontmatterObject<PlatformsType>(content.frontmatter, 'platforms');
+  const platformUrls = [platforms?.itch, platforms?.driveThru, platforms?.roll20, platforms?.foundry].filter(
+    (value): value is string => typeof value === 'string' && value.length > 0,
+  );
   const pageClassName = 'fm-page text-gray-200';
   const articleClassName = 'fm-panel prose prose-invert prose-lg prose-red max-w-none';
 
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd([
+    { name: dict.nav?.home || 'Home', path: `/${lang}` },
+    { name: dict.nav?.projects || 'Projects', path: `/${lang}/projects` },
+    { name: contentTitle, path: `/${lang}/projects/${slug}` },
+  ]);
+
+  const commonJsonLdOptions = {
+    name: contentTitle,
+    description: contentTagline || dict.projects?.metaDescription || 'Tabletop RPG project by Fables Monster Studio.',
+    path: `/${lang}/projects/${slug}`,
+    lang,
+    imagePath: contentImage || '/images/placeholder.webp',
+    genre: contentType || contentSystem || 'Tabletop Role-Playing Game',
+    keywords: [contentSystem, contentType].filter((value): value is string => typeof value === 'string' && value.length > 0),
+  };
+
+  const projectJsonLd =
+    contentStatus === 'released'
+      ? buildProductJsonLd({
+          ...commonJsonLdOptions,
+          category: contentType || 'Tabletop Role-Playing Game Adventure',
+          offerUrls: platformUrls,
+        })
+      : buildCreativeWorkJsonLd(commonJsonLdOptions);
+
   return (
-    <main className={pageClassName}>
+    <>
+      <JsonLd id={`project-${slug}-breadcrumb-jsonld`} data={breadcrumbJsonLd} />
+      <JsonLd id={`project-${slug}-schema-jsonld`} data={projectJsonLd} />
+      <main className={pageClassName}>
       <section className="fm-page-hero">
         <div className="fm-shell">
           <div className="fm-page-hero-panel relative overflow-hidden">
@@ -150,5 +190,6 @@ export default async function ProjectPage({ params }: { params: Promise<{ lang: 
         </div>
       </section>
     </main>
+    </>
   );
 }

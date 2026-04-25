@@ -5,11 +5,11 @@ import Footer from '@/components/Footer';
 import GoogleAnalytics from '@/components/GoogleAnalytics';
 import SpeedInsightsClient from '@/components/SpeedInsightsClient';
 import CursorGlow from '@/components/CursorGlow';
-import BootSequence from '@/components/BootSequence';
-import EasterEggs from '@/components/EasterEggs';
+import GlobalExperience from '@/components/GlobalExperience';
 import PageTransition from '@/components/PageTransition';
 import { languages } from '@/i18n/settings';
 import { getDictionary } from '@/lib/i18n';
+import { JsonLd, buildOrganizationJsonLd, buildWebsiteJsonLd } from '@/lib/seo/jsonld';
 import '../globals.css';
 import type { Metadata } from 'next';
 
@@ -69,35 +69,6 @@ export const metadata: Metadata = {
     },
 };
 
-// Organization JSON-LD for SEO
-function OrganizationJsonLd() {
-    const jsonLd = {
-        '@context': 'https://schema.org',
-        '@type': 'Organization',
-        name: 'Fables Monster Studio',
-        url: 'https://fables.monster',
-        logo: 'https://fables.monster/logos/fm-logo-sqare.png',
-        description: 'Independent tabletop RPG content creation studio specializing in horror, sci-fi, and supernatural adventures.',
-        sameAs: [
-            'https://discord.gg/uw2uvny7n6',
-            'https://www.patreon.com/FablesMonster',
-            'https://fablesmonster.itch.io',
-            'https://legacy.drivethrurpg.com/browse/pub/30815/FablesMonster',
-        ],
-        contactPoint: {
-            '@type': 'ContactPoint',
-            contactType: 'customer service',
-            url: 'https://fables.monster/contact',
-        },
-    };
-    return (
-        <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-    );
-}
-
 export async function generateStaticParams() {
   return languages.map((lang) => ({ lang }))
 }
@@ -118,13 +89,13 @@ export default async function RootLayout({
     return (
         <html lang={lang} className={`${orbitron.variable} ${rajdhani.variable} ${nunito.variable}`}>
             <head>
-                <OrganizationJsonLd />
+                <JsonLd id="organization-jsonld" data={buildOrganizationJsonLd()} />
+                <JsonLd id="website-jsonld" data={buildWebsiteJsonLd()} />
             </head>
             <body className="bg-black text-white" suppressHydrationWarning>
                 {shouldLoadGa && <GoogleAnalytics gaId={gaId} />}
-                    <BootSequence />
+                    <GlobalExperience />
                     <CursorGlow />
-                    <EasterEggs />
                     <Navigation lang={lang} dict={dict.nav || {}} />
                     <main id="main-content">
                         <PageTransition>

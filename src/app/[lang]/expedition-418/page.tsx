@@ -14,6 +14,7 @@ import ExpeditionAboutSection from "@/components/expedition-418/ExpeditionAboutS
 import ExpeditionPlaytestSection from "@/components/expedition-418/ExpeditionPlaytestSection";
 import ExpeditionArtSection from "@/components/expedition-418/ExpeditionArtSection";
 import { getExpeditionFeatures, getExpeditionStats } from "@/components/expedition-418/expedition-data";
+import { JsonLd, buildBreadcrumbJsonLd, buildCreativeWorkJsonLd } from "@/lib/seo/jsonld";
 
 const expeditionHeadingLatin = Saira_Stencil_One({
   subsets: ["latin"],
@@ -79,6 +80,20 @@ export default async function Expedition418({ params }: { params: Promise<{ lang
   const { lang } = await params;
   const dict = (await getDictionary(lang, "expedition-418")) as Expedition418Dict;
   const headingVariable = lang === "ru" ? expeditionHeadingCyr.variable : expeditionHeadingLatin.variable;
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd([
+    { name: "Home", path: `/${lang}` },
+    { name: "Projects", path: `/${lang}/projects` },
+    { name: "EXPEDITION-418", path: `/${lang}/expedition-418` },
+  ]);
+  const expeditionJsonLd = buildCreativeWorkJsonLd({
+    name: "EXPEDITION-418",
+    description: dict.meta.description,
+    path: `/${lang}/expedition-418`,
+    lang,
+    imagePath: "/images/expedition-418/E418_Digital_Cover.jpg",
+    genre: "Science Fiction Tabletop RPG",
+    keywords: ["Expedition-418", "Core Rulebook", "Robots", "TTRPG"],
+  });
 
   const sectionNavItems = [
     { id: "intel", label: dict.nav.intel },
@@ -92,9 +107,12 @@ export default async function Expedition418({ params }: { params: Promise<{ lang
   const features = getExpeditionFeatures(dict);
 
   return (
-    <div
-      className={`${headingVariable} ${expeditionBody.variable} ${expeditionAccent.variable} ${expeditionUi.variable} min-h-screen bg-[#18213c] text-[#c6d9c6]`}
-    >
+    <>
+      <JsonLd id="expedition-breadcrumb-jsonld" data={breadcrumbJsonLd} />
+      <JsonLd id="expedition-creativework-jsonld" data={expeditionJsonLd} />
+      <div
+        className={`${headingVariable} ${expeditionBody.variable} ${expeditionAccent.variable} ${expeditionUi.variable} min-h-screen bg-[#18213c] text-[#c6d9c6]`}
+      >
       <StoryProgressBar accent="amber" />
       <div aria-hidden="true" className="expedition-scanline" />
       <div aria-hidden="true" className="expedition-noise" />
@@ -134,5 +152,6 @@ export default async function Expedition418({ params }: { params: Promise<{ lang
 
       <StoryBackToTop tone="amber" />
     </div>
+    </>
   );
 }
