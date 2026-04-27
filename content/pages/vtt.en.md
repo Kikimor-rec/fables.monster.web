@@ -32,7 +32,7 @@ overview:
   text: "We can start from a PDF, source text, maps, music, or a finished layout and build the VTT version. Some jobs are compact: scenes and journals. Others are full system work: sheets, entities, rolls, data, and release packaging."
 pricing:
   title: "Prices and Project Budget"
-  intro: "We show starting ranges so it is easier to understand the approximate budget of a project. Final pricing depends on platform, content volume, automation level, source material quality, and post-release support."
+  intro: "We show starting ranges so it is easier to understand the approximate budget of a project. Final pricing depends on platform, content volume, automation level, source material quality, and post-release support. Important: these are indicative prices for full turnkey module development, when you provide the scenario and the studio handles production, implementation, and release."
   noteTitle: "What affects the final cost"
   noteText: "Platform, whether the system already exists, number of maps and entities, automation level, localization, asset readiness, and post-release support."
   supportNote: "Support packages are tied to a monthly work volume. If the project needs more time, we estimate the additional scope separately."

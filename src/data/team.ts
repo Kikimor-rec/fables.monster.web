@@ -45,6 +45,6 @@ export const teamMembers: TeamMember[] = [
         name: "Dan Tarkov",
         role: "Game Designer",
         bio: "Game designer and creative mind behind new mechanics and adventures",
-        image: ""
+        image: "dan-tarkov.webp"
     }
 ];
