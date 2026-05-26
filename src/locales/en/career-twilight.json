@@ -1,28 +1,79 @@
 {
   "meta": {
     "title": "Career Twilight | Fables Monster Studio",
-    "description": "A sci-fi corporate horror one-shot for Mothership RPG. A routine evacuation gone catastrophically wrong aboard a research vessel."
+    "description": "A compact sci-fi corporate horror scenario for Mothership 1E. Evacuate the Twilight before classified experiments and systemic failure consume the mission."
   },
   "hero": {
     "kicker": "PROJECT DOSSIER",
     "title": "CAREER TWILIGHT",
     "tagline": "A routine corporate evacuation mission. But could this be the twilight of your career?",
-    "badge": "COMING SOON"
+    "badge": "AVAILABLE NOW"
   },
   "buttons": {
-    "itch": "GET ON ITCH.IO"
+    "itch": "GET ON ITCH.IO",
+    "drivethru": "GET ON DRIVETHRURPG",
+    "rpgbook": "RUSSIAN VERSION",
+    "maps": "DOWNLOAD MAPS"
   },
   "cta": {
-    "followPrompt": "Don't want to miss the release? Follow us on",
+    "followPrompt": "Follow Fables Monster on",
     "discord": "or join our Discord"
   },
   "intro": {
     "credit": "By <strong>Anastasia Neuer</strong> in collaboration with <strong>Fables.Monster</strong>",
     "editor": "Edited by Stepan Kulikov",
     "polaroidCaption": "Dr. Sofia Reiner — Head of R&D Lab",
-    "p1": "A routine corporate evacuation mission. Inner Rim, safe sector. You have dozens of these under your belt. Crumbs of information, corporate secrets. NDAs, top-secret scientific research…",
+    "p1": "A compact sci-fi horror scenario for use with the Mothership® Sci-Fi Horror Role Playing Game 1E. The crew is sent to evacuate personnel and prisoners from the Twilight, a corporate research vessel.",
     "p2": "Something went wrong on <strong>Twilight</strong> long before you arrived. Ambitions, paranoid secrecy, and systemic errors led to a catastrophe. Now the Twilight is a ticking time bomb ready to go off.",
     "p3": "…Just another contract. But could this be the twilight of your career?"
+  },
+  "release": {
+    "licenseLabel": "LEGAL COMPLIANCE TERMINAL // LICENSE VERIFICATION",
+    "licenseText": "This product is based on the Mothership® Sci-Fi Horror Role Playing Game, published by Tuesday Knight Games. This product is published under license. MOTHERSHIP® is a registered trademark of Tuesday Knight Games. All rights reserved. For additional information, visit",
+    "licenseLinkText": "www.tuesdayknightgames.com",
+    "missionTitle": "Mission Briefing",
+    "missionText": "Evacuate the six employees and five corporate prison inmates still aboard the Twilight. Activate the ship's autonomous operating mode. Return without damaging corporate property.",
+    "statusTitle": "Status",
+    "statusText": "The aft section is locked down. The remaining staff are frightened, evasive, or worse. The prisoners know less than they should. Somewhere inside the ship's failing systems, the truth is waiting to be found.",
+    "manifestLabel": "PACKAGE MANIFEST",
+    "manifestTitle": "Included Files",
+    "manifestText": "Career Twilight launches as a complete playable package for reading, table preparation, printing, and digital reference.",
+    "files": [
+      { "label": "PDF", "text": "Illustrated scenario" },
+      { "label": "Print", "text": "Printer-friendly PDF" },
+      { "label": "Digital", "text": "EPUB version" },
+      { "label": "Map", "text": "Twilight ship map" },
+      { "label": "Art", "text": "Selected bonus artwork" }
+    ],
+    "featuresLabel": "SCENARIO FEATURES",
+    "featuresTitle": "Inside the Mission",
+    "features": [
+      "A complete compact sci-fi horror scenario for Mothership 1E",
+      "A corporate evacuation mission aboard the Twilight",
+      "A locked-down research vessel with keyed locations",
+      "Scientists, prisoners, synthetic personnel, and hidden agendas",
+      "Escalating threats, hard choices, and consequences for what the crew exposes, steals, sells, or buries",
+      "Hooks for corporate crews, mercenaries, pirates, or Syndicate agents"
+    ],
+    "updateLabel": "LAUNCH VERSION // UPDATE QUEUE",
+    "updateTitle": "More files are coming",
+    "updateText": [
+      "Career Twilight launches as a complete playable package with the full illustrated scenario PDF, printer-friendly PDF, EPUB version, map of the Twilight, and selected bonus artwork.",
+      "Additional artwork and an original music pack are planned for future updates.",
+      "Existing buyers will receive future files through the itch.io product page."
+    ],
+    "wardenLabel": "WARDEN NOTE",
+    "wardenText": "This page is written to be mostly player-safe. The downloadable PDF contains the full scenario, including secrets, threats, consequences, and Warden-facing details.",
+    "warningLabel": "CONTENT WARNING",
+    "warningText": "Gore, violence, dismemberment, madness, human experimentation, loss of identity.",
+    "creditsTitle": "Credits",
+    "credits": [
+      { "label": "Written and illustrated by", "value": "Anastasia Neuer" },
+      { "label": "Edited by", "value": "Stepan Kulikov" },
+      { "label": "Layout by", "value": "Anastasia Neuer, Tatiana Bond" },
+      { "label": "Published by", "value": "Fables Monster" }
+    ],
+    "legal": "© 2026 Fables Monster. All rights reserved."
   },
   "timeline": {
     "title": "RESTRICTED — CLEARANCE LEVEL: WARDEN ONLY",
@@ -61,15 +112,16 @@
     "task2title": "TASK 02",
     "task2": "Activate the ship's autonomous mode via the internal control panel.",
     "ndaReminder": "The Corporation reminds you of your signed NDAs. Exercise extreme caution when transporting prisoners to the corporate vessel's cryopods.",
-    "compensationTitle": "COMPENSATION STRUCTURE",
+    "compensationTitle": "PAYMENT CONDITIONS",
+    "compensationIntro": "Contractor payment is released after the Twilight is secured, evacuees are transferred, and corporate property is returned in acceptable condition. The Corporation reserves the right to adjust final compensation after incident review.",
     "compensation": [
-      { "label": "Mission completion", "value": "50,000 cr" },
-      { "label": "Per rescued employee (alive)", "value": "+10,000 cr" },
-      { "label": "Per live prisoner delivered", "value": "+5,000 cr" },
-      { "label": "Corporate lab data secured", "value": "+30,000 cr" }
+      { "label": "Evacuation completed", "value": "Required" },
+      { "label": "Employees transferred alive", "value": "Priority" },
+      { "label": "Prisoners delivered to cryopods", "value": "Logged" },
+      { "label": "Corporate data and assets secured", "value": "Reviewed" }
     ],
-    "ndaClause": "NDA CLAUSE: Viewing the contents of secured data is strictly prohibited.",
-    "liability": "§ 14.2 — LIABILITY CLAUSE: Damage to corporate property, or intentional/unintentional harm inflicted upon Twilight personnel results in fines deducted directly from contractor pay, assessed on a case-by-case basis."
+    "ndaClause": "NDA CLAUSE: Viewing, copying, selling, or disclosing secured data is strictly prohibited.",
+    "liability": "§ 14.2 — DEDUCTIONS: Damage to corporate property, unauthorized handling of research assets, or harm inflicted upon Twilight personnel may reduce or void contractor pay after case-by-case review."
   },
   "stats": {
     "title": "MISSION PARAMETERS",
@@ -78,7 +130,9 @@
     "hours": "Duration",
     "hoursValue": "3–4 hrs",
     "system": "System",
-    "systemValue": "Mothership 1E"
+    "systemValue": "Mothership 1E",
+    "format": "Format",
+    "formatValue": "One-shot"
   },
   "backToProjects": "← Back to Projects"
 }

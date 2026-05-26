@@ -2,7 +2,7 @@
 title: "ЗАКАТ КАРЬЕРЫ"
 subtitle: "Корпоративный хоррор-ваншот для Mothership RPG"
 tagline: "Ещё один контракт. Но, может быть, именно ему суждено стать закатом вашей карьеры?"
-status: "coming-soon"
+status: "released"
 system: "Mothership 1E"
 type: "Ваншот"
 image: "/images/career-twilight/dr-reiner.webp"
@@ -10,18 +10,19 @@ author: "Анастасия Нойер"
 authors:
   - "Анастасия Нойер"
 studioShowcase: true
-showcaseDescription: "Корпоративный sci-fi-horror-ваншот для Mothership RPG."
+showcaseDescription: "Компактный корпоративный sci-fi horror сценарий для Mothership 1E."
 studioInvolvementType: "Авторское сотрудничество"
 studioInvolvement: "Редакторская разработка, production-поддержка, планирование верстки и подготовка к релизу"
 cardImage: "/images/career-twilight/dr-reiner.webp"
 projectPage: "/career-twilight"
-platforms: {}
+platforms:
+  rpgbook: "https://rpgbook.ru/triadstudio"
 ---
 
 > **Автор: Анастасия Нойер** в сотрудничестве с **Fables.Monster**
 > Редактор: Степан Куликов
 
-Очередная корпоративная эвакуация. Внутреннее кольцо, безопасный сектор. У вас за плечами десятки подобных. Крохи информации, корпоративные тайны. NDA, научные исследования повышенной секретности…
+Компактный sci-fi horror сценарий для Mothership® Sci-Fi Horror Role Playing Game 1E. Отряд отправляют эвакуировать персонал и заключённых с «Заката», корпоративного исследовательского судна.
 
 На корабле **«Закат»** что-то пошло не так ещё задолго до вашего появления. Амбиции, параноидальная секретность и системные ошибки привели к катастрофе. Сейчас «Закат» — это бомба замедленного действия, которая вот-вот рванёт.
 

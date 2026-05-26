@@ -17,6 +17,7 @@ export interface Project {
         foundry?: string;
         roll20?: string;
         patreon?: string;
+        rpgbook?: string;
     };
     fullDescription?: string;
     features?: {
@@ -101,14 +102,16 @@ export const projects: Project[] = [
         title: "CAREER TWILIGHT",
         system: "Mothership 1E",
         tagline: "A routine corporate evacuation mission. But could this be the twilight of your career?",
-        description: "A sci-fi corporate horror one-shot for Mothership RPG. A routine evacuation gone catastrophically wrong aboard a research vessel where nothing — and no one — is what they seem.",
-        status: "coming-soon",
+        description: "A compact sci-fi corporate horror scenario for Mothership 1E. Evacuate the Twilight before classified experiments and systemic failure consume the mission.",
+        status: "released",
         type: "One-Shot",
         image: "/images/career-twilight/dr-reiner.webp",
         imageAlt: "Career Twilight - Sci-Fi Corporate Horror One-Shot",
         tags: ["MOTHERSHIP", "SCI-FI HORROR", "CORPORATE"],
         platforms: {
             itch: "https://fablesmonster.itch.io/career-twilight",
+            driveThru: "https://www.drivethrurpg.com/en/product/569217/career-twilight-mothership-1e",
+            rpgbook: "https://rpgbook.ru/triadstudio",
         },
     },
 ];

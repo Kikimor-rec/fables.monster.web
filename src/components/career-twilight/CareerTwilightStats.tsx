@@ -8,6 +8,8 @@ interface CareerTwilightStatsProps {
       hoursValue: string;
       system: string;
       systemValue: string;
+      format: string;
+      formatValue: string;
     };
     intro: {
       credit: string;
@@ -21,20 +23,21 @@ export default function CareerTwilightStats({ dict }: CareerTwilightStatsProps) 
     { label: dict.stats.players, value: dict.stats.playersValue },
     { label: dict.stats.hours, value: dict.stats.hoursValue },
     { label: dict.stats.system, value: dict.stats.systemValue },
+    { label: dict.stats.format, value: dict.stats.formatValue },
   ];
 
   return (
-    <section className="py-16 md:py-20">
+    <section className="py-12 md:py-16">
       <div className="max-w-3xl mx-auto px-4">
         <h2 className="font-orbitron text-lg tracking-[0.15em] text-cyan-400/80 mb-8 text-center">
           {dict.stats.title}
         </h2>
 
-        <div className="grid grid-cols-3 gap-4 mb-12">
+        <div className="grid grid-cols-2 gap-3 mb-10 md:grid-cols-4">
           {stats.map((stat, i) => (
             <div
               key={i}
-              className="text-center border border-cyan-500/20 bg-cyan-500/5 px-4 py-5"
+              className="text-center border border-cyan-500/20 bg-cyan-500/5 px-4 py-4"
             >
               <p className="text-2xl md:text-3xl font-bold font-orbitron text-white mb-1">
                 {stat.value}

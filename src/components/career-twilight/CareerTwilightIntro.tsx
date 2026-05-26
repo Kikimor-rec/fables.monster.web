@@ -8,9 +8,9 @@ interface CareerTwilightIntroProps {
 
 export default function CareerTwilightIntro({ dict }: CareerTwilightIntroProps) {
   return (
-    <section className="py-16 md:py-24 border-b border-cyan-500/20">
+    <section className="py-12 md:py-16 border-b border-cyan-500/20">
       <div className="max-w-6xl mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-[1fr_0.85fr] gap-10 md:gap-14 items-center">
           {/* Text column */}
           <div className="order-2 md:order-1">
             <div className="mb-6 text-sm text-cyan-400/70 font-mono">
@@ -27,7 +27,7 @@ export default function CareerTwilightIntro({ dict }: CareerTwilightIntroProps) 
 
           {/* Polaroid image column */}
           <div className="order-1 md:order-2 flex flex-col items-center md:items-end">
-            <div className="ct-intro-image relative aspect-[3/4] w-full max-w-sm">
+            <div className="ct-intro-image relative aspect-[3/4] w-full max-w-xs md:max-w-sm">
               <Image
                 src="/images/career-twilight/dr-reiner.webp"
                 alt="Dr. Sofia Reiner — Career Twilight"

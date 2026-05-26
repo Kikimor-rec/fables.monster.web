@@ -56,8 +56,8 @@ export default function CareerTwilightTimeline({ dict }: CareerTwilightTimelineP
   }, [visibleLines, dict.timeline.entries.length]);
 
   return (
-    <section className="py-16 md:py-24 border-b border-cyan-500/20">
-      <div className="max-w-3xl mx-auto px-4">
+    <section>
+      <div>
         {/* Terminal frame */}
         <div className="ct-terminal">
           {/* Terminal header bar */}

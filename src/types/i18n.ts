@@ -1105,12 +1105,48 @@ export interface CareerTwilightCompensationItem {
   value: string;
 }
 
+export interface CareerTwilightReleaseFile {
+  label: string;
+  text: string;
+}
+
+export interface CareerTwilightReleaseCredit {
+  label: string;
+  value: string;
+}
+
 export interface CareerTwilightDict {
   meta: { title: string; description: string };
   hero: { kicker: string; title: string; tagline: string; badge: string };
-  buttons: { itch: string };
+  buttons: { itch: string; drivethru: string; rpgbook: string; maps: string };
   cta: { followPrompt: string; discord: string };
   intro: { credit: string; editor: string; polaroidCaption: string; p1: string; p2: string; p3: string };
+  release: {
+    licenseLabel: string;
+    licenseText: string;
+    licenseLinkText: string;
+    missionTitle: string;
+    missionText: string;
+    statusTitle: string;
+    statusText: string;
+    manifestLabel: string;
+    manifestTitle: string;
+    manifestText: string;
+    files: CareerTwilightReleaseFile[];
+    featuresLabel: string;
+    featuresTitle: string;
+    features: string[];
+    updateLabel: string;
+    updateTitle: string;
+    updateText: string[];
+    wardenLabel: string;
+    wardenText: string;
+    warningLabel: string;
+    warningText: string;
+    creditsTitle: string;
+    credits: CareerTwilightReleaseCredit[];
+    legal: string;
+  };
   timeline: {
     title: string;
     caseFile: string;
@@ -1139,6 +1175,7 @@ export interface CareerTwilightDict {
     task2: string;
     ndaReminder: string;
     compensationTitle: string;
+    compensationIntro?: string;
     compensation: CareerTwilightCompensationItem[];
     ndaClause: string;
     liability: string;
@@ -1151,6 +1188,8 @@ export interface CareerTwilightDict {
     hoursValue: string;
     system: string;
     systemValue: string;
+    format: string;
+    formatValue: string;
   };
   backToProjects: string;
 }

@@ -25,6 +25,7 @@ interface CareerTwilightContractProps {
       task2: string;
       ndaReminder: string;
       compensationTitle: string;
+      compensationIntro?: string;
       compensation: CompensationItem[];
       ndaClause: string;
       liability: string;
@@ -36,8 +37,8 @@ export default function CareerTwilightContract({ dict }: CareerTwilightContractP
   const c = dict.contract;
 
   return (
-    <section className="py-16 md:py-24 border-b border-cyan-500/20">
-      <div className="max-w-3xl mx-auto px-4">
+    <section>
+      <div className="mx-auto max-w-3xl">
         {/* Printed sheet */}
         <div className="ct-printed-sheet">
           {/* CONFIDENTIAL stamp */}
@@ -89,6 +90,11 @@ export default function CareerTwilightContract({ dict }: CareerTwilightContractP
           {/* Compensation */}
           <div className="mb-6">
             <h3 className="ct-sheet-section-title">{c.compensationTitle}</h3>
+            {c.compensationIntro && (
+              <p className="mb-3 text-sm leading-relaxed text-gray-700">
+                {c.compensationIntro}
+              </p>
+            )}
             <div className="space-y-1">
               {c.compensation.map((item, i) => (
                 <div key={i} className="flex justify-between text-sm">

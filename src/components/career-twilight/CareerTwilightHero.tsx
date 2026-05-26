@@ -5,14 +5,21 @@ interface CareerTwilightHeroProps {
   lang: string;
   dict: {
     hero: { kicker: string; title: string; tagline: string; badge: string };
-    buttons: { itch: string };
+    buttons: { itch: string; drivethru: string; rpgbook: string; maps: string };
     cta: { followPrompt: string; discord: string };
     backToProjects: string;
   };
-  itchUrl?: string;
+  urls: {
+    itch: string;
+    drivethru: string;
+    rpgbook: string;
+    maps: string;
+  };
 }
 
-export default function CareerTwilightHero({ lang, dict, itchUrl }: CareerTwilightHeroProps) {
+export default function CareerTwilightHero({ lang, dict, urls }: CareerTwilightHeroProps) {
+  const isRussian = lang === "ru";
+
   return (
     <section className="relative overflow-hidden border-b border-cyan-500/30">
       {/* Background effects */}
@@ -20,10 +27,10 @@ export default function CareerTwilightHero({ lang, dict, itchUrl }: CareerTwilig
       <div className="absolute inset-0 opacity-[0.03] ct-hero-scanlines" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-cyan-500/5 blur-[120px]" />
 
-      <div className="relative z-10 max-w-4xl mx-auto px-4 py-20 md:py-28 text-center">
+      <div className="relative z-10 max-w-4xl mx-auto px-4 pb-14 pt-18 md:py-20 text-center">
         <Link
           href={`/${lang}/projects`}
-          className="inline-block mb-8 text-sm font-mono text-cyan-400/70 hover:text-cyan-300 transition-colors"
+          className="inline-block mb-6 text-sm font-mono text-cyan-400/70 hover:text-cyan-300 transition-colors"
         >
           {dict.backToProjects}
         </Link>
@@ -40,15 +47,28 @@ export default function CareerTwilightHero({ lang, dict, itchUrl }: CareerTwilig
           {dict.hero.tagline}
         </p>
 
-        <span className="inline-block px-3 py-1 text-xs font-mono tracking-wider text-cyan-300 border border-cyan-500/40 bg-cyan-500/10 mb-10">
+        <span className="inline-block px-3 py-1 text-xs font-mono tracking-wider text-cyan-300 border border-cyan-500/40 bg-cyan-500/10 mb-7">
           {dict.hero.badge}
         </span>
 
-        {itchUrl && (
-          <div className="flex justify-center">
-            <StoreButton store="itch" href={itchUrl} label={dict.buttons.itch} disabled />
+        <div className="flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap">
+          {isRussian ? (
+            <StoreButton store="rpgbook" href={urls.rpgbook} label={dict.buttons.rpgbook} />
+          ) : (
+            <>
+              <StoreButton store="drivethrurpg" href={urls.drivethru} label={dict.buttons.drivethru} />
+              <StoreButton store="itch" href={urls.itch} label={dict.buttons.itch} />
+            </>
+          )}
+          <div>
+            <a
+              href={urls.maps}
+              className="inline-flex w-full items-center justify-center gap-2 border border-cyan-500/50 bg-cyan-500/10 px-4 py-2 font-orbitron text-sm font-bold uppercase tracking-wide text-cyan-100 transition-all duration-300 hover:border-cyan-300 hover:bg-cyan-400 hover:text-black focus:outline-none focus:ring-2 focus:ring-cyan-300/60 focus:ring-offset-2 focus:ring-offset-black"
+            >
+              {dict.buttons.maps}
+            </a>
           </div>
-        )}
+        </div>
 
         {/* Follow CTA */}
         <p className="mt-6 text-sm text-gray-400 font-mono">
