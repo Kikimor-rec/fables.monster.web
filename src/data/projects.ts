@@ -111,7 +111,7 @@ export const projects: Project[] = [
         platforms: {
             itch: "https://fablesmonster.itch.io/career-twilight",
             driveThru: "https://www.drivethrurpg.com/en/product/569217/career-twilight-mothership-1e",
-            rpgbook: "https://rpgbook.ru/triadstudio",
+            rpgbook: "https://rpgbook.ru/search?fables.monster",
         },
     },
 ];

@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 interface FileItem {
   label: string;
   text: string;
@@ -9,8 +11,23 @@ interface CreditItem {
 }
 
 interface CareerTwilightReleaseProps {
+  lang: string;
   dict: {
     release: {
+      visualLabel: string;
+      visualTitle: string;
+      visualText: string;
+      trifoldKicker: string;
+      trifoldTitle: string;
+      trifoldText: string;
+      handoutsTitle: string;
+      handoutsText: string;
+      shipAssetsTitle: string;
+      shipAssetsText: string;
+      trifoldAlt: string;
+      handoutsAlt: string;
+      mapAlt: string;
+      handoutsButton: string;
       licenseLabel: string;
       licenseText: string;
       licenseLinkText: string;
@@ -37,16 +54,86 @@ interface CareerTwilightReleaseProps {
       legal: string;
     };
   };
+  urls: {
+    handouts: string;
+  };
 }
 
-export default function CareerTwilightRelease({ dict }: CareerTwilightReleaseProps) {
+export default function CareerTwilightRelease({ lang, dict, urls }: CareerTwilightReleaseProps) {
   const release = dict.release;
   const primaryFiles = release.files.slice(0, 3);
   const supportFiles = release.files.slice(3);
+  const showHandoutsDownload = lang !== "ru";
 
   return (
     <section className="border-b border-cyan-500/20 py-12 md:py-16">
       <div className="mx-auto max-w-6xl px-4">
+        <div className="mb-6 grid gap-5 lg:grid-cols-[1.2fr_0.8fr]">
+          <article className="ct-asset-card ct-asset-card-primary relative overflow-hidden border border-cyan-500/25 bg-black/35">
+            <div className="ct-asset-bar">
+              <span>{release.trifoldKicker}</span>
+              <span>TW-FOLD-01</span>
+            </div>
+            <Image
+              src="/images/career-twilight/trifold-preview.jpg"
+              alt={release.trifoldAlt}
+              width={2400}
+              height={2000}
+              className="h-full min-h-[420px] w-full object-cover"
+              sizes="(max-width: 1024px) 100vw, 720px"
+            />
+            <div className="ct-asset-caption">
+              <strong>{release.trifoldTitle}</strong>
+              <span>{release.trifoldText}</span>
+            </div>
+          </article>
+          <article className="ct-asset-card border border-cyan-500/20 bg-cyan-950/15 p-5 md:p-6">
+            <div>
+              <p className="mb-2 font-mono text-xs uppercase tracking-[0.2em] text-cyan-400/70">
+                {release.visualLabel}
+              </p>
+              <h2 className="mb-3 font-orbitron text-xl uppercase tracking-[0.1em] text-white md:text-2xl">
+                {release.visualTitle}
+              </h2>
+              <p className="text-sm leading-relaxed text-gray-300">{release.visualText}</p>
+            </div>
+            <div className="mt-5 grid gap-4">
+              <div className="ct-asset-mini overflow-hidden border border-cyan-500/20 bg-black/30">
+                <Image
+                  src="/images/career-twilight/handouts-preview.jpg"
+                  alt={release.handoutsAlt}
+                  width={900}
+                  height={900}
+                  className="aspect-[16/9] w-full object-cover"
+                  sizes="(max-width: 1024px) 100vw, 420px"
+                />
+                <div className="p-3">
+                  <strong className="block font-mono text-xs uppercase tracking-[0.18em] text-cyan-200">
+                    {release.handoutsTitle}
+                  </strong>
+                  <p className="mt-1 text-xs leading-relaxed text-gray-400">{release.handoutsText}</p>
+                </div>
+              </div>
+              <div className="ct-asset-mini overflow-hidden border border-cyan-500/20 bg-black/30">
+                <Image
+                  src="/images/career-twilight/isometric-map-preview.jpg"
+                  alt={release.mapAlt}
+                  width={2400}
+                  height={1664}
+                  className="aspect-[16/9] w-full object-cover"
+                  sizes="(max-width: 1024px) 100vw, 420px"
+                />
+                <div className="p-3">
+                  <strong className="block font-mono text-xs uppercase tracking-[0.18em] text-cyan-200">
+                    {release.shipAssetsTitle}
+                  </strong>
+                  <p className="mt-1 text-xs leading-relaxed text-gray-400">{release.shipAssetsText}</p>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+
         <div className="mb-6 border border-cyan-500/25 bg-black/40">
           <div className="border-b border-cyan-500/25 bg-cyan-500/10 px-4 py-2 font-mono text-[0.68rem] uppercase tracking-[0.2em] text-cyan-300">
             {release.licenseLabel}
@@ -131,38 +218,46 @@ export default function CareerTwilightRelease({ dict }: CareerTwilightReleasePro
                 </div>
               ))}
             </div>
+            {showHandoutsDownload && (
+              <a
+                href={urls.handouts}
+                className="mt-5 inline-flex w-full items-center justify-center border border-cyan-500/50 bg-cyan-500/10 px-4 py-3 font-orbitron text-sm font-bold uppercase tracking-wide text-cyan-100 transition-colors hover:border-cyan-300 hover:bg-cyan-400 hover:text-black focus:outline-none focus:ring-2 focus:ring-cyan-300/60 focus:ring-offset-2 focus:ring-offset-black"
+              >
+                {release.handoutsButton}
+              </a>
+            )}
           </aside>
         </div>
 
         <div className="mt-5 grid gap-5 lg:grid-cols-[1fr_1fr]">
-            <article className="border border-cyan-500/20 bg-cyan-950/15 p-5">
-              <p className="mb-2 font-mono text-xs uppercase tracking-[0.2em] text-cyan-400/70">
-                {release.updateLabel}
-              </p>
-              <h2 className="mb-4 font-orbitron text-lg uppercase tracking-[0.1em] text-white">
-                {release.updateTitle}
-              </h2>
-              <div className="space-y-2 text-sm leading-relaxed text-gray-300">
-                {release.updateText.map((paragraph) => (
-                  <p key={paragraph}>{paragraph}</p>
-                ))}
-              </div>
-            </article>
+          <article className="border border-cyan-500/20 bg-cyan-950/15 p-5">
+            <p className="mb-2 font-mono text-xs uppercase tracking-[0.2em] text-cyan-400/70">
+              {release.updateLabel}
+            </p>
+            <h2 className="mb-4 font-orbitron text-lg uppercase tracking-[0.1em] text-white">
+              {release.updateTitle}
+            </h2>
+            <div className="space-y-2 text-sm leading-relaxed text-gray-300">
+              {release.updateText.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
+          </article>
 
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-1">
-              <article className="border border-yellow-500/25 bg-yellow-950/15 p-5">
-                <p className="mb-2 font-mono text-xs uppercase tracking-[0.2em] text-yellow-300/80">
-                  {release.wardenLabel}
-                </p>
-                <p className="text-sm leading-relaxed text-gray-300">{release.wardenText}</p>
-              </article>
+            <article className="border border-yellow-500/25 bg-yellow-950/15 p-5">
+              <p className="mb-2 font-mono text-xs uppercase tracking-[0.2em] text-yellow-300/80">
+                {release.wardenLabel}
+              </p>
+              <p className="text-sm leading-relaxed text-gray-300">{release.wardenText}</p>
+            </article>
 
-              <article className="border border-red-500/30 bg-red-950/20 p-5">
-                <p className="mb-2 font-mono text-xs uppercase tracking-[0.2em] text-red-300/80">
-                  {release.warningLabel}
-                </p>
-                <p className="text-sm leading-relaxed text-gray-300">{release.warningText}</p>
-              </article>
+            <article className="border border-red-500/30 bg-red-950/20 p-5">
+              <p className="mb-2 font-mono text-xs uppercase tracking-[0.2em] text-red-300/80">
+                {release.warningLabel}
+              </p>
+              <p className="text-sm leading-relaxed text-gray-300">{release.warningText}</p>
+            </article>
           </div>
         </div>
 

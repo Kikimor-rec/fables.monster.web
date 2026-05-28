@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Career Twilight | Fables Monster Studio",
-    "description": "A compact sci-fi corporate horror scenario for Mothership 1E. Evacuate the Twilight before classified experiments and systemic failure consume the mission."
+    "description": "A short corporate sci-fi horror scenario for Mothership 1E. Evacuate the Twilight before classified experiments and systemic failure consume the mission."
   },
   "hero": {
     "kicker": "PROJECT DOSSIER",
@@ -13,7 +13,8 @@
     "itch": "GET ON ITCH.IO",
     "drivethru": "GET ON DRIVETHRURPG",
     "rpgbook": "RUSSIAN VERSION",
-    "maps": "DOWNLOAD MAPS"
+    "maps": "DOWNLOAD MAPS",
+    "handouts": "DOWNLOAD HANDOUTS"
   },
   "cta": {
     "followPrompt": "Follow Fables Monster on",
@@ -23,11 +24,25 @@
     "credit": "By <strong>Anastasia Neuer</strong> in collaboration with <strong>Fables.Monster</strong>",
     "editor": "Edited by Stepan Kulikov",
     "polaroidCaption": "Dr. Sofia Reiner — Head of R&D Lab",
-    "p1": "A compact sci-fi horror scenario for use with the Mothership® Sci-Fi Horror Role Playing Game 1E. The crew is sent to evacuate personnel and prisoners from the Twilight, a corporate research vessel.",
+    "p1": "A short sci-fi horror scenario for the Mothership® Sci-Fi Horror Role Playing Game 1E. The crew is sent to the Twilight, a corporate research vessel, to evacuate the staff and prisoners still on board.",
     "p2": "Something went wrong on <strong>Twilight</strong> long before you arrived. Ambitions, paranoid secrecy, and systemic errors led to a catastrophe. Now the Twilight is a ticking time bomb ready to go off.",
     "p3": "…Just another contract. But could this be the twilight of your career?"
   },
   "release": {
+    "visualLabel": "FIELD ASSETS // TABLE READY",
+    "visualTitle": "Play package",
+    "visualText": "The trifold, handouts, and ship map are shown together so Wardens can see what is ready for the table.",
+    "trifoldKicker": "PRODUCT FORMAT",
+    "trifoldTitle": "Mission trifold",
+    "trifoldText": "A fold-out scenario built to read before play and keep close during the session.",
+    "handoutsTitle": "Player handouts",
+    "handoutsText": "In-world documents to hand out during briefings, discoveries, or tense table moments.",
+    "shipAssetsTitle": "Twilight map",
+    "shipAssetsText": "An isometric ship map helps the table understand the vessel and track the crew's route.",
+    "trifoldAlt": "Career Twilight trifold preview",
+    "handoutsAlt": "Career Twilight handouts preview",
+    "mapAlt": "Isometric map of the Twilight",
+    "handoutsButton": "Download handouts",
     "licenseLabel": "LEGAL COMPLIANCE TERMINAL // LICENSE VERIFICATION",
     "licenseText": "This product is based on the Mothership® Sci-Fi Horror Role Playing Game, published by Tuesday Knight Games. This product is published under license. MOTHERSHIP® is a registered trademark of Tuesday Knight Games. All rights reserved. For additional information, visit",
     "licenseLinkText": "www.tuesdayknightgames.com",
@@ -37,18 +52,19 @@
     "statusText": "The aft section is locked down. The remaining staff are frightened, evasive, or worse. The prisoners know less than they should. Somewhere inside the ship's failing systems, the truth is waiting to be found.",
     "manifestLabel": "PACKAGE MANIFEST",
     "manifestTitle": "Included Files",
-    "manifestText": "Career Twilight launches as a complete playable package for reading, table preparation, printing, and digital reference.",
+    "manifestText": "The package includes what you need to read the scenario, prep the session, print the extras, and reference key material during play.",
     "files": [
       { "label": "PDF", "text": "Illustrated scenario" },
       { "label": "Print", "text": "Printer-friendly PDF" },
       { "label": "Digital", "text": "EPUB version" },
       { "label": "Map", "text": "Twilight ship map" },
+      { "label": "Handouts", "text": "Player handouts PDF" },
       { "label": "Art", "text": "Selected bonus artwork" }
     ],
     "featuresLabel": "SCENARIO FEATURES",
     "featuresTitle": "Inside the Mission",
     "features": [
-      "A complete compact sci-fi horror scenario for Mothership 1E",
+      "A short sci-fi horror scenario for Mothership 1E",
       "A corporate evacuation mission aboard the Twilight",
       "A locked-down research vessel with keyed locations",
       "Scientists, prisoners, synthetic personnel, and hidden agendas",
@@ -56,9 +72,9 @@
       "Hooks for corporate crews, mercenaries, pirates, or Syndicate agents"
     ],
     "updateLabel": "LAUNCH VERSION // UPDATE QUEUE",
-    "updateTitle": "More files are coming",
+    "updateTitle": "More material is coming",
     "updateText": [
-      "Career Twilight launches as a complete playable package with the full illustrated scenario PDF, printer-friendly PDF, EPUB version, map of the Twilight, and selected bonus artwork.",
+      "Career Twilight already includes the illustrated scenario PDF, printer-friendly PDF, EPUB version, Twilight map, and selected bonus artwork.",
       "Additional artwork and an original music pack are planned for future updates.",
       "Existing buyers will receive future files through the itch.io product page."
     ],

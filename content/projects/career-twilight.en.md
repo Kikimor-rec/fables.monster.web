@@ -10,7 +10,7 @@ author: "Anastasia Neuer"
 authors:
   - "Anastasia Neuer"
 studioShowcase: true
-showcaseDescription: "A compact corporate sci-fi horror scenario for Mothership 1E."
+showcaseDescription: "A short corporate sci-fi horror scenario for Mothership 1E."
 studioInvolvementType: "Author collaboration"
 studioInvolvement: "Editorial development, production support, layout planning and release preparation"
 cardImage: "/images/career-twilight/dr-reiner.webp"
@@ -23,7 +23,7 @@ platforms:
 > **By Anastasia Neuer** in collaboration with **Fables.Monster**
 > Edited by Stepan Kulikov
 
-A compact sci-fi horror scenario for use with the Mothership® Sci-Fi Horror Role Playing Game 1E. The crew is sent to evacuate personnel and prisoners from the Twilight, a corporate research vessel.
+A short sci-fi horror scenario for the Mothership® Sci-Fi Horror Role Playing Game 1E. The crew is sent to the Twilight, a corporate research vessel, to evacuate the staff and prisoners still on board.
 
 Something went wrong on **Twilight** long before you arrived. Ambitions, paranoid secrecy, and systemic errors led to a catastrophe. Now the Twilight is a ticking time bomb ready to go off.
 

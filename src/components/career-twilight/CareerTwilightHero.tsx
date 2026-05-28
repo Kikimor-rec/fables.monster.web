@@ -5,7 +5,7 @@ interface CareerTwilightHeroProps {
   lang: string;
   dict: {
     hero: { kicker: string; title: string; tagline: string; badge: string };
-    buttons: { itch: string; drivethru: string; rpgbook: string; maps: string };
+    buttons: { itch: string; drivethru: string; rpgbook: string; maps: string; handouts: string };
     cta: { followPrompt: string; discord: string };
     backToProjects: string;
   };
@@ -14,6 +14,7 @@ interface CareerTwilightHeroProps {
     drivethru: string;
     rpgbook: string;
     maps: string;
+    handouts: string;
   };
 }
 
@@ -68,6 +69,16 @@ export default function CareerTwilightHero({ lang, dict, urls }: CareerTwilightH
               {dict.buttons.maps}
             </a>
           </div>
+          {!isRussian && (
+            <div>
+              <a
+                href={urls.handouts}
+                className="inline-flex w-full items-center justify-center gap-2 border border-cyan-500/50 bg-cyan-500/10 px-4 py-2 font-orbitron text-sm font-bold uppercase tracking-wide text-cyan-100 transition-all duration-300 hover:border-cyan-300 hover:bg-cyan-400 hover:text-black focus:outline-none focus:ring-2 focus:ring-cyan-300/60 focus:ring-offset-2 focus:ring-offset-black"
+              >
+                {dict.buttons.handouts}
+              </a>
+            </div>
+          )}
         </div>
 
         {/* Follow CTA */}

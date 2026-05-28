@@ -16,8 +16,9 @@ export const revalidate = 3600;
 const PRODUCT_URLS = {
   itch: "https://fablesmonster.itch.io/career-twilight",
   drivethru: "https://www.drivethrurpg.com/en/product/569217/career-twilight-mothership-1e",
-  rpgbook: "https://rpgbook.ru/triadstudio",
+  rpgbook: "https://rpgbook.ru/search?fables.monster",
   maps: "/downloads/career-twilight/maps.zip",
+  handouts: "/downloads/career-twilight/ct-handouts.pdf",
 };
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
@@ -66,7 +67,7 @@ export default async function CareerTwilightPage({ params }: { params: Promise<{
       <main className="career-twilight-theme min-h-screen text-gray-200">
       <CareerTwilightHero lang={lang} dict={dict} urls={PRODUCT_URLS} />
       <CareerTwilightIntro dict={dict} />
-      <CareerTwilightRelease dict={dict} />
+      <CareerTwilightRelease lang={lang} dict={dict} urls={PRODUCT_URLS} />
       <section className="border-b border-cyan-500/20 py-12 md:py-16">
         <div className="mx-auto max-w-5xl px-4">
           <div className="mb-8 text-center">

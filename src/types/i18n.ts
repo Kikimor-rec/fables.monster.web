@@ -1118,10 +1118,24 @@ export interface CareerTwilightReleaseCredit {
 export interface CareerTwilightDict {
   meta: { title: string; description: string };
   hero: { kicker: string; title: string; tagline: string; badge: string };
-  buttons: { itch: string; drivethru: string; rpgbook: string; maps: string };
+  buttons: { itch: string; drivethru: string; rpgbook: string; maps: string; handouts: string };
   cta: { followPrompt: string; discord: string };
   intro: { credit: string; editor: string; polaroidCaption: string; p1: string; p2: string; p3: string };
   release: {
+    visualLabel: string;
+    visualTitle: string;
+    visualText: string;
+    trifoldKicker: string;
+    trifoldTitle: string;
+    trifoldText: string;
+    handoutsTitle: string;
+    handoutsText: string;
+    shipAssetsTitle: string;
+    shipAssetsText: string;
+    trifoldAlt: string;
+    handoutsAlt: string;
+    mapAlt: string;
+    handoutsButton: string;
     licenseLabel: string;
     licenseText: string;
     licenseLinkText: string;
