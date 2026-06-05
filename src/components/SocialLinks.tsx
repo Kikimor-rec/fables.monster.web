@@ -32,6 +32,12 @@ export default function SocialLinks({ className = "", showLabels = true }: Socia
       description: "Support us"
     },
     {
+      href: "https://bsky.app/profile/fablesmonster.bsky.social",
+      icon: "/logos/bluesky-logo.svg",
+      label: "Bluesky",
+      description: "Follow us"
+    },
+    {
       href: "https://www.drivethrurpg.com/en/publisher/30815/fables-monster?affiliate_id=2863466",
       icon: "/logos/dtrpg-logo-small.png",
       label: "DriveThruRPG",

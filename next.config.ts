@@ -13,6 +13,14 @@ const nextConfig: NextConfig = {
     minimumCacheTTL: 31536000, // 1 year
     deviceSizes: [320, 420, 768, 1024, 1200],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    localPatterns: [
+      {
+        pathname: '/images/**',
+      },
+      {
+        pathname: '/logos/**',
+      },
+    ],
   },
   compress: true,
   trailingSlash: false,

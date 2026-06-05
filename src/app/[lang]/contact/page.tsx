@@ -100,16 +100,16 @@ export default async function Contact({ params }: { params: Promise<{ lang: stri
                     target="_blank"
                     rel="noopener noreferrer"
                     title={channel.title}
-                    className="group fm-panel fm-panel-muted flex items-center justify-between gap-4 transition-colors hover:border-red-500/70"
+                    className="group fm-panel fm-panel-muted flex min-w-0 items-center justify-between gap-3 transition-colors hover:border-red-500/70 sm:gap-4"
                   >
                     <Image
                       src={channel.image}
                       alt={channel.title}
                       width={channel.imageWidth}
                       height={channel.imageHeight}
-                      className="h-10 w-auto"
+                      className="h-10 min-w-0 max-w-[68%] object-contain"
                     />
-                    <span className="fm-link-arrow text-sm font-orbitron tracking-[0.14em] text-zinc-400 group-hover:text-red-300">
+                    <span className="fm-link-arrow shrink-0 whitespace-nowrap text-xs font-orbitron tracking-[0.1em] text-zinc-400 group-hover:text-red-300 sm:text-sm sm:tracking-[0.14em]">
                       {dict.contact.channelAction || 'ENTER'}
                     </span>
                   </a>

@@ -25,19 +25,19 @@ type HudProfile = {
 function getArtifactSet(effect: HudProfile["effect"]) {
   switch (effect) {
     case "music":
-      return { symbols: ["♪", "♫", "◉"], chipClass: "border-orange-300/60 text-orange-200" };
+      return { symbols: ["AUD", "WAV", "BPM"], chipClass: "border-orange-300/60 text-orange-200" };
     case "writing":
-      return { symbols: ["✎", "⋯", "▤"], chipClass: "border-red-300/60 text-red-200" };
+      return { symbols: ["TXT", "LOG", "DOC"], chipClass: "border-red-300/60 text-red-200" };
     case "design":
-      return { symbols: ["▦", "┼", "◫"], chipClass: "border-cyan-300/60 text-cyan-200" };
+      return { symbols: ["GRD", "LAY", "UI"], chipClass: "border-cyan-300/60 text-cyan-200" };
     case "art":
-      return { symbols: ["✶", "◌", "╱"], chipClass: "border-cyan-300/60 text-cyan-200" };
+      return { symbols: ["ART", "INK", "VIS"], chipClass: "border-cyan-300/60 text-cyan-200" };
     case "code":
       return { symbols: ["</>", "{}", "01"], chipClass: "border-emerald-300/60 text-emerald-200" };
     case "tactic":
-      return { symbols: ["◈", "△", "◎"], chipClass: "border-amber-300/60 text-amber-200" };
+      return { symbols: ["MAP", "HEX", "OPS"], chipClass: "border-amber-300/60 text-amber-200" };
     default:
-      return { symbols: ["◆", "◉", "⇡"], chipClass: "border-red-300/60 text-red-200" };
+      return { symbols: ["CMD", "SIG", "SYS"], chipClass: "border-red-300/60 text-red-200" };
   }
 }
 
@@ -244,9 +244,9 @@ export default function TeamMember({ member }: TeamMemberProps) {
                 sizes="128px"
               />
               <div className="pointer-events-none absolute inset-0 cctv-tint opacity-60 z-[2]" />
-              <div className="pointer-events-none absolute inset-0 cctv-noise opacity-80 z-[3]" />
+              <div className="pointer-events-none absolute inset-0 hidden cctv-noise opacity-80 z-[3] sm:block" />
               <div className="pointer-events-none absolute inset-0 cctv-scanlines opacity-55 z-[4]" />
-              <div className="pointer-events-none absolute inset-0 cctv-interlace opacity-40 z-[5]" />
+              <div className="pointer-events-none absolute inset-0 hidden cctv-interlace opacity-40 z-[5] sm:block" />
               <div className="pointer-events-none absolute inset-0 cctv-vignette opacity-45 z-[6]" />
               <div className="pointer-events-none absolute inset-0 border border-cyan-400/35 z-[7] opacity-70 group-hover:opacity-100 transition-opacity" />
               <div className={`pointer-events-none absolute top-2 left-2 border-l border-t w-7 h-7 z-[8] ${hudProfile.accentBorderClass}`} />
@@ -255,37 +255,39 @@ export default function TeamMember({ member }: TeamMemberProps) {
               <div className={`pointer-events-none absolute bottom-2 right-2 border-r border-b w-7 h-7 z-[8] ${hudProfile.accentBorderClass}`} />
               {hudProfile.reticle === "cross" && (
                 <>
-                  <div className="pointer-events-none absolute top-1/2 left-1/2 w-16 h-px -translate-x-1/2 -translate-y-1/2 bg-cyan-200/40 z-[8]" />
-                  <div className="pointer-events-none absolute top-1/2 left-1/2 h-16 w-px -translate-x-1/2 -translate-y-1/2 bg-cyan-200/40 z-[8]" />
+                  <div className="pointer-events-none absolute top-1/2 left-1/2 hidden w-16 h-px -translate-x-1/2 -translate-y-1/2 bg-cyan-200/40 z-[8] sm:block" />
+                  <div className="pointer-events-none absolute top-1/2 left-1/2 hidden h-16 w-px -translate-x-1/2 -translate-y-1/2 bg-cyan-200/40 z-[8] sm:block" />
                 </>
               )}
               {hudProfile.reticle === "ring" && (
-                <div className="pointer-events-none absolute top-1/2 left-1/2 w-10 h-10 -translate-x-1/2 -translate-y-1/2 rounded-full border border-cyan-200/35 z-[8]" />
+                <div className="pointer-events-none absolute top-1/2 left-1/2 hidden w-10 h-10 -translate-x-1/2 -translate-y-1/2 rounded-full border border-cyan-200/35 z-[8] sm:block" />
               )}
               {hudProfile.reticle === "bars" && (
                 <>
-                  <div className="pointer-events-none absolute left-3 right-3 top-[38%] h-px bg-orange-200/40 z-[8]" />
-                  <div className="pointer-events-none absolute left-3 right-3 top-[62%] h-px bg-orange-200/40 z-[8]" />
+                  <div className="pointer-events-none absolute left-3 right-3 top-[38%] hidden h-px bg-orange-200/40 z-[8] sm:block" />
+                  <div className="pointer-events-none absolute left-3 right-3 top-[62%] hidden h-px bg-orange-200/40 z-[8] sm:block" />
                 </>
               )}
-              <div className="pointer-events-none absolute top-2 left-2 text-[9px] tracking-wider font-mono text-cyan-300/80 z-[8]">CAM_CREW</div>
-              <div className={`pointer-events-none absolute top-2 right-2 text-[9px] tracking-wider font-mono z-[8] ${hudProfile.accentTextClass}`}>{hudProfile.label}</div>
-              <div className="pointer-events-none absolute bottom-2 right-2 text-[9px] tracking-wider font-mono text-cyan-200/70 z-[8]">UNIT_{member.name.split(" ")[0].toUpperCase()}</div>
-              <div className="pointer-events-none absolute bottom-3 left-3 z-[10] flex items-center gap-1">
+              <div className="pointer-events-none absolute top-2 left-2 hidden max-w-[4.5rem] truncate text-[9px] tracking-wider font-mono text-cyan-300/80 z-[8] sm:block">CAM_CREW</div>
+              <div className={`pointer-events-none absolute top-2 right-2 hidden max-w-[5.5rem] truncate text-right text-[9px] tracking-wider font-mono z-[8] sm:block ${hudProfile.accentTextClass}`}>{hudProfile.label}</div>
+              <div className="pointer-events-none absolute bottom-2 right-2 hidden max-w-[5.5rem] truncate text-right text-[9px] tracking-wider font-mono text-cyan-200/70 z-[8] sm:block">UNIT_{member.name.split(" ")[0].toUpperCase()}</div>
+              <div className="pointer-events-none absolute bottom-3 left-3 z-[10] hidden items-center gap-1 sm:flex">
                 {artifactSet.symbols.map((symbol) => (
                   <span
                     key={`${member.name}-${symbol}`}
-                    className={`inline-flex min-w-[20px] justify-center rounded-sm border bg-black/60 px-1 py-[2px] text-[10px] font-mono leading-none animate-pulse ${artifactSet.chipClass}`}
+                    className={`inline-flex min-w-[24px] justify-center rounded-sm border bg-black/60 px-1 py-[2px] text-[9px] font-mono leading-none animate-pulse ${artifactSet.chipClass}`}
                   >
                     {symbol}
                   </span>
                 ))}
               </div>
-              <RoleEffectOverlay effect={hudProfile.effect} isHovered={isHovered} />
+              <div className="hidden sm:block">
+                <RoleEffectOverlay effect={hudProfile.effect} isHovered={isHovered} />
+              </div>
               {isHovered && (
                 <div className="pointer-events-none absolute inset-y-0 left-0 w-full bg-gradient-to-r from-transparent via-cyan-300/12 to-transparent animate-pulse z-[8]" />
               )}
-              {isHovered && <div className="pointer-events-none absolute left-0 right-0 cctv-glitch-bar z-[9] opacity-100" />}
+              {isHovered && <div className="pointer-events-none absolute left-0 right-0 hidden cctv-glitch-bar z-[9] opacity-100 sm:block" />}
             </>
           ) : (
             <div className="absolute inset-0 flex flex-col items-center justify-center text-red-700 font-mono">
@@ -328,7 +330,7 @@ export default function TeamMember({ member }: TeamMemberProps) {
             {artifactSet.symbols.map((symbol) => (
               <span
                 key={`${member.name}-meta-${symbol}`}
-                className={`inline-flex min-w-[22px] justify-center rounded-sm border bg-black/40 px-1.5 py-0.5 text-[10px] font-mono animate-pulse ${artifactSet.chipClass}`}
+                className={`inline-flex min-w-[28px] justify-center rounded-sm border bg-black/40 px-1.5 py-0.5 text-[10px] font-mono animate-pulse ${artifactSet.chipClass}`}
               >
                 {symbol}
               </span>

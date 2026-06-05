@@ -13,6 +13,13 @@ function normalizeCommand(value) {
   return (value ?? "").replaceAll("/", "\\").toLowerCase();
 }
 
+function warnProcessScanFailed(reason) {
+  console.warn(
+    `[dev-safe] Could not inspect stale Next.js processes (${reason}). ` +
+      "If the dev server fails with a locked .next/trace file, close old node.exe/next dev processes and retry."
+  );
+}
+
 function listStaleNextPidsWindows() {
   const result = spawnSync(
     "powershell",
@@ -24,7 +31,12 @@ function listStaleNextPidsWindows() {
     { encoding: "utf8" }
   );
 
-  if (result.status !== 0 || !result.stdout.trim()) {
+  if (result.status !== 0) {
+    warnProcessScanFailed((result.stderr || `exit code ${result.status}`).trim());
+    return [];
+  }
+
+  if (!result.stdout.trim()) {
     return [];
   }
 
@@ -32,6 +44,7 @@ function listStaleNextPidsWindows() {
   try {
     processes = JSON.parse(result.stdout);
   } catch {
+    warnProcessScanFailed("unexpected PowerShell process list output");
     return [];
   }
 
@@ -57,6 +70,9 @@ function listStaleNextPidsUnix() {
   });
 
   if (result.status !== 0 || !result.stdout.trim()) {
+    if (result.status !== 0) {
+      warnProcessScanFailed((result.stderr || `exit code ${result.status}`).trim());
+    }
     return [];
   }
 

@@ -46,6 +46,8 @@ Open [http://localhost:3000](http://localhost:3000) to view the site.
 
 `npm run dev` uses a small safety wrapper that stops stale local Next.js processes from this repo before starting. This helps avoid Windows lock issues like `.next/trace` EPERM errors.
 
+If a restricted shell reports `spawn EPERM`, `Get-CimInstance` access errors, or `Path`/`PATH` conflicts, rerun the same check from a normal PowerShell session in the repository root.
+
 ## Environment Variables
 
 Configure the following variables for sending email notifications from the

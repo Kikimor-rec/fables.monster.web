@@ -19,7 +19,8 @@ platforms:
   itch: "https://fablesmonster.itch.io/lost-mark"
   driveThru: "https://www.drivethrurpg.com/en/product/530242"
   roll20: "https://marketplace.roll20.net/browse/module/39314/lost-mark-sci-fi-horror-one-shot-for-mothership"
-  foundry: "https://www.drivethrurpg.com/en/product/564197/mothership-lost-mark-foundryvtt-module?"
+  foundryMarketplace: "https://www.foundryvtt.store/products/fmmoshlostmark"
+  rpgTraderCreator: "https://rpg-trader.com/creator/246/fablesmonster"
 ---
 
 Ваш корабль выходит из прыжка у чёрной дыры. Среди обломков дрейфует **Корабль Потерянных** — чудовищное сращение десятков судов. На борту заживо гниёт **Марк Ополло** — пилот, сросшийся с кораблём 217 лет назад. Его плоть — металл. Его разум — сеть. Внутри скрыта криокапсула с ребёнком — последний элемент для «вознесения» Марка.

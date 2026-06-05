@@ -15,6 +15,11 @@ studioInvolvementType: "Studio release"
 studioInvolvement: "Game design, editing, layout, art direction and digital release packaging"
 cardImage: "/images/kramp/promo.webp"
 projectPage: "/holiday-audit-kramp"
+platforms:
+  itch: "https://fablesmonster.itch.io/krampexe-mothership-1e"
+  driveThru: "https://www.drivethrurpg.com/en/product/547046/kramp-exe-christmas-special-edition-for-mothership-1e?affiliate_id=2863466"
+  patreon: "https://www.patreon.com/posts/kramp-exe-for-1e-144275102"
+  rpgTraderCreator: "https://rpg-trader.com/creator/246/fablesmonster"
 ---
 
 It's a story about **control, hypocrisy, punishment, and bad gifts**. It shifts between humor and horror, absurdity and paranoia.

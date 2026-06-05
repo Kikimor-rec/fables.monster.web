@@ -25,19 +25,19 @@ type HudProfile = {
 function getArtifactSet(effect: HudProfile["effect"]) {
   switch (effect) {
     case "music":
-      return { symbols: ["♪", "♫"], chipClass: "border-orange-300/60 text-orange-200" };
+      return { symbols: ["AUD", "WAV"], chipClass: "border-orange-300/60 text-orange-200" };
     case "writing":
-      return { symbols: ["✎", "⋯"], chipClass: "border-red-300/60 text-red-200" };
+      return { symbols: ["TXT", "LOG"], chipClass: "border-red-300/60 text-red-200" };
     case "design":
-      return { symbols: ["▦", "┼"], chipClass: "border-cyan-300/60 text-cyan-200" };
+      return { symbols: ["GRD", "LAY"], chipClass: "border-cyan-300/60 text-cyan-200" };
     case "art":
-      return { symbols: ["✶", "◌"], chipClass: "border-cyan-300/60 text-cyan-200" };
+      return { symbols: ["ART", "INK"], chipClass: "border-cyan-300/60 text-cyan-200" };
     case "code":
       return { symbols: ["{}", "01"], chipClass: "border-emerald-300/60 text-emerald-200" };
     case "tactic":
-      return { symbols: ["◈", "△"], chipClass: "border-amber-300/60 text-amber-200" };
+      return { symbols: ["MAP", "OPS"], chipClass: "border-amber-300/60 text-amber-200" };
     default:
-      return { symbols: ["◆", "⇡"], chipClass: "border-red-300/60 text-red-200" };
+      return { symbols: ["CMD", "SIG"], chipClass: "border-red-300/60 text-red-200" };
   }
 }
 
@@ -230,40 +230,42 @@ const CompactTeamMember = memo(function CompactTeamMember({ member }: CompactTea
             />
             <div className="pointer-events-none absolute inset-0 cctv-tint opacity-55" />
             <div className="pointer-events-none absolute inset-0 cctv-scanlines opacity-50" />
-            <div className="pointer-events-none absolute inset-0 cctv-noise opacity-70" />
+            <div className="pointer-events-none absolute inset-0 hidden cctv-noise opacity-70 sm:block" />
             <div className="pointer-events-none absolute inset-0 cctv-vignette opacity-40" />
             <div className={`pointer-events-none absolute top-0 left-0 border-l border-t w-4 h-4 ${hudProfile.accentBorderClass}`} />
             <div className={`pointer-events-none absolute bottom-0 right-0 border-r border-b w-4 h-4 ${hudProfile.accentBorderClass}`} />
             {hudProfile.reticle === "cross" && (
               <>
-                <div className="pointer-events-none absolute inset-x-0 top-1/2 h-px bg-cyan-200/35" />
-                <div className="pointer-events-none absolute inset-y-0 left-1/2 w-px bg-cyan-200/35" />
+                <div className="pointer-events-none absolute inset-x-0 top-1/2 hidden h-px bg-cyan-200/35 sm:block" />
+                <div className="pointer-events-none absolute inset-y-0 left-1/2 hidden w-px bg-cyan-200/35 sm:block" />
               </>
             )}
             {hudProfile.reticle === "ring" && (
               <>
-                <div className="pointer-events-none absolute top-1/2 left-1/2 w-4 h-4 -translate-x-1/2 -translate-y-1/2 rounded-full border border-cyan-200/45" />
-                <div className="pointer-events-none absolute top-1/2 left-1/2 w-1 h-1 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-200/70" />
+                <div className="pointer-events-none absolute top-1/2 left-1/2 hidden w-4 h-4 -translate-x-1/2 -translate-y-1/2 rounded-full border border-cyan-200/45 sm:block" />
+                <div className="pointer-events-none absolute top-1/2 left-1/2 hidden w-1 h-1 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-200/70 sm:block" />
               </>
             )}
             {hudProfile.reticle === "bars" && (
               <>
-                <div className="pointer-events-none absolute left-1 right-1 top-1/3 h-px bg-orange-200/45" />
-                <div className="pointer-events-none absolute left-1 right-1 bottom-1/3 h-px bg-orange-200/45" />
+                <div className="pointer-events-none absolute left-1 right-1 top-1/3 hidden h-px bg-orange-200/45 sm:block" />
+                <div className="pointer-events-none absolute left-1 right-1 bottom-1/3 hidden h-px bg-orange-200/45 sm:block" />
               </>
             )}
-            <div className={`pointer-events-none absolute top-1 left-1 text-[8px] font-mono tracking-wide ${hudProfile.accentTextClass}`}>{hudProfile.label}</div>
-            <div className="pointer-events-none absolute bottom-1 left-1 flex gap-1">
+            <div className={`pointer-events-none absolute top-1 left-1 hidden max-w-[3.5rem] truncate text-[8px] font-mono tracking-wide sm:block ${hudProfile.accentTextClass}`}>{hudProfile.label}</div>
+            <div className="pointer-events-none absolute bottom-1 left-1 hidden gap-1 sm:flex">
               {artifactSet.symbols.map((symbol) => (
                 <span
                   key={`${member.name}-compact-${symbol}`}
-                  className={`inline-flex min-w-[14px] justify-center rounded-sm border bg-black/60 px-1 py-0 text-[8px] font-mono leading-none animate-pulse ${artifactSet.chipClass}`}
+                  className={`inline-flex min-w-[22px] justify-center rounded-sm border bg-black/60 px-1 py-0 text-[8px] font-mono leading-none animate-pulse ${artifactSet.chipClass}`}
                 >
                   {symbol}
                 </span>
               ))}
             </div>
-            <RoleEffectOverlay effect={hudProfile.effect} />
+            <div className="hidden sm:block">
+              <RoleEffectOverlay effect={hudProfile.effect} />
+            </div>
             {isHovered && (
               <div className="pointer-events-none absolute inset-y-0 left-0 w-full bg-gradient-to-r from-transparent via-cyan-300/15 to-transparent animate-pulse" />
             )}
@@ -272,7 +274,7 @@ const CompactTeamMember = memo(function CompactTeamMember({ member }: CompactTea
             {isHovered && (
               <>
                 <div className="absolute inset-0 bg-cyan-400/15 mix-blend-screen animate-pulse" />
-                <div className="absolute left-0 right-0 h-[2px] bg-cyan-200/70 cctv-glitch-bar opacity-100" />
+                <div className="absolute left-0 right-0 hidden h-[2px] bg-cyan-200/70 cctv-glitch-bar opacity-100 sm:block" />
               </>
             )}
           </>

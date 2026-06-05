@@ -15,6 +15,9 @@ studioInvolvementType: "Студийный релиз"
 studioInvolvement: "Геймдизайн, редактура, верстка, арт-дирекшн и упаковка цифрового релиза"
 cardImage: "/images/kramp/promo.webp"
 projectPage: "/holiday-audit-kramp"
+platforms:
+  rpgbook: "https://rpgbook.ru/kramp_exe"
+  rpgTraderCreator: "https://rpg-trader.com/creator/246/fablesmonster"
 ---
 
 История о **контроле, лицемерии, наказании и плохих подарках**. Она балансирует между юмором и ужасом, абсурдом и паранойей.

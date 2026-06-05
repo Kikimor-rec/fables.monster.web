@@ -3,6 +3,7 @@ import Image from "next/image";
 import KrampNavigation from "@/components/kramp/KrampNavigation";
 import KrampSections from "@/components/kramp/KrampSections";
 import StayConnectedSection from "@/components/StayConnectedSection";
+import StoreButton from "@/components/StoreButton";
 import StoryProgressBar from '@/components/StoryProgressBar';
 import StoryBackToTop from '@/components/StoryBackToTop';
 import { getContent, getFrontmatterString } from '@/lib/content';
@@ -58,6 +59,7 @@ export default async function HolidayAuditKramp({ params }: { params: Promise<{ 
       'https://fablesmonster.itch.io/krampexe-mothership-1e',
       'https://www.drivethrurpg.com/en/product/547046/kramp-exe-christmas-special-edition-for-mothership-1e?affiliate_id=2863466',
       'https://www.patreon.com/posts/kramp-exe-for-1e-144275102',
+      'https://rpg-trader.com/creator/246/fablesmonster',
     ],
     keywords: ['Mothership 1E', 'Holiday Horror', 'One-Shot'],
   });
@@ -210,43 +212,31 @@ export default async function HolidayAuditKramp({ params }: { params: Promise<{ 
           </div>
 
           {/* Download Buttons */}
-          <div className="flex flex-col items-center gap-4 mt-12">
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="mx-auto mt-12 flex max-w-5xl flex-col items-center gap-4">
+            <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {lang === 'ru' ? (
-                <a
-                  href="https://rpgbook.ru/kramp_exe"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group relative px-8 py-4 bg-blue-900/30 border-2 border-blue-500 text-blue-400 font-orbitron font-bold text-lg clip-path-slant hover:bg-blue-900/50 hover:text-white transition-all duration-300 hover:shadow-[0_0_20px_rgba(59,130,246,0.5)] min-w-[200px] text-center"
-                >
-                  <span className="relative z-10">{dict.buttons?.rpgbook || "КУПИТЬ НА СТАНЦИИ РОЛЕВОЙ"}</span>
-                </a>
+                <>
+                  <StoreButton store="rpgbook" href="https://rpgbook.ru/kramp_exe" label={dict.buttons?.rpgbook || "RPGBook.ru"} />
+                  <StoreButton store="rpgTraderCreator" href="https://rpg-trader.com/creator/246/fablesmonster" label="RPG Trader" />
+                </>
               ) : (
                 <>
-                  <a
+                  <StoreButton
+                    store="drivethrurpg"
                     href="https://www.drivethrurpg.com/en/product/547046/kramp-exe-christmas-special-edition-for-mothership-1e?affiliate_id=2863466"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group relative px-8 py-4 bg-red-900/30 border-2 border-red-500 text-red-400 font-orbitron font-bold text-lg clip-path-slant hover:bg-red-900/50 hover:text-white transition-all duration-300 hover:box-glow min-w-[200px] text-center"
-                  >
-                    <span className="relative z-10">{dict.buttons?.drivethru || 'GET ON DRIVETHRU'}</span>
-                  </a>
-                  <a
+                    label={dict.buttons?.drivethru || 'DriveThruRPG'}
+                  />
+                  <StoreButton
+                    store="itch"
                     href="https://fablesmonster.itch.io/krampexe-mothership-1e"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group relative px-8 py-4 bg-green-900/30 border-2 border-green-500 text-green-400 font-orbitron font-bold text-lg clip-path-slant hover:bg-green-900/50 hover:text-white transition-all duration-300 hover:box-glow-cyan min-w-[200px] text-center"
-                  >
-                    <span className="relative z-10">{dict.buttons?.itch || 'GET ON ITCH.IO'}</span>
-                  </a>
-                  <a
+                    label={dict.buttons?.itch || 'Itch.io'}
+                  />
+                  <StoreButton
+                    store="patreon"
                     href="https://www.patreon.com/posts/kramp-exe-for-1e-144275102"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group relative px-8 py-4 bg-blue-900/30 border-2 border-blue-500 text-blue-400 font-orbitron font-bold text-lg clip-path-slant hover:bg-blue-900/50 hover:text-white transition-all duration-300 hover:shadow-[0_0_20px_rgba(59,130,246,0.5)] min-w-[200px] text-center"
-                  >
-                    <span className="relative z-10">{dict.buttons?.patreon || 'PATREON EXCLUSIVE'}</span>
-                  </a>
+                    label={dict.buttons?.patreon || 'Patreon'}
+                  />
+                  <StoreButton store="rpgTraderCreator" href="https://rpg-trader.com/creator/246/fablesmonster" label="RPG Trader" />
                 </>
               )}
             </div>

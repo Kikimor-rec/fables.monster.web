@@ -36,7 +36,8 @@ LISTMONK_API_PASSWORD=your-password
 
 | Script | Description |
 | --- | --- |
-| `npm run dev` | Start development server |
+| `npm run dev` | Start development server through `scripts/dev-safe.mjs`, which stops stale local Next.js processes first |
+| `npm run dev:raw` | Start raw Next.js dev server without stale-process cleanup |
 | `npm run build` | Production build (runs image optimization + sitemap) |
 | `npm run start` | Start production server |
 | `npm run lint` | ESLint check |
@@ -99,3 +100,11 @@ npm start       # serves production build locally
 The `prebuild` script automatically optimizes images. The `postbuild` script generates `sitemap.xml` via next-sitemap.
 
 Deployment target: **Vercel**.
+
+The OpenGraph/Twitter image routes use `next/og` with the Edge runtime. Next.js may print `Using edge runtime on a page currently disables static generation for that page` during builds; this is expected for those dynamic image routes.
+
+## Windows Notes
+
+On Windows, stale `node.exe`/Next.js processes can lock `.next/trace` and make local commands appear to hang or fail with `EPERM`. Use `npm run dev` by default so `scripts/dev-safe.mjs` can clean stale processes for this repo before starting Next.js.
+
+If commands are launched from a restricted sandbox and fail with `spawn EPERM`, `Get-CimInstance` access errors, or `Path`/`PATH` conflicts, rerun the same check from a normal PowerShell session in the repository root.

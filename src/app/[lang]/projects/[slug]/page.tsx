@@ -18,6 +18,9 @@ interface PlatformsType {
   driveThru?: string;
   roll20?: string;
   foundry?: string;
+  foundryMarketplace?: string;
+  rpgTraderCreator?: string;
+  rpgTraderProduct?: string;
 }
 
 // Projects with dedicated pages — excluded from generic [slug] rendering
@@ -97,7 +100,15 @@ export default async function ProjectPage({ params }: { params: Promise<{ lang: 
   const contentType = getFrontmatterString(content.frontmatter, 'type');
   const contentSystem = getFrontmatterString(content.frontmatter, 'system');
   const platforms = getFrontmatterObject<PlatformsType>(content.frontmatter, 'platforms');
-  const platformUrls = [platforms?.itch, platforms?.driveThru, platforms?.roll20, platforms?.foundry].filter(
+  const platformUrls = [
+    platforms?.itch,
+    platforms?.driveThru,
+    platforms?.roll20,
+    platforms?.foundry,
+    platforms?.foundryMarketplace,
+    platforms?.rpgTraderCreator,
+    platforms?.rpgTraderProduct,
+  ].filter(
     (value): value is string => typeof value === 'string' && value.length > 0,
   );
   const pageClassName = 'fm-page text-gray-200';
@@ -174,6 +185,20 @@ export default async function ProjectPage({ params }: { params: Promise<{ lang: 
                     store="roll20"
                     href={platforms.roll20}
                     label={dict.projects?.detail?.labels?.roll20 || 'Roll20 Module'}
+                  />
+                )}
+                {platforms?.foundryMarketplace && (
+                  <StoreButton
+                    store="foundryMarketplace"
+                    href={platforms.foundryMarketplace}
+                    label={dict.projects?.detail?.labels?.foundry || 'Foundry VTT Marketplace'}
+                  />
+                )}
+                {platforms?.rpgTraderCreator && (
+                  <StoreButton
+                    store="rpgTraderCreator"
+                    href={platforms.rpgTraderCreator}
+                    label={dict.projects?.detail?.labels?.rpgTrader || 'RPG Trader'}
                   />
                 )}
               </div>

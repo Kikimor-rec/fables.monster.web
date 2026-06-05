@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "node scripts/dev-safe.mjs",
+    "dev:raw": "next dev",
     "build": "next build",
     "postbuild": "next-sitemap --config next-sitemap.config.mjs",
     "analyze": "cross-env ANALYZE=true next build",

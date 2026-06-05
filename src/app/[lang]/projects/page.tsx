@@ -4,6 +4,7 @@ import Image from "next/image";
 import FadeIn, { FadeInItem } from "@/components/FadeIn";
 import { getAllProjects, getFrontmatterString } from "@/lib/content";
 import { getDictionary } from '@/lib/i18n';
+import { buildSocialMetadata } from '@/lib/metadata';
 import { JsonLd, buildBreadcrumbJsonLd, buildCollectionPageJsonLd } from '@/lib/seo/jsonld';
 
 export const revalidate = 3600; // ISR: revalidate every hour
@@ -11,17 +12,21 @@ export const revalidate = 3600; // ISR: revalidate every hour
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const dict = await getDictionary(lang, 'common');
-  
+
+  const title = dict.nav?.projects || 'Projects';
+  const description = dict.projects?.description || 'Explore our tabletop RPG adventures and digital experiences.';
+
   return {
-    title: `${dict.nav?.projects || 'Projects'} | Fables Monster Studio`,
-    description: 'Explore our tabletop RPG adventures and digital experiences. From sci-fi horror to cyberpunk mysteries.',
-    alternates: {
-      canonical: `https://fables.monster/${lang}/projects`,
-      languages: {
-        'en': 'https://fables.monster/en/projects',
-        'ru': 'https://fables.monster/ru/projects',
-      },
-    },
+    title,
+    description,
+    ...buildSocialMetadata({
+      lang,
+      path: '/projects',
+      title,
+      description,
+      imagePath: `/${lang}/opengraph-image`,
+      twitterImagePath: `/${lang}/twitter-image`,
+    }),
   };
 }
 

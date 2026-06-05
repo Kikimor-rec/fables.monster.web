@@ -23,6 +23,8 @@ npm run test:e2e      # run E2E tests (requires dev server)
 npm run test:e2e:ui   # E2E tests with interactive UI
 ```
 
+On Windows, restricted shells can block the esbuild worker used by Vitest and report `spawn EPERM`. If that happens, run the same command from a normal PowerShell session in the repository root; this is an environment issue, not necessarily a test failure.
+
 ## Test Structure
 
 ```text

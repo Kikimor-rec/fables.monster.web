@@ -19,7 +19,8 @@ platforms:
   itch: "https://fablesmonster.itch.io/lost-mark"
   driveThru: "https://www.drivethrurpg.com/en/product/530242"
   roll20: "https://marketplace.roll20.net/browse/module/39314/lost-mark-sci-fi-horror-one-shot-for-mothership"
-  foundry: "https://www.drivethrurpg.com/en/product/564197/mothership-lost-mark-foundryvtt-module?"
+  foundryMarketplace: "https://www.foundryvtt.store/products/fmmoshlostmark"
+  rpgTraderCreator: "https://rpg-trader.com/creator/246/fablesmonster"
 ---
 
 Your ship drops out of hyperspace near a black hole. Amid the debris drifts the **Ship of the Lost**—a grotesque fusion of dozens of vessels. Aboard festers **Mark Opollo**, a pilot who merged with the ship 217 years ago. His flesh is metal. His mind is the network. Hidden within is a cryopod with a child—the final piece for Mark's "ascension."

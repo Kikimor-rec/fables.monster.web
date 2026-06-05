@@ -15,9 +15,12 @@ export interface Project {
         itch?: string;
         driveThru?: string;
         foundry?: string;
+        foundryMarketplace?: string;
         roll20?: string;
         patreon?: string;
         rpgbook?: string;
+        rpgTraderCreator?: string;
+        rpgTraderProduct?: string;
     };
     fullDescription?: string;
     features?: {
@@ -49,7 +52,8 @@ export const projects: Project[] = [
             itch: "https://fables-monster-studio.itch.io/the-lost-mark",
             driveThru: "https://www.drivethrurpg.com/en/product/530242",
             roll20: "https://marketplace.roll20.net/browse/module/39314/lost-mark-sci-fi-horror-one-shot-for-mothership",
-            foundry: "https://www.drivethrurpg.com/en/product/564197/mothership-lost-mark-foundryvtt-module?",
+            foundryMarketplace: "https://www.foundryvtt.store/products/fmmoshlostmark",
+            rpgTraderCreator: "https://rpg-trader.com/creator/246/fablesmonster",
         },
     },
     {
@@ -94,6 +98,7 @@ export const projects: Project[] = [
             itch: "https://fablesmonster.itch.io/krampexe-mothership-1e",
             driveThru: "https://www.drivethrurpg.com/en/product/547046/kramp-exe-christmas-special-edition-for-mothership-1e?affiliate_id=2863466",
             patreon: "https://www.patreon.com/posts/kramp-exe-for-1e-144275102",
+            rpgTraderCreator: "https://rpg-trader.com/creator/246/fablesmonster",
         },
     },
     {
@@ -112,6 +117,7 @@ export const projects: Project[] = [
             itch: "https://fablesmonster.itch.io/career-twilight",
             driveThru: "https://www.drivethrurpg.com/en/product/569217/career-twilight-mothership-1e",
             rpgbook: "https://rpgbook.ru/search?fables.monster",
+            rpgTraderCreator: "https://rpg-trader.com/creator/246/fablesmonster",
         },
     },
 ];

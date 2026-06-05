@@ -18,6 +18,7 @@ projectPage: "/career-twilight"
 platforms:
   itch: "https://fablesmonster.itch.io/career-twilight"
   driveThru: "https://www.drivethrurpg.com/en/product/569217/career-twilight-mothership-1e"
+  rpgTraderCreator: "https://rpg-trader.com/creator/246/fablesmonster"
 ---
 
 > **By Anastasia Neuer** in collaboration with **Fables.Monster**

@@ -17,6 +17,7 @@ const PRODUCT_URLS = {
   itch: "https://fablesmonster.itch.io/career-twilight",
   drivethru: "https://www.drivethrurpg.com/en/product/569217/career-twilight-mothership-1e",
   rpgbook: "https://rpgbook.ru/search?fables.monster",
+  rpgTrader: "https://rpg-trader.com/creator/246/fablesmonster",
   maps: "/downloads/career-twilight/maps.zip",
   handouts: "/downloads/career-twilight/ct-handouts.pdf",
 };

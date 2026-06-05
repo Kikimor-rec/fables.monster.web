@@ -17,6 +17,7 @@ cardImage: "/images/career-twilight/dr-reiner.webp"
 projectPage: "/career-twilight"
 platforms:
   rpgbook: "https://rpgbook.ru/search?fables.monster"
+  rpgTraderCreator: "https://rpg-trader.com/creator/246/fablesmonster"
 ---
 
 > **Автор: Анастасия Нойер** в сотрудничестве с **Fables.Monster**

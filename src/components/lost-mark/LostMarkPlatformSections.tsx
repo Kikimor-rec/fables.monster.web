@@ -1,10 +1,11 @@
 import Link from "next/link";
 import GlitchReveal from "@/components/GlitchReveal";
 import OptimizedImage from "@/components/OptimizedImage";
+import StoreButton from "@/components/StoreButton";
 import type { LostMarkDictionary } from "@/components/lost-mark/types";
 
-const LOST_MARK_FOUNDRY_DRIVETHRU_URL =
-  "https://www.drivethrurpg.com/en/product/564197/mothership-lost-mark-foundryvtt-module?";
+const LOST_MARK_FOUNDRY_MARKETPLACE_URL =
+  "https://www.foundryvtt.store/products/fmmoshlostmark";
 
 interface LostMarkPlatformSectionsProps {
   lang: string;
@@ -135,23 +136,12 @@ export default function LostMarkPlatformSections({ lang, dict }: LostMarkPlatfor
                 {dict.foundry?.supportNote || "Russian language support included"}
               </p>
 
-              <div className="flex flex-col gap-4">
-                <a
-                  href={LOST_MARK_FOUNDRY_DRIVETHRU_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="lm-btn lm-btn-red"
-                >
-                  {dict.buttons?.drivethru || "DriveThruRPG"}
-                </a>
-                <a
-                  href="https://fablesmonster.itch.io/lost-mark-foundry-vtt"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="lm-btn lm-btn-red"
-                >
-                  Itch.io
-                </a>
+              <div className="flex flex-col gap-4 sm:max-w-sm">
+                <StoreButton
+                  store="foundryMarketplace"
+                  href={LOST_MARK_FOUNDRY_MARKETPLACE_URL}
+                  label="Foundry VTT Marketplace"
+                />
               </div>
             </GlitchReveal>
             <GlitchReveal className="order-2" variant="warp" delay={150}>
@@ -207,22 +197,11 @@ export default function LostMarkPlatformSections({ lang, dict }: LostMarkPlatfor
                   </li>
                 ))}
               </ul>
-              <a
+              <StoreButton
+                store="roll20"
                 href="https://marketplace.roll20.net/browse/module/39314/lost-mark-sci-fi-horror-one-shot-for-mothership"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="lm-btn lm-btn-red"
-              >
-                <span>{dict.buttons?.roll20 || "Roll20 Marketplace"}</span>
-                <span className="text-xs border border-current/30 px-2 py-0.5">$9.99</span>
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path
-                    fillRule="evenodd"
-                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </a>
+                price="$9.99"
+              />
             </GlitchReveal>
             <GlitchReveal className="relative" variant="warp" delay={100}>
               <div className="lm-panel p-4 overflow-hidden">

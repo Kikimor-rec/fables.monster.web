@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import StoreButton from "@/components/StoreButton";
 import type { LostMarkDictionary } from "@/components/lost-mark/types";
 
 interface LostMarkStat {
@@ -88,6 +89,13 @@ export default function LostMarkHeroSection({
                   {dict.buttons?.rpgbook || "RPG Book Station"}
                 </a>
               </div>
+              <div className="mx-auto mt-4 max-w-xs">
+                <StoreButton
+                  store="rpgTraderCreator"
+                  href="https://rpg-trader.com/creator/246/fablesmonster"
+                  label="RPG Trader"
+                />
+              </div>
               <p className="text-gray-500 text-xs font-orbitron mt-4 text-center">
                 {dict.expansion?.englishOnlyNote || "English version is available on Itch.io and DriveThruRPG."}
               </p>
@@ -95,26 +103,22 @@ export default function LostMarkHeroSection({
           ) : (
             <>
               <p className="text-gray-300 text-sm font-orbitron mb-4 text-center">{dict.pricing?.baseModuleFree || "Base module is free."}</p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center flex-wrap">
-                <a
+              <div className="grid w-full gap-4 sm:grid-cols-3">
+                <StoreButton
+                  store="itch"
                   href="https://fablesmonster.itch.io/lost-mark"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="lm-btn lm-btn-red lm-btn-lg"
-                >
-                  <span>Itch.io</span>
-                  <span className="text-xs border border-current/30 px-2 py-0.5">{dict.pricing?.freeLabel || "FREE"}</span>
-                </a>
-                <a
+                  label={dict.buttons?.itch || "Itch.io"}
+                />
+                <StoreButton
+                  store="drivethrurpg"
                   href="https://www.drivethrurpg.com/en/product/530242?affiliate_id=2863466"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="lm-btn lm-btn-red lm-btn-lg"
-                >
-                  <Image src="/logos/dtrpg-logo-small.webp" alt="DriveThruRPG" width={24} height={24} className="w-6 h-6" />
-                  <span>DriveThruRPG</span>
-                  <span className="text-xs border border-current/30 px-2 py-0.5">{dict.pricing?.freeLabel || "FREE"}</span>
-                </a>
+                  label={dict.buttons?.drivethru || "DriveThruRPG"}
+                />
+                <StoreButton
+                  store="rpgTraderCreator"
+                  href="https://rpg-trader.com/creator/246/fablesmonster"
+                  label="RPG Trader"
+                />
               </div>
             </>
           )}

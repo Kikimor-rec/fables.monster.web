@@ -206,6 +206,8 @@ export interface ProjectDetailLabelsDict {
   itch?: string;
   drivethru?: string;
   roll20?: string;
+  foundry?: string;
+  rpgTrader?: string;
 }
 
 export interface ProjectDetailDict {
