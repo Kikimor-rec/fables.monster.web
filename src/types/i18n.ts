@@ -1,12 +1,12 @@
 /**
- * Централизованные типы для i18n словарей
- * Единый источник истины для всех переводов
+ * Centralized i18n dictionary types.
+ * Single source of truth for translation contracts.
  */
 
-// Поддерживаемые языки
+// Supported languages
 export type Language = 'en' | 'ru';
 
-// Словари для каждой секции
+// Dictionaries for each section
 export type DictionaryNamespace =
   | 'common'
   | 'home'
@@ -91,11 +91,19 @@ export interface TimerDict {
 export interface NavDict {
   home: string;
   projects: string;
+  work?: string;
+  studio?: string;
   lostMark: string;
   vtt?: string;
+  vttServices?: string;
   timer: string;
   about: string;
   contact: string;
+  getUpdates?: string;
+  joinDiscord?: string;
+  featuredWork?: string;
+  caseFiles?: string;
+  tools?: string;
   skipToContent?: string;
   homeAriaLabel?: string;
   mainNavigation?: string;
@@ -108,12 +116,22 @@ export interface NavDict {
 
 export interface FooterDict {
   tagline: string;
+  brandLabel?: string;
   projects: string;
+  featuredWork?: string;
   links: string;
+  studioServices?: string;
+  tools?: string;
+  connect?: string;
   about: string;
   vttServices?: string;
   contact: string;
   social: string;
+  newsletter?: string;
+  getUpdates?: string;
+  joinDiscord?: string;
+  lostMarkTerminal?: string;
+  chronometer?: string;
   allProjects?: string;
   privacy?: string;
   homeAriaLabel?: string;
@@ -1229,14 +1247,14 @@ export interface Dictionary {
 // === UTILITY TYPES ===
 
 /**
- * Извлекает тип словаря по namespace
+ * Extracts dictionary type by namespace.
  * @example
  * type NavDictType = GetDictionary<'common'>['nav']
  */
 export type GetDictionary<T extends DictionaryNamespace> = Dictionary[T];
 
 /**
- * Извлекает конкретный ключ из словаря
+ * Extracts a concrete key from a dictionary.
  * @example
  * type NavType = GetDictionaryKey<'common', 'nav'>
  */

@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import StayConnectedSection from "@/components/StayConnectedSection";
 import StorySectionNav from "@/components/StorySectionNav";
 import StoryBackToTop from "@/components/StoryBackToTop";
 import LostMarkHeroSection from "@/components/lost-mark/LostMarkHeroSection";
@@ -47,7 +46,6 @@ export default async function LostMark({ params }: { params: Promise<{ lang: str
   const { lang } = await params;
   const content = await getContent("projects", "lost-mark", lang);
   const dict = await getDictionary(lang, "lost-mark");
-  const homeDict = await getDictionary(lang, "home");
 
   const contentTitle = content ? getFrontmatterString(content.frontmatter, "title") : "";
   const contentTagline = content ? getFrontmatterString(content.frontmatter, "tagline") : "";
@@ -160,8 +158,6 @@ export default async function LostMark({ params }: { params: Promise<{ lang: str
         <LostMarkPlatformSections lang={lang} dict={dict} />
         <LostMarkAudioCtaSection lang={lang} dict={dict} />
         <StoryBackToTop tone="red" />
-
-        <StayConnectedSection lang={lang} dict={homeDict.stayConnected} />
       </div>
     </>
   );

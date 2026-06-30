@@ -2,7 +2,6 @@ import { Metadata } from 'next'
 import Image from "next/image";
 import KrampNavigation from "@/components/kramp/KrampNavigation";
 import KrampSections from "@/components/kramp/KrampSections";
-import StayConnectedSection from "@/components/StayConnectedSection";
 import StoreButton from "@/components/StoreButton";
 import StoryProgressBar from '@/components/StoryProgressBar';
 import StoryBackToTop from '@/components/StoryBackToTop';
@@ -38,7 +37,6 @@ export default async function HolidayAuditKramp({ params }: { params: Promise<{ 
   const { lang } = await params;
   const content = await getContent('projects', 'holiday-audit-kramp', lang);
   const dict = await getDictionary(lang, 'kramp');
-  const homeDict = await getDictionary(lang, 'home');
 
   const contentTitle = content ? getFrontmatterString(content.frontmatter, 'title') : '';
   const contentTagline = content ? getFrontmatterString(content.frontmatter, 'tagline') : '';
@@ -382,12 +380,6 @@ export default async function HolidayAuditKramp({ params }: { params: Promise<{ 
       </section>
 
       <SectionDivider />
-
-      {/* Stay Connected Section */}
-      <StayConnectedSection
-        lang={lang}
-        dict={homeDict.stayConnected}
-      />
       <StoryBackToTop tone="red" />
     </div>
     </>

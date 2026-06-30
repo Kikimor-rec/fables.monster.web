@@ -3,7 +3,6 @@ import { getContent, getFrontmatterString } from "@/lib/content";
 import { getDictionary } from "@/lib/i18n";
 import { buildSocialMetadata } from "@/lib/metadata";
 import type { OldWorldNeonDict } from "@/types/i18n";
-import StayConnectedSection from "@/components/StayConnectedSection";
 import StoryProgressBar from "@/components/StoryProgressBar";
 import StorySectionNav from "@/components/StorySectionNav";
 import StoryBackToTop from "@/components/StoryBackToTop";
@@ -39,7 +38,6 @@ export default async function ProjectNeonPage({ params }: { params: Promise<{ la
   const { lang } = await params;
   const content = await getContent("projects", "old-world-neon", lang);
   const dict = (await getDictionary(lang, "old-world-neon")) as OldWorldNeonDict;
-  const homeDict = await getDictionary(lang, "home");
 
   const sectionNavItems = [
     { id: "teaser", label: dict.nav.teaser },
@@ -112,8 +110,6 @@ export default async function ProjectNeonPage({ params }: { params: Promise<{ la
 
       <NeonTeaserSection dict={dict} />
       <NeonFeaturesSection dict={dict} />
-
-      <StayConnectedSection lang={lang} dict={homeDict.stayConnected} variant="cyberpunk" />
       <StoryBackToTop tone="fuchsia" />
     </div>
     </>

@@ -1,13 +1,17 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import Image from "next/image";
-import FadeIn, { FadeInItem } from "@/components/FadeIn";
-import { getAllProjects, getFrontmatterString } from "@/lib/content";
+import FadeIn, { FadeInItem } from '@/components/FadeIn';
+import ProjectDossierCard, { getProjectStatusLabel, normalizeProjectStatus } from '@/components/ProjectDossierCard';
+import { getAllProjects, getFrontmatterString, getFrontmatterObject } from '@/lib/content';
 import { getDictionary } from '@/lib/i18n';
 import { buildSocialMetadata } from '@/lib/metadata';
 import { JsonLd, buildBreadcrumbJsonLd, buildCollectionPageJsonLd } from '@/lib/seo/jsonld';
 
-export const revalidate = 3600; // ISR: revalidate every hour
+export const revalidate = 3600;
+
+type PlatformMap = Record<string, string | undefined>;
+
+type ProjectContent = Awaited<ReturnType<typeof getAllProjects>>[number];
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -30,27 +34,45 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   };
 }
 
+function sortProjects(projects: ProjectContent[]) {
+  const statusOrder: Record<string, number> = { released: 1, 'coming-soon': 2, 'in-development': 3 };
+  return [...projects].sort((a, b) => {
+    const aStatus = normalizeProjectStatus(getFrontmatterString(a.frontmatter, 'status') || 'in-development');
+    const bStatus = normalizeProjectStatus(getFrontmatterString(b.frontmatter, 'status') || 'in-development');
+    return statusOrder[aStatus] - statusOrder[bStatus];
+  });
+}
+
+function cardProps(project: ProjectContent, lang: string, labels: { released?: string; inDev?: string; comingSoon?: string }, priority = false) {
+  const title = getFrontmatterString(project.frontmatter, 'title') || project.slug;
+  const status = getFrontmatterString(project.frontmatter, 'status') || 'in-development';
+  return {
+    href: `/${lang}/${project.slug}`,
+    title,
+    tagline: getFrontmatterString(project.frontmatter, 'tagline'),
+    image: getFrontmatterString(project.frontmatter, 'cardImage') || getFrontmatterString(project.frontmatter, 'image') || '/images/placeholder.webp',
+    status,
+    statusLabel: getProjectStatusLabel(status, labels),
+    system: getFrontmatterString(project.frontmatter, 'system'),
+    type: getFrontmatterString(project.frontmatter, 'type'),
+    tags: Array.isArray(project.frontmatter.tags) ? project.frontmatter.tags as string[] : [],
+    platforms: getFrontmatterObject<PlatformMap>(project.frontmatter, 'platforms'),
+    priority,
+  };
+}
+
 export default async function ProjectsPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   const dict = await getDictionary(lang, 'common');
-  const allProjects = await getAllProjects(lang);
+  const allProjects = sortProjects(await getAllProjects(lang));
+  const statusLabels = dict.projects?.status || {};
+  const isRu = lang === 'ru';
 
-  // Sort projects: released -> coming-soon -> in-development
-  const statusOrder: Record<string, number> = {
-    "released": 1,
-    "coming-soon": 2,
-    "in-development": 3,
-  };
-
-  const sortedProjects = [...allProjects].sort((a, b) => {
-    const statusA = (getFrontmatterString(a.frontmatter, 'status') || 'in-development').toLowerCase();
-    const statusB = (getFrontmatterString(b.frontmatter, 'status') || 'in-development').toLowerCase();
-    
-    const orderA = statusOrder[statusA] || 99;
-    const orderB = statusOrder[statusB] || 99;
-    
-    return orderA - orderB;
-  });
+  const grouped = [
+    { id: 'released', title: statusLabels.released || 'Released', projects: allProjects.filter((project) => normalizeProjectStatus(getFrontmatterString(project.frontmatter, 'status')) === 'released') },
+    { id: 'in-development', title: statusLabels.inDev || 'In Development', projects: allProjects.filter((project) => normalizeProjectStatus(getFrontmatterString(project.frontmatter, 'status')) === 'in-development') },
+    { id: 'coming-soon', title: statusLabels.comingSoon || 'Coming Soon', projects: allProjects.filter((project) => normalizeProjectStatus(getFrontmatterString(project.frontmatter, 'status')) === 'coming-soon') },
+  ].filter((group) => group.projects.length > 0);
 
   const breadcrumbJsonLd = buildBreadcrumbJsonLd([
     { name: dict.nav?.home || 'Home', path: `/${lang}` },
@@ -61,7 +83,7 @@ export default async function ProjectsPage({ params }: { params: Promise<{ lang:
     name: dict.nav?.projects || 'Projects',
     description: dict.projects?.description || 'Explore our tabletop RPG adventures and digital experiences.',
     path: `/${lang}/projects`,
-    items: sortedProjects.map((project) => ({
+    items: allProjects.map((project) => ({
       name: getFrontmatterString(project.frontmatter, 'title') || project.slug,
       path: `/${lang}/${project.slug}`,
     })),
@@ -71,154 +93,73 @@ export default async function ProjectsPage({ params }: { params: Promise<{ lang:
     <>
       <JsonLd id="projects-breadcrumb-jsonld" data={breadcrumbJsonLd} />
       <JsonLd id="projects-collection-jsonld" data={projectsCollectionJsonLd} />
-      <div className="min-h-screen bg-black">
-      {/* Header */}
-      <section className="pt-24 sm:pt-32 pb-12 sm:pb-20 bg-gradient-to-b from-gray-950 to-black">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center">
-          <FadeIn>
-            <h1 className="text-5xl sm:text-6xl md:text-8xl font-bold text-white mb-6 font-orbitron tracking-wider text-glow-lg">
-              {(dict.nav?.projects || 'Projects').toUpperCase()}
-            </h1>
-            <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto font-rajdhani uppercase tracking-widest">
-              {dict.projects?.description || 'Explore our tabletop RPG adventures and digital experiences'}
-            </p>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* All Projects Grid */}
-      <section className="py-12 sm:py-20 bg-black border-t border-red-700">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <FadeIn stagger staggerDelay={0.1}>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {sortedProjects.map((project) => {
-                const status = (getFrontmatterString(project.frontmatter, 'status') || 'in-development').toLowerCase();
-                const projectImage = getFrontmatterString(project.frontmatter, 'image') || '/images/placeholder.jpg';
-                const projectTitle = getFrontmatterString(project.frontmatter, 'title') || '';
-                return (
-                  <FadeInItem key={project.slug}>
-                    <Link
-                      href={`/${lang}/${project.slug}`}
-                      className="group flex border border-border bg-black hover:border-accent transition-all duration-300 h-full flex-col"
-                    >
-                      {/* Project Image */}
-                      <div className="relative h-64 overflow-hidden">
-                        <Image
-                          src={projectImage}
-                          alt={projectTitle}
-                          fill
-                          className="object-cover group-hover:scale-105 transition-transform duration-300"
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
-
-                        {/* Status Badge */}
-                        <div className="absolute top-4 right-4">
-                          <span className={`px-3 py-1 text-xs font-orbitron font-bold border ${
-                            status === 'released' ? 'bg-green-900/50 text-green-400 border-green-500' :
-                            status === 'in-development' ? 'bg-yellow-900/50 text-yellow-400 border-yellow-500' :
-                              'bg-blue-900/50 text-blue-400 border-blue-500'
-                            }`}>
-                            {status === 'released' ? (dict.projects?.status?.released || 'RELEASED') :
-                              status === 'in-development' ? (dict.projects?.status?.inDev || 'IN DEV') :
-                                (dict.projects?.status?.comingSoon || 'COMING SOON')}
-                          </span>
-                        </div>
-
-                        {/* Featured Badge */}
-                        {project.frontmatter.featured && (
-                          <div className="absolute top-4 left-4">
-                            <span className="px-3 py-1 text-xs font-orbitron font-bold bg-red-900/80 text-red-400 border border-red-500">
-                              {dict.projects?.featured || 'FEATURED'}
-                            </span>
-                          </div>
-                        )}
-                      </div>
-
-                      {/* Project Info */}
-                      <div className="p-6 flex-grow flex flex-col">
-                        <h3 className="text-2xl font-bold text-white mb-2 font-orbitron group-hover:text-accent transition-colors">
-                          {projectTitle}
-                        </h3>
-
-                        <div className="flex flex-wrap gap-2 mb-3">
-                          {getFrontmatterString(project.frontmatter, 'system') && (
-                            <span className="text-xs font-rajdhani uppercase tracking-wide text-cyan-400 border border-cyan-700 px-2 py-1">
-                              {getFrontmatterString(project.frontmatter, 'system')}
-                            </span>
-                          )}
-                          {getFrontmatterString(project.frontmatter, 'type') && (
-                            <span className="text-xs font-rajdhani uppercase tracking-wide text-gray-400 border border-gray-700 px-2 py-1">
-                              {getFrontmatterString(project.frontmatter, 'type')}
-                            </span>
-                          )}
-                        </div>
-
-                        <p className="text-gray-300 text-sm font-rajdhani leading-relaxed mb-4 flex-grow">
-                          {getFrontmatterString(project.frontmatter, 'tagline')}
-                        </p>
-
-                        {/* Tags */}
-                        {Array.isArray(project.frontmatter.tags) && project.frontmatter.tags.length > 0 && (
-                          <div className="flex flex-wrap gap-2 mt-auto">
-                            {(project.frontmatter.tags as string[]).slice(0, 3).map((tag: string, i: number) => (
-                              <span
-                                key={i}
-                                className="text-xs px-2 py-1 bg-gray-800 text-gray-400 border border-gray-700 font-rajdhani uppercase tracking-wide"
-                              >
-                                {tag}
-                              </span>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    </Link>
-                  </FadeInItem>
-                );
-              })}
-            </div>
+      <div className="min-h-screen bg-black text-white">
+        <section className="border-b border-red-950 bg-gradient-to-b from-zinc-950 to-black pt-28 sm:pt-32">
+          <div className="mx-auto max-w-7xl px-4 pb-12 sm:px-6 sm:pb-16">
+            <FadeIn>
+              <p className="mb-4 font-orbitron text-xs font-bold uppercase tracking-[0.24em] text-red-300">
+                {isRu ? 'АРХИВ РАБОТ' : 'WORK ARCHIVE'}
+              </p>
+              <h1 className="font-orbitron text-5xl font-black uppercase tracking-[0.04em] text-white sm:text-7xl">
+                {dict.nav?.work || dict.nav?.projects || 'Projects'}
+              </h1>
+              <p className="mt-5 max-w-3xl font-rajdhani text-xl leading-relaxed text-zinc-300">
+                {dict.projects?.description || 'Explore our tabletop RPG adventures and digital experiences.'}
+              </p>
+              <div className="mt-8 flex flex-wrap gap-2">
+                {grouped.map((group) => (
+                  <a key={group.id} href={`#${group.id}`} className="border border-zinc-800 bg-black/70 px-4 py-2 font-orbitron text-xs font-bold uppercase tracking-[0.16em] text-zinc-300 transition-colors hover:border-red-500 hover:text-white">
+                    {group.title} ({group.projects.length})
+                  </a>
+                ))}
+              </div>
             </FadeIn>
-        </div>
-      </section>
+          </div>
+        </section>
 
-      {/* Call to Action */}
-      <section className="py-12 sm:py-20 bg-red-900 border-t border-red-700">
-        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6">
-          <FadeIn>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6 font-orbitron">
-              {dict.projects?.joinCommunity?.title || 'JOIN THE COMMUNITY'}
-            </h2>
-            <p className="text-lg sm:text-xl text-red-100 mb-8 font-rajdhani">
-              {dict.projects?.joinCommunity?.description || 'Follow our development and become part of the Fables Monster community'}
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center flex-wrap">
-              <a
-                href="https://discord.gg/uw2uvny7n6"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full sm:w-auto bg-white text-red-900 px-8 py-4 text-lg font-orbitron font-bold hover:bg-gray-200 transition-colors text-center"
-              >
-                {dict.projects?.joinCommunity?.discord || 'JOIN DISCORD'}
-              </a>
-              <Link
-                href={`/${lang}/newsletter/subscribe`}
-                className="w-full sm:w-auto bg-transparent border-2 border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-black px-8 py-4 text-lg font-orbitron font-bold transition-colors text-center"
-              >
-                {lang === 'ru' ? 'ПОДПИСАТЬСЯ' : 'SUBSCRIBE'}
+        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20">
+          {grouped.map((group, groupIndex) => (
+            <section key={group.id} id={group.id} className="scroll-mt-28 pb-16 last:pb-0">
+              <div className="mb-8 flex items-end justify-between border-b border-zinc-900 pb-4">
+                <h2 className="font-orbitron text-2xl font-bold uppercase tracking-[0.08em] text-white sm:text-4xl">
+                  {group.title}
+                </h2>
+                <span className="font-mono text-xs uppercase tracking-[0.2em] text-zinc-500">{group.projects.length} files</span>
+              </div>
+              <FadeIn stagger staggerDelay={0.08}>
+                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                  {group.projects.map((project, index) => (
+                    <FadeInItem key={project.slug}>
+                      <ProjectDossierCard {...cardProps(project, lang, statusLabels, groupIndex === 0 && index === 0)} />
+                    </FadeInItem>
+                  ))}
+                </div>
+              </FadeIn>
+            </section>
+          ))}
+        </div>
+
+        <section className="border-t border-red-950 bg-zinc-950/70 py-12 sm:py-16">
+          <div className="mx-auto flex max-w-7xl flex-col gap-6 px-4 sm:px-6 md:flex-row md:items-center md:justify-between">
+            <div>
+              <h2 className="font-orbitron text-2xl font-bold uppercase text-white">
+                {isRu ? 'Следите за новыми релизами' : 'Follow new releases'}
+              </h2>
+              <p className="mt-2 font-rajdhani text-lg text-zinc-400">
+                {isRu ? 'Новости студии, плейтесты и новые материалы без лишнего шума.' : 'Studio news, playtests, and new materials without extra noise.'}
+              </p>
+            </div>
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <Link href={`/${lang}/newsletter/subscribe`} className="border border-red-500 bg-red-700 px-6 py-3 text-center font-orbitron text-sm font-bold uppercase tracking-[0.16em] text-white hover:bg-red-600">
+                {isRu ? 'Подписаться' : 'Subscribe'}
               </Link>
-              <a
-                href="https://www.patreon.com/FablesMonster"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full sm:w-auto bg-transparent border-2 border-white text-white hover:bg-white hover:text-red-900 px-8 py-4 text-lg font-orbitron font-bold transition-colors text-center"
-              >
-                {dict.projects?.joinCommunity?.patreon || 'SUPPORT ON PATREON'}
+              <a href="https://discord.gg/uw2uvny7n6" target="_blank" rel="noopener noreferrer" className="border border-zinc-700 bg-black px-6 py-3 text-center font-orbitron text-sm font-bold uppercase tracking-[0.16em] text-zinc-200 hover:border-cyan-500 hover:text-white">
+                Discord
               </a>
             </div>
-          </FadeIn>
-        </div>
-      </section>
-    </div>
+          </div>
+        </section>
+      </div>
     </>
   );
 }

@@ -128,6 +128,7 @@ export default function NewsletterForm({ dict, lang = 'en', compact = false }: N
               value={formData.email}
               onChange={handleChange}
               required
+              suppressHydrationWarning
               aria-invalid={Boolean(errors.email)}
               aria-describedby={errors.email ? emailErrorId : errors.general ? generalErrorId : undefined}
               className="flex-1 bg-gray-800 border border-red-700 text-white px-4 py-2 font-rajdhani text-sm focus:outline-none focus:border-red-400"
@@ -200,6 +201,7 @@ export default function NewsletterForm({ dict, lang = 'en', compact = false }: N
             name="name"
             value={formData.name}
             onChange={handleChange}
+            suppressHydrationWarning
             aria-invalid={Boolean(errors.name)}
             aria-describedby={errors.name ? nameErrorId : undefined}
             className="w-full bg-gray-800 border border-red-700 text-white px-4 py-3 font-rajdhani focus:outline-none focus:border-red-400"

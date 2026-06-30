@@ -41,7 +41,7 @@ vi.mock('next/server', () => ({
   },
 }));
 
-describe('middleware', () => {
+describe('proxy', () => {
   const createMockRequest = (pathname: string, acceptLanguage = 'en') => ({
     nextUrl: {
       pathname,
@@ -57,10 +57,10 @@ describe('middleware', () => {
   });
 
   it('redirects paths missing locale prefix', async () => {
-    const { middleware } = await import('../middleware');
+    const { proxy } = await import('../proxy');
     const request = createMockRequest('/about');
     // @ts-expect-error - using mock request
-    middleware(request);
+    proxy(request);
     expect(mockRedirect).toHaveBeenCalled();
   });
 
@@ -88,10 +88,10 @@ describe('middleware', () => {
       },
     }));
 
-    const { middleware } = await import('../middleware');
+    const { proxy } = await import('../proxy');
     const request = createMockRequest('/en/about');
     // @ts-expect-error - using mock request
-    const result = middleware(request);
+    const result = proxy(request);
     expect(result).toBeUndefined();
   });
 });

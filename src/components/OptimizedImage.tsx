@@ -55,7 +55,7 @@ export default function OptimizedImage({
         className={`transition-opacity duration-300 ${isLoaded ? 'opacity-100' : 'opacity-0'} ${className}`}
         style={style}
         priority={priority}
-        sizes={sizes}
+        sizes={sizes ?? (fill ? "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" : undefined)}
         quality={quality}
         placeholder="blur"
         blurDataURL={blurDataURL}

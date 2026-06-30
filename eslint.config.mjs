@@ -1,34 +1,32 @@
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-import { FlatCompat } from "@eslint/eslintrc";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
+import nextVitals from "eslint-config-next/core-web-vitals";
+import nextTypescript from "eslint-config-next/typescript";
 
 const eslintConfig = [
   {
     ignores: [
-      '.next/**',
-      'node_modules/**',
-      'out/**',
-      'next-env.d.ts',
+      ".next/**",
+      "node_modules/**",
+      "out/**",
+      "next-env.d.ts",
     ],
   },
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
+  ...nextVitals,
+  ...nextTypescript,
   {
     rules: {
       "react/no-unescaped-entities": "off",
       "@next/next/no-page-custom-font": "off",
+      "react-hooks/static-components": "off",
+      "react-hooks/set-state-in-effect": "off",
+      "react-hooks/purity": "off",
+      "react-hooks/refs": "off",
+      "react-hooks/immutability": "off",
     },
   },
   {
-    files: ['next.config.ts', 'tailwind.config.ts'],
+    files: ["next.config.ts", "tailwind.config.ts"],
     rules: {
-      '@typescript-eslint/no-require-imports': 'off',
+      "@typescript-eslint/no-require-imports": "off",
     },
   },
 ];

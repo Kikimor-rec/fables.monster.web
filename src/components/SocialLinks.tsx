@@ -1,100 +1,38 @@
-import Image from "next/image";
+import Image from 'next/image';
+import { getSocialLinks } from '@/lib/site-navigation';
 
 interface SocialLinksProps {
   className?: string;
   showLabels?: boolean;
 }
 
-export default function SocialLinks({ className = "", showLabels = true }: SocialLinksProps) {
-  const links = [
-    {
-      href: "https://discord.gg/uw2uvny7n6",
-      icon: "/logos/Discord-Symbol-White.svg",
-      label: "Discord",
-      description: "Join our community"
-    },
-    {
-      href: "https://fablesmonster.itch.io/",
-      icon: "/itchio-logo-textless-white.svg",
-      label: "Itch.io",
-      description: "Get our games"
-    },
-    {
-      href: "https://patreon.com/FablesMonster?fables.monster",
-      icon: "/logos/PATREON_SYMBOL_1_WHITE_RGB.svg",
-      label: "Patreon",
-      description: "Support us"
-    },
-    {
-      href: "https://boosty.to/fables.monster",
-      icon: "/logos/boosty-logo-white.svg",
-      label: "Boosty",
-      description: "Support us"
-    },
-    {
-      href: "https://bsky.app/profile/fablesmonster.bsky.social",
-      icon: "/logos/bluesky-logo.svg",
-      label: "Bluesky",
-      description: "Follow us"
-    },
-    {
-      href: "https://www.drivethrurpg.com/en/publisher/30815/fables-monster?affiliate_id=2863466",
-      icon: "/logos/dtrpg-logo-small.png",
-      label: "DriveThruRPG",
-      description: "RPG collection"
-    },
-    {
-      href: "https://www.youtube.com/@fables.monster",
-      icon: "/logos/yt_icon_mono_dark.png",
-      label: "YouTube",
-      description: "Watch our videos"
-    },
-    {
-      href: "https://x.com/FablesMonster",
-      icon: "/logos/x-logo-white.svg",
-      label: "X",
-      description: "Follow us"
-    },
-    {
-      href: "https://www.facebook.com/fables.monster",
-      icon: "/logos/facebook-logo-white.svg",
-      label: "Facebook",
-      description: "Follow us"
-    },
-    {
-      href: "mailto:info@fables.monster",
-      icon: "/logos/mail-512.png",
-      label: "Email",
-      description: "Contact us"
-    }
-  ];
+export default function SocialLinks({ className = '', showLabels = true }: SocialLinksProps) {
+  const links = getSocialLinks();
 
   return (
-    <div className={`flex flex-wrap justify-center gap-3 sm:gap-4 md:gap-6 max-w-full ${className}`}>
+    <div className={`flex max-w-full flex-wrap justify-center gap-3 sm:gap-4 md:gap-6 ${className}`}>
       {links.map((link) => (
         <a
           key={link.label}
           href={link.href}
-          target={link.href.startsWith('mailto:') ? undefined : "_blank"}
-          rel={link.href.startsWith('mailto:') ? undefined : "noopener noreferrer"}
-          className="text-gray-300 hover:text-red-400 transition-colors text-center flex-shrink-0 min-w-0 max-w-[80px] sm:max-w-[100px]"
+          target={link.href.startsWith('mailto:') ? undefined : '_blank'}
+          rel={link.href.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
+          className="min-w-0 max-w-[80px] flex-shrink-0 text-center text-zinc-300 transition-colors hover:text-red-300 focus:outline-none focus:ring-2 focus:ring-red-500 sm:max-w-[100px]"
         >
-          <div className="mb-1 sm:mb-2 flex justify-center items-center h-8 sm:h-10 md:h-12">
-            {link.icon.startsWith('/') ? (
-              <Image
-                src={link.icon}
-                alt={link.label}
-                width={0}
-                height={0}
-                sizes="100vw"
-                className={`hover:opacity-80 transition-opacity h-6 sm:h-8 w-auto ${link.label !== 'YouTube' ? 'filter brightness-0 invert' : ''}`}
-              />
-            ) : (
-              <div className="text-xl sm:text-2xl md:text-3xl">{link.icon}</div>
-            )}
+          <div className="mb-1 flex h-8 items-center justify-center sm:mb-2 sm:h-10 md:h-12">
+            <Image
+              src={link.icon}
+              alt={link.label}
+              width={0}
+              height={0}
+              sizes="100vw"
+              className={`h-6 w-auto transition-opacity hover:opacity-80 sm:h-8 ${
+                link.label !== 'YouTube' ? 'filter brightness-0 invert' : ''
+              }`}
+            />
           </div>
           {showLabels && (
-            <div className="font-nunito text-[10px] sm:text-xs leading-tight text-center break-words px-1">
+            <div className="break-words px-1 text-center font-nunito text-[10px] leading-tight sm:text-xs">
               {link.label}
             </div>
           )}

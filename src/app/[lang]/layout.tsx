@@ -4,11 +4,13 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import GoogleAnalytics from '@/components/GoogleAnalytics';
 import SpeedInsightsClient from '@/components/SpeedInsightsClient';
-import CursorGlow from '@/components/CursorGlow';
 import GlobalExperience from '@/components/GlobalExperience';
 import PageTransition from '@/components/PageTransition';
 import { languages } from '@/i18n/settings';
 import { getDictionary } from '@/lib/i18n';
+import { getAllProjects, getFrontmatterString } from '@/lib/content';
+import { normalizeProjectStatus } from '@/components/ProjectDossierCard';
+import type { SiteNavItem } from '@/lib/site-navigation';
 import { JsonLd, buildOrganizationJsonLd, buildWebsiteJsonLd } from '@/lib/seo/jsonld';
 import '../globals.css';
 import type { Metadata } from 'next';
@@ -69,6 +71,39 @@ export const metadata: Metadata = {
     },
 };
 
+
+function projectSortValue(status: string) {
+    const normalized = normalizeProjectStatus(status);
+    if (normalized === 'released') return 1;
+    if (normalized === 'coming-soon') return 2;
+    return 3;
+}
+
+async function getFooterFeaturedWork(lang: string, allProjectsLabel?: string): Promise<SiteNavItem[]> {
+    const projects = await getAllProjects(lang);
+    const links = projects
+        .sort((a, b) => {
+            const statusA = getFrontmatterString(a.frontmatter, 'status') || 'in-development';
+            const statusB = getFrontmatterString(b.frontmatter, 'status') || 'in-development';
+            return projectSortValue(statusA) - projectSortValue(statusB);
+        })
+        .slice(0, 4)
+        .map((project) => ({
+            href: `/${lang}/${project.slug}`,
+            label: getFrontmatterString(project.frontmatter, 'title') || project.slug,
+            description: getFrontmatterString(project.frontmatter, 'tagline'),
+        }));
+
+    return [
+        ...links,
+        {
+            href: `/${lang}/projects`,
+            label: allProjectsLabel || 'All projects ->',
+            description: 'Open the complete archive',
+        },
+    ];
+}
+
 export async function generateStaticParams() {
   return languages.map((lang) => ({ lang }))
 }
@@ -83,6 +118,7 @@ export default async function RootLayout({
     const { lang } = await params;
     const dict = await getDictionary(lang, 'common');
     const newsletterDict = await getDictionary(lang, 'newsletter');
+    const footerFeaturedWork = await getFooterFeaturedWork(lang, dict.footer?.allProjects);
     const gaId = process.env.NEXT_PUBLIC_GA_ID;
     const shouldLoadGa = !!gaId && /^G-[A-Z0-9]+$/i.test(gaId) && gaId !== 'G-XXXXXXXXXX';
 
@@ -95,14 +131,13 @@ export default async function RootLayout({
             <body className="bg-black text-white" suppressHydrationWarning>
                 {shouldLoadGa && <GoogleAnalytics gaId={gaId} />}
                     <GlobalExperience />
-                    <CursorGlow />
                     <Navigation lang={lang} dict={dict.nav || {}} />
                     <main id="main-content">
                         <PageTransition>
                             {children}
                         </PageTransition>
                     </main>
-                    <Footer lang={lang} dict={dict.footer || {}} newsletterDict={newsletterDict || undefined} />
+                    <Footer lang={lang} dict={dict.footer || {}} newsletterDict={newsletterDict || undefined} featuredWorkLinks={footerFeaturedWork} />
                 <Analytics />
                 <SpeedInsightsClient />
             </body>

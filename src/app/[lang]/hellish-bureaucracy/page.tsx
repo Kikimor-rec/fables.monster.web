@@ -1,5 +1,4 @@
 import { Metadata } from 'next'
-import StayConnectedSection from "@/components/StayConnectedSection";
 import StoryProgressBar from '@/components/StoryProgressBar';
 import StoryBackToTop from '@/components/StoryBackToTop';
 import { getContent, getFrontmatterString } from '@/lib/content';
@@ -40,9 +39,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 
 export default async function HellishBureaucracy({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
-  const [content, homeDict, commonDict] = await Promise.all([
+  const [content, commonDict] = await Promise.all([
     getContent('projects', 'hellish-bureaucracy', lang),
-    getDictionary(lang, 'home'),
     getDictionary(lang, 'common'),
   ]);
   const projectDict = commonDict.projects.hellishBureaucracy;
@@ -107,12 +105,6 @@ export default async function HellishBureaucracy({ params }: { params: Promise<{
             <article className="fm-panel fm-panel-accented fm-prose-dropcap prose prose-invert prose-lg max-w-none" dangerouslySetInnerHTML={{ __html: content?.contentHtml || '' }} />
           </div>
         </section>
-
-        {/* Stay Connected Section */}
-        <StayConnectedSection
-          lang={lang}
-          dict={homeDict.stayConnected}
-        />
         <StoryBackToTop tone="red" />
       </div>
     </>

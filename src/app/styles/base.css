@@ -1,0 +1,36 @@
+html {
+    scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #111111;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #dc2626;
+    border-radius: 0px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #b91c1c;
+}
+
+::selection {
+    background: #dc2626;
+    color: #ffffff;
+}
+
+*:focus {
+    outline: 2px solid #dc2626;
+    outline-offset: 2px;
+}

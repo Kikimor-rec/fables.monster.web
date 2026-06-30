@@ -197,7 +197,7 @@ export default function KrampAudioPlayer({ lang }: KrampAudioPlayerProps) {
 
   return (
     <div className="bg-black/90 border border-red-700/50 rounded-lg overflow-hidden">
-      <audio ref={audioRef} preload="metadata" />
+      <audio ref={audioRef} preload="none" />
 
       <div className="bg-gradient-to-r from-red-900/50 to-green-900/30 px-4 py-3 border-b border-red-700/50">
         <div className="flex items-center gap-3">

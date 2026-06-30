@@ -1,119 +1,68 @@
-"use client";
-
 import Link from 'next/link';
-import SocialLinks from "./SocialLinks";
-import Image from "next/image";
-import NewsletterForm from "./NewsletterForm";
+import Image from 'next/image';
+import SocialLinks from './SocialLinks';
+import NewsletterForm from './NewsletterForm';
+import FooterLinkGroup from './navigation/FooterLinkGroup';
+import DossierLabel from './navigation/DossierLabel';
+import HeaderCta from './navigation/HeaderCta';
+import { getFooterLinkGroups, getHeaderCta, type SiteNavItem } from '@/lib/site-navigation';
 import { FooterDict, NewsletterDict } from '@/types/i18n';
 
 interface FooterProps {
   lang: string;
   dict: FooterDict;
   newsletterDict?: NewsletterDict;
+  featuredWorkLinks?: SiteNavItem[];
 }
 
-export default function Footer({ lang, dict, newsletterDict }: FooterProps) {
+export default function Footer({ lang, dict, newsletterDict, featuredWorkLinks }: FooterProps) {
+  const linkGroups = getFooterLinkGroups(lang, dict, featuredWorkLinks);
+  const cta = getHeaderCta(lang, { getUpdates: dict.getUpdates || newsletterDict?.footer.subscribe });
+
   return (
-    <footer role="contentinfo" className="bg-black py-12 border-t border-red-700">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid md:grid-cols-4 gap-8">
-          {/* Brand Section */}
-          <div>
-            <Link href={`/${lang}`} className="inline-block mb-4" aria-label={dict.homeAriaLabel || 'Fables Monster - Home'}>
-              <Image src="/logos/fm-logo-sqare.png" alt="" width={120} height={120} className="w-[120px] max-w-full" aria-hidden="true" />
+    <footer role="contentinfo" className="border-t border-red-950 bg-black py-12">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="grid gap-10 lg:grid-cols-[1.2fr_2fr_1fr]">
+          <section aria-label="Fables Monster Studio" className="max-w-sm">
+            <Link
+              href={`/${lang}`}
+              className="mb-5 inline-block focus:outline-none focus:ring-2 focus:ring-red-500"
+              aria-label={dict.homeAriaLabel || 'Fables Monster - Home'}
+            >
+              <Image
+                src="/logos/fm-logo-sqare.png"
+                alt=""
+                width={112}
+                height={112}
+                className="w-24 max-w-full sm:w-28"
+                aria-hidden="true"
+              />
               <span className="sr-only">Fables Monster Studio</span>
             </Link>
-            <p className="text-gray-300 font-nunito">
-              {dict?.tagline || "Independent tabletop RPG content creation studio"}
+            <DossierLabel>{dict.brandLabel || 'Independent dossier'}</DossierLabel>
+            <p className="mt-4 font-nunito text-sm leading-relaxed text-zinc-300">
+              {dict.tagline || 'Independent tabletop RPG content creation studio'}
             </p>
+            <HeaderCta item={cta} className="mt-5" />
+          </section>
+
+          <div className="grid gap-8 sm:grid-cols-3">
+            {linkGroups.map((group) => (
+              <FooterLinkGroup
+                key={group.title}
+                title={group.title}
+                ariaLabel={group.ariaLabel}
+                links={group.links}
+              />
+            ))}
           </div>
 
-          {/* Projects Navigation */}
-          <nav aria-label={dict.projectsAriaLabel || 'Projects'}>
-            <h3 className="text-lg font-bold text-white mb-4 font-nunito">
-              {dict?.projects || "PROJECTS"}
+          <section aria-label={dict.connect || 'Connect'}>
+            <h3 className="mb-4 font-orbitron text-sm font-bold uppercase tracking-[0.16em] text-white">
+              {dict.connect || 'CONNECT'}
             </h3>
-            <ul className="space-y-2 text-gray-300 font-nunito">
-              <li>
-                <Link href={`/${lang}/lost-mark`} className="hover:text-red-400 transition-colors">
-                  {dict.projectLostMark || "The Lost Mark"}
-                </Link>
-              </li>
-              <li>
-                <Link href={`/${lang}/career-twilight`} className="hover:text-red-400 transition-colors">
-                  {dict.projectCareerTwilight || "Career Twilight"}
-                </Link>
-              </li>
-              <li>
-                <Link href={`/${lang}/holiday-audit-kramp`} className="hover:text-red-400 transition-colors">
-                  {dict.projectKramp || "Holiday Audit: Kramp.exe"}
-                </Link>
-              </li>
-              <li>
-                <Link href={`/${lang}/expedition-418`} className="hover:text-red-400 transition-colors">
-                  {dict.projectExpedition || "Expedition-418"}
-                </Link>
-              </li>
-              <li>
-                <Link href={`/${lang}/hellish-bureaucracy`} className="hover:text-red-400 transition-colors">
-                  {dict.projectHellishBureaucracy || "Hellish Bureaucracy"}
-                </Link>
-              </li>
-              <li>
-                <Link href={`/${lang}/old-world-neon`} className="hover:text-red-400 transition-colors">
-                  {dict.projectNeon || "Old World Neon"}
-                </Link>
-              </li>
-              <li>
-                <Link href={`/${lang}/projects`} className="hover:text-red-400 transition-colors text-gray-400">
-                  {dict.allProjects || "All projects →"}
-                </Link>
-              </li>
-            </ul>
-          </nav>
-          <div>
-            <nav aria-label={dict.linksAriaLabel || 'Links'}>
-              <h3 className="text-lg font-bold text-white mb-4 font-nunito">
-                {dict?.links || "LINKS"}
-              </h3>
-              <ul className="space-y-2 text-gray-300 font-nunito mb-6">
-                <li>
-                  <Link href={`/${lang}/about`} className="hover:text-red-400 transition-colors">
-                    {dict?.about || "About"}
-                  </Link>
-                </li>
-                <li>
-                  <Link href={`/${lang}/vtt`} className="hover:text-red-400 transition-colors">
-                    {dict.vttServices || "VTT Services"}
-                  </Link>
-                </li>
-                <li>
-                  <Link href={`/${lang}/contact`} className="hover:text-red-400 transition-colors">
-                    {dict?.contact || "Contact"}
-                  </Link>
-                </li>
-                <li>
-                  <Link href={`/${lang}/privacy`} className="hover:text-red-400 transition-colors">
-                    {dict.privacy || 'Privacy'}
-                  </Link>
-                </li>
-              </ul>
-            </nav>
-            <div>
-              <h3 className="text-lg font-bold text-white mb-4 font-nunito">
-                {dict?.social || "SOCIAL"}
-              </h3>
-              <SocialLinks showLabels={false} className="justify-start" />
-            </div>
-          </div>
-
-          {/* Newsletter Section */}
-          <div>
-            <h3 className="text-lg font-bold text-white mb-4 font-nunito">
-              {newsletterDict?.footer.title || 'NEWSLETTER'}
-            </h3>
-            <p className="text-gray-300 text-sm mb-4 font-nunito">
-              {newsletterDict?.footer.description || 'Get updates on new releases'}
+            <p className="mb-4 font-nunito text-sm leading-relaxed text-zinc-300">
+              {newsletterDict?.footer.description || 'Get updates on new releases and studio transmissions.'}
             </p>
             <NewsletterForm
               dict={{
@@ -127,16 +76,23 @@ export default function Footer({ lang, dict, newsletterDict }: FooterProps) {
             />
             <Link
               href={`/${lang}/newsletter/subscribe`}
-              className="inline-block mt-3 text-sm text-gray-400 hover:text-red-400 transition-colors font-nunito"
+              className="mt-3 inline-block font-nunito text-sm text-zinc-400 transition-colors hover:text-red-300 focus:outline-none focus:ring-2 focus:ring-red-500"
             >
-              {newsletterDict?.footer.learnMore || 'Learn more →'}
+              {newsletterDict?.footer.learnMore || dict.newsletter || 'Newsletter ->'}
             </Link>
-          </div>
+            <div className="mt-5">
+              <SocialLinks showLabels={false} className="justify-start gap-3" />
+            </div>
+          </section>
         </div>
 
-        {/* Copyright */}
-        <div className="mt-12 pt-8 border-t border-gray-800 text-center text-gray-400 font-nunito">
-          <p>{(dict?.copyright || "© {year} Fables Monster Studio. All rights reserved.").replace('{year}', new Date().getFullYear().toString())}</p>
+        <div className="mt-12 border-t border-zinc-900 pt-8 text-center font-nunito text-sm text-zinc-500">
+          <p>
+            {(dict.copyright || '(c) {year} Fables Monster Studio. All rights reserved.').replace(
+              '{year}',
+              new Date().getFullYear().toString(),
+            )}
+          </p>
         </div>
       </div>
     </footer>
