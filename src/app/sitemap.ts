@@ -11,6 +11,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/projects', changeFrequency: 'weekly' as const, priority: 0.9 },
     { path: '/lost-mark', changeFrequency: 'weekly' as const, priority: 0.9 },
     { path: '/lost-mark/terminal', changeFrequency: 'monthly' as const, priority: 0.7 },
+    { path: '/career-twilight', changeFrequency: 'weekly' as const, priority: 0.9 },
+    { path: '/expedition-418', changeFrequency: 'weekly' as const, priority: 0.9 },
     { path: '/hellish-bureaucracy', changeFrequency: 'monthly' as const, priority: 0.8 },
     { path: '/old-world-neon', changeFrequency: 'weekly' as const, priority: 0.9 },
     { path: '/timer', changeFrequency: 'monthly' as const, priority: 0.7 },

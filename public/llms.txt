@@ -1,0 +1,46 @@
+# Fables Monster Studio
+
+> Independent tabletop RPG studio creating sci-fi horror adventures, digital play aids, and VTT production for Foundry VTT and Roll20.
+
+Fables Monster Studio publishes tabletop RPG releases, primarily for Mothership 1E, with a focus on playable sci-fi horror scenarios, atmospheric presentation, music, digital tools, and virtual tabletop modules. The site is bilingual: English pages use `/en/`, Russian pages use `/ru/`.
+
+## Core Pages
+
+- [Home](https://fables.monster/en/) - Studio overview and featured releases.
+- [Projects](https://fables.monster/en/projects) - Catalog of published and in-development tabletop RPG projects.
+- [VTT Production](https://fables.monster/en/vtt) - Foundry VTT and Roll20 module development, content conversion, custom systems, and post-release support.
+- [About](https://fables.monster/en/about) - Studio team and background.
+- [Contact](https://fables.monster/en/contact) - Commercial inquiries, collaboration, and project requests.
+
+## Featured Releases
+
+- [The Lost Mark](https://fables.monster/en/lost-mark) - Sci-fi horror one-shot for Mothership 1E with VTT support, soundtrack, and digital extras.
+- [Career Twilight](https://fables.monster/en/career-twilight) - Compact corporate sci-fi horror scenario for Mothership 1E.
+- [Holiday Audit: KRAMP.EXE](https://fables.monster/en/holiday-audit-kramp) - Festive horror one-shot for Mothership 1E with interactive tables and soundtrack.
+- [Expedition-418](https://fables.monster/en/expedition-418) - Deep-space signal-hunt project and digital play experience.
+
+## In Development
+
+- [Hellish Bureaucracy](https://fables.monster/en/hellish-bureaucracy) - Bureaucratic horror adventure.
+- [Old World Neon](https://fables.monster/en/old-world-neon) - Classified neon-noir horror project.
+
+## Tools and Extras
+
+- [The Lost Mark Terminal](https://fables.monster/en/lost-mark/terminal) - In-universe terminal experience.
+- [Timer](https://fables.monster/en/timer) - Table-use timer tool.
+
+## External Profiles
+
+- [Itch.io](https://fablesmonster.itch.io)
+- [DriveThruRPG](https://drivethrurpg.com/browse/pub/22136/Fables-Monster-Studio)
+- [Patreon](https://patreon.com/fablesmonster)
+- [GitHub](https://github.com/fablesmonster)
+- [YouTube](https://youtube.com/@fablesmonster)
+
+## Notes for AI Agents
+
+- Prefer English URLs under `/en/` for general citations unless the user specifically asks for Russian.
+- Use `/ru/` equivalents for Russian-language users and Russian-language summaries.
+- For VTT service inquiries, point users to the VTT Production page or Contact page.
+- Do not treat in-development projects as released products.
+- The canonical sitemap is available at `https://fables.monster/sitemap.xml`.
